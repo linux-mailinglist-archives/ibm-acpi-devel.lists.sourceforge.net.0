@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D945B490
-	for <lists+ibm-acpi-devel@lfdr.de>; Sat, 27 Apr 2019 23:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56A34B4A2
+	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 28 Apr 2019 00:17:25 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1hKV97-0006bM-LK; Sat, 27 Apr 2019 21:46:09 +0000
+	id 1hKVd4-0008Bd-Lf; Sat, 27 Apr 2019 22:17:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <pavel@ucw.cz>) id 1hKV96-0006bF-Ae
- for ibm-acpi-devel@lists.sourceforge.net; Sat, 27 Apr 2019 21:46:08 +0000
+ (envelope-from <pavel@ucw.cz>) id 1hKVd3-0008BS-7U
+ for ibm-acpi-devel@lists.sourceforge.net; Sat, 27 Apr 2019 22:17:05 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=TcJ1B5aDxmECALKjKjuKVpfROIaKuHxz+5FVECV4BgQ=; b=Gc9wCNI6LL+TfP5rp84elW+WOm
- z+GbSrJqIV3XCLhJrSNcZ5BudHHYA58OGodsZdiTws6vDSJW07iyKBIN4/smMeSsjUSbkBj2fmIvw
- SXDk+nVOJUZrcJJki2sFbG3x6DQSISGM8VsgtFqhArCdSJNSohYaKHcdHYA4tnrz04b0=;
+ bh=s/NvIwceS24qCAn06VHkFnrZZMpmW7xsS31oc0sQmvg=; b=NJ/e7WKpsIhyPaosWBhoZl23IL
+ 9yCRxgR7dxU1Du5Mmzvdx+/cUc7vq230la6kvbA7dW75/tWd1/bUFzvQX3y/vK7XCgXc+SLggfxn7
+ 6diQQiCWHI4xiSog+dsBF7myIS2JrSFfL+lqh+o3bNPTqpKQ/cnUUSKkOOmzukil1cQM=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,20 +29,20 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=TcJ1B5aDxmECALKjKjuKVpfROIaKuHxz+5FVECV4BgQ=; b=ZDrqQEcu1Nqwtm2G9D/RbA3NiD
- r5rMiueXjutRNGi8SDGoZohjX3O0qlglXgHF7ZipDTcPBAxwUPw3taVRoQfvg9zC3/HnBZ7DZq5Bz
- XR9xyELwe0er8n0XjxbIf3wsoUJm/KDgdidzcXfqy3DhlKYTrcpxzRGazrdrEI++FWp8=;
+ bh=s/NvIwceS24qCAn06VHkFnrZZMpmW7xsS31oc0sQmvg=; b=QRBv8vzkhBFFilSbxjoMc53kU4
+ DvUKB3B/bW9b3PPfdQEFj9DWMiCyyPNFLtUjsVomLpTXMyKJMO5DZgQV4f+XScqWgXDmioOKztp+L
+ dpHYu6obPhT5I8VBJUzp6u5TYDpXNUNw6PsCXebxSmRgdU3pqqI3r+ZgpjXBgypbIMBM=;
 Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hKV92-00FQUi-Uj
- for ibm-acpi-devel@lists.sourceforge.net; Sat, 27 Apr 2019 21:46:08 +0000
+ id 1hKVd1-00GyVo-12
+ for ibm-acpi-devel@lists.sourceforge.net; Sat, 27 Apr 2019 22:17:05 +0000
 Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
- id 7254D80743; Sat, 27 Apr 2019 23:45:48 +0200 (CEST)
-Date: Sat, 27 Apr 2019 23:45:56 +0200
+ id 1367780709; Sun, 28 Apr 2019 00:16:47 +0200 (CEST)
+Date: Sun, 28 Apr 2019 00:16:55 +0200
 From: Pavel Machek <pavel@ucw.cz>
 To: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <20190427214556.GA19758@amd>
+Message-ID: <20190427221655.GA3844@amd>
 References: <20190426123513.GA18172@amd> <20190426214246.GA24966@amd>
  <84fac57d-1121-a1da-fb45-16a2521bdef9@gmail.com>
  <20190427193411.GA9709@amd>
@@ -56,9 +56,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: marc.info]
+ for more information. [URIs: cuni.cz]
  -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1hKV92-00FQUi-Uj
+X-Headers-End: 1hKVd1-00GyVo-12
 Subject: Re: [ibm-acpi-devel] Thinkpad ACPI led -- it keeps blinking
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -74,97 +74,213 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>,
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
 Cc: ibm-acpi-devel@lists.sourceforge.net, ibm-acpi@hmh.eng.br,
  linux-leds@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============3581202643413206402=="
+Content-Type: multipart/mixed; boundary="===============2316593121854628134=="
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
 
---===============3581202643413206402==
+--===============2316593121854628134==
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="cNdxnHkX5QqsyA0e"
+	protocol="application/pgp-signature"; boundary="fUYQa+Pmc3FrFX/N"
 Content-Disposition: inline
 
 
---cNdxnHkX5QqsyA0e
+--fUYQa+Pmc3FrFX/N
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat 2019-04-27 22:35:35, Jacek Anaszewski wrote:
-> On 4/27/19 9:34 PM, Pavel Machek wrote:
-> >On Sat 2019-04-27 18:55:37, Jacek Anaszewski wrote:
-> >>On 4/26/19 11:42 PM, Pavel Machek wrote:
-> >>>Hi!
-> >>>
-> >>>>Kernel 5.1.0-rc1 + some unrelated bits.
-> >>>
-> >>>I tried adding
-> >>>https://marc.info/?l=3Dlinux-kernel&m=3D151622365715313&q=3Draw as Jac=
-ek
-> >>>suggested, and it is still broken.
-> >>>
-> >>>Test code is this: ledtest actually works as expected on first try,
-> >>>but keeps blinking on second run. Strange.
-> >>
-> >>Did it work for previous releases? If yes, then bisect should help here.
-> >
-> >Absolutely no idea :-(. I assume "no". Capslock LED on the same system
-> >works as expected.
-> >
-> >I still hope thinkpad people will speak up, notice it does not work
-> >for them, and debug it :-).
->=20
-> I see this driver implements blink_set:
->=20
-> tpacpi_leds[led].led_classdev.blink_set =3D &led_sysfs_blink_set;
->=20
-> and also applies some internal logic related to the type
-> of supported LEDs, and the way how the hardware is accessed.
->=20
-> To eliminate the problem on the LED core side you could
-> disable initialization of blink_set op in the driver.
+Hi!
 
-Yep, software blinking will very likely work ok.
+It seems quite clear:
 
-[  226.949924] LED set 0 to 2
-[  226.950766] LED set 0 to 2... 0
-[  232.613577] LED set 0 to 2
-[  232.613991] LED set 0 to 0
-[  232.614467] LED set 0 to 2... 0
-[  232.616442] LED set 0 to 0... 0
+static int timer_trig_activate(struct led_classdev *led_cdev)
+{
+        printk("timer_trig_activate\n");
+	if (led_cdev->flags & LED_INIT_DEFAULT_TRIGGER) {
+=09
+        led_blink_set(led_cdev, &led_cdev->blink_delay_on, &led_cdev->blink=
+_delay_off);
 
-Thinkpad ACPI driver is being asked to turn led to blink [232.613577]
-LED set 0 to 2 and turn it off [  232.613991] LED set 0 to 0
-simultaneously. It has no internal locking and ACPI is slow. That
-can't end well.
-									Pavel
+	printk("timer_trig_activate done\n");
+
+        return 0;
+}
+
+static void timer_trig_deactivate(struct led_classdev *led_cdev)
+{
+        printk("timer_trig_deactivate\n");
+
+	/* Stop blinking */
+	led_set_brightness(led_cdev, LED_OFF);
+
+        printk("timer_trig_deactivate done\n");
+}
+
+We get timer_trig_deactivate() immediately followed by
+timer_trig_activate().
+
+set_brightness goes to workqueue because it would block. That means
+that blink_set() happens before set_brightness...
+
+								Pavel
+
+[   16.194141] e1000e 0000:02:00.0 eth1: 10/100 speed: disabling TSO
+[  145.887931] timer_trig_activate
+[  145.888011] LED set 0 to 2
+[  145.888879] LED set 0 to 2... 0
+[  145.888893] timer_trig_activate done
+[  149.977138] timer_trig_deactivate
+[  149.977169] timer_trig_deactivate done
+[  149.977479] timer_trig_activate
+[  149.977497] LED set 0 to 2
+[  149.978281] LED set 0 to 2... 0
+[  149.978295] timer_trig_activate done
+[  149.978415] LED set 0 to 0
+[  149.979851] LED set 0 to 0... 0
+[  184.839252] timer_trig_deactivate
+[  184.839282] timer_trig_deactivate done
+[  184.839319] timer_trig_activate
+[  184.839337] LED set 0 to 2
+[  184.839907] LED set 0 to 0
+[  184.840369] LED set 0 to 2... 0
+[  184.840383] timer_trig_activate done
+[  184.843318] LED set 0 to 0... 0
+root@amd:/sys/class/leds/tpacpi::power#
+
+diff --git a/drivers/leds/led-core.c b/drivers/leds/led-core.c
+index e3da7c0..ca1f69b 100644
+--- a/drivers/leds/led-core.c
++++ b/drivers/leds/led-core.c
+@@ -166,6 +166,7 @@ static void led_blink_setup(struct led_classdev *led_cd=
+ev,
+ {
+ 	if (!test_bit(LED_BLINK_ONESHOT, &led_cdev->work_flags) &&
+ 	    led_cdev->blink_set &&
++	    /* This can sleep */
+ 	    !led_cdev->blink_set(led_cdev, delay_on, delay_off))
+ 		return;
+=20
+diff --git a/drivers/leds/trigger/ledtrig-timer.c b/drivers/leds/trigger/le=
+dtrig-timer.c
+index ca898c1..0b061bb5 100644
+--- a/drivers/leds/trigger/ledtrig-timer.c
++++ b/drivers/leds/trigger/ledtrig-timer.c
+@@ -104,6 +104,7 @@ static void pattern_init(struct led_classdev *led_cdev)
+=20
+ static int timer_trig_activate(struct led_classdev *led_cdev)
+ {
++	printk("timer_trig_activate\n");
+ 	if (led_cdev->flags & LED_INIT_DEFAULT_TRIGGER) {
+ 		pattern_init(led_cdev);
+ 		/*
+@@ -115,14 +116,18 @@ static int timer_trig_activate(struct led_classdev *l=
+ed_cdev)
+=20
+ 	led_blink_set(led_cdev, &led_cdev->blink_delay_on,
+ 		      &led_cdev->blink_delay_off);
++	printk("timer_trig_activate done\n");
+=20
+ 	return 0;
+ }
+=20
+ static void timer_trig_deactivate(struct led_classdev *led_cdev)
+ {
++	printk("timer_trig_deactivate\n");
+ 	/* Stop blinking */
+ 	led_set_brightness(led_cdev, LED_OFF);
++
++	printk("timer_trig_deactivate done\n");
+ }
+=20
+ static struct led_trigger timer_led_trigger =3D {
+diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
+index 3a4402a..b3fa9c9 100644
+--- a/drivers/mmc/core/host.c
++++ b/drivers/mmc/core/host.c
+@@ -363,11 +363,11 @@ int mmc_of_parse_voltage(struct device_node *np, u32 =
+*mask)
+ 	int num_ranges, i;
+=20
+ 	voltage_ranges =3D of_get_property(np, "voltage-ranges", &num_ranges);
+-	num_ranges =3D num_ranges / sizeof(*voltage_ranges) / 2;
+ 	if (!voltage_ranges) {
+ 		pr_debug("%pOF: voltage-ranges unspecified\n", np);
+ 		return 0;
+ 	}
++	num_ranges =3D num_ranges / sizeof(*voltage_ranges) / 2;
+ 	if (!num_ranges) {
+ 		pr_err("%pOF: voltage-ranges empty\n", np);
+ 		return -EINVAL;
+diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/th=
+inkpad_acpi.c
+index 57d9ae9..3ec6636 100644
+--- a/drivers/platform/x86/thinkpad_acpi.c
++++ b/drivers/platform/x86/thinkpad_acpi.c
+@@ -5867,6 +5867,8 @@ static int led_set_status(const unsigned int led,
+=20
+ 	int rc =3D 0;
+=20
++	printk("LED set %d to %d\n", led, ledstatus);
++
+ 	switch (led_supported) {
+ 	case TPACPI_LED_570:
+ 		/* 570 */
+@@ -5876,7 +5878,7 @@ static int led_set_status(const unsigned int led,
+ 			return -EPERM;
+ 		if (!acpi_evalf(led_handle, NULL, NULL, "vdd",
+ 				(1 << led), led_sled_arg1[ledstatus]))
+-			rc =3D -EIO;
++			return -EIO;
+ 		break;
+ 	case TPACPI_LED_OLD:
+ 		/* 600e/x, 770e, 770x, A21e, A2xm/p, T20-22, X20 */
+@@ -5900,12 +5902,14 @@ static int led_set_status(const unsigned int led,
+ 			return -EPERM;
+ 		if (!acpi_evalf(led_handle, NULL, NULL, "vdd",
+ 				led, led_led_arg1[ledstatus]))
+-			rc =3D -EIO;
++			return -EIO;
+ 		break;
+ 	default:
+-		rc =3D -ENXIO;
++		return -ENXIO;
+ 	}
+=20
++	printk("LED set %d to %d... %d\n", led, ledstatus, rc);
++
+ 	if (!rc)
+ 		tpacpi_led_state_cache[led] =3D ledstatus;
+=20
+
+=09
 --=20
 (english) http://www.livejournal.com/~pavelmachek
 (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
 g.html
 
---cNdxnHkX5QqsyA0e
+--fUYQa+Pmc3FrFX/N
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iEYEARECAAYFAlzEzZQACgkQMOfwapXb+vJS2ACdELxAVLLsxfoqrCYKatyXFDTM
-ueYAnRWaffAg2FE3OkRUTeZQ3InSww0b
-=zsJ+
+iEYEARECAAYFAlzE1NcACgkQMOfwapXb+vJgFACgplv96Oc196GwivJnpG3bzLS0
+gxwAoJll4FbFvNNdgzW89qNi//F99zup
+=Ysda
 -----END PGP SIGNATURE-----
 
---cNdxnHkX5QqsyA0e--
+--fUYQa+Pmc3FrFX/N--
 
 
---===============3581202643413206402==
+--===============2316593121854628134==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 
---===============3581202643413206402==
+--===============2316593121854628134==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -175,5 +291,5 @@ ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
 
---===============3581202643413206402==--
+--===============2316593121854628134==--
 
