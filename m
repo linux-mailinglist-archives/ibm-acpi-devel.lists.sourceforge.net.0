@@ -2,63 +2,107 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B68B4A3
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 28 Apr 2019 00:32:38 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2043B5EC
+	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 28 Apr 2019 14:03:23 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1hKVro-0002GG-VP; Sat, 27 Apr 2019 22:32:20 +0000
+	id 1hKiWQ-0001ZT-8c; Sun, 28 Apr 2019 12:03:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <pavel@ucw.cz>) id 1hKVrl-0002G6-Uj
- for ibm-acpi-devel@lists.sourceforge.net; Sat, 27 Apr 2019 22:32:17 +0000
+ (envelope-from <jacek.anaszewski@gmail.com>) id 1hKiWN-0001Yu-Sj
+ for ibm-acpi-devel@lists.sourceforge.net; Sun, 28 Apr 2019 12:03:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zw3s3Dci8q291gcmK4fm48FmVyz1vinj7YIue/pjLNI=; b=WbFHaGK/Xe/HVQ83yZmLk0NArD
- QAE83vpCHWT+Tup3DOh27VsqCr8cuZs8Gg49IHRhDrCKhkK+xo5Ognp+FWJYIrXWJRLVpHGJqH2B1
- 8+1oZ7A6vXvahENjmYUYYQ8oycWv7Wn3So1u2yWaiLJFjxXX13EGLgLLafYiUM/KCzTc=;
+ bh=6JmwHycIMcKRap3PYXwfoDZSb8QQcE9P2dxpSjWPqgA=; b=IFjsRAYEG7sD4RGUhPU1eEAwdO
+ AStQhoQRrQzPue7CDp4jgyx6JM65TQdFdyCo+caAjAVeUYLibK7xBxCyJhJzi6rjjZqKBeuOOaDL9
+ BjpHfR0m3VmYFyzmBuCox/JAi2VkJjmkwjh2NXteariWj9pJTbr7BlpcUTXmPp2rCWpY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=zw3s3Dci8q291gcmK4fm48FmVyz1vinj7YIue/pjLNI=; b=I07ZPydaaeXu90jMkcaQHz+Xf0
- ST8OJqaDF2MK3wMhcE2FikpDXp0lerJQNDf+xZgpk2yJhL8INzODCAPkAltWElNwONPNJGwtGzqN4
- vFNd1TUq9/osIPIJvM/mDWuhJjqhfDx79/+nr6gqFG+yH/DY+Sv12BCbCZUaGGxl5LhI=;
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193])
+ bh=6JmwHycIMcKRap3PYXwfoDZSb8QQcE9P2dxpSjWPqgA=; b=RBKhqazAsntQJxZU3z/HaQ1riO
+ MW/uxI84neiaJa1d/fqs3GKxX14pCl7jw6FptuzcYq7NZ0N6Wt2VsINYQO16FleFdj5NkOonSAZeb
+ IT8Qsy/tsW5FQiuxi943gHBcCzmcdQ4UGMR6x7bJU3W8FEIowQbxq3WPUc2gH6dxIhRI=;
+Received: from mail-lf1-f66.google.com ([209.85.167.66])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hKVrj-00FSxw-0u
- for ibm-acpi-devel@lists.sourceforge.net; Sat, 27 Apr 2019 22:32:17 +0000
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
- id 573568081B; Sun, 28 Apr 2019 00:31:59 +0200 (CEST)
-Date: Sun, 28 Apr 2019 00:32:08 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <20190427223207.GA3585@amd>
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
+ id 1hKiWM-00G1zv-Eq
+ for ibm-acpi-devel@lists.sourceforge.net; Sun, 28 Apr 2019 12:03:03 +0000
+Received: by mail-lf1-f66.google.com with SMTP id i68so5684155lfi.10
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Sun, 28 Apr 2019 05:03:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=subject:to:cc:references:from:message-id:date:user-agent
+ :mime-version:in-reply-to:content-language:content-transfer-encoding;
+ bh=6JmwHycIMcKRap3PYXwfoDZSb8QQcE9P2dxpSjWPqgA=;
+ b=vUNWFP9yGBHPOqsvgF10bOpBoS7kFy8Q1WwzOyZ/p43RLaVrZCNRQdVBIuPDR/TKJF
+ voLFLtGDqD9HJghufAbMFBkjZQdfhxF5MqXtAVVBmEe264hAyqAyigqFl5GYyf6HJfCt
+ oyoH61angePQSKIOHT9LTQryfO0r07ywDtC2w3Ml4IEA9YaxBIHWKSViG1OObbNFrRkT
+ AUHu0YIFt83tls/zWsA4nRlm5O6j/pbcR4XnOz7UVzKH6zxDaNhKtAOv+Eixt1zldivc
+ PuWTu0t7cxKpHbQ2vlbjhHI3wY46lTdMexoeQQgshwiYyScwo1W3lPCuWwxfQtoXdux9
+ Pe1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=6JmwHycIMcKRap3PYXwfoDZSb8QQcE9P2dxpSjWPqgA=;
+ b=dCgzlP+PSN21X/ylHWUprl4j8/YfpQQU2os5BoVzd0Zd+oiC2kUcCcdESDCbc1uoJ3
+ aHBi/qOD6Rx+kTAAT7AQfIbIZOAWhF1FLsLbHyuNkH6rzpUicXsYa0aGs9HdESUkp0ls
+ efHrlH1cf5yoIHdqR1EY1uUGbl8B36ZYDR+Wm2bIFBW20vkIzCCi/jAx/14clcnjLi+L
+ HapX+MPptihfkAaQs9y/9CLX0na8Yk7SLb0tYN3LXDfMJpvdZuX4V454jEHk9XQNSnkh
+ 7ZrugXzoiSoMwjYi0M51MpRh81hzihLrKo3NxQ0FFNK6n5UHtbsOy4fEkcmFY6MknCma
+ 1aZw==
+X-Gm-Message-State: APjAAAWMSG/PXXuzgfawmHWsCzAjQIKil3xOMkbe8PRs4F4b+urjn14b
+ nbK8gd8xXqV9XFP2CGnb4F4=
+X-Google-Smtp-Source: APXvYqyKJWl3jOsG3uIyH5Q3u1bGVIkfdAt6lib3Z0V3GyQr8U+WEZo+tTmS0ZrETLFTzHlowaaiCA==
+X-Received: by 2002:ac2:4246:: with SMTP id m6mr10272469lfl.0.1556452975673;
+ Sun, 28 Apr 2019 05:02:55 -0700 (PDT)
+Received: from [192.168.1.19] (bgq85.neoplus.adsl.tpnet.pl. [83.28.80.85])
+ by smtp.gmail.com with ESMTPSA id w19sm6842581lfe.23.2019.04.28.05.02.53
+ (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+ Sun, 28 Apr 2019 05:02:54 -0700 (PDT)
+To: Pavel Machek <pavel@ucw.cz>
 References: <20190426123513.GA18172@amd> <20190426214246.GA24966@amd>
- <84fac57d-1121-a1da-fb45-16a2521bdef9@gmail.com>
- <20190427193411.GA9709@amd>
- <2578a614-beb9-1c9d-9f74-208a8a7ab64f@gmail.com>
+ <84fac57d-1121-a1da-fb45-16a2521bdef9@gmail.com> <20190427193411.GA9709@amd>
+ <2578a614-beb9-1c9d-9f74-208a8a7ab64f@gmail.com> <20190427223207.GA3585@amd>
+From: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <d2373c8b-5c66-c875-16c7-0c5a93470793@gmail.com>
+Date: Sun, 28 Apr 2019 14:02:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <2578a614-beb9-1c9d-9f74-208a8a7ab64f@gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-X-Spam-Score: -0.2 (/)
+In-Reply-To: <20190427223207.GA3585@amd>
+Content-Language: en-US
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (jacek.anaszewski[at]gmail.com)
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: cuni.cz]
- -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1hKVrj-00FSxw-0u
+ for more information. [URIs: ucw.cz]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.167.66 listed in list.dnswl.org]
+ -0.2 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.167.66 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1hKiWM-00G1zv-Eq
 Subject: Re: [ibm-acpi-devel] Thinkpad ACPI led -- it keeps blinking
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -74,87 +118,50 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>,
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
 Cc: ibm-acpi-devel@lists.sourceforge.net, ibm-acpi@hmh.eng.br,
  linux-leds@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============6879095210923642472=="
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
+On 4/28/19 12:32 AM, Pavel Machek wrote:
+> Hi!
+> 
+> This fixes one problem:
+> 
+> 									Pavel
+> 
+> Signed-off-by: Pavel Machek <pavel@ucw.cz>
+> 
+> diff --git a/drivers/leds/led-core.c b/drivers/leds/led-core.c
+> index e3da7c0..d795d8f 100644
+> --- a/drivers/leds/led-core.c
+> +++ b/drivers/leds/led-core.c
+> @@ -164,8 +164,14 @@ static void led_blink_setup(struct led_classdev *led_cdev,
+>   		     unsigned long *delay_on,
+>   		     unsigned long *delay_off)
+>   {
+> +	while (work_pending(&led_cdev->set_brightness_work)) {
+> +		printk("Waiting for brightness set to finish\n");
+> +		schedule();
+> +	}
 
---===============6879095210923642472==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="NzB8fVQJ5HfG6fxh"
-Content-Disposition: inline
+Or even better:
 
+flush_work(&led_cdev->set_brightness_work);
 
---NzB8fVQJ5HfG6fxh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>   	if (!test_bit(LED_BLINK_ONESHOT, &led_cdev->work_flags) &&
+>   	    led_cdev->blink_set &&
+> +	    /* This can sleep */
+>   	    !led_cdev->blink_set(led_cdev, delay_on, delay_off))
+>   		return;
+>   
+> 
 
-Hi!
+-- 
+Best regards,
+Jacek Anaszewski
 
-This fixes one problem:
-
-									Pavel
-
-Signed-off-by: Pavel Machek <pavel@ucw.cz>
-
-diff --git a/drivers/leds/led-core.c b/drivers/leds/led-core.c
-index e3da7c0..d795d8f 100644
---- a/drivers/leds/led-core.c
-+++ b/drivers/leds/led-core.c
-@@ -164,8 +164,14 @@ static void led_blink_setup(struct led_classdev *led_c=
-dev,
- 		     unsigned long *delay_on,
- 		     unsigned long *delay_off)
- {
-+	while (work_pending(&led_cdev->set_brightness_work)) {
-+		printk("Waiting for brightness set to finish\n");
-+		schedule();
-+	}
-+		      =20
- 	if (!test_bit(LED_BLINK_ONESHOT, &led_cdev->work_flags) &&
- 	    led_cdev->blink_set &&
-+	    /* This can sleep */
- 	    !led_cdev->blink_set(led_cdev, delay_on, delay_off))
- 		return;
-=20
-
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---NzB8fVQJ5HfG6fxh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAlzE2GcACgkQMOfwapXb+vKl/ACeLRoqIr8SQO8NSjC99Bqkr/uQ
-azAAoLbC9v1YzD3qkvL7Q0njYSmCHtpw
-=rCcb
------END PGP SIGNATURE-----
-
---NzB8fVQJ5HfG6fxh--
-
-
---===============6879095210923642472==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-
---===============6879095210923642472==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
-
---===============6879095210923642472==--
-
