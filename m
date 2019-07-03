@@ -2,116 +2,95 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 859225B20C
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 30 Jun 2019 23:21:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC355E7AD
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed,  3 Jul 2019 17:21:24 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1hhhFc-00021Y-03; Sun, 30 Jun 2019 21:20:44 +0000
+	id 1hih42-0007hq-5K; Wed, 03 Jul 2019 15:20:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hmh@hmh.eng.br>) id 1hhhFZ-000217-KZ
- for ibm-acpi-devel@lists.sourceforge.net; Sun, 30 Jun 2019 21:20:42 +0000
+ (envelope-from <andy.shevchenko@gmail.com>)
+ id 1hih3z-0007hT-Td; Wed, 03 Jul 2019 15:20:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=LXZeXvMT6ke8ePqQPxOy1AwiEAIvsNDpCULD1Y9PdJA=; b=RPkJEtyw6SRdajcBJIbz1EP9xi
- T3NDWB5LPnOUfd3KZkh78lwKT6rEZj+fNAY00BDQ8F9Zpy9hU+qXbRe0QIqWph/DqeQIkf0Vi5oU2
- qne07wSK8r76aJ+wzHQ9pKR31Hr9OzBZdD++pO9dBiuFn1XCSVu9RjQ3JeBs3YzLNZBQ=;
+ bh=npfUX5g4NBmsetcgst/lwNx2V3HsW1aIbrFYjh+u9+o=; b=kT8xOD4VJHznSbaaTljxdrvXMH
+ E5/B/BfUhKo4OO4qSJvjvOPmzHvdMTdjJ91pi5l8hh03UTc6g3qeX5SEs7YgIL2wnApn6CoJoj49U
+ 3VRPFhT571w/mVX6EiRRd6nUiLdFAz3jL+9ERiTL286JEyBYZCYCdT82EpGvFc7yI4sU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=LXZeXvMT6ke8ePqQPxOy1AwiEAIvsNDpCULD1Y9PdJA=; b=BAw5lddLFVG25QWImS8fYPaDSw
- hbUCPE8jdy1c7SEWehxJKmagykUwoGPJV+RncklK9GUKew2siwXsToQR0rzxQD9HXIc/IDf2B5LjG
- FygpKbxQPz8BdAfGrGH3OIZeq7TUAULIZyGLFYY8DkPFnbwlylnNsuX2V1AWgF7yt6Ek=;
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24])
+ bh=npfUX5g4NBmsetcgst/lwNx2V3HsW1aIbrFYjh+u9+o=; b=Bh3fvCPFvSS5hzF5CuUDX39qoy
+ owCqKrKsMXKt8gLXBICL83LFYeIpB891L01h9722CXJeCgF7n/00rNdLtd7uk8w30T67YmTnKlRXQ
+ +xwKtYPDFteHLLJLqJ1q7eNMBx6mmE8mfTlXeUVfk6UT6z0S0EbnwLVeniwJF5QAblN0=;
+Received: from mail-pl1-f195.google.com ([209.85.214.195])
  by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- id 1hhhFb-002OwU-0a
- for ibm-acpi-devel@lists.sourceforge.net; Sun, 30 Jun 2019 21:20:45 +0000
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
- by mailout.west.internal (Postfix) with ESMTP id 928AC395;
- Sun, 30 Jun 2019 17:20:34 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute5.internal (MEProxy); Sun, 30 Jun 2019 17:20:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmh.eng.br; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm2; bh=LXZeXvMT6ke8ePqQPxOy1AwiEAI
- vsNDpCULD1Y9PdJA=; b=PRwgTUmm5Xvmt+biuhOmPfgo0eraaKEI3JnhA2dM3n0
- W5feF3L/UUhJ98XNhk5V0GZXr6ZB5qP5r13hknr9I+60D5uWZ8f18nELII3jwFhK
- 2+3Wd2FlVyjmeAPoJUziWxxopkbVDencp1M+vDGrUfqv07COm/4kDo1rIMcwVwFK
- gGGt17ery0S7TgJewb9VbsKPT8XAfESy59ITxNn8v8YxyeoUB0zmO+ysXvaE7Da5
- PdatpZmgtYeXxV9mpXdqllb/z2VT2VAUadxdadTOxWKDMq0Z1+eis3IDsHR538eg
- JFGt8onhro/trp4e3cHxdenL8/FsI2zdXyBSuCodVdA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=LXZeXv
- MT6ke8ePqQPxOy1AwiEAIvsNDpCULD1Y9PdJA=; b=FDjxb1zPMGhyak1RxEOaNh
- PPpNX87BfGcKYgJAsSwrVdbLqOXsYaEEimX5MA8aVxizGa0p/DWxyGKMKJH/ngyx
- h0GJDUSkZmlXsBrcGyCIntLreqkYBHqz892N7xFMvT2n8m/fRZt/69uvo1CKPEEG
- hA81yXdW7gGiuOLEQH/y72fLWqFKXYoE1DUqK5k6CNOxfT6MzBBOYPpKDv85+r7W
- EV2Fc9QWM2T0UMFCLv+JrO1XYJpsHU7tMgVqlKJ69Yh1g2KtFPg58BUdhx8a3Gjc
- zia02yZ1ZSTPZ5dhXXbq/NqWQoAd13i7TkwmqwZqg4sJErLyfkLQN+n9xJTNQOLA
- ==
-X-ME-Sender: <xms:oScZXfr-0JP39VDLu8aAGlTEqCR2XPZPDMYcz_QspaDctkqOs3vCaw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrvdeggdduieduucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucenucfjughrpeffhffvuffkfhggtggujggfsehttd
- dttddtredvnecuhfhrohhmpefjvghnrhhiqhhuvgcuuggvucfoohhrrggvshcujfholhhs
- tghhuhhhuceohhhmhheshhhmhhdrvghnghdrsghrqeenucfkphepvddtuddrheefrddule
- egrddugeeknecurfgrrhgrmhepmhgrihhlfhhrohhmpehhmhhhsehhmhhhrdgvnhhgrdgs
- rhenucevlhhushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:oScZXflNeQzkvP1RRJndlspq2kZJ6RpB4Y1q8T1m4Ukzc_m0pOgUJg>
- <xmx:oScZXZWIrYCOmGPuwGaHdHRb6Psxq93ujlDWLvuAZuxaRd8wBtmZDg>
- <xmx:oScZXToQ32onpSXht9UoDy6ZDzjV7tkSePG0seA4PGCdXxpoD4tEbA>
- <xmx:oicZXWxU-H13orSrvCKVyk5QhQaZEif66mwYQJwDKkeQO8WD8Knpvg>
-Received: from khazad-dum.debian.net (unknown [201.53.194.148])
- by mail.messagingengine.com (Postfix) with ESMTPA id 4310D8005A;
- Sun, 30 Jun 2019 17:20:33 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
- by localhost.khazad-dum.debian.net (Postfix) with ESMTP id 64EB3340162A;
- Sun, 30 Jun 2019 18:20:30 -0300 (-03)
-X-Virus-Scanned: Debian amavisd-new at khazad-dum.debian.net
-Received: from khazad-dum.debian.net ([127.0.0.1])
- by localhost (khazad-dum2.khazad-dum.debian.net [127.0.0.1]) (amavisd-new,
- port 10024)
- with LMTP id E0JmqjY8RCFj; Sun, 30 Jun 2019 18:20:29 -0300 (-03)
-Received: by khazad-dum.debian.net (Postfix, from userid 1000)
- id 28EAD3401629; Sun, 30 Jun 2019 18:20:29 -0300 (-03)
-Date: Sun, 30 Jun 2019 18:20:29 -0300
-From: Henrique de Moraes Holschuh <hmh@hmh.eng.br>
-To: Frank Steiner <fsteiner-mail1@bio.ifi.lmu.de>
-Message-ID: <20190630212028.pwzdlvo6xdxkwbut@khazad-dum.debian.net>
-References: <95e3df5e-a19a-1d3b-8d29-35ce645698b2@bio.ifi.lmu.de>
- <20190629214502.w4yeyfp2qpov4mtv@khazad-dum.debian.net>
- <9a5f5954-60ae-8dfa-5b3a-0b3fac2590c6@bio.ifi.lmu.de>
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
+ id 1hih46-006RIk-TM; Wed, 03 Jul 2019 15:21:00 +0000
+Received: by mail-pl1-f195.google.com with SMTP id b7so1430549pls.6;
+ Wed, 03 Jul 2019 08:20:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=npfUX5g4NBmsetcgst/lwNx2V3HsW1aIbrFYjh+u9+o=;
+ b=alSKkrNqbdr9OhZoF+JB968jD/7tRgD/xcQov7+FUTen/Ddk0DLlixffd5mSiU7rdX
+ wuZ1kN/mSj+LVjPC/UF22/otJMVPWXLvAYXFUgk2PhSGjbASrR9TpLo7pZMMmedn5GQi
+ PisnW3Kx/HJRdyDQhrd3cmxtGv45R04+wlNamvh77uuM/oK01fKHr+BtMgzGxZ3nB8xs
+ nDgKEEJ5nXkjrbvB8JZ7ftAKz7ZiHueNRIp+ZcU5ULyfcAUlCLK3/clhlcs+1C4YfrL9
+ hjAb/hOmmUb3PLtOwtPUo6vgn5fxrrsJG+hNcyi/oFx7HyKEeHvyvTjp09q7Kv4r+kiB
+ wi0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=npfUX5g4NBmsetcgst/lwNx2V3HsW1aIbrFYjh+u9+o=;
+ b=BTMuHxGhh6fY5ZDmv5+ZLBLY28g3riKGYtpRjRTaliTlsYtj73pXFjUM4Ud/DJWpLD
+ px0IZ5aIPtDH8JrPI/LHIchETTz2EbUyCXt1PtN8ke8m+fMEkuAMBu/2Gu2sCE+px9rM
+ mSVcX6k6cLvcK1PEQTBUOtGgoKQJ5Oa+XmaSTUXd5U0k8TOfju9TuLWCX8psZfo0uvfS
+ xr+Xw6oMz44sqA9D94Y758xqUFaHT54M8gDbSXMUuBsEG2AdWagE+ysLOZJ9Fr0J/eVp
+ ZS+3pot8LKOft95R16HRGG1/RTtwOf8hV6yMMGmyY71rGSakYzARBTxLhqhNF+6NAIaj
+ fZrQ==
+X-Gm-Message-State: APjAAAX+3VZOARm7iVAWbSlGiF9s9Ey9LpT7yuCkqid535t6n5Kw7AOg
+ CPdENLPXef7qE9jU1oEqKQEzG0pkvv+s7tYKjicKPc1n0bs=
+X-Google-Smtp-Source: APXvYqw9zwX67ErTPi0PgCyAJYOtm7UgoOXqo7N4NhEw1YJtstI0VpEEPjHenFDEyA+XPXs0Sn3xcK40ybUv5JOs1Ks=
+X-Received: by 2002:a17:902:694a:: with SMTP id
+ k10mr42645894plt.255.1562167253133; 
+ Wed, 03 Jul 2019 08:20:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <9a5f5954-60ae-8dfa-5b3a-0b3fac2590c6@bio.ifi.lmu.de>
-X-GPG-Fingerprint1: 4096R/0x0BD9E81139CB4807: C467 A717 507B BAFE D3C1  6092
- 0BD9 E811 39CB 4807
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <20190703131908.26138-1-huangfq.daxian@gmail.com>
+In-Reply-To: <20190703131908.26138-1-huangfq.daxian@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 3 Jul 2019 18:20:41 +0300
+Message-ID: <CAHp75Vef=H492wUnGWGSu7wg5qTb0Q7Y1VrcM60WK=8ejr=bcQ@mail.gmail.com>
+To: Fuqian Huang <huangfq.daxian@gmail.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.214.195 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (andy.shevchenko[at]gmail.com)
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.214.195 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1hhhFb-002OwU-0a
-Subject: Re: [ibm-acpi-devel] lde disk-activity trigger on Thinkpad T570/580
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1hih46-006RIk-TM
+Subject: Re: [ibm-acpi-devel] [PATCH 19/30] platform/x86: Use kmemdup rather
+ than duplicating its implementation
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,29 +103,94 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: ibm-acpi-devel@lists.sourceforge.net
+Cc: acpi4asus-user <acpi4asus-user@lists.sourceforge.net>,
+ Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Platform Driver <platform-driver-x86@vger.kernel.org>,
+ Thinkpad-acpi devel ML <ibm-acpi-devel@lists.sourceforge.net>,
+ Corentin Chary <corentin.chary@gmail.com>, Darren Hart <dvhart@infradead.org>,
+ Andy Shevchenko <andy@infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Sun, 30 Jun 2019, Frank Steiner wrote:
-> > with the disk-activity trigger not being connected to NVME, and there is
-> > nothing thinkpad-acpi can do about it...
-> 
-> Ok! I was just wondering because NVME disks in our PCs do work with
-> disk-activity. Is this connection you mention a hardware problem?
-> Or could it be worth to ask for a possible fix on the lkml?
+On Wed, Jul 3, 2019 at 4:19 PM Fuqian Huang <huangfq.daxian@gmail.com> wrote:
+>
+> kmemdup is introduced to duplicate a region of memory in a neat way.
+> Rather than kmalloc/kzalloc + memset, which the programmer needs to
+> write the size twice (sometimes lead to mistakes), kmemdup improves
+> readability, leads to smaller code and also reduce the chances of mistakes.
+> Suggestion to use kmemdup rather than using kmalloc/kzalloc + memset.
+>
 
-I'd guess it is a kernel-level difference, yes.  Maybe some NVME drivers
-work with the triggers while others don't.  I don't know much about how
-NVME is currently implemented, myself.
+Please, split on driver basis and use correct prefix.
 
-Please do ask in LKML, preferably ask the responsible parties for the
-disk-activity trigger or the people responsible for the exact NVME
-driver you are using, they're more likely to know.
+> Signed-off-by: Fuqian Huang <huangfq.daxian@gmail.com>
+> ---
+>  drivers/platform/x86/asus-wmi.c      |  3 +--
+>  drivers/platform/x86/thinkpad_acpi.c | 17 +++++++----------
+>  2 files changed, 8 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/platform/x86/asus-wmi.c b/drivers/platform/x86/asus-wmi.c
+> index 9b18a184e0aa..472b317ad814 100644
+> --- a/drivers/platform/x86/asus-wmi.c
+> +++ b/drivers/platform/x86/asus-wmi.c
+> @@ -260,12 +260,11 @@ static int asus_wmi_evaluate_method_agfn(const struct acpi_buffer args)
+>          * Copy to dma capable address otherwise memory corruption occurs as
+>          * bios has to be able to access it.
+>          */
+> -       input.pointer = kzalloc(args.length, GFP_DMA | GFP_KERNEL);
+> +       input.pointer = kmemdup(args.pointer, args.length, GFP_DMA | GFP_KERNEL);
+>         input.length = args.length;
+>         if (!input.pointer)
+>                 return -ENOMEM;
+>         phys_addr = virt_to_phys(input.pointer);
+> -       memcpy(input.pointer, args.pointer, args.length);
+>
+>         status = asus_wmi_evaluate_method(ASUS_WMI_METHODID_AGFN,
+>                                         phys_addr, 0, &retval);
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+> index 7bde4640ef34..d379bdf98a0f 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -3647,22 +3647,19 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
+>                 goto err_exit;
+>
+>         /* Set up key map */
+> -       hotkey_keycode_map = kmalloc(TPACPI_HOTKEY_MAP_SIZE,
+> -                                       GFP_KERNEL);
+> -       if (!hotkey_keycode_map) {
+> -               pr_err("failed to allocate memory for key map\n");
+> -               res = -ENOMEM;
+> -               goto err_exit;
+> -       }
+> -
+>         keymap_id = tpacpi_check_quirks(tpacpi_keymap_qtable,
+>                                         ARRAY_SIZE(tpacpi_keymap_qtable));
+>         BUG_ON(keymap_id >= ARRAY_SIZE(tpacpi_keymaps));
+>         dbg_printk(TPACPI_DBG_INIT | TPACPI_DBG_HKEY,
+>                    "using keymap number %lu\n", keymap_id);
+>
+> -       memcpy(hotkey_keycode_map, &tpacpi_keymaps[keymap_id],
+> -               TPACPI_HOTKEY_MAP_SIZE);
+> +       hotkey_keycode_map = kmemdup(&tpacpi_keymaps[keymap_id],
+> +                       TPACPI_HOTKEY_MAP_SIZE, GFP_KERNEL);
+> +       if (!hotkey_keycode_map) {
+> +               pr_err("failed to allocate memory for key map\n");
+> +               res = -ENOMEM;
+> +               goto err_exit;
+> +       }
+>
+>         input_set_capability(tpacpi_inputdev, EV_MSC, MSC_SCAN);
+>         tpacpi_inputdev->keycodesize = TPACPI_HOTKEY_MAP_TYPESIZE;
+> --
+> 2.11.0
+>
+
 
 -- 
-  Henrique Holschuh
+With Best Regards,
+Andy Shevchenko
 
 
 _______________________________________________
