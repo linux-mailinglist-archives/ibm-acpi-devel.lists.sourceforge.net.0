@@ -2,89 +2,85 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697EA6EFE0
-	for <lists+ibm-acpi-devel@lfdr.de>; Sat, 20 Jul 2019 17:22:34 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 586CD755FD
+	for <lists+ibm-acpi-devel@lfdr.de>; Thu, 25 Jul 2019 19:44:43 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1horBc-0000TJ-Qb; Sat, 20 Jul 2019 15:22:12 +0000
+	id 1hqhmt-0006aU-7h; Thu, 25 Jul 2019 17:44:19 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <nanodario@gmail.com>) id 1horBb-0000TB-C4
- for ibm-acpi-devel@lists.sourceforge.net; Sat, 20 Jul 2019 15:22:11 +0000
+ (envelope-from <andy.shevchenko@gmail.com>) id 1hqhms-0006aH-5Y
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 25 Jul 2019 17:44:18 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
- :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Kjz29uaXOViEkvbQC/EqeL5ZlYftQJTWsTVkUNrscrY=; b=IllNy3+00Uz7g3HY1oSKnYtJcw
- zYGOKgFftAnWvyp+gwrI6D8sJPkYTfObGn4PHy7X4Pc1/1N9kiF/I9UvrIY0rtogueFfFxA2+xwSL
- xscqeDraeh6w5REcNOVXjxICFOf/JoEbbOVGUABf1VVbyV8OkJh29E/V5DiqqPmiKXo8=;
+ bh=F1UAd0NAfu4/AD+pKmFdZqYRIwZPuAgiz507KIuTUu0=; b=KdnDoGb6hqGFaFW4bi5sQ76qn0
+ YOdar6AY+Xr36/0Lchjkg7u14TVml5gv3gDzNXZC6caE4Awhx/7ypNTbZ39r0o1Brm8u5s2YpuxoZ
+ HIyFAAJdym8ubpAsUacutk81ds1e2ovrscTrkbig0HQxq9rBKB8vcHe0NoqIKEQLQXKU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Kjz29uaXOViEkvbQC/EqeL5ZlYftQJTWsTVkUNrscrY=; b=GXb8j4y4KyfeX0Aic3w00KCmJx
- XyrQIgMXjJ/hgRfqkzB5+UYMxIbyBwDdfO86Ys34cMTRK1bvzsOc9gxMd2Bj6SaO5deJji1qUyMS+
- 3fJihqYplHce6Sl40U6d7hCJAqnVx8kY0u2cKgTyNZrNwAlwZbcduny74E9dTFymqwaU=;
-Received: from mail-wm1-f65.google.com ([209.85.128.65])
+ bh=F1UAd0NAfu4/AD+pKmFdZqYRIwZPuAgiz507KIuTUu0=; b=ju0S062nqDLv+cmZMD3/CGD90x
+ y3T9dEWY5eTHLJYXyRj0eEZHKv+EV5SYVz6rFf/JQHuA4fzGeFpNkqWN/BeX8ZuyDTJaXqkQEJNIv
+ kkmZrzWxVLtG/lI8TsqeA+IXZNJEuP3ykI54HaxsWpecJma81uUTPqVjUftk/PHRXjPg=;
+Received: from mail-pf1-f193.google.com ([209.85.210.193])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.90_1)
- id 1horBZ-009hMB-72
- for ibm-acpi-devel@lists.sourceforge.net; Sat, 20 Jul 2019 15:22:11 +0000
-Received: by mail-wm1-f65.google.com with SMTP id h19so25667857wme.0
+ id 1hqhmq-001UUq-6K
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 25 Jul 2019 17:44:18 +0000
+Received: by mail-pf1-f193.google.com with SMTP id i189so23117531pfg.10
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Sat, 20 Jul 2019 08:22:08 -0700 (PDT)
+ Thu, 25 Jul 2019 10:44:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=from:to:cc:subject:date:message-id:in-reply-to:references
- :mime-version:content-transfer-encoding;
- bh=Kjz29uaXOViEkvbQC/EqeL5ZlYftQJTWsTVkUNrscrY=;
- b=lvpnV0tJbpJ+ncTDvyQ7KQnJODNiS5oUHZczyaB97uMibBAXQBQZQoQmKgFVy013lV
- tzA3kv4VaVy50YdjTn8P21iZ3L/Uv/cVzzBOAvOMIRU+PGNbIpfT4wunxavXrKjDtEkt
- XX5ehG0lkzQEj9HvdXxr/upsVxXn6K8ORqzxKaCicZzrtxcVSnlRQKFlyxDwqNIwHsX3
- kN2nOSFatkfCPYnrw5Lq0g5ySxfw6jW4hascxKjF856+WE5I1fuPPN/Ks7bBtWgrFjru
- LsTEDzrsSLHLYAjvV215a7TKnKv2FNCO5vMQsr79Er/E4dtOkW9VtnQjsNinMhG0AgMN
- 5VSg==
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=F1UAd0NAfu4/AD+pKmFdZqYRIwZPuAgiz507KIuTUu0=;
+ b=tHgnHRXUiGTMjTcR2hueEd2TixdbiBau3BS+FsHeIeUAsFdtkvzmE8Zbg0MU5p+YlW
+ LrItiadPbiltPNWAWxgKjcganHhE3rbfLcyBWptNErX5LatSVDq1t4pr2Ktg45DJb7kI
+ o8ayjt5orHffZniU0HNV4FRuO2RVebowXaMotoZ8nV0nEbA5Nb7pVcimmmL1tyPMnVCt
+ lH0+HjIt9GY38fGsIxlRWPBo5lpkFTyTq5SNBnlBdw/s0f1K0A03PCKONNObRGC/BUWh
+ c7hFOWGVz6YELr3KoYVzTFsDh558VPKBr37g6AA1ELK9VOQVwvoqlEEFiNG6JN6KTBCQ
+ AiQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
- :references:mime-version:content-transfer-encoding;
- bh=Kjz29uaXOViEkvbQC/EqeL5ZlYftQJTWsTVkUNrscrY=;
- b=krjPB7fIwhKAMrMG91H7UYhtye9G1Hm0IKnyAI3dYlOwUsOsaB1NP2LHFDiPJ0Qqjf
- McSghGLHeDrFRy/lqpcwoi179ouku5qT7UqMxq2THj1YkE7O/fBzlKfAYPx87ooiFMVN
- FyXGIXqup4enIDwpTMYDn63o8MJSbWTeQmX7WMpBibCwFAM+D2wBHfG6yFc0ZZskw+hY
- EdxF4MX5ABSao88YzfBk7sdl2MVw3Pwr0gFMjphAmFNFSdti2RJTGWgwPUCPfG+nMpz1
- ypjuaKuUzHW0Dr78bczn4/JWM7ues6jWl6Cp2bXC3Z0/lYq2vzrHv69hrykEODguLsty
- Ze9Q==
-X-Gm-Message-State: APjAAAU8RMrfhwesqCcHEM9NYV7NOF+5Qng204CJLfcWJPFJT8sppljz
- yj2yZwCSE73zMQJa57tAFLA=
-X-Google-Smtp-Source: APXvYqyYEjxaca0tMLQl4BdoJaihJKiSKJ9PRi8eRULuuc3M9KWAKgnjOeo1UmEFAG6ufmXpHoGh6Q==
-X-Received: by 2002:a1c:7fc3:: with SMTP id a186mr2125211wmd.151.1563636122435; 
- Sat, 20 Jul 2019 08:22:02 -0700 (PDT)
-Received: from lenovodario.localnet ([151.52.237.69])
- by smtp.gmail.com with ESMTPSA id y16sm68550429wrg.85.2019.07.20.08.22.00
- (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
- Sat, 20 Jul 2019 08:22:01 -0700 (PDT)
-From: Dario Messina <nanodario@gmail.com>
-To: Stefan Assmann <sassmann@kpanic.de>
-Date: Sat, 20 Jul 2019 17:22:00 +0200
-Message-ID: <5490267.oBufKZg01J@lenovodario>
-In-Reply-To: <20180926143449.bnqliemloqw7fuyv@t530.fritz.box>
-References: <1522693621-3124-1-git-send-email-agk@godking.net>
- <20180926143449.bnqliemloqw7fuyv@t530.fritz.box>
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=F1UAd0NAfu4/AD+pKmFdZqYRIwZPuAgiz507KIuTUu0=;
+ b=adT+RK3CSmCYARJPug6q0VuvY+3akRi0Yg43RJQZWe+FR3nnC18ThXTd5C9H4GoSOl
+ KP4UBvlvYTqFcvlVdbVFQoHL70bPgwA+sf2c+mZQpYjNJE3dMRoW6QAyeioV1EHgp+Xd
+ qtPIL+UeLM9sXvozOD+j+ZKEgS+7ZfBFVDvYIaMC6iJTJhzAJ2W46Yo2DAFdCtUjVUAh
+ 5b1FyYa788MuJp8nd/+mQ5pE4j9GFy/H3jU1K5XkiY+z6X3SjFpca5N3KNouDMb2V5tv
+ rVWtNPajF6WNrBMd4s3JYvgZINDRZcv6SHI6zBAtRv4fJOphMpKijZad/dVC/HtpPvz4
+ Sf1w==
+X-Gm-Message-State: APjAAAWztvbX8urk3owFja8gqfTOasjGWtDTU4Lw4AiRAIM3FjYhgImE
+ z16jC58AZf9Iq2iwKFUqTKiWdJX56biQqFlLJv4=
+X-Google-Smtp-Source: APXvYqw+4+bf528CSyzjWwmIIIDYau9QdqfYZBS0bdCrHm4PmVXfTbo1UNG3jaDGiqVWB+g+0cGpjP+FniOJvzZ4Aog=
+X-Received: by 2002:a62:4e86:: with SMTP id c128mr17803119pfb.64.1564076650526; 
+ Thu, 25 Jul 2019 10:44:10 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190703163000.315-1-huangfq.daxian@gmail.com>
+In-Reply-To: <20190703163000.315-1-huangfq.daxian@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Thu, 25 Jul 2019 20:43:59 +0300
+Message-ID: <CAHp75Vefj9dBFHYn84ZHMteWgGEAq5bvAuvgbO8XRZcn_UdXHA@mail.gmail.com>
+To: Fuqian Huang <huangfq.daxian@gmail.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (nanodario[at]gmail.com)
+ (andy.shevchenko[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.128.65 listed in list.dnswl.org]
+ trust [209.85.210.193 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.193 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -92,8 +88,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1horBZ-009hMB-72
-Subject: Re: [ibm-acpi-devel] [PATCH] Add Second Fan Support for Thinkpad P50
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1hqhmq-001UUq-6K
+Subject: Re: [ibm-acpi-devel] [PATCH v2 21/35] platform/x86/thinkpad: Use
+ kmemdup rather than duplicating its implementation
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -106,38 +104,76 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Alexander Kappner <agk@godking.net>, ibm-acpi@hmh.eng.br,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- ibm-acpi-devel@lists.sourceforge.net, dvhart@infradead.org, andy@infradead.org
+Cc: Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Platform Driver <platform-driver-x86@vger.kernel.org>,
+ Thinkpad-acpi devel ML <ibm-acpi-devel@lists.sourceforge.net>,
+ Darren Hart <dvhart@infradead.org>, Andy Shevchenko <andy@infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-I have a Thinkpad P51 (BIOS version: N1UET74W, EC version: N1UHT26W).
-This patch works on my computer and I can read both fan speeds through sysfs 
-interface.
+On Wed, Jul 3, 2019 at 7:30 PM Fuqian Huang <huangfq.daxian@gmail.com> wrote:
+>
+> kmemdup is introduced to duplicate a region of memory in a neat way.
+> Rather than kmalloc/kzalloc + memcpy, which the programmer needs to
+> write the size twice (sometimes lead to mistakes), kmemdup improves
+> readability, leads to smaller code and also reduce the chances of mistakes.
+> Suggestion to use kmemdup rather than using kmalloc/kzalloc + memcpy.
+>
 
-On 2018-09-26 16:34:19 CEST, Stefan Assmann wrote:
-> Is there a way to actually control the second fan? There's pwm1, but no
-> pwm2. And pwm1 only affects fan1.
+Pushed to my review and testing queue, thanks!
 
-I have played with the driver code and I noticed that it is possible to 
-control both fans independently (unlike what the "Fan subdriver" comment in 
-the code says).
-You can do that simply by calling fan_select_fan1 or fan_select_fan2, to 
-select a fan to be controlled, before calling fan_set_level. All control 
-parameters (disengaged, manual speeds, auto) are fully independent.
+> Signed-off-by: Fuqian Huang <huangfq.daxian@gmail.com>
+> ---
+> Changes in v2:
+>   - Fix a typo in commit message (memset -> memcpy)
+>
+>  drivers/platform/x86/thinkpad_acpi.c | 17 +++++++----------
+>  1 file changed, 7 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+> index 7bde4640ef34..d379bdf98a0f 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -3647,22 +3647,19 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
+>                 goto err_exit;
+>
+>         /* Set up key map */
+> -       hotkey_keycode_map = kmalloc(TPACPI_HOTKEY_MAP_SIZE,
+> -                                       GFP_KERNEL);
+> -       if (!hotkey_keycode_map) {
+> -               pr_err("failed to allocate memory for key map\n");
+> -               res = -ENOMEM;
+> -               goto err_exit;
+> -       }
+> -
+>         keymap_id = tpacpi_check_quirks(tpacpi_keymap_qtable,
+>                                         ARRAY_SIZE(tpacpi_keymap_qtable));
+>         BUG_ON(keymap_id >= ARRAY_SIZE(tpacpi_keymaps));
+>         dbg_printk(TPACPI_DBG_INIT | TPACPI_DBG_HKEY,
+>                    "using keymap number %lu\n", keymap_id);
+>
+> -       memcpy(hotkey_keycode_map, &tpacpi_keymaps[keymap_id],
+> -               TPACPI_HOTKEY_MAP_SIZE);
+> +       hotkey_keycode_map = kmemdup(&tpacpi_keymaps[keymap_id],
+> +                       TPACPI_HOTKEY_MAP_SIZE, GFP_KERNEL);
+> +       if (!hotkey_keycode_map) {
+> +               pr_err("failed to allocate memory for key map\n");
+> +               res = -ENOMEM;
+> +               goto err_exit;
+> +       }
+>
+>         input_set_capability(tpacpi_inputdev, EV_MSC, MSC_SCAN);
+>         tpacpi_inputdev->keycodesize = TPACPI_HOTKEY_MAP_TYPESIZE;
+> --
+> 2.11.0
+>
 
-What is not smooth is reading back current control parameters from register 
-0x2f (like fan_pwm1_show or fan_pwm1_enable_show actually do), because the EC 
-ignores which fan is currently selected and it always returns the last written 
-value.
 
-
-Distinti Saluti/Best Regards,
-Dario Messina
-
-
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 _______________________________________________
