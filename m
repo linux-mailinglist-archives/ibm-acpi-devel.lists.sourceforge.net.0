@@ -2,91 +2,70 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517BD13058B
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun,  5 Jan 2020 03:50:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB41614D23D
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 29 Jan 2020 22:01:55 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1invzg-00085U-L0; Sun, 05 Jan 2020 02:50:20 +0000
+	id 1iwuSp-0001yJ-Oq; Wed, 29 Jan 2020 21:01:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <civic9@gmail.com>) id 1invzf-00085L-5W
- for ibm-acpi-devel@lists.sourceforge.net; Sun, 05 Jan 2020 02:50:19 +0000
+ (envelope-from <linux@weissschuh.net>) id 1iwuSo-0001yB-HH
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 29 Jan 2020 21:01:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Qm4pxge8yfoDCq+FN4lyxNQmKJWlDYsL3sBYJWljLuU=; b=I4ByYbPBEEKMsPCjl8uOiEoypx
- D1O7ygCRBNPbq7mIFLnyQk8u6ORzn3ZQ3RHfGfKsqvNoV1guQWvj1DCwIlT+W6HpqnT4Icd+acHaP
- kFNqS06pjsTb08F96S7AsI9uuXh+OJShgAthLnJNM4o9LH2wz9LRfp1HLf5vHu0VOMA0=;
+ bh=eKOT+v+H4xhHvXnLVhYe+grxw8RS0BU5vXBCDwvAo3c=; b=TI1n+d9bdiAbVJdRZ0JcxGTud9
+ Uz57FJ//u0nNQ8JnFs/ZaCh6oJX0OQmp1NGpirAtylY8lTHdXvvm18pscW3v+yU2MNlGc6MH+rVe8
+ hCXyCoz069gL+HFkFshu+iXMYpbD9NsaM4ViFqjdPUOOL9vKU/oVUYjOczxSfvTuqMJI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:Subject:Message-ID:Date:From:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-Id:Date:
+ Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=Qm4pxge8yfoDCq+FN4lyxNQmKJWlDYsL3sBYJWljLuU=; b=F
- 7KLkr19SYrOIOct3UwCgSuUC3p25lQ5gWuHnAhksq6DdvCwPfT9kd+22u8X9LiNcE05sDcVv8aZja
- tjlMs9JgRa1TvUFxu3WP0RM96vL+PlDBQuefLFmlza86ufx3dX7pZzEeg5kx57Y/y4Qy/HR+4AVi8
- zkdxtbhYrOvMUvRA=;
-Received: from mail-lf1-f54.google.com ([209.85.167.54])
+ List-Owner:List-Archive; bh=eKOT+v+H4xhHvXnLVhYe+grxw8RS0BU5vXBCDwvAo3c=; b=A
+ TUt7YH3BYyH5pelgU7peSVOpQrwkyDTp0iSoLRNa/AU+YM2A9id78LTpHqWbtzL80W9RBDLWZ0nTP
+ 0Myk7gzY/k1wa08rotl5nOHOk26SXddVdaDDezeQO2kyJ45ZirlvSN1S+Sy3squpqkLdDNcdhRN5G
+ wbkrgnzhAlzdTLOY=;
+Received: from [212.47.237.191] (helo=ned.t-8ch.de)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1invzY-00A3mS-Q4
- for ibm-acpi-devel@lists.sourceforge.net; Sun, 05 Jan 2020 02:50:19 +0000
-Received: by mail-lf1-f54.google.com with SMTP id n25so34265800lfl.0
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Sat, 04 Jan 2020 18:50:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=Qm4pxge8yfoDCq+FN4lyxNQmKJWlDYsL3sBYJWljLuU=;
- b=qMh2ErGAudhyx8lqM7QtIIqGrqtF+QUxB8oAlitmBfCvWNwXl8NLUxvdJ9Gl1ZaVHa
- JblioalJSkgE9igtyDkXwmNmZPjWBYtx2VgpBalt9Y8rTl9/1CKQpF6BIc5PJH7dK6rN
- ymZ3M9QM8XFRZW+syv8CuC1NIjFn8Rl/OpkMmio5ZYKLuYGY4zWS2hNnU0SeMB2ipZ8+
- Y0gbC8GifjYc+P2mTovaplbOMeiLr6ipIu+JgvnGtG1og8P/THogPmn8pP0s/2Gsjq2i
- VhjcKg85TaH8aNieKIhdE36bYEGCspELbP5QK0RyK3JdN+a0nOexyv+AJDxUjiNgQz0r
- MZeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=Qm4pxge8yfoDCq+FN4lyxNQmKJWlDYsL3sBYJWljLuU=;
- b=EyFCzego+foetwppLcWcVs6ULmq6mIwgkzOoNt5qNW3jylAMSIOOzfSA8UVlEuu3GA
- D8G4c2yMQy2UC+IbYRc1nGkTzXjaxBj1EPDYg/HWhtpZNKzgpABzXA8sM0GqSl5wxmUw
- KhNSOgsM7NZr2uDmc/++espH6ajgzHf4GiFXSuYdHXmnlBpUpBbPM4lAs0oXI059q4Eu
- I+rbxrm5Xvdy4zeh3hpw/rXT5syTVyROxw01NfnJPdFAbhy3DHOy7K7/xuU1ybuoVXbI
- 6EbJQWAjfrED32eDg9E74zfQqR1DbzKAZkGBneRzEL/TUdf/0dHpCVKmeP72p8IpQ9Bh
- raWA==
-X-Gm-Message-State: APjAAAVa1Zaq1ZrHrO7g63M7TsRxngzcj5AFrd+1BZAGDC9wnpUha/zr
- v0nOLZK+R9AJXXbdx1Eil2yKwUmx3U2mMhT46g0e6pc=
-X-Google-Smtp-Source: APXvYqwdA/3JOm0TBiL3UVb2vqBQF6sYE+p90wlOlnmhlZaN7ixklzNP3kyaLOs+Hi8n6Okd7GANiDVz5KpWoFtYh68=
-X-Received: by 2002:a19:ec14:: with SMTP id b20mr54905613lfa.63.1578192605920; 
- Sat, 04 Jan 2020 18:50:05 -0800 (PST)
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1iwuSn-009nhv-1M
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 29 Jan 2020 21:01:30 +0000
+From: =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=weissschuh.net;
+ s=mail; t=1580330625;
+ bh=NKUmMyQPNMW9j4FgzjMYHkAPpVi0GsN0og9K81e2G90=;
+ h=From:To:Cc:Subject:Date:From;
+ b=J2ASqw0ExW8TjRkwaPHTq1UXNlQHF04mTpvQe4Ac5u720QAxiyIM6i7LkPRjfebcb
+ TOjyIVcMgBnZiNIIh6t6pX+HouH/1MmsMkvHA67f15jr7WFp9SvkRBk8z/Y1On1KAY
+ Y06i0dLP+2ZPjMaI5NUPdSGTTDDKaipIh42bcLwo=
+To: Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+ Darren Hart <dvhart@infradead.org>, Andy Shevchenko <andy@infradead.org>
+Date: Wed, 29 Jan 2020 21:43:35 +0100
+Message-Id: <20200129204338.4055-1-linux@weissschuh.net>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: civic9 <civic9@gmail.com>
-Date: Sun, 5 Jan 2020 03:49:55 +0100
-Message-ID: <CAM_y6qgLuW_-bQuErqqOT1khBGauwE3cUk2JvPL47kr2ohbtcw@mail.gmail.com>
-To: ibm-acpi-devel@lists.sourceforge.net
-X-Spam-Score: 0.2 (/)
+X-Spam-Score: 0.4 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (civic9[at]gmail.com)
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.167.54 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
- digit (civic9[at]gmail.com)
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1invzY-00A3mS-Q4
-Subject: [ibm-acpi-devel] 2nd fan control
+ 1.0 RDNS_NONE Delivered to internal network by a host with no rDNS
+ -0.5 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1iwuSn-009nhv-1M
+Subject: [ibm-acpi-devel] [PATCH 0/3] platform/x86: thinkpad_acpi: use
+ standard charge control attribute names
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -99,21 +78,27 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: ibm-acpi-devel@lists.sourceforge.net,
+ =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Many thinkpads nowadays have 2nd fan which is separately controlled.
-Is it possible to include required patch in thinkpad_acpi module?
-Working patch for current (5.4.7) kernel:
-https://github.com/civic9/thinkpad_acpi.2ndfan.patch/blob/master/thinkpad_acpi.2ndfan.patch/thinkpad_acpi.2ndfan.patch
-https://github.com/civic9/thinkpad_acpi.2ndfan.patch/
-
-regards,
---c
-
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+VGhpcyBwYXRjaCBzZXJpZXMgc3dpdGNoZXMgb3ZlciB0aGUgYmF0dGVyeSBjb250cm9sIHN5c2Zz
+IGF0dHJpYnV0ZXMgdG8gdGhlaXIKc3RhbmRhcmQgbmFtZXMgYXMgZG9jdW1lbnRlZCBpbiBEb2N1
+bWVudGF0aW9uL0FCSS90ZXN0aW5nL3N5c2ZzLWNsYXNzLXBvd2VyLgoKSWYgYmFja3dhcmRzIGNv
+bXBhdGFiaWxpdHkgaXMgbm90IHJlcXVpcmVkIHBsZWFzZSBkcm9wIHBhdGNoIDMgb2YgdGhpcyBz
+ZXJpZXMuClRoZSBvbGQgbmFtZXMgd2VyZSBub3QgZG9jdW1lbnRlZCBleHBsaWNpdGx5IGFuZCBu
+ZXcgZ2VuZXJpYyBzb2Z0d2FyZSBzaG91bGQKYXV0b21hdGljYWxseSB1c2UgdGhlIG5ldyBhdHRy
+aWJ1dGVzLCB3aGljaCBtYXkgYWxsb3cgdXMgdG8gZHJvcCB0aGUgb2xkIG5hbWVzLgoKVGhvbWFz
+IFdlacOfc2NodWggKDMpOgogIHBsYXRmb3JtL3g4NjogdGhpbmtwYWRfYWNwaTogcmVtb3ZlIHVu
+dXNlZCBkZWZpbmVzCiAgcGxhdGZvcm0veDg2OiB0aGlua3BhZF9hY3BpOiB1c2Ugc3RhbmRhcmQg
+Y2hhcmdlIGNvbnRyb2wgYXR0cmlidXRlCiAgICBuYW1lcwogIHBsYXRmb3JtL3g4NjogdGhpbmtw
+YWRfYWNwaTogcmVzdG9yZSBvbGQgYmF0dGVyeSBjaGFyZ2UgYXR0cmlidXRlcwoKIGRyaXZlcnMv
+cGxhdGZvcm0veDg2L3RoaW5rcGFkX2FjcGkuYyB8IDI5ICsrKysrKysrKysrKysrKysrKystLS0t
+LS0tLS0KIDEgZmlsZSBjaGFuZ2VkLCAyMCBpbnNlcnRpb25zKCspLCA5IGRlbGV0aW9ucygtKQoK
+LS0gCjIuMjUuMAoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fXwppYm0tYWNwaS1kZXZlbCBtYWlsaW5nIGxpc3QKaWJtLWFjcGktZGV2ZWxAbGlzdHMuc291
+cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZv
+L2libS1hY3BpLWRldmVsCg==
