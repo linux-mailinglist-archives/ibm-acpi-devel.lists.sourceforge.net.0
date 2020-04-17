@@ -2,105 +2,87 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0FB167DAF
-	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 21 Feb 2020 13:46:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DAA31ADE58
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 17 Apr 2020 15:31:30 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1j57h8-00080F-Qf; Fri, 21 Feb 2020 12:46:14 +0000
+	id 1jPR56-0003PD-Kr; Fri, 17 Apr 2020 13:30:56 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <bberg@redhat.com>) id 1j57h8-000809-4U
- for ibm-acpi-devel@lists.sourceforge.net; Fri, 21 Feb 2020 12:46:14 +0000
+ (envelope-from <andy.shevchenko@gmail.com>) id 1jPR55-0003P7-Qz
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 17 Apr 2020 13:30:55 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pBLVBUs542X1Vq8pAdGQmP+xNdNH0Q/EkNS8GTw8+pk=; b=lKpNdZadwSAFd9nrSAgYrHChej
- zb13F5+uEYDFCtjkRE13tudGnr7RNhPD+Ugj7QJD+cUDQ9xQFm2vTX+IidQE/boj35ZG8W4/ZpVDc
- KNEPNLuBDUEx2D9gXnLHZGrDQ2EBNRsxLQbxZJPIcwCZsN7Z0SP2VHh6rDJkr3enjkG0=;
+ bh=CfxDvscs6inoxPlLGG6JGorGBBJuPb+9bbRKa/YGS8E=; b=mtfFawD0rRwo8QNtWPjhi0Qujz
+ A8GggVLepS9ZiPeVKCkpsMBK1zrTmENIgg76Ahjvl/1D7PCVWoNVnSXfcdOmPiRUp8kUeYyhcRjZy
+ hq3s77XnCyOY4+QV0h7s6UILfMaa0HSn6HPWIRz7EAAcpAq5Z6lziT3fDQHkyCcxxbzY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pBLVBUs542X1Vq8pAdGQmP+xNdNH0Q/EkNS8GTw8+pk=; b=iZdIIfxBF70agzWmxgotT7xU/a
- Pjz9FHLGcakgKNtJ2UcdWB/U4CXQIN2swLOIJ09rQDG17lyjUBbFnHFneK4kAWSyt/m6b0rh5v94H
- OS3/T2bTpTWF5Scw7fvowkuFiiq/YUt7U8JPapjTtd8VwNE/VPVQMsAy7hiNxHzDEGY4=;
-Received: from us-smtp-2.mimecast.com ([207.211.31.81]
- helo=us-smtp-delivery-1.mimecast.com)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1j57h6-00Ciq3-4Z
- for ibm-acpi-devel@lists.sourceforge.net; Fri, 21 Feb 2020 12:46:14 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1582289158;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=pBLVBUs542X1Vq8pAdGQmP+xNdNH0Q/EkNS8GTw8+pk=;
- b=Mzz797SWC2S3tBoONw3G+xn6WMWNPNCAl6KTS9neesuvAhs88tUMd0nxK+vHUcD71v95GV
- +jYPkddKAvztRwPU6ZZ2NlCfUa30Q817Cs8/cXc0O5r8Dx3RdfYukCUIOuqwd/HQry/U9G
- jBY06j/woogjsXQGb3ib6XIu66/9bhw=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-283-Gjip8Y5iNZOv2rcPsMk26w-1; Fri, 21 Feb 2020 07:45:56 -0500
-X-MC-Unique: Gjip8Y5iNZOv2rcPsMk26w-1
-Received: by mail-wm1-f69.google.com with SMTP id p2so564243wmi.8
+ bh=CfxDvscs6inoxPlLGG6JGorGBBJuPb+9bbRKa/YGS8E=; b=Ps9clJpRSflFGLqEoKKQsy7UVn
+ lMLgICXWbohPr3vfaVtDyf3YgMwbZUgFt+dsW5FwODTPCZBADVYCZvjb+O55JO3CrZC+lQTuxGw68
+ /52tw4mHOt8S0qZoZDUnAgi3WyVH3Ohd3KzmpKP4hujS14l4Qou7qs9I5/1SMknxPU1o=;
+Received: from mail-pj1-f66.google.com ([209.85.216.66])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1jPR51-005JUu-1E
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 17 Apr 2020 13:30:55 +0000
+Received: by mail-pj1-f66.google.com with SMTP id o1so1084706pjs.4
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Fri, 21 Feb 2020 04:45:56 -0800 (PST)
+ Fri, 17 Apr 2020 06:30:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=CfxDvscs6inoxPlLGG6JGorGBBJuPb+9bbRKa/YGS8E=;
+ b=OLK9yTSNlPOHsw768/DpY9TC/fUCbjBH8geh5booZZkqZ+N2PDhUKVozKmmHQ/mQUS
+ VGEEuk8SkvjEVKc0O/bWDd1pWX4DjN6As6ngVBL/ZkaprkX4O0ZOF6hIKnu7kNcftPGp
+ tplmmw/9/6ugjDnmk4gl5aJPrlvkWPmBvvmRjy55Nhtj6yYiwtRli29dY7MR7ljd8YB2
+ IS2Nvj07A1BdwAdUuthbOatF3joQcXFfA6sCXV2xPbbh3FKY796VJqqgSE5RwgmTdb0R
+ 1v1xaEHtzB4j0/qLNBlKJn0Zin9/hHSRoCMvjuPjbvh5N+R7PAIymFqf126tJodFD5dp
+ LHvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
- :references:user-agent:mime-version:content-transfer-encoding;
- bh=pBLVBUs542X1Vq8pAdGQmP+xNdNH0Q/EkNS8GTw8+pk=;
- b=kdMaV3XzFKhdaKoCzJ+KmZbTCYCCulA/7tlfJ2BVD2uEgHu+NDAflvdxfps+Vxj3R0
- m1Ptm4sAwjJp4RwqPcxEOrAeRa0T3x4PQoeDXOvaUdGSIeJJskwQofl8kefADLP6XoN/
- qua204bXLtujMkOWKAUl2fHcx0NCdwTz45Iia4r116BQQME3vQN3MoKirgN4FP6sUyJY
- 6m8Cg9Bydv1csp8CBQn6ew/Xnal3cyQ+ym9YChsqsdkiYEvJVpDuhM1lxq+H2xtksnae
- j9oxKYQ971nu4QSZ8LliXXfAv47Eqk/ujV85LD34lj9XmnajNmnZ1lKPuErjhxA3DwR5
- LHPw==
-X-Gm-Message-State: APjAAAWSysK1CRLfUvchhUrjR+hvJSnSwj4EL7MBG+CIZvcaLDQYn4Oz
- iHa8Mk4q9MHz7t2Ez7LjdZYhkJs9Nf7M6+7Pmo7r2GAYQNDU7JA999zuVsBFzUhwaPuIy7FL/HF
- ZzqVe8ASQtea4aKygzgenpt1myBw/G52SNVU=
-X-Received: by 2002:adf:f084:: with SMTP id n4mr48240486wro.200.1582289155137; 
- Fri, 21 Feb 2020 04:45:55 -0800 (PST)
-X-Google-Smtp-Source: APXvYqxtiGq5NOrdy9I6IUtNFUV96T4BBoSP5U202t66huPoYfCrAk+zdHN+jraDhS1vrqNKI/yqCw==
-X-Received: by 2002:adf:f084:: with SMTP id n4mr48240462wro.200.1582289154929; 
- Fri, 21 Feb 2020 04:45:54 -0800 (PST)
-Received: from dhcp-64-37.muc.redhat.com (nat-pool-muc-t.redhat.com.
- [149.14.88.26])
- by smtp.gmail.com with ESMTPSA id r6sm3972501wrq.92.2020.02.21.04.45.53
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 21 Feb 2020 04:45:54 -0800 (PST)
-Message-ID: <eea7179c93b5a5f3766c169f71567e1d75dda304.camel@redhat.com>
-From: Benjamin Berg <bberg@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Rajat Jain
- <rajatja@google.com>,  Mark Pearson <mpearson@lenovo.com>
-Date: Fri, 21 Feb 2020 13:45:53 +0100
-In-Reply-To: <87tv3kxgyx.fsf@intel.com>
-References: <20200220074637.7578-1-njoshi1@lenovo.com>
- <CAHp75VcJmEOu1-b7F2UAsv=Gujb=pPLzjz2ye9t4=Q68+ors-w@mail.gmail.com>
- <HK2PR0302MB25937E2946BF38583B3A905DBD130@HK2PR0302MB2593.apcprd03.prod.outlook.com>
- <CACK8Z6GwuOnJUUscriGwKWGBp5PFKyuqUkFYC8tEXa0UEuEZww@mail.gmail.com>
- <PS1PR0302MB260492DDE243BE0A64A39AA7BD130@PS1PR0302MB2604.apcprd03.prod.outlook.com>
- <CACK8Z6HWkafL4EzOndRyiA3k-VyUg8bQ=2diw_wJSxSTyqsE+w@mail.gmail.com>
- <87tv3kxgyx.fsf@intel.com>
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31)
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=CfxDvscs6inoxPlLGG6JGorGBBJuPb+9bbRKa/YGS8E=;
+ b=hbXhmhgUO5ZaD7qOIDyyRAS2hE3aml+KORcGijRXYQf1EkzQqz7+QFxs4VqJR+40pr
+ O7tlP/GBirLsFRDMidd6EV6vFN0z0fLvxY6bmI7t4eWBEJ+kRvMELleidAFK6aahWeN6
+ y8QnYly1wsoKeX4NRX5PGcF67vxIrBQd7NLYxRPoAFPMTs1FBqaHcQGzzh3uPpwfLS52
+ F8cxdcSXpbCJuJ8D4esJgNhLz9sHhUMGf+zEeNDMm1AjiqBHCE4iJ+zIGvoXALEQke6V
+ 0UjJWuHoj+oE0rbl1v6AYIh9/odUxjLb7RhQKgzJ1RQAK8mfRI/PPFnanZQN8Z3bP+5l
+ 4C1g==
+X-Gm-Message-State: AGi0PubcHgufASU6LujrGYRXtZRY+Zug/d9saJZiMuUjJFNxSfRXqU4S
+ LI2tCYOXIHY8lYnq6+yFDUer/wXeo8FzkyLpdzI=
+X-Google-Smtp-Source: APiQypJqlcwl7MBcyJj1Hz16wVf1+XgGfkDSK7YQdgtO3J1V7zD8vOfNyTLdyVg6PweE4ajWPWiPdSQoeEOfM179hv4=
+X-Received: by 2002:a17:90a:364c:: with SMTP id
+ s70mr4383743pjb.143.1587130245270; 
+ Fri, 17 Apr 2020 06:30:45 -0700 (PDT)
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-X-Spam-Score: -0.3 (/)
+References: <970969929.574750.1586116726988.ref@mail.yahoo.com>
+ <970969929.574750.1586116726988@mail.yahoo.com>
+In-Reply-To: <970969929.574750.1586116726988@mail.yahoo.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 17 Apr 2020 16:30:38 +0300
+Message-ID: <CAHp75VdUtjr0kJDt0Wz05W73ZiN6nedeYdaw4RL34rbvpA_2+A@mail.gmail.com>
+To: "larsh@apache.org" <larsh@apache.org>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (andy.shevchenko[at]gmail.com)
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.216.66 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [207.211.31.81 listed in list.dnswl.org]
+ trust [209.85.216.66 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -108,11 +90,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
- -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1j57h6-00Ciq3-4Z
-Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH] thinkpad_acpi: Add
- sysfs entry for lcdshadow feature
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1jPR51-005JUu-1E
+Subject: Re: [ibm-acpi-devel] [PATCH] thinkpad_acpi: Add support for dual
+ fan control on select models
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -125,54 +106,114 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Daniel Thompson <daniel.thompson@linaro.org>,
- Pekka Paalanen <ppaalanen@gmail.com>,
- Thinkpad-acpi devel ML <ibm-acpi-devel@lists.sourceforge.net>,
- Jingoo Han <jingoohan1@gmail.com>,
- Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- Platform Driver <platform-driver-x86@vger.kernel.org>,
- Mat King <mathewk@google.com>, Andy Shevchenko <andy.shevchenko@gmail.com>,
- Nitin Joshi1 <njoshi1@lenovo.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Darren Hart <dvhart@infradead.org>, Nitin Joshi <nitjoshi@gmail.com>,
- Andy Shevchenko <andy@infradead.org>
+Cc: "ibm-acpi-devel@lists.sourceforge.net"
+ <ibm-acpi-devel@lists.sourceforge.net>,
+ "ibm-acpi@hmh.eng.br" <ibm-acpi@hmh.eng.br>,
+ Platform Driver <platform-driver-x86@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi,
+On Sun, Apr 5, 2020 at 11:00 PM larsh@apache.org <larsh@apache.org> wrote:
+>
+> This patch allows controlling multiple fans as if they were a single fan.
+>
+> This adds P52, P72, X1E, and X1E gen to dual fan quirks. Both fans are controlled together.
+>
+> Tested on an X1 Extreme Gen2.
+>
+> The patch is defensive, it adds only specific supported machines, and falls back to the old behavior if both fans cannot be controlled.
+> It does attempt single fan control for all previously white-listed Thinkpads.
+>
+> Background:
+> I tested the BIOS default behavior on my X1E gen2 and both fans are always changed together.
+> So rather than adding controls for each fan, this controls both fans together as the BIOS would do.
+>
+> This was inspired by a discussion on dual fan support for the thinkfan tool (https://github.com/vmatare/thinkfan/issues/58).
+> (Thanks to Github users voidworker, and civic9.)
+>
+> The BIOS ids for P52/P72 and X1E are taken from there. The X1E gen2 id is verified on my machine.
+>
 
-On Fri, 2020-02-21 at 14:28 +0200, Jani Nikula wrote:
-> In general I think it's preferrable if the hotkey sends the key event to
-> userspace that then makes the policy decision of what, if anything, to
-> do with it. Everything is much easier if the policy is in userspace
-> control. For example, you could define content based policies for
-> enabling privacy screen, something that is definitely not possible with
-> firmware.
-> 
-> I emphatize with the desire to just bypass everything at the
-> hardware/firmware level, because that is totally in your control (as an
-> OEM), and requires no interaction with the operating system
-> initially. Exposing the read-only state of the privacy screen is
-> helpful, but prevents the OS from building more advanced features on
-> top, failing to reach the full potential of the nice hardware feature.
+It doesn't apply :-(
+Please, fix and resend.
 
-There seems to be a slight misunderstanding here. On the Lenovo laptops
-the feature is automatically adjusted by the Firmware. However, the
-setting itself is read/write and it can also be controlled from
-userspace.
+> Signed-off-by: Lars Hofhansl <larsh@apache.org>
+>
+> ---
+>
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+> index da794dcfdd92..8d46b4c2bde8 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -8325,11 +8325,20 @@ static int fan_set_level(int level)
+>
+>      switch (fan_control_access_mode) {
+>      case TPACPI_FAN_WR_ACPI_SFAN:
+> -        if (level >= 0 && level <= 7) {
+> -            if (!acpi_evalf(sfan_handle, NULL, NULL, "vd", level))
+> -                return -EIO;
+> -        } else
+> +        if (((level < 0) || (level > 7)))
+>              return -EINVAL;
+> +
+> +        if (tp_features.second_fan) {
+> +            if (!fan_select_fan2() ||
+> +                !acpi_evalf(sfan_handle, NULL, NULL, "vd", level)) {
+> +                fan_select_fan1();
+> +                pr_warn("Couldn't set 2nd fan level, disabling support\n");
+> +                tp_features.second_fan = 0;
+> +            }
+> +            fan_select_fan1();
+> +        }
+> +        if (!acpi_evalf(sfan_handle, NULL, NULL, "vd", level))
+> +            return -EIO;
+>          break;
+>
+>      case TPACPI_FAN_WR_ACPI_FANS:
+> @@ -8346,6 +8355,16 @@ static int fan_set_level(int level)
+>          else if (level & TP_EC_FAN_AUTO)
+>              level |= 4;    /* safety min speed 4 */
+>
+> +        if (tp_features.second_fan) {
+> +            if (!fan_select_fan2() ||
+> +                !acpi_ec_write(fan_status_offset, level)) {
+> +                fan_select_fan1();
+> +                pr_warn("Couldn't set 2nd fan level, disabling support\n");
+> +                tp_features.second_fan = 0;
+> +            }
+> +            fan_select_fan1();
+> +
+> +        }
+>          if (!acpi_ec_write(fan_status_offset, level))
+>              return -EIO;
+>          else
+> @@ -8772,6 +8791,9 @@ static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
+>      TPACPI_QEC_IBM('7', '0', TPACPI_FAN_Q1),
+>      TPACPI_QEC_LNV('7', 'M', TPACPI_FAN_2FAN),
+>      TPACPI_Q_LNV('N', '1', TPACPI_FAN_2FAN),
+> +    TPACPI_Q_LNV3('N', '2', 'C', TPACPI_FAN_2FAN),    /* P52 / P72 */
+> +    TPACPI_Q_LNV3('N', '2', 'E', TPACPI_FAN_2FAN),    /* X1 Extreme (1st gen) */
+> +    TPACPI_Q_LNV3('N', '2', 'O', TPACPI_FAN_2FAN),    /* X1 Extreme (2nd gen) */
+>  };
+>
+>  static int __init fan_init(struct ibm_init_struct *iibm)
+> @@ -8813,8 +8835,7 @@ static int __init fan_init(struct ibm_init_struct *iibm)
+>                  fan_quirk1_setup();
+>              if (quirks & TPACPI_FAN_2FAN) {
+>                  tp_features.second_fan = 1;
+> -                dbg_printk(TPACPI_DBG_INIT | TPACPI_DBG_FAN,
+> -                    "secondary fan support enabled\n");
+> +                pr_info("secondary fan support enabled\n");
+>              }
+>          } else {
+>              pr_err("ThinkPad ACPI EC access misbehaving, fan status and control unavailable\n");
 
-In principle, I agree that it makes sense to control these things from
-software and have a toggle key event that is send around. It has the
-unfortunate disadvantage though that it requires updating the entire
-userspace. Including the ugly side effect that we continue to have
-trouble to support these things on X11 due protocol restrictions with
-"high" key codes (>= 248).
 
-Benjamin
 
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 _______________________________________________
