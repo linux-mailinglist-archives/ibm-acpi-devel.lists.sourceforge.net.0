@@ -2,88 +2,92 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B21B1BA02D
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 27 Apr 2020 11:41:24 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 187991BAD06
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 27 Apr 2020 20:41:45 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jT0G3-0007Jg-L1; Mon, 27 Apr 2020 09:40:59 +0000
+	id 1jT8h0-0001Af-5j; Mon, 27 Apr 2020 18:41:22 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <andy.shevchenko@gmail.com>) id 1jT0G2-0007JZ-Fy
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 27 Apr 2020 09:40:58 +0000
+ (envelope-from <nanodario@gmail.com>) id 1jT8gz-0001AU-Dj
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 27 Apr 2020 18:41:21 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=YWA0qNFt3rYIcMvFiLW+rsoz0KvDJntHBD/VrCHkYWk=; b=MO9drvxT82XGqnr3pkmeMBwp8y
- N8GLoM0C9E+9rhHSGRU2jU4jRanHB9TXqrNaeavVyijpwoIjotWS8PRzwIdZuY3QP9A/nExwXFfPM
- Wwbx/bTIaz+T1P1pBXaa0Gdolu4q9MUazkCOf6+CalzEAAN7bWK9m6gZHCPeaZxHZ27c=;
+ bh=8TB5J7LWLeaW8++7bKbHy2XpLIrZzUa1CUaU5nteOwc=; b=UkJUcSTIL0jLmXKOCAfjHe7bsB
+ 91yk8Jp1jQQY3rGR8NDCnlcIWrboVSWM1j4bfKU3bJTuhvniTE0WmiI1qsENHNyet6U8uv7pS1/Ck
+ +8EbuNHGVosZ8WBdKQ4ygYh/PfnfOvbDxbsFHjCldqQupxA3WiRboJL8rQf/Z+eZKsyU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=YWA0qNFt3rYIcMvFiLW+rsoz0KvDJntHBD/VrCHkYWk=; b=SFQPhtG7mQ8DqN85r6Lg0Exh+q
- l83r6BjgZNlHTV3gs9NIKz/lzSJxWkyKnJ3IERJ/9+7JoqWc4oaf6797ooD/cvh1OUknHBLsvFvw8
- e+C90Q8mqfc1i2KMBuLJp1FrUrdxihxftW5CuijT/WZTK29J1TPRC9lq3D+anTVxc4cQ=;
-Received: from mail-pf1-f193.google.com ([209.85.210.193])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=8TB5J7LWLeaW8++7bKbHy2XpLIrZzUa1CUaU5nteOwc=; b=lG4D4NEPL6Y16eBGMOKywk3agJ
+ JyfEBdTiWhhcxBAW62+vKIuoPGALYT43hV5nz7fIPYrncAgciHv1EWF15MDbxLrmMmnhODo+bhPrT
+ W1kB9HCcVW0t4ORnINmrB+xioCMOTLHxorozS/Cdvi8Ht7Vg+3I1DKAJoERjvLRKtLzI=;
+Received: from mail-wr1-f41.google.com ([209.85.221.41])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1jT0G0-00HLDy-G6
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 27 Apr 2020 09:40:58 +0000
-Received: by mail-pf1-f193.google.com with SMTP id 18so7539436pfv.8
+ id 1jT8gy-00D6aq-4k
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 27 Apr 2020 18:41:21 +0000
+Received: by mail-wr1-f41.google.com with SMTP id d17so21773566wrg.11
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 27 Apr 2020 02:40:56 -0700 (PDT)
+ Mon, 27 Apr 2020 11:41:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=YWA0qNFt3rYIcMvFiLW+rsoz0KvDJntHBD/VrCHkYWk=;
- b=MwA+LLGgQ23TkF+bJUB8dNFrbE151g/xFXoopucJ1M86+oMXLKWWngvk5QP8lbdKtJ
- 2isW2jwKd74e6zUzNsVPvVlhYwLjEfP130My41KYJ3jKVBxNOKKh/TFfQ+MUAhNr2GrC
- f1C625W9XAkvw+/+pSeRTnFNt2oQSgKfvQ1QWNWyOolRtIfgdGUZG5Oic2TM2rtOOR2h
- +56dcizJVd6SBn2sF/taHhtvak7lxPX+ge222GpGnlpIeSHS0J9E720Z6GXayBn7nhmW
- 91dUDNx/xfPLUajbsy60XWq1mNW6haiX95iT/BxkoSjn0/VP2CKDpV5BYKlH2xgrOb2S
- yDwQ==
+ h=from:to:cc:subject:date:message-id:in-reply-to:references
+ :mime-version:content-transfer-encoding;
+ bh=8TB5J7LWLeaW8++7bKbHy2XpLIrZzUa1CUaU5nteOwc=;
+ b=BMu3SP9symPT7yalehZ0HvpYBF+xjY+qXJz/oFlRk80o+q6cprc4pNsjFdkkBrc91G
+ IBZD7DCUjYWHq3ATSYWGYtiItOWeMe2Pz1qH/KWG7AJtQVQ2SKO9W3AcRlDQ++RWd/Sa
+ jdGra6GOgkfNkYEM8jc+JAM8LJ87ivp+5RwWWTILXbIEW/s7fcDQ/3ICnJeuW2vs0WxN
+ k49EbL4dCXW9zQ1OJPHXRbm0mljgxqsRgmUu89D1FjJ84FjxoJkdNeKIWZ77lHifRD8R
+ q99HEdIP26sdrrampw0P7Gvtf/HnAyUVQ1+I6fEhag1XWENHTAP6guw7EUaMuK7jmrWS
+ Ow4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=YWA0qNFt3rYIcMvFiLW+rsoz0KvDJntHBD/VrCHkYWk=;
- b=aU6jBoa5H6NypUBTALQ+0XyaAcXCj2L6vmCxnlF4Mq5+h1bRXLCswArI84i8y+ESzj
- vgQbwzF819Wv24MmeMsjTXBGe7mgvBQDlpbfhfLZJOimroSYO+LMgCCGb5ka2dSkTleJ
- K4ZlVXp9ucp3eTib9VRnS4vphx1FjHO260nDAD9Dx83UJK/7UuDbN/v0b/vttdXOW3rZ
- iSxZplu3mnTaHtz57mHSyJwW7ePPBPMXsJbcHI8IoOH492PCFJRrmAZqN26wx8BI6kO2
- /MHxl2fb2oZWfX5oqUoib7JwvBex7v2loGHmhWBFdTFzr5PnVbfKsPBCnWKdpU79qunp
- BHew==
-X-Gm-Message-State: AGi0PuaASbI4xGV6KIZa9vzvXpGArV4N5b83CHY68lInhqQ6jL+MmKyv
- VkrVw0LVTQ6QBU0zy+req93ome9XeI2S+GB8Yjw=
-X-Google-Smtp-Source: APiQypJqGjBukBhCWLZVujDcFqGI9uFRUhwGWv7CTou0N1zLri9MiP4EF6/uImGUh5vPSZfe9Ktqp4gH+TUkaZtMM/s=
-X-Received: by 2002:a63:1c1:: with SMTP id 184mr23082683pgb.203.1587980450642; 
- Mon, 27 Apr 2020 02:40:50 -0700 (PDT)
-MIME-Version: 1.0
+ h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+ :references:mime-version:content-transfer-encoding;
+ bh=8TB5J7LWLeaW8++7bKbHy2XpLIrZzUa1CUaU5nteOwc=;
+ b=RvJv1Ry6qbx3qzc0RXhUMyxdoF8iLENoa0yeojLmOdELoWAprG3oYxLRtP5KbDUEnt
+ fst1SsIjPv0Fujz2tAvzs6+j5oHF1xppJ4jLDY1THpS9lX85sPa3v5MI5IzfIzzzuhy1
+ yXMbdtAj6YFpn5mE2ZOOi3dh7w1VFsms18IV93YTRK6s49YCR3sNyJvyDl18vebOgVXl
+ Z9G7S+V7FRZ+e/aYfSNnzwLbQPGAvoufEF87E9TCKbJInxpF8ZcGr9+ryWdvXi35h4UD
+ xnD3vBP3M2/gEBACTD2eNG67g6qEyRwWITatQ0Kse+xoobGgU/MU4kuv7alAzf6kmS6Z
+ Verw==
+X-Gm-Message-State: AGi0PuZzdCZSqiZkmN+RxB+3sBzZAEXqjH6wl6i1sFtzn3LZJEuV1t4l
+ WMmUtCXizJWrBnarv94dxG8=
+X-Google-Smtp-Source: APiQypLPxnoElAr6Ys8wtVWKqBGQhJBu3CR+X1TqJ9Yx2PydStTH7pBkBt9DGFUvW8eBeJOgHRR8kQ==
+X-Received: by 2002:adf:f004:: with SMTP id j4mr28280876wro.123.1588012873482; 
+ Mon, 27 Apr 2020 11:41:13 -0700 (PDT)
+Received: from lenovodario.localnet
+ (host196-76-dynamic.50-79-r.retail.telecomitalia.it. [79.50.76.196])
+ by smtp.gmail.com with ESMTPSA id a67sm22350wmc.30.2020.04.27.11.41.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 27 Apr 2020 11:41:12 -0700 (PDT)
+From: Dario Messina <nanodario@gmail.com>
+To: Lars <larsh@apache.org>
+Date: Mon, 27 Apr 2020 20:41:11 +0200
+Message-ID: <11041815.WYjWQN8m1R@lenovodario>
+In-Reply-To: <20200423215709.72993-1-larsh@apache.org>
 References: <20200423165457.54388-1-larsh@apache.org>
  <20200423215709.72993-1-larsh@apache.org>
- <CAHp75VeX2SjX5J-w933FKh_yii=cJ9_tWj3RRNx7Q6vijtt6AQ@mail.gmail.com>
- <1630425700.517847.1587973463950@mail.yahoo.com>
-In-Reply-To: <1630425700.517847.1587973463950@mail.yahoo.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Mon, 27 Apr 2020 12:40:44 +0300
-Message-ID: <CAHp75VeTp4ACpOxDtr64QX49-YZ8Uk_BM8XcMCDgg0BdqxNTpg@mail.gmail.com>
-To: "larsh@apache.org" <larsh@apache.org>
+MIME-Version: 1.0
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (andy.shevchenko[at]gmail.com)
+ (nanodario[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.210.193 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.210.193 listed in wl.mailspike.net]
+ trust [209.85.221.41 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.221.41 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -91,9 +95,7 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jT0G0-00HLDy-G6
+X-Headers-End: 1jT8gy-00D6aq-4k
 Subject: Re: [ibm-acpi-devel] [PATCH v4] thinkpad_acpi: Add support for dual
  fan control on select models
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -108,84 +110,33 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Alexander Kappner <agk@godking.net>, Kevin Slagle <kjslag@gmail.com>,
- =?UTF-8?Q?Sebastian_D=C3=B6rner?= <bastidoerner@gmail.com>,
- Dario Messina <nanodario@gmail.com>,
- Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
- Marc Burkhardt <marc@osknowledge.org>, Stefan Assmann <sassmann@kpanic.de>,
- Platform Driver <platform-driver-x86@vger.kernel.org>,
- Thinkpad-acpi devel ML <ibm-acpi-devel@lists.sourceforge.net>
+Cc: agk@godking.net, kjslag@gmail.com, bastidoerner@gmail.com,
+ ibm-acpi-devel@lists.sourceforge.net, ibm-acpi@hmh.eng.br,
+ platform-driver-x86@vger.kernel.org, sassmann@kpanic.de, arc@osknowledge.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Mon, Apr 27, 2020 at 10:44 AM larsh@apache.org <larsh@apache.org> wrote:
->
->
-> Hi Andy,
->
-> my full name is Lars Hofhansl.
-> Should I send a new post?
->
-> Just in case, I hereby:
->
-> Signed-off-by: Lars Hofhansl <larsh@apache.org>
-
-No need for this one, I will update locally, thanks!
-
->
-> -- Lars
->
-> On Friday, April 24, 2020, 4:12:05 AM PDT, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
->
->
->
->
->
-> On Fri, Apr 24, 2020 at 12:57 AM Lars <larsh@apache.org> wrote:
-> >
-> > This adds dual fan control for the following models:
-> > P50, P51, P52, P70, P71, P72, P1 gen1, X1E gen1, P2 gen2, and X1E gen2.
-> >
-> > Both fans are controlled together as if they were a single fan.
-> >
-> > Tested on an X1 Extreme Gen1, an X1 Extreme Gen2, and a P50.
-> >
-> > The patch is defensive, it adds only specific supported machines, and falls
-> > back to the old behavior if both fans cannot be controlled.
-> >
-> > Background:
-> > I tested the BIOS default behavior on my X1E gen2 and both fans are always
-> > changed together. So rather than adding controls for each fan, this controls
-> > both fans together as the BIOS would do.
-> >
-> > This was inspired by a discussion on dual fan support for the thinkfan tool
-> > [1].
-> > All BIOS ids are taken from there. The X1E gen2 id is verified on my machine.
-> >
-> > Thanks to GitHub users voidworker and civic9 for the earlier patches and BIOS
-> > ids, and to users peter-stoll and sassman for testing the patch on their
-> > machines.
-> >
-> > [1]: https://github.com/vmatare/thinkfan/issues/58
-> >
-> > Signed-off-by: Lars <larsh@apache.org>
->
-> One question though, is Lars your real name here? [1]
->
->
-> [1]:
-> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
+On Thu, Apr 23, 2020 at 23:57:59 CEST, Lars <larsh@apache.org> wrote:
+> This adds dual fan control for the following models:
+> P50, P51, P52, P70, P71, P72, P1 gen1, X1E gen1, P2 gen2, and X1E gen2.
+> 
+> Both fans are controlled together as if they were a single fan.
+> [...]
+> Background:
+> I tested the BIOS default behavior on my X1E gen2 and both fans are always
+> changed together. So rather than adding controls for each fan, this controls
+> both fans together as the BIOS would do.
+Hi Lars, why have you chosen to control multiple fans in this way?
+I know that BIOS controls both fans together, but the EC has the capabilities 
+to control both fans independently, so maybe it can be convenient to expose 
+this feature.
 
 
--- 
-With Best Regards,
-Andy Shevchenko
+Distinti saluti/Best regards,
+Dario Messina
+
+
 
 
 _______________________________________________
