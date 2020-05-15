@@ -2,121 +2,121 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36C8D1D5787
-	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 15 May 2020 19:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 627731D58F1
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 15 May 2020 20:19:46 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jZe1i-0002WF-Cr; Fri, 15 May 2020 17:21:38 +0000
+	id 1jZevg-0005J3-9U; Fri, 15 May 2020 18:19:28 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hmh@hmh.eng.br>) id 1jZe1f-0002W3-NV
- for ibm-acpi-devel@lists.sourceforge.net; Fri, 15 May 2020 17:21:36 +0000
+ (envelope-from <hdegoede@redhat.com>) id 1jZeve-0005Iv-Rl
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 15 May 2020 18:19:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=KHi3vAnNeG4L/A13DMJfIvBD/Ggrl6tK6va8uWy/HFw=; b=JB6K5t/881lLbIjdn4Ll/tNbD0
- 6xx5AnIVIUU99ChMY/0S86CbnSLCoGj5Si7tKV0porCdEWaOVgYS4aIF96MeBzKt81VW/XSQdAaze
- m+tTQ3R7jBa5o6g/ZVO+5OjIOPhr631OLSMGEGJzdM9D3FWh6u5xZRJ0CjPk8qeSMzOQ=;
+ bh=Fedn2inRka4QMAnXx9FxSm7/vZYS9uY++6sVEGlzAa0=; b=c5fKI7zgZCH5N5QKDh82pwVVQQ
+ gZpT1Nwj+09A5IL3OJJFdzAsDSBYd9DsL+I/MEjqPxkbsxU545FRvBEvY0dpc30RBzZB+vzYkzm6a
+ A7B/PSDrqUIXfz6HSy4FTTo/y/hSAAU5Viq5cn4XBxoegRu0n1+4lPTlx6RLBj7id86Q=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=KHi3vAnNeG4L/A13DMJfIvBD/Ggrl6tK6va8uWy/HFw=; b=mJTkH6lQqRBGIyOl1+vJIjiweI
- q3Eqw5EsBCafjm0HWsLRaqWD/PTatiG/now8dODh+FGp3Lk8VWagZ3AtBHMTh4dwoSHayE14JlY8A
- Gnd0TxS+5kift5Tu5Kp69UWap4AT5lWixWdt8q4EGMypujUZz8qKsORn83Ys3TGCoOO0=;
-Received: from out3-smtp.messagingengine.com ([66.111.4.27])
+ bh=Fedn2inRka4QMAnXx9FxSm7/vZYS9uY++6sVEGlzAa0=; b=OdtvTgamEtoczH0awbM1PdmZUd
+ vqgbRtR8uZDqYq+vNc7AA0Lg1jPE54wI9uY4nXaS22WNPFBMI+xk+7Gug6u3pGxT0Gg2UKvd/HU+q
+ //27k60LjnusJwm9H8+7JHz6MEdUo5XR7ifSkT1cChGJ5+rWEr3zkrTi1gmav0MuGXsI=;
+Received: from us-smtp-delivery-1.mimecast.com ([205.139.110.120]
+ helo=us-smtp-1.mimecast.com)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jZe1d-000AEJ-Kc
- for ibm-acpi-devel@lists.sourceforge.net; Fri, 15 May 2020 17:21:35 +0000
-Received: from compute7.internal (compute7.nyi.internal [10.202.2.47])
- by mailout.nyi.internal (Postfix) with ESMTP id BC0785C009A;
- Fri, 15 May 2020 13:02:09 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute7.internal (MEProxy); Fri, 15 May 2020 13:02:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hmh.eng.br; h=
- date:from:to:cc:subject:message-id:references:mime-version
- :content-type:in-reply-to; s=fm2; bh=KHi3vAnNeG4L/A13DMJfIvBD/Gg
- rl6tK6va8uWy/HFw=; b=i7sZYLxAYfCSq+erbSzt+PtEFjfPHAYGF6w/hAvWVhy
- /uSrKITBIzEoYtLOTcQc6h1jku94N7UI9sPvVxIpO7m9LnY1MnhDHxPBp3VwODeQ
- BCBaOmFiRW98NH6kn4CwWLe4rT06zmPKH27AiNLsPdl1gDMK0AP72mHYBso4FhUM
- DdFi1Yb+noO4As1AstGZnae+sHNBMJt9QYlrJmYnwvo7/DrwJk+7/VOUpqSb0Uxz
- kKigp3fcZjrtJuUtTkx40UVGY31eINNYHmbGs3owayb5YIbt3s/5ndtRyVBmfzJT
- gMcYy3Su1cp1KdQ0/cFGLcbcbPFK4aZj9INuZHWffzw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to:x-me-proxy
- :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=KHi3vA
- nNeG4L/A13DMJfIvBD/Ggrl6tK6va8uWy/HFw=; b=NjJ4hDUSUXL1KDeIQD5D3d
- wQ8EOCI7+j4QAPnUHjEFF3g334JWLE9gQHaqWLkM/RLIXQOZeF3KunB0MhrYssiW
- 1qABZnlFowVfWtwft5ABxDcanlfXay/25BUH+o/SlH35emwjfWRV877jbX69w8HZ
- tSdXcjvSSruT7uZ6XSYCGCxfIWmt+Df5+f8PeJj2qd8SpWTICqkrKjDEVdWvOIMT
- gtVELqmQEozB8QOHS9PrJFMxOmzgxkwyngH7D6jW807j4a6ZqSBzxBm4Gp0WowqT
- ntNQE6ZahGwdCncKvBHIvMrh9OmCancKTkLgOuZgSsJsseXd97xxeLvq20IT0dAw
- ==
-X-ME-Sender: <xms:Ecu-XlMxfIUOjPq-6D4cd8XZQwFSh4tAg7-XR25dJuHiLwAhCzYEjA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduhedrleekgddutdehucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvffukfhfgggtuggjfgesthdttddttdervdenucfhrhhomhepjfgvnhhr
- ihhquhgvucguvgcuofhorhgrvghsucfjohhlshgthhhuhhcuoehhmhhhsehhmhhhrdgvnh
- hgrdgsrheqnecuggftrfgrthhtvghrnhepveduteejgeeiudefuefgieehleejkeefudfh
- jeefgeekheekvddvheehleegveeinecukfhppedujeejrdduleegrdejrdefvdenucevlh
- hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehhmhhhsehhmhhh
- rdgvnhhgrdgsrh
-X-ME-Proxy: <xmx:Ecu-Xn-uqyRV4s2QNPAi79Ru1mgucFSmRhuvCSzwOZSltP05TZQCSQ>
- <xmx:Ecu-XkS-U9J5Ptaw3DSsuouiuFrI2TdwhDyiFg0UZLrwN6DrZca5Sw>
- <xmx:Ecu-XhuHLG7BIbKpossdUfa5YO5TOsH7H34Mk91IHsGWfYORFgDMKQ>
- <xmx:Ecu-XtnfGAQH0kywf5tzyBgp4Phds4z9mQ-V0fIIcH0IO4N0g5WzDw>
-Received: from khazad-dum.debian.net (unknown [177.194.7.32])
- by mail.messagingengine.com (Postfix) with ESMTPA id DEDCC3280059;
- Fri, 15 May 2020 13:02:08 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
- by localhost.khazad-dum.debian.net (Postfix) with ESMTP id 89F3A340322E;
- Fri, 15 May 2020 14:02:07 -0300 (-03)
-X-Virus-Scanned: Debian amavisd-new at khazad-dum.debian.net
-Received: from khazad-dum.debian.net ([127.0.0.1])
- by localhost (khazad-dum2.khazad-dum.debian.net [127.0.0.1]) (amavisd-new,
- port 10024)
- with LMTP id jmBy-JaIsHn2; Fri, 15 May 2020 14:02:02 -0300 (-03)
-Received: by khazad-dum.debian.net (Postfix, from userid 1000)
- id 8A4F0340017E; Fri, 15 May 2020 14:02:02 -0300 (-03)
-Date: Fri, 15 May 2020 14:02:02 -0300
-From: Henrique de Moraes Holschuh <hmh@hmh.eng.br>
-To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Message-ID: <20200515170202.GA6364@khazad-dum.debian.net>
-References: <20200515164943.28480-1-andrzej.p@collabora.com>
- <20200515165227.28859-1-andrzej.p@collabora.com>
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1jZevZ-000Fiy-Io
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 15 May 2020 18:19:26 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1589566755;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Fedn2inRka4QMAnXx9FxSm7/vZYS9uY++6sVEGlzAa0=;
+ b=FmfAuVh4QGkOpPgfhCFAuYt7jmv7Qagj1fzOAUyM01z8aAILrmmE7Ffn2dB4qTegdq1Shp
+ d/5G7ZCAVreovBNZmSD9zeIoqfER5+DTXru1T58BU9nfaNx7+GQTLlGXQU0xm81jmqojTk
+ ePaeUnUZj/WKqZMpPivCquDW6Q5eJEI=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-428-qz00aTjMMVScxLzoT0sdDQ-1; Fri, 15 May 2020 14:19:13 -0400
+X-MC-Unique: qz00aTjMMVScxLzoT0sdDQ-1
+Received: by mail-wm1-f71.google.com with SMTP id x11so1316359wmc.9
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Fri, 15 May 2020 11:19:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=Fedn2inRka4QMAnXx9FxSm7/vZYS9uY++6sVEGlzAa0=;
+ b=OQ9cp+H1wPLI1BDkhFJij8jdbVTEM7qnDNp+MsA0kl2j/WthjUq9p90mS4p+9RjWYs
+ 3CJFIHnN2D3+EbqJyK7wo2DVkF6+R1pmKlwVWwVkG8DGprmLkm2lmU6JkX76kGPep+my
+ hO7ibX98z2LcsCBi8vJlPKflJPs+igKdqgOyu8h3MA10xHQXcQbcjb+rsJJzdPiSznJz
+ cUAbGrxOAA6BFaoN8fNWZVTbajIKSFSAzhvVrqhfG+lvr29+SVFEoyqXULx8CNd+5Ku9
+ 43t5tKDu9GGAj6CI78+64AJMnChGFylil423tNdwiHo0gCnD/dXQ+v0wxPR+EVFey0mm
+ hidg==
+X-Gm-Message-State: AOAM532x8V9npZRVLRl/CVtLjftVK4Hv/mJ6c5zSsqQTaw6kpbI3lM5H
+ lX0VP8Gli3a22yqP6pieMCDxvfmO8cTU215XeJEbvp5XP4F7pzhE628J5icNGOpa22s0UY8VCkm
+ Pp4Qm1wesmqu5KsUJDUHRFJxQFh2W0NzAxNY=
+X-Received: by 2002:a1c:b406:: with SMTP id d6mr5299496wmf.89.1589566752601;
+ Fri, 15 May 2020 11:19:12 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwEhyZogIb52tbS8Sjh71yaPa5wKbVCzzV1bSu62tN2QyZWoHUXHTTKTerADtg5ez9J3v5UBw==
+X-Received: by 2002:a1c:b406:: with SMTP id d6mr5299458wmf.89.1589566752273;
+ Fri, 15 May 2020 11:19:12 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id a15sm4604338wrw.56.2020.05.15.11.19.10
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 15 May 2020 11:19:11 -0700 (PDT)
+To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ linux-input@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
+ patches@opensource.cirrus.com, ibm-acpi-devel@lists.sourceforge.net,
+ platform-driver-x86@vger.kernel.org
+References: <20200506002746.GB89269@dtor-ws>
+ <20200515164943.28480-1-andrzej.p@collabora.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <842b95bb-8391-5806-fe65-be64b02de122@redhat.com>
+Date: Fri, 15 May 2020 20:19:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200515165227.28859-1-andrzej.p@collabora.com>
-X-GPG-Fingerprint1: 4096R/0x0BD9E81139CB4807: C467 A717 507B BAFE D3C1  6092
- 0BD9 E811 39CB 4807
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Score: -0.1 (/)
+In-Reply-To: <20200515164943.28480-1-andrzej.p@collabora.com>
+Content-Language: en-US
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [66.111.4.27 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [205.139.110.120 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [205.139.110.120 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1jZe1d-000AEJ-Kc
-Subject: Re: [ibm-acpi-devel] [PATCHv2 5/7] platform/x86: thinkpad_acpi: Use
- input_device_enabled()
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+ -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jZevZ-000Fiy-Io
+Subject: Re: [ibm-acpi-devel] [PATCHv2 0/7] Support inhibiting input devices
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -129,59 +129,68 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: ibm-acpi-devel@lists.sourceforge.net, platform-driver-x86@vger.kernel.org,
- Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>, kernel@collabora.com,
- linux-input@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Nick Dyer <nick@shmanahar.org>, Benjamin Tissoires <btissoir@redhat.com>,
+ Laxman Dewangan <ldewangan@nvidia.com>,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>, kernel@collabora.com,
+ Fabio Estevam <festevam@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+ Sylvain Lemieux <slemieux.tyco@gmail.com>, Len Brown <lenb@kernel.org>,
+ Peter Hutterer <peter.hutterer@redhat.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+ Vladimir Zapolskiy <vz@mleia.com>, Barry Song <baohua@kernel.org>,
+ Ferruh Yigit <fery@cypress.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+ Thierry Reding <thierry.reding@gmail.com>, Sangwon Jee <jeesw@melfas.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Hartmut Knaack <knaack.h@gmx.de>, Shawn Guo <shawnguo@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Fri, 15 May 2020, Andrzej Pietrasiewicz wrote:
-> Use the new helper. Inspecting input device's 'users' member needs to be
-> done under device's mutex, so add appropriate invocations.
-> 
-> Signed-off-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-
-Acked-by: Henrique de Moraes Holschuh <hmh@hmh.eng.br>
-
-> ---
->  drivers/platform/x86/thinkpad_acpi.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-> index 0f704484ae1d..8ae11b8c3ebb 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -2671,9 +2671,10 @@ static void hotkey_poll_setup(const bool may_warn)
->  	const u32 poll_driver_mask = hotkey_driver_mask & hotkey_source_mask;
->  	const u32 poll_user_mask = hotkey_user_mask & hotkey_source_mask;
->  
-> +	mutex_lock(&tpacpi_inputdev->mutex);
->  	if (hotkey_poll_freq > 0 &&
->  	    (poll_driver_mask ||
-> -	     (poll_user_mask && tpacpi_inputdev->users > 0))) {
-> +	     (poll_user_mask && input_device_enabled(tpacpi_inputdev)))) {
->  		if (!tpacpi_hotkey_task) {
->  			tpacpi_hotkey_task = kthread_run(hotkey_kthread,
->  					NULL, TPACPI_NVRAM_KTHREAD_NAME);
-> @@ -2690,6 +2691,7 @@ static void hotkey_poll_setup(const bool may_warn)
->  				  poll_user_mask, poll_driver_mask);
->  		}
->  	}
-> +	mutex_unlock(&tpacpi_inputdev->mutex);
->  }
->  
->  static void hotkey_poll_setup_safe(const bool may_warn)
-
--- 
-  Henrique Holschuh
-
-  "One disk to rule them all, One disk to find them. One disk to bring
-  them all and in the darkness grind them. In the Land of Redmond
-  where the shadows lie." -- The Silicon Valley Tarot
-
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+SGkgQW5kcmV6aiwKCk9uIDUvMTUvMjAgNjo0OSBQTSwgQW5kcnplaiBQaWV0cmFzaWV3aWN6IHdy
+b3RlOgo+IFVzZXJzcGFjZSBtaWdodCB3YW50IHRvIGltcGxlbWVudCBhIHBvbGljeSB0byB0ZW1w
+b3JhcmlseSBkaXNyZWdhcmQgaW5wdXQKPiBmcm9tIGNlcnRhaW4gZGV2aWNlcywgaW5jbHVkaW5n
+IG5vdCB0cmVhdGluZyB0aGVtIGFzIHdha2V1cCBzb3VyY2VzLgo+IAo+IEFuIGV4YW1wbGUgdXNl
+IGNhc2UgaXMgYSBsYXB0b3AsIHdob3NlIGtleWJvYXJkIGNhbiBiZSBmb2xkZWQgdW5kZXIgdGhl
+Cj4gc2NyZWVuIHRvIGNyZWF0ZSB0YWJsZXQtbGlrZSBleHBlcmllbmNlLiBUaGUgdXNlciB0aGVu
+IG11c3QgaG9sZCB0aGUgbGFwdG9wCj4gaW4gc3VjaCBhIHdheSB0aGF0IGl0IGlzIGRpZmZpY3Vs
+dCB0byBhdm9pZCBwcmVzc2luZyB0aGUga2V5Ym9hcmQga2V5cy4gSXQKPiBpcyB0aGVyZWZvcmUg
+ZGVzaXJhYmxlIHRvIHRlbXBvcmFyaWx5IGRpc3JlZ2FyZCBpbnB1dCBmcm9tIHRoZSBrZXlib2Fy
+ZCwKPiB1bnRpbCBpdCBpcyBmb2xkZWQgYmFjay4gVGhpcyBvYnZpb3VzbHkgaXMgYSBwb2xpY3kg
+d2hpY2ggc2hvdWxkIGJlIGtlcHQKPiBvdXQgb2YgdGhlIGtlcm5lbCwgYnV0IHRoZSBrZXJuZWwg
+bXVzdCBwcm92aWRlIHN1aXRhYmxlIG1lYW5zIHRvIGltcGxlbWVudAo+IHN1Y2ggYSBwb2xpY3ku
+CgpBY3R1YWxseSBsaWJpbnB1dCBhbHJlYWR5IGJpbmRzIHRvZ2V0aGVyIChpbnNpZGUgbGliaW5w
+dXQpIFNXX1RBQkxFVF9NT0RFCmdlbmVyYXRpbmcgZXZkZXYgbm9kZXMgYW5kIGUuZy4gaW50ZXJu
+YWwga2V5Ym9hcmRzIG9uIGRldmljZXMgd2l0aCAzNjDCsApoaW5nZXMgZm9yIHRoaXMgcmVhc29u
+LiBsaWJpbnB1dCBzaW1wbHkgY2xvc2VzIHRoZSAvZGV2L2lucHV0L2V2ZW50Iwpub2RlIHdoZW4g
+Zm9sZGVkIGFuZCByZS1vcGVucyBpdCB3aGVuIHRoZSBrZXlib2FyZCBzaG91bGQgYmVjb21lIGFj
+dGl2ZQphZ2Fpbi4gVGh1cyBub3Qgb25seSBzdXBwcmVzc2VzIGV2ZW50cyBidXQgYWxsb3dzIGUu
+Zy4gdG91Y2hwYWRzIHRvCmVudGVyIHJ1bnRpbWUgc3VzcGVuZCBtb2RlIHdoaWNoIHNhdmVzIHBv
+d2VyLiBUeXBpY2FsbHkgY2xvc2luZyB0aGUKL2Rldi9pbnB1dC9ldmVudCMgbm9kZSB3aWxsIGFs
+c28gZGlzYWJsZSB0aGUgZGV2aWNlIGFzIHdha2V1cCBzb3VyY2UuCgpTbyBJIHdvbmRlciB3aGF0
+IHRoaXMgc2VyaWVzIGFjdHVhbGx5IGFkZHMgZm9yIGZ1bmN0aW9uYWxpdHkgZm9yCnVzZXJzcGFj
+ZSB3aGljaCBjYW4gbm90IGFscmVhZHkgYmUgYWNoaWV2ZWQgdGhpcyB3YXk/CgpJIGFsc28gbm90
+aWNlZCB0aGF0IHlvdSBrZWVwIHRoZSBkZXZpY2Ugb3BlbiAoZG8gbm90IGNhbGwgdGhlCmlucHV0
+X2RldmljZSdzIGNsb3NlIGNhbGxiYWNrKSB3aGVuIGluaGliaXRlZCBhbmQganVzdCB0aHJvdyBh
+d2F5CmFueSBldmVudHMgZ2VuZXJhdGVkLiBUaGlzIHNlZW1zIGluZWZmaWNpZW50IGFuZCBtYXkg
+bGVhZCB0bwp0aGUgaW50ZXJuYWwgc3RhdGUgZ2V0dGluZyBvdXQgb2Ygc3luYy4gV2hhdCBpZiBh
+IGtleSBpcyBwcmVzc2VkCndoaWxlIGluaGliaXRlZCBhbmQgdGhlbiB0aGUgZGV2aWNlIGlzIHVu
+aW5oaWJpdGVkIHdoaWxlIHRoZSBrZXkKaXMgc3RpbGwgcHJlc3NlZD8gIE5vdyB0aGUgcHJlc3Mg
+ZXZlbnQgaXMgbG9zdCBhbmQgdXNlcnNwYWNlCnF1ZXJ5aW5nIHRoZSBjdXJyZW50IHN0YXRlIHdp
+bGwgc2VlIHRoZSBwcmVzc2VkIGtleSBhcyBiZWluZwpyZWxlYXNlZC4KCk9uIHRvcCBvZiB0aGlz
+IHlvdSBhZGQgc3BlY2lhbCBpbmhpYml0IGFuZCB1bmluaGliaXQgY2FsbGJhY2tzCmFuZCBpbXBs
+ZW1lbnQgdGhvc2UgZm9yIGp1c3QgYSBmZXcgZGV2aWNlcy4gSG93IGRvIHRoZXNlIGRpZmZlcgpm
+cm9tIGp1c3QgY2xvc2luZyB0aGUgZGV2aWNlIGFuZCBsYXRlciBvcGVuaW5nIGl0IGFnYWluID8K
+CkFsc28gdXNpbmcgYSBzeXNmcyBwcm9wZXJ0eSBmb3IgdGhpcyBpcyB2ZXJ5IHdlaXJkIGdpdmVu
+IHRoYXQgdGhlCnJlc3Qgb2YgdGhlIGV2ZGV2IGludGVyZmFjZSBpcyB1c2luZyBpb2N0bHMgZm9y
+IGV2ZXJ5dGhpbmcuLi4KClNvIGFsbCBpbiBhbGwgSSBzZWUgYSBsb3Qgb2YgcXVlc3Rpb24gbWFy
+a3MgaGVyZSBhbmQgSSB0aGluayB3ZQpuZWVkIHRvIGhhdmUgYSBkZXRhaWxlZCBkaXNjdXNzaW9u
+IGFib3V0IHdoYXQgdXNlLWNhc2VzIHRoaXMKc2VyaWVzIHRyaWVzIHRvIGVuYWJsZSBiZWZvcmUg
+bW92aW5nIGZvcndhcmQgd2l0aCB0aGlzLgoKUmVnYXJkcywKCkhhbnMKCgoKX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KaWJtLWFjcGktZGV2ZWwgbWFpbGlu
+ZyBsaXN0CmlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3Rz
+LnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby9pYm0tYWNwaS1kZXZlbAo=
