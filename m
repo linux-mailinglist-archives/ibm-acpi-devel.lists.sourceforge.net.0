@@ -2,121 +2,99 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 627731D58F1
-	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 15 May 2020 20:19:46 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D70C1D5BBC
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 15 May 2020 23:42:02 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jZevg-0005J3-9U; Fri, 15 May 2020 18:19:28 +0000
+	id 1jZi5H-0007rg-EO; Fri, 15 May 2020 21:41:35 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hdegoede@redhat.com>) id 1jZeve-0005Iv-Rl
- for ibm-acpi-devel@lists.sourceforge.net; Fri, 15 May 2020 18:19:26 +0000
+ (envelope-from <andy.shevchenko@gmail.com>) id 1jZi5F-0007rY-UN
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 15 May 2020 21:41:33 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Fedn2inRka4QMAnXx9FxSm7/vZYS9uY++6sVEGlzAa0=; b=c5fKI7zgZCH5N5QKDh82pwVVQQ
- gZpT1Nwj+09A5IL3OJJFdzAsDSBYd9DsL+I/MEjqPxkbsxU545FRvBEvY0dpc30RBzZB+vzYkzm6a
- A7B/PSDrqUIXfz6HSy4FTTo/y/hSAAU5Viq5cn4XBxoegRu0n1+4lPTlx6RLBj7id86Q=;
+ bh=6wTjQtb75vxwwUpQOuSXET7G/gWKLTlHS4eXtBSEVQs=; b=TkoqBXQzbdf1J6O5THwLOBAeFy
+ vJu6AL5LKghHykkbtyyqyTKnn3NCd9zh9rk4PBr3OILZuoUXL7gkeycHsSCe0I0kZh3VhM+bYX7qM
+ PgqkW67JbEoHOhshq62YNmsxu55iK3sd3MbQWXS8+/CV8/zObubnIxt6UGcV7j4kira4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Fedn2inRka4QMAnXx9FxSm7/vZYS9uY++6sVEGlzAa0=; b=OdtvTgamEtoczH0awbM1PdmZUd
- vqgbRtR8uZDqYq+vNc7AA0Lg1jPE54wI9uY4nXaS22WNPFBMI+xk+7Gug6u3pGxT0Gg2UKvd/HU+q
- //27k60LjnusJwm9H8+7JHz6MEdUo5XR7ifSkT1cChGJ5+rWEr3zkrTi1gmav0MuGXsI=;
-Received: from us-smtp-delivery-1.mimecast.com ([205.139.110.120]
- helo=us-smtp-1.mimecast.com)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1jZevZ-000Fiy-Io
- for ibm-acpi-devel@lists.sourceforge.net; Fri, 15 May 2020 18:19:26 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1589566755;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Fedn2inRka4QMAnXx9FxSm7/vZYS9uY++6sVEGlzAa0=;
- b=FmfAuVh4QGkOpPgfhCFAuYt7jmv7Qagj1fzOAUyM01z8aAILrmmE7Ffn2dB4qTegdq1Shp
- d/5G7ZCAVreovBNZmSD9zeIoqfER5+DTXru1T58BU9nfaNx7+GQTLlGXQU0xm81jmqojTk
- ePaeUnUZj/WKqZMpPivCquDW6Q5eJEI=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-428-qz00aTjMMVScxLzoT0sdDQ-1; Fri, 15 May 2020 14:19:13 -0400
-X-MC-Unique: qz00aTjMMVScxLzoT0sdDQ-1
-Received: by mail-wm1-f71.google.com with SMTP id x11so1316359wmc.9
+ bh=6wTjQtb75vxwwUpQOuSXET7G/gWKLTlHS4eXtBSEVQs=; b=H/tUL/WmRJvZZ2r43czXedDt7s
+ /g2effq2gEGcag0mxb5WDhe9zymj93FHpKiQY62d6U6upDq3vIx9f6Xkzzbrtpx3DgONsczuTZfNr
+ BJWZIA7+2QJ0u372LhTJrrNv0+opVYrmCeINumijeet62QmM9ZCBKgHYj/nHe20u0PaY=;
+Received: from mail-pj1-f65.google.com ([209.85.216.65])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1jZi5E-009CZ3-Ij
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 15 May 2020 21:41:33 +0000
+Received: by mail-pj1-f65.google.com with SMTP id t40so1575539pjb.3
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Fri, 15 May 2020 11:19:13 -0700 (PDT)
+ Fri, 15 May 2020 14:41:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+ :cc; bh=6wTjQtb75vxwwUpQOuSXET7G/gWKLTlHS4eXtBSEVQs=;
+ b=gOpkghCRHL3EAX5gs7prRJRg7VXtB8bVIHhwOFBx3+pdE62N55QVFUZ5o/a5lNTENi
+ y+7yotxmOri7Y8CRsOp+zLAQB3Rn32rHzgGkhE0aaTVkU/0m5/nANXOFBuKfWzo3torc
+ l5g1p5aVgzTJdANWIEdkMa5auAFlqvPb6M30qkHfjcBx7AwIcs9gJuuhug10W+WJhQ7l
+ pKx6nxQ4FuAwcAMRMlLnzqufxM8gHA4OF0CZQIDpDaJqrgwEv9+lFZRGki7428JDIJaJ
+ ZFLmQQ5Rmj+PHtnngYX8tMjQpVhQM4l7FFDlvN2HE/+ve97T1PMO7PC4lsvpjF4VlnI8
+ sL8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=Fedn2inRka4QMAnXx9FxSm7/vZYS9uY++6sVEGlzAa0=;
- b=OQ9cp+H1wPLI1BDkhFJij8jdbVTEM7qnDNp+MsA0kl2j/WthjUq9p90mS4p+9RjWYs
- 3CJFIHnN2D3+EbqJyK7wo2DVkF6+R1pmKlwVWwVkG8DGprmLkm2lmU6JkX76kGPep+my
- hO7ibX98z2LcsCBi8vJlPKflJPs+igKdqgOyu8h3MA10xHQXcQbcjb+rsJJzdPiSznJz
- cUAbGrxOAA6BFaoN8fNWZVTbajIKSFSAzhvVrqhfG+lvr29+SVFEoyqXULx8CNd+5Ku9
- 43t5tKDu9GGAj6CI78+64AJMnChGFylil423tNdwiHo0gCnD/dXQ+v0wxPR+EVFey0mm
- hidg==
-X-Gm-Message-State: AOAM532x8V9npZRVLRl/CVtLjftVK4Hv/mJ6c5zSsqQTaw6kpbI3lM5H
- lX0VP8Gli3a22yqP6pieMCDxvfmO8cTU215XeJEbvp5XP4F7pzhE628J5icNGOpa22s0UY8VCkm
- Pp4Qm1wesmqu5KsUJDUHRFJxQFh2W0NzAxNY=
-X-Received: by 2002:a1c:b406:: with SMTP id d6mr5299496wmf.89.1589566752601;
- Fri, 15 May 2020 11:19:12 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwEhyZogIb52tbS8Sjh71yaPa5wKbVCzzV1bSu62tN2QyZWoHUXHTTKTerADtg5ez9J3v5UBw==
-X-Received: by 2002:a1c:b406:: with SMTP id d6mr5299458wmf.89.1589566752273;
- Fri, 15 May 2020 11:19:12 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id a15sm4604338wrw.56.2020.05.15.11.19.10
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 15 May 2020 11:19:11 -0700 (PDT)
-To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- linux-input@vger.kernel.org, linux-acpi@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
- patches@opensource.cirrus.com, ibm-acpi-devel@lists.sourceforge.net,
- platform-driver-x86@vger.kernel.org
-References: <20200506002746.GB89269@dtor-ws>
- <20200515164943.28480-1-andrzej.p@collabora.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <842b95bb-8391-5806-fe65-be64b02de122@redhat.com>
-Date: Fri, 15 May 2020 20:19:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+ h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+ :message-id:subject:to:cc;
+ bh=6wTjQtb75vxwwUpQOuSXET7G/gWKLTlHS4eXtBSEVQs=;
+ b=lYCH84nlITXcRHK5IYd6jjOkX3rTuKcGu+NQObrPD2uKrXq3LEGGNznKUcg1IqNuZB
+ y6hRqgDu3+1ZBN7CimxW7ZFzdRPeIgfSKEcvlqXiRE+S2EfnJdDNhIq1M50dQc0y6/58
+ YT3Y4YOPcAoJmavxFzR4IckZSEq5s4AcLXUMJglMP6MNCZvYRY1uSYJXktVOqoh5g9As
+ zWQJU7k+B6JtpoEhrrMGj/89l70ojb51hB2/kIkZYXRAFG9TPvseG63UJG31rpI0BqDo
+ NKMSVT7GZKh4oGPGkQYchhAlFCDTYIOvu0739BtZ8yd/cXTgn4JNwbTITo5dHcR/uxYs
+ +Ykg==
+X-Gm-Message-State: AOAM533sNX7OPDpZ98sDtxR/d/Ym1cqGnMiE9GoA5iq+Y9j/3kVM1f4h
+ ySt0ayWz3widG8wRu0FhdawHOWv95u85vOxVip4=
+X-Google-Smtp-Source: ABdhPJwS0Wkz5kxUpYKWbjdCPIUB4hTjF7ZvgeUjFNqAvQ8AgR8dPU1wUc7lA/tlSrjbHm3FivGbMcrFEHf7ilSH5vw=
+X-Received: by 2002:a17:90b:94a:: with SMTP id
+ dw10mr5781646pjb.228.1589578887038; 
+ Fri, 15 May 2020 14:41:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200515164943.28480-1-andrzej.p@collabora.com>
-Content-Language: en-US
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-X-Spam-Score: -0.3 (/)
+References: <1505028180.591737.1589564161284.ref@mail.yahoo.com>
+ <1505028180.591737.1589564161284@mail.yahoo.com>
+In-Reply-To: <1505028180.591737.1589564161284@mail.yahoo.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 16 May 2020 00:41:16 +0300
+Message-ID: <CAHp75VfC0NdyyR1zXbk47G_9y5ResrpV+w3cOntDqP_naocuvQ@mail.gmail.com>
+To: "larsh@apache.org" <larsh@apache.org>,
+ "Rafael J. Wysocki" <rjw@rjwysocki.net>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (andy.shevchenko[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [205.139.110.120 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [205.139.110.120 listed in wl.mailspike.net]
+ trust [209.85.216.65 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.216.65 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
- -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jZevZ-000Fiy-Io
-Subject: Re: [ibm-acpi-devel] [PATCHv2 0/7] Support inhibiting input devices
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1jZi5E-009CZ3-Ij
+Subject: Re: [ibm-acpi-devel] Low Latency Tolerance preventing Intel Package
+ from entering deep sleep states
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -129,68 +107,105 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Nick Dyer <nick@shmanahar.org>, Benjamin Tissoires <btissoir@redhat.com>,
- Laxman Dewangan <ldewangan@nvidia.com>,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>, kernel@collabora.com,
- Fabio Estevam <festevam@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- Sylvain Lemieux <slemieux.tyco@gmail.com>, Len Brown <lenb@kernel.org>,
- Peter Hutterer <peter.hutterer@redhat.com>,
- Michael Hennerich <michael.hennerich@analog.com>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
- Vladimir Zapolskiy <vz@mleia.com>, Barry Song <baohua@kernel.org>,
- Ferruh Yigit <fery@cypress.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>,
- Thierry Reding <thierry.reding@gmail.com>, Sangwon Jee <jeesw@melfas.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Hartmut Knaack <knaack.h@gmx.de>, Shawn Guo <shawnguo@kernel.org>,
- Jonathan Cameron <jic23@kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: "ibm-acpi-devel@lists.sourceforge.net"
+ <ibm-acpi-devel@lists.sourceforge.net>,
+ ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-SGkgQW5kcmV6aiwKCk9uIDUvMTUvMjAgNjo0OSBQTSwgQW5kcnplaiBQaWV0cmFzaWV3aWN6IHdy
-b3RlOgo+IFVzZXJzcGFjZSBtaWdodCB3YW50IHRvIGltcGxlbWVudCBhIHBvbGljeSB0byB0ZW1w
-b3JhcmlseSBkaXNyZWdhcmQgaW5wdXQKPiBmcm9tIGNlcnRhaW4gZGV2aWNlcywgaW5jbHVkaW5n
-IG5vdCB0cmVhdGluZyB0aGVtIGFzIHdha2V1cCBzb3VyY2VzLgo+IAo+IEFuIGV4YW1wbGUgdXNl
-IGNhc2UgaXMgYSBsYXB0b3AsIHdob3NlIGtleWJvYXJkIGNhbiBiZSBmb2xkZWQgdW5kZXIgdGhl
-Cj4gc2NyZWVuIHRvIGNyZWF0ZSB0YWJsZXQtbGlrZSBleHBlcmllbmNlLiBUaGUgdXNlciB0aGVu
-IG11c3QgaG9sZCB0aGUgbGFwdG9wCj4gaW4gc3VjaCBhIHdheSB0aGF0IGl0IGlzIGRpZmZpY3Vs
-dCB0byBhdm9pZCBwcmVzc2luZyB0aGUga2V5Ym9hcmQga2V5cy4gSXQKPiBpcyB0aGVyZWZvcmUg
-ZGVzaXJhYmxlIHRvIHRlbXBvcmFyaWx5IGRpc3JlZ2FyZCBpbnB1dCBmcm9tIHRoZSBrZXlib2Fy
-ZCwKPiB1bnRpbCBpdCBpcyBmb2xkZWQgYmFjay4gVGhpcyBvYnZpb3VzbHkgaXMgYSBwb2xpY3kg
-d2hpY2ggc2hvdWxkIGJlIGtlcHQKPiBvdXQgb2YgdGhlIGtlcm5lbCwgYnV0IHRoZSBrZXJuZWwg
-bXVzdCBwcm92aWRlIHN1aXRhYmxlIG1lYW5zIHRvIGltcGxlbWVudAo+IHN1Y2ggYSBwb2xpY3ku
-CgpBY3R1YWxseSBsaWJpbnB1dCBhbHJlYWR5IGJpbmRzIHRvZ2V0aGVyIChpbnNpZGUgbGliaW5w
-dXQpIFNXX1RBQkxFVF9NT0RFCmdlbmVyYXRpbmcgZXZkZXYgbm9kZXMgYW5kIGUuZy4gaW50ZXJu
-YWwga2V5Ym9hcmRzIG9uIGRldmljZXMgd2l0aCAzNjDCsApoaW5nZXMgZm9yIHRoaXMgcmVhc29u
-LiBsaWJpbnB1dCBzaW1wbHkgY2xvc2VzIHRoZSAvZGV2L2lucHV0L2V2ZW50Iwpub2RlIHdoZW4g
-Zm9sZGVkIGFuZCByZS1vcGVucyBpdCB3aGVuIHRoZSBrZXlib2FyZCBzaG91bGQgYmVjb21lIGFj
-dGl2ZQphZ2Fpbi4gVGh1cyBub3Qgb25seSBzdXBwcmVzc2VzIGV2ZW50cyBidXQgYWxsb3dzIGUu
-Zy4gdG91Y2hwYWRzIHRvCmVudGVyIHJ1bnRpbWUgc3VzcGVuZCBtb2RlIHdoaWNoIHNhdmVzIHBv
-d2VyLiBUeXBpY2FsbHkgY2xvc2luZyB0aGUKL2Rldi9pbnB1dC9ldmVudCMgbm9kZSB3aWxsIGFs
-c28gZGlzYWJsZSB0aGUgZGV2aWNlIGFzIHdha2V1cCBzb3VyY2UuCgpTbyBJIHdvbmRlciB3aGF0
-IHRoaXMgc2VyaWVzIGFjdHVhbGx5IGFkZHMgZm9yIGZ1bmN0aW9uYWxpdHkgZm9yCnVzZXJzcGFj
-ZSB3aGljaCBjYW4gbm90IGFscmVhZHkgYmUgYWNoaWV2ZWQgdGhpcyB3YXk/CgpJIGFsc28gbm90
-aWNlZCB0aGF0IHlvdSBrZWVwIHRoZSBkZXZpY2Ugb3BlbiAoZG8gbm90IGNhbGwgdGhlCmlucHV0
-X2RldmljZSdzIGNsb3NlIGNhbGxiYWNrKSB3aGVuIGluaGliaXRlZCBhbmQganVzdCB0aHJvdyBh
-d2F5CmFueSBldmVudHMgZ2VuZXJhdGVkLiBUaGlzIHNlZW1zIGluZWZmaWNpZW50IGFuZCBtYXkg
-bGVhZCB0bwp0aGUgaW50ZXJuYWwgc3RhdGUgZ2V0dGluZyBvdXQgb2Ygc3luYy4gV2hhdCBpZiBh
-IGtleSBpcyBwcmVzc2VkCndoaWxlIGluaGliaXRlZCBhbmQgdGhlbiB0aGUgZGV2aWNlIGlzIHVu
-aW5oaWJpdGVkIHdoaWxlIHRoZSBrZXkKaXMgc3RpbGwgcHJlc3NlZD8gIE5vdyB0aGUgcHJlc3Mg
-ZXZlbnQgaXMgbG9zdCBhbmQgdXNlcnNwYWNlCnF1ZXJ5aW5nIHRoZSBjdXJyZW50IHN0YXRlIHdp
-bGwgc2VlIHRoZSBwcmVzc2VkIGtleSBhcyBiZWluZwpyZWxlYXNlZC4KCk9uIHRvcCBvZiB0aGlz
-IHlvdSBhZGQgc3BlY2lhbCBpbmhpYml0IGFuZCB1bmluaGliaXQgY2FsbGJhY2tzCmFuZCBpbXBs
-ZW1lbnQgdGhvc2UgZm9yIGp1c3QgYSBmZXcgZGV2aWNlcy4gSG93IGRvIHRoZXNlIGRpZmZlcgpm
-cm9tIGp1c3QgY2xvc2luZyB0aGUgZGV2aWNlIGFuZCBsYXRlciBvcGVuaW5nIGl0IGFnYWluID8K
-CkFsc28gdXNpbmcgYSBzeXNmcyBwcm9wZXJ0eSBmb3IgdGhpcyBpcyB2ZXJ5IHdlaXJkIGdpdmVu
-IHRoYXQgdGhlCnJlc3Qgb2YgdGhlIGV2ZGV2IGludGVyZmFjZSBpcyB1c2luZyBpb2N0bHMgZm9y
-IGV2ZXJ5dGhpbmcuLi4KClNvIGFsbCBpbiBhbGwgSSBzZWUgYSBsb3Qgb2YgcXVlc3Rpb24gbWFy
-a3MgaGVyZSBhbmQgSSB0aGluayB3ZQpuZWVkIHRvIGhhdmUgYSBkZXRhaWxlZCBkaXNjdXNzaW9u
-IGFib3V0IHdoYXQgdXNlLWNhc2VzIHRoaXMKc2VyaWVzIHRyaWVzIHRvIGVuYWJsZSBiZWZvcmUg
-bW92aW5nIGZvcndhcmQgd2l0aCB0aGlzLgoKUmVnYXJkcywKCkhhbnMKCgoKX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KaWJtLWFjcGktZGV2ZWwgbWFpbGlu
-ZyBsaXN0CmlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3Rz
-LnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby9pYm0tYWNwaS1kZXZlbAo=
++Cc: ACPI ML and Rafael
+
+On Fri, May 15, 2020 at 8:36 PM larsh@apache.org <larsh@apache.org> wrote:
+>
+> Hi. I hope this is the right forum to raise this...
+>
+> For a while I have noticed that my CPU (i9-9880H in a Lenovo X1 Extreme Gen2) never enters any sleep mode below pc2.
+> (Confirmed with powertop and /sys/kernel/debug/pmc_core/package_cstate_show)
+>
+> Interestingly the CPU *can* reachers deeper C states *after* a resume from sleep (either S0ix or S3, i.e. freeze or mem).
+>
+> This article finally pointed me in the right direction: https://01.org/blogs/qwang59/2020/linux-s0ix-troubleshooting
+>
+> Somehow SOUTHPORT_A is requesting a max latency of 1 us.
+> There are no external devices attached.
+>
+> This is before a resume:
+>
+> $ cat /sys/kernel/debug/pmc_core/ltr_show
+> SOUTHPORT_A                             LTR: RAW: 0x88018c01            Non-Snoop(ns): 1024             Snoop(ns): 32768           <-------
+> SOUTHPORT_B                             LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> SATA                                    LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> GIGABIT_ETHERNET                        LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> XHCI                                    LTR: RAW: 0x13ff                Non-Snoop(ns): 0                Snoop(ns): 0
+> Reserved                                LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> ME                                      LTR: RAW: 0x8000800             Non-Snoop(ns): 0                Snoop(ns): 0
+> EVA                                     LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> SOUTHPORT_C                             LTR: RAW: 0x9f409f4             Non-Snoop(ns): 0                Snoop(ns): 0
+> HD_AUDIO                                LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> CNV                                     LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> LPSS                                    LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> SOUTHPORT_D                             LTR: RAW: 0x8c548c54            Non-Snoop(ns): 2752512          Snoop(ns): 2752512
+> SOUTHPORT_E                             LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> CAMERA                                  LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> ESPI                                    LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> SCC                                     LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> ISH                                     LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> UFSX2                                   LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> EMMC                                    LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> WIGIG                                   LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> CURRENT_PLATFORM                        LTR: RAW: 0x40201               Non-Snoop(ns): 0                Snoop(ns): 0
+> AGGREGATED_SYSTEM                       LTR: RAW: 0x7fbfdfe             Non-Snoop(ns): 0                Snoop(ns): 0
+>
+> Notice the 1000ns max latency requirement for SOUTHPORT_A.
+>
+> Ignoring SOUTHPORT_A via /sys/kernel/debug/pmc_core/ltr_ignore subsequently allows the CPU to reach deep sleep states.
+>
+> After a resume it looks like suddenly SOUTHPORT_C is active and with a less tight latency requirement:
+>
+> $ cat /sys/kernel/debug/pmc_core/ltr_show
+> SOUTHPORT_A                             LTR: RAW: 0x8010c01             Non-Snoop(ns): 0                Snoop(ns): 0               <--------
+> SOUTHPORT_B                             LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> SATA                                    LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> GIGABIT_ETHERNET                        LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> XHCI                                    LTR: RAW: 0x13ff                Non-Snoop(ns): 0                Snoop(ns): 0
+> Reserved                                LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> ME                                      LTR: RAW: 0x8000800             Non-Snoop(ns): 0                Snoop(ns): 0
+> EVA                                     LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> SOUTHPORT_C                             LTR: RAW: 0x88468846            Non-Snoop(ns): 71680            Snoop(ns): 71680           <---------
+> HD_AUDIO                                LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> CNV                                     LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> LPSS                                    LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> SOUTHPORT_D                             LTR: RAW: 0x8c548c54            Non-Snoop(ns): 2752512          Snoop(ns): 2752512
+> SOUTHPORT_E                             LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> CAMERA                                  LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> ESPI                                    LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> SCC                                     LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> ISH                                     LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> UFSX2                                   LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> EMMC                                    LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> WIGIG                                   LTR: RAW: 0x0                   Non-Snoop(ns): 0                Snoop(ns): 0
+> CURRENT_PLATFORM                        LTR: RAW: 0x40201               Non-Snoop(ns): 0                Snoop(ns): 0
+> AGGREGATED_SYSTEM                       LTR: RAW: 0x904824              Non-Snoop(ns): 0                Snoop(ns): 0
+>
+> Does anybody know what's going on or how to debug this further?
+>
+> As stated above, I was able to work around this problem by ignoring SOUTHPORT_A via /sys/kernel/debug/pmc_core/ltr_ignore.
+> There has to be a better way, and I'm sure I'm not the only one running into this.
+>
+> Thanks.
+>
+> -- Lars
+
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
+_______________________________________________
+ibm-acpi-devel mailing list
+ibm-acpi-devel@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
