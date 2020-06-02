@@ -2,107 +2,112 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FCB51EB35B
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  2 Jun 2020 04:33:40 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id C13611EC16F
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  2 Jun 2020 19:53:21 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jfwjs-0003uI-CX; Tue, 02 Jun 2020 02:33:16 +0000
+	id 1jgB5q-0004QB-Nh; Tue, 02 Jun 2020 17:52:54 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <markpearson@lenovo.com>) id 1jfwjq-0003u2-SA
- for ibm-acpi-devel@lists.sourceforge.net; Tue, 02 Jun 2020 02:33:14 +0000
+ (envelope-from <dmitry.torokhov@gmail.com>) id 1jgB5o-0004Q2-Lz
+ for ibm-acpi-devel@lists.sourceforge.net; Tue, 02 Jun 2020 17:52:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:CC:To:Subject:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+ MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Ej1rs0Vo3o9daUrL+Buq8KcGTBtVJA9P9oCZU4eUUWE=; b=VY1cFF3ZBFmasPaLiArubm+zTE
- 4djDvUtOvch/pKYDJfqYyqbTUpW3jdYOd8OChJanGTRQFLHaeRFOTJQeaotHY4zKCWCppGDbaQcbW
- TQ8+1odairyS+NlQVt6VqFvZBMQoc90kLzL0MEc3QxPuRZxmCpNw/FLH35X4IJuux/8Y=;
+ bh=DsDlTAN5nXx2eXeaYpyOizF6rp89+ZyQuZEoODyhpKQ=; b=LiMvRYxo4iGDs0AjUJcGDKwyAS
+ tXP9ACMw4+aRxE0rtKzzmR0aniiIsQml1/H8jcn8d+/HRL4yV0fMJK5NZXTu2t/eHvtHOFGBURZqb
+ 0JTvp6S1Qneo0XI343zetdkI91mvWSbA+/3k7UlgN1lAs7LaP3iG+YzWC6PnN+fY1PdI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:CC:To:Subject:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Ej1rs0Vo3o9daUrL+Buq8KcGTBtVJA9P9oCZU4eUUWE=; b=OPiW36z4yRYdJ54kW4DnXGctD0
- oby7jRvRUvY3WfGZhC/wxKR6lRERqgaPMZ/u0zRKirdBqXviQ//sTbv7vHnftSmfE8qdP8evbK5Kc
- 43k85wxBX4LGT3OfueIhuo5YPw8uu1DxP5p5rXZhodk+YkQVLdonwOKecWtkdtisKcgA=;
-Received: from mail1.bemta23.messagelabs.com ([67.219.246.1])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jfwjo-001mWt-I3
- for ibm-acpi-devel@lists.sourceforge.net; Tue, 02 Jun 2020 02:33:14 +0000
-Received: from [100.112.1.169] (using TLSv1.2 with cipher
- DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-1.bemta.az-b.us-east-1.aws.symcld.net id 4D/26-43121-D5AB5DE5;
- Tue, 02 Jun 2020 02:33:01 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrCIsWRWlGSWpSXmKPExsWS8eIhj27srqt
- xBqf2yVqs/72SxWL2YRsHJo/fBxg9di/4zBTAFMWamZeUX5HAmvHx9G+mgpmSFXu/9LI1MB4V
- 6WLk4hAS+M8o0ff7EROE84hR4ta5NUAOB4ewQK7E+eNARZwcIgIGEvP+bWEGsZkFiiSOT5/OC
- FHfyihxv2E6O0iCTUBbYsuWX2wgNq+ArUR/60lGEJtFQEWi/95LMFtUIEZif/cRVogaQYmTM5
- +wgOziFLCSuLBeDWK+hcTM+ecZIWxxiVtP5jNB2PIS29/OAbtBQkBRYsvUuawQdoLEspd3mCc
- wCs5CMnUWklGzkIyahWTUAkaWVYymSUWZ6RkluYmZObqGBga6hoZGusa6piZ6iVW6SXqlxbqp
- icUluoZ6ieXFesWVuck5KXp5qSWbGIGBn1LAbLaD8efrD3qHGCU5mJREeWU2XY0T4kvKT6nMS
- CzOiC8qzUktPsQow8GhJMG7fSdQTrAoNT21Ii0zBxiFMGkJDh4lEV4lkDRvcUFibnFmOkTqFK
- OilDjvlB1ACQGQREZpHlwbLPIvMcpKCfMyMjAwCPEUpBblZpagyr9iFOdgVBLmjQYZz5OZVwI
- 3/RXQYiagxXdmXgJZXJKIkJJqYFLY+tfpIHNWYVe4GucreUvh+Ge3VRZNmm41a/v0x3PSjz16
- 5BbIqrQ1f+OSj2u4SqamdryuStwcKV78btPmjvtS0xkOSt5z2q3/2Ctj+z4Tn6ImhdbZfB5ZW
- Tu/TLFKEqnoqOGYs2j2rPdJj4IOPN5a6jrR98jflYsK9BKe+nA8u/af8cZyyd+nVeczvZFqsi
- tY5/HSvE/XZ9LvmldBbx6/2eGrla/UpT8hPbDo7MfO/Xtj3phLJ62MKXb7oPpH07T+yJf6QGM
- BO5NV07jSTU21Jx9h1Zs5r8Bcy/pD/MStX2oqlD7Z/Xzle/LBDJ7u3Ic+t9ieXjkSPXtrg7bD
- FVZjJ/85zUsmZIbfEVotV6jEUpyRaKjFXFScCAC4KOeRdwMAAA==
-X-Env-Sender: markpearson@lenovo.com
-X-Msg-Ref: server-10.tower-396.messagelabs.com!1591065181!845710!1
-X-Originating-IP: [104.232.225.12]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.50.1; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 28518 invoked from network); 2 Jun 2020 02:33:01 -0000
-Received: from unknown (HELO lenovo.com) (104.232.225.12)
- by server-10.tower-396.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
- encrypted SMTP; 2 Jun 2020 02:33:01 -0000
-Received: from reswpmail04.lenovo.com (unknown [10.62.32.23])
- (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by Forcepoint Email with ESMTPS id 4B05E900D9CC0378C639;
- Mon,  1 Jun 2020 22:33:01 -0400 (EDT)
-Received: from [10.38.105.244] (10.38.105.244) by reswpmail04.lenovo.com
- (10.62.32.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.1913.5; Mon, 1 Jun 2020
- 19:33:00 -0700
-To: Henrique de Moraes Holschuh <hmh@hmh.eng.br>
-References: <markpearson@lenovo.com>
- <20200601153749.265953-1-markpearson@lenovo.com>
- <20200601224225.GA9259@khazad-dum.debian.net>
-From: Mark Pearson <markpearson@lenovo.com>
-Message-ID: <cb5a2069-13eb-18e6-ddd5-2798c2a9e5a5@lenovo.com>
-Date: Mon, 1 Jun 2020 22:32:59 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.1
+ bh=DsDlTAN5nXx2eXeaYpyOizF6rp89+ZyQuZEoODyhpKQ=; b=BoiV6g+J5ah89BT+q3GexRSNU+
+ reUdxNKw9lhXkVIrbvN78n/+XxA59isOgTO4mioVgCd7zweGP7roJVbZsaSUX68oudzX/OZqtks6m
+ VOB3QR3QjNJ/tN4UUAQUdxMLk1QLeVE27fmxy22cmDJAqMCDXpCtnHBqX06u87UJ1cMs=;
+Received: from mail-pl1-f195.google.com ([209.85.214.195])
+ by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1jgB5n-009i3z-D5
+ for ibm-acpi-devel@lists.sourceforge.net; Tue, 02 Jun 2020 17:52:52 +0000
+Received: by mail-pl1-f195.google.com with SMTP id t7so1671848plr.0
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Tue, 02 Jun 2020 10:52:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=date:from:to:cc:subject:message-id:references:mime-version
+ :content-disposition:content-transfer-encoding:in-reply-to;
+ bh=DsDlTAN5nXx2eXeaYpyOizF6rp89+ZyQuZEoODyhpKQ=;
+ b=lOt5bDJGsfK9IyNxz3BNa4rLKdk08R28EoDJrT2TUNMLbDyn8CzBBmFfkFe6atRsGn
+ NQUzHizY/xR0tIwR/Fv6cLBvYq4vV4+Q1oNNa578UCAQkfJUbXwU0XvgRE6TIZ4K0ZVL
+ +IilnKMWHrYZbepwRYHoTr0hmJk9tLHnDUs3xNl11dsFboIB3dq7c9tD088BsqY9MbHi
+ +SPZDl667YmxpVexTZNqnhx5Pgecw0OPK+asacMRjWAHfk4LuN6hUAN5lYYRVMImMTkJ
+ rkLXt/cXLA5dp+fg8J/cStQdFtFGauWWiBHCKiftRfNn+KL8xQifFcVN5QzSVxpMF7pD
+ M3Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+ :mime-version:content-disposition:content-transfer-encoding
+ :in-reply-to;
+ bh=DsDlTAN5nXx2eXeaYpyOizF6rp89+ZyQuZEoODyhpKQ=;
+ b=ctff7QJiN+/8QT3Q26ruMgWrn7MRcZ4ZOZeYXK1d8A8OKZRf+E2eZ2XOEu2zLgv/Xe
+ JWJ0gUkuxSCJLW7tldekRUc6eTPlpu7stCyRNtfYvR9icRvENjoCqtgZMT4QCLPk0AeD
+ BxPUWPdRhsPrBau4F5SpmiaARQCCcXUPphpHJKmUMt7xhGLx77ZYekfhXmJDYT41ErIk
+ T/6CEbJeoNLp8sy+gYncMpn/lHyh7VJ5QLRZ3Yhpe+UCU+9IUB6JKzEnsrJSrGu3PQ6X
+ mddzw3RwRijVy3pNBAsN7VOHAYey3+lOJXupI5Tge8s+VjTynYpra60RTkNFkLwgnW2A
+ E2jA==
+X-Gm-Message-State: AOAM5301l9PG2qDzsmnb0PSG3XeXRg+exYlBxGHKSJpw21FNPJVajzAZ
+ K+0ay62jUqHN2lKYUIvVsqU=
+X-Google-Smtp-Source: ABdhPJw4j3qAh/n1rbRzh5j+Qh1ZpRvg/yNd1He12Pkb+W7uWkt4zY60I9IIhaoAP1YKs8H+3eduzw==
+X-Received: by 2002:a17:902:c411:: with SMTP id
+ k17mr22524187plk.165.1591120365656; 
+ Tue, 02 Jun 2020 10:52:45 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:3c2a:73a9:c2cf:7f45])
+ by smtp.gmail.com with ESMTPSA id m9sm2909107pfo.200.2020.06.02.10.52.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 02 Jun 2020 10:52:44 -0700 (PDT)
+Date: Tue, 2 Jun 2020 10:52:41 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Message-ID: <20200602175241.GO89269@dtor-ws>
+References: <20200515164943.28480-1-andrzej.p@collabora.com>
+ <842b95bb-8391-5806-fe65-be64b02de122@redhat.com>
+ <e6030957-97dc-5b04-7855-bc14a78164c8@collabora.com>
+ <6d9921fc-5c2f-beda-4dcd-66d6970a22fe@redhat.com>
+ <09679de4-75d3-1f29-ec5f-8d42c84273dd@collabora.com>
+ <f674ba4f-bd83-0877-c730-5dc6ea09ae4b@redhat.com>
+ <2d224833-3a7e-bc7c-af15-1f803f466697@collabora.com>
+ <aa2ce2ab-e5bc-9cb4-8b53-c1ef9348b646@redhat.com>
+ <20200527063430.GJ89269@dtor-ws>
+ <88f939cd-1518-d516-59f2-8f627a6a70d2@collabora.com>
 MIME-Version: 1.0
-In-Reply-To: <20200601224225.GA9259@khazad-dum.debian.net>
-Content-Language: en-US
-X-Originating-IP: [10.38.105.244]
-X-ClientProxiedBy: reswpmail04.lenovo.com (10.62.32.23) To
- reswpmail04.lenovo.com (10.62.32.23)
-X-Spam-Score: -0.0 (/)
+Content-Disposition: inline
+In-Reply-To: <88f939cd-1518-d516-59f2-8f627a6a70d2@collabora.com>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [67.219.246.1 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [67.219.246.1 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ trust [209.85.214.195 listed in list.dnswl.org]
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (dmitry.torokhov[at]gmail.com)
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.214.195 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
-X-Headers-End: 1jfwjo-001mWt-I3
-Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH] platform/x86:
- thinkpad_acpi: lap or desk mode interface
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1jgB5n-009i3z-D5
+Subject: Re: [ibm-acpi-devel] [PATCHv2 0/7] Support inhibiting input devices
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,113 +120,124 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: ibm-acpi-devel@lists.sourceforge.net, Nitin Joshi <njoshi1@lenovo.com>,
- Sugumaran <slacshiminar@lenovo.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Nick Dyer <nick@shmanahar.org>, linux-iio@vger.kernel.org,
+ Benjamin Tissoires <btissoir@redhat.com>, platform-driver-x86@vger.kernel.org,
+ ibm-acpi-devel@lists.sourceforge.net, Laxman Dewangan <ldewangan@nvidia.com>,
+ Peter Meerwald-Stadler <pmeerw@pmeerw.net>, kernel@collabora.com,
+ Fabio Estevam <festevam@gmail.com>, linux-samsung-soc@vger.kernel.org,
+ Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
+ linux-acpi@vger.kernel.org, Kukjin Kim <kgene@kernel.org>,
+ NXP Linux Team <linux-imx@nxp.com>, linux-input@vger.kernel.org,
+ Len Brown <lenb@kernel.org>, Peter Hutterer <peter.hutterer@redhat.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Sylvain Lemieux <slemieux.tyco@gmail.com>,
+ Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+ Vladimir Zapolskiy <vz@mleia.com>, Hans de Goede <hdegoede@redhat.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, linux-tegra@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Barry Song <baohua@kernel.org>,
+ Ferruh Yigit <fery@cypress.com>, patches@opensource.cirrus.com,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+ Thierry Reding <thierry.reding@gmail.com>, Sangwon Jee <jeesw@melfas.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Hartmut Knaack <knaack.h@gmx.de>, Shawn Guo <shawnguo@kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Thanks Henrique
+Hi Andrzej,
 
-On 6/1/2020 6:42 PM, Henrique de Moraes Holschuh wrote:
-> On Mon, 01 Jun 2020, Mark Pearson wrote:
->>    Newer Lenovo Thinkpad platforms have support to identify whether the
->>    system is on-lap or not using an ACPI DYTC event from the firmware.
->>
->>    This patch provides the ability to retrieve the current mode via sysfs
->>    entrypoints and will be used by userspace for thermal mode and WWAN
->>    functionality
->>
->> Co-developed-by: Nitin Joshi <njoshi1@lenovo.com>
->> Signed-off-by: Nitin Joshi <njoshi1@lenovo.com>
->> Reviewed-by: Sugumaran <slacshiminar@lenovo.com>
->> Signed-off-by: Mark Pearson <markpearson@lenovo.com>
-> 
-> We need to take this through the kernel platform-driver-x86 ML.
-> 
-> It would be nice to have standard events for "latop on a surface you
-> don't want to burn ("lap"), and the input people might want to suggest
-> something, too, so I'd also ask the input maintainer.
-> > Please resend, cc to:
-> platform-driver-x86@vger.kernel.org
-> 
+On Tue, Jun 02, 2020 at 06:56:40PM +0200, Andrzej Pietrasiewicz wrote:
+> Hi Dmitry,
+> =
 
-No problem. Always happy to have more input and I'll do that with the 
-updated version after fixing the below.
+> W dniu 27.05.2020 o=A008:34, Dmitry Torokhov pisze:
+> > That said, I think the way we should handle inhibit/uninhibit, is that
+> > if we have the callback defined, then we call it, and only call open and
+> > close if uninhibit or inhibit are _not_ defined.
+> > =
 
-> While at it there is something I noticed right away:
-> 
->> +static int dytc_command(int command)
->> +{
->> +	acpi_handle dytc_handle;
->> +	int output;
->> +
->> +	if (ACPI_FAILURE(acpi_get_handle(hkey_handle, "DYTC", &dytc_handle))) {
->> +		pr_warn("Thinkpad ACPI has no DYTC interface.\n");
->> +		return -ENODEV;
->> +	}
->> +	if (!acpi_evalf(dytc_handle, &output, NULL, "dd", command))
->> +		return -EIO;
->> +	return output;
->> +}
-> 
-> dytc_command() is called by dytc_lapmode_get():
-> 
->> +static int dytc_lapmode_get(void)
->> +{
->> +	int output;
->> +
->> +	output = dytc_command(DYTC_CMD_GET);
->> +	if ((output == -ENODEV) || (output == -EIO))
->> +		return output;
->> +
->> +	return ((output >> DYTC_GET_LAPMODE_SHIFT) &
->> +				DYTC_GET_ENABLE_MASK);
->> +}
-> 
-> Which is used by dytc_lapmode_init():
-> 
-> 
->> +static int tpacpi_dytc_init(struct ibm_init_struct *iibm)
->> +{
->> +	int res;
->> +
->> +	dytc_available = false;
->> +	dytc_lapmode = dytc_lapmode_get();
->> +
->> +	if (dytc_lapmode < 0 && dytc_lapmode != -ENODEV)
->> +		return dytc_lapmode;
->> +
->> +	dytc_available = true;
->> +
->> +	res = sysfs_create_group(&tpacpi_pdev->dev.kobj,
->> +				&dytc_attr_group);
->> +
->> +	return res;
->> +}
-> 
-> Looks like this code flow is going to spam people with pr_warn() on an
-> older thinkpad laptop that doesn't have DYTC.  Please fix this, it is
-> not strange for an older thinkpad to not have DYTC (even if it is a
-> decade's old thinkpad).
-> 
-> There is a thinkpad-acpi driver-level debug facility you can use to send
-> developer-level debug info (such as the init function of a subdriver did
-> not find what it wanted), if you want.
-> 
-> Also, if the code flow goes through dytc_init fine and registers the
-> sub-driver, you likely don't have to optimize the rest of the code flow
-> for DYTC disappearing from APCI tables ;-)  ENODEV silently would be
-> fine for something so unlikely to happen.
-> 
-Agreed - will fix and I'll test on an older platform.
+> =
 
-As an aside only a few of last years platforms have this implementation 
-(and then all of this years) so it would impact a lot of devices. Good 
-catch.
+> If I understand you correctly you suggest to call either inhibit,
+> if provided or close, if inhibit is not provided, but not both,
+> that is, if both are provided then on the inhibit path only
+> inhibit is called. And, consequently, you suggest to call either
+> uninhibit or open, but not both. The rest of my mail makes this
+> assumption, so kindly confirm if I understand you correctly.
 
-Thanks
-Mark
+Yes, that is correct. If a driver wants really fine-grained control, it
+will provide inhibit (or both inhibit and close), otherwise it will rely
+on close in place of inhibit.
+
+> =
+
+> In my opinion this idea will not work.
+> =
+
+> The first question is should we be able to inhibit a device
+> which is not opened? In my opinion we should, in order to be
+> able to inhibit a device in anticipation without needing to
+> open it first.
+
+I agree.
+
+> =
+
+> Then what does opening (with input_open_device()) an inhibited
+> device mean? Should it succeed or should it fail?
+
+It should succeed.
+
+> If it is not
+> the first opening then effectively it boils down to increasing
+> device's and handle's counters, so we can allow it to succeed.
+> If, however, the device is being opened for the first time,
+> the ->open() method wants to be called, but that somehow
+> contradicts the device's inhibited state. So a logical thing
+> to do is to either fail input_open_device() or postpone ->open()
+> invocation to the moment of uninhibiting - and the latter is
+> what the patches in this series currently do.
+> =
+
+> Failing input_open_device() because of the inhibited state is
+> not the right thing to do. Let me explain. Suppose that a device
+> is already inhibited and then a new matching handler appears
+> in the system. Most handlers (apm-power.c, evbug.c, input-leds.c,
+> mac_hid.c, sysrq.c, vt/keyboard.c and rfkill/input.c) don't create
+> any character devices (only evdev.c, joydev.c and mousedev.c do),
+> so for them it makes no sense to delay calling input_open_device()
+> and it is called in handler's ->connect(). If input_open_device()
+> now fails, we have lost the only chance for this ->connect() to
+> succeed.
+> =
+
+> Summarizing, IMO the uninhibit path should be calling both
+> ->open() and ->uninhibit() (if provided), and conversely, the inhibit
+> path should be calling both ->inhibit() and ->close() (if provided).
+
+So what you are trying to say is that you see inhibit as something that
+is done in addition to what happens in close. But what exactly do you
+want to do in inhibit, in addition to what close is doing?
+
+In my view, if we want to have a dedicated inhibit callback, then it
+will do everything that close does, they both are aware of each other
+and can sort out the state transitions between them. For drivers that do
+not have dedicated inhibit/uninhibit, we can use open and close
+handlers, and have input core sort out when each should be called. That
+means that we should not call dev->open() in input_open_device() when
+device is inhibited (and same for dev->close() in input_close_device).
+And when uninhibiting, we should not call dev->open() when there are no
+users for the device, and no dev->close() when inhibiting with no users.
+
+Do you see any problems with this approach?
+
+Thanks.
+
+-- =
+
+Dmitry
 
 
 _______________________________________________
