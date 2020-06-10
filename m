@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EAE61F55A8
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 10 Jun 2020 15:22:10 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC92C1F5638
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 10 Jun 2020 15:52:45 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jj0fu-0007S6-9c; Wed, 10 Jun 2020 13:21:50 +0000
+	id 1jj19a-00016c-7k; Wed, 10 Jun 2020 13:52:30 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hdegoede@redhat.com>) id 1jj0ft-0007Ri-BY
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 10 Jun 2020 13:21:49 +0000
+ (envelope-from <hdegoede@redhat.com>) id 1jj19Y-00016D-JC
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 10 Jun 2020 13:52:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
  MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=DlplkVPrHKzwqp9XQ8hCr9mQJfW4CL7+sK6OIcyqTu0=; b=ksb39M7OeSTHxPM10vNGn9ZYHY
- ypidAgOEWva7Ieo1CPiyAKlgnqLHOjYtR3RK1lbKKfx18wCq2Xdnl7WrSOpyBVq3gFXb/aAtWsQgu
- 2Uz3E/SLYLHVYBxXvKtQA4QnaZ01RuSzLIluxCBg0xypJOQfVCS+Nn1DtQIuIwWMxZTw=;
+ bh=YL2CUX+ytcqKztbtjkEaTAotWFK6JYYqCnPu2fBEOuA=; b=MxHUugWdiq+iDidtd/QHgC68pG
+ ZPqiI05bf9dsxYkfKSnpSXhp0OZmF0appq2j7Hjlmib7SHuYuk8+nrVCHQdZTeBV5+HstAXyQq/o4
+ ilIvsu2DXcsI2GcZzfFWw4a8shoEOypzUu4tKC2UD+CehoYnQIjLFD5QYRw+XA29R1q0=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
@@ -29,82 +29,80 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=DlplkVPrHKzwqp9XQ8hCr9mQJfW4CL7+sK6OIcyqTu0=; b=g3KEDdsZIQMGrM89xMsbgO4ZwN
- /84qLHTKV5FhFGJF/CjSyyd8n9Ae8iyMqqCRzm75GPfo2w+a8LcBI/L5uAEg87/Go7xTK3R5K6GOD
- Pk8XfHfpPHK5UZRQnUNWEpwB2pceCpPtCJ2cgq+RBMmVHIEcUpa0CAYkwOTD+1uUpKsQ=;
+ bh=YL2CUX+ytcqKztbtjkEaTAotWFK6JYYqCnPu2fBEOuA=; b=RHQtEMsZPaHqlpWjxmmuE8ap9+
+ Huk/MtxVYnZd2VzlGtNOB22tTFZsNlXRWlT3uKYfjQxmnd2myvFOcphIsczm4bQRnVEAvjVoG4jM4
+ rLykgMroIn2/tod3L7/g4Xx+Z0vkSDS2LPJ/xcPrcmtQZVjnM1Ef3dT/01wwxGmAwjDE=;
 Received: from us-smtp-delivery-1.mimecast.com ([205.139.110.120]
  helo=us-smtp-1.mimecast.com)
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1jj0fr-00FfqA-U1
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 10 Jun 2020 13:21:49 +0000
+ id 1jj19W-00EC0l-K4
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 10 Jun 2020 13:52:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1591795301;
+ s=mimecast20190719; t=1591797140;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=DlplkVPrHKzwqp9XQ8hCr9mQJfW4CL7+sK6OIcyqTu0=;
- b=KIzNbJntVnluL9spbIK8FhvjmXU96qWvd5Y4GwcIdEbRBC5AFhi6FokvvzDJoI3pEdVT95
- K4nE8NIy72BbDPpp9rV+XwlfEhNhq4pEZvupymaqR9tAb96C9zrd8/YOxfOXcmtdjuWqpX
- Gth7NE93u0FdddMPGVsCqkpdgm+Zwqo=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-388-HeL-h4FgMX2fhkxjmvInLg-1; Wed, 10 Jun 2020 09:21:38 -0400
-X-MC-Unique: HeL-h4FgMX2fhkxjmvInLg-1
-Received: by mail-ej1-f70.google.com with SMTP id e14so1088629ejt.16
+ bh=YL2CUX+ytcqKztbtjkEaTAotWFK6JYYqCnPu2fBEOuA=;
+ b=RNgBmriM4ahFUxcS7Fg9c2XAKyovRc1vbF3yWBevYkrsDtYMZYq+0YkfnznkHE7+87EJiz
+ 8cG3QCQqdrGNc0n8sVym0ptbpk5JY0AId2TxhStM8tX/tw86bzhGaE0OS+2A4XTehSFOHL
+ SbVZ2Gna7dWtJJxjK6K+HwBkthAcMJ4=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-510-SdBSwBmxP6-MX7jwRj6rUA-1; Wed, 10 Jun 2020 09:52:18 -0400
+X-MC-Unique: SdBSwBmxP6-MX7jwRj6rUA-1
+Received: by mail-ed1-f72.google.com with SMTP id m23so678857edq.6
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Wed, 10 Jun 2020 06:21:38 -0700 (PDT)
+ Wed, 10 Jun 2020 06:52:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:subject:to:cc:references:from:message-id:date
  :user-agent:mime-version:in-reply-to:content-language
  :content-transfer-encoding;
- bh=DlplkVPrHKzwqp9XQ8hCr9mQJfW4CL7+sK6OIcyqTu0=;
- b=bjuwN6Bq3HOtk2/UlqgP3mCms2W2mSZQPcJDRNqjL0kFnyszi6CDMMND3MJyH80oXO
- qE0N+wt0UE600YrM5fm/mQzyXUkN3tIoZKt9kX3FLm9ao41a7pD7zrBEUZj/pCwe0Kr5
- A4rGlk61ayp1CIMNMb98VFmhkEtrQNi0Inz3afbo6CUAG5tiq+UJGV6Y+GxFnLM0f7jG
- ilAcjg6D/GlaOfdeL0Fz1cpRUenyKFiqZB8RbALRi6SbG0ViNATSKG3WWNUxHzCdNBhe
- 01LHs3w60OsMINicdNOhIWUcVaVfL8+lbBvWdqFb0yVymNJgPJxV7BN0xEatnM7lxvUi
- vPZA==
-X-Gm-Message-State: AOAM531EUQPfmp/jhmiELNOk+TMdtgS2Hj3EqJpTiJCTW89PgIcxgYjx
- 8CizfMyyBfqkWhX+moKuc+quV8lFD5YFGwT0uJ+zwMd8gP1wwawHBz9XNVvqjk5UPr5XiTwWiCT
- njwhvum3IU0yr8yNu1kLKLZDA8U2hCfL2bac=
-X-Received: by 2002:a50:bf0e:: with SMTP id f14mr2520526edk.37.1591795296922; 
- Wed, 10 Jun 2020 06:21:36 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz3Kk79EA+wXpXk6yhNsxocbwWxoup7cqkJV7mK6aQdCYbcNsTWoysAMZWDcdRtd0q1XzbZ6w==
-X-Received: by 2002:a50:bf0e:: with SMTP id f14mr2520475edk.37.1591795296587; 
- Wed, 10 Jun 2020 06:21:36 -0700 (PDT)
+ bh=YL2CUX+ytcqKztbtjkEaTAotWFK6JYYqCnPu2fBEOuA=;
+ b=hdTMFVw4RtGdE1BQaKCuPT0DWnuJxOkiYHjG24pPk0c3IFfOviB9rFRWMHm1r9I8vH
+ G5Nea5ocOWGRPP5m7S5rmjoVWAeAqtdwiCLO/vKwRi6QH4o8tUUQuWwxF+V01IvmzLiB
+ 4y/W7czb0u26lLxH4BYBJru7EsWsRDEF0LzIXWNocDgUGerv80rK3sdjxjVjOdlOHNxK
+ bbXCvDZAt9dgqnF8zWwh3bMpiqFd28bOYrqm/fbXtgY80MTAeRfFWtZPTtTxhYBJNNLL
+ qK9QSi7+27sHDl00KqjyOv5SBgFTq/ING0Gl3trBod1TcarAWwws8lcGTCMxiLG8jYW5
+ 32Bw==
+X-Gm-Message-State: AOAM533zc8QvCl8T/XFHEDuDRRerrC8JegpSZf/iYFv/a2wnCvS/1efD
+ jSsE6PHuYgVouEuEnTfSbK6AauAd1kWwLFSo3BSvpZodkmw0opkBTRikHFP9hpjnhr5rdYseU2B
+ lF53YvyBSbQgZWho33lVj9S2ka0uS7fPeXKA=
+X-Received: by 2002:a50:b2e1:: with SMTP id p88mr2582802edd.198.1591797137518; 
+ Wed, 10 Jun 2020 06:52:17 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxEJek1TXZYUkZ6pG2p869jbxR9ODYMKVkeJa1/sT8kaPG7Zk4zmYdct4EtD9GIM7FcH0rbNA==
+X-Received: by 2002:a50:b2e1:: with SMTP id p88mr2582761edd.198.1591797137192; 
+ Wed, 10 Jun 2020 06:52:17 -0700 (PDT)
 Received: from x1.localdomain
  (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id l8sm15626086ejz.52.2020.06.10.06.21.35
+ by smtp.gmail.com with ESMTPSA id dm1sm16655504ejc.99.2020.06.10.06.52.15
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 10 Jun 2020 06:21:35 -0700 (PDT)
-To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>
+ Wed, 10 Jun 2020 06:52:16 -0700 (PDT)
+To: "Rafael J. Wysocki" <rafael@kernel.org>
 References: <2336e15d-ff4b-bbb6-c701-dbf3aa110fcd@redhat.com>
  <20200608112211.12125-1-andrzej.p@collabora.com>
  <964ca07a-3da5-101f-7edf-64bdeec98a4b@redhat.com>
  <CAJZ5v0hB2ra2K=dd9ZjVyy1V2b1PmFHm79uDO2HtHU1D_4YUbw@mail.gmail.com>
- <6136f26c-e090-e025-af55-4c5f3a6aec92@collabora.com>
 From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <3e61c9c1-b211-da9f-c55b-b44eb6522f2a@redhat.com>
-Date: Wed, 10 Jun 2020 15:21:34 +0200
+Message-ID: <cd0dc625-c0bf-8322-fc31-c5eccb4be1cd@redhat.com>
+Date: Wed, 10 Jun 2020 15:52:15 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.8.0
 MIME-Version: 1.0
-In-Reply-To: <6136f26c-e090-e025-af55-4c5f3a6aec92@collabora.com>
+In-Reply-To: <CAJZ5v0hB2ra2K=dd9ZjVyy1V2b1PmFHm79uDO2HtHU1D_4YUbw@mail.gmail.com>
 Content-Language: en-US
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-X-Spam-Score: -0.3 (/)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [205.139.110.120 listed in list.dnswl.org]
  0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
  [205.139.110.120 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [205.139.110.120 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -114,8 +112,8 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
- -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jj0fr-00FfqA-U1
+ -0.1 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jj19W-00EC0l-K4
 Subject: Re: [ibm-acpi-devel] [PATCH v4 0/7] Support inhibiting input devices
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -151,110 +149,94 @@ Cc: Collabora Kernel ML <kernel@collabora.com>, Nick Dyer <nick@shmanahar.org>,
  patches@opensource.cirrus.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
  "Rafael J . Wysocki" <rjw@rjwysocki.net>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
  Thierry Reding <thierry.reding@gmail.com>, Sangwon Jee <jeesw@melfas.com>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
  Hartmut Knaack <knaack.h@gmx.de>, Shawn Guo <shawnguo@kernel.org>,
  Jonathan Cameron <jic23@kernel.org>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-SGksCgpPbiA2LzEwLzIwIDM6MTIgUE0sIEFuZHJ6ZWogUGlldHJhc2lld2ljeiB3cm90ZToKPiBI
-aSBBbGwsCj4gCj4gVyBkbml1IDEwLjA2LjIwMjAgb8KgMTI6MzgsIFJhZmFlbCBKLiBXeXNvY2tp
-IHBpc3plOgo+PiBPbiBXZWQsIEp1biAxMCwgMjAyMCBhdCAxMTo1MCBBTSBIYW5zIGRlIEdvZWRl
-IDxoZGVnb2VkZUByZWRoYXQuY29tPiB3cm90ZToKPj4+Cj4+PiBIaSBBbGwsCj4+Pgo+Pj4gT24g
-Ni84LzIwIDE6MjIgUE0sIEFuZHJ6ZWogUGlldHJhc2lld2ljeiB3cm90ZToKPj4+PiBUaGlzIGlz
-IGEgcXVpY2sgcmVzcGluIG9mIHYzLCB3aXRoIGp1c3QgdHdvIHNtYWxsIGNoYW5nZXMsIHBsZWFz
-ZSBzZWUKPj4+PiB0aGUgY2hhbmdlbG9nIGJlbG93Lgo+Pj4+Cj4+Pj4gVXNlcnNwYWNlIG1pZ2h0
-IHdhbnQgdG8gaW1wbGVtZW50IGEgcG9saWN5IHRvIHRlbXBvcmFyaWx5IGRpc3JlZ2FyZCBpbnB1
-dAo+Pj4+IGZyb20gY2VydGFpbiBkZXZpY2VzLgo+Pj4+Cj4+Pj4gQW4gZXhhbXBsZSB1c2UgY2Fz
-ZSBpcyBhIGNvbnZlcnRpYmxlIGxhcHRvcCwgd2hvc2Uga2V5Ym9hcmQgY2FuIGJlIGZvbGRlZAo+
-Pj4+IHVuZGVyIHRoZSBzY3JlZW4gdG8gY3JlYXRlIHRhYmxldC1saWtlIGV4cGVyaWVuY2UuIFRo
-ZSB1c2VyIHRoZW4gbXVzdCBob2xkCj4+Pj4gdGhlIGxhcHRvcCBpbiBzdWNoIGEgd2F5IHRoYXQg
-aXQgaXMgZGlmZmljdWx0IHRvIGF2b2lkIHByZXNzaW5nIHRoZSBrZXlib2FyZAo+Pj4+IGtleXMu
-IEl0IGlzIHRoZXJlZm9yZSBkZXNpcmFibGUgdG8gdGVtcG9yYXJpbHkgZGlzcmVnYXJkIGlucHV0
-IGZyb20gdGhlCj4+Pj4ga2V5Ym9hcmQsIHVudGlsIGl0IGlzIGZvbGRlZCBiYWNrLiBUaGlzIG9i
-dmlvdXNseSBpcyBhIHBvbGljeSB3aGljaCBzaG91bGQKPj4+PiBiZSBrZXB0IG91dCBvZiB0aGUg
-a2VybmVsLCBidXQgdGhlIGtlcm5lbCBtdXN0IHByb3ZpZGUgc3VpdGFibGUgbWVhbnMgdG8KPj4+
-PiBpbXBsZW1lbnQgc3VjaCBhIHBvbGljeS4KPj4+Cj4+PiBGaXJzdCBvZiBhbGwgc29ycnkgdG8g
-c3RhcnQgYSBzb21ld2hhdCBuZXcgZGlzY3Vzc2lvbiBhYm91dCB0aGlzCj4+PiB3aGlsZSB0aGlz
-IHBhdGNoIHNldCBpcyBhbHNvIHNvbWV3aGF0IGZhciBhbG9uZyBpbiB0aGUgcmV2aWV3IHByb2Nl
-c3MsCj4+PiBidXQgSSBiZWxpZXZlIHdoYXQgSSBkaXNjdXNzIGJlbG93IG5lZWRzIHRvIGJlIHRh
-a2VuIGludG8gYWNjb3VudC4KPj4+Cj4+PiBZZXN0ZXJkYXkgSSBoYXZlIGJlZW4gbG9va2luZyBp
-bnRvIHdoeSBhbiBBc3VzIFQxMDFIQSB3b3VsZCBub3Qgc3RheQo+Pj4gc3VzcGVuZGVkIHdoZW4g
-dGhlIExJRCBpcyBjbG9zZWQuIFRoZSBjYXVzZSBpcyB0aGF0IHRoZSBVU0IgSElEIG11bHRpLXRv
-dWNoCj4+PiB0b3VjaHBhZCBpbiB0aGUgYmFzZSBvZiB0aGUgZGV2aWNlIHN0YXJ0cyBzZW5kaW5n
-IGV2ZW50cyB3aGVuIHRoZSBzY3JlZW4KPj4+IGdldHMgY2xvc2UgdG8gdGhlIHRvdWNocGFkIChz
-byB3aGVuIHRoZSBMSUQgaXMgZnVsbHkgY2xvc2VkKSBhbmQgdGhlc2UKPj4+IGV2ZW50cyBhcmUg
-Y2F1c2luZyBhIHdha2V1cCBmcm9tIHN1c3BlbmQuIEhJRCBtdWx0aS10b3VjaCBkZXZpY2VzCj4+
-PiBkbyBoYXZlIGEgd2F5IHRvIHRlbGwgdGhlbSB0byBmdWxseSBzdG9wIHNlbmRpbmcgZXZlbnRz
-LCBhbHNvIGRpc2FibGluZwo+Pj4gdGhlIFVTQiByZW1vdGUgd2FrZXVwIHRoZSBkZXZpY2UgaXMg
-ZG9pbmcuIFRoZSBxdWVzdGlvbiBpcyB3aGVuIHRvIHRlbGwKPj4+IGl0IHRvIG5vdCBzZW5kIGV2
-ZW50cyB0aG91Z2ggLi4uCj4+Pgo+Pj4gU28gbm93IEkndmUgYmVlbiB0aGlua2luZyBhYm91dCBo
-b3cgdG8gZml4IHRoaXMgYW5kIEkgYmVsaWV2ZSB0aGF0IHRoZXJlCj4+PiBpcyBzb21lIGludGVy
-YWN0aW9uIGJldHdlZW4gdGhpcyBwcm9ibGVtIGFuZCB0aGlzIHBhdGNoLXNldC4KPj4+Cj4+PiBU
-aGUgcHJvYmxlbSBJJ20gc2VlaW5nIG9uIHRoZSBUMTAxSEEgaXMgYWJvdXQgd2FrZXVwcywgc28g
-dGhlIHF1ZXN0aW9uCj4+PiB3aGljaCBJIHdhbnQgdG8gZGlzY3VzcyBpczoKPj4+Cj4+PiAxLiBI
-b3cgZG9lcyBpbmhpYml0aW5nIGludGVyYWN0IHdpdGggZW5hYmxpbmcgLwo+Pj4gZGlzYWJsaW5n
-IHRoZSBkZXZpY2UgYXMgYSB3YWtldXAgc291cmNlID8KPj4+Cj4+PiAyLiBTaW5jZSB3ZSBoYXZl
-IG5vdyBtYWRlIGluaGliaXRpbmcgZXF1YWwgb3Blbi9jbG9zZSBob3cgZG9lcyBvcGVuL2Nsb3Nl
-Cj4+PiBpbnRlcmFjdCB3aXRoIGEgZGV2aWNlIGJlaW5nIGEgd2FrZXVwIHNvdXJjZSA/Cj4+Pgo+
-Pj4gQW5kIG15IG93biBpbml0aWFsICh0byBiZSBkaXNjdXNzZWQpIGFuc3dlcnMgdG8gdGhlc2Ug
-cXVlc3Rpb25zOgo+Pj4KPj4+IDEuIEl0IHNlZW1zIHRvIG1lIHRoYXQgd2hlbiBhIGRldmljZSBp
-cyBpbmhpYml0ZWQgaXQgc2hvdWxkIG5vdCBiZSBhCj4+PiB3YWtldXAgc291cmNlLCBzbyB3aGVy
-ZSBwb3NzaWJsZSBhIGlucHV0LWRldmljZS1kcml2ZXIgc2hvdWxkIGRpc2FibGUKPj4+IGEgZGV2
-aWNlJ3Mgd2FrZXVwIGNhcGFiaWxpdGllcyBvbiBzdXNwZW5kIGlmIGluaGliaXRlZAo+Pgo+PiBJ
-ZiAiaW5oaWJpdCIgbWVhbnMgImRvIG5vdCBnZW5lcmF0ZSBhbnkgZXZlbnRzIGdvaW5nIGZvcndh
-cmQiLCB0aGVuCj4+IHRoaXMgbXVzdCBhbHNvIGNvdmVyIHdha2V1cCBldmVudHMsIHNvIEkgYWdy
-ZWUuCj4gCj4gSSBhZ3JlZSwgdG9vLgo+IAo+Pgo+Pj4gMi4gVGhpcyBvbmUgaXMgdHJpY2tpZXIg
-SSBkb24ndCB0aGluayB3ZSBoYXZlIHJlYWxseSBjbGVhcmx5IHNwZWNpZmllZAo+Pj4gYW55IGJl
-aGF2aW9yIGhlcmUuIFRoZSBkZWZhdWx0IGJlaGF2aW9yIG9mIG1vc3QgZHJpdmVycyBzZWVtcyB0
-byBiZQo+Pj4gdXNpbmcgc29tZXRoaW5nIGxpa2UgdGhpcyBpbiB0aGVpciBzdXNwZW5kIGNhbGxi
-YWNrOgo+Pj4KPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBpZiAoZGV2aWNlX21heV93YWtldXAoZGV2
-KSkKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZW5hYmxlX2lycV93YWtl
-KGRhdGEtPmlycSk7Cj4+PiDCoMKgwqDCoMKgwqDCoMKgwqAgZWxzZSBpZiAoaW5wdXQtPnVzZXJz
-KQo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBmb29fc3RvcF9yZWNlaXZp
-bmdfZXZlbnRzKGRhdGEpOwo+Pj4KPj4+IFNpbmNlIHRoaXMgaXMgd2hhdCBtb3N0IGRyaXZlcnMg
-c2VlbSB0byBkbyBJIGJlbGlldmUgd2Ugc2hvdWxkIGtlZXAKPj4+IHRoaXMgYXMgaXMgYW5kIHRo
-YXQgd2Ugc2hvdWxkIGp1c3QgY2xlYXJseSBkb2N1bWVudCB0aGF0IGlmIHRoZQo+Pj4gaW5wdXRf
-ZGV2aWNlIGhhcyB1c2VycyAoaGFzIGJlZW4gb3BlbmVkKSBvciBub3QgZG9lcyBub3QgbWF0dGVy
-Cj4+PiBmb3IgaXRzIHdha2V1cCBiZWhhdmlvci4KPj4+Cj4+PiBDb21iaW5pbmcgdGhlc2UgMiBh
-bnN3ZXJzIGxlYWRzIHRvIHRoaXMgbmV3IHBzZXVkbyBjb2RlIHRlbXBsYXRlCj4+PiBmb3IgYW4g
-aW5wdXQtZGV2aWNlJ3Mgc3VzcGVuZCBtZXRob2Q6Cj4+Pgo+Pj4gwqDCoMKgwqDCoMKgwqDCoCAv
-Kgo+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgICogSWYgaW5oaWJpdGVkIHdlIGhhdmUgYWxyZWFkeSBk
-aXNhYmxlZCBldmVudHMgYW5kCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqAgKiB3ZSBkbyBOT1Qgd2Fu
-dCB0byBzZXR1cCB0aGUgZGV2aWNlIGFzIHdha2Ugc291cmNlLgo+Pj4gwqDCoMKgwqDCoMKgwqDC
-oMKgICovCj4+PiDCoMKgwqDCoMKgwqDCoMKgIGlmIChpbnB1dC0+aW5oaWJpdGVkKQo+Pj4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmV0dXJuIDA7Cj4gCj4gUmlnaHQsIGlmIGEg
-ZGV2aWNlIGlzIGluaGliaXRlZCBpdCBzaG91bGRuJ3QgYmVjb21lIGEgd2FrZXVwIHNvdXJjZSwK
-PiBiZWNhdXNlIHRoYXQgd291bGQgY29udHJhZGljdCB0aGUgcHVycG9zZSBvZiBiZWluZyBpbmhp
-Yml0ZWQuCgpBY2suIE5vdGUgSSBkbyB0aGluayB0aGF0IHdlIG5lZWQgdG8gZG9jdW1lbnQgdGhp
-cyAoYW5kIG1vcmUKaW4gZ2VuZXJhbCB0aGUgYW5zd2VyIHRvIGJvdGggcXVlc3Rpb25zIGZyb20g
-YWJvdmUpIGNsZWFybHkgc28KdGhhdCBnb2luZyBmb3J3YXJkIGlmIHRoZXJlIGFyZSBhbnkgcXVl
-c3Rpb25zIGFib3V0IGhvdyB0aGlzIGlzCnN1cHBvc2VkIHRvIHdvcmsgd2UgY2FuIGp1c3QgcG9p
-bnQgdG8gdGhlIGRvY3MuCgpDYW4geW91IGRvIGEgZm9sbG93LXVwIHBhdGNoLCBvciBpbmNsdWRl
-IGEgcGF0Y2ggaW4geW91ciBuZXh0CnZlcnNpb24gd2hpY2ggZG9jdW1lbnRzIHRoaXMgKG9uY2Ug
-d2UgYWdyZWUgb24gd2hhdCAidGhpcyIKZXhhY3RseSBpcykgPwoKPj4+Cj4+PiDCoMKgwqDCoMKg
-wqDCoMKgwqAgaWYgKGRldmljZV9tYXlfd2FrZXVwKGRldikpCj4+PiDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgIGVuYWJsZV9pcnFfd2FrZShkYXRhLT5pcnEpOwo+IAo+IFdoYXQg
-d291bGQgaXQgbWVhbiB0byBiZWNvbWUgYSB3YWtldXAgc291cmNlIGlmIHRoZXJlIGFyZSBubyB1
-c2VycywKPiBvciBub2JvZHkgaGFzIGV2ZXIgb3BlbmVkIHRoZSBkZXZpY2U/IFRoZXJlIGFyZSBu
-byBpbnRlcmVzdGVkCj4gaW5wdXQgaGFuZGxlcnMgKHVzZXJzKSBzbyB3aGF0J3MgdGhlIHBvaW50
-IG9mIGJlY29taW5nIGEgd2FrZXVwCj4gc291cmNlPyBXaHkgd291bGQgdGhlIHN5c3RlbSBuZWVk
-IHRvIHdha2UgdXA/CgpXZWxsIHRoaXMgaXMgd2hhdCB3ZSBoYXZlIGJlZW4gZG9pbmcgc28gZmFy
-LCBzbyBhcmd1YWJseSB3ZQpuZWVkIHRvIGtlZXAgZG9pbmcgaXQgdG8gYXZvaWQgcmVncmVzc2lv
-bnMgLyBicmVha2luZyBvdXIgQUJJLgoKTGV0cyBmb3IgZXhhbXBsZSB0YWtlIGEgbGFwdG9wLCB3
-aGVyZSB3aGVuIHN1c3BlbmRlZCB0aGUKcG93ZXItYnV0dG9uIGlzIHRoZSBvbmx5IHZhbGlkIHdh
-a2V1cC1zb3VyY2UgYW5kIHRoaXMgaXMKcnVubmluZyBnb29kIG9sZCBzbGFja3dhcmUgd2l0aCBm
-dndtMiBvciB3aW5kb3dtYWtlciBhcwoiZGVza3RvcCBlbnZpcm9ubWVudCIsIHRoZW4gbGlrZWx5
-IG5vIHByb2Nlc3Mgd2lsbCBoYXZlCnRoZSBwb3dlci1idXR0b24gaW5wdXQgZXZkZXYgbm9kZSBv
-cGVuLiAgU3RpbGwgd2Ugc2hvdWxkCndha2V1cCB0aGUgbGFwdG9wIG9uIHRoZSBwb3dlci1idXR0
-b24gcHJlc3MsIG90aGVyd2lzZQppdCB3aWxsIG5ldmVyIHdha2V1cC4KCk5vdGUgSSBhZ3JlZSB3
-aXRoIHlvdSB0aGF0IHRoZSB3YXkgdGhpcyB3b3JrcyBpcyBub3QKaWRlYWwsIEkganVzdCBkbyBu
-b3QgdGhpbmsgdGhhdCB3ZSBjYW4gY2hhbmdlIGl0LgoKPj4+IMKgwqDCoMKgwqDCoMKgwqDCoCBl
-bHNlIGlmIChpbnB1dC0+dXNlcnMpCj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIGZvb19zdG9wX3JlY2VpdmluZ19ldmVudHMoZGF0YSk7Cj4+Pgo+Pj4gIyMjCgo8c25pcD4K
-ClJlZ2FyZHMsCgpIYW5zCgoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fCmlibS1hY3BpLWRldmVsIG1haWxpbmcgbGlzdAppYm0tYWNwaS1kZXZlbEBsaXN0
-cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlz
-dGluZm8vaWJtLWFjcGktZGV2ZWwK
+Hi,
+
+On 6/10/20 12:38 PM, Rafael J. Wysocki wrote:
+> On Wed, Jun 10, 2020 at 11:50 AM Hans de Goede <hdegoede@redhat.com> wrote:
+
+<snip>
+
+>> A different, but related issue is how to make devices actually use the
+>> new inhibit support on the builtin keyboard + touchpad when say the lid
+>> is closed.   Arguably this is an userspace problem, but it is a tricky
+>> one. Currently on most modern Linux distributions suspend-on-lid-close
+>> is handled by systemd-logind and most modern desktop-environments are
+>> happy to have logind handle this for them.
+>>
+>> But most knowledge about input devices and e.g. heurisitics to decide
+>> if a touchpad is internal or external are part of libinput. Now we could
+>> have libinput use the new inhibit support (1), but then when the lid
+>> closes we get race between whatever process is using libinput trying
+>> to inhibit the touchpad (which must be done before to suspend to disable
+>> it as wakeup source) and logind trying to suspend the system.
+>>
+>> One solution here would be to move the setting of the inhibit sysfs
+>> attr into logind, but that requires adding a whole bunch of extra
+>> knowledge to logind which does not really belong there IMHO.
+>>
+>> I've been thinking a bit about this and to me it seems that the kernel
+>> is in the ideal position to automatically inhibit some devices when
+>> some EV_SW transitions from 0->1 (and uninhibit again on 1->0). The
+>> issue here is to chose on which devices to enable this. I believe
+>> that the auto inhibit on some switches mechanism is best done inside
+>> the kernel (disabled by default) and then we can have a sysfs
+>> attr called auto_inhibit_ev_sw_mask which can be set to e.g.
+>> (1 << SW_LID) to make the kernel auto-inhibit the input-device whenever
+>> the lid is closed, or to ((1 << SW_LID) | (1 << SW_TABLET_MODE)) to
+>> inhibit both when the lid is closed or when switched to tablet mode.
+> 
+> I agree that the kernel is the right place to handle this, but it
+> requires some extra knowledge about dependencies between devices.
+>
+> It'd be kind of like power resources in ACPI, so for each state of a
+> "master" device (in principle, there may be more states of it than
+> just two) there would be a list of "dependent" intput devices that
+> need to be inhibited when the "master" device goes into that state.
+
+So a big part of the reason to punt the decision on which input
+devices to enable this auto-inhibit is that we don't really have
+information about those relationsships / device-links you are
+suggesting here.  libinput is already doing inhibiting inside
+userspace for e.g. the tablet-mode switch but it relies on heuristics
++ quirk tables to decide which keyboards should be inhibited and which
+not.
+
+E.g. for a 360 degree hinges 2-in-1 we want to disable the builtin
+keyboard, when folded into in tablet mode, but not any external ones.
+
+Mostly the builtin kbd will be PS2 but I have one such 2-in-1 here
+in my home office with a USB kbd ...
+
+In general of the master devices there will be only 1, there will be
+only 1 lid switch and only 1 tablet-mode switch. So my idea with the
+auto_inhibit_ev_sw_mask, is for it to be a per input-device setting.
+
+So using your terms, all input devices with the (1 << SW_LID) bit
+set in their auto_inhibit_ev_sw_mask will be dependents of the
+(master) device which actually is reporting the SW_LID bit.
+
+The idea here is for this to work the same as how the rfkill code
+from net/rfkill/input.c works, except instead of binding e.g.
+KEY_WLAN to toggling the sw-state of rfkill devices with a type
+of RFKILL_TYPE_WLAN. This will bind SW_LID to inhibiting input
+devices with the SW_LID bit set in their auto_inhibit_ev_sw_mask.
+
+Regards,
+
+Hans
+
+
+
+_______________________________________________
+ibm-acpi-devel mailing list
+ibm-acpi-devel@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
