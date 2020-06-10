@@ -2,94 +2,113 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06E31F1286
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  8 Jun 2020 07:38:18 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABB281F5185
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 10 Jun 2020 11:50:37 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jiATo-0002N1-Ho; Mon, 08 Jun 2020 05:37:52 +0000
+	id 1jixN9-00065z-Oq; Wed, 10 Jun 2020 09:50:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dmitry.torokhov@gmail.com>) id 1jiATn-0002Mk-LM
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 08 Jun 2020 05:37:51 +0000
+ (envelope-from <hdegoede@redhat.com>) id 1jixN8-00065r-DU
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 10 Jun 2020 09:50:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=RTapcU6gK7wVagdpIBy1syxYRT4o5dx2x3mb/55IfwQ=; b=ia7PU3OGqtvzF28BKIyd6dj2Ud
- tLyoOUgLJ0FcogvvnttJ2yVMxlsyRXz3PycDjTiRqY1VkdAE/EAG5A1pYQdCLyDotO9ygRnBW61eK
- ekq600dLzUIzty7LjFRAPmcBVv/+K4vTpYuB4VNCKjBNxyQdcuf0i4WTBU87K9OznWUY=;
+ bh=botNO1nlLUjRUQbw+XWbs23AWcnqLx8AKm8BEyvzIAg=; b=HjwkhoOqUHZaq54Xw2ysqpT1i/
+ H7VyeNDAeJhbkKsT/onarppFuOkxV94hWdCtAnfui2ZsSWEvN9xfDoJNCasSmH4yD7GL32L5SBTK3
+ pR8xa8KZ+y6sEuH0LOTOq0R0X9J1IahKoYNbAVMuYssqk3uAfUQdB9bTKfGDfUaqv1qI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=RTapcU6gK7wVagdpIBy1syxYRT4o5dx2x3mb/55IfwQ=; b=PiNRlMheK02MY6cPMi5Rs71Dkq
- C+bezGwZM7R+DSxo6pyFQRareND6n84eHh8O7D3pI0skBl29MUIZn72k86YyFeRdE/DTANDfcHtlC
- YyVz46+P2q9irm/3/YhEs6lIcmM/kD0WJn/+XU98+YWCeDo7QsW8g8SGai4kbGR3m5xU=;
-Received: from mail-pj1-f66.google.com ([209.85.216.66])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1jiATj-00Fq6p-4m
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 08 Jun 2020 05:37:51 +0000
-Received: by mail-pj1-f66.google.com with SMTP id ga6so5278246pjb.1
+ bh=botNO1nlLUjRUQbw+XWbs23AWcnqLx8AKm8BEyvzIAg=; b=d2+Pxdbx4nSSaPabd0fhpws6Xj
+ rPAJmibzXE8wqKngR9i8xvKrtAzCJnGStsHC+Q1vJxwTo2pKxGPk/8dhgvssjN+2c5b+Y0t1sFOuG
+ dWDgBquomChlfsiXdFFnyW3b9GNkX9fa5dHjpWyKnEiZP121unhxBdaI9YDeEf6HugJU=;
+Received: from us-smtp-delivery-1.mimecast.com ([207.211.31.120]
+ helo=us-smtp-1.mimecast.com)
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1jixN6-00FX2Z-W6
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 10 Jun 2020 09:50:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1591782607;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=botNO1nlLUjRUQbw+XWbs23AWcnqLx8AKm8BEyvzIAg=;
+ b=KVuwRvENJMne24u/dhtseBcKQca4sq2FfbS1yc9gMh/xpM19akNr4tAAeHywE9SYya3+5u
+ om9b51rT8OWOTsFGLvSmHIUCoDtXC2wcMrrf1nGV7E9MMXQyUceeUgzilIg3rfG2uRF/Ln
+ EyKc0yAqMlJehQ60Bb1GuClOlx9RlxA=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-195-B7Nz2mALMvmDtXyW0jDQPA-1; Wed, 10 Jun 2020 05:49:58 -0400
+X-MC-Unique: B7Nz2mALMvmDtXyW0jDQPA-1
+Received: by mail-ej1-f70.google.com with SMTP id e14so832934ejt.16
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Sun, 07 Jun 2020 22:37:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:in-reply-to;
- bh=RTapcU6gK7wVagdpIBy1syxYRT4o5dx2x3mb/55IfwQ=;
- b=DITjcqepAg/aiVMxe1Gh2awTCmo91vVu3S9mlVdU3hgfcPrStCTsiH/eLXmFFx4VRn
- o+ChFk5Yofnb659Ehd5fQWdqZmVijpUVnFuGNuFhMOE72kvC1E3+mfpKEr/ZswrbVsJy
- sipQ8XyZUaVEwcIfHzLeHoRReoDiJt10fqtwJ3c4BO29KFNyabOsxQSftZ67b+4X3i7i
- XR9li74InWK9fBIdE0y17Jbyz8DsjgWa/+fMyP1yne5aCzj4UJD1nLwMXWmxvqe9Spvq
- wc9P1vraN5a+3iQ96WNuaUdHrp7GU+r2Ij6WnopwS0BjnouSD1RBVYKA1uSNqvSLb6Py
- s/Sg==
+ Wed, 10 Jun 2020 02:49:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:in-reply-to;
- bh=RTapcU6gK7wVagdpIBy1syxYRT4o5dx2x3mb/55IfwQ=;
- b=jvEG9BtWbxxx31sOryjFpWNCuBMclkMtPqUDgnDQDdU0+0hBo7JXBiUG5n8t8KxHtP
- rV8jE3/GnFNjk9H1zyVBNqGOFSoPTEnt9SC+TrIqaJU19pT4HNgKJ4K9mI6o6YkK52qk
- oxSpjbO/enG3VzhjgDn24sig7gs1QZOA2WJbOL3TjVXhvUgL0I3K2wMmImbAACllkVn2
- pL1vIpu56vVrDmZ46FRZgem0HRDcbcCPePbIgrneT8LMytk+mPs1nTcfd9YaClU35yqz
- /zeXlm+xK/lcOZCGnOMqfwcKg8P4GnJc9HTq/cphQVDfqkGQ4iV0cjP1akF41Pr24SN7
- SnNA==
-X-Gm-Message-State: AOAM5317zuObdnADBIFrNMJ4qjFTteIy4BgtrAXgzaAgCNhbwy1+ar8M
- mWAP1ryUOG8y0qvm5l2vPAw=
-X-Google-Smtp-Source: ABdhPJzN5CaIdVRcGxuqJwlU7nQJooHDxxicu9iq+KnTRKt689A3cjTNxnb8ofRVOYLQTpNcwc0RwQ==
-X-Received: by 2002:a17:90a:c283:: with SMTP id
- f3mr14534964pjt.166.1591594661380; 
- Sun, 07 Jun 2020 22:37:41 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:3c2a:73a9:c2cf:7f45])
- by smtp.gmail.com with ESMTPSA id k14sm4926474pgn.94.2020.06.07.22.37.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 07 Jun 2020 22:37:40 -0700 (PDT)
-Date: Sun, 7 Jun 2020 22:37:37 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Pavel Machek <pavel@ucw.cz>
-Message-ID: <20200608053737.GS89269@dtor-ws>
-References: <20200604072853.GP89269@dtor-ws>
- <20200605173335.13753-1-andrzej.p@collabora.com>
- <20200607202414.GB13138@amd>
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=botNO1nlLUjRUQbw+XWbs23AWcnqLx8AKm8BEyvzIAg=;
+ b=fC0MmbcCWBNiqIxek6u/EMcCaE0QIOIynZjbFw2nq5xSpeE/yvxFXCoc48o4mayNHj
+ /hK3ksYOvCiy1tQF9wDsGPDn+0DAP6VVfqL8q1x0082aox2IElTB5zwgGqamxYbLWSH2
+ chKoDmbMOBFCRUiSrpWyeCsOT4ozTK99Y2UWt5CgcanRetsFB+v2RUwIDWi64Axzsj0T
+ 02IC/I5MVX/MVEXskhtPFeBsT8MiArcEMDJ4AJbhSOZi04Ehsw1Lq+MWyU5pu3Y8kXQk
+ Cv4QpKIBrPQlTzMuz4tFslIvNygTojHbCnubeOF+Rr+CtQgErfHnapSShh+awNam0/8D
+ +59g==
+X-Gm-Message-State: AOAM532UCJcc09dV1w+Qyeh5Nd+HE3lzv6E6SQCSZjjQvKirZLZPuPYe
+ mlgfkslScAEB988FHYLY91q13RuUAw9q7g+Wzp/ptNRMbxWRuUC7ZGsURMufawhkqAwbRCY9nsm
+ 4FlFpG+DiQds8Ksx9IHz1KQxar7jvoCVNc8c=
+X-Received: by 2002:a17:906:e247:: with SMTP id
+ gq7mr2477444ejb.107.1591782597473; 
+ Wed, 10 Jun 2020 02:49:57 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwLuKTyRnDOzIwu58NCqlAlNV6D3hehW65EK1iqNwj/QcEksd5YROS78o3t4aQe67v9IROeVQ==
+X-Received: by 2002:a17:906:e247:: with SMTP id
+ gq7mr2477395ejb.107.1591782597158; 
+ Wed, 10 Jun 2020 02:49:57 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
+ by smtp.gmail.com with ESMTPSA id f19sm16656165edq.14.2020.06.10.02.49.55
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 10 Jun 2020 02:49:56 -0700 (PDT)
+To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ linux-pm@vger.kernel.org, linux-acpi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-tegra@vger.kernel.org,
+ patches@opensource.cirrus.com, ibm-acpi-devel@lists.sourceforge.net,
+ platform-driver-x86@vger.kernel.org
+References: <2336e15d-ff4b-bbb6-c701-dbf3aa110fcd@redhat.com>
+ <20200608112211.12125-1-andrzej.p@collabora.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <964ca07a-3da5-101f-7edf-64bdeec98a4b@redhat.com>
+Date: Wed, 10 Jun 2020 11:49:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20200607202414.GB13138@amd>
-X-Spam-Score: -0.1 (/)
+In-Reply-To: <20200608112211.12125-1-andrzej.p@collabora.com>
+Content-Language: en-US
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (dmitry.torokhov[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.216.66 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.216.66 listed in wl.mailspike.net]
+ trust [207.211.31.120 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [207.211.31.120 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -97,10 +116,11 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jiATj-00Fq6p-4m
-Subject: Re: [ibm-acpi-devel] [PATCH v3 0/7] Support inhibiting input devices
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+ -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jixN6-00FX2Z-W6
+Subject: Re: [ibm-acpi-devel] [PATCH v4 0/7] Support inhibiting input devices
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -114,67 +134,161 @@ List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
 Cc: kernel@collabora.com, Nick Dyer <nick@shmanahar.org>,
- linux-iio@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- ibm-acpi-devel@lists.sourceforge.net, Laxman Dewangan <ldewangan@nvidia.com>,
+ Laxman Dewangan <ldewangan@nvidia.com>,
  Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
  Peter Hutterer <peter.hutterer@redhat.com>, Fabio Estevam <festevam@gmail.com>,
- linux-samsung-soc@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, linux-acpi@vger.kernel.org,
- Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- linux-input@vger.kernel.org, Len Brown <lenb@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>, linux-pm@vger.kernel.org,
+ Lars-Peter Clausen <lars@metafoo.de>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Kukjin Kim <kgene@kernel.org>,
+ NXP Linux Team <linux-imx@nxp.com>, Sylvain Lemieux <slemieux.tyco@gmail.com>,
+ Len Brown <lenb@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
  Sascha Hauer <s.hauer@pengutronix.de>,
- Sylvain Lemieux <slemieux.tyco@gmail.com>,
  Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
- Vladimir Zapolskiy <vz@mleia.com>, Hans de Goede <hdegoede@redhat.com>,
- Lars-Peter Clausen <lars@metafoo.de>, linux-tegra@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Barry Song <baohua@kernel.org>,
- Ferruh Yigit <fery@cypress.com>, patches@opensource.cirrus.com,
- "Rafael J . Wysocki" <rjw@rjwysocki.net>, linux-kernel@vger.kernel.org,
- Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, Barry Song <baohua@kernel.org>,
+ Ferruh Yigit <fery@cypress.com>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ "Rafael J . Wysocki" <rjw@rjwysocki.net>,
  Thierry Reding <thierry.reding@gmail.com>, Sangwon Jee <jeesw@melfas.com>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
  Hartmut Knaack <knaack.h@gmx.de>, Shawn Guo <shawnguo@kernel.org>,
  Jonathan Cameron <jic23@kernel.org>
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Sun, Jun 07, 2020 at 10:24:14PM +0200, Pavel Machek wrote:
-> On Fri 2020-06-05 19:33:28, Andrzej Pietrasiewicz wrote:
-> > Userspace might want to implement a policy to temporarily disregard input
-> > from certain devices.
-> 
-> Wow, you certainly cc a lot of lists.
-> 
-> > An example use case is a convertible laptop, whose keyboard can be folded
-> > under the screen to create tablet-like experience. The user then must hold
-> > the laptop in such a way that it is difficult to avoid pressing the keyboard
-> > keys. It is therefore desirable to temporarily disregard input from the
-> > keyboard, until it is folded back. This obviously is a policy which should
-> > be kept out of the kernel, but the kernel must provide suitable means to
-> > implement such a policy.
-> > 
-> > Due to interactions with suspend/resume, a helper has been added for drivers
-> > to decide if the device is being used or not (PATCH 1/7) and it has been
-> > applied to relevant drivers (PATCH 2,4,5,6/7).
-> 
-> But is that a right way to implement it?
-> 
-> We want this for cellphones, too -- touchscreen should be disabled
-> while the device is locked in the pocket -- but we really want the
-> touchscreen hardware to be powered down in that case (because it keeps
-> SoC busy and eats a _lot_ of electricity).
-> 
-> But simplistic "receive an event and then drop it if device is
-> inhibited" does not allow that...
+Hi All,
 
-I do not think you read the entirety of this patch series...
+On 6/8/20 1:22 PM, Andrzej Pietrasiewicz wrote:
+> This is a quick respin of v3, with just two small changes, please see
+> the changelog below.
+> 
+> Userspace might want to implement a policy to temporarily disregard input
+> from certain devices.
+> 
+> An example use case is a convertible laptop, whose keyboard can be folded
+> under the screen to create tablet-like experience. The user then must hold
+> the laptop in such a way that it is difficult to avoid pressing the keyboard
+> keys. It is therefore desirable to temporarily disregard input from the
+> keyboard, until it is folded back. This obviously is a policy which should
+> be kept out of the kernel, but the kernel must provide suitable means to
+> implement such a policy.
 
-Thanks.
+First of all sorry to start a somewhat new discussion about this
+while this patch set is also somewhat far along in the review process,
+but I believe what I discuss below needs to be taken into account.
 
--- 
-Dmitry
+Yesterday I have been looking into why an Asus T101HA would not stay
+suspended when the LID is closed. The cause is that the USB HID multi-touch
+touchpad in the base of the device starts sending events when the screen
+gets close to the touchpad (so when the LID is fully closed) and these
+events are causing a wakeup from suspend. HID multi-touch devices
+do have a way to tell them to fully stop sending events, also disabling
+the USB remote wakeup the device is doing. The question is when to tell
+it to not send events though ...
+
+So now I've been thinking about how to fix this and I believe that there
+is some interaction between this problem and this patch-set.
+
+The problem I'm seeing on the T101HA is about wakeups, so the question
+which I want to discuss is:
+
+1. How does inhibiting interact with enabling /
+disabling the device as a wakeup source ?
+
+2. Since we have now made inhibiting equal open/close how does open/close
+interact with a device being a wakeup source ?
+
+And my own initial (to be discussed) answers to these questions:
+
+1. It seems to me that when a device is inhibited it should not be a
+wakeup source, so where possible a input-device-driver should disable
+a device's wakeup capabilities on suspend if inhibited
+
+2. This one is trickier I don't think we have really clearly specified
+any behavior here. The default behavior of most drivers seems to be
+using something like this in their suspend callback:
+
+         if (device_may_wakeup(dev))
+                 enable_irq_wake(data->irq);
+         else if (input->users)
+                 foo_stop_receiving_events(data);
+
+Since this is what most drivers seem to do I believe we should keep
+this as is and that we should just clearly document that if the
+input_device has users (has been opened) or not does not matter
+for its wakeup behavior.
+
+Combining these 2 answers leads to this new pseudo code template
+for an input-device's suspend method:
+
+	/*
+	 * If inhibited we have already disabled events and
+	 * we do NOT want to setup the device as wake source.
+	 */
+	if (input->inhibited)
+		return 0;
+
+         if (device_may_wakeup(dev))
+                 enable_irq_wake(data->irq);
+         else if (input->users)
+                 foo_stop_receiving_events(data);
+
+###
+
+A different, but related issue is how to make devices actually use the
+new inhibit support on the builtin keyboard + touchpad when say the lid
+is closed.   Arguably this is an userspace problem, but it is a tricky
+one. Currently on most modern Linux distributions suspend-on-lid-close
+is handled by systemd-logind and most modern desktop-environments are
+happy to have logind handle this for them.
+
+But most knowledge about input devices and e.g. heurisitics to decide
+if a touchpad is internal or external are part of libinput. Now we could
+have libinput use the new inhibit support (1), but then when the lid
+closes we get race between whatever process is using libinput trying
+to inhibit the touchpad (which must be done before to suspend to disable
+it as wakeup source) and logind trying to suspend the system.
+
+One solution here would be to move the setting of the inhibit sysfs
+attr into logind, but that requires adding a whole bunch of extra
+knowledge to logind which does not really belong there IMHO.
+
+I've been thinking a bit about this and to me it seems that the kernel
+is in the ideal position to automatically inhibit some devices when
+some EV_SW transitions from 0->1 (and uninhibit again on 1->0). The
+issue here is to chose on which devices to enable this. I believe
+that the auto inhibit on some switches mechanism is best done inside
+the kernel (disabled by default) and then we can have a sysfs
+attr called auto_inhibit_ev_sw_mask which can be set to e.g.
+(1 << SW_LID) to make the kernel auto-inhibit the input-device whenever
+the lid is closed, or to ((1 << SW_LID) | (1 << SW_TABLET_MODE)) to
+inhibit both when the lid is closed or when switched to tablet mode.
+
+This could then be combined with a userspace utility run from an
+udev rule which makes the actual decision what auto_inhibit_ev_sw_mask
+should be set for a given input device.
+
+This will put the mechanism for what we want inside the kernel and
+leaves the policy on which switches we want this for out of the
+kernel.
+
+Note adding this new auto_inhibit_ev_sw_mask sysfs attr falls
+somewhat outside the context of this patchset and could be done
+as a follow up to this patch-set. But I do believe that we need to
+figure out how (non ChromeOS) userspace can / will use the new inhibit
+interface before merging it.
+
+Regards,
+
+Hans
+
+
+
+
+1) There are issues here with libinput not running as root and this
+being a root only sysfs interface but lets ignore those for now,
+note that the auto_inhibit_ev_sw_mask also neatly solves this
+problem
+
+
 
 
 _______________________________________________
