@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E3E81FCAB0
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 17 Jun 2020 12:22:00 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2A311FD2E5
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 17 Jun 2020 18:53:43 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jlVCT-0001wf-5N; Wed, 17 Jun 2020 10:21:45 +0000
+	id 1jlbJU-0006pt-Mq; Wed, 17 Jun 2020 16:53:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hdegoede@redhat.com>) id 1jlVCS-0001wX-7X
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 17 Jun 2020 10:21:44 +0000
+ (envelope-from <rdunlap@infradead.org>) id 1jlbJS-0006pl-ET
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 17 Jun 2020 16:53:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
  MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Yhc1s7Zw9ueIYMIEo2xTGTrDtdpadVKmkCOObmttCqE=; b=CdeJ578uo9CePfDwlmuiHA4l8A
- dWNAZ+Q31GAJOtcqq7nFy8AP8Q77pCWa7PKLDmJvfTJOm7pX2Eu/Hd1KVA0pqdQ/5B4pKts44aozk
- CO1FOR1TBeGJD7DrKIvCNiXfExBTYx+FKjT8uz4agqTJQ0uShlWP58LuKu52J38XiTpQ=;
+ bh=3aHDULVOAZalwQVfI9n5bUMyn1CLTGa3J/NFAT87OxI=; b=IiDfBY/723nu7ANn5dsGHrQNYN
+ u0kim+Iq4TstsVmaFLkLZRJSvwZwZqdiG2n0ZoRuX8tQBdqNE9Aof5U+oNqb7q8l5FauvrLz8gOQK
+ 2wuh6L0CA1YySMffpu0AQPXqf7InSxxaXY+aEeZx3FXEmbG6GQI3W9Bi5De+i9S5+LmE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
@@ -29,60 +29,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Yhc1s7Zw9ueIYMIEo2xTGTrDtdpadVKmkCOObmttCqE=; b=MbBrfK5KO5oDwsi8BlBXCe6jhA
- veiimUWEj3tCmVPZZmOQFfZ94+BARAw2os7458VBBtiJ85tdtMBouDY1WYqlNP4oyqExBsMIDxvYk
- 0BnG8yjQ3SgMxRz9/w0yCdj2C78EPFqbM3vll5bZJWEGRWwMmhBF1bIdO7cMpzyfT20o=;
-Received: from us-smtp-2.mimecast.com ([205.139.110.61]
- helo=us-smtp-delivery-1.mimecast.com)
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
- id 1jlVCQ-009EqC-5o
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 17 Jun 2020 10:21:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1592389295;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Yhc1s7Zw9ueIYMIEo2xTGTrDtdpadVKmkCOObmttCqE=;
- b=DO2+HxJbZv7OFHJxQ1PoYTzMMEq1ffdejuvPWpsGclYdy7MYbNsR5YZOjsUwBwxdnJzoP5
- 2crhMR0XOpSkhB8pfVxQBeGMpJJYezQEEDxTRJKw1Y0mReACjToE+THZZYIDdIZCkHKfxM
- 9yqhyseNYISldAQy3wnzQHZ/MnLM1NQ=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-54-UUOxYtFoP_yUKsl20ZSEgQ-1; Wed, 17 Jun 2020 06:21:34 -0400
-X-MC-Unique: UUOxYtFoP_yUKsl20ZSEgQ-1
-Received: by mail-ed1-f70.google.com with SMTP id dh12so632051edb.9
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Wed, 17 Jun 2020 03:21:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:subject:to:cc:references:from:message-id:date
- :user-agent:mime-version:in-reply-to:content-language
- :content-transfer-encoding;
- bh=Yhc1s7Zw9ueIYMIEo2xTGTrDtdpadVKmkCOObmttCqE=;
- b=H4LDpayjPyQjSg0hhBPA/K9JP2Ecf3YMym2GuMboqCNZ51xM5gr/NGGM5++FdKbSPy
- mZ+cLC+EZnh9qBjvwtF9gQ1FeB+RdOs+6qxk+Cf3tDY7Zj7LKjIzB4J1wSxyvFXIhC48
- hFA/IF22BfPv0tmo0gZWr/C0sFKCq2xarJrYcZFgKbMiEj8rc5FLGcpFCwcGbnTfmREg
- UOzJUJuwutruFHSWWXEvH8LXehIpvJJI1RGV/r/cmeaxXiD6Xejok3LO6I2SiHd+P9fT
- DWS3t8pyzmn0++MnJzFVT0gNFtf2PBsXy0a5LU1ao4L8MzuK1Nniez28mO9czFd5LIqw
- TUSw==
-X-Gm-Message-State: AOAM533fAYAKmE3nEADaVFxr1yc2+BK7VxlFjN3D3Ww9zRVhIf2kM4tb
- xnz2qMtqUhjWtXJfOjBbN6QHrMTjQOpv/ov3oCl1A3qZX1orY8GFK71v15EOzMqWnvv3QhJ+zEx
- bMDsNp/TnwEVTJlp/wiZb/kJUd6Ed60OR5yA=
-X-Received: by 2002:a17:906:6890:: with SMTP id
- n16mr6668499ejr.553.1592389293040; 
- Wed, 17 Jun 2020 03:21:33 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJz4Vcga1B5df8yMuNCm76AlDwIveU6uNfHx1BCv3dLBndEoal3yutZpn6mAPAdwWw3xnCmDSw==
-X-Received: by 2002:a17:906:6890:: with SMTP id
- n16mr6668468ejr.553.1592389292749; 
- Wed, 17 Jun 2020 03:21:32 -0700 (PDT)
-Received: from x1.localdomain
- (2001-1c00-0c0c-fe00-d2ea-f29d-118b-24dc.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c0c:fe00:d2ea:f29d:118b:24dc])
- by smtp.gmail.com with ESMTPSA id lw5sm13209081ejb.30.2020.06.17.03.21.31
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 17 Jun 2020 03:21:32 -0700 (PDT)
+ bh=3aHDULVOAZalwQVfI9n5bUMyn1CLTGa3J/NFAT87OxI=; b=C+BwebxUUjjFBxhEuAYSGX5Z7D
+ PoUeggV72BrV4J1B53/hanTuWfZxZ4VeXtSkNoazQbqWo6eSDqHDCHp0D1ASrdZRWLOn3FUqPRxRQ
+ SgaccybER/Z+dAgmJV7G3943Iaj89TLedPiWFOm75SUoQbm4QwbnMJZTd2/pWbaW2lSU=;
+Received: from bombadil.infradead.org ([198.137.202.133])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1jlbJP-006cTZ-Tp
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 17 Jun 2020 16:53:22 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+ Subject:Sender:Reply-To:Content-ID:Content-Description;
+ bh=3aHDULVOAZalwQVfI9n5bUMyn1CLTGa3J/NFAT87OxI=; b=EjXQIdObgegi5j91EFEDjl6J4B
+ 4PFr18Fmi9N2VNb1fcBGNkiLBXvVZ1htcGrseMu9kTS9bo9T44MNOJqZ007Xrbp4NGvwIhogVMROC
+ 4xtL4tRjznzBTriAV5EjM3uTlwrvgQlihLewoVQE8JFYD41d85i4wnyyAiSwg0Ckhm1pLMAj99YQD
+ QdSXFKeUT+35nzi0FYZdeC1mkdJzl2xxgC10iJIbNe3MwEtwTXMWmltCGmq0CuBk8ERWPzwHQblLB
+ iJ6ysmGyfsUwrKbj3L5z7An9AM1KW4q34m1/jm2fcnd3SznIGzuPTxs7Gb+F0uIni5G6Tk/eu9I/E
+ MpsG7yaQ==;
+Received: from [2601:1c0:6280:3f0::19c2]
+ by bombadil.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
+ id 1jlbIe-0002Zw-LA; Wed, 17 Jun 2020 16:52:32 +0000
 To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
  linux-pm@vger.kernel.org, linux-acpi@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
@@ -92,37 +59,30 @@ To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
  platform-driver-x86@vger.kernel.org
 References: <f9007f37-c526-5fa4-3188-a554d2434177@redhat.com>
  <20200617101822.8558-1-andrzej.p@collabora.com>
-From: Hans de Goede <hdegoede@redhat.com>
-Message-ID: <f0270bea-abac-eb4a-1d95-d4bc41bbd314@redhat.com>
-Date: Wed, 17 Jun 2020 12:21:30 +0200
+From: Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <8ebf502e-855d-6a6b-9c7b-d96d5e519d82@infradead.org>
+Date: Wed, 17 Jun 2020 09:52:30 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
+ Thunderbird/68.9.0
 MIME-Version: 1.0
 In-Reply-To: <20200617101822.8558-1-andrzej.p@collabora.com>
 Content-Language: en-US
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-X-Spam-Score: -0.1 (/)
+X-Spam-Score: -0.3 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: collabora.com]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [205.139.110.61 listed in wl.mailspike.net]
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ for more information. [URIs: infradead.org]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [205.139.110.61 listed in list.dnswl.org]
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
-X-Headers-End: 1jlVCQ-009EqC-5o
+ -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jlbJP-006cTZ-Tp
 Subject: Re: [ibm-acpi-devel] [PATCH v2] Input: document inhibiting
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -146,7 +106,7 @@ Cc: kernel@collabora.com, Nick Dyer <nick@shmanahar.org>,
  Len Brown <lenb@kernel.org>, Michael Hennerich <michael.hennerich@analog.com>,
  Sascha Hauer <s.hauer@pengutronix.de>,
  Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
- Vladimir Zapolskiy <vz@mleia.com>,
+ Vladimir Zapolskiy <vz@mleia.com>, Hans de Goede <hdegoede@redhat.com>,
  =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
  Barry Song <baohua@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
  "Rafael J . Wysocki" <rjw@rjwysocki.net>,
@@ -154,13 +114,11 @@ Cc: kernel@collabora.com, Nick Dyer <nick@shmanahar.org>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
  Hartmut Knaack <knaack.h@gmx.de>, Shawn Guo <shawnguo@kernel.org>,
  Jonathan Cameron <jic23@kernel.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi,
-
-On 6/17/20 12:18 PM, Andrzej Pietrasiewicz wrote:
+On 6/17/20 3:18 AM, Andrzej Pietrasiewicz wrote:
 > Document inhibiting input devices and its relation to being
 > a wakeup source.
 > 
@@ -170,31 +128,18 @@ On 6/17/20 12:18 PM, Andrzej Pietrasiewicz wrote:
 > 
 > - Addressed editorial comments from Randy
 > - Added a paragraph by Hans
-
-Thank you.
-
-v2 looks good to me:
-
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
-
-Regards,
-
-Hans
-
-
-
 > 
->   Documentation/input/input-programming.rst | 40 +++++++++++++++++++++++
->   1 file changed, 40 insertions(+)
+>  Documentation/input/input-programming.rst | 40 +++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
 > 
 > diff --git a/Documentation/input/input-programming.rst b/Documentation/input/input-programming.rst
 > index 45a4c6e05e39..7432315cc829 100644
 > --- a/Documentation/input/input-programming.rst
 > +++ b/Documentation/input/input-programming.rst
 > @@ -164,6 +164,46 @@ disconnects. Calls to both callbacks are serialized.
->   The open() callback should return a 0 in case of success or any nonzero value
->   in case of failure. The close() callback (which is void) must always succeed.
->   
+>  The open() callback should return a 0 in case of success or any nonzero value
+>  in case of failure. The close() callback (which is void) must always succeed.
+>  
 > +Inhibiting input devices
 > +~~~~~~~~~~~~~~~~~~~~~~~~
 > +
@@ -235,11 +180,17 @@ Hans
 > +means for the device in question, not opening() it before going to sleep might make it
 > +impossible to provide any wakeup events. The device is going to sleep anyway.
 > +
->   Basic event types
->   ~~~~~~~~~~~~~~~~~
->   
+>  Basic event types
+>  ~~~~~~~~~~~~~~~~~
+>  
 > 
 
+Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+
+Thanks.
+
+-- 
+~Randy
 
 
 _______________________________________________
