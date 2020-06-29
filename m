@@ -2,90 +2,103 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25E32209D2A
-	for <lists+ibm-acpi-devel@lfdr.de>; Thu, 25 Jun 2020 12:56:05 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B19A20D57F
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 29 Jun 2020 21:21:15 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1joPXp-0002hF-29; Thu, 25 Jun 2020 10:55:49 +0000
+	id 1jpzKl-0001hN-Pf; Mon, 29 Jun 2020 19:20:51 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <rjwysocki@gmail.com>) id 1joPXn-0002h8-Gy
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 25 Jun 2020 10:55:47 +0000
+ (envelope-from <markpearson@lenovo.com>) id 1jpzKk-0001hF-5N
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 29 Jun 2020 19:20:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
+ :References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=TrUXVh5K34ExkyosZm6J1FzTLucnrfzr2MGexVTzx7A=; b=WUJpYVIXRImlFJiobgbfTK/UHO
- dSDyN6AenAxwnE+F/gOikCy3+ox8BbnfHqfBj8S9HngHbX6YRHKGYtsLGLoqvEYjXNuqwLUtQ+zeL
- +jjmtBmfoPcAC45JA9R+B9Z9DJ5GOL+WesuQ6dsnvLMtedJU+01NhnIvdlIMnMd9LnU8=;
+ bh=8o6NRHAe9H4+myOIWqQHuhOVNkHBgnHa+SzFaFmZUZo=; b=ZFlsvJUiz0Z0Ea2CfTnqgDf6f8
+ MwY/OT5hXVgnGVbeDOPhH8xrzU0hztQgED2rI8S8v4+JLM2K8n8oCne99gUiwtVE4MrF/EaLjuqXT
+ 15oqYL44HMcmwh4v78joGkXfN0fhduwV3zed/Gc6Za4zDIF0YdHdGDzp57EwjjfkGvoQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=TrUXVh5K34ExkyosZm6J1FzTLucnrfzr2MGexVTzx7A=; b=frmrrc+nhCqQXdZfs4yXPXp7FB
- ru/R0lcIbvjW1JN99YmPB7jVLrrrRsYioX7f8L8M7Nhd0HOp/BtXt+qakFMVIjVMRYl2YVDAggTl8
- Uqz6juGW+vFY6psyUmDsvFePKzm9sjPiSiB4f8V43kFSjYcaWyO7VvYBUJYZ17AB5tTM=;
-Received: from mail-oi1-f196.google.com ([209.85.167.196])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1joPXm-000PMH-BG
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 25 Jun 2020 10:55:47 +0000
-Received: by mail-oi1-f196.google.com with SMTP id k4so4578914oik.2
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Thu, 25 Jun 2020 03:55:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:references:in-reply-to:from:date
- :message-id:subject:to:cc;
- bh=TrUXVh5K34ExkyosZm6J1FzTLucnrfzr2MGexVTzx7A=;
- b=QYo5dezQu8yc3XdJ8K3LnviF3YG+6qajfe7JzUaO0WFuRemUp8QDmgIBl/Aw8SLoRI
- G0XMuxeiR1gy8iy3O2uXex/aRAOPD1otKJbmZXBNSxIbuqqIr9gWS9p4AtXurWUsNiUQ
- MwzgR1/7NZp4VIf3nwhB4Frkko7H3KjnVgAiN7ZgfjhbXz7/Z9VEzU0Un40hdsaVETV1
- kCBFGL74cT+8ef02WTtJ/z7IMHQHuVE2mXaBerK2ZQGBiTr00SM0WV/kTdYbfNq9a3UZ
- kjf8NR1iD9C78igoWduwiTPlpEN8tbnK7hStn1tY+VzbpAD6RwwezoN3XxegmEeGSTP6
- Wq7Q==
-X-Gm-Message-State: AOAM532gPDl8OAkKCGiHdyycWwDTSWdBKtiwfxjWAlCM8O6mqopm5wOY
- ST3NDaPmaBULNmzeVEEBqHrxYpMC+D5c5v1elOQ=
-X-Google-Smtp-Source: ABdhPJxEHcU+htFP7B4i5hFRJBFdP4Ml1jBQ9xnktdScLVwnwA+huwt1DnfbyHYvIexy3b5Mqz0mUcFvn4VuBdP0DQA=
-X-Received: by 2002:a54:4585:: with SMTP id z5mr1709742oib.110.1593082540828; 
- Thu, 25 Jun 2020 03:55:40 -0700 (PDT)
+ bh=8o6NRHAe9H4+myOIWqQHuhOVNkHBgnHa+SzFaFmZUZo=; b=acu9ssSS9Bpq55ZXXIl5TOoh5q
+ p7DF027zmdIJ0FFbhv1e4HdECNPC5j7iOwv4Ns2DmIpMQbtOm79P1ce28vnwVaEPyKAVXF+26xFaw
+ FttwKuCiOxRFPADqdxIyZXDZ9JadaCE2Zw/ECy7W1+y9HkoSUOGTSvbwll5co3MUmx98=;
+Received: from mail1.bemta23.messagelabs.com ([67.219.246.2])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1jpzKg-002KoL-8Y
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 29 Jun 2020 19:20:50 +0000
+Received: from [100.112.1.169] (using TLSv1.2 with cipher
+ DHE-RSA-AES256-GCM-SHA384 (256 bits))
+ by server-2.bemta.az-b.us-east-1.aws.symcld.net id 2D/88-60747-10F3AFE5;
+ Mon, 29 Jun 2020 19:20:33 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAIsWRWlGSWpSXmKPExsWSLveKTZfR/le
+ cwffd0hYP5qZbzD5sYzHn2VpGi9V7XjA7sHj8PsDosXvBZyaP9/uusnl83iQXwBLFmpmXlF+R
+ wJrx6OdJxoJlahXLfu5jbmC8otDFyMUhJPCfUWLC+20sEM5rRon3E14zdjFycrAJaEts2fKLr
+ YuRg0NEQEbiw1pPkBpmgeOMEncPX2IDqREW8JbY/HMFK4jNIqAqMefBbGYQm1fASuJs81cwW0
+ JAXqJ9+Xawek6gmjNdj1lAbCEBFYn7D5awQdQLSpyc+QQszgxU37wVYg6zgITEwRcv4Ob0X9z
+ GAmEnSCx7eYd5AqPALCTts5C0z0LSvoCReRWjWVJRZnpGSW5iZo6uoYGBrqGhkS4QmhrrJVbp
+ JumVFuumJhaX6BrqJZYX6xVX5ibnpOjlpZZsYgQGfEoB098djOdef9A7xCjJwaQkysug8ytOi
+ C8pP6UyI7E4I76oNCe1+BCjDAeHkgRvrzVQTrAoNT21Ii0zBxh9MGkJDh4lEV57O6A0b3FBYm
+ 5xZjpE6hSjopQ4b6wVUEIAJJFRmgfXBov4S4yyUsK8jAwMDEI8BalFuZklqPKvGMU5GJWEeXV
+ tgabwZOaVwE1/BbSYCWjxNS2wxSWJCCmpBibhySw+pz1yvTPN18+ZyJpj9f78xwmVSufmPOK7
+ HXb45jnv7Omz5r6N/VxqxzjF+5UOq63znwUHfz10mG7k8br+6su1MV8kz3N2KnnHrQqoPiWT9
+ lpZat2JsE/L+Ndun1a9qqTs/9pjOipMnYa3iswWNq3zvnjsRUvSxcOu5615BT4L3NDh29l/4P
+ ak/Wd7fL+5zTCLb9v5ruk1q8p1edPJDfX3PnW+PXXPwig8cuL7bQVavA05bOq8c5NiJsYe5Ld
+ JunPp5xJRuS1sUQEvp3Pryl2WlnJJYn8bv/bzau0XXNwHymaHigdOXvKwI+/wlU2Xv2cH+ovs
+ XfVkxlrV4BydifyPp3fx79Y4PWv3pP98SizFGYmGWsxFxYkAAonsT3MDAAA=
+X-Env-Sender: markpearson@lenovo.com
+X-Msg-Ref: server-22.tower-395.messagelabs.com!1593458431!1208424!1
+X-Originating-IP: [103.30.234.6]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.50.2; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 32376 invoked from network); 29 Jun 2020 19:20:33 -0000
+Received: from unknown (HELO lenovo.com) (103.30.234.6)
+ by server-22.tower-395.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
+ encrypted SMTP; 29 Jun 2020 19:20:33 -0000
+Received: from reswpmail04.lenovo.com (unknown [10.62.32.23])
+ (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by Forcepoint Email with ESMTPS id CB865D54E71981940208;
+ Tue, 30 Jun 2020 03:20:29 +0800 (CST)
+Received: from localhost.localdomain.com (10.64.85.20) by
+ reswpmail04.lenovo.com (10.62.32.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1913.5; Mon, 29 Jun 2020 12:20:25 -0700
+From: Mark Pearson <markpearson@lenovo.com>
+To: <markpearson@lenovo.com>
+Date: Mon, 29 Jun 2020 15:17:48 -0400
+Message-ID: <20200629191748.3859-1-markpearson@lenovo.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <markpearson@lenovo.com>
+References: <markpearson@lenovo.com>
 MIME-Version: 1.0
-References: <2336e15d-ff4b-bbb6-c701-dbf3aa110fcd@redhat.com>
- <20200608112211.12125-1-andrzej.p@collabora.com>
- <20200608112211.12125-4-andrzej.p@collabora.com>
- <CAJZ5v0j7e9TzDtEiDXmj3fLAQ7CvFHoe7Q3aYKKas3PEXrsUuw@mail.gmail.com>
- <20200625052318.GE248110@dtor-ws>
-In-Reply-To: <20200625052318.GE248110@dtor-ws>
-From: "Rafael J. Wysocki" <rafael@kernel.org>
-Date: Thu, 25 Jun 2020 12:55:29 +0200
-Message-ID: <CAJZ5v0hgQt-amMn8xiF_0kyVZ-9pQxgm5H-VcFpinVQGKnYhwQ@mail.gmail.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-X-Spam-Score: -0.4 (/)
+X-Originating-IP: [10.64.85.20]
+X-ClientProxiedBy: reswpmail04.lenovo.com (10.62.32.23) To
+ reswpmail04.lenovo.com (10.62.32.23)
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (rjwysocki[at]gmail.com)
- 0.0 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level mail
- domains are different
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.167.196 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.167.196 listed in list.dnswl.org]
+ trust [67.219.246.2 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [67.219.246.2 listed in wl.mailspike.net]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and EnvelopeFrom
- freemail headers are different
- -0.4 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1joPXm-000PMH-BG
-Subject: Re: [ibm-acpi-devel] [PATCH v4 3/7] ACPI: button: Access input
- device's users under appropriate mutex
+X-Headers-End: 1jpzKg-002KoL-8Y
+Subject: [ibm-acpi-devel] [PATCH v4] platform/x86: thinkpad_acpi: lap or
+ desk mode interface
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -98,72 +111,188 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Collabora Kernel ML <kernel@collabora.com>, Nick Dyer <nick@shmanahar.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, linux-iio@vger.kernel.org,
- Platform Driver <platform-driver-x86@vger.kernel.org>,
- ibm-acpi-devel@lists.sourceforge.net, Laxman Dewangan <ldewangan@nvidia.com>,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
- Peter Hutterer <peter.hutterer@redhat.com>, Fabio Estevam <festevam@gmail.com>,
- Linux Samsung SoC <linux-samsung-soc@vger.kernel.org>,
- Krzysztof Kozlowski <krzk@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>,
- ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
- Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- linux-input@vger.kernel.org, Len Brown <lenb@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>,
- Linux PM <linux-pm@vger.kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Sylvain Lemieux <slemieux.tyco@gmail.com>,
- Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
- Vladimir Zapolskiy <vz@mleia.com>, Hans de Goede <hdegoede@redhat.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- linux-tegra <linux-tegra@vger.kernel.org>,
- Linux ARM <linux-arm-kernel@lists.infradead.org>,
- Barry Song <baohua@kernel.org>, Ferruh Yigit <fery@cypress.com>,
- patches@opensource.cirrus.com, "Rafael J . Wysocki" <rjw@rjwysocki.net>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Andrzej Pietrasiewicz <andrzej.p@collabora.com>,
- Thierry Reding <thierry.reding@gmail.com>, Sangwon Jee <jeesw@melfas.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Hartmut Knaack <knaack.h@gmx.de>, Shawn Guo <shawnguo@kernel.org>,
- Jonathan Cameron <jic23@kernel.org>
+Cc: Sugumaran <slacshiminar@lenovo.com>, ibm-acpi@hmh.eng.br,
+ platform-driver-x86@vger.kernel.org, ibm-acpi-devel@lists.sourceforge.net,
+ Nitin Joshi <njoshi1@lenovo.com>, bnocera@redhat.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Thu, Jun 25, 2020 at 7:23 AM Dmitry Torokhov
-<dmitry.torokhov@gmail.com> wrote:
->
-> On Wed, Jun 24, 2020 at 05:00:09PM +0200, Rafael J. Wysocki wrote:
-> > On Mon, Jun 8, 2020 at 1:22 PM Andrzej Pietrasiewicz
-> > <andrzej.p@collabora.com> wrote:
-> > >
-> > > Inspecting input device's 'users' member should be done under device's
-> > > mutex, so add appropriate invocations.
-> > >
-> > > Signed-off-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-> >
-> > This looks like a fix that might be applied independently of the other
-> > patches in the series.
-> >
-> > Do you want me to pick it up?
->
-> If you pick it we'll have to have a dance with this series. Can I apply
-> instead?
+  Newer Lenovo Thinkpad platforms have support to identify whether the
+  system is on-lap or not using an ACPI DYTC event from the firmware.
 
-Yes, please.
+  This patch provides the ability to retrieve the current mode via sysfs
+  entrypoints and will be used by userspace for thermal mode and WWAN
+  functionality
 
-Also feel free to add
+Co-developed-by: Nitin Joshi <njoshi1@lenovo.com>
+Signed-off-by: Nitin Joshi <njoshi1@lenovo.com>
+Reviewed-by: Sugumaran <slacshiminar@lenovo.com>
+Signed-off-by: Mark Pearson <markpearson@lenovo.com>
+---
+Changes in v4:
+ - Correct hotkey event comment as we're handling event
+ - Remove unnecessary check in dytc_lapmode_refresh
+Changes in v3:
+- Fixed inaccurate comments
+- Used BIT macro to check lapmode bit setting as recommended and update
+  define name
+- Check for new_state == dytc_lapmode in dytc_lapmode_refresh
 
-Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+Changes in v2:
+- cleaned up initialisation sequence to be cleaner and avoid spamming
+  platforms that don't have DYTC with warning message. Tested on P52
+- Adding platform-driver-x86 mailing list for review as requested
 
-to it.
+ drivers/platform/x86/thinkpad_acpi.c | 111 ++++++++++++++++++++++++++-
+ 1 file changed, 109 insertions(+), 2 deletions(-)
 
-> I do not think this change has any practical effect as nobody
-> attaches/detached input handlers or opening/closing input devices when
-> system goes through device resume phase.
+diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+index 0f704484ae1d..859b40c7113e 100644
+--- a/drivers/platform/x86/thinkpad_acpi.c
++++ b/drivers/platform/x86/thinkpad_acpi.c
+@@ -4047,8 +4047,8 @@ static bool hotkey_notify_6xxx(const u32 hkey,
+ 		return true;
+ 	case TP_HKEY_EV_THM_CSM_COMPLETED:
+ 		pr_debug("EC reports: Thermal Control Command set completed (DYTC)\n");
+-		/* recommended action: do nothing, we don't have
+-		 * Lenovo ATM information */
++		/* Thermal event - pass on to event handler */
++		tpacpi_driver_event(hkey);
+ 		return true;
+ 	case TP_HKEY_EV_THM_TRANSFM_CHANGED:
+ 		pr_debug("EC reports: Thermal Transformation changed (GMTS)\n");
+@@ -9811,6 +9811,105 @@ static struct ibm_struct lcdshadow_driver_data = {
+ 	.write = lcdshadow_write,
+ };
+ 
++/*************************************************************************
++ * DYTC subdriver, for the Lenovo lapmode feature
++ */
++
++#define DYTC_CMD_GET          2 /* To get current IC function and mode */
++#define DYTC_GET_LAPMODE_BIT 17 /* Set when in lapmode */
++
++static int  dytc_lapmode;
++static void dytc_lapmode_notify_change(void)
++{
++	sysfs_notify(&tpacpi_pdev->dev.kobj, NULL,
++			"dytc_lapmode");
++}
++
++static int dytc_command(int command)
++{
++	acpi_handle dytc_handle;
++	int output;
++
++	if (ACPI_FAILURE(acpi_get_handle(hkey_handle, "DYTC", &dytc_handle))) {
++		/* Platform doesn't support DYTC */
++		return -ENODEV;
++	}
++	if (!acpi_evalf(dytc_handle, &output, NULL, "dd", command))
++		return -EIO;
++	return output;
++}
++
++static int dytc_lapmode_get(void)
++{
++	int output;
++
++	output = dytc_command(DYTC_CMD_GET);
++	if ((output == -ENODEV) || (output == -EIO))
++		return output;
++
++	return (output & BIT(DYTC_GET_LAPMODE_BIT) ? 1 : 0);
++}
++
++static void dytc_lapmode_refresh(void)
++{
++	int new_state;
++
++	new_state = dytc_lapmode_get();
++	if ((new_state == -ENODEV) || (new_state == -EIO) || (new_state == dytc_lapmode))
++		return;
++
++	dytc_lapmode = new_state;
++	dytc_lapmode_notify_change();
++}
++
++/* sysfs lapmode entry */
++static ssize_t dytc_lapmode_show(struct device *dev,
++					struct device_attribute *attr,
++					char *buf)
++{
++	if (dytc_lapmode < 0)
++		return dytc_lapmode;
++
++	return snprintf(buf, PAGE_SIZE, "%d\n", dytc_lapmode);
++}
++
++static DEVICE_ATTR_RO(dytc_lapmode);
++
++static struct attribute *dytc_attributes[] = {
++	&dev_attr_dytc_lapmode.attr,
++	NULL
++};
++
++static const struct attribute_group dytc_attr_group = {
++	.attrs = dytc_attributes,
++};
++
++static int tpacpi_dytc_init(struct ibm_init_struct *iibm)
++{
++	int res;
++
++	dytc_lapmode = dytc_lapmode_get();
++
++	if (dytc_lapmode < 0 && dytc_lapmode != -ENODEV)
++		return dytc_lapmode;
++
++	res = sysfs_create_group(&tpacpi_pdev->dev.kobj,
++				&dytc_attr_group);
++
++	return res;
++}
++
++static void dytc_exit(void)
++{
++	sysfs_remove_group(&tpacpi_pdev->dev.kobj,
++			&dytc_attr_group);
++}
++
++static struct ibm_struct dytc_driver_data = {
++	.name = "dytc",
++	.exit = dytc_exit
++};
++
+ /****************************************************************************
+  ****************************************************************************
+  *
+@@ -9858,6 +9957,10 @@ static void tpacpi_driver_event(const unsigned int hkey_event)
+ 
+ 		mutex_unlock(&kbdlight_mutex);
+ 	}
++
++	if (hkey_event == TP_HKEY_EV_THM_CSM_COMPLETED)
++		dytc_lapmode_refresh();
++
+ }
+ 
+ static void hotkey_driver_event(const unsigned int scancode)
+@@ -10296,6 +10399,10 @@ static struct ibm_init_struct ibms_init[] __initdata = {
+ 		.init = tpacpi_lcdshadow_init,
+ 		.data = &lcdshadow_driver_data,
+ 	},
++	{
++		.init = tpacpi_dytc_init,
++		.data = &dytc_driver_data,
++	},
+ };
+ 
+ static int __init set_ibm_param(const char *val, const struct kernel_param *kp)
+-- 
+2.26.2
 
-Indeed.
-
-Thanks!
 
 
 _______________________________________________
