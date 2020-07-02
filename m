@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A43612121A1
-	for <lists+ibm-acpi-devel@lfdr.de>; Thu,  2 Jul 2020 12:57:34 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 158A82121A8
+	for <lists+ibm-acpi-devel@lfdr.de>; Thu,  2 Jul 2020 13:00:05 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jqwu9-0003Wu-I4; Thu, 02 Jul 2020 10:57:21 +0000
+	id 1jqwwd-00033n-A3; Thu, 02 Jul 2020 10:59:55 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <andy.shevchenko@gmail.com>) id 1jqwu8-0003Wn-E9
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 02 Jul 2020 10:57:20 +0000
+ (envelope-from <andy.shevchenko@gmail.com>) id 1jqwwc-00033d-LP
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 02 Jul 2020 10:59:54 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
  In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=06wVRBUw5sU6HeeBW+uzGWclrs60UMpE1NyO8Qk7/YY=; b=NAxFIak0E03X7V0x2AH6PT7SQ1
- dSb46L5Kl0nEpaQCmkeTAJ/8zlYSz5QqG/xryQ8Gq3ge60k5RYu+gSR87In4dU81bOfFs2YB/xqJH
- Do4VGGzgANQCE1qwRHj9GTdGz2TH2hHGPdi90vnRA7iVX1aZWDhlS7/Y2ornfUePlJvg=;
+ bh=eQfyd1FNaJKu9ASDwUOKz0z9LJlSLAkgJJqmBpYTw9s=; b=NQxA3+RlXc+uyUlzcj/x7L6HF1
+ jJ5cvC3vXj9YHxx8Qfu+1MCjluGMNNyK/WUWhboVRtwxlZq389N8KKGW0cmeENK9QQhJSIxfWQlDS
+ R6PwIWxoC62hd4nHrhNDk8oqK43OuiErFvv4jo4YAEQU1Ki7m9sQNZyG/IsV+9ppcMdY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
@@ -29,65 +29,65 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=06wVRBUw5sU6HeeBW+uzGWclrs60UMpE1NyO8Qk7/YY=; b=IhPlB1HwVW5go1RPU/rUxUfFey
- xt5Nu/+pBgoGJirk1Wvs0VB+dN++e/mfPA+NhV6y0NzCVWDHM0LBRZH1Xpk8rV6JRpOiUdkm+T5Ir
- AWHUoCsImCAziwqsQFAJOUfQDqtOfT5j32BN/F3BMNgJffoaBOvKVU2zwVuR+Vj76j8U=;
-Received: from mail-pg1-f196.google.com ([209.85.215.196])
+ bh=eQfyd1FNaJKu9ASDwUOKz0z9LJlSLAkgJJqmBpYTw9s=; b=eijwG+VFh1sVusZoRCcg8k1XTC
+ RSOBTbXWf7iklp8Qa8nx+fahmDyuEdUROxNKzdlZGyaLS6CZuHOKz6l5EucGuBufiYTk0CQGRcfVD
+ d/e2/6usT7sFbB7QpbVPtH5DFiPFlTGn4tqaDDDz+5h4ahJazPp6b9W1z8eekD+lDlEk=;
+Received: from mail-pl1-f193.google.com ([209.85.214.193])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1jqwu6-009zjM-NV
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 02 Jul 2020 10:57:20 +0000
-Received: by mail-pg1-f196.google.com with SMTP id j19so6430271pgm.11
+ id 1jqwwb-00A0AU-DD
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 02 Jul 2020 10:59:54 +0000
+Received: by mail-pl1-f193.google.com with SMTP id bj10so5949269plb.11
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Thu, 02 Jul 2020 03:57:18 -0700 (PDT)
+ Thu, 02 Jul 2020 03:59:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=mime-version:references:in-reply-to:from:date:message-id:subject:to
- :cc; bh=06wVRBUw5sU6HeeBW+uzGWclrs60UMpE1NyO8Qk7/YY=;
- b=grfnpMycLdylON5naV2oSZu+n1o9Ni/pE7vv33/lW1UMlPSV++fubzQe4DGyJ6uXzY
- rbDQWCSCEcivfpsiLPgSJR8qeNNpSnTqqAd+7vmdPuolICBdzV+lIAqod/mpGfst2Kdc
- NyBebcHCN8kNl3Nb0cUFo6xDIRjmT3M7o7g+HsAuaTZEJiNCivrML1canpU1Ew6DmUOE
- Ip2G3nVmLS1G0jPNTlYrodTtMzqRJU3HQrDMx1miqa7IwU/idqmY8G3tWT1ut8uvOJ55
- yoLwMoxcJBu0+Dttp1sCgzGqRSsS/t0oTAVYy35GVT4UP2eAwMB08ipX+YSvpblFBY/0
- IAuw==
+ :cc; bh=eQfyd1FNaJKu9ASDwUOKz0z9LJlSLAkgJJqmBpYTw9s=;
+ b=U0J2CRFa/lwmL2DchR8OjHsqhBV24N+SjcjO+KDTedvIERiHLgnWgmQ04htga5/Ixn
+ 7uVu9thA4GpArt/jbzpdV+hwdrlpco2wAVOtiXNih3aY99WUDtlSh9mHIUIY2A+qG58G
+ /DS/GsCVg+P4aCjExqR+RrXYb9TWuSqGlMf0dZVkV/XX8TajpJ5QZtOkdf3IqM2SOSet
+ 4Ga/6euvE62eIxfx/iCX64v8IijnQJPS3687H1bXSBnP9hJ7eKc82CWxYrH9Rk4iJ9M5
+ DmF8Cu7N0iMHJGLl4VPdq78mCCTgcjmM2QYevVSv8fImAWzroyUfExMSHOnwHlgSzMmK
+ M35w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:mime-version:references:in-reply-to:from:date
  :message-id:subject:to:cc;
- bh=06wVRBUw5sU6HeeBW+uzGWclrs60UMpE1NyO8Qk7/YY=;
- b=jyR8eLWewCdb3mkZs5AmrdI7bYmO99jetNjuqAzMATjw+gwDc0bsvpVyMnqvQFnQoF
- Jk5DCNM2bz1YhYX3hfVafEcTH6RaZV0g/N1WxtUeuXH4MiNWMhzmXeUfCWPTvnixQlfi
- s7TiJdGar7SlpuZidfDKq6PYOQj0oxph41fHpvRqrAWthsedjVrstjKPc/G4X/YQ+ngM
- hA8t/QD4FrcDCBSE/wLaNCrULMAC9SGZJuTs/EyMrksHRO/UUXgUFhKkpfAWkvVg45OO
- ABcRcXT6gbyAwX0mMaaI0MaVxtMjHOsbAa9xOpaDRsuWAwqHtN91FZY3r+DVCAucqJzK
- /lkA==
-X-Gm-Message-State: AOAM530cz6M4j7qLl7vfhiKauDPeXt5SjRpHEVfkB1kCkTP5JAYx/TU1
- emrc9U1l0doQFKp1r6Fm6Mu4yK50NszW3SJouKnJb7Gik7E=
-X-Google-Smtp-Source: ABdhPJyaWAJfuvQ5qJmv2QxaphDS1/PE7a4nmUeRCtiwOIllzJlabporD1fs8Ewl+NJ4r3b8f++1Hl3vby77EUlPaVU=
-X-Received: by 2002:a62:7657:: with SMTP id r84mr27243754pfc.130.1593687425894; 
- Thu, 02 Jul 2020 03:57:05 -0700 (PDT)
+ bh=eQfyd1FNaJKu9ASDwUOKz0z9LJlSLAkgJJqmBpYTw9s=;
+ b=jQnuZnCdSB22wOT+MURcu7vR51DLDvoE6HqAbFfNHTLvKXZuKGLaI5h4eazDCcc+ny
+ iDx7xGuq+iQKyQg3ro6foEnQELPxNlJW5vq9MH3qImSeUuRywl70iIS7ELdv/Cd4FRzp
+ pBsTZrXmNhZK9OaiNOaCMGT2qw8QkQrW8PSbW4q1zjGicRJJrz0NiJLB2RuHsvYmVf3V
+ TUOdp8hZLvUigBmmFhdzh+nu0MT7beneEp4UWs66VSXeJeoc8Q1DZ/Kij3xwe5YT7P8y
+ q234LiplavjxheYgl85e4VS5eC6afa8OrVsjicTiDj0vFhR3S2T3W7lmBXBeYe8+V6UU
+ 1anA==
+X-Gm-Message-State: AOAM531qj4fp5OpRJBY8I+wlurPrrSNn52lb+hsPsFOvY1s75aqhNchq
+ 93fW4mLTiQa3CX4P3X3Kle68KHlg22sEy9nYgG0=
+X-Google-Smtp-Source: ABdhPJwwKX0Eq6coYFI7oC6A0cH8iVxxXuJr67Zz2dyeBp+pAptYHXltRPM5+dPgpQAHk06RqMiBOPI/ImL/D6la98E=
+X-Received: by 2002:a17:90b:3547:: with SMTP id
+ lt7mr6496916pjb.181.1593687587859; 
+ Thu, 02 Jul 2020 03:59:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <markpearson@lenovo.com>
- <20200629191748.3859-1-markpearson@lenovo.com>
- <CAHp75VeO5SzYs=kRh+BV_vydO7PTPLkmu8aiYXvSJFTewSTYwA@mail.gmail.com>
- <7d0e1dcc-7285-71e1-7125-604cb2630595@lenovo.com>
-In-Reply-To: <7d0e1dcc-7285-71e1-7125-604cb2630595@lenovo.com>
+References: <20200702085520.16901-1-aaron.ma@canonical.com>
+ <CAHp75VeCHW=GMgyHRswsTrZ7b3TEnFh15F-5fyHcUsqXzoFS_g@mail.gmail.com>
+ <2ecf4032-267c-32c8-361f-2396730aaa65@canonical.com>
+In-Reply-To: <2ecf4032-267c-32c8-361f-2396730aaa65@canonical.com>
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 2 Jul 2020 13:56:48 +0300
-Message-ID: <CAHp75Vemyxv6KWBwAB+EyzvBRO_3OPaad9qCXdos_x8QhLupiw@mail.gmail.com>
-To: Mark Pearson <markpearson@lenovo.com>
+Date: Thu, 2 Jul 2020 13:59:31 +0300
+Message-ID: <CAHp75Veqp_saX+VsijpLrihKMHiVH1W4o-3CYXNooOCu=YKtjA@mail.gmail.com>
+To: Aaron Ma <aaron.ma@canonical.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: lenovo.com]
+ for more information. [URIs: canonical.com]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.215.196 listed in list.dnswl.org]
+ trust [209.85.214.193 listed in list.dnswl.org]
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
  (andy.shevchenko[at]gmail.com)
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.215.196 listed in wl.mailspike.net]
+ [209.85.214.193 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -96,9 +96,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1jqwu6-009zjM-NV
-Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH v4] platform/x86:
- thinkpad_acpi: lap or desk mode interface
+ 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1jqwwb-00A0AU-DD
+Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: not
+ loading brightness_init when _BCL invalid
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -111,68 +112,45 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Sugumaran <slacshiminar@lenovo.com>,
- Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+Cc: mapengyu@gmail.com, Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Platform Driver <platform-driver-x86@vger.kernel.org>,
  Thinkpad-acpi devel ML <ibm-acpi-devel@lists.sourceforge.net>,
- Nitin Joshi <njoshi1@lenovo.com>, bnocera@redhat.com
+ Darren Hart <dvhart@infradead.org>, Andy Shevchenko <andy@infradead.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Thu, Jul 2, 2020 at 1:45 PM Mark Pearson <markpearson@lenovo.com> wrote:
-> On 7/2/2020 5:29 AM, Andy Shevchenko wrote:
-> > On Mon, Jun 29, 2020 at 10:23 PM Mark Pearson <markpearson@lenovo.com> wrote:
-
-...
-
-> > You specifically added a new ABI, where is documentation? It's a show stopper.
-> Ah - my apologies I didn't know that was a requirement.
->
-> Any pointers on where to add it? I looked in Documentation/ABI and I
-> couldn't find anything around thinkpad_acpi to add this to.
-> Should there be a sysfs-devices-platform-thinkpad_acpi file?
->
-> If that's the case I'm happy to look at creating that but as a first
-> time kernel contributor would you object if I took that on as a separate
-> exercise rather than as part of this patch. I'm guessing it would need
-> more time, care and reviewers from other contributors to the
-> thinkpad_acpi.c driver
-
-Since it's an old driver its ABI is listed here
-
-https://elixir.bootlin.com/linux/latest/source/Documentation/admin-guide/laptops/thinkpad-acpi.rst
-
-...
-
-> > Why not simple
+On Thu, Jul 2, 2020 at 1:51 PM Aaron Ma <aaron.ma@canonical.com> wrote:
+> On 7/2/20 5:30 PM, Andy Shevchenko wrote:
+> > On Thu, Jul 2, 2020 at 11:55 AM Aaron Ma <aaron.ma@canonical.com> wrote:
+> >>
+> >> When _BCL invalid, disable thinkpad_acpi backlight brightness control.
+> >>
+> >> brightness_enable is already checked at the beginning,
 > >
-> >   if (output < 0)
-> >     return output;
-> Agreed. I'll fix
-
-> > I think your prototype should be
+> >> Always print notice when enabled brightness control.
 > >
-> > int foo(cmd, *output);
-> Looking at it again - I agree.
+> > Why?
+> >
+>
+> Default brightness_enable = 2, so this message will always be printed as before
+> Actually no change here.
+>
+> > ...
+> >
+> >> +       pr_notice("thinkpad_acpi native brightness control enabled\n");
+> >
+> > 'notice' level is quite high, why do we spam users with this?
+> >
+>
+> Like above.
+>
+> Another reason is  most thinkpads are using native gpu driver to control
+> brightness, notice when thinkpad_acpi brightness is enabled.
 
-And after returning only error codes, you may do above as simple as
-
-int ret;
-
-ret = ...(.., &output);
-if (ret)
-  return ret;
-...
-return 0;
-
-...
-
-> As a minor note I think these all arose because of getting checkpatch to
-> run cleanly. I prefer one line too and if that's your preference it
-> works for me.
-
-Checkpatch shouldn't complain (update it if it does).
+So, based on the above, please elaborate and explain all this in the
+commit message of new version, thanks!
 
 -- 
 With Best Regards,
