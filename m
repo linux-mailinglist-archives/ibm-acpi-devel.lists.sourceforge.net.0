@@ -2,112 +2,81 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7657A22A3BB
-	for <lists+ibm-acpi-devel@lfdr.de>; Thu, 23 Jul 2020 02:35:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCA4C22D973
+	for <lists+ibm-acpi-devel@lfdr.de>; Sat, 25 Jul 2020 21:01:24 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jyPCg-0000eD-SY; Thu, 23 Jul 2020 00:35:18 +0000
+	id 1jzPPt-0002ji-P1; Sat, 25 Jul 2020 19:01:05 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <markpearson@lenovo.com>) id 1jyPCe-0000dv-U5
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 23 Jul 2020 00:35:16 +0000
+ (envelope-from <sre@kernel.org>) id 1jzPPs-0002jY-6Z
+ for ibm-acpi-devel@lists.sourceforge.net; Sat, 25 Jul 2020 19:01:04 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:CC:To:Subject:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=PDRNCgL6GFpMBSIiyJ9D/qZAu9AFiAJBQTnY64pl7DQ=; b=ECrRyp/sHlaKyUrwS+mH4w5p1R
- SfKiTmyQOttWmU+DS38ugqOSgg8m/axehPZQ4Kn9XQIQOCQl2V7+cmNtAA9J+wiP1FJ2HD9os9WeQ
- zEdSLjjMe/x/rr3PmnzbHNgT6e8TMbmKFnu6L0endunOKhPB8Vpgn0sDSkzYRp8UAG8w=;
+ bh=qaKHljSsnt0ZEbHoF15oLEHb2ZUy3J1/y4ve/d/KW34=; b=jPumk2Fz6e+uE4Fz4SDsgnVrX5
+ jbZpaSp5zGwjRXFZUNh76CU1q+f15grDkU6WpKSIrcWa8gDIx7XT5n6nCVBDODe1dVmSBB3DmNPUB
+ Hb2R/CGP9hs8VpF84HYbksXnmakvcMtFR25iyNLUOXKn0gL10UsJSYDgUHYLpWN5kylE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:CC:To:Subject:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=PDRNCgL6GFpMBSIiyJ9D/qZAu9AFiAJBQTnY64pl7DQ=; b=DJzqXI4e4pVnNeJWb+G1elL8Jn
- yoOrY9Lmhi7Pp73GHsIPWYzvqO+51+RFAFV6JkaGJ57YGPHllC5w3hsm3DHjPGEasMld5txO6qvI5
- ojPEJHWGepUKMdMZi6AmoFBM+Y9rozxknyuDXEJfONIdHUlftK9WW9JWVraQv6DePLxE=;
-Received: from mail1.bemta23.messagelabs.com ([67.219.246.1])
- by sfi-mx-4.v28.lw.sourceforge.com with esmtps
+ bh=qaKHljSsnt0ZEbHoF15oLEHb2ZUy3J1/y4ve/d/KW34=; b=JHuqThHRuoQtXLVM5RR+wcSG0t
+ RORnlH2gcRjaEzNAvZ1o0ELhyq3JyMJvbtsPni2mXiIks9d3dLrj/47zhUDGbUIXdluKZdKCU36Zs
+ kMTymt0JKfpGJgw/wifs5Pu5+zfHvUmMGKR27qYn83W31mhz+Xsg+pWQASAWBuQw8wW8=;
+Received: from mail.kernel.org ([198.145.29.99])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jyPCc-00HHXY-Ms
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 23 Jul 2020 00:35:16 +0000
-Received: from [100.112.0.190] (using TLSv1.2 with cipher
- DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-1.bemta.az-b.us-east-1.aws.symcld.net id 3D/CE-59917-63BD81F5;
- Thu, 23 Jul 2020 00:35:02 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprBKsWRWlGSWpSXmKPExsWSLveKTdf0tkS
- 8wbVOHYv91yUsHsxNt5h92MZizrO1jBZNnU1sFqv3vGB2YPOYNHMGs8fvA4weuxd8ZvJ4v+8q
- m8fnTXIBrFGsmXlJ+RUJrBk7lnewFDQ4V/QsesvewLjYrIuRk0NI4D+jxNXtyhD2Q0aJpZP4Q
- GxhgRiJ+4vms4HYIgKmEr/mTWHvYuTiYBY4wiRx8dgdFhBHSGANk8SMGUvAqtgEtCW2bPkFZv
- MK2EpMXbufGcRmEVCVmDvnEpgtKhAr8av9IDNEjaDEyZlPWEBsTqD4qwPzwHqZBSwkZs4/zwh
- hi0vcejKfCcKWl9j+dg5Yr4SAgkT7xV0sEHaCxLKXd5gnMArOQjJ2FpJRs5CMmoVk1AJGllWM
- ZklFmekZJbmJmTm6hgYGuoaGRrpGuoZGxnqJVbpJeqXFuqmJxSW6hnqJ5cV6xZW5yTkpenmpJ
- ZsYgdGTUsBUvYPxx6sPeocYJTmYlER5m69IxAvxJeWnVGYkFmfEF5XmpBYfYpTh4FCS4F14ES
- gnWJSanlqRlpkDjGSYtAQHj5II76SbQGne4oLE3OLMdIjUKUZjju2r5y1i5tg8d+kiZiGWvPy
- 8VClxXttbQKUCIKUZpXlwg2AJ5hKjrJQwLyMDA4MQT0FqUW5mCar8K0ZxDkYlYd47IAt5MvNK
- 4Pa9AjqFCegU5buiIKeUJCKkpBqYuD9f1UoyvtEme2B73a3pyhobdl2N6Njt+N4t+fTl5RtDH
- lyNUs6w3ie5/caj7Mu/zb1kc2JPvQ4uYE/X5AjyPyveedJ7R/GhaJ1S19xJ9yckrtzafXiG+u
- J/tza/nFkrJziFx7T4VZWO7zv+j7PM5jRFOnAe9PdfZRrmFRpSbfvgovaTqbynxNk3BWRuVdh
- f4c79rPqlmX5AeoSVYd6FJaFx59st/J/qZ2b9Wrp8W+V5zWDrRc83VQhcaixy14ywV9wbt25F
- zUW13NCXQRpaL58+O/KdvW4Nw629tRusJrecl+SpLJG6d6L02hEf/RR1pZnmpep3l7tmtoknl
- DEL7mPRYpv9+6lw7bPJnYuVWIozEg21mIuKEwEX62pPqwMAAA==
-X-Env-Sender: markpearson@lenovo.com
-X-Msg-Ref: server-19.tower-395.messagelabs.com!1595464499!2722653!1
-X-Originating-IP: [103.30.234.6]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.50.2; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 31916 invoked from network); 23 Jul 2020 00:35:01 -0000
-Received: from unknown (HELO lenovo.com) (103.30.234.6)
- by server-19.tower-395.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
- encrypted SMTP; 23 Jul 2020 00:35:01 -0000
-Received: from reswpmail04.lenovo.com (unknown [10.62.32.23])
- (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
+ id 1jzPPq-00H7Tq-SU
+ for ibm-acpi-devel@lists.sourceforge.net; Sat, 25 Jul 2020 19:01:04 +0000
+Received: from earth.universe (unknown [185.213.155.232])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by Forcepoint Email with ESMTPS id 6EBB6AFD356FD3622207;
- Thu, 23 Jul 2020 08:34:57 +0800 (CST)
-Received: from [10.38.96.128] (10.38.96.128) by reswpmail04.lenovo.com
- (10.62.32.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.1913.5; Wed, 22 Jul
- 2020 17:34:54 -0700
-To: "Limonciello, Mario" <Mario.Limonciello@dell.com>
-References: <markpearson@lenovo.com>
- <20200722171108.65185-1-markpearson@lenovo.com>
- <DM6PR19MB263650F7DC4B6680A5EFC5DAFA790@DM6PR19MB2636.namprd19.prod.outlook.com>
- <b79e0359-536d-f496-a01e-fe4c4b7796cc@lenovo.com>
- <DM6PR19MB26360DE8FCA56BC132644F98FA790@DM6PR19MB2636.namprd19.prod.outlook.com>
-From: Mark Pearson <markpearson@lenovo.com>
-Message-ID: <e14aa227-493b-4206-eaef-81874512166f@lenovo.com>
-Date: Wed, 22 Jul 2020 20:34:52 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ by mail.kernel.org (Postfix) with ESMTPSA id 5A7F7206D8;
+ Sat, 25 Jul 2020 19:00:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=default; t=1595703652;
+ bh=qaKHljSsnt0ZEbHoF15oLEHb2ZUy3J1/y4ve/d/KW34=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=mWv8+tHTSAEMhmq8UN7A1oO0LUUflxANDn/cQaI4MOwieOGF+GlPB7CZSA8Cm3Goc
+ C3rQS1qhmCieo/B+FB6wL+4o2gM9v+7zTC186Vu3v2QzvJD3etvn1TCB9ymb7y3NGx
+ nIWMO1oZIHBn5C4Sn8kN6K3/Gx9EAj/BEZIg+2+Y=
+Received: by earth.universe (Postfix, from userid 1000)
+ id 1B8933C0B87; Sat, 25 Jul 2020 21:00:50 +0200 (CEST)
+Date: Sat, 25 Jul 2020 21:00:50 +0200
+From: Sebastian Reichel <sre@kernel.org>
+To: Kristian Klausen <kristian@klausen.dk>
+Message-ID: <20200725190050.3ssslnkrauq6zdrd@earth.universe>
+References: <20180207145813.icmv6rwemyejhxbk@thinkpad>
+ <2270b8c7-beec-5ab6-f8b7-5ec41751c699@klausen.dk>
 MIME-Version: 1.0
-In-Reply-To: <DM6PR19MB26360DE8FCA56BC132644F98FA790@DM6PR19MB2636.namprd19.prod.outlook.com>
-Content-Language: en-US
-X-Originating-IP: [10.38.96.128]
-X-ClientProxiedBy: reswpmail04.lenovo.com (10.62.32.23) To
- reswpmail04.lenovo.com (10.62.32.23)
-X-Spam-Score: -0.0 (/)
+In-Reply-To: <2270b8c7-beec-5ab6-f8b7-5ec41751c699@klausen.dk>
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [67.219.246.1 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [67.219.246.1 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
- 0.0 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jyPCc-00HHXY-Ms
-Subject: Re: [ibm-acpi-devel] [External] RE: [PATCH] platform/x86:
- thinkpad_acpi: performance mode interface
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: kroah.com]
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
+X-Headers-End: 1jzPPq-00H7Tq-SU
+Subject: Re: [ibm-acpi-devel] [PATCH v13 1/4] battery: Add the battery
+ hooking API
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -120,259 +89,132 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: "bberg@redhat.com" <bberg@redhat.com>,
- "ibm-acpi@hmh.eng.br" <ibm-acpi@hmh.eng.br>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- "ibm-acpi-devel@lists.sourceforge.net" <ibm-acpi-devel@lists.sourceforge.net>,
- Nitin Joshi <njoshi1@lenovo.com>, "bnocera@redhat.com" <bnocera@redhat.com>
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
+Cc: Platform Driver <platform-driver-x86@vger.kernel.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+ Linux PM <linux-pm@vger.kernel.org>, "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+ Robert Moore <robert.moore@intel.com>, Ognjen Galic <smclt30p@gmail.com>,
+ ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+ Andy Shevchenko <andy.shevchenko@gmail.com>, Lv Zheng <lv.zheng@intel.com>,
+ Christoph =?utf-8?Q?B=C3=B6hmwalder?= <christoph@boehmwalder.at>,
+ Kevin Locke <kevin@kevinlocke.name>, Darren Hart <dvhart@infradead.org>,
+ devel@acpica.org, ibm-acpi-devel@lists.sourceforge.net,
+ Andy Shevchenko <andy@infradead.org>, Len Brown <lenb@kernel.org>
+Content-Type: multipart/mixed; boundary="===============3134125971756686083=="
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On 7/22/2020 3:46 PM, Limonciello, Mario wrote:
->>
->> On 7/22/2020 2:46 PM, Limonciello, Mario wrote:
->> <snip>
->>>>
->>>> +DYTC Thermal mode status and control
->>>> +------------------------------------
->>>> +
->>>> +sysfs: dytc_perfmode
->>>> +
->>>> +Lenovo Thinkpad platforms with DYTC version 5 and newer have enhanced
->>>> firmware to
->>>> +provide improved performance control.
->>>> +
->>>> +The firmware can be controlled by hotkeys (FN+H, FN+M, FN+L) to switch the
->>>> +operating mode between three different modes. This sysfs node provide a
->>>> better
->>>> +interface for user space to use
->>>
->>> So is userspace also notified in some way when you use the hotkey to change,
->> or
->>> is the event usurped by the EC?  Is this by the event
->> TP_HKEY_EV_THM_CSM_COMPLETED?
->>>
->> I haven't added that yet - my aim with this patch was to get the sysfs
->> API available. I'll look at adding the notification.
-> 
-> Yeah I just think touch the kernel/user ABI as atomically as possible
-> to avoid userspace to have to know 5.9 behaves this way and you need to poll for a value
-> and 5.10 you get a notification etc.
-> 
-OK - fair point. I'll look into implementing that as well.
 
->>
->>> You might consider to mention what other interfaces will conflict with this
->>> and document them and/or artificially block them when this is loaded to
->> prevent
->>> such a conflict.
->> I'm afraid I don't know what other interface will be conflicted with. Is
->> there anything in particular I should be looking for? What did you have
->> in mind?
-> 
-> Since it's not mentioned I can only guess your firmware implementation associated
-> with this code.  I would think for example that touching some PLx related MSR or
-> possibly RAPL interface might cause unexpected behaviors.
-> 
-> Assuming that's right kernel lockdown might prevent some of the MSR, but if you really
-> want user fully in control of this decision by one knob, you shouldn't let common
-> userspace tools like thermald, tuned, tlp or the like touch the related objects.
-> 
-Hmmm - I think I disagree here.
+--===============3134125971756686083==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hfre6zazdmed5p3p"
+Content-Disposition: inline
 
-I don't think this should control what other userspace tools (like 
-thermald) want to do with the CPU registers. Adding hooks into those 
-other pieces of code also seems to me to be complicated and unnecessary 
-in the kernel (and way beyond the scope of this patch). As an aside - my 
-experience from testing is that thermald will override what the firmware 
-is doing anyway.
 
-I can see the value of adding a feature to *disable* the Lenovo firmware 
-implementation as that doesn't currently exist. I will talk to the 
-firmware team and see what can be done and take that on as a separate 
-task. If there's a mechanism to do that already in a safe way then I'll 
-add that to this.
+--hfre6zazdmed5p3p
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->>
->> The firmware is operating by default and this patch is just providing
->> user space with a way of determining the current mode and changing it by
->> an alternate mechanism than hotkeys (I know some people dislike the
->> hotkeys...)
-> 
-> In which case if the firmware preference is that it's user control, I think all
-> the more reason to block out those other things while offering this interface.
-Covered above
-> 
->>
->>>
->> <snip>
->>>> +
->>>> +The sysfs entry provides the ability to return the current status and to
->> set
->>>> the
->>>> +desired mode. For example::
->>>> +
->>>> +        echo H > /sys/devices/platform/thinkpad_acpi/dytc_perfmode
->>>> +        echo M > /sys/devices/platform/thinkpad_acpi/dytc_perfmode
->>>> +        echo L > /sys/devices/platform/thinkpad_acpi/dytc_perfmode
->>>
->>> Doesn't this need ABI documentation submitted as part of the patch?
->> OK - I'll need some help here as I'm not sure what I missed. Isn't that
->> what this part of the patch is covering? If you can give me some
->> pointers for what I should be putting where I'll do that.
-> 
-> I think it's common to document how your sysfs attributes work in a file in
-> Documentation/ABI/testing.  You can look at the format for some others
-> for examples.
-Ah - that was new to me. Thanks. I'm guessing I need to add a new 
-sysfs-devices-platform-thinkpad_acpi file there. Strange there's not one 
-already :)
+Hi,
 
-> 
->>>
->> <snip>
->>
->>>> +
->>>> +	if (perfmode == DYTC_MODE_BALANCE) {
->>>> +		/* To get back to balance mode we just issue a reset command */
->>>> +		err = dytc_command(DYTC_CMD_RESET, &output);
->>>> +		if (err)
->>>> +			return err;
->>>> +	} else {
->>>> +		/* Determine if we are in CQL mode. This alters the commands we do
->>>> */
->>>> +		err = dytc_perfmode_get(&cur_perfmode, &cur_funcmode);
->>>> +		if (err)
->>>> +			return err;
->>>> +
->>>> +		if (cur_funcmode == DYTC_FUNCTION_CQL) {
->>>> +			/* To set the mode we need to disable CQL first*/
->>>> +			err = dytc_command(0x000F1001 /*Disable CQL*/, &output);
->>>
->>> Why not put 0x000F1001 and 0x001F1001 as defines at the top?
->> Fair point - I will fix that.
->>
->>>
->> <snip>
->>
->>>> +
->>>> +	switch (perfmode) {
->>>> +	case DYTC_MODE_PERFORM:
->>>> +		/* High performance is only available in deskmode */
->>>> +		if (funcmode == DYTC_FUNCTION_CQL)
->>>> +			return snprintf(buf, PAGE_SIZE, "Medium (Reduced as lapmode
->>>> active)\n");
->>>> +		else
->>>> +			return snprintf(buf, PAGE_SIZE, "High\n");
->>>> +	case DYTC_MODE_QUIET:
->>>> +		return snprintf(buf, PAGE_SIZE, "Low\n");
->>>> +	case DYTC_MODE_BALANCE:
->>>> +		return snprintf(buf, PAGE_SIZE, "Medium\n");
->>>> +	default:
->>>> +		return snprintf(buf, PAGE_SIZE, "Unknown (%d)\n", perfmode);
->>>> +	}
->>>> +}
->>>
->>> I think it's pretty confusing that you write "H/M/L" into this file, but you
->>> get back a full string.
->> The main reason here for the string is the need to let the user know
->> they are operating in medium mode even though high has been configured -
->> because the device is on their lap.
->> My thinking was you can parse the first letter to get H/M/L but more
->> information is available for the subtleties.
->> I considered another letter but couldn't determine something that was
->> obvious to a user (Lower case 'h' is my best candidate?) and decided a
->> string was nicer.
->>
->> I'd appreciate input from others as to the best thing to provide here.
-> 
-> My own personal opinion (and there may be others that offer different view
-> so don't take it authoritative):
-> 
-> If you're offering High/Medium/Low, you should accept an input of High/Medium/Low.
-> If you offer H/M/L you should accept H/M/L.
-> 
-> A good way to indicate the reduced mode would be to add an asterisk for medium.
-> So it could be:
-> Write: H/M/L
-> Read: H/M*/M/L
+On Wed, Jun 24, 2020 at 01:42:26AM +0200, Kristian Klausen wrote:
+> On 07.02.2018 15.58, Ognjen Galic wrote:
+> > This is a patch that implements a generic hooking API for the
+> > generic ACPI battery driver.
+> >=20
+> > With this new generic API, drivers can expose platform specific
+> > behaviour via sysfs attributes in /sys/class/power_supply/BATn/
+> > in a generic way.
+> >=20
+> > A perfect example of the need for this API are Lenovo ThinkPads.
+> >=20
+> > Lenovo ThinkPads have a ACPI extension that allows the setting of
+> > start and stop charge thresholds in the EC and battery firmware
+> > via ACPI. The thinkpad_acpi module can use this API to expose
+> > sysfs attributes that it controls inside the ACPI battery driver
+> > sysfs tree, under /sys/class/power_supply/BATN/.
+> >=20
+> > The file drivers/acpi/battery.h has been moved to
+> > include/acpi/battery.h and the includes inside ac.c, sbs.c, and
+> > battery.c have been adjusted to reflect that.
+> >=20
+> > When drivers hooks into the API, the API calls add_battery() for
+> > each battery in the system that passes it a acpi_battery
+> > struct. Then, the drivers can use device_create_file() to create
+> > new sysfs attributes with that struct and identify the batteries
+> > for per-battery attributes.
+>=20
+> Hi
+>=20
+> I did that, when I implemented charge threshold support for ASUS
+> laptops[1][2].
+>=20
+> It works very well but I can't control the threshold with udev (also
+> reported by another user here[3]). So I did a bit of digging and the doc[=
+4]
+> states: "If attributes are added after the device is registered, then
+> userspace won=E2=80=99t get notified and userspace will not know about th=
+e new
+> attributes.", which seems to be the way the current code works:
+> power_supply_register_no_ws is called[5] and if it success all the hooks =
+are
+> run.
+>
+> Looking at the code I'm not sure there is a easy way to fix it, do you ha=
+ve
+> any good ideas?
 
-I like this. Unless someone jumps in and says otherwise I'm good to 
-switch to this.
-> 
-> The actual decoding of the information can be placed in that Documentation file
-> I mentioned above.  In general a userspace tool will be making this pretty and
-> translated I would guess, so no need to do High versus high or Foo (bar) when
-> it could be Foo*
-Ack
+That problem is described by Greg in his blog post from 2013:
 
->>
->>>
->>>> +
->>>> +static ssize_t dytc_perfmode_store(struct device *dev,
->>>> +				   struct device_attribute *attr,
->>>> +				   const char *buf, size_t count)
->>>> +{
->>>> +	int err;
->>>> +
->>>> +	switch (buf[0]) {
->>>> +	case 'l':
->>>> +	case 'L':
->>>> +		err = dytc_perfmode_set(DYTC_MODE_QUIET);
->>>> +		break;
->>>> +	case 'm':
->>>> +	case 'M':
->>>> +		err = dytc_perfmode_set(DYTC_MODE_BALANCE);
->>>> +		break;
->>>> +	case 'h':
->>>> +	case 'H':
->>>> +		err = dytc_perfmode_set(DYTC_MODE_PERFORM);
->>>> +		break;
->>>> +	default:
->>>> +		err = -EINVAL;
->>>> +		pr_err("Unknown operating mode. Ignoring\n");
->>>
->>> Shouldn't this be dev_err?
->> Ack - I will correct
->>
->> <snip>
->>>>
->>>> +	/* Check DYTC is enabled and supports mode setting */
->>>> +	dytc_mode_available = false;
->>>> +	if (output & BIT(DYTC_QUERY_ENABLE_BIT)) {
->>>> +		/* Only DYTC v5.0 and later has this feature. */
->>>> +		int dytc_version;
->>>> +
->>>> +		dytc_version = (output >> DYTC_QUERY_REV_BIT) & 0xF;
->>>> +		if (dytc_version >= 5) {
->>>> +			pr_info("DYTC thermal mode configuration available\n");
->>>
->>> I would argue this isn't useful to most people.
->>> 1) You should decrease this to debug for use with dynamic debugging
->>> 2) Output in the log what integer value you returned back in case of a need
->>> to identify future firmware bugs.
->> Agreed on both fronts. I will fix.
-> 
-> Similar to the pr_err vs dev_err, make sure you use the dev_dbg here instead of
-> pr_dbg.
-> 
->>
->>>
->>>> +			dytc_mode_available = true;
->>>
->>> I think you shouldn't set this flag until after the group is actually
->> created.
->>>
->> Agreed. I will fix
->>
->> Thanks for the feedback - very much appreciated.
-> 
-> Sure thing.
-> 
+http://kroah.com/log/blog/2013/06/26/how-to-create-a-sysfs-file-correctly/
 
+The power-supply subsystem offers registering extra attributes
+at registration time by filling in the .attr_grp field in the
+struct power_supply_config supplied as last parameter to
+power_supply_register_*() since 4.21.
+
+-- Sebastian
+
+--hfre6zazdmed5p3p
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl8cgV4ACgkQ2O7X88g7
++pqvtQ//ZrWf/Jt4UggT7gakaPf45snDjeeIbYOG4t+yuEAOkSI+6VHGMERKap2o
+mkpuzVdEYnpIP4PtSjCxM9adJvSktn/z22QvkypyyYDDmsuGGu8d3fUD1o1TYDGE
+Dm5Kce8aqHIFBVL1TG+9Yg6O8L5gkKE6NC8dwlwFRTgnh7jAR910F8sva6Poc0PC
+Uvp3DqeuqRWgdPqKko5l5BTtfsghu+nTl+cMqYxrN7yTLeimaTUZZdLtYrwNJ3Z1
+o4jDSYCGlxdb269FGsPj3Ukoh4KvGJ4Iz+FZw60QToteki3lMuQfmrZBrsd1dWFo
+SEdrG0m+zetHNRJWEiuxSFRKHsHQXOiyrmso63HxfdwhB8s+mlBsC0pn+kunKhTh
+xx0v9n9xygPfs3QWVd8mQJkE2yLVeExacsoZPLabL9NLYUTEMRUrB43pcq0D85Jv
++d7MDMKJ+Q+xOVGk6GukdMCgmR+cY7jImZqIIRKUrE1utKQ0fux2bZzbsJ7jXyvC
+H27QMpJ1uA+knpRKx5PpWM5ohfVRUogaItv5C7uBzrpksMToB+wU2LumrOSKg67D
+vvv3XkWm6KFKl+wOOGWcj/1pzTOatqQk0VQC1BKVeoWzqFPq/x2XNCMHIpYK7ZpP
+ABX2jdj0v3Jd7bwiKRNLc9P0W6E7YQcM1V3+N2KI36O4FoLWL9M=
+=9vtN
+-----END PGP SIGNATURE-----
+
+--hfre6zazdmed5p3p--
+
+
+--===============3134125971756686083==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--===============3134125971756686083==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+
+--===============3134125971756686083==--
+
