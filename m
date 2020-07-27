@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACCFB22E3AF
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 27 Jul 2020 03:44:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06AD822E424
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 27 Jul 2020 04:56:42 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1jzsBT-0005cC-6n; Mon, 27 Jul 2020 01:44:07 +0000
+	id 1jztJQ-0003ev-DS; Mon, 27 Jul 2020 02:56:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <Mario.Limonciello@dell.com>) id 1jyQA4-0006Bf-OR
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 23 Jul 2020 01:36:40 +0000
+ (envelope-from <njoshi1@lenovo.com>) id 1jztEf-0003Ru-L1
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 27 Jul 2020 02:51:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
  :In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=A+jRJE+hk7dB79fh8tfsU7d4iI3LFrrKrCQvLs2RHJg=; b=PLtJ1BZWDlwVZZpeaVCOzfhamw
- +/AECQy4MpPKqajD46uz6W8uQAz2NbO/yc0thrA3rNMMJqwvS5dNDXavHqAMOlj5PBawXZ9mmFp+O
- cViahpjhygDFjYbeVKf9k8MBCD7PJKP/2yOvnFOAOaO8R5Pi4+25Vyk8qeXPGoAlcGtk=;
+ bh=5+G6S6ukN+ZGgNOSKj4iLW081sHlTYJJ2XwhS2DLzrQ=; b=Ee/8wLx2Gsh8FQ1CgdjSi/uixd
+ +OjdfjHBa6kxDj+NzTxlPm2HWeoAk3Qv9FgkLrb0utbANOPtBud0tYrzzVV9uIbUhuHDDREx120/c
+ kQEZ04yLvCHCz6JA48TjhpLSdpScvXXYnm4XTb5hK03+0G5gCHO0YsGas7ec/BTRX0tU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:
@@ -29,152 +29,148 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=A+jRJE+hk7dB79fh8tfsU7d4iI3LFrrKrCQvLs2RHJg=; b=RQqlSGbavI4y+3bavlCPI14u56
- Br6nt0mvU5WSvfxrqLaF3vr4YwdwHn63g/KpeCrjQNhcOI7eaWmQl0sJeQlAzrVQLbhsPozXApEwK
- GGJS0aQnV5W088RaFxH18nKTZ+7fhsR3u4VVafnIHJr/TGhtOiIKvLiR5MT1EpQXy42U=;
-Received: from mx0b-00154904.pphosted.com ([148.163.137.20])
+ bh=5+G6S6ukN+ZGgNOSKj4iLW081sHlTYJJ2XwhS2DLzrQ=; b=A50+vblIs4v2u2otSOAL7jA9dh
+ bTwgkdtLK2xEFfCZL51GhmUTp7EBK2rYT+ie5hmQUCeR0jBjFIKHm4s5yNISJByHo0KqUra2woSsT
+ AwSIhiPJfFs79JR/cAbM6vSCM9DD+aCQuOx6LbCM6y18Duz+++h+6XlwJNoDfGf8+R28=;
+Received: from mail1.bemta23.messagelabs.com ([67.219.246.4])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1jyQ9z-00EJcz-UL
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 23 Jul 2020 01:36:40 +0000
-Received: from pps.filterd (m0170396.ppops.net [127.0.0.1])
- by mx0b-00154904.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 06N1Sbws002234; Wed, 22 Jul 2020 21:36:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dell.com;
- h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=smtpout1;
- bh=A+jRJE+hk7dB79fh8tfsU7d4iI3LFrrKrCQvLs2RHJg=;
- b=gw5QFdG5Raxkvv0bl7pT+oaTgCaD5ZCH6e6bq9dVu1ONNk8p2uCp1NuiFKVE4lNcO9Su
- 0VQ8M8a30ypoxJDOOQJBFFfw2i1xaAXgNVbcllBWso29hDIL2Dl0G2J12hldx7dLj3tX
- MPMjgpV2ALzxVjn+Bqb19RvRasRvmGcQvVHwQ9iytZSnrNFABJghlUx+aTLXJB5UsZVg
- +IfTx6hw0KhpUeu+JIB8cFKVDM/DtBK+bg3Q/iXKi65cyBakGvpU0qdPoGmcN5wiieuo
- t1GaTd9AWFCPLKI6rjIR9sr14xO991xsJ8cNL8iaKadrF9UOhxI5uyZRvugthuEWzLkq 1g== 
-Received: from mx0a-00154901.pphosted.com (mx0a-00154901.pphosted.com
- [67.231.149.39])
- by mx0b-00154904.pphosted.com with ESMTP id 32bvwxy5a3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 22 Jul 2020 21:36:22 -0400
-Received: from pps.filterd (m0090351.ppops.net [127.0.0.1])
- by mx0b-00154901.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
- 06N1ZcT9162971; Wed, 22 Jul 2020 21:36:21 -0400
-Received: from nam12-bn8-obe.outbound.protection.outlook.com
- (mail-bn8nam12lp2177.outbound.protection.outlook.com [104.47.55.177])
- by mx0b-00154901.pphosted.com with ESMTP id 32ey0mh9hf-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Wed, 22 Jul 2020 21:36:21 -0400
+ id 1jztEd-000dVY-8U
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 27 Jul 2020 02:51:29 +0000
+Received: from [100.112.2.140] (using TLSv1.2 with cipher
+ DHE-RSA-AES256-GCM-SHA384 (256 bits))
+ by server-4.bemta.az-b.us-east-1.aws.symcld.net id A1/27-37342-2214E1F5;
+ Mon, 27 Jul 2020 02:51:14 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMJsWRWlGSWpSXmKPExsWS8eIhl66io1y
+ 8wfFeDYsHc9MtZh+2sZjzbC2jxeo9L5gdWDx+H2D02L3gM5PH+31X2Tw+b5ILYIlizcxLyq9I
+ YM2YvHcCW0ELe8XtyzdYGxi72boYuTiEBBqYJB5vfMUI4bxilOj8OocFwmlkkji3dC1U2W9Gi
+ Wm3O8DKGAWWMkv0H7vHDuEcY5F4e3gDVGYDo0T3r89gDovAbmaJ7fuWsUMMmMkkMWP9FKhp9x
+ klfm9cCrSHk4NNQF3i1cGrbCC2iECQxLuPJ5hBipgF2pgkTvTOZgVJCAsUStzvW8EIUVQkcWj
+ pfChbT2Lvnb9gzSwCqhIT520Daubg4BWIkfj8NANi2SRGiX89newgNZwCnhJ9d3aC1TMKiEl8
+ P7WGCcRmFhCXuPVkPpgtISAgsWTPeWYIW1Ti5eN/rBD1PUBXz2GDiCtJbN7ezA5hy0pcmt/NC
+ LJXQsBX4sp5dwhTS6L9lTlEhY3E0ecLWCDCKhL/DlVChLMldkxexDqB0XgWkhsgbB2JBbs/sU
+ HY2hLLFr5mBrF5BQQlTs58wrKAkWUVo2lSUWZ6RkluYmaOrqGBga6hoZGuoa6FpV5ilW6SXmm
+ xbmpicYmuoV5iebFecWVuck6KXl5qySZGYEpKKWCM3MG47/UHvUOMkhxMSqK8h1jk4oX4kvJT
+ KjMSizPii0pzUosPMcpwcChJ8Mo6AOUEi1LTUyvSMnOA6REmLcHBoyTCO9UeKM1bXJCYW5yZD
+ pE6xWjMMeHl3EXMHJevz1vELMSSl5+XKiXOOxukVACkNKM0D24QLG1fYpSVEuZlZGBgEOIpSC
+ 3KzSxBlX/FKM7BqCTMGw5yD09mXgncPmC6BfpChLfxuCzIKSWJCCmpBiaRjvvCPkarzxrOjqk
+ q5P/fc9u/WSr11LXmvTveGsm/cn2vwctk96Ur/cgcJvWi9R+cOri/pKbFTZ5suKF8HXPu09pP
+ Z/29vX70lry079qn/45LzjP41r9dz7jOvnt3UTzykaLFp+0vS8pEjr0++8p9FdtvjhyfDftrb
+ zyM6j30qW1a0cefTfocRqUMunMVa1a02b0SaeJb6G6qXXYvUeK3t9XBd7stg77/SuKx3li56a
+ 2gwRrriPXnt4Wde5JzYmOoV3HXUZdladlnS43iGPV8a64+va+oKK73IOuX7YJ/eclz+HZaO+6
+ af8zgaWrULql3Hj88z7b9+B7SH6wfWMl4TfxxiNWpJNOknwdUmpVYijMSDbWYi4oTAR14yNdW
+ BAAA
+X-Env-Sender: njoshi1@lenovo.com
+X-Msg-Ref: server-5.tower-396.messagelabs.com!1595818273!2896717!1
+X-Originating-IP: [104.232.225.10]
+X-SYMC-ESS-Client-Auth: outbound-route-from=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.50.2; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 12662 invoked from network); 27 Jul 2020 02:51:13 -0000
+Received: from unknown (HELO lenovo.com) (104.232.225.10)
+ by server-5.tower-396.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
+ encrypted SMTP; 27 Jul 2020 02:51:13 -0000
+Received: from HKGWPEMAIL04.lenovo.com (unknown [10.128.3.72])
+ (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by Forcepoint Email with ESMTPS id 7E4D0C17FBEA2D9D0B86;
+ Sun, 26 Jul 2020 22:51:12 -0400 (EDT)
+Received: from HKGWPEMAIL01.lenovo.com (10.128.3.69) by
+ HKGWPEMAIL04.lenovo.com (10.128.3.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1913.5; Mon, 27 Jul 2020 10:52:00 +0800
+Received: from HKGWPEXCH02.lenovo.com (10.128.62.31) by
+ HKGWPEMAIL01.lenovo.com (10.128.3.69) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.1913.5
+ via Frontend Transport; Mon, 27 Jul 2020 10:51:11 +0800
+Received: from APC01-HK2-obe.outbound.protection.outlook.com (104.47.124.57)
+ by mail.lenovo.com (10.128.62.31) with Microsoft SMTP Server (version=TLS1_2, 
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.1913.5; Mon, 27 Jul
+ 2020 10:51:59 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=O1EyZZjAJKhhtcjJVYsMpyxgWvT+cMWP7agKnv5Fgy4IFJfdzTW03kBN89k0CCe/IoJjuuv8Eaz2glu81DAHch2S5k9f+6/3zvjjBGS7GAh9XjBIGjNQJOTLRvsiy8mi7Baxy0PlnUbOMEZneWOgUHfPKSMq4NM/p3xlRhcXPg6RXR05EMcUW85Z1hWLlE18t87arH3deo3vEKvnLP1pS/Tobsizjd3K5ZBEcLmX0plaNsdxAl4NYMtRGVdUFlGK4mZVloXZ6Qgq3sMHBvs5y0OzxghbmYd1feKYk4gthXyA2z8jk0LnD5C4VBVwRZ3+AYwgjr8cRqnKX80Pwd0VMQ==
+ b=iNOFDQBKFYoNYRhP+QEPlrwiwK7wLsGVbk35C8dpJlWypCk30V8R/DcR+6h2dHlLnREGIhUrg2TTDqQQX7M3SlVE4RK37pkY5rAXRvG0Y9lRdfUf1aD7XUUigtfVUQDmU7rxprW6qgB7Gbuq9O4VgcFn6yh05L3bL2IHp0VZfe2eGnVWOUstGTVbdECEGer6EZMfM6r0i1PqQUucRSvrSYEd5DuOQkH2OjaQyPMfFCVw97bzOpcPIXhF2ECCNEEm1kyCxREbr1XOrsnAWF2e22WLeq50aRKXo8KhHxYANe/hWBESUE4d5WSLdgDf6bIMTdzhcV4n8EvuJ3wmyPzRmw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A+jRJE+hk7dB79fh8tfsU7d4iI3LFrrKrCQvLs2RHJg=;
- b=NcKQbq/ptKVJk2R30FnMo7BmZ1NssuOQE1k1EA5hnMHFrsSr2dUI6Dd5ynuqb4kEVm5oRNct8ZUgiOdCXfVtKB94h5YwbodfbTuSj0I36GLvoMWXsJX9O5kDzhoInegALzbEU6iMemDGp5V4P1iH1h+gZ1cLa1jp6cc37dtVJy2oyny2QBYp8X1NW4Ouh9SV1PSiRVmC+fVm8wymRZSpVsv7hI+u/cBBNf9X47PQY3m1bAWMdV4lDlUQmMUp6Jq9N1GzbcQTS7DvJygSOA7fTSvRnoors0Iz4uYNi/YZki9P50P433RoJSNX6TCuGLrPEh1g13sNl+qBH0mEIVRIgQ==
+ bh=5+G6S6ukN+ZGgNOSKj4iLW081sHlTYJJ2XwhS2DLzrQ=;
+ b=HZfeuzQEYLihgLo4zc896rIUw/AyfDccX1rmvgOSHVC091M7yh25dGisNlF5d+ey6oEVtTeTYFcKxdow6L39UNTRBINEZOMoycO2cgN7aeLJBEcCyl3OF/VyMX153NbDrnjzBLIezPy5FbOX5ygOd5mI1eirJWmj/LcuxFVTumlxtArcr2WRgv0UrsnWgbK+OdiCeWm1gmCHeTm+/p658yZeuIkZ50dq4bt0AofVGe8e83Ib74pnaRafeTWXSSZYQ3KelAmq2KkH5J26GziScw750HYla0XNFYbwLEupihah4HHzQAWwI3aaI1Hr5W5ku0Av1HMFEl+2vTk9va4oLg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=dell.com; dmarc=pass action=none header.from=dell.com;
- dkim=pass header.d=dell.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Dell.onmicrosoft.com; 
- s=selector1-Dell-onmicrosoft-com;
+ smtp.mailfrom=lenovo.com; dmarc=pass action=none header.from=lenovo.com;
+ dkim=pass header.d=lenovo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=LenovoBeijing.onmicrosoft.com; s=selector2-LenovoBeijing-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A+jRJE+hk7dB79fh8tfsU7d4iI3LFrrKrCQvLs2RHJg=;
- b=SFaMT9yO4VVyA6qIKoDgzDiteZGIyUCFJIijXCHW9lCHYslsQrEuXmDo7et5EjFwayCEFgjWjzmEkTxDWnBZ2uCsn/v58GsDzR8w42IbA/j9T1KSq2F/+PicdNZQouHd3Na/LG4uHvtehsoHg06OSSnOnGQjMhqrwL8iMlKOEmk=
-Received: from DM6PR19MB2636.namprd19.prod.outlook.com (2603:10b6:5:15f::15)
- by DM5PR19MB1163.namprd19.prod.outlook.com (2603:10b6:3:bc::8) with Microsoft
+ bh=5+G6S6ukN+ZGgNOSKj4iLW081sHlTYJJ2XwhS2DLzrQ=;
+ b=jO9Cqoyzx6omZIMNLq4/wAsJ/AdgIoEWFJbvR1OK7cA6zjG6f68qIbuJMYJahN776BIJtbcQ+fbUA/2NUFnvD5xKeMGP7QNEWqmf19hoRdCROzt84wHwRXQ32kHUvyUdIyzuxXiMC6kH5GYGJfO5Iw70ZEd0uU7FbI+gdic18sk=
+Received: from SG2PR03MB2718.apcprd03.prod.outlook.com (2603:1096:3:1e::22) by
+ SG2PR03MB3900.apcprd03.prod.outlook.com (2603:1096:4:45::14) with
+ Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3216.20; Thu, 23 Jul 2020 01:36:19 +0000
-Received: from DM6PR19MB2636.namprd19.prod.outlook.com
- ([fe80::f1c7:5bf4:a3b:ff40]) by DM6PR19MB2636.namprd19.prod.outlook.com
- ([fe80::f1c7:5bf4:a3b:ff40%6]) with mapi id 15.20.3195.022; Thu, 23 Jul 2020
- 01:36:19 +0000
-From: "Limonciello, Mario" <Mario.Limonciello@dell.com>
-To: Mark Pearson <markpearson@lenovo.com>
-Thread-Topic: [External] RE: [PATCH] platform/x86: thinkpad_acpi: performance
- mode interface
-Thread-Index: AQHWYEtB2AZ16m+5BkiCkmlUDRcurKkT57IggAAUiICAAACUUIAAVMMAgAAO5CA=
-Date: Thu, 23 Jul 2020 01:36:19 +0000
-Message-ID: <DM6PR19MB2636F2A87EE2DF8BD2B9A879FA760@DM6PR19MB2636.namprd19.prod.outlook.com>
+ 15.20.3239.9; Mon, 27 Jul 2020 02:51:09 +0000
+Received: from SG2PR03MB2718.apcprd03.prod.outlook.com
+ ([fe80::1145:fb6f:aa6a:4398]) by SG2PR03MB2718.apcprd03.prod.outlook.com
+ ([fe80::1145:fb6f:aa6a:4398%5]) with mapi id 15.20.3216.031; Mon, 27 Jul 2020
+ 02:51:09 +0000
+From: Nitin Joshi1 <njoshi1@lenovo.com>
+To: Bastien Nocera <bnocera@redhat.com>, Mark RH Pearson
+ <markpearson@lenovo.com>
+Thread-Topic: [External]  Re: [ibm-acpi-devel] [PATCH v4] platform/x86:
+ thinkpad_acpi: lap or desk mode interface
+Thread-Index: AQHWY8DIP68AvAZQjE24ENYf+sTd3A==
+Date: Mon, 27 Jul 2020 02:51:09 +0000
+Message-ID: <SG2PR03MB2718DFC08C4ECF7816D1B4E48C720@SG2PR03MB2718.apcprd03.prod.outlook.com>
 References: <markpearson@lenovo.com>
- <20200722171108.65185-1-markpearson@lenovo.com>
- <DM6PR19MB263650F7DC4B6680A5EFC5DAFA790@DM6PR19MB2636.namprd19.prod.outlook.com>
- <b79e0359-536d-f496-a01e-fe4c4b7796cc@lenovo.com>
- <DM6PR19MB26360DE8FCA56BC132644F98FA790@DM6PR19MB2636.namprd19.prod.outlook.com>
- <e14aa227-493b-4206-eaef-81874512166f@lenovo.com>
-In-Reply-To: <e14aa227-493b-4206-eaef-81874512166f@lenovo.com>
+ <20200629191748.3859-1-markpearson@lenovo.com>
+ <732277929.1313334.1593596757447.JavaMail.zimbra@redhat.com>
+In-Reply-To: <732277929.1313334.1593596757447.JavaMail.zimbra@redhat.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Enabled=True;
- MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_SiteId=945c199a-83a2-4e80-9f8c-5a91be5752dd;
- MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Owner=Mario_Limonciello@Dell.com;
- MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_SetDate=2020-07-23T01:36:17.7518891Z;
- MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Name=External Public;
- MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Application=Microsoft Azure
- Information Protection;
- MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_ActionId=994503a8-7c59-4edc-ad44-5b7c4d79484a;
- MSIP_Label_17cb76b2-10b8-4fe1-93d4-2202842406cd_Extended_MSFT_Method=Manual
-authentication-results: lenovo.com; dkim=none (message not signed)
- header.d=none;lenovo.com; dmarc=none action=none header.from=Dell.com;
-x-originating-ip: [76.251.167.31]
+x-originating-ip: [114.165.32.192]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c444679e-f29a-4249-be73-08d82ea8ccdd
-x-ms-traffictypediagnostic: DM5PR19MB1163:
-x-microsoft-antispam-prvs: <DM5PR19MB1163F53D64DC2152ED4B6AABFA760@DM5PR19MB1163.namprd19.prod.outlook.com>
-x-exotenant: 2khUwGVqB6N9v58KS13ncyUmMJd8q4
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-office365-filtering-correlation-id: d27b2284-112e-4db0-d9a8-08d831d7eac1
+x-ms-traffictypediagnostic: SG2PR03MB3900:
+x-ld-processed: 5c7d0b28-bdf8-410c-aa93-4df372b16203,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SG2PR03MB390014ED9F16EE7FE55D1AD68C720@SG2PR03MB3900.apcprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1824;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: cTNkV6AaFHrAuYhytRts+ZKqp/07KXLvwIypaa4OYIhruIPO5fSxLpdOd4svLVpS57Ro3d7QcomscoXYyrzXlU//OxSjUZU8wUKrYA152wlZ7BVCWX4YioP09gE0cTdC/xMVJL9Sqa1d4R+Vobdy9wj4xZeZEjD21m2AI8Mal+CGdHWs+Jw7vCmnKv4Bcw3NgeJevuKTaRnyJ9Im2CDgW6+6dVchOA8wYdYs8iFuu3dwGKqHODPrImjI0e+GLaJntjJd7YeDTalZ3OIqb8K3+JxRRgp8yUIoiWrZWR9IX/BNTV57s34q2XloqOb+4kYe3CVwaG+a1LxSkJxEiQFk0g==
+x-microsoft-antispam-message-info: QXx/E6PouRC4eteJG4/me4UaUw9kwvyTV61Gf38JRE/tWv9Poj+bIDdnEgqKWWyGVyHdPMkZUjN4MVdFQQyO/IG5J+BUMUtujvuioxwUsyuGCJhl250zv4ZG4WmCQ/wdsaPp4CUWIe+B48p/SD7/qVCNK9i7ru2QtjgC8+YN7DxoR9PsYl3TiUpWf8MQj166zAtApGma9XiWtfK7HnqzHzTChE1k3cFjKXo0hR/kksdnOt1Mge7xMMzu7R0wmWWTnN5jbwTVi8dzcTThoTrevpYw9qaQ8hiyREY2LIzL6+ZEt+SrPsuDok9+ffXekylM1Pwxtir8Z8KvWeqDD6h+BCfsnBXrKEIzg7xqSd/ubxS68tgi2ZfJA0EeiYNVD1E+oDgy1kZqOE5XgnODB+g0Mg==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR19MB2636.namprd19.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SG2PR03MB2718.apcprd03.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(39860400002)(376002)(396003)(346002)(136003)(366004)(6916009)(71200400001)(86362001)(6506007)(9686003)(55016002)(66946007)(7696005)(186003)(52536014)(76116006)(8936002)(4326008)(26005)(83380400001)(8676002)(2906002)(786003)(33656002)(316002)(478600001)(5660300002)(66476007)(66556008)(64756008)(54906003)(66446008);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata: GGkLtfxBdq8H0wVqmUKGrRMhZfe7pAzslmxMrUgz2vQa5wuTVKTVddd0I3LTh2PijdmPTa6WoEfncHZ0jqvc1ld7NlXO3igum+aGf+sGwiV8ZMRLjiGw/BFMSs+lr6+MHPLzjWL28hFTtAyzbdJONLDkz78WEcmXpZnERj1+L7/lCnAJy0NbNhQzIlutOh/hdWgDqH89gxDm6D0QQfDGXiAIeFqYDzhOWQOQNVbOipvPY2TUG8DSinjlUqNwDemDbXgcaa8MCXv5bApzal9mu5XA0WJyuH/aEZRmBR0uDE7+i47Tvsxm+yUJ4A7NNr+Ws334NV8pf1kZI7+WE/3+gN885b83GRdCmm2aRiUVZa88E4pMyTIjsbCCpALxT0Nrwl/qQln/N2WWaYhM7erZovbj0QknHNEP0LfrQjn16626DYD00O0ha1nTkfA/XeRNmy+IDsachZfpoXj9gUFnBI+uosK5KbwbIegyqBZbgERuBcwsaAz9+PuZMQY87edW
-x-ms-exchange-transport-forked: True
+ SFS:(376002)(136003)(366004)(346002)(39860400002)(396003)(4744005)(4326008)(316002)(54906003)(8676002)(110136005)(86362001)(8936002)(66476007)(26005)(55016002)(66946007)(66556008)(52536014)(2906002)(33656002)(7696005)(478600001)(186003)(5660300002)(9686003)(76116006)(6506007)(83380400001)(71200400001)(966005)(66446008)(64756008)(6636002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: uH5WynwpUcf4p2Z8X+QfyNmQaTE1aoVlXwCAaVrK0CBT5pBCmtcqIdYbMzmLez7LV4Oxm+PhQNpO9m0OErciAMEtYYfXhCf3GaWoYMx5CsMNahLwyjZnzOaBvXiseSPNwQxALVfMV/1EsYZ6nkiNRuO0P1ffz4G/sLC40qV5tVWmsB39hYhCrc0euuvEvrR507/3jJ1hNuUJG2EOLAHtUbap5xtQlCgSMqX+c7n0rBFbmYmRmOKk8DtB6pAJE/HBOvFRNIb1OfqJuy3KYeOiw8y/267HFM3FL4+l6jXtX6uWID3Wwe9T+7yrvd7bLP4Yv5N6Stg29bQRn7sk8IUf0yaEa0por/UD2FGBwr3p+Hzqf2EILa720i0CVCU/KhIGSQa+4s6IcgtiTkSthL+xP2QT3ydj0Umr+51tOojBxNalndStPyKnbvwQtBtmOYTco73A6aEYkq/CuZL7wZ/zSQVWjZjLrnRq24ecwIA7g5gugpPS4zN++H1MLOgW3Xbt/OYc+j63GFrpYNhoAVL323gpqRVIuxDwMQ6xeCUJS6kvWlAni4UDK1Eo2LzB9FrTgOrxYRoq0eTnbI3bFtpwxb5TZax/b49WnokJeVsJZ47+B6WXIl4YkHFj314fnSsZd9H4nWH8OcIXnggGsZzMFQ==
 MIME-Version: 1.0
-X-OriginatorOrg: Dell.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR19MB2636.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c444679e-f29a-4249-be73-08d82ea8ccdd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2020 01:36:19.8503 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB2718.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d27b2284-112e-4db0-d9a8-08d831d7eac1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2020 02:51:09.7228 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 945c199a-83a2-4e80-9f8c-5a91be5752dd
+X-MS-Exchange-CrossTenant-id: 5c7d0b28-bdf8-410c-aa93-4df372b16203
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vkFal0o3ke7nMa54qrzyCbM3NQ1VnizQq6Jhi9VOZs8j4XEXtL+U7dSSpBB+eVC7BJVaRovSDV90Lr+fA+n5IG2U/iK4gGMMao5rBIhhj68=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR19MB1163
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235, 18.0.687
- definitions=2020-07-22_17:2020-07-22,
- 2020-07-22 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0
- adultscore=0 mlxlogscore=999 impostorscore=0 suspectscore=0 bulkscore=0
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 spamscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2007230009
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
- mlxscore=0 phishscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 spamscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2007230009
-X-Spam-Score: -0.4 (/)
+X-MS-Exchange-CrossTenant-userprincipalname: tYeAbCtdi2BlK14XeQ5vTSwgiM/aahhVbTAvLhcROpksbM6DEBKcDql1Rzc37VuYA8SLr7AYnABZ6RETSKt5PQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB3900
+X-OriginatorOrg: lenovo.com
+X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [148.163.137.20 listed in wl.mailspike.net]
+ [67.219.246.4 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [67.219.246.4 listed in list.dnswl.org]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - Whitelisted High sender
- -0.2 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1jyQ9z-00EJcz-UL
-X-Mailman-Approved-At: Mon, 27 Jul 2020 01:43:54 +0000
-Subject: Re: [ibm-acpi-devel] [External] RE: [PATCH] platform/x86:
- thinkpad_acpi: performance mode interface
+X-Headers-End: 1jztEd-000dVY-8U
+Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH v4] platform/x86:
+ thinkpad_acpi: lap or desk mode interface
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -187,55 +183,41 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: "bberg@redhat.com" <bberg@redhat.com>,
+Cc: Sugumaran Lacshiminarayanan <slacshiminar@lenovo.com>,
+ "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>,
  "ibm-acpi@hmh.eng.br" <ibm-acpi@hmh.eng.br>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- "ibm-acpi-devel@lists.sourceforge.net" <ibm-acpi-devel@lists.sourceforge.net>,
- Nitin Joshi <njoshi1@lenovo.com>, "bnocera@redhat.com" <bnocera@redhat.com>
+ "ibm-acpi-devel@lists.sourceforge.net" <ibm-acpi-devel@lists.sourceforge.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-> >
-> > Since it's not mentioned I can only guess your firmware implementation
-> associated
-> > with this code.  I would think for example that touching some PLx related
-> MSR or
-> > possibly RAPL interface might cause unexpected behaviors.
-> >
-> > Assuming that's right kernel lockdown might prevent some of the MSR, but
-> if you really
-> > want user fully in control of this decision by one knob, you shouldn't
-> let common
-> > userspace tools like thermald, tuned, tlp or the like touch the related
-> objects.
-> >
-> Hmmm - I think I disagree here.
-> 
-> I don't think this should control what other userspace tools (like
-> thermald) want to do with the CPU registers. Adding hooks into those
-> other pieces of code also seems to me to be complicated and unnecessary
-> in the kernel (and way beyond the scope of this patch). As an aside - my
-> experience from testing is that thermald will override what the firmware
-> is doing anyway.
+Hello Bastien
 
-I'm actually in agreement it is potentially quite complicated and shouldn't be in
-this specific patch.  I was going to suggest it should either come as other
-patches, or perhaps in documentation along the lines of "Users using this interface
-should not use other tools to modify X, Y and Z".  No need to mention the actual
-tools, but you should try to help prevent users shooting themselves in the foot
-unintentionally.
+>-----Original Message-----
+>From: Bastien Nocera <bnocera@redhat.com>
 
-> 
-> I can see the value of adding a feature to *disable* the Lenovo firmware
-> implementation as that doesn't currently exist. I will talk to the
-> firmware team and see what can be done and take that on as a separate
-> task. If there's a mechanism to do that already in a safe way then I'll
-> add that to this.
+>----- Original Message -----
+>> Newer Lenovo Thinkpad platforms have support to identify whether the
+>>   system is on-lap or not using an ACPI DYTC event from the firmware.
+>>
+>>   This patch provides the ability to retrieve the current mode via sysfs
+>>   entrypoints and will be used by userspace for thermal mode and WWAN
+>>   functionality
+>>
+>> Co-developed-by: Nitin Joshi <njoshi1@lenovo.com>
+>> Signed-off-by: Nitin Joshi <njoshi1@lenovo.com>
+>> Reviewed-by: Sugumaran <slacshiminar@lenovo.com>
+>> Signed-off-by: Mark Pearson <markpearson@lenovo.com>
+>
+>
+>You can add my:
+>Reviewed-by: Bastien Nocera <bnocera@redhat.com>
 
-This is actually even better to me.  Back to the H/M/L approach if you can have
-an extra one for "off" then userspace tools that want to control the same levers
-can turn this off when they are taking control.
+It's already added in latest patch and currently in "for-next"
+http://git.infradead.org/linux-platform-drivers-x86.git/commit/acf7f4a59114471c3964f118564fe8e7a6f34bb8
+
+Thanks 
 
 
 _______________________________________________
