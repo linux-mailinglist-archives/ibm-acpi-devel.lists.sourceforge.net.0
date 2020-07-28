@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AECA22EC8D
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 27 Jul 2020 14:49:56 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5C623005F
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 28 Jul 2020 05:52:11 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1k02ZW-0004hu-QG; Mon, 27 Jul 2020 12:49:38 +0000
+	id 1k0GeX-0005DZ-4O; Tue, 28 Jul 2020 03:51:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <njoshi1@lenovo.com>) id 1k02ZW-0004hf-09
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 27 Jul 2020 12:49:38 +0000
+ (envelope-from <njoshi1@lenovo.com>) id 1k0GeW-0005DO-0y
+ for ibm-acpi-devel@lists.sourceforge.net; Tue, 28 Jul 2020 03:51:44 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
  :In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=xNjL15XsgJRvFWd0K7QwGIj7bc4rKMYa5yvbYhBRog8=; b=jGIhoda8TEo2yiick8NwhCbbYR
- 5iZ1gW959ttkp3C7UebTKdc4gW7Jg0DYPIYe0oUR2+LGpNhGw+KKVic1L5zETFMtuGtuFYzr3tZm4
- YYT4j7Sy8FV1RylvgLFMfoPm90QBcpib4OqnXyF2LEwsgT/nT3MobCUDPaksEw3Xij2U=;
+ bh=UYx81NEKTGevz22Wruc7x19eCozIvKnMhUhlLgHvlto=; b=JbgjPFZpcMVnyo6YLaqlRhMcV0
+ mirQbf7Lzo/WzBGRr32wpVcSTxkg80l78GyIJDcYJr7PPSlrj2U4m877kN1C1saq6AQo8dZLmn/93
+ 6heRwQwY+NaL+crimKJohDHo1OmqQL7QEtBI89RFiLfmkCjLvCrLgmHzLkZLsy7jbcvc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:
@@ -29,149 +29,152 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=xNjL15XsgJRvFWd0K7QwGIj7bc4rKMYa5yvbYhBRog8=; b=CyreQ6oS748fjKys0xf6Z7s2ad
- 7n7DlhRfc8Ub3qeJDCGk3LoOdOWQUcZdZIxF9mPPmt1JdN5cAkJcwbtnDc5ITgVSuE0IwBC6GNWfi
- eul5SSjBEMsOqdqUD5HD278K/n7u9eDuRWGIesUBiWXAQB7rFgF8kX3tqr5QY4uQiS0c=;
-Received: from mail1.bemta23.messagelabs.com ([67.219.246.114])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=UYx81NEKTGevz22Wruc7x19eCozIvKnMhUhlLgHvlto=; b=Ili39yVS1EL7tUTMCjfwTcnmkU
+ 0ACyfPuzCJJb0AEZnqDP/XwRV/bcfNdAYGIcqtDQhT51ta+X+JWDZ3dnRrU6YvSK9LXFyl6q+c5Id
+ hnWto6z1qC9C1maR+4Kmjbkvd4ZmnkNo0PUR9gGCT9usgEP/uzgEoul86Z36V/lT3HQE=;
+Received: from mail1.bemta23.messagelabs.com ([67.219.246.4])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1k02ZU-0013h2-3J
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 27 Jul 2020 12:49:37 +0000
-Received: from [100.112.6.216] (using TLSv1.2 with cipher
+ id 1k0GeR-00BX2i-9N
+ for ibm-acpi-devel@lists.sourceforge.net; Tue, 28 Jul 2020 03:51:43 +0000
+Received: from [100.112.1.169] (using TLSv1.2 with cipher
  DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-3.bemta.az-c.us-east-1.aws.symcld.net id 75/8F-12867-85DCE1F5;
- Mon, 27 Jul 2020 12:49:28 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrOJsWRWlGSWpSXmKPExsWS8eIht27EWbl
- 4g2MX2CwezE23mH3YxmLOs7WMFqv3vGB2YPH4fYDRY/eCz0we7/ddZfP4vEkugCWKNTMvKb8i
- gTXj+puTjAWTuSsajj1kaWBs4O5i5OIQEmhgktj44Dw7hPOKUaJjbwszXKbjxXPGLkZOIOc3o
- 8TiD2kgCUaBpcwSs2Z/BEswChxjkfiyigcisYFRovvXZ0YQh0VgN7PEiacXWSBmzWSSmPzjF9
- Tg+4wSq/9/ZgHpZxNQl3h18CobiC0CZH/pnAbWziywgUni1rszYAlhgUKJ+30rGCGKiiQOLZ0
- PZVtJtLevBrNZBFQl2hd8A6vnFYiR2NH4AGr1IiaJ9xc/gm3jFPCUWDH1HxPE5WIS30+tAbOZ
- BcQlbj2ZD2ZLCAhILNlznhnCFpV4+fgfK0R9D6PE7zlsEHElic3bm9khbFmJS/O7GSFsX4nWp
- ROg4loSB+ZvhbJtJI4+XwB0AweQrSLx71AlRDhbYs3HJewTGI1nIbliFlAVs4CmxPpd+hBhRY
- kp3Q/ZZ4F9JihxcuYTlgWMLKsYTZOKMtMzSnITM3N0DQ0MdA0NjXTNdU0s9RKrdJP1Sot1UxO
- LS3QN9RLLi/WKK3OTc1L08lJLNjECU1JKAbvhDsbFbz7oHWKU5GBSEuX9t1guXogvKT+lMiOx
- OCO+qDQntfgQowwHh5IE7/3TQDnBotT01Iq0zBxgeoRJS3DwKInwcp0BSvMWFyTmFmemQ6ROM
- YZzTHg5dxEzx+Xr84Dks7VLgOSRuUuB5IZ5IPL/3btAsn/BwdXMHDfbD61mFmLJy89LlRLntQ
- QZJwAyLqM0D24ZLP1fYpSVEuZlZGBgEOIpSC3KzSxBlX/FKM7BqCTMewBkCk9mXgncTcC0DfS
- pCG/jcVmQc0sSEVJSDUxLbBfpPNg/U9XH0DXj7p/Yxiz7t+lXlkl11Li1Papwc9287tuX6bvc
- eJdfFG5cuYzN56AS82HN5rQLl92+7+GbXzflesSDg3IiDCUKr75kSWSpHH17x3ivhKa3atzEq
- BKT+Qzn3/vIdO08P/Nmh2TRfmmN72/6WFN3HrG/Imw7M9x/x2rfhjfWvgZHlfcEHz5rH3chsG
- 35yUB+m9NPdqRJrfnau6Sm/cLqi/nTX/lP52ExmPY5Z57vnH694p13fD7eecW7Qejdn9oXs+1
- fP06ObX0bsTm4MPPvtYjwAr8nlU2y6+XPeV48f8FK9ZPql+lXlqtFyE3l2LM6XfrnJZc/gm6q
- yw3CPvxdaT9fQ8dYiaU4I9FQi7moOBEAfgWS5XoEAAA=
+ by server-4.bemta.az-b.us-east-1.aws.symcld.net id CC/88-37342-AB0AF1F5;
+ Tue, 28 Jul 2020 03:51:22 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCJsWRWlGSWpSXmKPExsWS8eIhl+6uBfL
+ xBi8eiVi8nHCY0WL2YRuLOc/WMlqs3vOC2YHFY+esu+wevw8weuxe8JnJ4/MmuQCWKNbMvKT8
+ igTWjE1XNjIXzFeuONY1maWB8YlSFyMXh5BAA5PEzNNvGSGcV4wSM59NZuti5ITI/PxiApH4z
+ Shxeto/NhCHUWAps0T7uY2sEM4xFonD+yaxQzgbGCW6f30GG8YisJtZ4nnnMnaIAfOZJCb19U
+ M59xklHvR3MYKsYRNQl3h18CrYShGBKIkTn3+AtTMLTGSSWDtxJjtIQlggRGLum/XMEEWhEs9
+ u/4FqsJI41XgDbBCLgKrEnuWfgOIcHLwCMRInzmlCLJvFKHF2+wawGk6BQInGPafB5jAKiEl8
+ P7WGCcRmFhCXuPVkPpgtISAgsWTPeWYIW1Ti5eN/UJ92MUrsf7mbBSKhJLF5ezM7hC0rcWl+N
+ yOE7StxZPECKFtH4v+kPjYI20bi6PMFLCDHSQioSPw7VAlh5kuc/xA9gdF4FpIrZgFlmAU0Jd
+ bv0ocIK0pM6X7IDmLzCghKnJz5hGUBI8sqRtOkosz0jJLcxMwcXUMDA11DQyNdY11TE73EKt0
+ kvdJi3dTE4hJdQ73E8mK94src5JwUvbzUkk2MwKSUUsBstoPx5+sPeocYJTmYlER5d0yXjxfi
+ S8pPqcxILM6ILyrNSS0+xCjDwaEkwbt/LlBOsCg1PbUiLTMHmCBh0hIcPEoivO9A0rzFBYm5x
+ ZnpEKlTjMYcE17OXcTMcWTu0kXMQix5+XmpUuK8bvOASgVASjNK8+AGwRL3JUZZKWFeRgYGBi
+ GegtSi3MwSVPlXjOIcjErCvMXzgabwZOaVwO0DplugL0R4G4/LgpxSkoiQkmpgWnFnR+XCg2u
+ iXSQWHrJSkA7Z9bRI2Y6h9545H7PWlWdTvBs8HOK5zPizFqV/TY/06tqedfWqsdTvFjWp+kip
+ FO4be9aU/f/j+War8s7+w15/TpXkTnaP/7H0Ss9RnefF8tVGPp490jefPynwDr3EnhN3dnnFH
+ EVekTwXqX8332usWCzwPnERi5Zjg8TUO0frFKY+K1h3PMdnSfPd9PWJVYdP6vr87/3dwR75d6
+ rX3r/mkjWSs2U0zmgs0n7KccG+tveGyMWES18n/Wrt03wR+3CT36SHVxj5DnCxv5+2ZpXI1jL
+ DwFePZ5S/PL3nXajVh4Q7d4T+L3r2IUJtTqXumfPbWXZy5ufsS1Dsi3t7VomlOCPRUIu5qDgR
+ AA3A8zNXBAAA
 X-Env-Sender: njoshi1@lenovo.com
-X-Msg-Ref: server-7.tower-416.messagelabs.com!1595854167!216185!1
-X-Originating-IP: [104.232.225.11]
+X-Msg-Ref: server-29.tower-386.messagelabs.com!1595908282!160435!1
+X-Originating-IP: [104.232.225.10]
 X-SYMC-ESS-Client-Auth: outbound-route-from=pass
 X-StarScan-Received: 
 X-StarScan-Version: 9.50.3; banners=-,-,-
 X-VirusChecked: Checked
-Received: (qmail 19988 invoked from network); 27 Jul 2020 12:49:28 -0000
-Received: from unknown (HELO lenovo.com) (104.232.225.11)
- by server-7.tower-416.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
- encrypted SMTP; 27 Jul 2020 12:49:28 -0000
-Received: from HKGWPEMAIL02.lenovo.com (unknown [10.128.3.70])
+Received: (qmail 5940 invoked from network); 28 Jul 2020 03:51:22 -0000
+Received: from unknown (HELO lenovo.com) (104.232.225.10)
+ by server-29.tower-386.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
+ encrypted SMTP; 28 Jul 2020 03:51:22 -0000
+Received: from HKGWPEMAIL03.lenovo.com (unknown [10.128.3.71])
  (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by Forcepoint Email with ESMTPS id F347277920D57921E9E6;
- Mon, 27 Jul 2020 08:49:26 -0400 (EDT)
-Received: from HKGWPEMAIL04.lenovo.com (10.128.3.72) by
- HKGWPEMAIL02.lenovo.com (10.128.3.70) with Microsoft SMTP Server
+ by Forcepoint Email with ESMTPS id 37165A252BD9C4E7D101;
+ Mon, 27 Jul 2020 23:51:21 -0400 (EDT)
+Received: from HKGWPEMAIL03.lenovo.com (10.128.3.71) by
+ HKGWPEMAIL03.lenovo.com (10.128.3.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1913.5; Mon, 27 Jul 2020 20:49:24 +0800
-Received: from HKEXEDGE02.lenovo.com (10.128.62.72) by HKGWPEMAIL04.lenovo.com
- (10.128.3.72) with Microsoft SMTP Server (version=TLS1_2,
+ 15.1.1913.5; Tue, 28 Jul 2020 11:52:09 +0800
+Received: from HKEXEDGE02.lenovo.com (10.128.62.72) by HKGWPEMAIL03.lenovo.com
+ (10.128.3.71) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.1913.5 via Frontend
- Transport; Mon, 27 Jul 2020 20:50:13 +0800
-Received: from APC01-HK2-obe.outbound.protection.outlook.com (104.47.124.55)
+ Transport; Tue, 28 Jul 2020 11:52:09 +0800
+Received: from APC01-PU1-obe.outbound.protection.outlook.com (104.47.126.55)
  by mail.lenovo.com (10.128.62.72) with Microsoft SMTP Server (version=TLS1_2, 
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.1913.5; Mon, 27 Jul
- 2020 20:50:13 +0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.1913.5; Tue, 28 Jul
+ 2020 11:52:08 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gBcA5Jdjy6P3C9hOfOw8BemRvgNRS+2XkvvVSDZ8480uj2fqtSs4KOMkCj0KR59GIZTGaS5/UkCnmA3xRbtj/H8bTlmVfWRJs3RWY5oLUP7i516KGl6Bv8P3rFbEVu0OjonI9w2sda/YHvGf6qBtWNG6O93H9Nt+Vho+AxIlQ05g2VmB1LA3Lm3WSMiIfM8IjMt9qX/zAJry3QpBwFUe7PsiLWFM3S0jBK52Jo1mC0IfCr+1TyXrczMLkQSfYACzMXym43nPaL5Sl9lyiGfS6PfeH1U24WoNnXRLxunbdakHRjXG/cdrNvpK7edEkjQLNcGW9WM14OppANQsewJswQ==
+ b=IswB3Z3EYsuoWrfKj6vMj4pm5jkw7QgvG2lrmW1x9FMMgH3R8jhI5d6DoNWS50aAAwY4VGK6OWQr3gQEx1b3O/ciMdv2C3bMtX+bhvFi2zNomdNl4B6LKYglvtbqsRquKPkH1VDbk/sCl+Xsx9mBGUwB/oIOoAOnjwsQ9k4Yb4mf5JjuxgOoZm6oNVsFtM3mYqd9+s5ywz9ZIEGfhynymhdzfHWIlIVkjZh3trMoUxNIKCM29q8emauKZy89/T0IVPc47jS3y+O74ebexdKUqiLMru3b715P3MIN8fmOXjvzCvcI9vbULNEz9NxwghB6iv15DVIlRZJLqcjLBXpKHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xNjL15XsgJRvFWd0K7QwGIj7bc4rKMYa5yvbYhBRog8=;
- b=gjmZJoDazWyu8oy/5NdDGaG0cE+CxTsgdOiaxYJAnZWQyLgUrOcPRRNSW2IjkMryybj9C3EwoTd+HKekkBC2s7mvxQutQDdk4vli7znfFC+RzDJOZkeC46BZsWxxC0KuAx7cVV9z3iw4dkdC4All58TorRkwQ1g3q7ZN7GbDjrQnXe3hp0mtWYcPGZ89GPS+ZdoVug70Pfe1kaMugpjmg9X6gSe5jnN3CF1nXM68aJkGQ1bsIiaUH8kiXj7eCPmyGR7SsaQNJPtOGcxB7nDM4oJtAwa6zFNEJs4LFL8r4JXFW6cgEMFeOWcJp9pSSRtIU1lWJjLaddsBu10/5Cdk2A==
+ bh=UYx81NEKTGevz22Wruc7x19eCozIvKnMhUhlLgHvlto=;
+ b=ENMkRKpihj65wNQkNsD1C8TW6IjT0uVGYdv5Kf7IWu32nvxBWrcUjMF8pZSGZgubcQFagw96qx5iZeIk/FUnjXdug59ngbvUnGjTXiQL8T15W8Rx469e86Xp75oHS68G0uQpTWQyIeVGqGODi8jYXAR8z7L7jAqYy25ScTSqohro6EmZtNcZc4acBDAHhAkT4ev7QN7zeRiawqDNxyg8Wwc1w7gnfjfrxM4pR5/AN/+yjkvzuhKQXmSUjFVwuUE5JAdm/HxGw0GqdZQQoqZ+yoWc2CYUpBE01qgEGrdYlIPB38SLQc23U4g4z17QvGyi4Gz9i4RbFRFJnZVEijT3EQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=lenovo.com; dmarc=pass action=none header.from=lenovo.com;
  dkim=pass header.d=lenovo.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=LenovoBeijing.onmicrosoft.com; s=selector2-LenovoBeijing-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xNjL15XsgJRvFWd0K7QwGIj7bc4rKMYa5yvbYhBRog8=;
- b=OE8RGg/p+aBnMkCgkTkYzlAIqaED7YdfNmaaPECC/ryKmHtHRtsvaW0sb7Mhrkd5ArIYwognOsF4HiBW5CDLn5RZG/sc5ZdKXsu9Vkm3wofLYvOTgzwJF2L2ixzUKf8s/eRR7IocUfWDgVRSeBmbSu7GKxU4gAFw4XAgu23oR+Y=
-Received: from SG2PR03MB2718.apcprd03.prod.outlook.com (2603:1096:3:1e::22) by
- SG2PR03MB2717.apcprd03.prod.outlook.com (2603:1096:3:21::13) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3239.9; Mon, 27 Jul 2020 12:49:22 +0000
-Received: from SG2PR03MB2718.apcprd03.prod.outlook.com
- ([fe80::1145:fb6f:aa6a:4398]) by SG2PR03MB2718.apcprd03.prod.outlook.com
- ([fe80::1145:fb6f:aa6a:4398%5]) with mapi id 15.20.3216.033; Mon, 27 Jul 2020
- 12:49:22 +0000
+ bh=UYx81NEKTGevz22Wruc7x19eCozIvKnMhUhlLgHvlto=;
+ b=NEHw08tsvYKyTx3ZsU+bTIDLjlm1s3HWQ/ovN5SaWyZ9tTynBqn7Nu016ymwgk1yZfG3BWDZbqUiHocv2DQulYBZ9UmR++2FZe1mAoyaTJ4OuBtlEKQSHKCpjEv1vX+Cbkg+sxbOtE2LNlEQWjffk9n0jNjrqbKPYJKoKapQX90=
+Received: from PU1PR03MB2716.apcprd03.prod.outlook.com (2603:1096:803:20::17)
+ by PS1PR0302MB2443.apcprd03.prod.outlook.com (2603:1096:803:d::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3239.9; Tue, 28 Jul
+ 2020 03:51:09 +0000
+Received: from PU1PR03MB2716.apcprd03.prod.outlook.com
+ ([fe80::d93d:a08d:f69a:c697]) by PU1PR03MB2716.apcprd03.prod.outlook.com
+ ([fe80::d93d:a08d:f69a:c697%6]) with mapi id 15.20.3239.015; Tue, 28 Jul 2020
+ 03:51:09 +0000
 From: Nitin Joshi1 <njoshi1@lenovo.com>
-To: Bastien Nocera <bnocera@redhat.com>
-Thread-Topic: [External]  Re: [ibm-acpi-devel] [PATCH v4] platform/x86:
- thinkpad_acpi: lap or desk mode interface
-Thread-Index: AQHWY8DIP68AvAZQjE24ENYf+sTd3Jx998kljJ1n11A=
-Date: Mon, 27 Jul 2020 12:49:21 +0000
-Message-ID: <SG2PR03MB2718BD5C540321CAE069A7A38C720@SG2PR03MB2718.apcprd03.prod.outlook.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>, Mark RH Pearson
+ <markpearson@lenovo.com>
+Thread-Topic: [External]  Re: [PATCH] platform/x86: thinkpad_acpi: psensor
+ interface
+Thread-Index: AQHWWwMHz3ST7j+TG06+0crDZ7YttqkbTR6AgAENKoA=
+Date: Tue, 28 Jul 2020 03:51:08 +0000
+Message-ID: <PU1PR03MB2716FE7EF1BF12E5B9EC25188C730@PU1PR03MB2716.apcprd03.prod.outlook.com>
 References: <markpearson@lenovo.com>
- <20200629191748.3859-1-markpearson@lenovo.com>
- <732277929.1313334.1593596757447.JavaMail.zimbra@redhat.com>
- <SG2PR03MB2718DFC08C4ECF7816D1B4E48C720@SG2PR03MB2718.apcprd03.prod.outlook.com>
- <321690127.4797880.1595847834329.JavaMail.zimbra@redhat.com>
-In-Reply-To: <321690127.4797880.1595847834329.JavaMail.zimbra@redhat.com>
+ <20200715235242.4934-1-markpearson@lenovo.com>
+ <CAHp75Vcwg9aEpybYwEFvhYH4gpy7952i+zMs-2TKGPzkzuhO=g@mail.gmail.com>
+In-Reply-To: <CAHp75Vcwg9aEpybYwEFvhYH4gpy7952i+zMs-2TKGPzkzuhO=g@mail.gmail.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [114.165.32.192]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1988add5-28c5-48f7-ad12-08d8322b7c28
-x-ms-traffictypediagnostic: SG2PR03MB2717:
+x-ms-office365-filtering-correlation-id: 98fe3eb9-21ac-4a21-3c57-08d832a9767f
+x-ms-traffictypediagnostic: PS1PR0302MB2443:
 x-ld-processed: 5c7d0b28-bdf8-410c-aa93-4df372b16203,ExtAddr
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <SG2PR03MB2717C6C533A648717D7E27428C720@SG2PR03MB2717.apcprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-microsoft-antispam-prvs: <PS1PR0302MB2443BA2D0CE0E44DFE1FC3DB8C730@PS1PR0302MB2443.apcprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dNPHCXnK3FrJoTX6zcSRd9hnCsyVUUK+45OhZh/u28cI6lAm1E1E8ueclcNSgWzRvfAuBj3AmgMF4hp6MK5OHXmvtQIHN3grY0vSpBkpHkdQkWWSosLJ6t1USnL+D7OoczAXdQnaiTWnrhTIBr5PaE9U+HdcavFsVqIUtqeCkV21sd3OZJUVzfo/Ioc0wStQrEzOSq2zqDM5la4ZyMeycxtDmT5myqTmfcuJzMdKcrqlAxTFhUHB/iC/bWS3TVGLVSRE2iFabN/NbGvBVLv/ZpkhLNIs97qQ81rEVA8sD7IKBqktHZIV81QDSkAe+Y9eHWGGBi0obiJKMCEyToDWhNsxozleQkHD2i3wcmE95kQy21oaESR4ym9qE3Lu3DK/8M4GyEle+MoHc94rm4VJtg==
+x-microsoft-antispam-message-info: iyjDwP11n+KtOSPUuXtW89QXCBMCfe38y1z68zhcFbTSFjod1Bg4FWd0NZnRMjSoDMT7YkiZ6MK46l23XdWfCJdOXvhVcYPBkKl3HYqXSOzjWCwgSEOxOwrV7MNXbkiD52KxAjtpOgxSm4mdrR0vtI2fcZ93+QHJfDHxwA/ht7elkdF556bvXAtkxJG99kEVIBIziAbS5Inqt4KoBTari1iM/qeptazPArxZV9kLdYkUqAOMCyCWMVO3ugO71verc6vTifVnmPB6kq8sap4Nt5FgEEsTRJpdzsYnZ3GiRBFVC2MSqbVIKcUUi21I7ha+tzecicNHnV5zPXmxEaNikg==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SG2PR03MB2718.apcprd03.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:PU1PR03MB2716.apcprd03.prod.outlook.com; PTR:; CAT:NONE;
  SFTY:;
- SFS:(346002)(376002)(396003)(39860400002)(366004)(136003)(4326008)(7696005)(8936002)(966005)(9686003)(186003)(6916009)(8676002)(26005)(55016002)(6506007)(86362001)(33656002)(54906003)(2906002)(316002)(5660300002)(478600001)(83380400001)(4744005)(66946007)(66446008)(64756008)(66556008)(66476007)(76116006)(71200400001)(52536014);
+ SFS:(4636009)(39860400002)(346002)(366004)(136003)(396003)(376002)(8676002)(66476007)(71200400001)(33656002)(83380400001)(86362001)(8936002)(107886003)(2906002)(110136005)(7696005)(54906003)(5660300002)(186003)(66946007)(66446008)(9686003)(52536014)(64756008)(66556008)(316002)(55016002)(6506007)(76116006)(478600001)(26005)(6636002)(4326008);
  DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: +jRaKZGnxKUscz7fYiQ1+Wiu17ef1Qiz2B8ku3zIqowZm02ASj0lgDV8bHPISt/76HeH8KZRdfJ3Ouef/IeMAysLIGgc/VzDwLZNpToDHCPevgNLqnd+uXVeSvJm4EqWLwaFI9HOJTI5ElFYrKS4BTk4hlnBLDGGzVEt7M05hY+3TeNoC5TExMBwL5TMUJ6lbO9+8mnA+nCQLeIQAMyzTJ/sb91y9w7JtZQe2lqE7U/pT8dTTe0k15sJ3+amZJi3gQuK2yU88PQuiaDjn6I5TBtr8DyAKkH51W1S5hgcPxv5FtJBuZ3ZR3EiXMlkQqV+g8oUo0FubvAldfvR7zyq3xzoksmtsiOGrRRKtKjJDTE5mNYibeNqdtOR43lN/hsEEB4zrhR32166azLCkEXzHh01ahAmBzwDYckLqKCFx8ZFDS16b7oxJv8KM6M3uLTMMDr+yemi8x62v4lWkaQtZdPg38xA1EY/GDmOWy0khmAoHkmP7o9Fgbp6CaHkRXvVEi69P7xamme2kf4xINW763nV4b61p6cf5l21XqpUo2JFrWhnG/+GMH0++F78y3kh859zPeRciPbYqEjYyyUqXpdDaQZ28rJtQN66cDkVDUliISYuH5MoS5ECFA+rjqzSLx+Zsfj9CoArtNr+jcjvIg==
+x-ms-exchange-antispam-messagedata: CbLl9BT02WDM4b+DQNpODdC0ATNdBAE8tnBVv/Hb4tgAeTJJLmup/p+2mjCEPNDa/iEkmQmQ/QIrGCPkiEZOGWnf9N6dYT3mtHWx1QpzCrJkq6rFjCwHMZrXqkguwSy6YUBM+wz4lCg90Zu5SRfc7bHEjeuBxfegonQJ6FA5MtzISrM++WiIUesw3FGBf8C4duup5BIB39GQE2Vv+A1Yi7YdIC69o2U7XZzyO7xkxnTvKu1YaMMylVGPjBNNIwqUVacT/pwPRdAOW+ojsQzmNDoJ5psKHMtyOkjE04VQv6yTcaQbMatbFZmAjetrHyhXcDIX0Mc5cQN02Xhv91Cr1JD7pti3ZEt+yQgSITDMWtK1yobFIOxrcv7AZDm3UEAy3OI5dQ9IzEkjL8KbK2bjhtwSHjqMZ7NP9R/3CKro1CEv0GljyyHD+dLez9+7unRLCkgC5u9ONaDV69d/AuqcEiAZeEl0FsJYPfnrbk+jfL63E4BE6dKnMk1Z2B6EEK3GYzWYalKQ/JRLxvfZXu4NCtwEv2TyLgS/Hje1scffYF+CNtpA22xqGKcWHL7O1+DVM8kMjcwMeY7EwNoaopRgSDhzFmvmZgWm2pCfKCbLN/+suZjpxhx+c5ywSBH3kO0NKvWoSLAWgzTFbVmFaVbnkQ==
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB2718.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1988add5-28c5-48f7-ad12-08d8322b7c28
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Jul 2020 12:49:21.9589 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: PU1PR03MB2716.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98fe3eb9-21ac-4a21-3c57-08d832a9767f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jul 2020 03:51:09.0597 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 5c7d0b28-bdf8-410c-aa93-4df372b16203
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ucxzb+XLRj+wCHG2x6kcKeg9qsXYdabcEv7pvXC9MlGGnnc6TSVqgSzf1HCGiZ3TdO0W2At+VGaeruPu9hhaAg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB2717
+X-MS-Exchange-CrossTenant-userprincipalname: KHvMNPXh1SUCbkTPzx5GwWJqV1hVr57xyjEaI2jryriS/CpLK2212zRt6Cyok0tv9P62fnJDB6Q/lYdSPN4wCw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PR0302MB2443
 X-OriginatorOrg: lenovo.com
 X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: lenovo.com]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [67.219.246.114 listed in list.dnswl.org]
+ trust [67.219.246.4 listed in list.dnswl.org]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [67.219.246.114 listed in wl.mailspike.net]
+ [67.219.246.4 listed in wl.mailspike.net]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1k02ZU-0013h2-3J
-Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH v4] platform/x86:
- thinkpad_acpi: lap or desk mode interface
+X-Headers-End: 1k0GeR-00BX2i-9N
+Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH] platform/x86:
+ thinkpad_acpi: psensor interface
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -184,34 +187,129 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: "ibm-acpi@hmh.eng.br" <ibm-acpi@hmh.eng.br>,
- Mark RH Pearson <markpearson@lenovo.com>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- "ibm-acpi-devel@lists.sourceforge.net" <ibm-acpi-devel@lists.sourceforge.net>,
- Sugumaran Lacshiminarayanan <slacshiminar@lenovo.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: Tomoki Maruichi <maruichit@lenovo.com>,
+ Thinkpad-acpi devel ML <ibm-acpi-devel@lists.sourceforge.net>, Sugumaran
+ Lacshiminarayanan <slacshiminar@lenovo.com>,
+ Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>, Platform
+ Driver <platform-driver-x86@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogQmFzdGllbiBOb2NlcmEgPGJub2Nl
-cmFAcmVkaGF0LmNvbT4NCj5TZW50OiBNb25kYXksIEp1bHkgMjcsIDIwMjAgODowNCBQTQ0KPlRv
-OiBOaXRpbiBKb3NoaTEgPG5qb3NoaTFAbGVub3ZvLmNvbT4NCj4+ID4+DQo+PiA+PiBDby1kZXZl
-bG9wZWQtYnk6IE5pdGluIEpvc2hpIDxuam9zaGkxQGxlbm92by5jb20+DQo+PiA+PiBTaWduZWQt
-b2ZmLWJ5OiBOaXRpbiBKb3NoaSA8bmpvc2hpMUBsZW5vdm8uY29tPg0KPj4gPj4gUmV2aWV3ZWQt
-Ynk6IFN1Z3VtYXJhbiA8c2xhY3NoaW1pbmFyQGxlbm92by5jb20+DQo+PiA+PiBTaWduZWQtb2Zm
-LWJ5OiBNYXJrIFBlYXJzb24gPG1hcmtwZWFyc29uQGxlbm92by5jb20+DQo+PiA+DQo+PiA+DQo+
-PiA+WW91IGNhbiBhZGQgbXk6DQo+PiA+UmV2aWV3ZWQtYnk6IEJhc3RpZW4gTm9jZXJhIDxibm9j
-ZXJhQHJlZGhhdC5jb20+DQo+Pg0KPj4gSXQncyBhbHJlYWR5IGFkZGVkIGluIGxhdGVzdCBwYXRj
-aCBhbmQgY3VycmVudGx5IGluICJmb3ItbmV4dCINCj4+IGh0dHA6Ly9naXQuaW5mcmFkZWFkLm9y
-Zy9saW51eC1wbGF0Zm9ybS1kcml2ZXJzLXg4Ni5naXQvY29tbWl0L2FjZjdmNGENCj4+IDU5MTE0
-NDcxYzM5NjRmMTE4NTY0ZmU4ZTdhNmYzNGJiOA0KPg0KPkkgc2VudCBteSBtZXNzYWdlIG5lYXJs
-eSBhIG1vbnRoIGFnbywgMiBkYXlzIGJlZm9yZSB0aGUgYXV0aG9yaW5nIGRhdGUgb2YNCj50aGUg
-cGF0Y2ggdGhhdCB3YXMgbWVyZ2VkLCBzbyBJJ20gbm90IHN1cmUgd2hhdCB5b3UncmUgdHJ5aW5n
-IHRvIHRlbGwgbWUNCj5oZXJlIDopDQoNClNvcnJ5ICwgcGxlYXNlIGlnbm9yZSB0aGlzIGUtbWFp
-bCAuIERvbuKAmXQga25vdyB3aHkgaXQgY2FtZSB1cCBvbiBteSBtYWlsYm94IHRvZGF5IC4gQnV0
-IGl0cyBteSBtaXN0YWtlICwgSSB3b3VsZCBoYXZlIHNlZW4gZGF0ZSB3aGVuIHRoaXMgZS1tYWls
-IHdhcyBzZW50IDopIA0KQXBvbG9naXplIGZvciBpbmNvbnZlbmllbmNlIGNhdXNlZC4NCg0KVGhh
-bmtzICYgUmVnYXJkcywNCk5pdGluIEpvc2hpDQoKX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KaWJtLWFjcGktZGV2ZWwgbWFpbGluZyBsaXN0CmlibS1hY3Bp
-LWRldmVsQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5l
-dC9saXN0cy9saXN0aW5mby9pYm0tYWNwaS1kZXZlbAo=
+Hi Andy ,
+
+>-----Original Message-----
+>From: Andy Shevchenko <andy.shevchenko@gmail.com>
+>Sent: Monday, July 27, 2020 7:35 PM
+>On Thu, Jul 16, 2020 at 2:53 AM Mark Pearson <markpearson@lenovo.com>
+>wrote:
+>>
+>>         case TP_HKEY_EV_PALM_DETECTED:
+>>         case TP_HKEY_EV_PALM_UNDETECTED:
+>> -               /* palm detected hovering the keyboard, forward to user-space
+>> -                * via netlink for consumption */
+>> +               /* palm detected - pass on to event handler */
+>> +               tpacpi_driver_event(hkey);
+>>                 return true;
+>
+>Comment here tells something about the netlink interface to user space.
+>Can you elaborate why we need sysfs now and how it's all supposed to
+>work?
+Using  netlink , we were getting proximity events like '0x60b0' and '0x60b1' but for our WWAN requirement, we need default and current 
+p-sensor state too .  
+Some tools like "acpi-listen" uses netlink to display events but we need default and current p-sensor state also as per our requirement. 
+hence , we have added new sysfs to get current p-sensor state using 'GPSS' method from BIOS .
+This will be used for implementing "Dynamic power reduction" app which is used to control Body SAR value as per FCC requirement .
+When Body or any object is near or away from p-sensor location on thinkpad system , then sysfs will be set .
+
+>
+>...
+>
+>> +static int psensor_get(bool *state)
+>> +{
+>> +       acpi_handle psensor_handle;
+>> +       int output;
+>> +
+>> +       if (ACPI_FAILURE(acpi_get_handle(hkey_handle, "GPSS",
+>&psensor_handle)))
+>> +               return -ENODEV;
+>> +
+>> +       if (!acpi_evalf(psensor_handle, &output, NULL, "d"))
+>> +               return -EIO;
+>> +
+>> +       /* Check if sensor has a Psensor */
+>> +       if (!(output & BIT(PSENSOR_PRESENT_BIT)))
+>> +               return -ENODEV;
+>> +
+>> +       /* Return if psensor is set or not */
+>> +       *state = output & BIT(PSENSOR_ON_BIT) ? true : false;
+>> +       return 0;
+>> +}
+>
+>It reminds me of a function you created in one of the previous changes. Can
+>you rather create a parameterized helper which will serve for both?
+
+Ack , we will check it .
+
+>
+>...
+>
+>> +/* sysfs psensor entry */
+>> +static ssize_t psensor_state_show(struct device *dev,
+>> +                                       struct device_attribute *attr,
+>> +                                       char *buf) {
+>
+>> +       return snprintf(buf, PAGE_SIZE, "%d\n", psensor_state);
+>
+>We know that %d takes much less than PAGE_SIZE, use sprintf().
+>
+>> +}
+>
+>> +
+>
+>No blank line here.
+>
+Ack
+
+>> +static DEVICE_ATTR_RO(psensor_state);
+>
+>...
+>
+>> +static struct attribute *psensor_attributes[] = {
+>> +       &dev_attr_psensor_state.attr,
+>
+>> +       NULL,
+>
+>No comma for terminator line(s).
+>
+
+Ack 
+
+>> +};
+>
+>...
+>
+>> +       /* If support isn't available (ENODEV) then don't return an error
+>> +        * but just don't create the sysfs group
+>> +        */
+>
+>/*
+> * Consider to use a proper multi-line comment style.
+> * Like here. (It's applicable to the entire patch)  */
+>
+>...
+>
+>> +       err = sysfs_create_group(&tpacpi_pdev->dev.kobj,
+>&psensor_attr_group);
+>> +       return err;
+>
+>return sysfs...
+Ack 
+
+Thanks & Regards,
+Nitin Joshi
+
+_______________________________________________
+ibm-acpi-devel mailing list
+ibm-acpi-devel@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
