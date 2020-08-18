@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77834242EC2
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 12 Aug 2020 20:54:40 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90536248E84
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 18 Aug 2020 21:16:51 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1k5vtA-0005bH-A4; Wed, 12 Aug 2020 18:54:16 +0000
+	id 1k875v-00043X-9y; Tue, 18 Aug 2020 19:16:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <markpearson@lenovo.com>) id 1k5vt9-0005bA-5E
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 12 Aug 2020 18:54:15 +0000
+ (envelope-from <markpearson@lenovo.com>) id 1k875t-00043H-Qt
+ for ibm-acpi-devel@lists.sourceforge.net; Tue, 18 Aug 2020 19:16:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Content-Transfer-Encoding:MIME-Version
  :References:In-Reply-To:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=JtCkfrxMrut/3RwZqYNzr9Ko05nH+TL6j+pwRRRQ2VI=; b=cgZpEgjaJ0naKQ7OIgWXQmWTRD
- OLWcjK12pc+yfU2k9xdbdvTMMyqhTUTZitFUeiTO3EMThDqgfpU3Dw6bsK0lpPrIUuXY6XpKaBq+K
- s8LV9ZZEZYAwo7cOQqMrjbpTNt64VX3DwMrqcd5+Jqnok8uQrcvJKSdFCbiPp1CfPIq0=;
+ bh=Eudzlo7fP+mx7Xy3Fe89wsVYl3YHtw9LESvrcqzpFDg=; b=HqXxNzm7rFIO/hvUF02Qg1E64R
+ 1cIiHpX+i2LqoY6qKASkoD5KJ7yM/nJMEZkXL4aeitFAXKh7S4Sf4c6Qekn5Tu3dbSv059kIB9tQB
+ Wm6oSRzMup7olOyLkSihYj8Kx/2x/280WgBAbUiGF9p+JPidWd95NBFuLtdTuoD6aSPI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:
@@ -29,79 +29,80 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=JtCkfrxMrut/3RwZqYNzr9Ko05nH+TL6j+pwRRRQ2VI=; b=YLfYpDRuyzTbz2ZOv3bodSId/z
- ecgi1WiJGzQkKvCtU4QtnfcuzOX3xIypLfSzjPuF2jbGZWWD8UetKVFYoJVcfkwfFRUYZJEU+A+r4
- GnumrPfM47YaZQ0kcFPGPG3RbYUWzyA+ScUC0KrB5jVjZ0mq+CSS+wyh2jUn7uZPC+38=;
-Received: from mail1.bemta23.messagelabs.com ([67.219.246.2])
+ bh=Eudzlo7fP+mx7Xy3Fe89wsVYl3YHtw9LESvrcqzpFDg=; b=TEqwwcG1w1ZKUAvF4P2Jw7hCaD
+ uLjKv4QO36g4WeXo9+M3kAgzse7qkxm/GX2n+Ca2yNXnA6aVSFwqsR1Rl5j1ZjecRTvInQR9lzp8h
+ 2S7uGYRgtsue41cuyPiyAHNbCRbDJKuHYYRLwxo8zd0ssYjhIeoXm6mHVrxZ1tVe83WI=;
+Received: from mail1.bemta24.messagelabs.com ([67.219.250.112])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1k5vt5-003YsR-Ee
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 12 Aug 2020 18:54:15 +0000
-Received: from [100.112.1.169] (using TLSv1.2 with cipher
+ id 1k875p-00BiDV-J0
+ for ibm-acpi-devel@lists.sourceforge.net; Tue, 18 Aug 2020 19:16:25 +0000
+Received: from [100.112.135.196] (using TLSv1.2 with cipher
  DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-2.bemta.az-b.us-east-1.aws.symcld.net id 50/C7-60747-FBA343F5;
- Wed, 12 Aug 2020 18:53:51 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLIsWRWlGSWpSXmKPExsWS8eIhj+5+K5N
- 4g7fnJS0mzfjPbDH7sI3FnGdrGS1W73nB7MDi8fsAo8fmFVoeuxd8ZvL4vEkugCWKNTMvKb8i
- gTVjwyPzgiVKFb9fn2JqYFws28XIxSEk8J9R4nFHAxOE84ZRYlPHF9YuRk4ONgFtiS1bfrF1M
- XJwiAjISHxY6wlSwyywiFHi/pyH7CBxYQEnib9HeUDKWQRUJfp+72ECsXkFbCTuLHjBBmJLCM
- hLtC/fDmZzAtWc6XrMAmILCahI3H+whA2iXlDi5MwnYHFmoPrmrbOZIWwJiYMvXjBDzFGQmHJ
- +N5SdILHs5R3mCYwCs5C0z0LSPgtJ+wJG5lWMpklFmekZJbmJmTm6hgYGuoaGRrpGumaWeolV
- ukl6pcW6qYnFJbqGeonlxXrFlbnJOSl6eaklmxiBoZ5SwOS6g/H36w96hxglOZiURHl79Ezih
- fiS8lMqMxKLM+KLSnNSiw8xynBwKEnwfrUEygkWpaanVqRl5gDjDiYtwcGjJMLrDYw9Id7igs
- Tc4sx0iNQpRkUpcV57kIQASCKjNA+uDRbrlxhlpYR5GRkYGIR4ClKLcjNLUOVfMYpzMCoJ8xa
- CbOfJzCuBm/4KaDET0OKGfkOQxSWJCCmpBqZYpqiKvd36jP8Mvyu9fXg37uDBDdL5tfeeXk97
- kn063vnu/hcqu2tuCP5KFTeTPLTq7hZ1viPL9Dq3Fr3Rf98+Oe/2/D8PKxfbb77qNfHRV6MiI
- cO3fYnqKhE8/X1vxVbE/Hbcsir1m13JP3+tjm4XXslrfhr1E23fHPD3Kl8fVJ3xctuiTXFT3g
- WU3d8oHf/u5ZPD1e2LSyseWDW0iXD/im1kP/gtYE/DbOFjuy6si1U6yJR2NPj218AA3qMB31J
- kpFP2Ol9V7qmITnrqcOqXbaffgYnORgdYfyeu+ajyb6MN+7LDs2e8DI3R2fQo17G+eq+k554r
- 9h2rBNc8/CrbvfKiwZ8b7Gt+MMuEzD2ixFKckWioxVxUnAgAD9D6hnADAAA=
+ by server-1.bemta.az-b.us-west-2.aws.symcld.net id 44/CE-29381-BF82C3F5;
+ Tue, 18 Aug 2020 19:16:11 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrNIsWRWlGSWpSXmKPExsWS8eIhr+5vDZt
+ 4g9crxSwmzfjPbDH7sI3FnGdrGS1W73nB7MDi8fsAo8fmFVoeuxd8ZvL4vEkugCWKNTMvKb8i
+ gTWjr8GzoFm/4uvOj2wNjN/Uuxi5OIQE/jNKnLp2kQnCec0ocaS9g7WLkZODTUBbYsuWX2xdj
+ BwcIgIyEh/WeoKEmQUWMUo83KMNYgsLOEm8WNrDDFLCIqAq0X4+ByTMK2AjsXrXFyYQW0JAXq
+ J9+XY2EJsTqORM12MWEFtIQEXi/oMlbBD1ghInZz5hgRgvL9G8dTYzhC0hcfDFC2aYOXMXrmS
+ HsBMklr28wzyBUWAWkvZZSNpnIWlfwMi8itEiqSgzPaMkNzEzR9fQwEDX0NBI19DYRNfQxFgv
+ sUo3Sa+0WLc8tbhE10gvsbxYr7gyNzknRS8vtWQTIzDcUwra+ncwrn/zQe8QoyQHk5Io714em
+ 3ghvqT8lMqMxOKM+KLSnNTiQ4wyHBxKErxawAgSEixKTU+tSMvMAcYeTFqCg0dJhHeRClCat7
+ ggMbc4Mx0idYpRl+PkqiWLmIVY8vLzUqXEedeCzBAAKcoozYMbAUsDlxhlpYR5GRkYGIR4ClK
+ LcjNLUOVfMYpzMCoJ80qoAk3hycwrgdv0CugIJqAjJCotQY4oSURISTUwGT2suHw/r1hp2q81
+ 0pfVomu7GpxvMalZnO4SWF6rdPXaxGlrvc+75hWUiPnON2v9tlF254wIBsb34edni7CdauEXX
+ nZWPeqT0GUNxew1Kq9YHxmx6JTr5LUWT3uxKLCIhXvSs1Nbk+dYr1j0bMnfmQapF3pUXAyKty
+ f75LEnlP/arPdheZalomb0iR0rNSafYsxodV33I+V8/n3ehRflls5vkl+3dcWb5Tx/aoscdx1
+ exibF6XXvzJso/fiFR3ZMe+vnrz/bMC2LJ9HemvF2dPb+xyxTee/EXAg/sP31uY6F71mTN39c
+ MlmyInL2vANvUrnrhOR28bEZ+q50NmpsPx84ZeX5+7FG4TbfCsWclFiKMxINtZiLihMBftPlv
+ n4DAAA=
 X-Env-Sender: markpearson@lenovo.com
-X-Msg-Ref: server-20.tower-396.messagelabs.com!1597258431!772075!1
-X-Originating-IP: [104.232.225.12]
+X-Msg-Ref: server-15.tower-346.messagelabs.com!1597778170!9188!1
+X-Originating-IP: [104.232.225.13]
 X-SYMC-ESS-Client-Auth: outbound-route-from=pass
 X-StarScan-Received: 
 X-StarScan-Version: 9.50.3; banners=-,-,-
 X-VirusChecked: Checked
-Received: (qmail 29509 invoked from network); 12 Aug 2020 18:53:51 -0000
-Received: from unknown (HELO lenovo.com) (104.232.225.12)
- by server-20.tower-396.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
- encrypted SMTP; 12 Aug 2020 18:53:51 -0000
+Received: (qmail 26614 invoked from network); 18 Aug 2020 19:16:11 -0000
+Received: from unknown (HELO lenovo.com) (104.232.225.13)
+ by server-15.tower-346.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
+ encrypted SMTP; 18 Aug 2020 19:16:11 -0000
 Received: from reswpmail04.lenovo.com (unknown [10.62.32.23])
  (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by Forcepoint Email with ESMTPS id 3757C5ED8A854529CC94;
- Wed, 12 Aug 2020 14:53:51 -0400 (EDT)
-Received: from localhost.localdomain.com (10.64.92.252) by
+ by Forcepoint Email with ESMTPS id C643AE5FB16B65716A39;
+ Tue, 18 Aug 2020 15:16:09 -0400 (EDT)
+Received: from localhost.localdomain.com (10.38.58.36) by
  reswpmail04.lenovo.com (10.62.32.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1913.5; Wed, 12 Aug 2020 11:53:48 -0700
+ 15.1.1913.5; Tue, 18 Aug 2020 12:16:02 -0700
 From: Mark Pearson <markpearson@lenovo.com>
 To: <markpearson@lenovo.com>
-Date: Wed, 12 Aug 2020 14:53:32 -0400
-Message-ID: <20200812185332.277167-1-markpearson@lenovo.com>
+Date: Tue, 18 Aug 2020 15:15:58 -0400
+Message-ID: <20200818191558.280009-1-markpearson@lenovo.com>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <markpearson@lenovo.com>
 References: <markpearson@lenovo.com>
 MIME-Version: 1.0
-X-Originating-IP: [10.64.92.252]
+X-Originating-IP: [10.38.58.36]
 X-ClientProxiedBy: reswpmail04.lenovo.com (10.62.32.23) To
  reswpmail04.lenovo.com (10.62.32.23)
 X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [67.219.246.2 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [67.219.246.2 listed in wl.mailspike.net]
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
  for more information. [URIs: lenovo.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [67.219.250.112 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [67.219.250.112 listed in wl.mailspike.net]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-X-Headers-End: 1k5vt5-003YsR-Ee
-Subject: [ibm-acpi-devel] [PATCH v2] platform/x86: thinkpad_acpi: psensor
+X-Headers-End: 1k875p-00BiDV-J0
+Subject: [ibm-acpi-devel] [PATCH v3] platform/x86: thinkpad_acpi: psensor
  interface
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -135,10 +136,50 @@ Signed-off-by: Mark Pearson <markpearson@lenovo.com>
 ---
 Changes in v2:
  - addressed formatting and coding style errors identified during review
+Changes in v3:
+ - I had missed updating thinkpad-acpi.rst in the v2 update so adding
+   that back so it is correct. 
 
- drivers/platform/x86/thinkpad_acpi.c | 107 ++++++++++++++++++++++++++-
- 1 file changed, 104 insertions(+), 3 deletions(-)
+ .../admin-guide/laptops/thinkpad-acpi.rst     |  18 +++
+ drivers/platform/x86/thinkpad_acpi.c          | 107 +++++++++++++++++-
+ 2 files changed, 122 insertions(+), 3 deletions(-)
 
+diff --git a/Documentation/admin-guide/laptops/thinkpad-acpi.rst b/Documentation/admin-guide/laptops/thinkpad-acpi.rst
+index 5e477869df18..6b57c52d8f13 100644
+--- a/Documentation/admin-guide/laptops/thinkpad-acpi.rst
++++ b/Documentation/admin-guide/laptops/thinkpad-acpi.rst
+@@ -51,6 +51,7 @@ detailed description):
+ 	- UWB enable and disable
+ 	- LCD Shadow (PrivacyGuard) enable and disable
+ 	- Lap mode sensor
++        - Palm sensor (aka psensor)
+ 
+ A compatibility table by model and feature is maintained on the web
+ site, http://ibm-acpi.sf.net/. I appreciate any success or failure
+@@ -1447,6 +1448,23 @@ they differ between desk and lap mode.
+ The property is read-only. If the platform doesn't have support the sysfs
+ class is not created.
+ 
++Palm sensor
++------------------
++
++sysfs: psensor_state
++
++Certain thinkpads and mobile workstations are equipped with a palm sensor to
++detect when a user is physically near the device. This device, when present,
++is used in conjunction with the lapmode sensor to decide if WWAN transmission
++can be increased to maximum power.
++
++The property is read-only. If the platform doesn't have support the sysfs
++class is not created.
++
++Note - some platforms have a limitation whereby the EC firmware cannot
++determine if the sensor is installed or not. On these platforms the psensor
++state will always be reported as true to avoid high power being used incorrectly.
++
+ EXPERIMENTAL: UWB
+ -----------------
+ 
 diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
 index 4864a5c189d4..41b75dd4755c 100644
 --- a/drivers/platform/x86/thinkpad_acpi.c
