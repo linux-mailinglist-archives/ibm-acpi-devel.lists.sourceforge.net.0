@@ -2,83 +2,94 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0783124F05E
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 24 Aug 2020 00:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE0BB24FBEF
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 24 Aug 2020 12:50:26 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1k9ytw-0005sX-8d; Sun, 23 Aug 2020 22:55:48 +0000
+	id 1kAA3C-0000c2-Py; Mon, 24 Aug 2020 10:50:06 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <rdunlap@infradead.org>) id 1k9ytv-0005sN-I0
- for ibm-acpi-devel@lists.sourceforge.net; Sun, 23 Aug 2020 22:55:47 +0000
+ (envelope-from <remy44@gmail.com>) id 1kAA39-0000b5-Pj
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 24 Aug 2020 10:50:03 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
- :Date:Message-ID:Subject:Cc:From:To:Sender:Reply-To:Content-ID:
+ d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=p4hQ05/Ug37W1HDkIRxESilsvD5PeBDjK4JNqUubzq8=; b=QqUxgBVIAH0sDFlKVPex5N0xjO
- 3CwI3xEx4dKuEzrz3TUB01gKMbrz/oWADwqOBaiw90jJWXDNUAOJ4PqdoNq9L51m+l5mtCDP/xiM+
- WcTkVdn8Pi2EbTFw1VYJDUbZOf7k3Pa9gVkj6mMdolq5nXEmzwgk17/9xhLZIrn1s+xc=;
+ bh=2Ttq3F3B+AxQH8zzFVuAs1A4bxHsTJil0hGnbC3gnPM=; b=fYQDnY2QsboqzMBLPRaOABYC67
+ jt8t45wDqpNTkxnQz18CahTIdltxK09Wf8rbdghx/Tewmx8bCRU5v8H+e9bv+YpYHY0y8XXlLsBz/
+ v7hdbcchSnRYzKEkvKxkJPcvQ/9id4sTwrDsQ9Jk1F1FA5CBsPgi5SyWSB/CZKi0jgrA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Message-ID:
- Subject:Cc:From:To:Sender:Reply-To:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ h=Content-Type:To:Subject:Message-ID:Date:From:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
  References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=p4hQ05/Ug37W1HDkIRxESilsvD5PeBDjK4JNqUubzq8=; b=T
- LemRDqQVj/oESGW8q0QIcm5dvc9sPfmpMECe9oz2tb6w4I05EUnwiyZ4INFQ9CVakDOYJB8HsWN8H
- kG2kOfpi8hLYyP5R+exO61WgACBASTXkyi6h3nz7S//3F7noTnT5TlqLf/FdrI0Dyb4yy3jgum5y6
- P7pEGwWiqb1z2noI=;
-Received: from casper.infradead.org ([90.155.50.34])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1k9yto-00GXDa-I3
- for ibm-acpi-devel@lists.sourceforge.net; Sun, 23 Aug 2020 22:55:47 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:Content-Type:
- MIME-Version:Date:Message-ID:Subject:Cc:From:To:Sender:Reply-To:Content-ID:
- Content-Description:In-Reply-To:References;
- bh=p4hQ05/Ug37W1HDkIRxESilsvD5PeBDjK4JNqUubzq8=; b=aZDohJ1eEonSrHKxuzVX8l3AVL
- Q88wykXTy0+T0miG+OB1zizyPfvUItgvyy0EFvzfYJorDckZOPC2lmNDg/K4/Day71l3Eea6goRnn
- vk8ZZBX509E8DISxh6fsY66IatQzwMjuY6J1ipveKY2LxH5UPQ4AGm1ZSFQYpnkL7G7cF/L0uUrTk
- w03mOHUWc+L1Bg4lPyVVH57ySqGUXlYP5n7xWTEvkAVe5IpL03QdELlzlH2nKNFkz1RB5alzZ3Gfg
- ReoffXFMibMCzvaLlbymvE+kR9abV4BQqR7IYP87+onv30oyyBQFb0AOxXhhIOEzB8iZ5fvZwXUdd
- OO25U2vQ==;
-Received: from [2601:1c0:6280:3f0::19c2]
- by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
- id 1k9ytU-0007jb-Gz; Sun, 23 Aug 2020 22:55:20 +0000
-To: LKML <linux-kernel@vger.kernel.org>,
- Platform Driver <platform-driver-x86@vger.kernel.org>,
- Darren Hart <dvhart@infradead.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-From: Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <7b2ecef9-dfb7-808a-7c05-4e4f44b363c4@infradead.org>
-Date: Sun, 23 Aug 2020 15:55:16 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ List-Owner:List-Archive; bh=2Ttq3F3B+AxQH8zzFVuAs1A4bxHsTJil0hGnbC3gnPM=; b=j
+ azL5KPzVvjtzzjmsrOgNg11Pw2onqLx9hyXY5RDq/qxqYab0huJ5OCmTAnBVkUZjD1YABw+dmj8F1
+ w8rOWDlE8XVyF7fEzcUOZkAo3B3eZul3yzUawKNvNVnrwQ5UK0P8s1C0Bnq8b0YXfm4i4MqWMht2P
+ CKi1bpkM4mmEfh7c=;
+Received: from mail-lf1-f44.google.com ([209.85.167.44])
+ by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1kAA38-002PNy-HW
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 24 Aug 2020 10:50:03 +0000
+Received: by mail-lf1-f44.google.com with SMTP id 145so1345563lfi.8
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Mon, 24 Aug 2020 03:50:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+ h=mime-version:from:date:message-id:subject:to;
+ bh=2Ttq3F3B+AxQH8zzFVuAs1A4bxHsTJil0hGnbC3gnPM=;
+ b=lkEc/YPOKjQm2S8pBwU9QYgKU2lCepsyFXZEcJWFKnPySmaXTyr14bT59C1KYKzDHL
+ hrzITL95AVF/EgSL7r2eA+v3O71vpJHyD1ZFT0ZRESpKz249ayBtmW2TOW5bwq+HLf1A
+ tl/7/Q0zY3bkewf/6sNg72Npf+3c20w+BwkADTQFja+sxcRoCMRDnJUwVmFwCbZWl8km
+ 4TXiELORZigFqgqaq0v862TT5KXisV+5lcxav6IXXYdhgr7wYS8GZTc3DyDd2WwIx0zM
+ 2wibloOnFwzOwpktyeQ6bIUUD6BBd2rR3AytuqVW7iWJ8PLOFZZN00HzpAkyIx9InIBy
+ ccUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+ bh=2Ttq3F3B+AxQH8zzFVuAs1A4bxHsTJil0hGnbC3gnPM=;
+ b=KweCi2GfzRTjSXLCarmv1j6zrnjipil87afyr2eZDAIkxylknWTr3W00Q4uZKytBUN
+ o6MxOQHHkKgYNC9lBUS3yTKr/p0WcxiyIBwoB3w5O/khu86U+ZWdijch/1oOUZIUxLCz
+ ntdxLMUUuD+1wkf4X4QUmtDGMGH+sTQxsTwAnZrjdED6FFYgKQwOSw8Oc7gi14JkZee0
+ 3kORcosH65k6dNn45xGNC1A4iRdqLfON4aT5nEpQ1fCLUDv3fua2XeMFjnrCbuR0YCLI
+ ybJFRSPvH8Aug1MIHf4+xQKpxszPbTmb5rQnKrk7nUNC4roNb8FL/veVPEx+46f8dL3j
+ pHKg==
+X-Gm-Message-State: AOAM5329Jc255Li/oVmOqYNFFbFhTPjnGWLd/Gkm0SLLANfT2CauMdK1
+ hkBceefpJpinwlZkZjWQvZNNQmSsL6ZbfWVFDrFCr4dOGFlo
+X-Google-Smtp-Source: ABdhPJzp/LNGjKQUrBh1E/khPoVQwJJkt9ltLaZclgbR0ma/SHiiKtipvFo93NAujiwiuqBGxi/Dw6j13tAtJF0MaKc=
+X-Received: by 2002:ac2:44d4:: with SMTP id d20mr2328739lfm.137.1598266187907; 
+ Mon, 24 Aug 2020 03:49:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Language: en-US
-X-Spam-Score: -0.8 (/)
+From: =?UTF-8?B?UGF3ZcWCIFByenliecWCZWs=?= <remy44@gmail.com>
+Date: Mon, 24 Aug 2020 12:49:36 +0200
+Message-ID: <CAJr0LcjTHQ+6m=30wJyvjfM32tC5p4NUq6_-8zyZBz3ToC_LkA@mail.gmail.com>
+To: ibm-acpi-devel@lists.sourceforge.net
+X-Spam-Score: 1.1 (+)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
- See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: infradead.org]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ (remy44[at]gmail.com)
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.167.44 listed in wl.mailspike.net]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends in
+ digit (remy44[at]gmail.com)
+ 1.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.7 AWL AWL: Adjusted score from AWL reputation of From: address
-X-Headers-End: 1k9yto-00GXDa-I3
-Subject: [ibm-acpi-devel] [PATCH] Documentation: laptops: thinkpad-acpi: fix
- underline length build warning
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.167.44 listed in list.dnswl.org]
+X-Headers-End: 1kAA38-002PNy-HW
+Subject: [ibm-acpi-devel] System freeze - unhandled HKEY event 0x6031
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -91,54 +102,75 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- Sugumaran <slacshiminar@lenovo.com>, Jonathan Corbet <corbet@lwn.net>,
- Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
- ibm-acpi-devel@lists.sourceforge.net, Mark Pearson <markpearson@lenovo.com>,
- Nitin Joshi <njoshi1@lenovo.com>, Bastien Nocera <bnocera@redhat.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============1975081786556148492=="
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-From: Randy Dunlap <rdunlap@infradead.org>
+--===============1975081786556148492==
+Content-Type: multipart/alternative; boundary="00000000000063079705ad9d580b"
 
-Fix underline length build warning in thinkpad-acpi.rst documentation:
+--00000000000063079705ad9d580b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Documentation/admin-guide/laptops/thinkpad-acpi.rst:1437: WARNING: Title underline too short.
-DYTC Lapmode sensor
-------------------
+Hi all,
 
-Fixes: acf7f4a59114 ("platform/x86: thinkpad_acpi: lap or desk mode interface")
-Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-Cc: Nitin Joshi <njoshi1@lenovo.com>
-Cc: Sugumaran <slacshiminar@lenovo.com>
-Cc: Bastien Nocera <bnocera@redhat.com>
-Cc: Mark Pearson <markpearson@lenovo.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Darren Hart <dvhart@infradead.org>
-Cc: Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
-Cc: ibm-acpi-devel@lists.sourceforge.net
-Cc: platform-driver-x86@vger.kernel.org
----
- Documentation/admin-guide/laptops/thinkpad-acpi.rst |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reporting here as requested in /var/log/syslog
 
---- lnx-59-rc2.orig/Documentation/admin-guide/laptops/thinkpad-acpi.rst
-+++ lnx-59-rc2/Documentation/admin-guide/laptops/thinkpad-acpi.rst
-@@ -1434,7 +1434,7 @@ on the feature, restricting the viewing
- 
- 
- DYTC Lapmode sensor
--------------------
-+-------------------
- 
- sysfs: dytc_lapmode
- 
+```
+Aug 24 10:28:51 x1 kernel: [153517.254925] thinkpad_acpi: unhandled HKEY
+event 0x6031
+Aug 24 10:28:51 x1 kernel: [153517.254928] thinkpad_acpi: please report the
+conditions when this event happened to ibm-acpi-devel@lists.sourceforge.net
+```
+
+Conditions:
+* connected to external monitor via hdml port
+* no usb/c thunderbolt devices plugged in
+* x1 extreme rev 1
+* no super heavy workload at the moment of freeze (zoom confcall with video
+sharing)
+
+--=20
+pozdrawiam,
+Pawe=C5=82
+
+--00000000000063079705ad9d580b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi all,<br></div><div><br></div><div>Reporting here a=
+s requested in /var/log/syslog</div><div><br></div>```<div>Aug 24 10:28:51 =
+x1 kernel: [153517.254925] thinkpad_acpi: unhandled HKEY event 0x6031<br>Au=
+g 24 10:28:51 x1 kernel: [153517.254928] thinkpad_acpi: please report the c=
+onditions when this event happened to <a href=3D"mailto:ibm-acpi-devel@list=
+s.sourceforge.net">ibm-acpi-devel@lists.sourceforge.net</a></div><div>```<b=
+r clear=3D"all"><div><br></div><div>Conditions:</div><div>* connected to ex=
+ternal monitor via hdml=C2=A0port</div><div>* no usb/c thunderbolt devices =
+plugged in</div><div>* x1 extreme rev 1</div><div>* no super heavy workload=
+ at the moment of freeze (zoom confcall with video sharing)</div><div><br><=
+/div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gm=
+ail_signature">pozdrawiam,<br>Pawe=C5=82</div></div></div>
+
+--00000000000063079705ad9d580b--
 
 
+--===============1975081786556148492==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
+
+--===============1975081786556148492==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+
+--===============1975081786556148492==--
+
