@@ -2,97 +2,77 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35C50285618
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed,  7 Oct 2020 03:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E2272AB51F
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  9 Nov 2020 11:36:56 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1kPy14-0000pi-OS; Wed, 07 Oct 2020 01:13:14 +0000
+	id 1kc4X0-00029y-Kc; Mon, 09 Nov 2020 10:36:14 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dmitry.torokhov@gmail.com>) id 1kPy13-0000pT-7X
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 07 Oct 2020 01:13:13 +0000
+ (envelope-from <hdegoede@redhat.com>) id 1kc4Wy-00029K-H7
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 09 Nov 2020 10:36:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=mhoMukFtXUDnoxYBeSc1gCnHDJjh2RBWkCrpacxBvgc=; b=ilYW0TruOPvAtmWE0rr6eFvg+W
- aTpXudTiDX2UFFZDaC3o41YieyEa3SXjsdz5Q+aKZjEICEQfVr8CFKeRc25WS/IBb7zKZx0ioOXE6
- EH4iycOmHqt7Slcp9VxFqZfuz32BsX16CQNTV9TXk9F6y1jFgc839k8v91PzviVJYxGk=;
+ bh=mQ8rKr0Rvfx6JuyDLIVbfpiCXHsnp9cZwJC/Y27bV+E=; b=VC1HZGOv6ZgtH1KlrBhPMxnV+V
+ 8qSeOWA8kBsqfL20+LXtXRsrnhRiq4MAVZ76ABiPwIgDmWaBG/TBlEv1a62kBq3z9KJbebBYL/I6W
+ 99U3SIIyCvEHfg2eutfnCI0LYDlIZde53XXsfEt4NhL3uvk6rzes9UnWqxWlJFo56bPA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=mhoMukFtXUDnoxYBeSc1gCnHDJjh2RBWkCrpacxBvgc=; b=VnuwyP3CR806tJPLoyfEx/DJGg
- /fmS1MtTb0lIkE1b/hUvm79tT7e+AB7QNTBeQH5EybiS+cP1hxSzpSJ+3POn5EUpfnF7fdWW0IYDc
- ksEstEbEZQvg0eIZC//DI+/EBYE+efMswd2iMKYzzLSMEBbIU4oONx09jHfYVJmxCioM=;
-Received: from mail-pj1-f67.google.com ([209.85.216.67])
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=mQ8rKr0Rvfx6JuyDLIVbfpiCXHsnp9cZwJC/Y27bV+E=; b=m
+ ZzTQPMxcwQtz189wJP5R492zMMpkrn8rx3lL1BRmhv499FWP1Wx4heBz8TLXSuAwjCBPwhcbKE25z
+ FEG2/XBsU/CQR7dURONznfofGABEDmA86gtg3Y8t4ZpjEGP8o26FhTbozsSvG+Xh8f/kz2Y1AueAA
+ E7fzQW1xsK7VX5L8=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
  by sfi-mx-3.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1kPy0w-001bCC-Rg
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 07 Oct 2020 01:13:13 +0000
-Received: by mail-pj1-f67.google.com with SMTP id a17so221371pju.1
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Tue, 06 Oct 2020 18:13:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=date:from:to:cc:subject:message-id:references:mime-version
- :content-disposition:content-transfer-encoding:in-reply-to;
- bh=mhoMukFtXUDnoxYBeSc1gCnHDJjh2RBWkCrpacxBvgc=;
- b=BZ5McIJk7M9QpLpb5KoCQkdxJYiPrNQhgs5cl4vLLWytK5VF9kyh4DJe1g7PqgOdHJ
- vi9SNcnbS6RVeKxhRm1gfXYW/1MobIU3emLb+keannjof0F62HLir3wvH+3R+JnKfDDw
- hUuIq3r2W7hYuJwomu2PHIw9cHJh2bCarSSmPf2vcxlwhVYPy1B59pQCZh88VJfxM+SH
- P3U1OKhTrqq3QQBPtMpZx/3RzdSMWOBjkBQktmI99bmH+2SMTqoB4KKC16f0DxyVah5V
- LrrH+r9brZLGlfmZ2vd2w1S9l0EWtUIDgohzA1Ws4rcazlyeai7Bzg+4oBQf9+qgFD1f
- D10A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:date:from:to:cc:subject:message-id:references
- :mime-version:content-disposition:content-transfer-encoding
- :in-reply-to;
- bh=mhoMukFtXUDnoxYBeSc1gCnHDJjh2RBWkCrpacxBvgc=;
- b=mnH+zmqoGmaVkPzerGCRCcHc3E6kNCpOvmJFcDH9OGw6twwz1z/Kge6/CN9fdPk7WG
- BGUGUd4ELO5N/eIK1mSw3ArkmtM3cVm+AVN79N6LzkPGwWa3yARoUdGYOuBZSlgNrHW5
- rADLh3dwsQRWNyGuFCvxWUes5bsRvt3Cwbb/nMM4Wrn+Ix6w/jKc+c832PqesrAHPUPD
- tugMTFd3gZmmSuONtgGn8TVNiA+FENIOwzTEloa59dZgt+JNdemhuCun68aNG8ErBuoY
- pQFzyxF+wGFlW2QK/BX2JUZbdqm+1JHyQGLBTKPOK3wkMriYzer3iV8slAyAocVDRbe1
- 4KEQ==
-X-Gm-Message-State: AOAM530RxmBZ47jzn75ecHOkQL24nlxLzOvssaoBoIbf/k5gnSVLlE5x
- V0/35Xg8Rv4Nx/HcKCMSWWo=
-X-Google-Smtp-Source: ABdhPJy4dLisQACUERV0GxDAYvpdj82oBH4eI0zaGWCX8W7avrgYWVStQLex6A0apJQoB8lnZYPvuA==
-X-Received: by 2002:a17:90a:1a02:: with SMTP id 2mr708050pjk.201.1602033174099; 
- Tue, 06 Oct 2020 18:12:54 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
- by smtp.gmail.com with ESMTPSA id f17sm412371pgd.86.2020.10.06.18.12.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 06 Oct 2020 18:12:53 -0700 (PDT)
-Date: Tue, 6 Oct 2020 18:12:49 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Message-ID: <20201007011249.GS1009802@dtor-ws>
-References: <2336e15d-ff4b-bbb6-c701-dbf3aa110fcd@redhat.com>
- <20200608112211.12125-1-andrzej.p@collabora.com>
- <20200608112211.12125-8-andrzej.p@collabora.com>
- <20201005181014.GL1009802@dtor-ws>
- <ac4eeab7-8333-b96b-707b-eb2d6d0d8139@collabora.com>
- <20201007011102.GR1009802@dtor-ws>
+ (TLSv1.2:ECDHE-RSA-AES256-SHA384:256) (Exim 4.92.2)
+ id 1kc4Wp-005YNI-5c
+ for ibm-acpi-devel@lists.sourceforge.net; Mon, 09 Nov 2020 10:36:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1604918156;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=mQ8rKr0Rvfx6JuyDLIVbfpiCXHsnp9cZwJC/Y27bV+E=;
+ b=B31l5SjrDPKcNyWy5vQAkCFB6xgJdeG0Atv5ainH9b+PIrGAwjoQcvKgcp+32of4Bo+5x5
+ Z5vp22A6iF79Dym7K2CsEaWmWcDmnXM+1OrcnmmFFpGSYnUUctA23iXbmdfeoyTidpJBUt
+ zWu5CrhMVfCbwrPJr9iRHA7fO2msE4o=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-405-g8lsDroTOIGE2R_xBSp_eQ-1; Mon, 09 Nov 2020 05:35:54 -0500
+X-MC-Unique: g8lsDroTOIGE2R_xBSp_eQ-1
+Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.phx2.redhat.com
+ [10.5.11.14])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 20747802B73;
+ Mon,  9 Nov 2020 10:35:53 +0000 (UTC)
+Received: from x1.localdomain (ovpn-114-3.ams2.redhat.com [10.36.114.3])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 9C7F95D9DD;
+ Mon,  9 Nov 2020 10:35:51 +0000 (UTC)
+From: Hans de Goede <hdegoede@redhat.com>
+To: Mark Gross <mgross@linux.intel.com>,
+ Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
+Date: Mon,  9 Nov 2020 11:35:50 +0100
+Message-Id: <20201109103550.16265-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20201007011102.GR1009802@dtor-ws>
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.14
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (dmitry.torokhov[at]gmail.com)
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.216.67 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.216.67 listed in wl.mailspike.net]
+ trust [216.205.24.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [216.205.24.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -101,8 +81,10 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1kPy0w-001bCC-Rg
-Subject: Re: [ibm-acpi-devel] [PATCH v4 7/7] Input: Add "inhibited" property
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1kc4Wp-005YNI-5c
+Subject: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: Add BAT1 is
+ primary battery quirk for Thinkpad Yoga 11e 4th gen
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -115,104 +97,47 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: kernel@collabora.com, Nick Dyer <nick@shmanahar.org>,
- linux-iio@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- ibm-acpi-devel@lists.sourceforge.net, Laxman Dewangan <ldewangan@nvidia.com>,
- Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
- Peter Hutterer <peter.hutterer@redhat.com>, Fabio Estevam <festevam@gmail.com>,
- linux-samsung-soc@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>, linux-acpi@vger.kernel.org,
- Kukjin Kim <kgene@kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
- linux-input@vger.kernel.org, Len Brown <lenb@kernel.org>,
- Michael Hennerich <michael.hennerich@analog.com>, linux-pm@vger.kernel.org,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Sylvain Lemieux <slemieux.tyco@gmail.com>,
- Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
- Vladimir Zapolskiy <vz@mleia.com>, Hans de Goede <hdegoede@redhat.com>,
- Lars-Peter Clausen <lars@metafoo.de>, linux-tegra@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Barry Song <baohua@kernel.org>,
- Ferruh Yigit <fery@cypress.com>, Patrik Fimml <patrikf@chromium.org>,
- patches@opensource.cirrus.com, "Rafael J . Wysocki" <rjw@rjwysocki.net>,
- linux-kernel@vger.kernel.org, Thierry Reding <thierry.reding@gmail.com>,
- Sangwon Jee <jeesw@melfas.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Hartmut Knaack <knaack.h@gmx.de>, Shawn Guo <shawnguo@kernel.org>,
- Jonathan Cameron <jic23@kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Cc: Hans de Goede <hdegoede@redhat.com>, platform-driver-x86@vger.kernel.org,
+ Andy Shevchenko <andy@infradead.org>, ibm-acpi-devel@lists.sourceforge.net
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Tue, Oct 06, 2020 at 06:11:02PM -0700, Dmitry Torokhov wrote:
-> On Tue, Oct 06, 2020 at 03:04:28PM +0200, Andrzej Pietrasiewicz wrote:
-> > Hi Dmitry,
-> > =
+The Thinkpad Yoga 11e 4th gen with the N3450 / Celeron CPU only has
+one battery which is named BAT1 instead of the expected BAT0, add a
+quirk for this. This fixes not being able to set the charging tresholds
+on this model; and this alsoe fixes the following errors in dmesg:
 
-> > W dniu 05.10.2020 o=A020:10, Dmitry Torokhov pisze:
-> > > Hi Andrzej,
-> > > =
+ACPI: \_SB_.PCI0.LPCB.EC__.HKEY: BCTG evaluated but flagged as error
+thinkpad_acpi: Error probing battery 2
+battery: extension failed to load: ThinkPad Battery Extension
+battery: extension unregistered: ThinkPad Battery Extension
 
-> > > On Mon, Jun 08, 2020 at 01:22:11PM +0200, Andrzej Pietrasiewicz wrote:
-> > > > @@ -284,8 +284,11 @@ static int input_get_disposition(struct input_=
-dev *dev,
-> > > >   	case EV_KEY:
-> > > >   		if (is_event_supported(code, dev->keybit, KEY_MAX)) {
-> > > > -			/* auto-repeat bypasses state updates */
-> > > > -			if (value =3D=3D 2) {
-> > > > +			/*
-> > > > +			 * auto-repeat bypasses state updates but repeat
-> > > > +			 * events are ignored if the key is not pressed
-> > > > +			 */
-> > > > +			if (value =3D=3D 2 && test_bit(code, dev->key)) {
-> > > >   				disposition =3D INPUT_PASS_TO_HANDLERS;
-> > > >   				break;
-> > > >   			}
-> > > =
+Note that the added quirk is for the "R0K" BIOS versions which are
+used on the Thinkpad Yoga 11e 4th gen's with a Celeron CPU, there
+is a separate "R0L" BIOS for the i3/i5 based versions. This may also
+need the same quirk, but if that really is necessary is unknown.
 
-> > > Is this chunk really part of inhibit support? I'd think we cancel
-> > > autorepeat timer when we are releasing a key, no?
-> > > =
+Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+ drivers/platform/x86/thinkpad_acpi.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-> > =
+diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+index 08d5bb3104f9..cabf450fd7d3 100644
+--- a/drivers/platform/x86/thinkpad_acpi.c
++++ b/drivers/platform/x86/thinkpad_acpi.c
+@@ -9726,6 +9726,7 @@ static const struct tpacpi_quirk battery_quirk_table[] __initconst = {
+ 	TPACPI_Q_LNV3('R', '0', 'B', true), /* Thinkpad 11e gen 3 */
+ 	TPACPI_Q_LNV3('R', '0', 'C', true), /* Thinkpad 13 */
+ 	TPACPI_Q_LNV3('R', '0', 'J', true), /* Thinkpad 13 gen 2 */
++	TPACPI_Q_LNV3('R', '0', 'K', true), /* Thinkpad 11e gen 4 celeron BIOS */
+ };
+ 
+ static int __init tpacpi_battery_init(struct ibm_init_struct *ibm)
+-- 
+2.28.0
 
-> > When I look at it now it seems to me the chunk might be redundant.
-> > But let me explain what I had in mind when adding it.
-> > =
-
-> > It is a matter of what we do with input events generated while a
-> > device is inhibited. If ->open()/->close() are not provided by the
-> > driver then inhibiting amounts to merely ignoring input events from
-> > a device while it remains active. What else can you do if the driver
-> > does not provide a method to prepare the device for generating events/
-> > to stop generating events?
-> > =
-
-> > In this special case a user might trigger a repeated event while the
-> > device is inhibited, then the user keeps holding the key down and the
-> > device is uninhibited. Do we pass anything to handlers then?
-> > =
-
-> > In my opinion we should not. Such an event is "illegal" in a sense that=
- it
-> > was generated at a time when nobody wanted any events from the device.
-> > Hence the test to let only those auto-repeat events through for which
-> > a key is actually pressed.
-> > =
-
-> > However, what I see now is that if a device is inhibited, no key
-> > will ever reach neither the "1" nor "2" state because of the "if"
-> > in the very beginning of input_handle_event().
-> =
-
-> OK, then let's drop it for now. We can revisit if we see that a problem.
-
-And by that I mean that I will drop it myself, no need to resend. I will
-be applying this shortly.
-
-Thanks.
-
--- =
-
-Dmitry
 
 
 _______________________________________________
