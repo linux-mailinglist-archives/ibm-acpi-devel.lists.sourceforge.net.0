@@ -2,87 +2,81 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659732B681E
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 17 Nov 2020 15:59:42 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED95C2BC0CF
+	for <lists+ibm-acpi-devel@lfdr.de>; Sat, 21 Nov 2020 18:10:56 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1kf2Rx-0000Yp-IM; Tue, 17 Nov 2020 14:59:17 +0000
+	id 1kgWP7-0000pj-Mk; Sat, 21 Nov 2020 17:10:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <tom.billiet@gmail.com>) id 1kf2Rv-0000U5-BH
- for ibm-acpi-devel@lists.sourceforge.net; Tue, 17 Nov 2020 14:59:15 +0000
+ (envelope-from <joe@perches.com>)
+ id 1kgWP6-0000pU-GG; Sat, 21 Nov 2020 17:10:28 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Content-Type
+ :References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iwJNqaIoX7NGJhDADs7Dsl5Rm6jugxtGMrEGc6MvRtU=; b=OYDi1M3xd15PbWhKbO7SHZl2le
- Ik7h8TRUzu62e+rQ4upjnVwOjsGnFnGgvqhzY9DE5z34AFZ5hlC+IR+MD8/4P9RqRlcrgzSZWxuHs
- eu80zOTuP63N959Fw1pCndNLViDfLxnn60kWuQmQBCdzgEXkk38tABJGfPwGRJbOq39U=;
+ bh=j1pFkX66fFsn8IIQc2vdz+yDmIVMLcw8/Oh/TOVKpOw=; b=GQQl9/VUj+VPvr7Wo+78yiHazP
+ Ehmtt0PxEU0LMIZdsdZFjRGd3t7jWl1oMk2FvaCHVdIBxzwwbRHbzmxC8u4VDKnfeshg6mX0REGB1
+ vbs18TqIfi3IhFe3QiLAAvVKwPF8Puigr3niG6Yp5Kn6cwTgLJGlTcGzjIhuHfRgWqNE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:To:Subject:Message-ID:Date:From:MIME-Version:Sender:Reply-To
- :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=iwJNqaIoX7NGJhDADs7Dsl5Rm6jugxtGMrEGc6MvRtU=; b=h
- fh1y8tUOwHIZYs7kH0JGbmXeLqMJ9O6N8L9uuWixzAWvdpbTrJyh/PDF4pAmF/raCBviVVgXTw2q9
- a3XhzIAGcnPLd+NduqW7e3Wfer0QhP96/WkQtPwQ7xwDKtUSexzD1F9bEI9V44bza63lXpbj4uyu7
- IIKz2hlcjPxPQaSs=;
-Received: from mail-ej1-f47.google.com ([209.85.218.47])
+ h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:
+ In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=j1pFkX66fFsn8IIQc2vdz+yDmIVMLcw8/Oh/TOVKpOw=; b=A6ovMkCtkLnbH0FlSlwKrSGP+O
+ +wTfuquPQRQay5gl7YbM8GlkNnvUggst7Mv5gAx0/NZImgpOv0bLAJ0jYEUtDPZa5jkx8m8ToSgpM
+ ev+Z35zpDmkTMkejq+TML1XmpBiGGQTXB6BoljcSHWnbAcUtBNVMw9S7S0QHIxTfLXrI=;
+Received: from smtprelay0081.hostedemail.com ([216.40.44.81]
+ helo=smtprelay.hostedemail.com)
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1kf2Lt-00AWi1-6F
- for ibm-acpi-devel@lists.sourceforge.net; Tue, 17 Nov 2020 14:53:16 +0000
-Received: by mail-ej1-f47.google.com with SMTP id gj5so2321468ejb.8
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Tue, 17 Nov 2020 06:53:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
- h=mime-version:from:date:message-id:subject:to;
- bh=iwJNqaIoX7NGJhDADs7Dsl5Rm6jugxtGMrEGc6MvRtU=;
- b=Yx+LXxvR4w29wUy5yNKLuG9HunK66DV7ZuwczgeyOm64PMTXGMqwsBEOwDNQwrZwCW
- yaHh/0ian53Pfs+Vb/mbgF1rpJdtjrjiTFNj1P9wvh+l3sF0vmt4RGJRDZOtB3K7JIKP
- q5KZE141QKhpYUfZTSmMSr3VSD1r1ZO5kDxz7WDLfKic13oyv4Hqul1ICwZeKQAsZmi+
- 6vzrudm7Ze8eGTHiXSixeQsoGgk39UEDzt9Xh2oIBwDsrVRKzoxnKgzqpFWgtMl2xy4k
- wD3VHkfQdjjXXUwa6ZmB6bhFIPK8hFqUFiYmU1GASlGofFuQ3g1MZfui49u8j2gP8+Ct
- fi1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20161025;
- h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
- bh=iwJNqaIoX7NGJhDADs7Dsl5Rm6jugxtGMrEGc6MvRtU=;
- b=srtnkZ0Eqr5x/z190i9K2DsE/MQSPZ90oNBdw+xQgX5aoHd7UGNY3dguipQAB2PG8J
- zcnBFvWP6LohJfjgkqFf2y+3stcqW71oo2DiqO/jEMalSz6H14j8q0ohjkzX0ROdrGCK
- 7//kdAAA11YHBwQUyD1Rz07bhTD0SIN9s/aFbqx3ebdG+dATAgXXGRK/H0Vt64kT4OL9
- hdG3HwK4/W/9vyR+zxGsP8P8t3aglTvR/YURK2yr4t7pZpRRf6thcASs/9vEoUgCytSX
- kU6dSKgzMxr2EKXr0fuWJMazEYBxRD8DGmQtui36EzfR0aQBQpb3RkFKY2XnV3VeABUO
- 7CSg==
-X-Gm-Message-State: AOAM53115Oy3K1+F5h7OyA4XfqTTpln/HqngrGptQdMzicSfSfCQBbsi
- WLJff9SqJsied5lWhtW7a2RHo0fIG7OY+/5PxKjGl6pUxgdyaQ==
-X-Google-Smtp-Source: ABdhPJzg8EwrUWFFTXzBBgP28q3bHNfIAo3wNhW9jTFT2Qf3WKBcGkklp/bQ2U148X7MPyZ8k21xAg/FNHlgBQI8FAk=
-X-Received: by 2002:a17:906:1412:: with SMTP id
- p18mr19694428ejc.480.1605624774339; 
- Tue, 17 Nov 2020 06:52:54 -0800 (PST)
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
+ id 1kgWOz-0067YO-Rd; Sat, 21 Nov 2020 17:10:28 +0000
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+ [216.40.38.60])
+ by smtprelay03.hostedemail.com (Postfix) with ESMTP id C09E2837F24A;
+ Sat, 21 Nov 2020 17:10:14 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50, 0, 0, , d41d8cd98f00b204, joe@perches.com, ,
+ RULES_HIT:41:355:379:599:800:967:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1542:1593:1594:1711:1730:1747:1777:1792:1801:2198:2199:2393:2525:2560:2563:2682:2685:2828:2859:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3354:3622:3865:3866:3867:3868:3870:3871:3872:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4043:4321:4605:5007:6117:6119:6742:6743:7809:7875:8660:9010:9025:10004:10400:10848:11232:11473:11658:11783:11914:12043:12295:12297:12555:12663:12679:12740:12895:12986:13148:13230:13439:13845:13894:14181:14659:14721:21080:21324:21451:21627:21811:21939:21987:30012:30054:30070:30091,
+ 0, RBL:none, CacheIP:none, Bayesian:0.5, 0.5, 0.5, Netcheck:none,
+ DomainCache:0, MSF:not bulk, SPF:, MSBL:0, DNSBL:none, Custom_rules:0:0:0,
+ LFtime:2, LUA_SUMMARY:none
+X-HE-Tag: crook72_110ffeb27355
+X-Filterd-Recvd-Size: 4090
+Received: from XPS-9350.home (unknown [47.151.128.180])
+ (Authenticated sender: joe@perches.com)
+ by omf05.hostedemail.com (Postfix) with ESMTPA;
+ Sat, 21 Nov 2020 17:10:09 +0000 (UTC)
+Message-ID: <2105f0c05e9eae8bee8e17dcc5314474b3c0bc73.camel@perches.com>
+From: Joe Perches <joe@perches.com>
+To: trix@redhat.com, clang-built-linux@googlegroups.com
+Date: Sat, 21 Nov 2020 09:10:08 -0800
+In-Reply-To: <20201121165058.1644182-1-trix@redhat.com>
+References: <20201121165058.1644182-1-trix@redhat.com>
+User-Agent: Evolution 3.38.1-1 
 MIME-Version: 1.0
-From: Tom Billiet <tom.billiet@gmail.com>
-Date: Tue, 17 Nov 2020 15:52:41 +0100
-Message-ID: <CACPDT=QiyGr00moJy-+dHX-ZB9uabTD3dAXpUcLEpKWgyhLFoA@mail.gmail.com>
-To: ibm-acpi-devel@lists.sourceforge.net
 X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- (tom.billiet[at]gmail.com)
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: run-clang-tools.py]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.218.47 listed in list.dnswl.org]
- 0.0 DKIM_ADSP_CUSTOM_MED   No valid author signature, adsp_override is
- CUSTOM_MED
+ trust [216.40.44.81 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [216.40.44.81 listed in wl.mailspike.net]
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
-X-Headers-End: 1kf2Lt-00AWi1-6F
-Subject: [ibm-acpi-devel] unhandled HKEY event 0x6031
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1kgWOz-0067YO-Rd
+Subject: Re: [ibm-acpi-devel] [RFC] MAINTAINERS tag for cleanup robot
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -95,100 +89,103 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============4847424304841602004=="
+Cc: linux-hyperv@vger.kernel.org, kvm@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ platform-driver-x86@vger.kernel.org, ibm-acpi-devel@lists.sourceforge.net,
+ keyrings@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-scsi@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ cluster-devel@redhat.com, linux-acpi@vger.kernel.org,
+ tboot-devel@lists.sourceforge.net, coreteam@netfilter.org,
+ xen-devel@lists.xenproject.org, MPT-FusionLinux.pdl@broadcom.com,
+ linux-media@vger.kernel.org, alsa-devel@alsa-project.org,
+ intel-gfx@lists.freedesktop.org, ecryptfs@vger.kernel.org,
+ linux-omap@vger.kernel.org, devel@acpica.org, linux-nfs@vger.kernel.org,
+ netdev@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, netfilter-devel@vger.kernel.org,
+ linux-crypto@vger.kernel.org, patches@opensource.cirrus.com,
+ linux-fsdevel@vger.kernel.org, bpf@vger.kernel.org
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
---===============4847424304841602004==
-Content-Type: multipart/alternative; boundary="000000000000512feb05b44ea640"
+On Sat, 2020-11-21 at 08:50 -0800, trix@redhat.com wrote:
+> A difficult part of automating commits is composing the subsystem
+> preamble in the commit log.  For the ongoing effort of a fixer producing
+> one or two fixes a release the use of 'treewide:' does not seem appropria=
+te.
+> =
 
---000000000000512feb05b44ea640
-Content-Type: text/plain; charset="UTF-8"
+> It would be better if the normal prefix was used.  Unfortunately normal is
+> not consistent across the tree.
+> =
 
-Hi,
+> So I am looking for comments for adding a new tag to the MAINTAINERS file
+> =
 
-I found the following traces in my dmesg, so here I am:
-[133629.989645] thinkpad_acpi: unhandled HKEY event 0x6031
-[133629.989648] thinkpad_acpi: please report the conditions when this event
-happened to ibm-acpi-devel@lists.sourceforge.net
+> 	D: Commit subsystem prefix
+> =
 
-So what I think happens:
-I've a lenovo thinkpad P1 with an Nvidia Quadro T1000. This is connected to
-a Lenovo USB-C docking station, which has 2 external monitors connected via
-displayport. (the laptop has thunderbolt 3 support)
-A week or 2 ago, I updated the firmware of the docking station to the
-latest version, and since then I've random disconnects of my monitors quite
-often (say about 5 times a day). I can't find any real errors, this is the
-only error that seems to happen.
+> ex/ for FPGA DFL DRIVERS
+> =
 
-more in detail:
-* I'm running ubuntu 20.04, updated and with nvidia drivers.
-* Only 1 of the 2 external screens disconnects, the other keeps working.
-It's not always the same.
-* It actually not really disconnects, but the screen goes into standby
-mode. In nvidia-settings I still see the screen as active. But the only way
-to get it to work again, is by reconnecting the dock.
-* I've also had a couple of times where it goes into stand-by for a couple
-of seconds and then recovers automatically.
-* I have another Lenovo laptop (E590 with Radeon graphics). I don't
-experience any disconnects there. This laptop has no thunderbolt support.
+> 	D: fpga: dfl:
 
-So what do you think, is this something that could be related? I'm more
-than happy to provide more logs/details if needed.
+I'm all for it.  Good luck with the effort.  It's not completely trivial.
 
-Best regards,
-Tom
+From a decade ago:
 
---000000000000512feb05b44ea640
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+https://lore.kernel.org/lkml/1289919077.28741.50.camel@Joe-Laptop/
 
-<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I found the following tr=
-aces in my dmesg, so here I am:</div><div>[133629.989645] thinkpad_acpi: un=
-handled HKEY event 0x6031<br>[133629.989648] thinkpad_acpi: please report t=
-he conditions when this event happened to <a href=3D"mailto:ibm-acpi-devel@=
-lists.sourceforge.net">ibm-acpi-devel@lists.sourceforge.net</a></div><div><=
-br></div><div>So what I think happens:</div><div>I&#39;ve a lenovo thinkpad=
- P1 with an Nvidia Quadro T1000. This is connected to a Lenovo USB-C dockin=
-g station, which has 2 external monitors connected via displayport. (the la=
-ptop has thunderbolt 3 support)<br></div><div>A week or 2 ago, I updated th=
-e firmware of the docking station to the latest version, and since then I&#=
-39;ve random disconnects of my monitors quite often (say about 5 times a da=
-y). I can&#39;t find any real errors, this is the only error that seems to =
-happen.</div><div><br></div><div>more in detail:</div><div>* I&#39;m runnin=
-g ubuntu 20.04, updated and with nvidia drivers.<br></div><div>* Only 1 of =
-the 2 external screens disconnects, the other keeps working. It&#39;s not a=
-lways the same.</div><div>* It actually not really disconnects, but the scr=
-een goes into standby mode. In nvidia-settings I still see the screen as ac=
-tive. But the only way to get it to work again, is by reconnecting the dock=
-.</div><div>* I&#39;ve also had a couple of times where it goes into stand-=
-by for a couple of seconds and then recovers automatically.</div><div>* I h=
-ave another Lenovo laptop (E590 with Radeon graphics). I don&#39;t experien=
-ce any disconnects there. This laptop has no thunderbolt support.</div><div=
-><br></div><div>So what do you think, is this something that could be relat=
-ed? I&#39;m more than happy to provide more logs/details if needed.</div><d=
-iv><br></div><div>Best regards,</div><div>Tom</div><div><br></div><div><br>=
-</div></div>
+(and that thread started with extra semicolon patches too)
 
---000000000000512feb05b44ea640--
+> Continuing with cleaning up clang's -Wextra-semi-stmt
 
+> diff --git a/Makefile b/Makefile
+[]
+> @@ -1567,20 +1567,21 @@ help:
+> =A0	 echo  ''
+> =A0	@echo  'Static analysers:'
+> =A0	@echo  '  checkstack      - Generate a list of stack hogs'
+> =A0	@echo  '  versioncheck    - Sanity check on version.h usage'
+> =A0	@echo  '  includecheck    - Check for duplicate included header files'
+> =A0	@echo  '  export_report   - List the usages of all exported symbols'
+> =A0	@echo  '  headerdep       - Detect inclusion cycles in headers'
+> =A0	@echo  '  coccicheck      - Check with Coccinelle'
+> =A0	@echo  '  clang-analyzer  - Check with clang static analyzer'
+> =A0	@echo  '  clang-tidy      - Check with clang-tidy'
+> +	@echo  '  clang-tidy-fix  - Check and fix with clang-tidy'
 
---===============4847424304841602004==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+A pity the ordering of the code below isn't the same as the above.
+
+> -PHONY +=3D clang-tidy clang-analyzer
+> +PHONY +=3D clang-tidy-fix clang-tidy clang-analyzer
+[]
+> -clang-tidy clang-analyzer: $(extmod-prefix)compile_commands.json
+> +clang-tidy-fix clang-tidy clang-analyzer: $(extmod-prefix)compile_comman=
+ds.json
+> =A0	$(call cmd,clang_tools)
+> =A0else
+> -clang-tidy clang-analyzer:
+> +clang-tidy-fix clang-tidy clang-analyzer:
+
+[]
+
+> diff --git a/scripts/clang-tools/run-clang-tools.py b/scripts/clang-tools=
+/run-clang-tools.py
+[]
+> @@ -22,43 +22,57 @@ def parse_arguments():
+[]
+> =A0=A0=A0=A0=A0parser.add_argument("type",
+> -                        choices=3D["clang-tidy", "clang-analyzer"],
+> +                        choices=3D["clang-tidy-fix", "clang-tidy", "clan=
+g-analyzer"],
+
+etc...
 
 
---===============4847424304841602004==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
-
---===============4847424304841602004==--
-
