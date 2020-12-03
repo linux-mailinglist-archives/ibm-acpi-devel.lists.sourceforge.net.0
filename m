@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C6C72CCF28
+	by mail.lfdr.de (Postfix) with ESMTPS id 696932CCF29
 	for <lists+ibm-acpi-devel@lfdr.de>; Thu,  3 Dec 2020 07:27:23 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1kki4y-0003T9-Eb; Thu, 03 Dec 2020 06:27:00 +0000
+	id 1kki4x-0001sA-9h; Thu, 03 Dec 2020 06:26:59 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <dmitry.torokhov@gmail.com>) id 1kki4M-0003RX-Dv
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 03 Dec 2020 06:26:22 +0000
+ (envelope-from <dmitry.torokhov@gmail.com>) id 1kki4P-0001qv-Gb
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 03 Dec 2020 06:26:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=a5Hleron+HNO6OSGaVm7+jn0hTolWYgraVmhaIHqv7U=; b=ZLTTKWTY33WFyKVpY+i1yLXfj/
- ojQ0ap11VS5zAWwzdDguDTzBqyuuHaHV1NDuxsJj+5fJ2dyD1tgPgyfgIDt11HtpqjYs7YLMIiz9E
- 8Q0acSnoHMInN993uimVBOuh1U6Hr5kpslnxtM6JfoNtTV2WYcNs3Mj4CnEZ2BQ3cTvI=;
+ bh=PMMryq/f/K4KW/tBzqVTPSeUJtb9pzGWFktSlRDSCWA=; b=RapIPcc5tJw9CeAHrUOgcZgAQB
+ ++HY2qWR5+s7FjR5RgulpPTcxZLPuP8nEWv8ym2vuyOhFSgh27Ve7Vhq7B9LiEf7ruO4cq72TCpTq
+ rC1XDtvuJmiYWLM2gnqrX3LhRkf9Go+hAkzmQfoR2bkVrqf8cse8ZX4Q2qFAPL+h9ccw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -29,63 +29,66 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=a5Hleron+HNO6OSGaVm7+jn0hTolWYgraVmhaIHqv7U=; b=ZdeLENVXWeHM+dYo0a3sx9TggP
- bBnOGfDvazeVzAYKbHdNY3WMk9+UBpRjIq4Vg4sIZ/wlTz/cP4tR3ygomhYMjKGpZyZ/bi554IR+C
- 9I07w7MkP16+KcgVrKxrOq7QXPVPlgryMKdOblApAHDRLGPQeFKzfj8sjnsU0AVI0ea4=;
-Received: from mail-pf1-f194.google.com ([209.85.210.194])
- by sfi-mx-3.v28.lw.sourceforge.com with esmtps
+ bh=PMMryq/f/K4KW/tBzqVTPSeUJtb9pzGWFktSlRDSCWA=; b=BFCtNMQp0Za/nitN4wpzx4dzdH
+ +bcdC6nJlnUEx+ZlWn51qpF+UgEbE3qUcfEcJ8Dmwj1qPjVf598hRDO5+HGfo2wYPHGCOnh+cUaF0
+ cuFw86NtcbsRNaTM7Md5cgJz+6El+lJ9BNITXKynq/dJN3X4CbsbZnxtx5U9RByFnMy8=;
+Received: from mail-pf1-f193.google.com ([209.85.210.193])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
- id 1kki46-00HCo8-8m
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 03 Dec 2020 06:26:22 +0000
-Received: by mail-pf1-f194.google.com with SMTP id x24so617572pfn.6
+ id 1kki4O-00ClbM-5W
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 03 Dec 2020 06:26:25 +0000
+Received: by mail-pf1-f193.google.com with SMTP id w187so623341pfd.5
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Wed, 02 Dec 2020 22:26:06 -0800 (PST)
+ Wed, 02 Dec 2020 22:26:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
  h=date:from:to:cc:subject:message-id:references:mime-version
  :content-disposition:in-reply-to;
- bh=a5Hleron+HNO6OSGaVm7+jn0hTolWYgraVmhaIHqv7U=;
- b=U+Y6zDIhpIkQd0/XkPnsWOx3ty2znoP8t4ISlhFWptNuMbr5LJSUMsW+RTtd0M4x9K
- zkXL5+4LAq4x//bXrJWzpP34A+rpYm0BEV+gvvB+NvDg8g3Ppup7PuLwiRepugDodQb4
- IeDv1J0rX0QSTAaUbFsT4RMfXp6C/1AdjuAe9+WX4ydwHoVVaNSpjnpDGw8TqKH/qBxj
- SFELS12okZcCLgFwMxLX1CdG+AnoH5VLLr3bNMVPRRk2vl+KM5WV2pKelrDbtRPajdey
- ebvLpD8CW2hjzgstxv63BBMYAENN85quML6Mb//RxXN/Yp/6f77xIF0cuNxsS15D55Ap
- 2BjA==
+ bh=PMMryq/f/K4KW/tBzqVTPSeUJtb9pzGWFktSlRDSCWA=;
+ b=oXdYHFTJ8vwEnPGWOJoKQDM30cRXcVwx5uzWnVG3TQrdW+uYYF6Yk4N/MpZMBPzcLm
+ Jkoavh7SVx9CPmeQGginGPwGkOkUQ0+CbjyxHBAx2+08eOot+8EXZv6kEdK2RniSmaRx
+ SAat5cFzXCr8iHy7fu3Ti1B1y6n3ye1V46e0LZ42Okv3XJgCNAtD+aBIN9gj4iwG5KYb
+ sO1O5w1Uxh0h6abERgKj8dI9l21Kscxte0L9k0I091lDfJZ27iUvvl1hP8w+DgYCCwmf
+ 68qs2KZq/caA8VcAORV90sGMv7HybPXKFEV2miY9MqAFxOjfjUIJkC2gTjsFfYV65beX
+ 6C/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20161025;
  h=x-gm-message-state:date:from:to:cc:subject:message-id:references
  :mime-version:content-disposition:in-reply-to;
- bh=a5Hleron+HNO6OSGaVm7+jn0hTolWYgraVmhaIHqv7U=;
- b=B2Lh2t69I6zVInftpQZ5z9TCGJzlIyQZK6uuBSKY6ZX63tVeU9GOnHGXAu1yuVr8M0
- gg1u3JQuqWtdyDCiArSFmXLb0Yuer2Z9r2HWS18rmTIZDrTpxo21bv9OuofMqOprMoCy
- FIwPev2+BtgFFUBdMr9aMFeyS+6pzZ2G4oMRa5lB20d2fNf8p2D/XcmClsQtO1wzbCyC
- 2sUK7QyBMupQdXved4ogepUAqII9XgRXmfWDpXHHB36RudlrHSC143aAHsTIWMckZLBJ
- HhFAlOjoV6sNgHdjxsVZHDL4klEcsIwLQVp8DiI1zgmmmrTjctgX7XccaOLqBHtbUYGz
- XiKg==
-X-Gm-Message-State: AOAM532nQ1Lc0NqiemmzUu1iyRP5yLLmO9giPHomOaxE4yrfrXu0BQ/R
- 6JYjI05q9U5rg/zdiItoypw=
-X-Google-Smtp-Source: ABdhPJx+P2i1MS4WKP5k78TX7vozpZ6k242noGJ71q6yL4YO0XpxjV8ai5M/byvI+Lbmw/bWUNXyTQ==
-X-Received: by 2002:a65:44c2:: with SMTP id g2mr1824908pgs.256.1606976760622; 
- Wed, 02 Dec 2020 22:26:00 -0800 (PST)
+ bh=PMMryq/f/K4KW/tBzqVTPSeUJtb9pzGWFktSlRDSCWA=;
+ b=gaOgmJqDqAlN+AkikB6q3uiVilwvG+AMlr2r6yOnj5cGtXJgdIBPulQVXH3lbU4Dq6
+ /q1qZ4xzGeMP9se1AsLnf2+b0N2b+agMup4Dj3bHOhDPK0hy5j6Dpd/cxmMW6qr7WkLE
+ z/U8TwE1jmEeuLylLpD0weRaah2K9t1+KFSLCo3mZc9Al9r6uygPvD4kiaXWKiTDRg5C
+ dI4bLKBjMdnrVZxpfbH8y8+JdfIk/c3SI1FAk3t9pRI0EmI5BNAotXTWF/fu6FgayqWZ
+ aJ1g8reQmNAmjI6KGlvuOiaeXVbPh8ZSIszP7oYfOhd/j3knYuxhUP4ho2SpygOi3W2o
+ mHdg==
+X-Gm-Message-State: AOAM531y4+jtaOZr2zI7ACbDMEX/P2tQrXs/5bwpd9KxFxs7bdleLxQs
+ xmYoI8VlVvDS3VnQtl2MMig=
+X-Google-Smtp-Source: ABdhPJyzTeUPZ9CQHUWQEdr+2Ce0lCrtr+dGRn8864LCovKwqGAkby+KWmIsQT/jM0AKGjMpw5P8yw==
+X-Received: by 2002:a62:15d8:0:b029:198:30d:b49d with SMTP id
+ 207-20020a6215d80000b0290198030db49dmr1732124pfv.5.1606976771494; 
+ Wed, 02 Dec 2020 22:26:11 -0800 (PST)
 Received: from google.com ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
- by smtp.gmail.com with ESMTPSA id 6sm495218pfb.22.2020.12.02.22.25.57
+ by smtp.gmail.com with ESMTPSA id q20sm86111pgb.6.2020.12.02.22.26.08
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 02 Dec 2020 22:25:59 -0800 (PST)
-Date: Wed, 2 Dec 2020 22:25:55 -0800
+ Wed, 02 Dec 2020 22:26:10 -0800 (PST)
+Date: Wed, 2 Dec 2020 22:26:07 -0800
 From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 To: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Message-ID: <X8iE81mbK6NVhd0e@google.com>
+Message-ID: <X8iE/xVPEWO2HRuB@google.com>
 References: <2336e15d-ff4b-bbb6-c701-dbf3aa110fcd@redhat.com>
  <20200608112211.12125-1-andrzej.p@collabora.com>
- <20200608112211.12125-2-andrzej.p@collabora.com>
+ <20200608112211.12125-3-andrzej.p@collabora.com>
 MIME-Version: 1.0
 Content-Disposition: inline
-In-Reply-To: <20200608112211.12125-2-andrzej.p@collabora.com>
+In-Reply-To: <20200608112211.12125-3-andrzej.p@collabora.com>
 X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 FSL_HELO_FAKE          No description available.
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
  (dmitry.torokhov[at]gmail.com)
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [209.85.210.193 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -93,13 +96,11 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [209.85.210.194 listed in list.dnswl.org]
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.210.194 listed in wl.mailspike.net]
+ [209.85.210.193 listed in wl.mailspike.net]
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1kki46-00HCo8-8m
-Subject: Re: [ibm-acpi-devel] [PATCH v4 1/7] Input: add
+X-Headers-End: 1kki4O-00ClbM-5W
+Subject: Re: [ibm-acpi-devel] [PATCH v4 2/7] Input: use
  input_device_enabled()
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -139,10 +140,8 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Mon, Jun 08, 2020 at 01:22:05PM +0200, Andrzej Pietrasiewicz wrote:
-> A helper function for drivers to decide if the device is used or not.
-> A lockdep check is introduced as inspecting ->users should be done under
-> input device's mutex.
+On Mon, Jun 08, 2020 at 01:22:06PM +0200, Andrzej Pietrasiewicz wrote:
+> Use the newly added helper in relevant input drivers.
 > 
 > Signed-off-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
 
