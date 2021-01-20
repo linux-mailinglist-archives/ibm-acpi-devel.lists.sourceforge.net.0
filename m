@@ -2,62 +2,82 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F3FF2FA8F9
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 18 Jan 2021 19:37:50 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
-	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1l1ZOx-0002NB-Uh; Mon, 18 Jan 2021 18:37:19 +0000
-Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <a-kobel@a-kobel.de>) id 1l1ZOp-0002Mt-GJ
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 18 Jan 2021 18:37:11 +0000
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F712FD5C4
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 20 Jan 2021 17:36:18 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:References:To:From:Subject:Sender:Reply-To:Cc:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=2FSbTEIFI6j0WvVDQ92yVfO+Vqr2gsCOJu4rJUp73Mg=; b=gcsGbWm85QuIevZdU0LKLBlBl
- /t9iSw9P3MgiyBoZrYGOK1X+C+YIjEUJ/7xL1+BRhy5PIlAnbKmty6xS5FJF+hUm9qi56ziP0UUMT
- T/yFuiKuUo5O67Ye82bidCLUMUQHzGU0lfTps2rY7o/raR75+ejOAHmrs/EH/GwUccfto=;
+	d=lists.sourceforge.net; s=beta; h=Content-Type:Content-Transfer-Encoding:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:MIME-Version:Date:Message-ID:To:Sender:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=nmAu2JUFs135NkI3glksi/sIxpwKlIvahBlCyYe3bCs=; b=MdPUKYp0wLFt6StliYE6dJkgiZ
+	/cZXWVSfis3qtYd8bLgaH7AE4vIcxLKralemes5zAcZF6WDyfjSm1QxwU2xD3ke00vnXOgGs6SUy9
+	LG3txbovhEutYd3oCmHTtCrCHFuwyzkQ1n+mI8ilLN2QBLBxGNc0/rm7PVhWIhgYEMOE=;
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
+	id 1l2GSK-0000Di-4t; Wed, 20 Jan 2021 16:35:40 +0000
+Received: from [172.30.20.202] (helo=mx.sourceforge.net)
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
+ (envelope-from <thinkpadacpi2020@vorpal.se>) id 1l2GSG-0000DO-Eh
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 20 Jan 2021 16:35:36 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Date:Message-ID:To:Subject:From:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=J3X7pzOZDjUt7k15mXnztn0Yop/dT/tvkv17K3QunMY=; b=mizpB93gtf74lPrF+yJ07t0rIG
+ wWgRtTFF8U6Q6xUktc+Yw3hAjNfatF/Ps36PjZaPSeumY0CV8JGI1ULYmTlG2fYl7iOqzPlENf69P
+ 4g8I/NpudCZyM7nGvS2R19MeCgfvgwn6uFBncvHBlKNzmq9bQcraDy4G3EImapx376es=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:References:To:From:
- Subject:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=2FSbTEIFI6j0WvVDQ92yVfO+Vqr2gsCOJu4rJUp73Mg=; b=A3h/9SuC3yW561JwXBbSVLQhc3
- QnVbJI/se8zT8D2UUAr8RZhEWRl9rooF9j6rpdYF8k39e8CT3afPUSStdpnMsQ4oCwn9jXDbkwzFX
- gTbel7mmAAUPDOkOVXmY15BgnEtbExu1X4NUtCd4jUgngS0ZFdSRw4GRDiQvvTayIsi8=;
-Received: from ganymed.uberspace.de ([185.26.156.242])
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:Message-ID:To:
+ Subject:From:Sender:Reply-To:Cc:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=J3X7pzOZDjUt7k15mXnztn0Yop/dT/tvkv17K3QunMY=; b=L
+ dRhRofx/o4nDSigBupltCZChUBPyq+Aae9Z4cdpz2VXYKMEbt8oVyFGeLbJggWJ82UH2kv8ms20kT
+ mmr8ZP4/8pUQUX9UNYhIC8SED5k/06AGFeY3MAHwZnMnVb/DznER0I2111wmxkSZ+Rwe4y8G0y7RA
+ BTE83/p3vx8EueKI=;
+Received: from vorpal.se ([151.236.221.200])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1l1ZOi-005y1n-3Y
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 18 Jan 2021 18:37:11 +0000
-Received: (qmail 9087 invoked from network); 18 Jan 2021 18:36:50 -0000
-Received: from localhost (HELO localhost) (127.0.0.1)
- by ganymed.uberspace.de with SMTP; 18 Jan 2021 18:36:50 -0000
-From: Alexander Kobel <a-kobel@a-kobel.de>
+ (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.92.2)
+ id 1l2GRy-00Cjsq-Qq
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 20 Jan 2021 16:35:34 +0000
+Received: from [192.168.2.9] (c193-150-230-73.bredband.comhem.se
+ [193.150.230.73]) by vorpal.se (Postfix) with ESMTPSA id 712641416D
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Wed, 20 Jan 2021 15:29:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=vorpal.se; s=2019;
+ t=1611156592; bh=AmC7UrHf0B4n1mu+CWxT7l5d6u2dxyzGBcRb0pF5ZAw=;
+ h=From:Subject:To:Date:From;
+ b=K4WcndPrhL2uNB5nKylMF3Hm310othROAKVW+J3PZV6du6F6+S/tRpVkX9PJ/LJPx
+ wGoipyAKJJEoO54hZbHEXsgYjS5S6Hf9IZV5wk5x1jLXfK5+IG+ImO54Hb57j/7SlH
+ wVIqSWcdK370rsWbw2Bl21Z5mc7EmrH0/PWMt0bMbLjJuE8Lc8DpcDrAZX8wse2tpB
+ lAlZg3sKSeddv+Lb9hqYZO7YbaCRT8mc/voBlSUGntpIEnP/F5rghipH521EHlpysB
+ V/v5PThhut0TH4p/xjux5C10sqUh0h6vY2vGmq0ZAfoV9g/VhiD3sR3O3/23/2+CtJ
+ 8fW+SXrB91Gxw==
 To: ibm-acpi-devel@lists.sourceforge.net
-References: <678928e6-24d4-0fce-6b6a-88eb07d732a8@a-kobel.de>
-Message-ID: <bd7f63ac-1313-6c31-23a1-fc7d193b91bc@a-kobel.de>
-Date: Mon, 18 Jan 2021 19:36:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
+Message-ID: <49b3e817-93d3-bdc4-c9ec-c8f8686af662@vorpal.se>
+Date: Wed, 20 Jan 2021 16:29:51 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <678928e6-24d4-0fce-6b6a-88eb07d732a8@a-kobel.de>
-X-Spam-Score: -0.2 (/)
+Content-Language: en-US
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.2 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1l1ZOi-005y1n-3Y
-Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: handle
- HKEY 0x4012, 0x4013 events
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1l2GRy-00Cjsq-Qq
+Subject: [ibm-acpi-devel] Unhandled HKEY events on Lenovo ThinkPad P15 Gen 1
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -70,307 +90,52 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: multipart/mixed; boundary="===============8188290691621363567=="
+From: thinkpadacpi2020--- via ibm-acpi-devel
+ <ibm-acpi-devel@lists.sourceforge.net>
+Reply-To: thinkpadacpi2020@vorpal.se
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-This is a cryptographically signed message in MIME format.
+Hi,
 
---===============8188290691621363567==
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms070909090005010408070802"
+I hope this hasn't already been resolved and I'm reporting a duplicate! 
+If so, I apologize, but I could not find anything on this by googling.
 
-This is a cryptographically signed message in MIME format.
+Three of the special function keys on my Lenovo P15 Gen1 laptop are not 
+working, nor reporting anything with "xinput test" or "evtest". In dmesg 
+I get the following messages:
 
---------------ms070909090005010408070802
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+For the "speech bubble" key (on F9):
 
-Dang, first ever patch and a typo crept in right before the commit...=20
-:-/  Corrected patch here:
+[27642.269290] thinkpad_acpi: unhandled HKEY event 0x1317
+[27642.269291] thinkpad_acpi: please report the conditions when this 
+event happened to ibm-acpi-devel@lists.sourceforge.net
 
+For the "answer telephone" key (on F10):
 
-Those events occur when a keyboard cover is attached to a ThinkPad
-Tablet device.  Typically, they are used to switch from normal to tablet
-mode in userspace; e.g., to offer touch keyboard choices when focus goes
-to a text box and no keyboard is attached, or to enable autorotation of
-the display according to the builtin orientation sensor.
+[27642.585707] thinkpad_acpi: unhandled HKEY event 0x1318
+[27642.585711] thinkpad_acpi: please report the conditions when this 
+event happened to ibm-acpi-devel@lists.sourceforge.net
 
-No attempt is taken to emit an EV_SW event for SW_TABLET_MODE; this is
-left to userspace.  So this patch is mainly to avoid warnings about
-unknown and unhandled events, which are now reported as:
+For the "reject telephone call" key (on F11):
 
-* Event 0x4012: attached keyboard cover
-* Event 0x4013: detached keyboard cover
+[27642.877307] thinkpad_acpi: unhandled HKEY event 0x1319
+[27642.877309] thinkpad_acpi: please report the conditions when this 
+event happened to ibm-acpi-devel@lists.sourceforge.net
 
-Tested as working on a ThinkPad X1 Tablet Gen 2, 20JCS00C00, and as
-non-interfering with a ThinkPad X1 Carbon 7th, 20QESABM02 (normal
-clamshell, so it does not have a keyboard cover).
+I have uploaded a picture of what the keys look like (from a Nordic 
+keyboard): 
+https://www.dropbox.com/s/mnr3t95x0k71fxh/thinkpad_p15_keys.jpg?dl=0
 
-Signed-off-by: Alexander Kobel <a-kobel@a-kobel.de>
----
-  drivers/platform/x86/thinkpad_acpi.c | 8 ++++++++
-  1 file changed, 8 insertions(+)
+This was tested on Ubuntu 20.04 with the 5.8.0-38-generic kernel.
 
-diff --git a/drivers/platform/x86/thinkpad_acpi.c=20
-b/drivers/platform/x86/thinkpad_acpi.c
-index c404706379d9..c16fd8c9d2fa 100644
---- a/drivers/platform/x86/thinkpad_acpi.c
-+++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -174,6 +174,8 @@ enum tpacpi_hkey_event_t {
-  						     or port replicator */
-  	TP_HKEY_EV_HOTPLUG_UNDOCK	=3D 0x4011, /* undocked from hotplug
-  						     dock or port replicator */
-+	TP_HKEY_EV_KBD_COVER_ATTACH	=3D 0x4012, /* attached keyboard cover */
-+	TP_HKEY_EV_KBD_COVER_DETACH	=3D 0x4013, /* detached keyboard cover */
-
-  	/* User-interface events */
-  	TP_HKEY_EV_LID_CLOSE		=3D 0x5001, /* laptop lid closed */
-@@ -3989,6 +3991,12 @@ static bool hotkey_notify_dockevent(const u32 hkey=
-,
-  	case TP_HKEY_EV_HOTPLUG_UNDOCK: /* undocked from port replicator */
-  		pr_info("undocked from hotplug port replicator\n");
-  		return true;
-+	case TP_HKEY_EV_KBD_COVER_ATTACH: /* attached keyboard cover */
-+		pr_info("attached keyboard cover\n");
-+		return true;
-+	case TP_HKEY_EV_KBD_COVER_DETACH: /* detached keyboard cover */
-+		pr_info("detached keyboard cover\n");
-+		return true;
-
-  	default:
-  		return false;
---=20
-2.30.0
+Best regards,
+Arvid Norlander
 
 
-
-On 1/18/21 6:26 PM, Alexander Kobel wrote:
-> Those events occur when a keyboard cover is attached to a ThinkPad
-> Tablet device.=C2=A0 Typically, they are used to switch from normal to =
-tablet
-> mode in userspace; e.g., to offer touch keyboard choices when focus goe=
-s
-> to a text box and no keyboard is attached, or to enable autorotation of=
-
-> the display according to the builtin orientation sensor.
->=20
-> No attempt is taken to emit an EV_SW event for SW_TABLET_MODE; this is
-> left to userspace.=C2=A0 So this patch is mainly to avoid warnings abou=
-t
-> unknown and unhandled events, which are now reported as:
->=20
-> * Event 0x4012: attached keyboard cover
-> * Event 0x4013: detached keyboard cover
->=20
-> Tested as working on a ThinkPad X1 Tablet Gen 2, 20JCS00C00, and as
-> non-interfering with a ThinkPad X1 Carbon 7th, 20QESABM02 (normal
-> clamshell, so it does not have a keyboard cover).
->=20
-> Signed-off-by: Alexander Kobel <a-kobel@a-kobel.de>
-> ---
->  =C2=A0drivers/platform/x86/thinkpad_acpi.c | 10 +++++++++-
->  =C2=A01 file changed, 9 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c=20
-> b/drivers/platform/x86/thinkpad_acpi.c
-> index c404706379d9..e3b5f02bafa6 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -174,6 +174,8 @@ enum tpacpi_hkey_event_t {
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 or port replicator */
->  =C2=A0=C2=A0=C2=A0=C2=A0 TP_HKEY_EV_HOTPLUG_UNDOCK=C2=A0=C2=A0=C2=A0 =3D=
- 0x4011, /* undocked from hotplug
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 dock or port replicator */
-> +=C2=A0=C2=A0=C2=A0 TP_HKEY_EV_KBD_COVER_ATTACH=C2=A0=C2=A0=C2=A0 =3D 0=
-x4012, /* attached keyboard cover */
-> +=C2=A0=C2=A0=C2=A0 TP_HKEY_EV_KBD_COVER_DETACH=C2=A0=C2=A0=C2=A0 =3D 0=
-x4013, /* detached keyboard cover */
->=20
->  =C2=A0=C2=A0=C2=A0=C2=A0 /* User-interface events */
->  =C2=A0=C2=A0=C2=A0=C2=A0 TP_HKEY_EV_LID_CLOSE=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 =3D 0x5001, /* laptop lid closed */
-> @@ -3976,7 +3978,7 @@ static bool hotkey_notify_dockevent(const u32 hke=
-y,
->  =C2=A0=C2=A0=C2=A0=C2=A0 *ignore_acpi_ev =3D false;
->=20
->  =C2=A0=C2=A0=C2=A0=C2=A0 switch (hkey) {
-> -=C2=A0=C2=A0=C2=A0 case TP_HKEY_EV_UNDOCK_ACK:
-> +=C2=A0=C2=A0=C2=A0 case TP_HKEY_EV_UNDOCK_ACK cover:
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* ACPI undock operat=
-ion completed after wakeup */
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 hotkey_autosleep_ack =
-=3D 1;
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_info("undocked\n")=
-;
-> @@ -3989,6 +3991,12 @@ static bool hotkey_notify_dockevent(const u32 hk=
-ey,
->  =C2=A0=C2=A0=C2=A0=C2=A0 case TP_HKEY_EV_HOTPLUG_UNDOCK: /* undocked f=
-rom port replicator */
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_info("undocked fro=
-m hotplug port replicator\n");
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return true;
-> +=C2=A0=C2=A0=C2=A0 case TP_HKEY_EV_KBD_COVER_ATTACH: /* attached keybo=
-ard cover */
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_info("attached keyboard =
-cover\n");
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return true;
-> +=C2=A0=C2=A0=C2=A0 case TP_HKEY_EV_KBD_COVER_DETACH: /* detached keybo=
-ard cover */
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_info("detached keyboard =
-cover\n");
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return true;
->=20
->  =C2=A0=C2=A0=C2=A0=C2=A0 default:
->  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return false;
->=20
->=20
-> _______________________________________________
-> ibm-acpi-devel mailing list
-> ibm-acpi-devel@lists.sourceforge.net
-> https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
->=20
-
-
---------------ms070909090005010408070802
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCC
-Ew0wggY9MIIEJaADAgECAgg3B676YzbKKTANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJE
-RTEXMBUGA1UECgwORnJhdW5ob2ZlciBTSVQxKjAoBgNVBAMMIVZvbGtzdmVyc2NobHVlc3Nl
-bHVuZyBSb290IENBIEcwMjAeFw0yMDA1MjYxMzIxNDFaFw0zMDA1MjUxMzIxNDFaMFUxCzAJ
-BgNVBAYTAkRFMRcwFQYDVQQKDA5GcmF1bmhvZmVyIFNJVDEtMCsGA1UEAwwkVm9sa3N2ZXJz
-Y2hsdWVzc2VsdW5nIFByaXZhdGUgQ0EgRzAyMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIIC
-CgKCAgEAzW9OcLabPtfz9rbgtyyuNQCQkmI8cPW39VGsXLX1J9EIcUPvp1ysi6kuqMfw+YOC
-LjxopSIhpjhH/p84LzmcBJElRPkzWHJreZry+Lu5SDhOcOH49fNEo7UeYE0wkSJNv+jLMWwU
-H93dPaSNeRN/5/Peq6tcKTx0FflS2ZScP9OcPvXgp1c/bXYoRyiOGSVR8/+7qlwNuku2px6f
-0c6XOKOwkyTeSghmQ8vdfeqcMd9fNUhn/ijWFHahr0LUGB9We6SoxklOz9gfgSCjhInt+4qy
-N6bHl/utH/vj1qnuhkaP25h1eCbz2WKqv0wKWwa/r4F0ItLYYP2YhwICTNLDDT8GmctRdt2S
-yLmgXo9Gz0nrwrYuGMWcXNLm682Fgg3wQne0DTszFFUU8PrVOtgzB5Qm6DPrRSUHXQEfT7DY
-ZzDA+FmSoTSiCe+aoNPbglta4gDar0B/gni15LtCzW4tNhk3fXkYxEWpbq32vNy3wCDOQazc
-vxzko5Ior1iDZJNuzurtp5qRjAnOcUiKhNUJeBnmLDB/Di9XZHIQCD0EjiZzef0OR4+ZbPPM
-xl6n9KHdrZ2c8r3yjGJtGkeMc0aMkBpvYNDy/s4fYnE5MRIOWdmMnq23/DvCpsQtF5UWZlF9
-MaKVcjXmtGpnhpe0XOkFXvxd9PSM0Oe4uei+buhbF7ECAwEAAaOCARIwggEOMBIGA1UdEwEB
-/wQIMAYBAf8CAQAwHwYDVR0jBBgwFoAUPnwBB805qJCxODW0j7v1rBeEocAwTQYIKwYBBQUH
-AQEEQTA/MD0GCCsGAQUFBzAChjFodHRwOi8vdm9sa3N2ZXJzY2hsdWVzc2VsdW5nLmRlL2Nh
-L3Jvb3RjYV9nMDIuY3J0MBQGA1UdIAQNMAswCQYHKyQPCQMBATBDBgNVHR8EPDA6MDigNqA0
-hjJodHRwOi8vdm9sa3N2ZXJzY2hsdWVzc2VsdW5nLmRlL2NybC9yb290Y2FfZzAyLmNybDAd
-BgNVHQ4EFgQUBNGCAAc5XwIAgrw4HtCXwN3HOwMwDgYDVR0PAQH/BAQDAgEGMA0GCSqGSIb3
-DQEBCwUAA4ICAQAPsI1fETAPUfq7LoI2FxRDylRduC/nVhVca7ORxhZXrFmksT/q1jHU4eXK
-IhcVms623/FHhcVHl1qB5G/cgU2OtjEP5/BXIRu4I78EZIhb8U3ZGe9gZql/RSOBD08lhmzv
-fRz+nwE2Pl9stzXKohjGRWyfFfuaWKLXUZzCK/wYX6IqhTxjkoEFSgejoO41B886rrm3+aaO
-5Db5EBW4gYWF9VCV3bmedmTJzbvOOYDxaVT1+O8E9Ym5BZL+qJNjgdjJXE1TUGyUg6ZweNHT
-dse6xTc9KhfnAyppkMUu9AKT6jkloA6l0/T3zEMKhvtf9gLYWJ0zMwm1JfQk5mVMZtQoOPYI
-Wj7IVUKPZJMizHoaAAIzi7C0w3XpN3xMDJOs5eRsRPk0qF8UulshIUA/6idOrg7eUY4WZGN1
-RZsFYyhBg1sPaeFyFAUs0XJUrWLOKO5f9VZGbmEF6gqbTxdwMCJZzonwpUxVwxKLMa+Z4EMG
-QoY1rLNPCRZlzhW+TRBsuy4tGN21PlhvcvEnxs8eHvqlwfM/KwYtXhLG8881KMMSzemRvX/c
-pNCU2YlHpAwpdm6cAn60leS0WPfTb6QAqmtQTij6uAfFN46hQDLqpfTWnoPSMvbeyFwqP6Fv
-V6RgquAIpe9p5daLY9M+Krkd7mH8QR2PN615TboR0ocoF4REdTCCBlwwggREoAMCAQICCBUM
-N0NLozG+MA0GCSqGSIb3DQEBCwUAMFUxCzAJBgNVBAYTAkRFMRcwFQYDVQQKDA5GcmF1bmhv
-ZmVyIFNJVDEtMCsGA1UEAwwkVm9sa3N2ZXJzY2hsdWVzc2VsdW5nIFByaXZhdGUgQ0EgRzAy
-MB4XDTIwMTAxMTE2NTIzN1oXDTIzMTAxMDE2NTIzN1owgYkxGDAWBgNVBAMMD0FMRVhBTkRF
-UiBLT0JFTDEOMAwGA1UEBAwFS09CRUwxEjAQBgNVBCoMCUFMRVhBTkRFUjFJMEcGA1UEBRNA
-RDQwMDNFMTc4OTlGMTQzMTI2ODExMzM0OUY1N0M1QzU0NEQ5RjcwNDVCQTkyMEJEMzdDQURB
-NTQzOEFGQ0EzODCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAM9yNVKr/cuT0WnJ
-PLe7kmfd5Wo7rlb1F+harCy3OLgaTqkMI6j37OTXMAmdkZ0y7zrlhbEGCEpODaDPYwVSEb+s
-Cv05n3SAMCdy9kQlnqP9We7C/2mbnuKYhpO5P6mUVdPoM+tfTM22YH7CzO8sa1Tq1s/DrIZs
-NhXDRvWZEdDwUCjLPKVXGtTqHbUjs7OufxpbyzA7xHE5N7qRff1WrOuq/RS1OvGZVcUjLAmI
-loYCvYm1Q3oBYuSZygOsawjmJQ14fh7dKkOjogx6byElWAVBkUQxud8CtBHW+L4VY35uinRJ
-k81mwI8ac0zS5FEbYWoF9Gi5pWbCgoIvGXIMcPEQqu8mVBpN/CAMUOUlIkOPDvFqfiQ9TI2C
-xnNih8csWwVInRS7m8itJrnlbVfDwdHMJhPT522gCDOC6lXaRUizwGqRh/26W1dJqA2SYmEn
-EMH/TcP3eyiFLN5QDXm2odnh+rbvQbwEtlPxup24HGe8RqWFdiCOW1syM+V74lUn5wIDAQAB
-o4IBeTCCAXUwHQYDVR0RBBYwFIESYS1rb2JlbEBhLWtvYmVsLmRlMA4GA1UdDwEB/wQEAwIG
-wDATBgNVHSUEDDAKBggrBgEFBQcDBDAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFATRggAH
-OV8CAIK8OB7Ql8DdxzsDMIGCBggrBgEFBQcBAQR2MHQwQAYIKwYBBQUHMAKGNGh0dHA6Ly92
-b2xrc3ZlcnNjaGx1ZXNzZWx1bmcuZGUvY2EvcHJpdmF0ZWNhX2cwMi5jcnQwMAYIKwYBBQUH
-MAGGJGh0dHA6Ly9vY3NwLnZvbGtzdmVyc2NobHVlc3NlbHVuZy5kZTAUBgNVHSAEDTALMAkG
-ByskDwkDAQEwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL3ZvbGtzdmVyc2NobHVlc3NlbHVu
-Zy5kZS9jcmwvcHJpdmF0ZWNhX2cwMi5jcmwwHQYDVR0OBBYEFDadSlBdeaipQdbmS4vn439F
-6fkNMA0GCSqGSIb3DQEBCwUAA4ICAQBUhcmTTecspwaSgUUlrG/gUPzDLM/Ty0Jpz4GvRbRn
-kJxHlHAopkk8P1SXlnOy2kfC5LgFCRB9tJqSlXmIXwphm90fZKRGZU2dBgxGkDQppXGH6PjJ
-P52QAhvpztJDPEqfqkzcpKdkYuFg+KEzqZmsu8Mvy4rqCTRIAtOX5zHVFEIarp7YUMNhzGxg
-eQakmDjykC1Xksx/ULsX7r5QW5Fqp1ZL5obNmA2emJgn0VrKRIYY8vqnOwUi13G/lDa+fphz
-PMhpIKOKQ9Wy0Wn8mBdSdIqmt2L58Pu14ygwOkK3vnb/QKqayhwme2uf4waXG5or3wZdSr39
-SvvGZT8Z6cHw6n7Jw0+gRApkB1cUO7j1T/aHCBcZPJ5i6bBoGrT5E8IHIqj+oZXUCY7jxknL
-aHaiOARg8fFkf8lp3uy7ay4WcDIorPa9ugNaCP3SnYvtKvk44ulgMIjhvkG1Mga/70SA9Evq
-3cFUle3jaaEYujSxLnN8LVm39dR93QCqcdkIayPA9LT6vizlGoA6BdOMWDzKWWnoelYTb+Ip
-iqpafot50MCUqf1e2T0z8Ygki1LLOxlpi/DWQApb/Qq9EomeEYMKm0aJc7166pLiWsk1fWOX
-kwBa3phG+CbbUxqotGP++r39Dk8Diny+lYjkRXpoqggzF9g9uxARXBIw0H+G6XbgCzCCBmgw
-ggRQoAMCAQICCGRFBiAAmYjgMA0GCSqGSIb3DQEBCwUAMFUxCzAJBgNVBAYTAkRFMRcwFQYD
-VQQKDA5GcmF1bmhvZmVyIFNJVDEtMCsGA1UEAwwkVm9sa3N2ZXJzY2hsdWVzc2VsdW5nIFBy
-aXZhdGUgQ0EgRzAyMB4XDTIwMTAxMTE2NTIyM1oXDTIzMTAxMDE2NTIyM1owgYkxGDAWBgNV
-BAMMD0FMRVhBTkRFUiBLT0JFTDEOMAwGA1UEBAwFS09CRUwxEjAQBgNVBCoMCUFMRVhBTkRF
-UjFJMEcGA1UEBRNARDQwMDNFMTc4OTlGMTQzMTI2ODExMzM0OUY1N0M1QzU0NEQ5RjcwNDVC
-QTkyMEJEMzdDQURBNTQzOEFGQ0EzODCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGB
-AIHe4er7YlQrv+fgKBYbb2FSJLtzoB9s4ZhYgIfQuR1x9+WJvj9EMne5rsHB+OJ5bwZQ1Fnh
-qhJhtepikZhLDRVfRbzRdrOSzxnkePhH/SZ9VhtN6327PuSAwxe/te/DPDo6aWZj3d7RoioE
-UgkyF5gNWYu082LeSHbvNpDcHUN2Rs7XgZi5uBUnHR1btXA7BOzUMfPhEIqwuCDKLZAGCc0q
-2JKhKeOIOsoZ8lP2/HfW3Az1ij6xztb/HfoZnyZMpQC1ly7VgJU5rTLRJz39kscZSBcnxRqP
-8cE9rrlPZOgRPK2NR4x+30Sr9sOtnbRYldKWT4uCtqrPrnxNKiDkv3P2h1yKYbCamlqwaoJW
-cjrphzLycSGHitalla/f82xHSN+7gJHGp91WYIn+c6jPLcx0wmKUJBB1TIEaeh4izkqLwB0P
-1HUBHo50OdmTnRGdnvNt/+Xsc9KetVnmJM2bqXXDlgYMfsULoe6Y0AVemQFvd1V49GePGpGT
-NGMe5jf7NwIDAQABo4IBhTCCAYEwHQYDVR0RBBYwFIESYS1rb2JlbEBhLWtvYmVsLmRlMA4G
-A1UdDwEB/wQEAwIEMDAfBgNVHSUEGDAWBgorBgEEAYI3CgMEBggrBgEFBQcDBDAMBgNVHRMB
-Af8EAjAAMB8GA1UdIwQYMBaAFATRggAHOV8CAIK8OB7Ql8DdxzsDMIGCBggrBgEFBQcBAQR2
-MHQwQAYIKwYBBQUHMAKGNGh0dHA6Ly92b2xrc3ZlcnNjaGx1ZXNzZWx1bmcuZGUvY2EvcHJp
-dmF0ZWNhX2cwMi5jcnQwMAYIKwYBBQUHMAGGJGh0dHA6Ly9vY3NwLnZvbGtzdmVyc2NobHVl
-c3NlbHVuZy5kZTAUBgNVHSAEDTALMAkGByskDwkDAQEwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0
-cDovL3ZvbGtzdmVyc2NobHVlc3NlbHVuZy5kZS9jcmwvcHJpdmF0ZWNhX2cwMi5jcmwwHQYD
-VR0OBBYEFJiKTcJJSCtBVQS6oS4OSO8QKEWBMA0GCSqGSIb3DQEBCwUAA4ICAQBfdnVpzlnO
-JupsJfdYW9xyt3lSky85oA1qPichmW6UjrnIZdunQPJrCTTM+7wUqeqwlhbRmwUKgAPH/5fc
-cOnyMulgbvc50VV+mBK4ph/1/fhom7zJYEfvKEpPWg5tGx3/Mp6YIVvuhRnZ7vmodMGXgj/f
-1D7yHFJib/430e6pcD76DPaAFA1cVVp5FUP+b0fBzvgYjsgSwL2GTXXaNGEaLqBuhtmInBh/
-y4X2ZEz8kw6B2P0GpQ8jg+5I1tNM6vf/KH2FxDj/ykmSsgtyrQAddEjrNQbaQAzXTtHAPui/
-6/wbgYfLp05aH7PsLsKGdDS9yb8UaWfWgwFuFz3dLXSdI3YYhXB2QnASX5RV3ndnu9vwGmns
-c6iu4C9+h0hFdcWMIEso5K/mV/kXO31xzw7JLU2y5Nk7XEgrXwqFuX4ZruqCfw3EXP1hYnmt
-OtfAaSLzTdBS0GskGGnWAs12dJrL8FysZbtX5cgWMyT1nun8ksvSodVgQ+7BA5YHTwfHussP
-nPBDabaHmlOUVBi3IYZvoJ90XwuuMvVqcYeEzvuGDrssZHY2pG9DqTeXfzmUdpTfMy7zwu5K
-jBPKilDLTXJkrA5wlQpSihjSQG/UPLP+YDsrEuwwBC1DbcSn5KOyMXFpfxsoSegFzb0lxPRc
-6sScLr/v96FwvwWpL54Fp9dr0TGCA80wggPJAgEBMGEwVTELMAkGA1UEBhMCREUxFzAVBgNV
-BAoMDkZyYXVuaG9mZXIgU0lUMS0wKwYDVQQDDCRWb2xrc3ZlcnNjaGx1ZXNzZWx1bmcgUHJp
-dmF0ZSBDQSBHMDICCBUMN0NLozG+MA0GCWCGSAFlAwQCAQUAoIIBvTAYBgkqhkiG9w0BCQMx
-CwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMTAxMTgxODM2NDhaMC8GCSqGSIb3DQEJ
-BDEiBCAv+0yPVfQY+0keJt+FtS/E0eaHgRNHYnNmH15PwpwHVzBsBgkqhkiG9w0BCQ8xXzBd
-MAsGCWCGSAFlAwQBKjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwDgYIKoZIhvcNAwICAgCA
-MA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMHAGCSsGAQQBgjcQBDFj
-MGEwVTELMAkGA1UEBhMCREUxFzAVBgNVBAoMDkZyYXVuaG9mZXIgU0lUMS0wKwYDVQQDDCRW
-b2xrc3ZlcnNjaGx1ZXNzZWx1bmcgUHJpdmF0ZSBDQSBHMDICCGRFBiAAmYjgMHIGCyqGSIb3
-DQEJEAILMWOgYTBVMQswCQYDVQQGEwJERTEXMBUGA1UECgwORnJhdW5ob2ZlciBTSVQxLTAr
-BgNVBAMMJFZvbGtzdmVyc2NobHVlc3NlbHVuZyBQcml2YXRlIENBIEcwMgIIZEUGIACZiOAw
-DQYJKoZIhvcNAQEBBQAEggGAeAjkYAYfSRjVilOTxP9hSLPbDQj2y9/bV8D2CV9jxLhvuOO8
-f9cTjI9IezhaqjGzBbe2e3hUZgWp2g0SiDVDVcoUBWsl0VMnk4e3lL4VmuylXWdfYEb1ov8F
-oyuTva0jj9Q/l6ETz2hevcAssWqa9QQhvQ4V2xv5iOLJY29XycrY+L9Cc6iC9ln2HSHyaiRe
-MAbKZupzBwsbBHOlZe/xLYdgOKu5tz/KQHZqkxRO1Z9Tilovpat0VfnmDxeC8F4Bkbc6Hs4C
-Ay6Nj5JaW+FHxA/9a+/lxR23HQ5wqHjViTXW207Ef4Ng5s0nE8ebkRfS56v16AI5oiSRPboL
-npgw7bziyl5t9qil9dgy5NoBFF3RDSiz8j97xHmbgRfaDsirynrXxkeyz0FgQJF+Apa1ZGRW
-MF9LDAwxCgzV0/ppsfq2HPzy43clmeTpRqdzTsksGdSGHX8wwbwNIhV9o+lw+K8bweqyJzSX
-R7nX3/DKRnzWFbN7yjVzqzFV0i6Mrip3AAAAAAAA
---------------ms070909090005010408070802--
-
-
---===============8188290691621363567==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-
---===============8188290691621363567==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
-
---===============8188290691621363567==--
-
