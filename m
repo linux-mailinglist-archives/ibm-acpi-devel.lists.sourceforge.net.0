@@ -2,199 +2,118 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F33133E6FF
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 17 Mar 2021 03:29:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEF53340AFE
+	for <lists+ibm-acpi-devel@lfdr.de>; Thu, 18 Mar 2021 18:07:04 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1lMLve-0003F1-Mb; Wed, 17 Mar 2021 02:28:58 +0000
+	id 1lMw6P-0006nM-7Y; Thu, 18 Mar 2021 17:06:29 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <njoshi1@lenovo.com>) id 1lMLvd-0003Eu-4W
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 17 Mar 2021 02:28:57 +0000
+ (envelope-from <hdegoede@redhat.com>) id 1lMw4q-0006ca-Er
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 18 Mar 2021 17:04:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
- :In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=oJO8fMwvhvCo7/42/lHgzslgVsgonGWmN4ydk3fMTcI=; b=U+lsn6owPyaFfpG49E1uR7c2gu
- dDFOgFXORAlvFaHDTQjUwIFRP/DD7KCmozja4Y8916HUSAsFZBydoVJFK7BAgTPpTvf9SUoVMhsFj
- yu9giPWjHXrfEsGQDGG8A8i8/qfnyxpPQp5Bbiw+4TJnWbnL2ZcsYIiqdH615k2xrwSU=;
+ bh=wzsQDTfLmkd5z0eYq6awhMmQInxj7Uo9v/R/bstTn4w=; b=nJpZXFpnTFwUqU2LeU2uhkWlGL
+ XUShw50jEVkm9XtRNPFOh3abciTU9u37tNgU6nHQ5/XMBGH565ftecPA0VSrPa1BCxbXV/ZnnsZgs
+ ta/AeXBBxb7R+6Ei2OyrJA/LXfiOhWa/yym5EXzysGj+cG1E8U7D9s5ue+c4I9lulZl4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:
- References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
+ Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=oJO8fMwvhvCo7/42/lHgzslgVsgonGWmN4ydk3fMTcI=; b=DHgKiAOUsCe7bDXtIYRG3GUSNI
- z98g4v0aKgNMXxBuv+Z3EoKDjhG/BF9uVlN5Qr4AH2q48fcPNeTFkADQ3/YYDQqRGtWgiRZItXNBc
- 7h4vgAUcqdttG/KhG1duhXCScGR3lOSg1yMR8XmPn1Fraxplrp2nFm7MlBNFEnfsE/y8=;
-Received: from mail1.bemta24.messagelabs.com ([67.219.250.1])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.2)
- id 1lMLvY-008kyC-Hp
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 17 Mar 2021 02:28:57 +0000
-Received: from [100.112.128.158] (using TLSv1.2 with cipher
- DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-1.bemta.az-a.us-west-2.aws.symcld.net id D6/10-57987-75961506;
- Wed, 17 Mar 2021 02:28:39 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA1WSf0wbZRzG+/au5cDWHaVdX2pGQiNjMK+0Hbo
- aSSZ/qF2iZiRjOmyUMirtbEvplVA0xjqcLJA1TEEGDKikbHFsc7DpZB1IAQuyZAIC4sIGhIZB
- twWEzKYinXe9DvW/z/M+z/v9kXwxRPA7V4Lp7Dad1aw1SrlxqH5pPo44ZMjJl3tOZKkeDNWzV
- U0DWarGmddVgYFprqrjxhLyMkfd3XgnRv2o5jtU7XGts9UrvZNc9XpX0gFOHsdgLii253P0l5
- Z7OJbKbfbjdb+xHWCJVwXiMAHuYMM195dcRgQAbOoY5G45Ez1+NiM2ABwbewyqQCwG8HYEHlv
- LoA2A+1B4vH6Mw4jLAFb/tQ5ogeIeBPZ92hDD/G9hQ/+fZ6KVZwH0bAQjxbh4Kgx4J7k0C/H9
- sKfhLEKHEDwE4MyVUQ5tJOAmGApPR0Nm2Dn6MMpKuDB4FaEZxVPgycBQhPm4Bv7a0RdDs4DiR
- 5cmUZpj8Qz4+b0RNrPFdhgcuRBhBBfD2/7WCEMch+4bvyAMi+DyQji63FcAVs5ejBpSWOmr4T
- C8A463VgOG34Ch9roop8Opm0GU4Sz40z0XxRjFz8Jwfznz/AFcWhjm1oDMxv+MwfBz0OVZ4zK
- 8G579+j7SGFktHv7c4EddAD0PVAVWQ5HeZtIajIRCLicUCiWh2CMnlM8rZdoPCa2slCTKdKSN
- oGQZKSPLTUeMhTKzztYFqMsqtBz7+wewGViV9YNEjC0V8V14Tr7g6YLiwnK9ltS/Zy016sh+s
- AvD8AnvYBOQoOZis04K+RodlYu36op09vcNRupWn0QhxpMK+df0lM0nLVoTaShirBFAYDXLzW
- 2IIFJDIuZPF1EhnA7pS81bJZ5c/DjYIUngAxaLJeBZdFaTwfZ/PwDEGJAm8H10K57BbNvqRJ0
- wtYuQr3jmTXoIm/ZfS+Jg19nHy7s+Kenw5Rqse4M+ZXbf+QE05fDYgc5medbBTnu2P190aPtM
- 753alcRW2dsVYSUvHB5Pbb8vdHPe/ejH+exM6/zd5uSyF58SjrtLuu1r+063D9WeyXx8Gos9K
- U64/v1RiXymegp5bVakuZyucdiDaaeOsub2Jr2zmEa6v7hWsedhfXfoysW5E6/sLnGbQhcmnG
- mmYsureZVex1svNXlT2loyhkpkBYuf5RBztyu8+1evIiPiRHcIIfR/1E6JWj6uOux8YVgtkM7
- u7GXhozf3xS+eu+V25ubderCramF5ReG0auKPtIWSNr5NluQmp27mnrr7zeb14Z1T2xyrzqAU
- JfVaRTpiJbX/APH0DthsBAAA
-X-Env-Sender: njoshi1@lenovo.com
-X-Msg-Ref: server-17.tower-326.messagelabs.com!1615948117!44319!1
-X-Originating-IP: [104.232.225.10]
-X-SYMC-ESS-Client-Auth: outbound-route-from=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.60.3; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 32191 invoked from network); 17 Mar 2021 02:28:38 -0000
-Received: from unknown (HELO lenovo.com) (104.232.225.10)
- by server-17.tower-326.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
- encrypted SMTP; 17 Mar 2021 02:28:38 -0000
-Received: from HKGWPEMAIL04.lenovo.com (unknown [10.128.3.72])
- (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by Forcepoint Email with ESMTPS id 1F171C846927315F024A;
- Tue, 16 Mar 2021 22:28:35 -0400 (EDT)
-Received: from HKGWPEMAIL01.lenovo.com (10.128.3.69) by
- HKGWPEMAIL04.lenovo.com (10.128.3.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2106.2; Wed, 17 Mar 2021 10:28:35 +0800
-Received: from HKEXEDGE02.lenovo.com (10.128.62.72) by HKGWPEMAIL01.lenovo.com
- (10.128.3.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2106.2 via Frontend
- Transport; Wed, 17 Mar 2021 10:28:35 +0800
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (104.47.125.59)
- by mail.lenovo.com (10.128.62.72) with Microsoft SMTP Server (version=TLS1_2, 
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2106.2; Wed, 17 Mar
- 2021 10:28:35 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VsP+DVHSRr1fNcM6Tk/6nbNIy0L4IEMA8JT1Zpa9uf2MF8NjhRH06h9WvsnVEafkVhSjZ74PQN3BaS0x+kwdsYzv3jTklMgX/DqCf4gv31kG0ZUwv2RPfnR1bFeo3t7In1yeSVcIfr9IMwIE5Mtg4TWBLD68OS/QrsVUrJoTKuuOh34QKcBWW0qzcOhAHCx4DQzA+UA2HsLFeDl0Ijy5gKpCM37gaq5HlUfvAv5PQxrlXNqK48nHZ4jeA9+ciJ8AJ9msJk4I2uMNjatwuk40DdaEQOKdbfK1I5g2KuvTggS441fPT1QSE5Ss2660iVv17gV5nzs640b2zxnDETLLjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oJO8fMwvhvCo7/42/lHgzslgVsgonGWmN4ydk3fMTcI=;
- b=Sr/DaOt8hsCCHZpevw6lWCXghwK45imPWFTbdZfym/mAipEDjXhZABPqrcbHwkdfXL0jK8F/mypwMf/izZwaEDyKYIkxYPxxIy5r8rQ7LJ5I1mhP8bk4UJigC5G3ecYrTAT0KfYXr+qRv7pemKCaqN39mfC2banUVCb9DSzflgHGaBdO/MTc/77FdMcinAIP02BROHhxoXeIydWuWnauxjGP83OddzJEC0vcOajsNiH3CHySqNmpax6usDaXSayE1nXRhH5xS9+jFhbAZs2TuhLSSaazbV4wDrWzwnizGnLqoxA6Z49vVPkXizW90BwwWt/7cYmIcnKUlPTLBvolPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=lenovo.com; dmarc=pass action=none header.from=lenovo.com;
- dkim=pass header.d=lenovo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=LenovoBeijing.onmicrosoft.com; s=selector2-LenovoBeijing-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oJO8fMwvhvCo7/42/lHgzslgVsgonGWmN4ydk3fMTcI=;
- b=MtJJYKEMWkeSMDVPDYYoo+uNgUFx8pZlq4OvMS/EKvVc/A8B7lcCrmakHHujOTi4+FoZOO6s5dsKs2xtqMgwxzLkSTN79F+EUpanFY1k0E2FnAtrBBlH1SopwoeaQifJEstjKyZ4jq1dpXx+o0Rr4h0o0dFWu0H6pfSMchnmUpQ=
-Received: from TY2PR03MB3645.apcprd03.prod.outlook.com (2603:1096:404:3f::21)
- by TY2PR03MB4110.apcprd03.prod.outlook.com (2603:1096:404:af::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3955.13; Wed, 17 Mar
- 2021 02:28:28 +0000
-Received: from TY2PR03MB3645.apcprd03.prod.outlook.com
- ([fe80::a0e1:86f6:bc8f:8f15]) by TY2PR03MB3645.apcprd03.prod.outlook.com
- ([fe80::a0e1:86f6:bc8f:8f15%6]) with mapi id 15.20.3955.013; Wed, 17 Mar 2021
- 02:28:28 +0000
-From: Nitin Joshi1 <njoshi1@lenovo.com>
-To: Kevin Locke <kevin@kevinlocke.name>, Nitin Joshi <nitjoshi@gmail.com>
-Thread-Topic: [External]  Re: [PATCH 1/2] platorm/x86: thinkpad_acpi: sysfs
- interface to reduce wlan tx power
-Thread-Index: AQHXEd6lXAkh9e1oTE28W2ZTLtLdnaqHhAeg
-Date: Wed, 17 Mar 2021 02:28:27 +0000
-Message-ID: <TY2PR03MB364560279B38DB0B896C93658C6A9@TY2PR03MB3645.apcprd03.prod.outlook.com>
-References: <20210212055856.232702-1-njoshi1@lenovo.com>
- <YEJfiP+oUzgCXG2r@kevinlocke.name>
-In-Reply-To: <YEJfiP+oUzgCXG2r@kevinlocke.name>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [114.164.25.243]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e868477c-5e3d-44d7-e6a2-08d8e8ec59b2
-x-ms-traffictypediagnostic: TY2PR03MB4110:
-x-ld-processed: 5c7d0b28-bdf8-410c-aa93-4df372b16203,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <TY2PR03MB411047D28F2CD03A125F252B8C6A9@TY2PR03MB4110.apcprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: C+BBdwbsZB6j4yGlQJtpORkukFauoTq0Q7/Li3gxieqnKwRmhNZQ7JDfwf0cZBYn/vrNnTs9GfOnXjQOg5OmE3yFfqQ/f+0wawVwkWoeeRJHtOI8Gi1O1g7fxYlYUQ7caV5MpYr6/K/joqBy/sYeNT4LXqeT583naiDYmK6/JhydpFFFN6gWIlXA/6x7NaQ2j3OmT0lhc6Z5wfxG5dQqdJpn+608nJ/HfEA9O0Wb8piq/aSY0TTs/ZneWgUs2EbV3L6DZ5vtK0mC3qVjOKmkWBAqajtFlngp2lBzgoGxjSti1fQe9DkdDtjbV5FgQn79bCHexBfVzwKdrBeibNImHvm9ad6FXw73nDGLP2NkNXREPt56xs0HUwURegg2jyFr9hfBatK/AsrQW6rRQVFKO/eq9xvGPRYIwLy2k9/t7K8DN9NUEUfxrc/TnBNiYyZLkLD5Qy995wT5nBbky6JcAeg/kBNncmwSX1bGPgZpFgyWfWgN/YcCS4XD1YIaXIR3Xcpl4yG9jUDRcqczQ+ok+Apf9eCbfORAK8TAriEwyvhcp0H6BeXh8e3Qdio72XnS
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:TY2PR03MB3645.apcprd03.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(4636009)(39860400002)(346002)(136003)(366004)(376002)(396003)(2906002)(52536014)(316002)(478600001)(86362001)(66476007)(55016002)(9686003)(7696005)(8936002)(33656002)(76116006)(5660300002)(71200400001)(66556008)(4326008)(26005)(107886003)(8676002)(110136005)(66446008)(66946007)(64756008)(6506007)(83380400001)(54906003)(186003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: =?us-ascii?Q?wypUok7aRepJCY9xShDqTAbnykZolpeV5W2Czaw7tt9s8vBXLtbRiJ1oFVJM?=
- =?us-ascii?Q?DOeUUg5g1Yi7NEuJYYcYHk83Erzu5vX5+RABezwEErI9SwMk+5M/9SJgXELe?=
- =?us-ascii?Q?8BNGD1m2ANUfOsZA3OkDJn/+CdOWaLgvjgqmuo//kFaO83fNqUvmCsCPQz4S?=
- =?us-ascii?Q?3kPmdd98SnBplD1Ha5q/NUx43FMMbWPfJJL3WX+mWCyhNXtrTraNxU0PoyL8?=
- =?us-ascii?Q?l/Z6fLaH5w46nJPFsuziyUs+RIZF4pV+YfeZ2rZS4QxpQXgi89kAIbBFiGCc?=
- =?us-ascii?Q?AIzkJd7/3DUOoeF0g8d2A8LvPrlwOwm8qotxfpAwIceUJOqza6JQvXhT5z8o?=
- =?us-ascii?Q?7a1ikIR3KY62XVQhvDa0qr6CKuBV7mZnj6j1PO9W0Si0rBCZBAvadAq0wkds?=
- =?us-ascii?Q?vT2R1Sv1FuEcww9G1kd3SxihSMTythcl6rNTr8TAt1H0AmJZnAXawFINgOVV?=
- =?us-ascii?Q?qYQ9BxQSnuV/mcb+YZgbg9GjqSfNCJjqGweaZgn0VcaYWcc289rxpZQdTFtf?=
- =?us-ascii?Q?NAEWhri1bikOLL/dQUeEyeQxgmScRQrTIZXXawwHDWydyV5H2/15F/K6UxwS?=
- =?us-ascii?Q?1es7vACnLxGbwQmqzCs0IbWw21G2pQvkKnBJbORZKpTzr80KAqkXzcBgSFGs?=
- =?us-ascii?Q?6CqQlPcgmKVHu2mxCpPrKNX5RFzJFGvPTXmsGO0swYmv4IYy1it5ifF5L/HM?=
- =?us-ascii?Q?ThT80uGfHYcCYCrieF2rlYAns6tir86mn6b3MyieCL2w/cyzGpTBx/9uUeaC?=
- =?us-ascii?Q?2wC8MSyyGQcRMVuXBcXu2DLvPahIZCcRa84EEW+koGLilupmUYcriVLq6qnU?=
- =?us-ascii?Q?78xBtdTKxINV/+MKYN6TDfsUWRp5QIE4c74nwSUSUIAbSz3UYVBOAChHlJvc?=
- =?us-ascii?Q?SqZ1ahav6ZASHOG34MgbrrBNhp2pKdkOg7iKRGHc9se5N+ERNWzWfX/hzNCQ?=
- =?us-ascii?Q?0rAudWGpgq/VHmbdJjBPBRSyMA7/YMQVjBj5mUDW3DCpfHcR6aQF8Hhb02vx?=
- =?us-ascii?Q?KQ/ueHpkjpiktXh5sxcE3OIankAxPLpp35r7BSpBkmp//g8S2K+D96dZx0y6?=
- =?us-ascii?Q?7vuSY5gxrRZIMfU6fbX1XHVSMRy67GvSxewhzL/eiIQt4a9fCw8hPZycaDCS?=
- =?us-ascii?Q?TnOiCsr0F4uTa8nSHA3dNf2+bO8fHhYR84XKQFu33tyJCUt75JmrZZ1C9iJb?=
- =?us-ascii?Q?j9KalsLswLHY9Vaa2/KcHBnAgCNt+EGCctSzF5zjk4PyNtwaNVmP8IHnUQvO?=
- =?us-ascii?Q?vX0i3TGnpf6kWPg5/tyVM71swnFxiYl/dJo1cQfTUA8hOy15dvwAJO0UK3vY?=
- =?us-ascii?Q?FxgAiYFjV9LE8HG/ChV9Q67n?=
+ bh=wzsQDTfLmkd5z0eYq6awhMmQInxj7Uo9v/R/bstTn4w=; b=meUNIY3fJaw8sjCjKrb7bYPk2+
+ i4WzJaagdHXTyKbY1aRDrTMg7aXQumlFkVMHSBC3iajhm4rqzxyV665nFfLFgZ7LkGoF9jm7qKOUm
+ iE5s/6yYOewYtH/qq19h+BpBA9uXHiICVO7j23zTYNh6AIVjPYMlrTr7R3EQJtHiuHWE=;
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
+ id 1lMvqF-0006FG-5a
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 18 Mar 2021 16:50:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1616086181;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wzsQDTfLmkd5z0eYq6awhMmQInxj7Uo9v/R/bstTn4w=;
+ b=MSouGXnf40NYuEONsy3Ua6ZjEZaxvZ0i0E1jNWhLZhmRImUsyWxEzjlfHI5tFVi45kIf97
+ JaL/uOc2bKRAUTmfMeayHoWgb3Or+z4h/9IEAcSYnbYObqRbifONtViS+M4DMq+vlQzKCn
+ 8XpFCuVndK1KxogRRhvxx1SMRFgaa3k=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-151-bnOK91hKMRyQfdF7AP96Ow-1; Thu, 18 Mar 2021 12:49:36 -0400
+X-MC-Unique: bnOK91hKMRyQfdF7AP96Ow-1
+Received: by mail-ej1-f71.google.com with SMTP id k16so16907538ejg.9
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Thu, 18 Mar 2021 09:49:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20161025;
+ h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+ :user-agent:mime-version:in-reply-to:content-language
+ :content-transfer-encoding;
+ bh=wzsQDTfLmkd5z0eYq6awhMmQInxj7Uo9v/R/bstTn4w=;
+ b=kpub0ekGklus0SkPgaCIkMiG0MQjprOGb8xv/0hxN+06y7Y6/19pZOUqmtmYN2iSuG
+ 4tUbncqtVbtbOvT4TrADXaqQJ2MPfWPP0ts3I+NT4LkLfi9/X1oWMsZAhSCzX8lY8e06
+ zMnYhrql50ne/psV0iYkZXNSirBkHZcRDy2DkVSyO2IY28sWcDpUpZ40JJJKtteJxG1Y
+ jsFRrYr0cEku/DJqtTwBy+sc1FOckE2sfc7HV9QYvZ5FrGDXE3XxfCwJeLjM3enaoRqh
+ OFbVtf7mCl8OsKV4w+/31g7a9MeXZeOPp4J9Lcj/q5S5FA+1wLCiJdsDW29K0mQKZ2T+
+ S/zQ==
+X-Gm-Message-State: AOAM531bunCjs05z+GqEmxXondkJf9zMQwAMvo4Y/f5Ah2lhp6wYP5v+
+ F+SWjvH3hW+7JuBW8+sAJfQQ21/ujJBAGPRqdqI1Q8gzWSOKODJ6DVWdw4k6kC8Tpj0Is3Hv5rH
+ 6QOUIfz4HsZCy5YO/NFNF2+XTMAxUYi4rAio=
+X-Received: by 2002:aa7:c9c8:: with SMTP id i8mr4699916edt.193.1616086175761; 
+ Thu, 18 Mar 2021 09:49:35 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwQZ55YzGVHSSb+cDybjqUyhc1oaE05JU0l2nazm4APJLc8tfBToBOXFqWm5+Fq26MabcfyyA==
+X-Received: by 2002:aa7:c9c8:: with SMTP id i8mr4699905edt.193.1616086175614; 
+ Thu, 18 Mar 2021 09:49:35 -0700 (PDT)
+Received: from x1.localdomain
+ (2001-1c00-0c1e-bf00-1054-9d19-e0f0-8214.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:1054:9d19:e0f0:8214])
+ by smtp.gmail.com with ESMTPSA id a17sm2255827ejf.20.2021.03.18.09.49.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 18 Mar 2021 09:49:35 -0700 (PDT)
+To: Esteve Varela Colominas <esteve.varela@gmail.com>,
+ Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>,
+ Mark Pearson <markpearson@lenovo.com>
+References: <20210315195823.23212-1-esteve.varela@gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+Message-ID: <7fcaeb12-35b1-242a-dfd0-02324643c34b@redhat.com>
+Date: Thu, 18 Mar 2021 17:49:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR03MB3645.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e868477c-5e3d-44d7-e6a2-08d8e8ec59b2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2021 02:28:28.6588 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5c7d0b28-bdf8-410c-aa93-4df372b16203
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lmXOzqEMPLn8AYB3WFk0Al7Y0hP26E0pgip/08yLL4CfK/iJ1hdX4X+AN5u4lbJE4AJP58EkPHPoGjEd48j4uw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR03MB4110
-X-OriginatorOrg: lenovo.com
-X-Spam-Score: 1.0 (+)
+In-Reply-To: <20210315195823.23212-1-esteve.varela@gmail.com>
+Authentication-Results: relay.mimecast.com;
+ auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: kevinlocke.name]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [67.219.250.1 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [67.219.250.1 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ for more information. [URIs: launchpad.net]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [216.205.24.124 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- 1.0 PDS_BAD_THREAD_QP_64   Bad thread header - short QP
-X-Headers-End: 1lMLvY-008kyC-Hp
-Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH 1/2] platorm/x86:
- thinkpad_acpi: sysfs interface to reduce wlan tx power
+ 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
+X-Headers-End: 1lMvqF-0006FG-5a
+Subject: Re: [ibm-acpi-devel] [PATCH] thinkpad_acpi: Allow the FnLock LED to
+ change state
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -207,56 +126,86 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Mark RH Pearson <markpearson@lenovo.com>,
- "hdegoede@redhat.com" <hdegoede@redhat.com>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- "ibm-acpi-devel@lists.sourceforge.net" <ibm-acpi-devel@lists.sourceforge.net>
+Cc: ibm-acpi-devel@lists.sourceforge.net, platform-driver-x86@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hello,
->-----Original Message-----
->From: Kevin Locke <kevin@kevinlocke.name>
->Sent: Saturday, March 6, 2021 1:43 AM
->To: Nitin Joshi <nitjoshi@gmail.com>
->Cc: hdegoede@redhat.com; ibm-acpi-devel@lists.sourceforge.net; platform-
->driver-x86@vger.kernel.org; Nitin Joshi1 <njoshi1@lenovo.com>; Mark RH
->Pearson <markpearson@lenovo.com>
->Subject: [External] Re: [PATCH 1/2] platorm/x86: thinkpad_acpi: sysfs
->interface to reduce wlan tx power
->
->On Fri, 2021-02-12 at 14:58 +0900, Nitin Joshi wrote:
->> Some newer Thinkpads have the WLAN antenna placed close to the WWAN
->> antenna. In these cases FCC certification requires that when WWAN is
->> active we reduce WLAN transmission power. A new Dynamic Power
->> Reduction Control (DPRC) method is available from the BIOS on these
->> platforms to reduce or restore WLAN Tx power.
->>
->> This patch provides a sysfs interface that userspace can use to adjust
->> the WLAN power appropriately.
->
->Question from a user: How does wlan_tx_strength_reduce relate to or
->interact with ioctl(SIOCSIWTXPOW) (i.e. iwconfig txpower) and
->NL80211_ATTR_WIPHY_TX_POWER_LEVEL (i .e. iw dev set txpower)?  If I
->request 30 dBm then enable wlan_tx_strength_reduce, what happens?  Same
->in the opposite order?  Will ioctl(SIOCGIWTXPOW) show the reduced
->txpower?
+Hi,
 
-Below comment is just to update current status in this e-mail chain:
-As informed in separate e-mail, after testing by changing txpower using "iwconfig tx power  xx" I cannot see any change in wlan_tx_strength_reduce
-It seems wlan_tx_strength_reduce is not directly related to iwconfig or iw. So, I am currently trying to find more information regarding this.
-Although, this patch is working fine but need some more information for better understanding.
-Hence , dropping this patch series and splitting it i.e submitting only "WWAN Antenna patch " now.
- 
-Thank you !! 
- 
-Thanks & Regards,
-Nitin Joshi  
+On 3/15/21 8:58 PM, Esteve Varela Colominas wrote:
+> On many recent ThinkPad laptops, there's a new LED next to the ESC key,
+> that indicates the FnLock status.
+> When the Fn+ESC combo is pressed, FnLock is toggled, which causes the
+> Media Key functionality to change, making it so that the media keys
+> either perform their media key function, or function as an F-key by
+> default. The Fn key can be used the access the alternate function at any
+> time.
+> 
+> With the current linux kernel, the LED doens't change state if you press
+> the Fn+ESC key combo. However, the media key functionality *does*
+> change. This is annoying, since the LED will stay on if it was on during
+> bootup, and it makes it hard to keep track what the current state of the
+> FnLock is.
+> 
+> This patch calls an ACPI function, that gets the current media key
+> state, when the Fn+ESC key combo is pressed. Through testing it was
+> discovered that this function causes the LED to update correctly to
+> reflect the current state when this function is called.
+> 
+> The relevant ACPI calls are the following:
+> \_SB_.PCI0.LPC0.EC0_.HKEY.GMKS: Get media key state, returns 0x603 if the FnLock mode is enabled, and 0x602 if it's disabled.
+> \_SB_.PCI0.LPC0.EC0_.HKEY.SMKS: Set media key state, sending a 1 will enable FnLock mode, and a 0 will disable it.
+> 
+> Relevant discussion:
+> https://bugzilla.kernel.org/show_bug.cgi?id=207841
+> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1881015
+> 
+> Signed-off-by: Esteve Varela Colominas <esteve.varela@gmail.com>
+> ---
+>  drivers/platform/x86/thinkpad_acpi.c | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+> index c40470637..09362dd74 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -4079,13 +4079,19 @@ static bool hotkey_notify_6xxx(const u32 hkey,
+>  
+>  	case TP_HKEY_EV_KEY_NUMLOCK:
+>  	case TP_HKEY_EV_KEY_FN:
+> -	case TP_HKEY_EV_KEY_FN_ESC:
+>  		/* key press events, we just ignore them as long as the EC
+>  		 * is still reporting them in the normal keyboard stream */
+>  		*send_acpi_ev = false;
+>  		*ignore_acpi_ev = true;
+>  		return true;
+>  
+> +	case TP_HKEY_EV_KEY_FN_ESC:
+> +		/* Get the media key status to foce the status LED to update */
+> +		acpi_evalf(hkey_handle, NULL, "GMKS", "v");
 
->
->Thanks,
->Kevin
+Sicne this is a getter function I guess that calling it is mostly harmless
+and if it works around what seems to be a firmware bug on some of the E?95
+ThinkPad models then I guess that this is fine by me.
+
+Mark, do you have any comments on this ?
+
+Regards,
+
+Hans
+
+
+
+> +		*send_acpi_ev = false;
+> +		*ignore_acpi_ev = true;
+> +		return true;
+> +
+>  	case TP_HKEY_EV_TABLET_CHANGED:
+>  		tpacpi_input_send_tabletsw();
+>  		hotkey_tablet_mode_notify_change();
+> 
+
 
 
 _______________________________________________
