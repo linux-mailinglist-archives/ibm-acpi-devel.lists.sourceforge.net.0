@@ -2,112 +2,207 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9B01340EE6
-	for <lists+ibm-acpi-devel@lfdr.de>; Thu, 18 Mar 2021 21:14:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93578341A3E
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 19 Mar 2021 11:40:52 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1lMz1T-0006ui-TF; Thu, 18 Mar 2021 20:13:35 +0000
+	id 1lNCY9-0003QG-Vu; Fri, 19 Mar 2021 10:40:14 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <markpearson@lenovo.com>) id 1lMz1S-0006uN-Iv
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 18 Mar 2021 20:13:34 +0000
+ (envelope-from <njoshi1@lenovo.com>) id 1lNCY9-0003Q6-AX
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 19 Mar 2021 10:40:13 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- MIME-Version:Date:Message-ID:From:References:CC:To:Subject:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Transfer-Encoding:Content-Type
+ :In-Reply-To:References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=D4LLwlvig5nX6m53Q42Krj5BGEbZpwstl2rwbEHoLcE=; b=YfI/8//rW8EAWUXGJ51zswUruk
- bMK8coy1JyjNLClbYuuFoKH6FKyeoevOQvwgqPQZ6IA9LpGxKLQdUqcobdepoDuS1Q0VAWwdcJUiv
- 06HeBAE01t+PootD900qvgcOARHFmEQiyZD+HyX4777EyVa1PU/7SmYy4EvrEUuuS0yk=;
+ bh=RR2D1awjAg+bWLx3H74JpeYPJK58b+lLhHTYS7IZ+Wo=; b=JTpG/tLrTisTU3REwZQV4kTPau
+ UTAVD48JTlXnlAsyxPFgxz4sgULLUnqKdIBrnaNeojMwksKfhl0mlGQWIMrsp+ICsFYONQXkJpPFC
+ M2bPv9PdlPKP5fAxXBRZVbXGVIVt1umtNfnIkUzD0LNUwVX21IGre3yq+WmMxSu4yZ3o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:Date:
- Message-ID:From:References:CC:To:Subject:Sender:Reply-To:Content-ID:
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ References:Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=D4LLwlvig5nX6m53Q42Krj5BGEbZpwstl2rwbEHoLcE=; b=BPKrw0uZ3OEVlw7qoZlP/Q7u+s
- oPR56EBWf1tC+eS0hn8ihafd2RQVNkTYT0I9UeKc5XEusW8SUy0/zVcdSa/RmBNdspw7tnwTO8vU3
- QVGmps/lzytWtX6oh8MsnY2M85kezxxFzZTrhYu98hR2N6u7MFQ1V8x8ocmwf4/16SYU=;
-Received: from mail1.bemta23.messagelabs.com ([67.219.246.113])
+ bh=RR2D1awjAg+bWLx3H74JpeYPJK58b+lLhHTYS7IZ+Wo=; b=ZBtjHyc0tvYLJg3sCLlKYVBEXU
+ ZHg4N89iUwKjKu5dGEjmjN2ZZaizm327wPAWrS0mAVn2UfPNzEFzNkoZWx4qnnuHGpK2l33acMECC
+ pXiriDFdJrbnuUbzYo9XEe0YhqFc2vSJJ9XibtUW++riaHaC6czfeZIuKCvqm/0FVlyQ=;
+Received: from mail1.bemta24.messagelabs.com ([67.219.250.4])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1lMz1F-0001oV-HV
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 18 Mar 2021 20:13:34 +0000
-Received: from [100.112.6.224] (using TLSv1.2 with cipher
+ id 1lNCXk-00071L-RY
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 19 Mar 2021 10:40:12 +0000
+Received: from [100.112.128.158] (using TLSv1.2 with cipher
  DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-2.bemta.az-c.us-east-1.aws.symcld.net id 90/D1-49826-654B3506;
- Thu, 18 Mar 2021 20:13:10 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuplleJIrShJLcpLzFFi42LJePGQRzdsS3C
- Cwca3vBanr6ZZvDk+ncli9mEbiznP1jJarN7zgtmB1WPnrLvsHr8PMHrsXvCZyeP9vqtsHp83
- yQWwRrFm5iXlVySwZtz9+oq5YI9Exeb3i9gbGOeLdDFycQgJ/GeUeHXhLROE84JRYumb38xdj
- JwcwgIREr8eNTCCJEQENjFKtL18xg6SYBYIkujf284KYgsJ5Eu8aFkG1sAmoC2xZcsvNhCbV8
- BWYuWmI2A2i4CqxIwdy8B6RQXCJXqv3GaFqBGUODnzCQuIzSlgJ7Ho5CmgOAfQfE2J9bv0IVa
- JS9x6Mp8JwpaX2P52DtgqCQEFiXOPf7FD2AkSPf8esU1gFJyFZOoshEmzkEyahWTSAkaWVYxm
- SUWZ6RkluYmZObqGBga6hoZGuma6hhbGeolVusl6pcW6qYnFJbqGeonlxXrFlbnJOSl6eaklm
- xiBMZNSwLZ9B+Pe1x/0DjFKcjApifI+mRycIMSXlJ9SmZFYnBFfVJqTWnyIUYaDQ0mCd/FKoJ
- xgUWp6akVaZg4wfmHSEhw8SiK8QhuB0rzFBYm5xZnpEKlTjLocL64uXsQsxJKXn5cqJc67cxN
- QkQBIUUZpHtwIWCq5xCgrJczLyMDAIMRTkFqUm1mCKv+KUZyDUUmY98JmoCk8mXklcJteAR3B
- BHREBH8QyBEliQgpqQameUeF86fGbXvv9FbsmsiyJ24/dbQuh5jL1XBuTs1J2hX68eLVeVIXa
- 8XOpXLVf77uXChraFJ0IvPdh4fFXRp+PAW75q5U8Eh2EHqZkL7AYuP8i7t7JjqaJen/zg14eT
- VArfnvd9UZF0r+R+/6N2GR5W7TOzfXrCr9lszQNGHuhsv909dftl8un3Son38u26/VTXnOV6o
- 7V9z5zj+xKWdXSfU7x7UGTKEXdJZM3cby0nFlPTfv6ucnvybnujw6nfthsua7xRKi01z/vPc4
- GvKhLsBCZNNam7UfXSdKG6yWNnpncUGXo93Q5gXLUXm2j5oTTzAsiDdlbuGZ6hfYseZxccQX9
- 64iht1T3llU7ZarUmIpzkg01GIuKk4EAPAdRVSgAwAA
-X-Env-Sender: markpearson@lenovo.com
-X-Msg-Ref: server-20.tower-415.messagelabs.com!1616098390!35507!1
-X-Originating-IP: [104.232.225.12]
+ by server-4.bemta.az-a.us-west-2.aws.symcld.net id D0/7E-42417-86F74506;
+ Fri, 19 Mar 2021 10:39:36 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA1WSf0xTVxTHuX2v7QN526OAPTLB0Ti3SVppcaM
+ a3XDZWMd0IYwszBHkdX3QhrawtszigjZDq7EzwWisKyId2G0Ml1nWgAiaAQoRJIsdbOLWOWbD
+ +BUZkCgTh3uPh2775+bzPd9zz/3e5BCY5IYogWDsNsZipo0yURRenDQhluv35RamTgaeVvcPF
+ amnet0CdU33FvWp0a+RuqljDMsQato8IbFm4TukaffOCTTTl4ZEmrnmpGzhTqHBrC21Fwr1HS
+ 1uvGwxxe53D+MOFEg5jKIICfUQwc2rJ0S8GEMw0ntRzIsDAjg4HRbw4gGCqsEpxAlE+TCYPNu
+ 6LHpw+PFGEOPFOQSu+3NLDk61Y+DyNy+PPi2Anxuvs04kK24hmHZu5FhEPQsTnUNLTXFUG4LP
+ uv8WcgKjvAgGbzdiXFcslQf7DwZFHMdR70LboAvnWQVBd6+YY5x6Bq73tbJMECSVD/On1/Av1
+ yP4/OiikOuJpF6Ci/udS4yolXCv76yAY4ySws1w3RIDRcGZju8xnuNh/PaikP/cJwiGR+pEvC
+ GDxv7fcJ4TIVjnQjzvgIGwT8zzeugMepbrW+DKH16cCwfUWljsquDLJTDTOotVozTPf2J42C6
+ Meh6+ubCBLyfDcdeImGOSioGrn4ZxL8K/QmqtxVCst5log1GuTE2VK5UquVKllivTNynoPXJa
+ UW6V72asNrlKQe+2KqwVpveNOoWZsTUjdrF0ZY5vz6OaqT8VXWgVIZDFk1cW3i6UPKEt1VXoa
+ at+l6XcyFi70GqCkAEZV5lbKImxMMWMvchgZNfzkQ1EtCyOtHA2aS2jTVZDMW/1oU1E9XhtPU
+ aMDTWw5+VaXz0mwc2lZiZBSmZwFyjugr7c/Hjco4UPosSEWBJFRERIossYi8lg+78/gaQEksW
+ SH+5lp0QbzLbHr06wgQRsoLwnc7hANvpfK8EhOJQ/8wG80ZUailTYXHsDL5fEros+6TbQA8oC
+ b8/oU6cISee27P4s5vUWf7LH+d5G3WyBeNsrWbqxvI/2QYOpNmfyeKgps9JRcS88H7u1Om/Su
+ cIyXDmytj41Z/s1e5T7QbBqRXZP2mslqxbJ7VGW0vozDYHnDmVGaLW6V+PvFs32EP3X0nLTDp
+ S9M7B14UjDQ3J6nTshlJEvbXP9uiN5g883Onh4/sKt6BpD+lvalXdi9oi8vVPH1LtqYjb/cOT
+ LN/+6pNKZU8THXsy83/JFek1T95pzXmQ7cTQp8eOd1QV3nb/8nhG+k59+Up3lX+0Ibb78E1lV
+ btK0S6PGzedf8AdmBmS4VU8r12MWK/0Pf2x5vmsEAAA=
+X-Env-Sender: njoshi1@lenovo.com
+X-Msg-Ref: server-26.tower-326.messagelabs.com!1616150374!60915!1
+X-Originating-IP: [103.30.234.7]
 X-SYMC-ESS-Client-Auth: outbound-route-from=pass
 X-StarScan-Received: 
 X-StarScan-Version: 9.60.3; banners=-,-,-
 X-VirusChecked: Checked
-Received: (qmail 16649 invoked from network); 18 Mar 2021 20:13:10 -0000
-Received: from unknown (HELO lenovo.com) (104.232.225.12)
- by server-20.tower-415.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
- encrypted SMTP; 18 Mar 2021 20:13:10 -0000
-Received: from reswpmail01.lenovo.com (unknown [10.62.32.20])
+Received: (qmail 11823 invoked from network); 19 Mar 2021 10:39:36 -0000
+Received: from unknown (HELO lenovo.com) (103.30.234.7)
+ by server-26.tower-326.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
+ encrypted SMTP; 19 Mar 2021 10:39:36 -0000
+Received: from reswpmail03.lenovo.com (unknown [10.62.32.22])
  (using TLSv1.2 with cipher AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by Forcepoint Email with ESMTPS id 0A71D77508F818417F5F;
- Thu, 18 Mar 2021 16:13:10 -0400 (EDT)
-Received: from localhost.localdomain (10.38.103.43) by reswpmail01.lenovo.com
- (10.62.32.20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2106.2; Thu, 18 Mar
- 2021 16:13:09 -0400
-To: Hans de Goede <hdegoede@redhat.com>, Esteve Varela Colominas
- <esteve.varela@gmail.com>, Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>, 
- Nitin Joshi1 <njoshi1@lenovo.com>
+ by Forcepoint Email with ESMTPS id E16A0BF863FB334D37B3;
+ Fri, 19 Mar 2021 18:39:32 +0800 (CST)
+Received: from reswpmail02.lenovo.com (10.62.32.21) by reswpmail03.lenovo.com
+ (10.62.32.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2; Fri, 19 Mar
+ 2021 06:39:30 -0400
+Received: from va32wusexedge02.lenovo.com (10.62.123.117) by
+ reswpmail02.lenovo.com (10.62.32.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2106.2
+ via Frontend Transport; Fri, 19 Mar 2021 18:39:30 +0800
+Received: from APC01-HK2-obe.outbound.protection.outlook.com (104.47.124.57)
+ by mail.lenovo.com (10.62.123.117) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2106.2; Fri, 19 Mar 2021 18:39:29 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f4T50RefnFOmTEgxgb47wFbSSxKsqRqlp3is8Sv2C89WeVD+ZCLcOxX1fZ0i06+bFtNEhIpSQJuhNSjhcTJhgEgpKuCGzEFEDU7GjfI45NLGOU4r0Gsu/pVxqlZ3KjzZssfE6n4R2xAYN5JL5PoXJ0praQMNn/WscGLBa6ZLA4gdDiuEaVTI9D3W/oaghS1ddBHKW4GuuVCiATrRSMZkDjvGEiPD7J8d+xtgSabhybGvGUYekrEMaZT29cEO3l9RCrxnVpXBpCaCK8FCjNTNsrBbFumyqgeLeD2+b6gjO1KsoLZj8j0IXH/rpoWyuMoGYiPXKrS5bWLY5Daux2EMmg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RR2D1awjAg+bWLx3H74JpeYPJK58b+lLhHTYS7IZ+Wo=;
+ b=MeABpenOP2VjJtA6XT5O80R8oFViAxUb/G4IglpwBVb3JK1GIM7963YvIiNexCZ/9pyWALibCg+snOEDE3Ng+4ccZMJDWEMMjQ4tNchq1DAjuK1AYs6qSa3QVyBeGH5cYUm/noIeBk7Y4bPq8WfBBrd/QcQfCHRCLWjsi3tKRyhzTrNosBkd1DopaFhvrw+9TzZ3HxG+g9b43zRzD7yiIJBIIDx1a+Ud3+cnd9MQh2WyBB1ZsqCgF5yKTzoWglXEEpv+mOfWQHvRMcnh0NBD26qtuU3o6Uz6cxxWBGJUK44Z+9/8knQncoKMEoc5R1F3LPZxuglEoCMiOhUSdP9KGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=lenovo.com; dmarc=pass action=none header.from=lenovo.com;
+ dkim=pass header.d=lenovo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=LenovoBeijing.onmicrosoft.com; s=selector2-LenovoBeijing-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RR2D1awjAg+bWLx3H74JpeYPJK58b+lLhHTYS7IZ+Wo=;
+ b=S3F8D8DXEBWCZa+Pu9kq9Elo7edM64SMg53RZdFoHl6l2IBS+S0XG1OR/qUI1gR86PyGo5mtEqOmd5BmSza8GmDE55oglrGz9u6ThqfNCsTiuuGK78aDJrE0qLU8dMt5aAGjE9fPUYcFAccgg63fzoNUhdXhECyixSohce/EWg4=
+Received: from TY2PR03MB3645.apcprd03.prod.outlook.com (2603:1096:404:3f::21)
+ by TY2PR03MB3965.apcprd03.prod.outlook.com (2603:1096:404:aa::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3977.9; Fri, 19 Mar
+ 2021 10:39:26 +0000
+Received: from TY2PR03MB3645.apcprd03.prod.outlook.com
+ ([fe80::a0e1:86f6:bc8f:8f15]) by TY2PR03MB3645.apcprd03.prod.outlook.com
+ ([fe80::a0e1:86f6:bc8f:8f15%6]) with mapi id 15.20.3955.023; Fri, 19 Mar 2021
+ 10:39:26 +0000
+From: Nitin Joshi1 <njoshi1@lenovo.com>
+To: Mark RH Pearson <markpearson@lenovo.com>, Hans de Goede
+ <hdegoede@redhat.com>, Esteve Varela Colominas <esteve.varela@gmail.com>,
+ Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
+Thread-Topic: [External] Re: [PATCH] thinkpad_acpi: Allow the FnLock LED to
+ change state
+Thread-Index: AQHXHDMtRNsEjYElGUiAQROxEf+fs6qLHLhg
+Date: Fri, 19 Mar 2021 10:39:25 +0000
+Message-ID: <TY2PR03MB36456F1A3EFC9C31A865BF498C689@TY2PR03MB3645.apcprd03.prod.outlook.com>
 References: <20210315195823.23212-1-esteve.varela@gmail.com>
  <7fcaeb12-35b1-242a-dfd0-02324643c34b@redhat.com>
-From: Mark Pearson <markpearson@lenovo.com>
-Message-ID: <18ee74c0-85d9-6a1a-67f5-82682878001a@lenovo.com>
-Date: Thu, 18 Mar 2021 16:13:08 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
-MIME-Version: 1.0
-In-Reply-To: <7fcaeb12-35b1-242a-dfd0-02324643c34b@redhat.com>
+ <18ee74c0-85d9-6a1a-67f5-82682878001a@lenovo.com>
+In-Reply-To: <18ee74c0-85d9-6a1a-67f5-82682878001a@lenovo.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-Originating-IP: [10.38.103.43]
-X-ClientProxiedBy: reswpmail04.lenovo.com (10.62.32.23) To
- reswpmail01.lenovo.com (10.62.32.20)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [120.138.48.130]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 19ce4af9-40ac-4344-71a0-08d8eac3446a
+x-ms-traffictypediagnostic: TY2PR03MB3965:
+x-ld-processed: 5c7d0b28-bdf8-410c-aa93-4df372b16203,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <TY2PR03MB39650FF92FE1B2E796BA62318C689@TY2PR03MB3965.apcprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: wLAK2nfV+9i7mZIfr7zeSJtz5xXta8YDSXW5R5/uy1Q1h/vKMOTyTizDSoiEpZ2QdGne7mWX9+n9+8co+f+Babzti2//AWczeeE1/GvjOk+tPn1yFiYkv3KWAvobS3EqwW//cGP2Q5JSUJBFTG7b1MTrCw51ymx0hlVFDEyXNu8EBDRiuyiTx4UPn6rhHIhMURK57PixqS5C9STGP3BMaHNqrCCyCia2jIVakFhcr/vS6mqSjAE1Pb0UXCTa/i65sShZLdHkqWaJsfox6QLY0N5gqqOU/y5xvwtwLLrHsK4nxhyJiX9RiH+OhKIphrHv+mRH072+JvjRVKqC8emIb9G8yZ0Wrtx3vUNHnyphm1ef0HK1ye1vmqjWS89gWPy7Igs+/U6uB8v7sktjaQwMCQ9mwFL6px5oyLA6XRQcS0IQftSDbef451/mxsYWAWgjXGkJk2EOLXXdSCecmYTefzBe8Xhzs6tvj3Z9JUDEFJgi5jPJhBcukAO/qpEmbw8jDMnWT1YKw5QAUHHTpIZOOHg8gUGRVVtHiGmY2rVIU5lTBipjmQrvDzNqZV/zYUFw3aa9JJU8N6pRxOnNTS9T74oSXwV+8AV7awIe6/HL0OVRQDBKTR+G4vIqpVWA0bFAC2m4lBZcGLSuwqvtibMdlkVNYsL/xtW2XEY6B66VSaqB+BhcFf4ogf7iDQqTsz1VDyzDDKVypM/10hlzzq97Ar7EkmqfZcw9KYhV/UnByhub3pccbABe6ZLonSJPn0iX
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:TY2PR03MB3645.apcprd03.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(6029001)(4636009)(366004)(396003)(136003)(39860400002)(346002)(376002)(76116006)(478600001)(7696005)(64756008)(66946007)(5660300002)(66556008)(66446008)(83380400001)(66476007)(6506007)(52536014)(966005)(33656002)(4326008)(8676002)(2906002)(71200400001)(8936002)(53546011)(26005)(9686003)(38100700001)(110136005)(186003)(55016002)(54906003)(316002)(86362001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata: =?utf-8?B?dXA5VjEzTCtuOHVXdnJ3UGdDQmNhU3BMR2hzaUYzc01XUXM2bUFEd2Zrd2s4?=
+ =?utf-8?B?SWZRZm8raWo2QjFxYUV2MFB1VENkNTd2L2RDMkRPNHpVNWxTMnJTL0x3Zlg3?=
+ =?utf-8?B?amV0eUFDaGtEMEZ3SWNOMHA1cXNUVVllOWloa3pscFg3c0F0eHVMTm5RaHFQ?=
+ =?utf-8?B?SjF2L3MyanpJL1VFVHRVWnN2YzFsS2VGWEN0WTJBMytldENGeDBEWmFFUnFk?=
+ =?utf-8?B?OTFnSm9EVDhuem9razh2dkxEL1BSUEc2ZzY0NVhXc0REU1V5dlh3cjZQUk44?=
+ =?utf-8?B?b0NJdDJtUS9yNzB4MGpPUnZuMHlSNHg2WG1hSVRWTU5OVDI3QjcrdTVVWW0y?=
+ =?utf-8?B?WEkrYVQ5dEt5TFZMcURVWS9iOE8xeDVqY1U1aDQ3aXE0UkRaRktYR1VTTW1w?=
+ =?utf-8?B?YzBaKzhENENaS2pJakQ2S3laVW5lNVEvZmFmdVRSWVQ1bDJrcWFGK0s3VW16?=
+ =?utf-8?B?Y1VXTWpwdG9HaTdkK3crbHcxUXlVakdsRG00UzhCQUlqL0t0WmczOURLbExV?=
+ =?utf-8?B?eDhsdC96Mm9hRTAzV2FLcG1IcHNqVUJUTjlpVllZNm82TVZIVnRvTVpJdUZT?=
+ =?utf-8?B?MTlEMU5kaXRvN0pIbENJd2lTOFMrRlYxd2M0L2JlbE9mWEdxbXRFWTJVUkIx?=
+ =?utf-8?B?NDc4VUNRZzlRQ0JaM2l6cHRoUnRROXhyWi83cndrM3hVNmNZMVprWDhETmJ0?=
+ =?utf-8?B?enNPajg3TndJbzJQWXh2dWpYOUl6anAyRE14aXVjT291RzNCS2lyWmVkVkVT?=
+ =?utf-8?B?eC9aSWdLdnpZV2NSOE5FN3ZEQUlVTjNjaC9yYURzRkcrZ0NJSVNTWHluV1BE?=
+ =?utf-8?B?N0JIRC9mcUZNMTV0TFVnNkt1L2pUaVgxMkVpVTYwRkFCMlVuOVZnN3BhajJE?=
+ =?utf-8?B?ZzJTWkRiakFjeC9KVlhQakd2bVhJVWl0TWpYKzBTa2ZLZ2dlTEc1UElYUDRr?=
+ =?utf-8?B?MDZzT2MxZ2hLQ0ViL2dzTlJzQTFhSXNWOXR2clpJRFNaTy9OeTd2akI1NHhM?=
+ =?utf-8?B?dnZFaHhFT29Ld29VY3VWLzlnaDgwSExDYmFjZFUvK3ZFQU1IemhiamdLQ0Rz?=
+ =?utf-8?B?aDZUUzlFRVEwcHQvSFc5eGxtVWRqRmtscndXRDZZUXVETmM1ME9LbkNoTXZT?=
+ =?utf-8?B?WnFDUGVidllEYnNOY3JaMW5NYjdVS2VLLzBPbUFJdUlUQlRpRW5LLzViWDRR?=
+ =?utf-8?B?MXVhTlp0ZWVnRHg2Y1dDZlBENnRvQzh6aUNzWkhKQTVNYzNxa0k5WExsRVNp?=
+ =?utf-8?B?aUxIK2hrY3UrbC9zdVRyWHVKYkYzMFk3ZTZlYmUvemp6Q21LbWZEaHhmdCsw?=
+ =?utf-8?B?bnBsNG1RSWpCWjJPa3p4eHNmdFI2ak1lNm5SUXJQUkhkaHJVRWNRaFdhYVdE?=
+ =?utf-8?B?UXFrT0FvR1hzalRUbElScGkxZHhlZDY1K0RzVXZmc0xnenN6ako0ZU1XNTFG?=
+ =?utf-8?B?eHl3bi9WYnNFWGdLT3FXM25SZkkxN09yekczWU1zbFJXMFJoZnRFYkc0Q2tU?=
+ =?utf-8?B?Q09rb09taUtLT2NLaHVlaXVGS29qMjVRUUh1ZUhPa2p1MW5XMlVBOGtjbkJK?=
+ =?utf-8?B?Tzh5bnIxNnBkMTVzVmFkYUZyRUV2SyswNXkveHkxOGdpaG5RVUtCWFNNdVJl?=
+ =?utf-8?B?ZUpPN0hqTTZxZnVpTk9Dc1h6T2JjU0ZMb24zbnYvM2N0WkphdW8xMlY1Qld3?=
+ =?utf-8?B?eVJxWkxjTmZDdlhtT0VmcnAxby9BeHlHL1lOUkJWcUI4U0d4dWlhSk1raDZZ?=
+ =?utf-8?Q?oN5hB558BF0KPv3nnn4dbiJzyFpCGWHF1Sqkrdk?=
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR03MB3645.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 19ce4af9-40ac-4344-71a0-08d8eac3446a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2021 10:39:25.9584 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5c7d0b28-bdf8-410c-aa93-4df372b16203
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 1nyEoJpiS+mSAhJdlye2gH5QJ7rCF08MpHjAnCbeQHWLT1UjToTs69LkgiFwIpUgDmnn3lBhf5h2wM5qIID1CQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR03MB3965
+X-OriginatorOrg: lenovo.com
 X-Spam-Score: -0.0 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
+ trust [67.219.250.4 listed in list.dnswl.org]
  0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: launchpad.net]
+ for more information. [URIs: hmh.eng.br]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [67.219.246.113 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/, no
- trust [67.219.246.113 listed in list.dnswl.org]
+ [67.219.250.4 listed in wl.mailspike.net]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
-X-Headers-End: 1lMz1F-0001oV-HV
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 TIME_LIMIT_EXCEEDED    Exceeded time limit / deadline
+X-Headers-End: 1lNCXk-00071L-RY
 Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH] thinkpad_acpi: Allow
  the FnLock LED to change state
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -122,85 +217,87 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: ibm-acpi-devel@lists.sourceforge.net, platform-driver-x86@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: "ibm-acpi-devel@lists.sourceforge.net"
+ <ibm-acpi-devel@lists.sourceforge.net>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Thanks Hans
-
-On 18/03/2021 12:49, Hans de Goede wrote:
-> Hi,
-> 
-> On 3/15/21 8:58 PM, Esteve Varela Colominas wrote:
->> On many recent ThinkPad laptops, there's a new LED next to the ESC key,
->> that indicates the FnLock status.
->> When the Fn+ESC combo is pressed, FnLock is toggled, which causes the
->> Media Key functionality to change, making it so that the media keys
->> either perform their media key function, or function as an F-key by
->> default. The Fn key can be used the access the alternate function at any
->> time.
->>
->> With the current linux kernel, the LED doens't change state if you press
->> the Fn+ESC key combo. However, the media key functionality *does*
->> change. This is annoying, since the LED will stay on if it was on during
->> bootup, and it makes it hard to keep track what the current state of the
->> FnLock is.
->>
->> This patch calls an ACPI function, that gets the current media key
->> state, when the Fn+ESC key combo is pressed. Through testing it was
->> discovered that this function causes the LED to update correctly to
->> reflect the current state when this function is called.
->>
->> The relevant ACPI calls are the following:
->> \_SB_.PCI0.LPC0.EC0_.HKEY.GMKS: Get media key state, returns 0x603 if the FnLock mode is enabled, and 0x602 if it's disabled.
->> \_SB_.PCI0.LPC0.EC0_.HKEY.SMKS: Set media key state, sending a 1 will enable FnLock mode, and a 0 will disable it.
->>
->> Relevant discussion:
->> https://bugzilla.kernel.org/show_bug.cgi?id=207841
->> https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1881015
->>
->> Signed-off-by: Esteve Varela Colominas <esteve.varela@gmail.com>
->> ---
->>  drivers/platform/x86/thinkpad_acpi.c | 8 +++++++-
->>  1 file changed, 7 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
->> index c40470637..09362dd74 100644
->> --- a/drivers/platform/x86/thinkpad_acpi.c
->> +++ b/drivers/platform/x86/thinkpad_acpi.c
->> @@ -4079,13 +4079,19 @@ static bool hotkey_notify_6xxx(const u32 hkey,
->>  
->>  	case TP_HKEY_EV_KEY_NUMLOCK:
->>  	case TP_HKEY_EV_KEY_FN:
->> -	case TP_HKEY_EV_KEY_FN_ESC:
->>  		/* key press events, we just ignore them as long as the EC
->>  		 * is still reporting them in the normal keyboard stream */
->>  		*send_acpi_ev = false;
->>  		*ignore_acpi_ev = true;
->>  		return true;
->>  
->> +	case TP_HKEY_EV_KEY_FN_ESC:
->> +		/* Get the media key status to foce the status LED to update */
->> +		acpi_evalf(hkey_handle, NULL, "GMKS", "v");
-> 
-> Sicne this is a getter function I guess that calling it is mostly harmless
-> and if it works around what seems to be a firmware bug on some of the E?95
-> ThinkPad models then I guess that this is fine by me.
-> 
-> Mark, do you have any comments on this ?
-I'd like to follow up with the firmware team to make sure we've got the
-correct details and implementation (kudos on the reverse engineering
-though).
-
-Nitin - you've worked with the firmware team on hotkeys, would you mind
-digging into this one please to confirm. In particular if there's been a
-change how do we make sure we don't impact older platforms etc.
-
-Mark
-
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+SGVsbG8sDQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IE1hcmsgUkggUGVh
+cnNvbiA8bWFya3BlYXJzb25AbGVub3ZvLmNvbT4NCj5TZW50OiBGcmlkYXksIE1hcmNoIDE5LCAy
+MDIxIDU6MTMgQU0NCj5UbzogSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNvbT47IEVz
+dGV2ZSBWYXJlbGEgQ29sb21pbmFzDQo+PGVzdGV2ZS52YXJlbGFAZ21haWwuY29tPjsgSGVucmlx
+dWUgZGUgTW9yYWVzIEhvbHNjaHVoIDxpYm0tDQo+YWNwaUBobWguZW5nLmJyPjsgTml0aW4gSm9z
+aGkxIDxuam9zaGkxQGxlbm92by5jb20+DQo+Q2M6IGlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJj
+ZWZvcmdlLm5ldDsgcGxhdGZvcm0tZHJpdmVyLQ0KPng4NkB2Z2VyLmtlcm5lbC5vcmcNCj5TdWJq
+ZWN0OiBSZTogW0V4dGVybmFsXSBSZTogW1BBVENIXSB0aGlua3BhZF9hY3BpOiBBbGxvdyB0aGUg
+Rm5Mb2NrIExFRCB0bw0KPmNoYW5nZSBzdGF0ZQ0KPg0KPlRoYW5rcyBIYW5zDQo+DQo+T24gMTgv
+MDMvMjAyMSAxMjo0OSwgSGFucyBkZSBHb2VkZSB3cm90ZToNCj4+IEhpLA0KPj4NCj4+IE9uIDMv
+MTUvMjEgODo1OCBQTSwgRXN0ZXZlIFZhcmVsYSBDb2xvbWluYXMgd3JvdGU6DQo+Pj4gT24gbWFu
+eSByZWNlbnQgVGhpbmtQYWQgbGFwdG9wcywgdGhlcmUncyBhIG5ldyBMRUQgbmV4dCB0byB0aGUg
+RVNDDQo+Pj4ga2V5LCB0aGF0IGluZGljYXRlcyB0aGUgRm5Mb2NrIHN0YXR1cy4NCj4+PiBXaGVu
+IHRoZSBGbitFU0MgY29tYm8gaXMgcHJlc3NlZCwgRm5Mb2NrIGlzIHRvZ2dsZWQsIHdoaWNoIGNh
+dXNlcyB0aGUNCj4+PiBNZWRpYSBLZXkgZnVuY3Rpb25hbGl0eSB0byBjaGFuZ2UsIG1ha2luZyBp
+dCBzbyB0aGF0IHRoZSBtZWRpYSBrZXlzDQo+Pj4gZWl0aGVyIHBlcmZvcm0gdGhlaXIgbWVkaWEg
+a2V5IGZ1bmN0aW9uLCBvciBmdW5jdGlvbiBhcyBhbiBGLWtleSBieQ0KPj4+IGRlZmF1bHQuIFRo
+ZSBGbiBrZXkgY2FuIGJlIHVzZWQgdGhlIGFjY2VzcyB0aGUgYWx0ZXJuYXRlIGZ1bmN0aW9uIGF0
+DQo+Pj4gYW55IHRpbWUuDQo+Pj4NCj4+PiBXaXRoIHRoZSBjdXJyZW50IGxpbnV4IGtlcm5lbCwg
+dGhlIExFRCBkb2Vucyd0IGNoYW5nZSBzdGF0ZSBpZiB5b3UNCj4+PiBwcmVzcyB0aGUgRm4rRVND
+IGtleSBjb21iby4gSG93ZXZlciwgdGhlIG1lZGlhIGtleSBmdW5jdGlvbmFsaXR5DQo+Pj4gKmRv
+ZXMqIGNoYW5nZS4gVGhpcyBpcyBhbm5veWluZywgc2luY2UgdGhlIExFRCB3aWxsIHN0YXkgb24g
+aWYgaXQgd2FzDQo+Pj4gb24gZHVyaW5nIGJvb3R1cCwgYW5kIGl0IG1ha2VzIGl0IGhhcmQgdG8g
+a2VlcCB0cmFjayB3aGF0IHRoZSBjdXJyZW50DQo+Pj4gc3RhdGUgb2YgdGhlIEZuTG9jayBpcy4N
+Cj4+Pg0KPj4+IFRoaXMgcGF0Y2ggY2FsbHMgYW4gQUNQSSBmdW5jdGlvbiwgdGhhdCBnZXRzIHRo
+ZSBjdXJyZW50IG1lZGlhIGtleQ0KPj4+IHN0YXRlLCB3aGVuIHRoZSBGbitFU0Mga2V5IGNvbWJv
+IGlzIHByZXNzZWQuIFRocm91Z2ggdGVzdGluZyBpdCB3YXMNCj4+PiBkaXNjb3ZlcmVkIHRoYXQg
+dGhpcyBmdW5jdGlvbiBjYXVzZXMgdGhlIExFRCB0byB1cGRhdGUgY29ycmVjdGx5IHRvDQo+Pj4g
+cmVmbGVjdCB0aGUgY3VycmVudCBzdGF0ZSB3aGVuIHRoaXMgZnVuY3Rpb24gaXMgY2FsbGVkLg0K
+Pj4+DQo+Pj4gVGhlIHJlbGV2YW50IEFDUEkgY2FsbHMgYXJlIHRoZSBmb2xsb3dpbmc6DQo+Pj4g
+XF9TQl8uUENJMC5MUEMwLkVDMF8uSEtFWS5HTUtTOiBHZXQgbWVkaWEga2V5IHN0YXRlLCByZXR1
+cm5zIDB4NjAzIGlmDQo+dGhlIEZuTG9jayBtb2RlIGlzIGVuYWJsZWQsIGFuZCAweDYwMiBpZiBp
+dCdzIGRpc2FibGVkLg0KPj4+IFxfU0JfLlBDSTAuTFBDMC5FQzBfLkhLRVkuU01LUzogU2V0IG1l
+ZGlhIGtleSBzdGF0ZSwgc2VuZGluZyBhIDEgd2lsbA0KPmVuYWJsZSBGbkxvY2sgbW9kZSwgYW5k
+IGEgMCB3aWxsIGRpc2FibGUgaXQuDQo+Pj4NCj4+PiBSZWxldmFudCBkaXNjdXNzaW9uOg0KPj4+
+IGh0dHBzOi8vYnVnemlsbGEua2VybmVsLm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MjA3ODQxDQo+Pj4g
+aHR0cHM6Ly9idWdzLmxhdW5jaHBhZC5uZXQvdWJ1bnR1Lytzb3VyY2UvbGludXgvK2J1Zy8xODgx
+MDE1DQo+Pj4NCj4+PiBTaWduZWQtb2ZmLWJ5OiBFc3RldmUgVmFyZWxhIENvbG9taW5hcyA8ZXN0
+ZXZlLnZhcmVsYUBnbWFpbC5jb20+DQo+Pj4gLS0tDQo+Pj4gIGRyaXZlcnMvcGxhdGZvcm0veDg2
+L3RoaW5rcGFkX2FjcGkuYyB8IDggKysrKysrKy0NCj4+PiAgMSBmaWxlIGNoYW5nZWQsIDcgaW5z
+ZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPj4+DQo+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
+cGxhdGZvcm0veDg2L3RoaW5rcGFkX2FjcGkuYw0KPj4+IGIvZHJpdmVycy9wbGF0Zm9ybS94ODYv
+dGhpbmtwYWRfYWNwaS5jDQo+Pj4gaW5kZXggYzQwNDcwNjM3Li4wOTM2MmRkNzQgMTAwNjQ0DQo+
+Pj4gLS0tIGEvZHJpdmVycy9wbGF0Zm9ybS94ODYvdGhpbmtwYWRfYWNwaS5jDQo+Pj4gKysrIGIv
+ZHJpdmVycy9wbGF0Zm9ybS94ODYvdGhpbmtwYWRfYWNwaS5jDQo+Pj4gQEAgLTQwNzksMTMgKzQw
+NzksMTkgQEAgc3RhdGljIGJvb2wgaG90a2V5X25vdGlmeV82eHh4KGNvbnN0IHUzMg0KPj4+IGhr
+ZXksDQo+Pj4NCj4+PiAgCWNhc2UgVFBfSEtFWV9FVl9LRVlfTlVNTE9DSzoNCj4+PiAgCWNhc2Ug
+VFBfSEtFWV9FVl9LRVlfRk46DQo+Pj4gLQljYXNlIFRQX0hLRVlfRVZfS0VZX0ZOX0VTQzoNCj4+
+PiAgCQkvKiBrZXkgcHJlc3MgZXZlbnRzLCB3ZSBqdXN0IGlnbm9yZSB0aGVtIGFzIGxvbmcgYXMg
+dGhlIEVDDQo+Pj4gIAkJICogaXMgc3RpbGwgcmVwb3J0aW5nIHRoZW0gaW4gdGhlIG5vcm1hbCBr
+ZXlib2FyZCBzdHJlYW0gKi8NCj4+PiAgCQkqc2VuZF9hY3BpX2V2ID0gZmFsc2U7DQo+Pj4gIAkJ
+Kmlnbm9yZV9hY3BpX2V2ID0gdHJ1ZTsNCj4+PiAgCQlyZXR1cm4gdHJ1ZTsNCj4+Pg0KPj4+ICsJ
+Y2FzZSBUUF9IS0VZX0VWX0tFWV9GTl9FU0M6DQo+Pj4gKwkJLyogR2V0IHRoZSBtZWRpYSBrZXkg
+c3RhdHVzIHRvIGZvY2UgdGhlIHN0YXR1cyBMRUQgdG8gdXBkYXRlICovDQo+Pj4gKwkJYWNwaV9l
+dmFsZihoa2V5X2hhbmRsZSwgTlVMTCwgIkdNS1MiLCAidiIpOw0KPj4NCj4+IFNpY25lIHRoaXMg
+aXMgYSBnZXR0ZXIgZnVuY3Rpb24gSSBndWVzcyB0aGF0IGNhbGxpbmcgaXQgaXMgbW9zdGx5DQo+
+PiBoYXJtbGVzcyBhbmQgaWYgaXQgd29ya3MgYXJvdW5kIHdoYXQgc2VlbXMgdG8gYmUgYSBmaXJt
+d2FyZSBidWcgb24NCj4+IHNvbWUgb2YgdGhlIEU/OTUgVGhpbmtQYWQgbW9kZWxzIHRoZW4gSSBn
+dWVzcyB0aGF0IHRoaXMgaXMgZmluZSBieSBtZS4NCj4+DQo+PiBNYXJrLCBkbyB5b3UgaGF2ZSBh
+bnkgY29tbWVudHMgb24gdGhpcyA/DQo+SSdkIGxpa2UgdG8gZm9sbG93IHVwIHdpdGggdGhlIGZp
+cm13YXJlIHRlYW0gdG8gbWFrZSBzdXJlIHdlJ3ZlIGdvdCB0aGUgY29ycmVjdA0KPmRldGFpbHMg
+YW5kIGltcGxlbWVudGF0aW9uIChrdWRvcyBvbiB0aGUgcmV2ZXJzZSBlbmdpbmVlcmluZyB0aG91
+Z2gpLg0KPg0KPk5pdGluIC0geW91J3ZlIHdvcmtlZCB3aXRoIHRoZSBmaXJtd2FyZSB0ZWFtIG9u
+IGhvdGtleXMsIHdvdWxkIHlvdSBtaW5kDQo+ZGlnZ2luZyBpbnRvIHRoaXMgb25lIHBsZWFzZSB0
+byBjb25maXJtLiBJbiBwYXJ0aWN1bGFyIGlmIHRoZXJlJ3MgYmVlbiBhIGNoYW5nZQ0KPmhvdyBk
+byB3ZSBtYWtlIHN1cmUgd2UgZG9uJ3QgaW1wYWN0IG9sZGVyIHBsYXRmb3JtcyBldGMuDQoNClJl
+Z2FyZGluZyAiR01LUyIgbWV0aG9kLCBpdCBkb2VzIG5vdCBoYXZlICJ2ZXJzaW9uIiByZWxhdGVk
+IGluZm9ybWF0aW9uLiBTbyAsIGl0cyB1bmxpa2VseSB0byBpbXBhY3QgYW55IG9sZGVyIHBsYXRm
+b3Jtcy4NCkhvd2V2ZXIsIEkgZ290IGl0IGNvbmZpcm1lZCB0aGF0IGRlZmluaXRpb24gb2YgR01L
+UyBtZXRob2QgaXRzZWxmIGRvZXNuJ3QgaW5jbHVkZSBhbnkgd29ya2Fyb3VuZCBmZWF0dXJlLiAN
+Cg0KQnV0LCBzaW5jZSBpdHMgZ2V0dGVyIGZ1bmN0aW9uICwgSSBhbHNvIHRoaW5rIGl0cyBoYXJt
+bGVzcyBhbmQgaWYgaXQgd29ya2Fyb3VuZCBzb21lIGlzc3VlIHRoZW4gSSBkb27igJl0IHNlZSBh
+bnkgY29uY2Vybi4NCg0KPg0KPk1hcmsNCg0KVGhhbmtzICYgUmVnYXJkcywNCk5pdGluIEpvc2hp
+ICANCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwppYm0t
+YWNwaS1kZXZlbCBtYWlsaW5nIGxpc3QKaWJtLWFjcGktZGV2ZWxAbGlzdHMuc291cmNlZm9yZ2Uu
+bmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2libS1hY3Bp
+LWRldmVsCg==
