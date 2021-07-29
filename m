@@ -2,79 +2,80 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE283D9502
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 28 Jul 2021 20:08:39 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
+	by mail.lfdr.de (Postfix) with ESMTPS id 668583D9F66
+	for <lists+ibm-acpi-devel@lfdr.de>; Thu, 29 Jul 2021 10:22:26 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.90_1)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1m8nya-0004KQ-RZ; Wed, 28 Jul 2021 18:08:16 +0000
+	id 1m91If-0002Fd-Ss; Thu, 29 Jul 2021 08:21:53 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.90_1)
- (envelope-from <hdegoede@redhat.com>) id 1m8nyZ-0004KF-HN
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 28 Jul 2021 18:08:15 +0000
+ (envelope-from <hdegoede@redhat.com>) id 1m91Ie-0002FJ-5d
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 29 Jul 2021 08:21:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=AX4tU0IlfDZv2jtlh/UUKbH1sVP+Xz81hRfOcYsx8ls=; b=D4yMOvOfF0HlWvhEwBEdpybwqu
- C9u1B5n9h/vBKROvnZa7gvV+12HGQJTToMHydS+TvBbD+NDhLJuVQxtgxdKBPA/ljwhBtfOBrXumi
- npWD7NJKmjbAeVGOt915VnQKZwC1kLfRnF57YROXv6UIqjq68h0dADFHHUm5aBweF9O4=;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
- ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:Message-Id:
  Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=AX4tU0IlfDZv2jtlh/UUKbH1sVP+Xz81hRfOcYsx8ls=; b=LyQ3aUBW1cARSUOY1UNC8Eu0P5
- qNnaOym3lCXbMbFs6BJgM8es7nmshLFc3i1GZlH2Zi3s0ykUnMZ+uq2A7JHsZpQ34kiPJvJ9GyN9F
- lteO17qJDasnXX7tzJRdVdaAbZwTwHnGYQ0Mcd5UfO/QBJ0B00gr7p+eMU8+0xILK0fE=;
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124])
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=ogx7OPoevsyxONHkz9yx2l49e9r0H22u7bYOBcQCtFk=; b=GUNM80SK+ozuVpVQ2swtNLHKDm
+ MvOZYdZ9WdY6YrzDZ3ogyWtuRBxi8HbPOw0OlrckGT8oCA2GZ2x6umZ/ylJUxbQJJF3HY3mp3f0aQ
+ PIiQOhf7BnlPXHHy28X3YRs8iTMJzO5NHQUgnRibniNH4MXRs6IFu9Ksd90ah9t42Hq8=;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
+ ;
+ h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From
+ :Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=ogx7OPoevsyxONHkz9yx2l49e9r0H22u7bYOBcQCtFk=; b=W
+ kxJWrDJBZ2Gl2Ot8QkfXzaRB0X1vh8Wv5p3Uz0vsiydWas2UTGNr8fjC9LSFSSm6kseOoL5mIw174
+ WkSSiMPqJ8Micas9frRNfOPVyQjfePhaY4x0YEVPhua9AAPGRHVFugegQA4ZGkLjnn5nlbZ0kG68X
+ yglmkb7v3vnU8F3k=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1m8nyM-005g69-FO
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 28 Jul 2021 18:08:15 +0000
+ id 1m91Ia-006Fif-5p
+ for ibm-acpi-devel@lists.sourceforge.net; Thu, 29 Jul 2021 08:21:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1627495676;
+ s=mimecast20190719; t=1627546901;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=AX4tU0IlfDZv2jtlh/UUKbH1sVP+Xz81hRfOcYsx8ls=;
- b=KcATa4hn6nS7AZyJtCjzPGbPY1TtS7fKEmBTPaZ0d5mb2MgL7Lk+7rmUW4rM+IOt6OAwO+
- JE/aukoN68lZ+0No/OeYVKVzaFMwrjHNs+Z1dRItHKvFoL6PwYpJiK3RniYWfKL4IbsOB7
- DX31UF9hNnHPnU0J4SaFWlwXoxqhWX4=
+ content-transfer-encoding:content-transfer-encoding;
+ bh=ogx7OPoevsyxONHkz9yx2l49e9r0H22u7bYOBcQCtFk=;
+ b=DfHqOenarKttyzfajinN/uZLmXu2QgKDnNoBsHnDC0zZDFeiOi9i6W4pFpQnGiRzBFpwRe
+ y/YmVU/FEogjonut5RYg7Fsil5yOPEWbCUtMD8pCoeArWBMWmHt0/OWLBkJU4cOxcvgGZq
+ gvrALmSGs4hlFwbvljmAzwSTNvbkAsw=
 Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
  [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-419-Y4MlGzSeNtCd3ZkJOFmyJQ-1; Wed, 28 Jul 2021 14:07:54 -0400
-X-MC-Unique: Y4MlGzSeNtCd3ZkJOFmyJQ-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.phx2.redhat.com
- [10.5.11.23])
+ us-mta-352-Ri04Hx1cPYSaZtQ7Z6GwGA-1; Thu, 29 Jul 2021 04:21:39 -0400
+X-MC-Unique: Ri04Hx1cPYSaZtQ7Z6GwGA-1
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com
+ [10.5.11.12])
  (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
  (No client certificate requested)
- by mimecast-mx01.redhat.com (Postfix) with ESMTPS id DADB118C89CC;
- Wed, 28 Jul 2021 18:07:52 +0000 (UTC)
-Received: from x1.localdomain (unknown [10.39.192.42])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 5236419C66;
- Wed, 28 Jul 2021 18:07:51 +0000 (UTC)
+ by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 11015801AEB;
+ Thu, 29 Jul 2021 08:21:38 +0000 (UTC)
+Received: from x1.localdomain (unknown [10.39.194.92])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 08F6960C05;
+ Thu, 29 Jul 2021 08:21:34 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: Mark Gross <mgross@linux.intel.com>, Andy Shevchenko <andy@infradead.org>,
  Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
  Mark Pearson <markpearson@lenovo.com>
-Date: Wed, 28 Jul 2021 20:07:48 +0200
-Message-Id: <20210728180748.190258-2-hdegoede@redhat.com>
-In-Reply-To: <20210728180748.190258-1-hdegoede@redhat.com>
-References: <20210728180748.190258-1-hdegoede@redhat.com>
+Date: Thu, 29 Jul 2021 10:21:34 +0200
+Message-Id: <20210729082134.6683-1-hdegoede@redhat.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.23
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
 X-Spam-Score: -0.8 (/)
 X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  See http://spamassassin.org/tag/ for more details.
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [216.205.24.124 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [170.10.133.124 listed in wl.mailspike.net]
+ 0.0 URIBL_BLOCKED ADMINISTRATOR NOTICE: The query to URIBL was blocked.
+ See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: devpi.de]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
@@ -84,8 +85,9 @@ X-Spam-Report: Spam Filtering performed by mx.sourceforge.net.
  not necessarily valid
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1m8nyM-005g69-FO
-Subject: [ibm-acpi-devel] [RFC 1/1] platform/x86: Add and use a
+ -0.0 AWL AWL: Adjusted score from AWL reputation of From: address
+X-Headers-End: 1m91Ia-006Fif-5p
+Subject: [ibm-acpi-devel] [PATCH] platform/x86: Add and use a
  dual_accel_detect() helper
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -99,8 +101,9 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>, platform-driver-x86@vger.kernel.org,
- linux-acpi@vger.kernel.org, ibm-acpi-devel@lists.sourceforge.net
+Cc: Hans de Goede <hdegoede@redhat.com>, Julius Lehmann <julius@devpi.de>,
+ platform-driver-x86@vger.kernel.org, linux-acpi@vger.kernel.org,
+ ibm-acpi-devel@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
@@ -136,7 +139,11 @@ a dual-accel setup, in which case there will be 2 I2cSerialBus resources
 in the device's resource-list, so the helper checks for this.
 
 BugLink: https://bugzilla.kernel.org/show_bug.cgi?id=209011
+Reported-and-tested-by: Julius Lehmann <julius@devpi.de>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+---
+Changes from RFC:
+-Add Julius' Reported-and-tested-by
 ---
  drivers/platform/x86/Kconfig             |  3 +
  drivers/platform/x86/dual_accel_detect.h | 75 ++++++++++++++++++++++++
