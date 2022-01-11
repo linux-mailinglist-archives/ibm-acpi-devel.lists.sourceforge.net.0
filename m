@@ -2,26 +2,26 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E6A48975C
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 10 Jan 2022 12:25:15 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46FFD48AC33
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 11 Jan 2022 12:11:00 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1n6smr-0006h9-Ht; Mon, 10 Jan 2022 11:24:28 +0000
+	id 1n7F2Z-00046H-KH; Tue, 11 Jan 2022 11:10:10 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <hdegoede@redhat.com>) id 1n6smq-0006h3-Ny
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 10 Jan 2022 11:24:27 +0000
+ (envelope-from <hdegoede@redhat.com>) id 1n7F2W-00045u-BP
+ for ibm-acpi-devel@lists.sourceforge.net; Tue, 11 Jan 2022 11:10:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
  From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pBE0ggFKcl6guyW93VUOpb5auuAFCSHgSAnkBD22A74=; b=Fu0pduFQIdEQUdocgGqSFngpMV
- SNY/aM0pPhs5DbFvUJmsbMh8Z7wvesLrAKzWcSsIgB0c/xE+WiXbCSsQWBC8RT9B2AxYJWPd9MnPB
- 7et8QSbr1FOhPrDFI/H7CA/+RBV/yasre0KhaSESsb4QuoO/XzSQrXhyuHiSWb+Us6+I=;
+ bh=GK0syOgD4cEhkoYpGBGfx9XA+GWyfSHbLSt1HeHK17Q=; b=O8ZrVI3Ysy02WpT+Fvvr1kik8L
+ ZhvBWavxgojnqLyEjfpnHDg7Y4j7fq0sRsbEdospqfwJzYFFF9Ki1h0FSLZwnKSj6aGTPzawLEUoe
+ vM+qIgKqWnuWnlo6YWi0N3ft6mANjkvW1PnlGeIk5CV1/Tu7HhMaZiZkcimbjZAId3As=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
@@ -29,80 +29,71 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pBE0ggFKcl6guyW93VUOpb5auuAFCSHgSAnkBD22A74=; b=b3j1Hsb9WoyreSeZXhGyua6KR1
- WYc2OCeeW22e5CBqoZphRyeomMNw+qjgQd3gZ0Z11scEbbYbVFV0xmG6GMQwED6A/lYsp0qaQyRnc
- ytXxRDDybV22nluSkJK0AqWd/uyn203ezIcRxWtHDLpItkl4Lk1R3cpj/3xlHeJtKECg=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=GK0syOgD4cEhkoYpGBGfx9XA+GWyfSHbLSt1HeHK17Q=; b=Tlfr0VUFe/rmqycarnhlvARTIY
+ K0OPV9abR77DtvCPVZHcOlsQ2OZe06Uk9RLfdhWDl/a0aggDCTVCEKh+qQ1po9XFtSrGC3PTyHmQt
+ GclQ4g+eP6WYkvvXNm5UdCRlfZAm9rPBF38t0B08OSfj40B/MBGNKFKER/Yc5RzNQWBQ=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n6sml-000390-S4
- for ibm-acpi-devel@lists.sourceforge.net; Mon, 10 Jan 2022 11:24:27 +0000
+ id 1n7F2P-0002iH-E1
+ for ibm-acpi-devel@lists.sourceforge.net; Tue, 11 Jan 2022 11:10:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1641813857;
+ s=mimecast20190719; t=1641899390;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=pBE0ggFKcl6guyW93VUOpb5auuAFCSHgSAnkBD22A74=;
- b=ENJCFjxXHJVgXZ26ffA8y9akFCiypf8Y+oRrkbnLql1sxHuYrZHDZ30kSM//J+rV9diEfW
- dj4OThvmI9dQ4ikQdUqxayqMc4qldgNEAeFgP2sDrGJfBSstWVEjY/Lo+3Irz6OBcUDSzo
- OO6XKPyzO6AXQTl4cRmJdLmGr5Y2ueg=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=GK0syOgD4cEhkoYpGBGfx9XA+GWyfSHbLSt1HeHK17Q=;
+ b=PRtubnorlcqt0rrm1rlE9GbZpWy3D11HHWTnevpfVl8eybg/bm3sLSkmYcEEhcrl7VQtjP
+ XILpWDEe3zcNQKA0SLgjh+MTJZqgUDnTO2u8IvIixUvdH6SSPcOWdT0oQ0bShNhNBbDpor
+ 3Z1kfHTIR4kfeUzRD6lw081zeLeljXg=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-116-0BZlsoTDPNms1NXRDBp7ZQ-1; Mon, 10 Jan 2022 06:24:16 -0500
-X-MC-Unique: 0BZlsoTDPNms1NXRDBp7ZQ-1
-Received: by mail-ed1-f69.google.com with SMTP id
- y10-20020a056402358a00b003f88b132849so9885309edc.0
+ us-mta-435-pSwVzyeaPy60rOwJzUr4bw-1; Tue, 11 Jan 2022 06:09:48 -0500
+X-MC-Unique: pSwVzyeaPy60rOwJzUr4bw-1
+Received: by mail-ed1-f70.google.com with SMTP id
+ g11-20020a056402090b00b003f8fd1ac475so13000450edz.1
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 10 Jan 2022 03:24:16 -0800 (PST)
+ Tue, 11 Jan 2022 03:09:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:to:cc:references:from:in-reply-to
  :content-transfer-encoding;
- bh=pBE0ggFKcl6guyW93VUOpb5auuAFCSHgSAnkBD22A74=;
- b=6Jb9CKoKbDD7PFiorl2cBbO2WajzbhUraE7cQT53wFzjBcwT5dP6zWi/2L7SjrjCl8
- Mw0vsnPWLm4cc7F1Nf5cljupH+c3AudwO44tzJW4SgCaZybpCm9DxiqG3kuKJ6SKbjtq
- XJyO1A5IhJTxpxszgdkxaW4kXJ19ze5UpnAcLOASz1r5GRgvSA4hgxbis7QKta6897+o
- WijzrsTyMtCdRKy1j78S990zGTR5FsvFPn4L2x1Bh+5lwZMh5Kxt0J9ybUYovXxqmYCX
- K3ylI7YALKkBUrdsv0pwliuQIG9r8Ezk3r7SvAGYn9EDskKbzX0PzuxBv49BhXg6l6ig
- rlBg==
-X-Gm-Message-State: AOAM530rrIg6QkWbuW5eTKnkbjXnx8zQvv1FZjzmg1N7MNk8T6v7fKUT
- iPwQWqqyPlFLQWcRSxHNXa9M3Dpe2wgdlxvIQtnPYXOyJKG2UNJOm1jwgtvMNwy8aZvhttmS/TV
- pnCY4qPyrcii3HrOm3HVUfRU6Ns3QLIiCymY=
-X-Received: by 2002:a17:907:7fab:: with SMTP id
- qk43mr5393016ejc.624.1641813855582; 
- Mon, 10 Jan 2022 03:24:15 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyt9E0WS2MJysm3Twf1UdddP8U5gDgxMfL43JZ+JDuzamz/VprUYj4+VfxHHKVcF8DCP/SVOg==
-X-Received: by 2002:a17:907:7fab:: with SMTP id
- qk43mr5392997ejc.624.1641813855367; 
- Mon, 10 Jan 2022 03:24:15 -0800 (PST)
+ bh=GK0syOgD4cEhkoYpGBGfx9XA+GWyfSHbLSt1HeHK17Q=;
+ b=4oq0QCeFZkzOObJvO21aPgcVJTnbHpqnEHOC38BY1JcdCkzuTruZzjBddTSp7lptbJ
+ B48zckC1+qvV/6g/V2Yv3v43M5/oWV0hNPVkPh1Qp1zUTZwLFypfvCOL2Qno2woSfgGI
+ ApIktjNykqoAI5oD03KhusLDhwdIwkPYic/LMbCvIQEAfHYSNj8LQ7SkM9adDk9d7GYl
+ I4MC9w1VSdJ8HrMqYEqRudvqdu1RZnJCf/woNhw4Rcby4KMDNvdZzcYPYgf1AF4UItAJ
+ gcJ9n0ENg80r59QOnEzI5Tq1iUnhgKA2QTRYoBehco4wyGC6KrMDmFrKPY0Jc2O8Xjz3
+ AA3A==
+X-Gm-Message-State: AOAM532N0UUUymHfDl7R1U4EFf2WPfo60Klk11M8u+Vv1KRJRG2W03eC
+ ucTkQqoURj9NipE+gS93spVvphNSdmPFmn4ujXbca6E/cB+Tm5TJ+AO0FAQScpefutKo7z8/Qli
+ ZqETxIZyRmJPsu4PsDBsLI/aZgDSbMyWL6u4=
+X-Received: by 2002:a05:6402:11cf:: with SMTP id
+ j15mr3938131edw.220.1641899385415; 
+ Tue, 11 Jan 2022 03:09:45 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzF41CmUVGmRg3fQrUe/+R7/CvyVA0GZULagxPwJfNwQpdTC3khJv8ySRvPBhSpgu/rv5XUQA==
+X-Received: by 2002:a05:6402:11cf:: with SMTP id
+ j15mr3938115edw.220.1641899385188; 
+ Tue, 11 Jan 2022 03:09:45 -0800 (PST)
 Received: from ?IPV6:2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1?
  (2001-1c00-0c1e-bf00-1db8-22d3-1bc9-8ca1.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1])
- by smtp.gmail.com with ESMTPSA id i22sm2339975ejw.75.2022.01.10.03.24.14
+ by smtp.gmail.com with ESMTPSA id 21sm3441507ejz.24.2022.01.11.03.09.44
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 10 Jan 2022 03:24:15 -0800 (PST)
-Message-ID: <4ef79dee-b9d5-ee0c-56c5-0b3058b49ad5@redhat.com>
-Date: Mon, 10 Jan 2022 12:24:14 +0100
+ Tue, 11 Jan 2022 03:09:44 -0800 (PST)
+Message-ID: <aceddce7-6c43-967c-fadd-fa307068e916@redhat.com>
+Date: Tue, 11 Jan 2022 12:09:44 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.0
-To: Rajat Jain <rajatja@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
- Benson Leung <bleung@chromium.org>,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- Mark Gross <markgross@kernel.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, ibm-acpi-devel@lists.sourceforge.net,
- platform-driver-x86@vger.kernel.org, gwendal@google.com,
- seanpaul@google.com, marcheu@google.com, dtor@google.com,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Benson Leung <bleung@google.com>
-References: <20220107190208.95479-1-rajatja@google.com>
+To: David Dreschner <david@dreschner.net>,
+ ibm-acpi-devel@lists.sourceforge.net, Mark Pearson <markpearson@lenovo.com>
+References: <ec04aa1e-1ac3-edbc-ac08-eec15ec5c952@dreschner.net>
 From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20220107190208.95479-1-rajatja@google.com>
+In-Reply-To: <ec04aa1e-1ac3-edbc-ac08-eec15ec5c952@dreschner.net>
 Authentication-Results: relay.mimecast.com;
  auth=pass smtp.auth=CUSA124A263 smtp.mailfrom=hdegoede@redhat.com
 X-Mimecast-Spam-Score: 0
@@ -115,18 +106,18 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi All, On 1/7/22 20:02, Rajat Jain wrote: > Allow a privacy
- screen provider to stash its private data pointer in the > drm_privacy_screen, 
- and update the drm_privacy_screen_register() call to > accept that. [...]
- Content analysis details:   (-3.6 points, 6.0 required)
+ Content preview:  Hi David, On 1/4/22 04:41, David Dreschner wrote: > Hey guys,
+ > > the attached patch updates the list of whitelisted ThinkPad models with
+ dual fan support. > > The changes were tested on my ThinkPad T15g Gen 2.
+ [...] Content analysis details:   (-3.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.133.124 listed in list.dnswl.org]
+ low trust [170.10.129.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [170.10.129.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.133.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -137,9 +128,9 @@ X-Spam-Report: Spam detection software,
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -2.0 NICE_REPLY_A           Looks like a legit reply (A)
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n6sml-000390-S4
-Subject: Re: [ibm-acpi-devel] [PATCH v5 1/3] drm/privacy_screen: Add drvdata
- in drm_privacy_screen
+X-Headers-End: 1n7F2P-0002iH-E1
+Subject: Re: [ibm-acpi-devel] [PATCH] Update whitelisted ThinkPad models
+ with dual fan support in thinkpad_acpi
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,116 +143,72 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: rajatxjain@gmail.com
+Cc: platform-driver-x86@vger.kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi All,
+Hi David,
 
-On 1/7/22 20:02, Rajat Jain wrote:
-> Allow a privacy screen provider to stash its private data pointer in the
-> drm_privacy_screen, and update the drm_privacy_screen_register() call to
-> accept that. Also introduce a *_get_drvdata() so that it can retrieved
-> back when needed.
+On 1/4/22 04:41, David Dreschner wrote:
+> Hey guys,
 > 
-> This also touches the IBM Thinkpad platform driver, the only user of
-> privacy screen today, to pass NULL for now to the updated API.
+> the attached patch updates the list of whitelisted ThinkPad models with dual fan support.
 > 
-> Signed-off-by: Rajat Jain <rajatja@google.com>
-> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+> The changes were tested on my ThinkPad T15g Gen 2. According to Lenovo, the BIOS version is the same for the P15 Gen 2 and the P17 Gen 2 ( https://pcsupport.lenovo.com/us/en/downloads/ds551321-bios-update-utility-bootable-cd-for-windows-10-64-bit-thinkpad-p15-gen-2-p17-gen-2-t15g-gen-2 ).
+> 
+> I also added the P15v Gen 2 and T15p Gen 2 to the whitelist based on the BIOS version listed on the Lenovo homepage ( https://pcsupport.lenovo.com/us/en/downloads/ds551356-bios-update-utility-bootable-cd-for-windows-10-64-bit-thinkpad-p15v-gen-2-t15p-gen-2 ). The first generation had two fans and where covered by the whitelist entry for the P15 Gen 2. As the second generation has two fans, too, I made that change for completeness.
+> 
+> To apply the changes before it's merged in the mainline linux kernel, I made a little dkms patch: https://github.com/dreschner/thinkpad_acpi-dual-fan-patch
 
-I've pushed this series to drm-misc-next now.
+Thank you for your patch submission.
+
+If I understand things correctly then you've only tested the addition of the:
+
+TPACPI_Q_LNV3('N', '3', '7', TPACPI_FAN_2CTL),  /* P15 / P17 / T15g (2nd gen) */
+
+quirk, correct? In that case we really only want to add that quirk, we don't
+want to go and add untested quirks. But perhaps Mark from Lenovo can confirm
+that this quirk:
+
+TPACPI_Q_LNV3('N', '3', '8', TPACPI_FAN_2CTL),  /* P15v / T15p (2nd gen) */
+
+also is correct and that those models really have 2 fans, Mark ?
+
+Mark, more in general can you perhaps talk to the firmware team and ask
+if there is a better way to detect if there are 2 fans in a thinkpad then
+maintaining a quirk table for this ?
+
+Besides the issue of the untested quirk, unfortunately your patch is not
+submitted in the right format, so I cannot accept it as is, esp. the
+missing of a Signed-off-by is a blocker.
+
+Kernel patches should be in git format-patch output format and
+your patch is missing a Signed-off-by line in the commit-message. I can only
+accept patches with a Signed-off-by line in the commit-message like this:
+
+Signed-off-by: Your Real Name <email@your.domain>
+
+By adding this line you indicate that you are the author of the code and
+are submitting it under the existing license for the file which you are
+modifying (typically GPL-2.0) or that you have permission from the author
+to submit it under this license. See:
+
+https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
+
+Given that this patch is trivial and mostly data, not code, I can turn
+it into a proper patch with myself as author, crediting you like this:
+
+Reported-and-tested-by: David Dreschner <david@dreschner.net>
+
+And then merge it with me as the author, or you can resubmit
+it in the proper format if you prefer.
+
+Please let me know how you want to proceed with this.
 
 Regards,
 
 Hans
-
-
-
-> ---
-> v5: Same as v4
-> v4: Added "Reviewed-by" from Hans
-> v3: Initial version. Came up due to review comments on v2 of other patches.
-> v2: No v2
-> v1: No v1
-> 
->  drivers/gpu/drm/drm_privacy_screen.c    |  5 ++++-
->  drivers/platform/x86/thinkpad_acpi.c    |  2 +-
->  include/drm/drm_privacy_screen_driver.h | 13 ++++++++++++-
->  3 files changed, 17 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_privacy_screen.c b/drivers/gpu/drm/drm_privacy_screen.c
-> index beaf99e9120a..03b149cc455b 100644
-> --- a/drivers/gpu/drm/drm_privacy_screen.c
-> +++ b/drivers/gpu/drm/drm_privacy_screen.c
-> @@ -387,7 +387,8 @@ static void drm_privacy_screen_device_release(struct device *dev)
->   * * An ERR_PTR(errno) on failure.
->   */
->  struct drm_privacy_screen *drm_privacy_screen_register(
-> -	struct device *parent, const struct drm_privacy_screen_ops *ops)
-> +	struct device *parent, const struct drm_privacy_screen_ops *ops,
-> +	void *data)
->  {
->  	struct drm_privacy_screen *priv;
->  	int ret;
-> @@ -404,6 +405,7 @@ struct drm_privacy_screen *drm_privacy_screen_register(
->  	priv->dev.parent = parent;
->  	priv->dev.release = drm_privacy_screen_device_release;
->  	dev_set_name(&priv->dev, "privacy_screen-%s", dev_name(parent));
-> +	priv->drvdata = data;
->  	priv->ops = ops;
->  
->  	priv->ops->get_hw_state(priv);
-> @@ -439,6 +441,7 @@ void drm_privacy_screen_unregister(struct drm_privacy_screen *priv)
->  	mutex_unlock(&drm_privacy_screen_devs_lock);
->  
->  	mutex_lock(&priv->lock);
-> +	priv->drvdata = NULL;
->  	priv->ops = NULL;
->  	mutex_unlock(&priv->lock);
->  
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-> index 341655d711ce..ccbfda2b0095 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -9782,7 +9782,7 @@ static int tpacpi_lcdshadow_init(struct ibm_init_struct *iibm)
->  		return 0;
->  
->  	lcdshadow_dev = drm_privacy_screen_register(&tpacpi_pdev->dev,
-> -						    &lcdshadow_ops);
-> +						    &lcdshadow_ops, NULL);
->  	if (IS_ERR(lcdshadow_dev))
->  		return PTR_ERR(lcdshadow_dev);
->  
-> diff --git a/include/drm/drm_privacy_screen_driver.h b/include/drm/drm_privacy_screen_driver.h
-> index 24591b607675..4ef246d5706f 100644
-> --- a/include/drm/drm_privacy_screen_driver.h
-> +++ b/include/drm/drm_privacy_screen_driver.h
-> @@ -73,10 +73,21 @@ struct drm_privacy_screen {
->  	 * for more info.
->  	 */
->  	enum drm_privacy_screen_status hw_state;
-> +	/**
-> +	 * @drvdata: Private data owned by the privacy screen provider
-> +	 */
-> +	void *drvdata;
->  };
->  
-> +static inline
-> +void *drm_privacy_screen_get_drvdata(struct drm_privacy_screen *priv)
-> +{
-> +	return priv->drvdata;
-> +}
-> +
->  struct drm_privacy_screen *drm_privacy_screen_register(
-> -	struct device *parent, const struct drm_privacy_screen_ops *ops);
-> +	struct device *parent, const struct drm_privacy_screen_ops *ops,
-> +	void *data);
->  void drm_privacy_screen_unregister(struct drm_privacy_screen *priv);
->  
->  void drm_privacy_screen_call_notifier_chain(struct drm_privacy_screen *priv);
-> 
 
 
 
