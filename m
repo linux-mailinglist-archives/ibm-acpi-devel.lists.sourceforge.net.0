@@ -2,69 +2,72 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3E3248C373
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 12 Jan 2022 12:46:23 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D18648C3C0
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 12 Jan 2022 13:09:05 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1n7c4D-0000KL-WF; Wed, 12 Jan 2022 11:45:26 +0000
+	id 1n7cQG-0002UB-1W; Wed, 12 Jan 2022 12:08:31 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <a-kobel@a-kobel.de>) id 1n7c4A-0000Js-NN
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 12 Jan 2022 11:45:23 +0000
+ (envelope-from <a-kobel@a-kobel.de>) id 1n7cQE-0002U4-VO
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 12 Jan 2022 12:08:30 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Subject:From:Cc:To:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=c63XDhuo7BiF8bYIR60/sWK9gTGlZYPy7KznQIIVUa0=; b=dW/osCbIt2XKfLVYSRAMRM28Zd
- LpFouwNyvdL5aVFZLLkvfphjFwbVgydxv+KHP8ZabVLrKmFltxTv68EC1PzMp++aiIp6x8WgnDyUJ
- gLC2As9L7P2L1z2o9KHqYhUl9ziGbpLOR9GeUPqlX/3JncXkPZ+XsywChnM+2Awcsuuc=;
+ d=sourceforge.net; s=x; h=Content-Type:In-Reply-To:References:Cc:To:From:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=uNu+x2G5K8bJGHW7QYdbUNBed8J7VEq6Z1LAtRJQDYY=; b=aP2fTWRTv+24OgJXulYbUyz9F
+ dgYg1xdneE7pr6uL1Ej2YBweM+2pmwVGbBRMKcCAI7UQYXHWtaXTiVxue3R1Fwlg1uXRrjCKTfYsO
+ bwB9lS4ATSr1/8mEFNXxp83vcfBh9njzbsU7bn/BuB6RtPLDYqK5dGpG4z4Av64bryXHQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=c63XDhuo7BiF8bYIR60/sWK9gTGlZYPy7KznQIIVUa0=; b=O
- Rf6Q1/1ofdRodOsQhC0UsIg0ivUi+DhJwhLSy9TqtRpXpof+o7ufBkoFKn7MQDetlz3HmPCPwq8nb
- 5djQIw7VFTXR6I3Uhw8YUVp3o/KQT2wkxeE89JNa5KXTbTWB8DAR9y1y64XnYTbrnJxvYOZbF4mVk
- KG8Mz1erN9sCkBuM=;
+ h=Content-Type:In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=uNu+x2G5K8bJGHW7QYdbUNBed8J7VEq6Z1LAtRJQDYY=; b=OoWQffVw8mzCr3sQOFPPklhngZ
+ 7ARejWnTKrewmzsiEOZM70dQuebA22YIkOVwZtKXIYKUnBd8/YRbCrgNs2iaWpcLppyobMrhyRyV+
+ JMWNVGLq5yI11z1dwRnE80/W3itlxLTwMiAHj8YhEk9oH07pUeskA822yjd5Wle3WXMU=;
 Received: from ganymed.uberspace.de ([185.26.156.242])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n7c47-00CtPr-FP
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 12 Jan 2022 11:45:22 +0000
-Received: (qmail 774 invoked by uid 989); 12 Jan 2022 11:18:28 -0000
+ id 1n7cQW-0000HE-Rj
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 12 Jan 2022 12:08:29 +0000
+Received: (qmail 13612 invoked by uid 989); 12 Jan 2022 12:08:21 -0000
 Authentication-Results: ganymed.uberspace.de;
 	auth=pass (plain)
-Message-ID: <12d4b825-a2b9-8cb7-6ed3-db4d66f46a60@a-kobel.de>
-Date: Wed, 12 Jan 2022 12:18:27 +0100
+Message-ID: <9c744b67-3219-9a71-4dad-0c8520beaea8@a-kobel.de>
+Date: Wed, 12 Jan 2022 13:08:21 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
-To: ibm-acpi-devel@lists.sourceforge.net
 From: Alexander Kobel <a-kobel@a-kobel.de>
+To: ibm-acpi-devel@lists.sourceforge.net
+References: <12d4b825-a2b9-8cb7-6ed3-db4d66f46a60@a-kobel.de>
+In-Reply-To: <12d4b825-a2b9-8cb7-6ed3-db4d66f46a60@a-kobel.de>
 X-Rspamd-Bar: -----
-X-Rspamd-Report: BAYES_HAM(-2.999202) SIGNED_SMIME(-2) MIME_GOOD(-0.2)
-X-Rspamd-Score: -5.199202
+X-Rspamd-Report: BAYES_HAM(-2.999344) MIME_GOOD(-0.2) SIGNED_SMIME(-2)
+X-Rspamd-Score: -5.199344
 Received: from unknown (HELO unkown) (::1)
  by ganymed.uberspace.de (Haraka/2.8.28) with ESMTPSA;
- Wed, 12 Jan 2022 12:18:27 +0100
-X-Spam-Score: 0.0 (/)
+ Wed, 12 Jan 2022 13:08:21 +0100
+X-Spam-Score: -2.0 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Some ThinkPad models, like the X1 Tablet 1st and 2nd Gen,
- are passively cooled without any fan. Currently, an entry in /proc/acpi/ibm/fan
- is nevertheless created, and misleadingly shows status: enable [...] 
- Content analysis details:   (0.0 points, 6.0 required)
+ Content preview:  On second thought, cc'ing Mark; perhaps the following could
+ be extended for a way to check for 0 fans,
+ too? (from [ibm-acpi-devel] [External]
+ Re: [PATCH] Update whitelisted ThinkPad models with dual f [...] 
+ Content analysis details:   (-2.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
@@ -72,9 +75,10 @@ X-Spam-Report: Spam detection software,
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 MSGID_FROM_MTA_HEADER  Message-Id was added by a relay
-X-Headers-End: 1n7c47-00CtPr-FP
-Subject: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: Add quirk for
- ThinkPads without a fan
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+X-Headers-End: 1n7cQW-0000HE-Rj
+Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: Add quirk
+ for ThinkPads without a fan
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,85 +91,107 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Hans de Goede <hdegoede@redhat.com>
-Content-Type: multipart/mixed; boundary="===============5578718709897548499=="
+Cc: Hans de Goede <hdegoede@redhat.com>, Mark Pearson <markpearson@lenovo.com>
+Content-Type: multipart/mixed; boundary="===============7164543455813704447=="
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
 This is a cryptographically signed message in MIME format.
 
---===============5578718709897548499==
+--===============7164543455813704447==
 Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms010400060309010406020405"
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms080502070407000808060708"
 
 This is a cryptographically signed message in MIME format.
 
---------------ms010400060309010406020405
+--------------ms080502070407000808060708
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Some ThinkPad models, like the X1 Tablet 1st and 2nd Gen, are passively
-cooled without any fan.  Currently, an entry in /proc/acpi/ibm/fan is
-nevertheless created, and misleadingly shows
-	status:		enabled
-	speed:		65535
-	level:		auto
+On second thought, cc'ing Mark; perhaps the following could be extended for a way to check for 0 fans, too?
+(from [ibm-acpi-devel] [External] Re: [PATCH] Update whitelisted ThinkPad models with dual fan support in thinkpad_acpi)
 
-This patch adds a TPACPI_FAN_NOFAN quirk definition and corresponding
-handling to not initialize a fan interface at all.
+>> Mark, more in general can you perhaps talk to the firmware team and ask
+>> if there is a better way to detect if there are 2 fans in a thinkpad then
+>> maintaining a quirk table for this ?
+>>
+> 
+> Yeah - I saw the patch and wondered the same. I will look into that
+> (LO-1498 for my internal tracking)
 
-For the time being, the quirk is only applied for X1 Tablet 2nd Gen
-(types 20JB, 20JC; EC N1O...); further models (such as Gen1, types 20GG
-and 20GH) can be added easily once tested.
 
-Tested on a 20JCS00C00, BIOS N1OET58W (1.43), EC N1OHT34W.
+Cheers,
+Alex
 
-Signed-off-by: Alexander Kobel <a-kobel@a-kobel.de>
----
- drivers/platform/x86/thinkpad_acpi.c | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index e03df2881dc6..7dbe4061bc8a 100644
---- a/drivers/platform/x86/thinkpad_acpi.c
-+++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -8767,9 +8767,10 @@ static const struct attribute_group fan_attr_group = {
- 	.attrs = fan_attributes,
- };
- 
--#define TPACPI_FAN_Q1	0x0001		/* Unitialized HFSP */
--#define TPACPI_FAN_2FAN	0x0002		/* EC 0x31 bit 0 selects fan2 */
--#define TPACPI_FAN_2CTL	0x0004		/* selects fan2 control */
-+#define TPACPI_FAN_Q1		0x0001		/* Uninitialized HFSP */
-+#define TPACPI_FAN_2FAN		0x0002		/* EC 0x31 bit 0 selects fan2 */
-+#define TPACPI_FAN_2CTL		0x0004		/* selects fan2 control */
-+#define TPACPI_FAN_NOFAN	0x0008		/* no fan available */
- 
- static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
- 	TPACPI_QEC_IBM('1', 'Y', TPACPI_FAN_Q1),
-@@ -8787,6 +8788,7 @@ static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
- 	TPACPI_Q_LNV3('N', '2', 'O', TPACPI_FAN_2CTL),	/* P1 / X1 Extreme (2nd gen) */
- 	TPACPI_Q_LNV3('N', '2', 'V', TPACPI_FAN_2CTL),	/* P1 / X1 Extreme (3nd gen) */
- 	TPACPI_Q_LNV3('N', '3', '0', TPACPI_FAN_2CTL),	/* P15 (1st gen) / P15v (1st gen) */
-+	TPACPI_Q_LNV3('N', '1', 'O', TPACPI_FAN_NOFAN),	/* X1 Tablet (2nd gen) */
- };
- 
- static int __init fan_init(struct ibm_init_struct *iibm)
-@@ -8816,6 +8818,11 @@ static int __init fan_init(struct ibm_init_struct *iibm)
- 	quirks = tpacpi_check_quirks(fan_quirk_table,
- 				     ARRAY_SIZE(fan_quirk_table));
- 
-+	if (quirks & TPACPI_FAN_NOFAN) {
-+		pr_info("No integrated ThinkPad fan available\n");
-+		return 1;
-+	}
-+
- 	if (gfan_handle) {
- 		/* 570, 600e/x, 770e, 770x */
- 		fan_status_access_mode = TPACPI_FAN_RD_ACPI_GFAN;
--- 
-2.34.1
+On 1/12/22 12:18, Alexander Kobel wrote:
+> Some ThinkPad models, like the X1 Tablet 1st and 2nd Gen, are passively
+> cooled without any fan.  Currently, an entry in /proc/acpi/ibm/fan is
+> nevertheless created, and misleadingly shows
+> 	status:		enabled
+> 	speed:		65535
+> 	level:		auto
+> 
+> This patch adds a TPACPI_FAN_NOFAN quirk definition and corresponding
+> handling to not initialize a fan interface at all.
+> 
+> For the time being, the quirk is only applied for X1 Tablet 2nd Gen
+> (types 20JB, 20JC; EC N1O...); further models (such as Gen1, types 20GG
+> and 20GH) can be added easily once tested.
+> 
+> Tested on a 20JCS00C00, BIOS N1OET58W (1.43), EC N1OHT34W.
+> 
+> Signed-off-by: Alexander Kobel <a-kobel@a-kobel.de>
+> ---
+>  drivers/platform/x86/thinkpad_acpi.c | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+> index e03df2881dc6..7dbe4061bc8a 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -8767,9 +8767,10 @@ static const struct attribute_group fan_attr_group = {
+>  	.attrs = fan_attributes,
+>  };
+>  
+> -#define TPACPI_FAN_Q1	0x0001		/* Unitialized HFSP */
+> -#define TPACPI_FAN_2FAN	0x0002		/* EC 0x31 bit 0 selects fan2 */
+> -#define TPACPI_FAN_2CTL	0x0004		/* selects fan2 control */
+> +#define TPACPI_FAN_Q1		0x0001		/* Uninitialized HFSP */
+> +#define TPACPI_FAN_2FAN		0x0002		/* EC 0x31 bit 0 selects fan2 */
+> +#define TPACPI_FAN_2CTL		0x0004		/* selects fan2 control */
+> +#define TPACPI_FAN_NOFAN	0x0008		/* no fan available */
+>  
+>  static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
+>  	TPACPI_QEC_IBM('1', 'Y', TPACPI_FAN_Q1),
+> @@ -8787,6 +8788,7 @@ static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
+>  	TPACPI_Q_LNV3('N', '2', 'O', TPACPI_FAN_2CTL),	/* P1 / X1 Extreme (2nd gen) */
+>  	TPACPI_Q_LNV3('N', '2', 'V', TPACPI_FAN_2CTL),	/* P1 / X1 Extreme (3nd gen) */
+>  	TPACPI_Q_LNV3('N', '3', '0', TPACPI_FAN_2CTL),	/* P15 (1st gen) / P15v (1st gen) */
+> +	TPACPI_Q_LNV3('N', '1', 'O', TPACPI_FAN_NOFAN),	/* X1 Tablet (2nd gen) */
+>  };
+>  
+>  static int __init fan_init(struct ibm_init_struct *iibm)
+> @@ -8816,6 +8818,11 @@ static int __init fan_init(struct ibm_init_struct *iibm)
+>  	quirks = tpacpi_check_quirks(fan_quirk_table,
+>  				     ARRAY_SIZE(fan_quirk_table));
+>  
+> +	if (quirks & TPACPI_FAN_NOFAN) {
+> +		pr_info("No integrated ThinkPad fan available\n");
+> +		return 1;
+> +	}
+> +
+>  	if (gfan_handle) {
+>  		/* 570, 600e/x, 770e, 770x */
+>  		fan_status_access_mode = TPACPI_FAN_RD_ACPI_GFAN;
+> 
+> 
+> 
+> _______________________________________________
+> ibm-acpi-devel mailing list
+> ibm-acpi-devel@lists.sourceforge.net
+> https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
 
---------------ms010400060309010406020405
+--------------ms080502070407000808060708
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -265,33 +291,33 @@ jBPKilDLTXJkrA5wlQpSihjSQG/UPLP+YDsrEuwwBC1DbcSn5KOyMXFpfxsoSegFzb0lxPRc
 6sScLr/v96FwvwWpL54Fp9dr0TGCA80wggPJAgEBMGEwVTELMAkGA1UEBhMCREUxFzAVBgNV
 BAoMDkZyYXVuaG9mZXIgU0lUMS0wKwYDVQQDDCRWb2xrc3ZlcnNjaGx1ZXNzZWx1bmcgUHJp
 dmF0ZSBDQSBHMDICCBUMN0NLozG+MA0GCWCGSAFlAwQCAQUAoIIBvTAYBgkqhkiG9w0BCQMx
-CwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMjAxMTIxMTE4MjdaMC8GCSqGSIb3DQEJ
-BDEiBCDj3CqNOYfDsoSuEcakNJbMhxq/bIcHZ5c1chiPGJPIQTBsBgkqhkiG9w0BCQ8xXzBd
+CwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMjAxMTIxMjA4MjFaMC8GCSqGSIb3DQEJ
+BDEiBCDJjx4fcaOz/7Q9jmfIBpc04AYWk0l/TMHC5oRG+tKFkzBsBgkqhkiG9w0BCQ8xXzBd
 MAsGCWCGSAFlAwQBKjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwDgYIKoZIhvcNAwICAgCA
 MA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMHAGCSsGAQQBgjcQBDFj
 MGEwVTELMAkGA1UEBhMCREUxFzAVBgNVBAoMDkZyYXVuaG9mZXIgU0lUMS0wKwYDVQQDDCRW
 b2xrc3ZlcnNjaGx1ZXNzZWx1bmcgUHJpdmF0ZSBDQSBHMDICCGRFBiAAmYjgMHIGCyqGSIb3
 DQEJEAILMWOgYTBVMQswCQYDVQQGEwJERTEXMBUGA1UECgwORnJhdW5ob2ZlciBTSVQxLTAr
 BgNVBAMMJFZvbGtzdmVyc2NobHVlc3NlbHVuZyBQcml2YXRlIENBIEcwMgIIZEUGIACZiOAw
-DQYJKoZIhvcNAQEBBQAEggGAilIvXfatLkCgMwmTR8fff1LUEfrn3cPm/Uq+zvTDAIcCIvdY
-bBDijR9EnRfQzqgVaCyQsGP9ETjC3WAR0ysvdmmP5XdYkZiJKxbcfbNTK3mxfOUCK47OxdjO
-wQwckhg4SB85vVTW3XSETLjvi7IMo/tFC9ieJkMObeMUPDYfIj6enTwJuopTNgiJ+vrzy/Wl
-RyBaAR6UIreCutrY147b9EKX3CxGpuhJKJn/D143OPnmVLFNqL0pzAQI1FbYN6ph1hvXN6Ny
-3wRsqhP9nJtgubtZhlicLY927Q+lxH8Wiy1FlO9DJSHOWpl0NcHP035FHmnlmS/Wu9YlzGyP
-GTIFNhoFSZ0olcdlguH3AqeQLQa0UUfyTCT1GPTXZVnaDd/1gdjBizNVuepuxT8x0dSIluCP
-smz3QLAN3gMfiWXHaPP86gGRKM33vRZOtZzv2ykpJNT6OZxrqoJKLb7Y2Jz5IYnag6co8jp6
-1dSvM+pGYY722gnvj+tVqeE5nctj0T5NAAAAAAAA
---------------ms010400060309010406020405--
+DQYJKoZIhvcNAQEBBQAEggGAcW/uCNQmseRmatMiZEt88qJrQvwT1moHd0bQNR14KUOU2WOS
+ArJuzQBjbTupcLcUqAZCmvlFQ0GEYsFQ5ODjO9/Epmaq44/TQVPDUoMoZdTmc4iBUlgOa5mf
+sreUwW7wVvJESkx6Gno4v1QzAWmDmWNnQi1L3hcQHTa50e/wDmyPt44uk2A0Q2ytUB3ISmeH
+ZvSPmg5+/MoXoD9PaR9EAxf5FAJVJ+ieiLh6xrXkYuSnzk8ZQMduuw9Q7a9m+18SEfFqfx2U
+VeNHXmNE5nkrSeRZ/HWdANf44M1CaeIL8RbAXx6yzwCKrp8PgOqoUiEY47xV1pioaDGvpfOm
+7ncr4o22Yf8U+7CnHhsku3PQ5wh9kX0YDlxILR17lNO5tV5OsVlxsVoqy+hUeKu7l8avotAa
+XY/OjPDMVQsj6oMeztar1mVd98DqkY+N724HD6UhkfPM0QFR6Npad12P+VwGQXRPKJuo6Jbi
+6UsOHBP/QZ3K+SmTHn2c7zdCAeTwLN6dAAAAAAAA
+--------------ms080502070407000808060708--
 
 
---===============5578718709897548499==
+--===============7164543455813704447==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 
---===============5578718709897548499==
+--===============7164543455813704447==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -302,5 +328,5 @@ ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
 
---===============5578718709897548499==--
+--===============7164543455813704447==--
 
