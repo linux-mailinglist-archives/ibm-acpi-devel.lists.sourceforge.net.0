@@ -2,194 +2,79 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A3248B767
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 11 Jan 2022 20:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3E3248C373
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 12 Jan 2022 12:46:23 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1n7Mus-00080Q-M9; Tue, 11 Jan 2022 19:34:45 +0000
+	id 1n7c4D-0000KL-WF; Wed, 12 Jan 2022 11:45:26 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <markpearson@lenovo.com>) id 1n7Mur-00080I-MD
- for ibm-acpi-devel@lists.sourceforge.net; Tue, 11 Jan 2022 19:34:44 +0000
+ (envelope-from <a-kobel@a-kobel.de>) id 1n7c4A-0000Js-NN
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 12 Jan 2022 11:45:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:CC:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:Subject:From:Cc:To:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BqcA2l2VN5q1Va084uVY5l3XsGuqCqPqk8CKbx+vlAQ=; b=BIYcdO+tx7aZk4ke6cIg8AG3ir
- orhTXiM8ZH9Vqt8QVm6oIOzcxWQt8AyTl9Jms3i/xrhM0VCSvNuS/Z1ecwgDKQvEYYe334sXxkntN
- iw0foB7jVvl+G8TtLRw2lS9QgI5poT8LU7r6RSsq3eOUzxiqr4kyd8nnCEtpQGPAn/cw=;
+ bh=c63XDhuo7BiF8bYIR60/sWK9gTGlZYPy7KznQIIVUa0=; b=dW/osCbIt2XKfLVYSRAMRM28Zd
+ LpFouwNyvdL5aVFZLLkvfphjFwbVgydxv+KHP8ZabVLrKmFltxTv68EC1PzMp++aiIp6x8WgnDyUJ
+ gLC2As9L7P2L1z2o9KHqYhUl9ziGbpLOR9GeUPqlX/3JncXkPZ+XsywChnM+2Awcsuuc=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=BqcA2l2VN5q1Va084uVY5l3XsGuqCqPqk8CKbx+vlAQ=; b=M+pSFPZnGNlj1zuXyEFgzBlXd0
- 52BUTlKDS4/twXoJAx9RrbKNIj9u3Ws3FEpDKcFyp6t2mNDCydUDRdj/HYMvME0TrW/8iDHdNQrf9
- HDALRhr8UrElOwh9EQctRvByLAioimy7ojPJQ9SRcTecklXzbO4kwx5EriWO8l3WidB8=;
-Received: from mail1.bemta35.messagelabs.com ([67.219.250.113])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:Subject:From:Cc:To:MIME-Version:Date:Message-ID:Sender:
+ Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
+ :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=c63XDhuo7BiF8bYIR60/sWK9gTGlZYPy7KznQIIVUa0=; b=O
+ Rf6Q1/1ofdRodOsQhC0UsIg0ivUi+DhJwhLSy9TqtRpXpof+o7ufBkoFKn7MQDetlz3HmPCPwq8nb
+ 5djQIw7VFTXR6I3Uhw8YUVp3o/KQT2wkxeE89JNa5KXTbTWB8DAR9y1y64XnYTbrnJxvYOZbF4mVk
+ KG8Mz1erN9sCkBuM=;
+Received: from ganymed.uberspace.de ([185.26.156.242])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n7Mum-0004NV-4k
- for ibm-acpi-devel@lists.sourceforge.net; Tue, 11 Jan 2022 19:34:44 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com;
- s=Selector; t=1641929669; i=@lenovo.com;
- bh=BqcA2l2VN5q1Va084uVY5l3XsGuqCqPqk8CKbx+vlAQ=;
- h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
- In-Reply-To:Content-Type:Content-Transfer-Encoding;
- b=I/VjEt0EHAAHJyL6tHo3c1gtR3XB9Nq/DTsaNeeeLG/iHF9dMMwk9wacs0r2N9fUF
- Z2bj5D9Hey10H9QiEBI+BIb9/gCtH4yi+IIE4Nv81IM3y1I7Kbyn7yMnAHEHntbyPF
- ZvZUUnqihFDBItps2FpirASN2gzj3u1LzZrCGNnNguNBEcnke7j8knDiDHeraxJxP8
- a/DPlRD757qzWz9E/PDTQy81OtORwFPWL4npxA4oKT/PO4MpZc9FneniMuKLHliBLz
- 4jHeys0QbZ8clF/Cisikr1RDq5JCoCOHWCIP2uv/dySyp8PPU7+/ZnzDvHWnxSQvI/
- L8d/XdvkO1DBA==
-Received: from [100.114.96.117] (using TLSv1.2 with cipher
- DHE-RSA-AES256-GCM-SHA384 (256 bits))
- by server-5.bemta.az-a.us-west-2.aws.ess.symcld.net id 08/F4-05076-5CBDDD16;
- Tue, 11 Jan 2022 19:34:29 +0000
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPJsWRWlGSWpSXmKPExsWSoS9loHv09t1
- Eg0mTOCze7vvFYvHm+HQmi9mHbSxW73nB7MDicfnWOmaP3Qs+M3m833eVzePzJrkAlijWzLyk
- /IoE1oyPl1vYCl4IVrROS2xgvMXXxcjFwSiwlFniyubfLBDOIlaJ2W++QDmdTBKT591jB3GEB
- BYySeye8pmpi5ETyDnEJPGuNRUkISFwnFGi+9A6JoiqTkaJH69OsUA4E5kkmm/1skC0PGGUOH
- OBD8J+wCjR/6McxOYVsJX48X8ncxcjBweLgKrExlY3iLCgxMmZT1hAwqIC4RLXZqWAhIUF8iT
- uX1nHCmIzC4hL3HoyH+wgEYFyic7OQ+wQcU2JZ20djBCbiiUObNgPVsMmoC2xZcsvNhCbU8BO
- YunhPaww9a3bf0P1yktsfzuHGaJXWeJX/3mwyySA4q9fgJVLCCRI9Px7xAZhS0pcu3mBHcKWl
- Th6dg4LRLmvxNHzphCmrsTm/wIQFTkSL889hapWk9h3+R7zBEa9WUjenYXkr1lIbpuF5LYFjC
- yrGK2SijLTM0pyEzNzdA0NDHQNDU10Lc10TQz0Eqt0E/VKi3XLU4tLdI30EsuL9VKLi/WKK3O
- Tc1L08lJLNjECU1JKUYLGDsae/p96hxglOZiURHkZL99NFOJLyk+pzEgszogvKs1JLT7EKMPB
- oSTBu/QWUE6wKDU9tSItMweYHmHSEhw8SiK8p24CpXmLCxJzizPTIVKnGO05Jrycu4iZo6tnI
- ZC8+X4JkJx0ZPd2ZiGWvPy8VClx3kyQqQIgbRmleXBDYen8EqOslDAvIwMDgxBPQWpRbmYJqv
- wrRnEORiVh3pUgy3ky80rgdr8COosJ6KxkjtsgZ5UkIqSkGpjyt9tEKDZ/v9liprJTV0CqrD/
- EJemXOAvf4lMb+8Uj0sXiD7dIv/JpytXw+mR39W7vJ+u+jVOC3prXyK/KWvHrW88y4bJrt24J
- F60s+sP62HnioVD36J5UIQE7B4N7Bcxt3MvCb0quU5eNfFJ6vjtajbd51/JdlYsf8pUK/ziRk
- NWvclzkmdSLkC0yy/6de36z5uFZ5iN9WtN+fOixsnq1g98m+OkkD0nuHI6D5XekUoRvfD/81n
- /dHtYQFrWN9StU5d5aC+1+MWVa6AmWeVW/n/Pltc5RfCni5Op5fY3PhxtzRf9Y579TeJZvwiB
- 2+EzLaj9Jp0UetWcUWjYf39CUWGzw09kqK2Tf+lnH0pVYijMSDbWYi4oTAYH9YEViBAAA
-X-Env-Sender: markpearson@lenovo.com
-X-Msg-Ref: server-11.tower-655.messagelabs.com!1641929667!29639!1
-X-Originating-IP: [104.47.26.48]
-X-SYMC-ESS-Client-Auth: mailfrom-relay-check=pass
-X-StarScan-Received: 
-X-StarScan-Version: 9.81.7; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 25135 invoked from network); 11 Jan 2022 19:34:28 -0000
-Received: from mail-psaapc01lp2048.outbound.protection.outlook.com (HELO
- APC01-PSA-obe.outbound.protection.outlook.com) (104.47.26.48)
- by server-11.tower-655.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
- encrypted SMTP; 11 Jan 2022 19:34:28 -0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MVJcROua5Wm3dEoZNx/Jrw18gCNLwqoqY9/TTONSMda6/ERcJjY0R3I8qK6RrnHUd5otcLMDZXD/UoDMjbbFMGwvBEySlUkZiYnsTkeoxCLpPl7QLCVMde2kGHtrQoxx+tlzIVkk8NkxTRWOvIcKUEKZAXBFI490o9xE8IjJkqxImex4LCQ++HrtbV6RMM/+HwGD19EMmYza6g0hgGsRtINdSjBgx/v+fesObY0NxZRDlk9NGTXGFHMpXUkMhpcvk/uZU16BiynymSm4DegLkMUxAtwEze0iTvDHgkiyrDCXX5x7KaQx+9IWV1AMVbSk19mbycArhZMqh7IhJ+t3Ow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BqcA2l2VN5q1Va084uVY5l3XsGuqCqPqk8CKbx+vlAQ=;
- b=HyRddMC395Wcgaxk3Wwmdd25Jw62jLqzBe85pK08pAjiFdPgoHmFhuhZqMc0RLVR3UwSfoJnnuO7y8m55YMD2ptCCdOY4beiRvWUcykIe52hMkVQg39bVlsaYTRw8Qw/6jPDm/iWIN7fhAFFK78qZ/k41VN5iDyeGaMQOHTNHoxTgC4KmSqRAsGPQAlwzyUUTsN9TBNBWECdP0eDbVgpdZrkvy0/tT4PML8jE8m5+eXu2VHAjpuoLiDHTgu8mvPyquLgIy8zN0tjjqC/4ttszG05CKK6hjRYaD/jHOGb2AVPyGV7TFJ5x4SlCw7lkekq8VnuErJ1NurS4UjEqOFjZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 104.232.225.7) smtp.rcpttodomain=redhat.com smtp.mailfrom=lenovo.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=lenovo.com;
- dkim=none (message not signed); arc=none
-Received: from PS1PR01CA0001.apcprd01.prod.exchangelabs.com
- (2603:1096:300:75::13) by TYZPR03MB5312.apcprd03.prod.outlook.com
- (2603:1096:405:7::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.4; Tue, 11 Jan
- 2022 19:34:25 +0000
-Received: from HK2APC01FT058.eop-APC01.prod.protection.outlook.com
- (2603:1096:300:75:cafe::c4) by PS1PR01CA0001.outlook.office365.com
- (2603:1096:300:75::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4867.9 via Frontend
- Transport; Tue, 11 Jan 2022 19:34:25 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
- 104.232.225.7) smtp.mailfrom=lenovo.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=lenovo.com;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- lenovo.com discourages use of 104.232.225.7 as permitted sender)
-Received: from mail.lenovo.com (104.232.225.7) by
- HK2APC01FT058.mail.protection.outlook.com (10.152.249.150) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4867.9 via Frontend Transport; Tue, 11 Jan 2022 19:34:24 +0000
-Received: from reswpmail01.lenovo.com (10.62.32.20) by mail.lenovo.com
- (10.62.123.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2308.20; Tue, 11 Jan
- 2022 14:34:22 -0500
-Received: from [10.38.60.38] (10.38.60.38) by reswpmail01.lenovo.com
- (10.62.32.20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2308.20; Tue, 11 Jan
- 2022 14:34:22 -0500
-Message-ID: <861b7611-63d6-d15c-0aef-2082590aa5b9@lenovo.com>
-Date: Tue, 11 Jan 2022 14:34:20 -0500
+ id 1n7c47-00CtPr-FP
+ for ibm-acpi-devel@lists.sourceforge.net; Wed, 12 Jan 2022 11:45:22 +0000
+Received: (qmail 774 invoked by uid 989); 12 Jan 2022 11:18:28 -0000
+Authentication-Results: ganymed.uberspace.de;
+	auth=pass (plain)
+Message-ID: <12d4b825-a2b9-8cb7-6ed3-db4d66f46a60@a-kobel.de>
+Date: Wed, 12 Jan 2022 12:18:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
+ Thunderbird/91.5.0
 Content-Language: en-US
-To: Hans de Goede <hdegoede@redhat.com>, David Dreschner
- <david@dreschner.net>, <ibm-acpi-devel@lists.sourceforge.net>
-References: <ec04aa1e-1ac3-edbc-ac08-eec15ec5c952@dreschner.net>
- <aceddce7-6c43-967c-fadd-fa307068e916@redhat.com>
-From: Mark Pearson <markpearson@lenovo.com>
-In-Reply-To: <aceddce7-6c43-967c-fadd-fa307068e916@redhat.com>
-X-Originating-IP: [10.38.60.38]
-X-ClientProxiedBy: reswpmail04.lenovo.com (10.62.32.23) To
- reswpmail01.lenovo.com (10.62.32.20)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: fb7d8c9e-7fdf-4e49-c915-08d9d5396020
-X-MS-TrafficTypeDiagnostic: TYZPR03MB5312:EE_
-X-Microsoft-Antispam-PRVS: <TYZPR03MB531286E8BFECED139AA84695C5519@TYZPR03MB5312.apcprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NHg52eCZENTq3n84y9Q0usfPLmAjNSO+DMxEdPpCxT841mW0HTTE1GZazmk6vx62n9z4J5YqPcZmSmI6HidrI8JEAk7iErOfvdwo/EhVzIKX4FGJ3P9S7jIvR89V7b7SuMG0uBZzr+eQhMHucAvrKwjoxFOhWsT6Ne+c0jcEt2cgJ6ERI2HNYy/mxSze7wy4CCsGOvwymZRgtZuPM+Wn5wFRyrxJdxImwKTD4LlZP3mlfBObVvbuDhEpP3xh06IBkEkCyrRKqEZyZyXd00oshqCbfwCp9PBJNjEBXLOW3qyflz+F+kJFCHwfV72AYyK9aEdJ/DEShfs3dDTP4R0F7jXtSFpDkpW297kAGKo34lfTWE4fgv1SBcnmUZ4cGN9Tkv04WtZv7gz48U5waI83ooNUEhJvnMRsVjCZEJC8XB/1xlqyK2F7jR76ZY3RdvaA393yljdc+0XfAHrRj7YypTGzMhOVwo1A0CtjuGhMYKA+pym3soY0Oq8IPKbgWeig040QL1E7/rdNsufKBQWcHSnkRXVV3FcyEa9Aams6sdbRPcTew29xntVTGFppLYrkIwsS1JEeAursHAjYuWm1biQ/YApertm6Z+02iFJsO/B0d4i3ZYQGKNDs/+ef60zS2bBwXc/oiIoceocqy004xOmiHvldAmBsG6Hlc5MR6o2Q3iD05cVLH/Thq6aFrcrH1pEgX/hnoss5t1pk6At5XTlqPeEiGQ/uGcte/9v8fpzY2KrKgLqmPpdZEcTzxUgtT9kEqa/NKtuUOD0X6G1orTRRjpCrh/6w26hVm4tW/4yvT/R4pcsDtjHkC0o6G4DebMJp+0BQ/ALPl+lf64c+dPqa7vVIL1fbVETRtzViC2WKvv1mOmW2ERzFlFCpdOLa5QMyMRLEy7sS8eew5C1/fw==
-X-Forefront-Antispam-Report: CIP:104.232.225.7; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.lenovo.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230001)(4636009)(36840700001)(46966006)(40470700002)(70206006)(70586007)(2616005)(336012)(316002)(16526019)(86362001)(26005)(186003)(508600001)(4326008)(426003)(36906005)(31696002)(966005)(81166007)(356005)(53546011)(83380400001)(2906002)(8676002)(8936002)(16576012)(40460700001)(47076005)(82310400004)(110136005)(15650500001)(36860700001)(82960400001)(36756003)(31686004)(5660300002)(3940600001)(36900700001)(43740500002)(20210929001);
- DIR:OUT; SFP:1102; 
-X-OriginatorOrg: lenovo.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Jan 2022 19:34:24.7405 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb7d8c9e-7fdf-4e49-c915-08d9d5396020
-X-MS-Exchange-CrossTenant-Id: 5c7d0b28-bdf8-410c-aa93-4df372b16203
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=5c7d0b28-bdf8-410c-aa93-4df372b16203; Ip=[104.232.225.7];
- Helo=[mail.lenovo.com]
-X-MS-Exchange-CrossTenant-AuthSource: HK2APC01FT058.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB5312
-X-Spam-Score: -2.9 (--)
+To: ibm-acpi-devel@lists.sourceforge.net
+From: Alexander Kobel <a-kobel@a-kobel.de>
+X-Rspamd-Bar: -----
+X-Rspamd-Report: BAYES_HAM(-2.999202) SIGNED_SMIME(-2) MIME_GOOD(-0.2)
+X-Rspamd-Score: -5.199202
+Received: from unknown (HELO unkown) (::1)
+ by ganymed.uberspace.de (Haraka/2.8.28) with ESMTPSA;
+ Wed, 12 Jan 2022 12:18:27 +0100
+X-Spam-Score: 0.0 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Hans On 2022-01-11 06:09, Hans de Goede wrote: > Hi David,
- > > On 1/4/22 04:41, David Dreschner wrote: >> Hey guys, >> >> the attached
- patch updates the list of whitelisted ThinkPad models with dual fan su [...]
- Content analysis details:   (-2.9 points, 6.0 required)
+ Content preview:  Some ThinkPad models, like the X1 Tablet 1st and 2nd Gen,
+ are passively cooled without any fan. Currently, an entry in /proc/acpi/ibm/fan
+ is nevertheless created, and misleadingly shows status: enable [...] 
+ Content analysis details:   (0.0 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [67.219.250.113 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [67.219.250.113 listed in wl.mailspike.net]
+ no trust [185.26.156.242 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -2.0 NICE_REPLY_A           Looks like a legit reply (A)
- -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n7Mum-0004NV-4k
-Subject: Re: [ibm-acpi-devel] [External] Re: [PATCH] Update whitelisted
- ThinkPad models with dual fan support in thinkpad_acpi
+ 0.0 MSGID_FROM_MTA_HEADER  Message-Id was added by a relay
+X-Headers-End: 1n7c47-00CtPr-FP
+Subject: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: Add quirk for
+ ThinkPads without a fan
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -202,60 +87,220 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: platform-driver-x86@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Hans de Goede <hdegoede@redhat.com>
+Content-Type: multipart/mixed; boundary="===============5578718709897548499=="
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Hans
+This is a cryptographically signed message in MIME format.
 
-On 2022-01-11 06:09, Hans de Goede wrote:
-> Hi David,
-> 
-> On 1/4/22 04:41, David Dreschner wrote:
->> Hey guys,
->>
->> the attached patch updates the list of whitelisted ThinkPad models with dual fan support.
->>
->> The changes were tested on my ThinkPad T15g Gen 2. According to Lenovo, the BIOS version is the same for the P15 Gen 2 and the P17 Gen 2 ( https://pcsupport.lenovo.com/us/en/downloads/ds551321-bios-update-utility-bootable-cd-for-windows-10-64-bit-thinkpad-p15-gen-2-p17-gen-2-t15g-gen-2 ).
->>
->> I also added the P15v Gen 2 and T15p Gen 2 to the whitelist based on the BIOS version listed on the Lenovo homepage ( https://pcsupport.lenovo.com/us/en/downloads/ds551356-bios-update-utility-bootable-cd-for-windows-10-64-bit-thinkpad-p15v-gen-2-t15p-gen-2 ). The first generation had two fans and where covered by the whitelist entry for the P15 Gen 2. As the second generation has two fans, too, I made that change for completeness.
->>
->> To apply the changes before it's merged in the mainline linux kernel, I made a little dkms patch: https://github.com/dreschner/thinkpad_acpi-dual-fan-patch>> 
-> Thank you for your patch submission.
-> 
-> If I understand things correctly then you've only tested the addition of the:
-> 
-> TPACPI_Q_LNV3('N', '3', '7', TPACPI_FAN_2CTL),  /* P15 / P17 / T15g (2nd gen) */
-> 
-> quirk, correct? In that case we really only want to add that quirk, we don't
-> want to go and add untested quirks. But perhaps Mark from Lenovo can confirm
-> that this quirk:
-> 
-> TPACPI_Q_LNV3('N', '3', '8', TPACPI_FAN_2CTL),  /* P15v / T15p (2nd gen) */
-> 
-> also is correct and that those models really have 2 fans, Mark ?
-> 
-> Mark, more in general can you perhaps talk to the firmware team and ask
-> if there is a better way to detect if there are 2 fans in a thinkpad then
-> maintaining a quirk table for this ?
-> 
+--===============5578718709897548499==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256; boundary="------------ms010400060309010406020405"
 
-Yeah - I saw the patch and wondered the same. I will look into that
-(LO-1498 for my internal tracking)
+This is a cryptographically signed message in MIME format.
 
-We recently fixed this for the P1G4 and I asked for that to be extended
-to the other platforms and I don't think it was done :( If you don't mind
-holding off for a couple of days (while the patch gets cleaned up) I'll
-see if I can get confirmation in the short term of which platforms are
-impacted (LO-1499)
+--------------ms010400060309010406020405
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Thanks
-Mark
+Some ThinkPad models, like the X1 Tablet 1st and 2nd Gen, are passively
+cooled without any fan.  Currently, an entry in /proc/acpi/ibm/fan is
+nevertheless created, and misleadingly shows
+	status:		enabled
+	speed:		65535
+	level:		auto
+
+This patch adds a TPACPI_FAN_NOFAN quirk definition and corresponding
+handling to not initialize a fan interface at all.
+
+For the time being, the quirk is only applied for X1 Tablet 2nd Gen
+(types 20JB, 20JC; EC N1O...); further models (such as Gen1, types 20GG
+and 20GH) can be added easily once tested.
+
+Tested on a 20JCS00C00, BIOS N1OET58W (1.43), EC N1OHT34W.
+
+Signed-off-by: Alexander Kobel <a-kobel@a-kobel.de>
+---
+ drivers/platform/x86/thinkpad_acpi.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+index e03df2881dc6..7dbe4061bc8a 100644
+--- a/drivers/platform/x86/thinkpad_acpi.c
++++ b/drivers/platform/x86/thinkpad_acpi.c
+@@ -8767,9 +8767,10 @@ static const struct attribute_group fan_attr_group = {
+ 	.attrs = fan_attributes,
+ };
+ 
+-#define TPACPI_FAN_Q1	0x0001		/* Unitialized HFSP */
+-#define TPACPI_FAN_2FAN	0x0002		/* EC 0x31 bit 0 selects fan2 */
+-#define TPACPI_FAN_2CTL	0x0004		/* selects fan2 control */
++#define TPACPI_FAN_Q1		0x0001		/* Uninitialized HFSP */
++#define TPACPI_FAN_2FAN		0x0002		/* EC 0x31 bit 0 selects fan2 */
++#define TPACPI_FAN_2CTL		0x0004		/* selects fan2 control */
++#define TPACPI_FAN_NOFAN	0x0008		/* no fan available */
+ 
+ static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
+ 	TPACPI_QEC_IBM('1', 'Y', TPACPI_FAN_Q1),
+@@ -8787,6 +8788,7 @@ static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
+ 	TPACPI_Q_LNV3('N', '2', 'O', TPACPI_FAN_2CTL),	/* P1 / X1 Extreme (2nd gen) */
+ 	TPACPI_Q_LNV3('N', '2', 'V', TPACPI_FAN_2CTL),	/* P1 / X1 Extreme (3nd gen) */
+ 	TPACPI_Q_LNV3('N', '3', '0', TPACPI_FAN_2CTL),	/* P15 (1st gen) / P15v (1st gen) */
++	TPACPI_Q_LNV3('N', '1', 'O', TPACPI_FAN_NOFAN),	/* X1 Tablet (2nd gen) */
+ };
+ 
+ static int __init fan_init(struct ibm_init_struct *iibm)
+@@ -8816,6 +8818,11 @@ static int __init fan_init(struct ibm_init_struct *iibm)
+ 	quirks = tpacpi_check_quirks(fan_quirk_table,
+ 				     ARRAY_SIZE(fan_quirk_table));
+ 
++	if (quirks & TPACPI_FAN_NOFAN) {
++		pr_info("No integrated ThinkPad fan available\n");
++		return 1;
++	}
++
+ 	if (gfan_handle) {
+ 		/* 570, 600e/x, 770e, 770x */
+ 		fan_status_access_mode = TPACPI_FAN_RD_ACPI_GFAN;
+-- 
+2.34.1
+
+--------------ms010400060309010406020405
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgEFADCABgkqhkiG9w0BBwEAAKCC
+Ew0wggY9MIIEJaADAgECAgg3B676YzbKKTANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJE
+RTEXMBUGA1UECgwORnJhdW5ob2ZlciBTSVQxKjAoBgNVBAMMIVZvbGtzdmVyc2NobHVlc3Nl
+bHVuZyBSb290IENBIEcwMjAeFw0yMDA1MjYxMzIxNDFaFw0zMDA1MjUxMzIxNDFaMFUxCzAJ
+BgNVBAYTAkRFMRcwFQYDVQQKDA5GcmF1bmhvZmVyIFNJVDEtMCsGA1UEAwwkVm9sa3N2ZXJz
+Y2hsdWVzc2VsdW5nIFByaXZhdGUgQ0EgRzAyMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIIC
+CgKCAgEAzW9OcLabPtfz9rbgtyyuNQCQkmI8cPW39VGsXLX1J9EIcUPvp1ysi6kuqMfw+YOC
+LjxopSIhpjhH/p84LzmcBJElRPkzWHJreZry+Lu5SDhOcOH49fNEo7UeYE0wkSJNv+jLMWwU
+H93dPaSNeRN/5/Peq6tcKTx0FflS2ZScP9OcPvXgp1c/bXYoRyiOGSVR8/+7qlwNuku2px6f
+0c6XOKOwkyTeSghmQ8vdfeqcMd9fNUhn/ijWFHahr0LUGB9We6SoxklOz9gfgSCjhInt+4qy
+N6bHl/utH/vj1qnuhkaP25h1eCbz2WKqv0wKWwa/r4F0ItLYYP2YhwICTNLDDT8GmctRdt2S
+yLmgXo9Gz0nrwrYuGMWcXNLm682Fgg3wQne0DTszFFUU8PrVOtgzB5Qm6DPrRSUHXQEfT7DY
+ZzDA+FmSoTSiCe+aoNPbglta4gDar0B/gni15LtCzW4tNhk3fXkYxEWpbq32vNy3wCDOQazc
+vxzko5Ior1iDZJNuzurtp5qRjAnOcUiKhNUJeBnmLDB/Di9XZHIQCD0EjiZzef0OR4+ZbPPM
+xl6n9KHdrZ2c8r3yjGJtGkeMc0aMkBpvYNDy/s4fYnE5MRIOWdmMnq23/DvCpsQtF5UWZlF9
+MaKVcjXmtGpnhpe0XOkFXvxd9PSM0Oe4uei+buhbF7ECAwEAAaOCARIwggEOMBIGA1UdEwEB
+/wQIMAYBAf8CAQAwHwYDVR0jBBgwFoAUPnwBB805qJCxODW0j7v1rBeEocAwTQYIKwYBBQUH
+AQEEQTA/MD0GCCsGAQUFBzAChjFodHRwOi8vdm9sa3N2ZXJzY2hsdWVzc2VsdW5nLmRlL2Nh
+L3Jvb3RjYV9nMDIuY3J0MBQGA1UdIAQNMAswCQYHKyQPCQMBATBDBgNVHR8EPDA6MDigNqA0
+hjJodHRwOi8vdm9sa3N2ZXJzY2hsdWVzc2VsdW5nLmRlL2NybC9yb290Y2FfZzAyLmNybDAd
+BgNVHQ4EFgQUBNGCAAc5XwIAgrw4HtCXwN3HOwMwDgYDVR0PAQH/BAQDAgEGMA0GCSqGSIb3
+DQEBCwUAA4ICAQAPsI1fETAPUfq7LoI2FxRDylRduC/nVhVca7ORxhZXrFmksT/q1jHU4eXK
+IhcVms623/FHhcVHl1qB5G/cgU2OtjEP5/BXIRu4I78EZIhb8U3ZGe9gZql/RSOBD08lhmzv
+fRz+nwE2Pl9stzXKohjGRWyfFfuaWKLXUZzCK/wYX6IqhTxjkoEFSgejoO41B886rrm3+aaO
+5Db5EBW4gYWF9VCV3bmedmTJzbvOOYDxaVT1+O8E9Ym5BZL+qJNjgdjJXE1TUGyUg6ZweNHT
+dse6xTc9KhfnAyppkMUu9AKT6jkloA6l0/T3zEMKhvtf9gLYWJ0zMwm1JfQk5mVMZtQoOPYI
+Wj7IVUKPZJMizHoaAAIzi7C0w3XpN3xMDJOs5eRsRPk0qF8UulshIUA/6idOrg7eUY4WZGN1
+RZsFYyhBg1sPaeFyFAUs0XJUrWLOKO5f9VZGbmEF6gqbTxdwMCJZzonwpUxVwxKLMa+Z4EMG
+QoY1rLNPCRZlzhW+TRBsuy4tGN21PlhvcvEnxs8eHvqlwfM/KwYtXhLG8881KMMSzemRvX/c
+pNCU2YlHpAwpdm6cAn60leS0WPfTb6QAqmtQTij6uAfFN46hQDLqpfTWnoPSMvbeyFwqP6Fv
+V6RgquAIpe9p5daLY9M+Krkd7mH8QR2PN615TboR0ocoF4REdTCCBlwwggREoAMCAQICCBUM
+N0NLozG+MA0GCSqGSIb3DQEBCwUAMFUxCzAJBgNVBAYTAkRFMRcwFQYDVQQKDA5GcmF1bmhv
+ZmVyIFNJVDEtMCsGA1UEAwwkVm9sa3N2ZXJzY2hsdWVzc2VsdW5nIFByaXZhdGUgQ0EgRzAy
+MB4XDTIwMTAxMTE2NTIzN1oXDTIzMTAxMDE2NTIzN1owgYkxGDAWBgNVBAMMD0FMRVhBTkRF
+UiBLT0JFTDEOMAwGA1UEBAwFS09CRUwxEjAQBgNVBCoMCUFMRVhBTkRFUjFJMEcGA1UEBRNA
+RDQwMDNFMTc4OTlGMTQzMTI2ODExMzM0OUY1N0M1QzU0NEQ5RjcwNDVCQTkyMEJEMzdDQURB
+NTQzOEFGQ0EzODCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBAM9yNVKr/cuT0WnJ
+PLe7kmfd5Wo7rlb1F+harCy3OLgaTqkMI6j37OTXMAmdkZ0y7zrlhbEGCEpODaDPYwVSEb+s
+Cv05n3SAMCdy9kQlnqP9We7C/2mbnuKYhpO5P6mUVdPoM+tfTM22YH7CzO8sa1Tq1s/DrIZs
+NhXDRvWZEdDwUCjLPKVXGtTqHbUjs7OufxpbyzA7xHE5N7qRff1WrOuq/RS1OvGZVcUjLAmI
+loYCvYm1Q3oBYuSZygOsawjmJQ14fh7dKkOjogx6byElWAVBkUQxud8CtBHW+L4VY35uinRJ
+k81mwI8ac0zS5FEbYWoF9Gi5pWbCgoIvGXIMcPEQqu8mVBpN/CAMUOUlIkOPDvFqfiQ9TI2C
+xnNih8csWwVInRS7m8itJrnlbVfDwdHMJhPT522gCDOC6lXaRUizwGqRh/26W1dJqA2SYmEn
+EMH/TcP3eyiFLN5QDXm2odnh+rbvQbwEtlPxup24HGe8RqWFdiCOW1syM+V74lUn5wIDAQAB
+o4IBeTCCAXUwHQYDVR0RBBYwFIESYS1rb2JlbEBhLWtvYmVsLmRlMA4GA1UdDwEB/wQEAwIG
+wDATBgNVHSUEDDAKBggrBgEFBQcDBDAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFATRggAH
+OV8CAIK8OB7Ql8DdxzsDMIGCBggrBgEFBQcBAQR2MHQwQAYIKwYBBQUHMAKGNGh0dHA6Ly92
+b2xrc3ZlcnNjaGx1ZXNzZWx1bmcuZGUvY2EvcHJpdmF0ZWNhX2cwMi5jcnQwMAYIKwYBBQUH
+MAGGJGh0dHA6Ly9vY3NwLnZvbGtzdmVyc2NobHVlc3NlbHVuZy5kZTAUBgNVHSAEDTALMAkG
+ByskDwkDAQEwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0cDovL3ZvbGtzdmVyc2NobHVlc3NlbHVu
+Zy5kZS9jcmwvcHJpdmF0ZWNhX2cwMi5jcmwwHQYDVR0OBBYEFDadSlBdeaipQdbmS4vn439F
+6fkNMA0GCSqGSIb3DQEBCwUAA4ICAQBUhcmTTecspwaSgUUlrG/gUPzDLM/Ty0Jpz4GvRbRn
+kJxHlHAopkk8P1SXlnOy2kfC5LgFCRB9tJqSlXmIXwphm90fZKRGZU2dBgxGkDQppXGH6PjJ
+P52QAhvpztJDPEqfqkzcpKdkYuFg+KEzqZmsu8Mvy4rqCTRIAtOX5zHVFEIarp7YUMNhzGxg
+eQakmDjykC1Xksx/ULsX7r5QW5Fqp1ZL5obNmA2emJgn0VrKRIYY8vqnOwUi13G/lDa+fphz
+PMhpIKOKQ9Wy0Wn8mBdSdIqmt2L58Pu14ygwOkK3vnb/QKqayhwme2uf4waXG5or3wZdSr39
+SvvGZT8Z6cHw6n7Jw0+gRApkB1cUO7j1T/aHCBcZPJ5i6bBoGrT5E8IHIqj+oZXUCY7jxknL
+aHaiOARg8fFkf8lp3uy7ay4WcDIorPa9ugNaCP3SnYvtKvk44ulgMIjhvkG1Mga/70SA9Evq
+3cFUle3jaaEYujSxLnN8LVm39dR93QCqcdkIayPA9LT6vizlGoA6BdOMWDzKWWnoelYTb+Ip
+iqpafot50MCUqf1e2T0z8Ygki1LLOxlpi/DWQApb/Qq9EomeEYMKm0aJc7166pLiWsk1fWOX
+kwBa3phG+CbbUxqotGP++r39Dk8Diny+lYjkRXpoqggzF9g9uxARXBIw0H+G6XbgCzCCBmgw
+ggRQoAMCAQICCGRFBiAAmYjgMA0GCSqGSIb3DQEBCwUAMFUxCzAJBgNVBAYTAkRFMRcwFQYD
+VQQKDA5GcmF1bmhvZmVyIFNJVDEtMCsGA1UEAwwkVm9sa3N2ZXJzY2hsdWVzc2VsdW5nIFBy
+aXZhdGUgQ0EgRzAyMB4XDTIwMTAxMTE2NTIyM1oXDTIzMTAxMDE2NTIyM1owgYkxGDAWBgNV
+BAMMD0FMRVhBTkRFUiBLT0JFTDEOMAwGA1UEBAwFS09CRUwxEjAQBgNVBCoMCUFMRVhBTkRF
+UjFJMEcGA1UEBRNARDQwMDNFMTc4OTlGMTQzMTI2ODExMzM0OUY1N0M1QzU0NEQ5RjcwNDVC
+QTkyMEJEMzdDQURBNTQzOEFGQ0EzODCCAaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGB
+AIHe4er7YlQrv+fgKBYbb2FSJLtzoB9s4ZhYgIfQuR1x9+WJvj9EMne5rsHB+OJ5bwZQ1Fnh
+qhJhtepikZhLDRVfRbzRdrOSzxnkePhH/SZ9VhtN6327PuSAwxe/te/DPDo6aWZj3d7RoioE
+UgkyF5gNWYu082LeSHbvNpDcHUN2Rs7XgZi5uBUnHR1btXA7BOzUMfPhEIqwuCDKLZAGCc0q
+2JKhKeOIOsoZ8lP2/HfW3Az1ij6xztb/HfoZnyZMpQC1ly7VgJU5rTLRJz39kscZSBcnxRqP
+8cE9rrlPZOgRPK2NR4x+30Sr9sOtnbRYldKWT4uCtqrPrnxNKiDkv3P2h1yKYbCamlqwaoJW
+cjrphzLycSGHitalla/f82xHSN+7gJHGp91WYIn+c6jPLcx0wmKUJBB1TIEaeh4izkqLwB0P
+1HUBHo50OdmTnRGdnvNt/+Xsc9KetVnmJM2bqXXDlgYMfsULoe6Y0AVemQFvd1V49GePGpGT
+NGMe5jf7NwIDAQABo4IBhTCCAYEwHQYDVR0RBBYwFIESYS1rb2JlbEBhLWtvYmVsLmRlMA4G
+A1UdDwEB/wQEAwIEMDAfBgNVHSUEGDAWBgorBgEEAYI3CgMEBggrBgEFBQcDBDAMBgNVHRMB
+Af8EAjAAMB8GA1UdIwQYMBaAFATRggAHOV8CAIK8OB7Ql8DdxzsDMIGCBggrBgEFBQcBAQR2
+MHQwQAYIKwYBBQUHMAKGNGh0dHA6Ly92b2xrc3ZlcnNjaGx1ZXNzZWx1bmcuZGUvY2EvcHJp
+dmF0ZWNhX2cwMi5jcnQwMAYIKwYBBQUHMAGGJGh0dHA6Ly9vY3NwLnZvbGtzdmVyc2NobHVl
+c3NlbHVuZy5kZTAUBgNVHSAEDTALMAkGByskDwkDAQEwRgYDVR0fBD8wPTA7oDmgN4Y1aHR0
+cDovL3ZvbGtzdmVyc2NobHVlc3NlbHVuZy5kZS9jcmwvcHJpdmF0ZWNhX2cwMi5jcmwwHQYD
+VR0OBBYEFJiKTcJJSCtBVQS6oS4OSO8QKEWBMA0GCSqGSIb3DQEBCwUAA4ICAQBfdnVpzlnO
+JupsJfdYW9xyt3lSky85oA1qPichmW6UjrnIZdunQPJrCTTM+7wUqeqwlhbRmwUKgAPH/5fc
+cOnyMulgbvc50VV+mBK4ph/1/fhom7zJYEfvKEpPWg5tGx3/Mp6YIVvuhRnZ7vmodMGXgj/f
+1D7yHFJib/430e6pcD76DPaAFA1cVVp5FUP+b0fBzvgYjsgSwL2GTXXaNGEaLqBuhtmInBh/
+y4X2ZEz8kw6B2P0GpQ8jg+5I1tNM6vf/KH2FxDj/ykmSsgtyrQAddEjrNQbaQAzXTtHAPui/
+6/wbgYfLp05aH7PsLsKGdDS9yb8UaWfWgwFuFz3dLXSdI3YYhXB2QnASX5RV3ndnu9vwGmns
+c6iu4C9+h0hFdcWMIEso5K/mV/kXO31xzw7JLU2y5Nk7XEgrXwqFuX4ZruqCfw3EXP1hYnmt
+OtfAaSLzTdBS0GskGGnWAs12dJrL8FysZbtX5cgWMyT1nun8ksvSodVgQ+7BA5YHTwfHussP
+nPBDabaHmlOUVBi3IYZvoJ90XwuuMvVqcYeEzvuGDrssZHY2pG9DqTeXfzmUdpTfMy7zwu5K
+jBPKilDLTXJkrA5wlQpSihjSQG/UPLP+YDsrEuwwBC1DbcSn5KOyMXFpfxsoSegFzb0lxPRc
+6sScLr/v96FwvwWpL54Fp9dr0TGCA80wggPJAgEBMGEwVTELMAkGA1UEBhMCREUxFzAVBgNV
+BAoMDkZyYXVuaG9mZXIgU0lUMS0wKwYDVQQDDCRWb2xrc3ZlcnNjaGx1ZXNzZWx1bmcgUHJp
+dmF0ZSBDQSBHMDICCBUMN0NLozG+MA0GCWCGSAFlAwQCAQUAoIIBvTAYBgkqhkiG9w0BCQMx
+CwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMjAxMTIxMTE4MjdaMC8GCSqGSIb3DQEJ
+BDEiBCDj3CqNOYfDsoSuEcakNJbMhxq/bIcHZ5c1chiPGJPIQTBsBgkqhkiG9w0BCQ8xXzBd
+MAsGCWCGSAFlAwQBKjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwDgYIKoZIhvcNAwICAgCA
+MA0GCCqGSIb3DQMCAgFAMAcGBSsOAwIHMA0GCCqGSIb3DQMCAgEoMHAGCSsGAQQBgjcQBDFj
+MGEwVTELMAkGA1UEBhMCREUxFzAVBgNVBAoMDkZyYXVuaG9mZXIgU0lUMS0wKwYDVQQDDCRW
+b2xrc3ZlcnNjaGx1ZXNzZWx1bmcgUHJpdmF0ZSBDQSBHMDICCGRFBiAAmYjgMHIGCyqGSIb3
+DQEJEAILMWOgYTBVMQswCQYDVQQGEwJERTEXMBUGA1UECgwORnJhdW5ob2ZlciBTSVQxLTAr
+BgNVBAMMJFZvbGtzdmVyc2NobHVlc3NlbHVuZyBQcml2YXRlIENBIEcwMgIIZEUGIACZiOAw
+DQYJKoZIhvcNAQEBBQAEggGAilIvXfatLkCgMwmTR8fff1LUEfrn3cPm/Uq+zvTDAIcCIvdY
+bBDijR9EnRfQzqgVaCyQsGP9ETjC3WAR0ysvdmmP5XdYkZiJKxbcfbNTK3mxfOUCK47OxdjO
+wQwckhg4SB85vVTW3XSETLjvi7IMo/tFC9ieJkMObeMUPDYfIj6enTwJuopTNgiJ+vrzy/Wl
+RyBaAR6UIreCutrY147b9EKX3CxGpuhJKJn/D143OPnmVLFNqL0pzAQI1FbYN6ph1hvXN6Ny
+3wRsqhP9nJtgubtZhlicLY927Q+lxH8Wiy1FlO9DJSHOWpl0NcHP035FHmnlmS/Wu9YlzGyP
+GTIFNhoFSZ0olcdlguH3AqeQLQa0UUfyTCT1GPTXZVnaDd/1gdjBizNVuepuxT8x0dSIluCP
+smz3QLAN3gMfiWXHaPP86gGRKM33vRZOtZzv2ykpJNT6OZxrqoJKLb7Y2Jz5IYnag6co8jp6
+1dSvM+pGYY722gnvj+tVqeE5nctj0T5NAAAAAAAA
+--------------ms010400060309010406020405--
 
 
+--===============5578718709897548499==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--===============5578718709897548499==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+
+--===============5578718709897548499==--
+
