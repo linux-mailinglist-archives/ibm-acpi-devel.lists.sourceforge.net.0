@@ -2,16 +2,16 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B964749057E
+	by mail.lfdr.de (Postfix) with ESMTPS id BD89449057F
 	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 17 Jan 2022 10:56:40 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1n9Ok8-0000vL-56; Mon, 17 Jan 2022 09:56:02 +0000
+	id 1n9Ok9-0007Sh-65; Mon, 17 Jan 2022 09:56:04 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <hdegoede@redhat.com>) id 1n9Ok6-0000vA-M3
+ (envelope-from <hdegoede@redhat.com>) id 1n9Ok6-0007SR-JJ
  for ibm-acpi-devel@lists.sourceforge.net; Mon, 17 Jan 2022 09:56:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
@@ -19,9 +19,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=+Zavah50CCFVi2Vkp9ku57YSss8cl2fM7vlj/N5ldog=; b=hhJE/yTMG0aM9ExjOV7pQpA0/L
- 8j8DywarwxOR5pNzc97op1p5DHwG+xHAqbwNv9GmYlXFyCn8+fPiHxmXM1ZzSoBTRDH4vyRFzStxJ
- 9f6HS3+D7qvDSY5bm1nwxKifbBqmEV4f3wVgimBiqUUopTmBhoo+UnWWtJx1I5vazVCE=;
+ bh=+Zavah50CCFVi2Vkp9ku57YSss8cl2fM7vlj/N5ldog=; b=hIdOEK/oRXXHfXHs50R/+2/Wj7
+ omqeIV/hy1KZ1mH4bx8umaG4Ij5RwrIGrchscmdtiIqFbxFHUeYe9QCOyfMmelzyV101fcWnrd7M8
+ c7nHgab9GEJRyfxZIouH8HdmRSuLh7ZyQ7tPNx4rf+EAI7KgE/B/gEQXfTw2GQ7IcOOU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc:To:From:
@@ -29,63 +29,63 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=+Zavah50CCFVi2Vkp9ku57YSss8cl2fM7vlj/N5ldog=; b=G0eVgV/EbT+qEGYQcOiif8lPnh
- 7aWVoBNn5ag4UnjuzlwrGO+EHsRSDSio8+Usx2ASt6JyV6R9X+jT3PKzHDVIpFz59GhXckzplPzyf
- 9HvJI3E72dSdhmz+iLey4Hb9YQ8JHSw8kZ+OogpdvevddJh5p3eWvMX+slryYehqfl9A=;
+ bh=+Zavah50CCFVi2Vkp9ku57YSss8cl2fM7vlj/N5ldog=; b=KYYNRc/piJ3XGAnAa5ahGB1RTt
+ SMpLafSnUm5BZ8srht+gGgySkDjIXhl8LZK+H2vSS3jSPpbjOtVSYLaciTjG+yNJBym8I8DKpGhHs
+ FQDpUBPZHIBaEQwoIoFVhdASK+dAFZCCzluZhIPJz60duMdb/1rXejD9C6ksRLqZWOWo=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.92.3)
- id 1n9Ok1-000eWJ-H2
+ id 1n9Ok2-000eWL-FL
  for ibm-acpi-devel@lists.sourceforge.net; Mon, 17 Jan 2022 09:56:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1642413351;
+ s=mimecast20190719; t=1642413352;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
  bh=+Zavah50CCFVi2Vkp9ku57YSss8cl2fM7vlj/N5ldog=;
- b=X3ntLoz6oKhGyKbnqahI1+eEeMr5ceIJUmUz/7km3P6KEUPcTIPI/WJRKKkmFzTTXwb0VE
- FK8kzJLFdW6Wz7+7q3PeiyjqQosgwG498wj4lgEEsJ5el+NhQm1rPgX0gwGauitqrZZlrg
- 20cT3y9tC0ycER0XKVAUV2HWdlbmIhc=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ b=G+Tpqw6rrT3/qtmZhsQMxQ4Vx7JkP3p9EZcbRVnOAV1cfKeVz53kZMYQTvuhc6tbBjKigN
+ Fuhg+beKSZAaBP1Bw2xLFqgfKcjgsoSGZS89p38gKKs1XlqjjrtrMXrr2tdzqNgNXRVckc
+ 6Pr5uwdYh/JpRvYsrL2mBBl7dRtMhpw=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-621-bxDyok8CMw-Ap_2LcNrSHw-1; Mon, 17 Jan 2022 04:55:47 -0500
-X-MC-Unique: bxDyok8CMw-Ap_2LcNrSHw-1
-Received: by mail-ed1-f70.google.com with SMTP id
- ee53-20020a056402293500b004022f34edcbso3042582edb.11
+ us-mta-627-5n5h7XGVNOKCQ5kDRWq4wg-1; Mon, 17 Jan 2022 04:55:51 -0500
+X-MC-Unique: 5n5h7XGVNOKCQ5kDRWq4wg-1
+Received: by mail-ed1-f69.google.com with SMTP id
+ er7-20020a056402448700b00402bbb8ce8bso2258651edb.1
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 17 Jan 2022 01:55:46 -0800 (PST)
+ Mon, 17 Jan 2022 01:55:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
  h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
  :content-language:from:to:cc:references:in-reply-to
  :content-transfer-encoding;
  bh=+Zavah50CCFVi2Vkp9ku57YSss8cl2fM7vlj/N5ldog=;
- b=J8KJ/bsM81ZOFyku8qrIS2Doux3F69Phj1auDNzp6StWt2EnR1jBkVM2pYlFgeIXzH
- w0WpR8VUFDoHqVgJqiC457hTyAW9XPSyCoxbkNs4WCuK9NXzCzkS6LBWDWRQtMFZWf+w
- IwCBZEKSWpqD5fQjnhh/vUDIYWsEpDnov4UWB+Qrt9/TuYy6Dpl8ytwea//R+Ij7iLGH
- NXNCb9hp2oinb1cl+zZPFZHXjUwNhpg9JHnoPQSPsmWZdE3hshCvJ0gfzMj5wYhnM+55
- rdVKXPb7DWhTxwhu9mp/O9NEkhtj1t5Jk68mz1XBXpQuj6+QYXdAsoBbKNIjfIVT8Z7s
- CLQw==
-X-Gm-Message-State: AOAM532uGOLTtf7afC1df+ad5gMyUN+CfDeCYSitcLZlQLFjrTfpN9vA
- nL6ypB8Q6Lib5hAA4PwAqtHEkUValXBsP0xeJL6DznmGvPJwjmQOI2XwjmzudAbj6fEPyBSdHli
- XwHrHIwsr+SAVI2WJu97DSd+w7V+wjUG7beA=
-X-Received: by 2002:a17:906:5d16:: with SMTP id
- g22mr4334371ejt.295.1642413345942; 
- Mon, 17 Jan 2022 01:55:45 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx2KI0C/qgzfh/MppIpeQpRdklF/xZHpgTIX8ATMgvSSdKg4eCb403rM0L0HVtuNA3dNFP5XQ==
-X-Received: by 2002:a17:906:5d16:: with SMTP id
- g22mr4334293ejt.295.1642413344199; 
- Mon, 17 Jan 2022 01:55:44 -0800 (PST)
+ b=DkLNv+uRirNf5f2hOj7jJDT6FTAJWp+5boO7eR6MRk1MfipVa+VSEtEC8OoNFeW87e
+ qHC/ozC9P++lF8ASYx02tXMyFko0O9if9/v52j33g4aeM7K/UvsnpEs1SpU0bqiJ+2L9
+ CgMqO1d+r7W8/QCmVjZVzSOyHbQUW8WUFdw41gYuxXPuCqwXN4M7bxKkM9EKDDSOZ6tC
+ XdqhmMDUt5evwJz8EyDtQU/mVmwLRyNKdQqJrx1G+Ep/jjF5SoNe/7aRiigXhsHvLGwe
+ XbZwMyLJqC5ZRVOncFjQx9A+EkiLVtqOCpDEID7xegkjjscvc60QmOsIKipshLjKvfTs
+ b3fw==
+X-Gm-Message-State: AOAM530qKVJ/pdlq+Sg1RP0AZoSZqWFD34PgXlNP+/ARTlghaCoEMWbv
+ zk4jWrwIg7n0YWkAXwUJ4maLbCkicI5JL9hnCgCWQlxW5CMsLGBuONl5Gv5kEI644tACNcK/zwX
+ bXOkazg2TRTB1H0YdJJjCBPUGFYYUn6+R4MA=
+X-Received: by 2002:a17:906:7315:: with SMTP id
+ di21mr15727292ejc.700.1642413349658; 
+ Mon, 17 Jan 2022 01:55:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxhwwQ8HP6Jnulq/kXnN+vvBYk9fXpL+wB1IwApZ20yLVly4rnosnO6IvMl0Vjc0FXyV+hZGA==
+X-Received: by 2002:a17:906:7315:: with SMTP id
+ di21mr15727274ejc.700.1642413349413; 
+ Mon, 17 Jan 2022 01:55:49 -0800 (PST)
 Received: from ?IPV6:2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1?
  (2001-1c00-0c1e-bf00-1db8-22d3-1bc9-8ca1.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c1e:bf00:1db8:22d3:1bc9:8ca1])
- by smtp.gmail.com with ESMTPSA id x11sm5685209edq.55.2022.01.17.01.55.43
+ by smtp.gmail.com with ESMTPSA id a6sm801730edx.94.2022.01.17.01.55.48
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 17 Jan 2022 01:55:43 -0800 (PST)
-Message-ID: <f9ef9270-159e-7c7d-c6b3-72a2196933b2@redhat.com>
-Date: Mon, 17 Jan 2022 10:55:43 +0100
+ Mon, 17 Jan 2022 01:55:48 -0800 (PST)
+Message-ID: <9e8d71ab-da70-71c5-9083-86cd671ea495@redhat.com>
+Date: Mon, 17 Jan 2022 10:55:48 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.0
@@ -113,10 +113,10 @@ X-Spam-Report: Spam detection software,
  [...] Content analysis details:   (-3.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [170.10.129.124 listed in list.dnswl.org]
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
  [170.10.129.124 listed in wl.mailspike.net]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [170.10.129.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -129,7 +129,7 @@ X-Spam-Report: Spam detection software,
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -2.0 NICE_REPLY_A           Looks like a legit reply (A)
  -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1n9Ok1-000eWJ-H2
+X-Headers-End: 1n9Ok2-000eWL-FL
 Subject: Re: [ibm-acpi-devel] [PATCH] Update whitelisted ThinkPad models
  with dual fan support in thinkpad_acpi
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
