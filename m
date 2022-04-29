@@ -2,89 +2,191 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32CCA50C09E
-	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 22 Apr 2022 22:10:29 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 335DA51492B
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 29 Apr 2022 14:22:50 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1nhzbA-0003sb-PU; Fri, 22 Apr 2022 20:09:47 +0000
+	id 1nkPdS-0000UB-BB; Fri, 29 Apr 2022 12:22:11 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <hello@maedartmann.name>) id 1nhzbA-0003sU-2g
- for ibm-acpi-devel@lists.sourceforge.net; Fri, 22 Apr 2022 20:09:46 +0000
+ (envelope-from <markpearson@lenovo.com>) id 1nkPdP-0000Tu-IK
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 29 Apr 2022 12:22:08 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Message-ID:
- References:In-Reply-To:Subject:To:From:Date:MIME-Version:Sender:Reply-To:Cc:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:CC:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=thbofsRiAbAbvgwLxwY4AYhMnvbssfAk7MbGyuc//ro=; b=DfvVXbx7wKEl2nrdX9D1Vx32V/
- hQsoQ9voN/AQStDKQEt2q0p1oPcwwhPFtLLwZFtM+GDZ0wCit4c9PcHv8ougAWeG0mURnr0tQNOca
- 0ilSq0Amg/j2SkriPG2sSadnkEam4D7NQJdfnF4QrLkdJrpjgZYy5pr9iVhDGVGZ8gSw=;
+ bh=qDQRckvWjAZYIXX4XtZVxNPggDs4QX/rS1CQ1Ju5i2U=; b=W+XD04mtl9wNLM5hVBD8nEBEgW
+ NPLLd/5yT6YfFw90YOKKcel5PmaiUYQSmC7D+0AshOVCz9198Dx9jr+brYIo0dePxlbtnB8mU313C
+ H/qaqntnToJ23jpKjrApBO2NcsOCwqzLH21kPa5ZJJwNgagdUwAXZxr+MJwSTJcTTcYI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Message-ID:References:In-Reply-To:
- Subject:To:From:Date:MIME-Version:Sender:Reply-To:Cc:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=thbofsRiAbAbvgwLxwY4AYhMnvbssfAk7MbGyuc//ro=; b=LQG8u7Z+7nblNsKP+gag0Bh7JV
- igG01Ef70AyP+qMH0DQOkTTsd5xDgUzsObe79QM/gF7u2GurBMKvd+WXbD43Gi44CCJbfTDbQdJgK
- ujKoq20flpOsfFcs//oZjo2ujjHrZKexW6n075hAS0VnmbtMWUpAMZ+67ivTG6+wnEHc=;
-Received: from maedartmann.name ([83.138.55.44] helo=mail.maedartmann.name)
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ bh=qDQRckvWjAZYIXX4XtZVxNPggDs4QX/rS1CQ1Ju5i2U=; b=nUn1sV5ZyD1UkphXSLR3kXi0xA
+ njLuRn/h2uQi0tSl1hUCBg/qM1laFtQnYEgtadklS9jSIn+E4aF2+4+gFnsGHzZaA2NlCu452vFBP
+ 6ECIP8SMQzJaeCyNq1coj53TagAb3UmGM4M9xx6arihInbvwVKoRBssLmOR1TwIACARA=;
+Received: from mail1.bemta31.messagelabs.com ([67.219.246.112])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1nhzb6-006odl-EJ
- for ibm-acpi-devel@lists.sourceforge.net; Fri, 22 Apr 2022 20:09:46 +0000
+ id 1nkPdK-0000oC-5A
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 29 Apr 2022 12:22:08 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com;
+ s=Selector; t=1651234914; i=@lenovo.com;
+ bh=qDQRckvWjAZYIXX4XtZVxNPggDs4QX/rS1CQ1Ju5i2U=;
+ h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+ In-Reply-To:Content-Type:Content-Transfer-Encoding;
+ b=gkALruv3624fxE956wMOwSIw95dsHIYWr0bQ9fH3ka91SySd+Jw2LCh/qM4whjsS2
+ 9XyH9/44Wwwzk7j++atPv1GVuHC1hkt8Rsn/eurp6T2Vi9g1kIW3t+6Agm1rTtikhL
+ +rTv9DVrDjQUgYBJqXqwHtUYvuPGCSfc8M2hDXlXjwVQ1bTNsnLKsHWGbOP5ynh2Xj
+ nssbaGbYm3v2yn2p54AL4QCdkiAO3ZOIdU8RX8nm7arvrfjVVXaxXvlQ9sMoIS7OH+
+ 1LYTe+ZYAMb8kFPnemS3dHGeT5qUt7HEE/1M0B4p0jBCUZvqpAaBkwP+mhkB3acLfi
+ F7G8GBsVFwYLQ==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrBJsWRWlGSWpSXmKPExsWSoZ+nrZt4Izv
+ J4OVMNYs3x6czWaz/vZLFYvZhG4vLu+awWXzumMxisXrPC2YHNo/fBxg95p0M9Ni94DOTx/t9
+ V9k8Pm+SC2CNYs3MS8qvSGDNeHboHmvBFv6KN3/esTUwrubpYuTiYBRYyixxcvd9VghnEavE+
+ onX2SGcNiaJbfPusIA4QgLzmSRu9z1jhHAOM0k0Nn5i6mLk5JAQOM4o0b3KHSLRySixe+sPNg
+ hnApPEsrVzoJwnjBL/TuxkgnN2HD/IDNLPK2Ar0d/6mA3EZhFQldj/6CMbRFxQ4uTMJywgtqh
+ AuET3/v2sILawQLHE5l+3wGqYBcQlbj2ZD3aHCFDNmc8bwbYxCyxikjhx7AwjSEJIoEBi4cQz
+ YEVsAtoSW7b8AmvmFLCTODz1FyPEIE2J1u2/2SFseYntb+cwQ/QqS/zqP88M8aiixLPj/SwQd
+ oJE85SjjBC2pMS1mxfYIWxZiaNn5wDVcADZvhJ37xlDhHUluhdugRpjI/H2BoydI3Hr/z/GCY
+ x6s5C8PAvJa7OQXDcLyXULGFlWMVolFWWmZ5TkJmbm6BoaGOgaGpromuoaGZjrJVbpJuqVFuu
+ mJhaX6BrqJZYX66UWF+sVV+Ym56To5aWWbGIEJq+UItbzOxiX9/zUO8QoycGkJMr7/ER2khBf
+ Un5KZUZicUZ8UWlOavEhRhkODiUJXp1rQDnBotT01Iq0zBxgIoVJS3DwKInwPr4MlOYtLkjML
+ c5Mh0idYjTmuLJt715mjvM79+9lFmLJy89LlRLnLb0OVCoAUppRmgc3CJbgLzHKSgnzMjIwMA
+ jxFKQW5WaWoMq/YhTnYFQS5r0CMoUnM68Ebt8roFOYgE5ZWZQJckpJIkJKqoHJdcGkPZZpmZ1
+ Wm+ZttDo896NSu7hLypfrWTt9907/OLnjzq/8XMaYix1+Hgni4fFba1Z+EwrcuYlvm4Lrvsaw
+ 6absl759OnrZ7cbc/RHqkXzOvZJJtl4MvefcJDTtmTvmiHkWu35MqZHokeRZbbfy0BWRa2ybz
+ vO+nepTFnTm1iTep3sfVhSnPJDM149QnRnMs/zZkwLmiy9cfqjePKv6946O9O1X6vVHS8wLfz
+ aY/lFWDy1VO7nteLrxvjfTTydMaA2MjZtfq8/FnrHqjoTNfYln99guta1fHFv6L9OCKTi1fP3
+ DpeLVMtODOfSfBn9fZ3xio/LynMRjTx42NnbenJsQ92Ovr2KukT2PhooSS3FGoqEWc1FxIgCd
+ m0jdawQAAA==
+X-Env-Sender: markpearson@lenovo.com
+X-Msg-Ref: server-14.tower-686.messagelabs.com!1651234911!26678!2
+X-Originating-IP: [104.47.110.43]
+X-SYMC-ESS-Client-Auth: mailfrom-relay-check=pass
+X-StarScan-Received: 
+X-StarScan-Version: 9.86.4; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 27906 invoked from network); 29 Apr 2022 12:21:53 -0000
+Received: from mail-tyzapc01lp2043.outbound.protection.outlook.com (HELO
+ APC01-TYZ-obe.outbound.protection.outlook.com) (104.47.110.43)
+ by server-14.tower-686.messagelabs.com with ECDHE-RSA-AES256-GCM-SHA384
+ encrypted SMTP; 29 Apr 2022 12:21:53 -0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ih8uUsnNhthbXJNZBntdRMaaJjO8P1+R5tuwxGfZtpuRbn54I35RQnv8KrmzNwY+XiU6l9BDnIprLKmvSK57WpV7NXUYzX+SjR1EobuMOZaeyxDmZIUH9Hix7i9Zqma0J8LEuHI1j2ing0phixgKlHqReC51W77ySmcixHVNtNCpDuHyakVRxeN+NhhAq1Xn8qdZJ1AKRfsiS8Y77+V1oJdx+cCvf4OATriEzlQFl6RhCYnXidk7m6i5mjtmZHOaYlcNNekh1Hwp210tqXz2+d4NGkjCnpvDiFq+/EyzXR+eHWNMVSs1LmnIu15AQZeH783ZwZbFDabrwlt0Q1N2Kg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qDQRckvWjAZYIXX4XtZVxNPggDs4QX/rS1CQ1Ju5i2U=;
+ b=laFvuujgStGhOr6sKtQf6JC/bVJXCmksusS9Xc5n1Wx62+QzD4Cs2KeU0QvCuSAPWNpt+PXsp5UVNLHW3kwYLu19QzOvgRWd4qYDPDR4A950Gr9/f62EZgHQbt4BTfyQCngHLXj/vM9Jkylve2yAyqCCQIws8HpAQJwljE1TLrpKbZDniF3sTrBfOk2/ocWenS9XEA4lxEOi3sxo2usoKQwHVAwjptqtapXTnP+cJ9JEntrbMBLu7FErgULAhJK+3lNyP1ZpzbcGcaHNbjGEZ75GwQ63nPz6qOsg8sltgWVXjDJyRxAVwbYWrhBVTci88cmTecgj6+jBfgIRXwGYog==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 104.232.225.6) smtp.rcpttodomain=amd.com smtp.mailfrom=lenovo.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=lenovo.com;
+ dkim=none (message not signed); arc=none
+Received: from PS2PR02CA0060.apcprd02.prod.outlook.com (2603:1096:300:5a::24)
+ by SL2PR03MB4233.apcprd03.prod.outlook.com (2603:1096:100:46::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.14; Fri, 29 Apr
+ 2022 12:21:47 +0000
+Received: from PSAAPC01FT067.eop-APC01.prod.protection.outlook.com
+ (2603:1096:300:5a:cafe::3a) by PS2PR02CA0060.outlook.office365.com
+ (2603:1096:300:5a::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.14 via Frontend
+ Transport; Fri, 29 Apr 2022 12:21:47 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 104.232.225.6) smtp.mailfrom=lenovo.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=lenovo.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ lenovo.com discourages use of 104.232.225.6 as permitted sender)
+Received: from mail.lenovo.com (104.232.225.6) by
+ PSAAPC01FT067.mail.protection.outlook.com (10.13.38.143) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5206.12 via Frontend Transport; Fri, 29 Apr 2022 12:21:46 +0000
+Received: from reswpmail01.lenovo.com (10.62.32.20) by mail.lenovo.com
+ (10.62.123.116) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2308.27; Fri, 29 Apr
+ 2022 08:21:44 -0400
+Received: from [10.46.196.199] (10.46.196.199) by reswpmail01.lenovo.com
+ (10.62.32.20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2308.27; Fri, 29 Apr
+ 2022 08:22:47 -0400
+Message-ID: <a5faa9e6-feba-6a76-de53-1c9d2c572da4@lenovo.com>
+Date: Fri, 29 Apr 2022 08:21:43 -0400
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maedartmann.name;
- s=dkim; t=1650658170;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=thbofsRiAbAbvgwLxwY4AYhMnvbssfAk7MbGyuc//ro=;
- b=KXbY9DEHuduuzLs9Qd2L5b1NqSZZrKiUm+fyH2VhCrKAo9Lv00wQYSFEtpVmktmo31aydL
- OX2APzw+0cvBT+kRKo90yzfy2RMVR0E4Bda3pZ7fINvwByoDzIl2jsYhyGAq/7vtrCDRLG
- 67YhI5Bn1Wvk4QQfNIm/2ncpFEsZeLs3mVnbkqyi7NJgSK3fb2ruVDFWayUG2cAZKl53gS
- A7GyyTpgo5qQ0K2kxZDjnjxhuEnV1dO6Q9rryiMoXTN28r7A5AsbU0VgzIgSRCKpM/0vaQ
- 2qtLBrNYPEJKwDUOIlmxhg1nSfM+rSKC4z6D1Yg2auhz6YG/koRhxhnQbKNj+Q==
-Date: Fri, 22 Apr 2022 20:09:30 +0000
-To: ibm-acpi-devel@lists.sourceforge.net
-In-Reply-To: <69a20cc421912cc0768293cf306edc3c@maedartmann.name>
-References: <69a20cc421912cc0768293cf306edc3c@maedartmann.name>
-Message-ID: <1815d5d3ad48c1c3af706fa907f51900@maedartmann.name>
-X-Sender: hello@maedartmann.name
-Authentication-Results: mail.maedartmann.name;
- auth=pass smtp.mailfrom=hello@maedartmann.name
-X-Spam-Level: **
-X-Spamd-Bar: ++
-X-Spam-Score: -0.2 (/)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: Mario Limonciello <mario.limonciello@amd.com>, Hans de Goede
+ <hdegoede@redhat.com>
+References: <20220429030501.1909-1-mario.limonciello@amd.com>
+ <20220429030501.1909-3-mario.limonciello@amd.com>
+From: Mark Pearson <markpearson@lenovo.com>
+In-Reply-To: <20220429030501.1909-3-mario.limonciello@amd.com>
+X-Originating-IP: [10.46.196.199]
+X-ClientProxiedBy: reswpmail01.lenovo.com (10.62.32.20) To
+ reswpmail01.lenovo.com (10.62.32.20)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: caf02da9-e4af-489a-6801-08da29dad453
+X-MS-TrafficTypeDiagnostic: SL2PR03MB4233:EE_
+X-LD-Processed: 5c7d0b28-bdf8-410c-aa93-4df372b16203,ExtAddr
+X-Microsoft-Antispam-PRVS: <SL2PR03MB4233F429ABA93A983F7E4678C5FC9@SL2PR03MB4233.apcprd03.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 05dEwvCdPWVG0Fy37s/5cVXdngfZ7B4RBfw+yZLjK9s4RS2xp7YHBKNMOgfbYH9J4Kx6UTe/ZDT9DbMEPyx0nx9+f+JbynBUxXrGVMNJQI4OT7ipsuLV8pcEUOv/lWNCn/jRQNn4kLt0SLtfCTOsEd+pbDC+5RsqHk8h4AxYsRBGAEmHRA/a+TGFWZcaw9LnCHmVzn+raqtSWvQ8b9hPFjZ9lS97hQb792wiqRgC7lgcW0Kue/m+9nVnLG9ft6JafZn/dQhcuLikjPGAsR5WTMl/H7pTeR68QQFMd45qbrcwBW+J690R5qYKlJNOwrGRRFMtCRwl2WCWscdAW4To6fUJv4xTgwPWbNnbPVHVK5Q2v7KKSoQ02nS9qKkjh7+0jSCfv0cgTLfSJR3kcIaTPg4Xk8Oa/0UaKaNT5UDjKjTxvF91YT1qczevZzQ8C+DqIGDo8iK1bDlFavRHkO+cW/zyyUoLif6K+1LjFc1Bq4OfayvF8/iuMbXNFZiSpaSz/yqOOzJRXGk2Qlq2IorWnSiE9NPmI7VpN6nJDGrkTfespb1/LjYHN/BogzTyOBj80CdUiucJIuGYst9MVaOo12FBfLoL7YTkCfN22PwqtsM4RIeraL0Inc8z6gb+lrp5FwlJ9cyTBs0F1t8QnWzlTGzROxt1n7idmSsmyv59WBkBQvW0ZWBhrlviHXno/wvJbARp8LWzgMvZSSs49dY+A1eL++UsexPn2lgiXdldpdsArwaCr6skDPgftRrbyVkn/RQZG6pedg0A3bB7MrwUcJLCEl5egr6EcQcKpmML4GvSMtIMKXhsT6nyAf1x2AqF
+X-Forefront-Antispam-Report: CIP:104.232.225.6; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.lenovo.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(36906005)(54906003)(8936002)(110136005)(966005)(5660300002)(83380400001)(82960400001)(508600001)(316002)(4326008)(70206006)(8676002)(70586007)(16576012)(86362001)(31696002)(426003)(2616005)(6666004)(26005)(47076005)(186003)(336012)(16526019)(2906002)(36860700001)(36756003)(53546011)(82310400005)(40460700003)(81166007)(31686004)(356005)(3940600001)(36900700001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-OriginatorOrg: lenovo.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2022 12:21:46.3817 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: caf02da9-e4af-489a-6801-08da29dad453
+X-MS-Exchange-CrossTenant-Id: 5c7d0b28-bdf8-410c-aa93-4df372b16203
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=5c7d0b28-bdf8-410c-aa93-4df372b16203; Ip=[104.232.225.6];
+ Helo=[mail.lenovo.com]
+X-MS-Exchange-CrossTenant-AuthSource: PSAAPC01FT067.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2PR03MB4233
+X-Spam-Score: -3.7 (---)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On 2022-04-22 14:15, Mae Dartmann via ibm-acpi-devel wrote:
- > Hi, > > I recently got my hands on a ThinkPad L13 Yoga Gen 2 AMD (the 5850U
- > spec). It works great on Linux, except for the tablet mode s [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  On 4/28/22 23:05, Mario Limonciello wrote: > Lenovo laptops
+ that contain NVME SSDs across a variety of generations have > trouble resuming
+ from suspend to idle when the IOMMU translation layer is > ac [...] 
+ Content analysis details:   (-3.7 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [67.219.246.112 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [67.219.246.112 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
-X-Headers-End: 1nhzb6-006odl-EJ
-Subject: Re: [ibm-acpi-devel] Broken tablet mode switch for L13 Yoga Gen 2
- AMD: Unknown/reserved multi mode value 0x0000 for type 4
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -2.9 NICE_REPLY_A           Looks like a legit reply (A)
+ -0.6 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1nkPdK-0000oC-5A
+Subject: Re: [ibm-acpi-devel] [External] [PATCH 2/2] platform/x86:
+ thinkpad_acpi: Add a s2idle resume quirk for a number of laptops
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,84 +199,76 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-From: Mae Dartmann via ibm-acpi-devel <ibm-acpi-devel@lists.sourceforge.net>
-Reply-To: Mae Dartmann <hello@maedartmann.name>
+Cc: "open list:THINKPAD ACPI EXTRAS DRIVER"
+ <ibm-acpi-devel@lists.sourceforge.net>, Mark Gross <mgross@linux.intel.com>,
+ open list <linux-kernel@vger.kernel.org>,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>, "open list:THINKPAD ACPI EXTRAS
+ DRIVER" <platform-driver-x86@vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On 2022-04-22 14:15, Mae Dartmann via ibm-acpi-devel wrote:
-> Hi,
+
+On 4/28/22 23:05, Mario Limonciello wrote:
+> Lenovo laptops that contain NVME SSDs across a variety of generations have
+> trouble resuming from suspend to idle when the IOMMU translation layer is
+> active for the NVME storage device.
 > 
-> I recently got my hands on a ThinkPad L13 Yoga Gen 2 AMD (the 5850U
-> spec). It works great on Linux, except for the tablet mode switch,
-> which appears to be broken on mainline (I'm running 5.18-rc3), as well
-> as older kernels.
+> This generally manifests as a large resume delay or page faults. These
+> delays and page faults occur as a result of a Lenovo BIOS specific SMI
+> that runs during the D3->D0 transition on NVME devices.
 > 
-> dmesg shows an error that appears to originate from the
-> `hotkey_gmms_get_tablet_mode` function in
-> drivers/platform/x86/thinkpad_acpi.c, specifically when checking if
-> the mode is valid (lines 2020ff.):
+> This SMI occurs because of a flag that is set during resume by Lenovo
+> firmware:
 > 
-> thinkpad_acpi: Unknown/reserved multi mode value 0x0000 for type 4,
-> please report this to ibm-acpi-devel@lists.sourceforge.net
+> ```
+> OperationRegion (PM80, SystemMemory, 0xFED80380, 0x10)
+> Field (PM80, AnyAcc, NoLock, Preserve)
+> {
+> 	SI3R,   1
+> }
 > 
-> I have opened a bug report in the kernel bugzilla
-> (https://bugzilla.kernel.org/show_bug.cgi?id=215873), but I thought I
-> would do as the module tells me and report this issue in the mailing
-> list, too.
+> Method (_ON, 0, NotSerialized)  // _ON_: Power On
+> {
+> 	TPST (0x60D0)
+> 	If ((DAS3 == 0x00))
+> 	{
+> 		If (SI3R)
+> 		{
+> 			TPST (0x60E0)
+> 			M020 (NBRI, 0x00, 0x00, 0x04, (NCMD | 0x06))
+> 			M020 (NBRI, 0x00, 0x00, 0x10, NBAR)
+> 			APMC = HDSI /* \HDSI */
+> 			SLPS = 0x01
+> 			SI3R = 0x00
+> 			TPST (0x60E1)
+> 		}
+> 		D0NV = 0x01
+> 	}
+> }
+> ```
 > 
-> I don't have much experience in kernel development so I might not be
-> much help, but please let me know if I can test something, try out
-> patches, etc. I run my own distribution on the machine, so patching
-> and compiling kernels is not a big deal for me.
+> Create a quirk that will run early in the resume process to prevent this
+> SMI from running. As any of these machines are fixed, they can be peeled
+> back from this quirk or narrowed down to individual firmware versions.
 > 
-> Thanks
-> ---
-> Mae Dartmann
-> git : https://github.com/mdartmann
-> mail: hello@maedartmann.name
-> 
-> 
-> _______________________________________________
-> ibm-acpi-devel mailing list
-> ibm-acpi-devel@lists.sourceforge.net
-> https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1910>> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/1689>> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 
-Update:
+Thanks Mario,
 
-I spent the last day or so inserting printk statements at various points 
-throughout the driver, as well as using acpica to see if/when the hotkey 
-logic in the driver runs.
+Tested the series on the T14 G1 AMD and it fixes the long delay when
+resuming from S0ix suspend nicely.
 
-As far as I can tell, this devices' tablet switch does not get 
-recognized at all by the driver, turning the screen around does not 
-trigger anything in the driver.
+Patches look good to me. I am working with the Lenovo FW teams for the
+various platforms, but as S0ix support wasn't in the original scope I
+don't know yet when (or if in some cases) they'll get FW fixes released.
+I believe these changes are benign even once the FW is fixed so think
+this is a great idea.
 
-There are no calls to acpi_evalf, the hotkey_notify function does not 
-recognize the event,  and I can't see any ACPI_EVENTS through 
-/sys/module/acpi/debug_layer.
+I'll push updates removing platform quirks once FW is released though.
 
-hotkey_gmms_get_tablet_mode only gets run on boot, resume or when 
-reading /sys/bus/platform/devices/thinkpad_acpi/hotkey_tablet_mode.
+Tested-by: Mark Pearson <markpearson@lenvo.com>
 
-I have Windows 11 installed on the same machine, it works perfectly 
-there. I identified that the driver that handles tablet mode is called 
-"Microsoft HID GPIO Laptop or Slate Indicator Driver". If needed, I can 
-provide the information it exposes via device manager.
-
-I am way out of my depth here. I can kind of piece together what is 
-wrong and what the driver is doing, however, I have no clue how ACPI 
-works or how I could fix this.
-
-Let me know if I can provide any more information, from the windows 
-driver or otherwise.
-
-Thanks
----
-Mae Dartmann
-git  : https://github.com/mdartmann
-mail : hello@maedartmann.name
 
 
 _______________________________________________
