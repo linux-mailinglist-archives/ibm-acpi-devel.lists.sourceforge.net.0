@@ -2,105 +2,107 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96CF956251E
-	for <lists+ibm-acpi-devel@lfdr.de>; Thu, 30 Jun 2022 23:29:29 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id B580E562B09
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri,  1 Jul 2022 07:48:27 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1o71ia-00067x-8T; Thu, 30 Jun 2022 21:28:56 +0000
+	id 1o79VK-0003HU-4W; Fri, 01 Jul 2022 05:47:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1o71iR-000672-5S
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 30 Jun 2022 21:28:47 +0000
+ (envelope-from <mika.westerberg@linux.intel.com>) id 1o79VI-0003HO-11
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 01 Jul 2022 05:47:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=r2WWPMm1Y9zZL+e6VyCM2YGPW/OgbHtNsioh48hEsss=; b=LNY8uwFvaSXSKOMq/xCtQGqrV9
- FtVXEgy1dxnX86c5yxEEeWi379gyISFkDmPUBbIaoL5egs4yj4ju8WWU6yyYsRW7975be4wlOELok
- SIKNaeSXDPq7ARz0lDzIBd+27wboRUTjjUIz8077IjVYozxRmDbjw2wnVNQBWFV4Jl/w=;
+ bh=XdXN4UYHFUTXoPkYgMEqOj9yyrC9wg1vZvNZV7mEUxY=; b=XmKFu6vCYyPrZw0HHjOpQSjPg9
+ xQs8VPg/+VvF+n1c2t1b6+oM+ISB32lgG/pnp6SYVu4kd/NFF5p9/Ca05SdabDKGJ0kMMe6O69U1J
+ 6OL0+Hi66l67a7ZDShnbsRlhDk5hvAJ2S8KKSR5MR/6QxCsxK7tmvi0UFA30Gc1Tnp0U=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-Id:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=r2WWPMm1Y9zZL+e6VyCM2YGPW/OgbHtNsioh48hEsss=; b=diANzmqeyNSRxnvYmgoUb96Ljz
- P5n6MqcF0mnCWJK8aUuPRbDHt+cDh2bXFeC2UJ2ji76+TgHLoV1q/yWVroHuqvUhSibIbrsWJZeKY
- jh98fxu6nL3pHYR9fII/GxTXa68vUXK+Y/I3RpBIN1aGbQU55zbLRDyAuCNLgV2XH5qE=;
-Received: from mga11.intel.com ([192.55.52.93])
+ bh=XdXN4UYHFUTXoPkYgMEqOj9yyrC9wg1vZvNZV7mEUxY=; b=fILe26XXc4z1I/piMFexC2A4OV
+ b1CNrPaQvWGFIBHUCREKIWXCnPbrN+5E1NR/49QO362jTPhQuRB9ghva3xsUupx0pzPBirhgGUOxb
+ 0uj3e39yFGJE3lgZs0bIq/BNkG6xt+trQkTpmESnik+a078zNJO4kbkBclc/NS2r+dw0=;
+Received: from mga04.intel.com ([192.55.52.120])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1o71iQ-002jgr-Cd
- for ibm-acpi-devel@lists.sourceforge.net; Thu, 30 Jun 2022 21:28:46 +0000
+ id 1o79VF-00337x-Ll
+ for ibm-acpi-devel@lists.sourceforge.net; Fri, 01 Jul 2022 05:47:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1656624526; x=1688160526;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=B0VMjhosdrjMBEAvWD5hkIGzjJXjnMXp82dnbVLODJA=;
- b=koXhUqxKzxsey7JHqFuhCauaXKVtkjemKW9cQxTMzhwbbqmGTf95oJNI
- SbSnYiwcbeRxRnjz3Boj+kzwvA+cAlWaQabAKa55bcXOa0OMtc8ht0kIW
- u0OhAZmHmEgFTI4vGb0lXtmJRpx9n5GW+mYWPGANqVTdpyy7u7DzYu7Cm
- 23Y5E5GbwuTri7va8iOQuqY5HAynZURHOCId1BsF9iwkzm9RKRG+GCdJq
- tVGNHfd9yEw8Xlf6dTs7EVI971yoD09ygdmV3wCGYnF2pCLcLLaFMKFR3
- V2oVfRHwGn6ntpev7hrZv9QGaYOlop4lXwyW1GZZ2FgfjVj4wIvHvmIdv w==;
-X-IronPort-AV: E=McAfee;i="6400,9594,10394"; a="280021837"
-X-IronPort-AV: E=Sophos;i="5.92,235,1650956400"; d="scan'208";a="280021837"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2022 14:28:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.92,235,1650956400"; d="scan'208";a="591454759"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orsmga002.jf.intel.com with ESMTP; 30 Jun 2022 14:28:25 -0700
-Received: by black.fi.intel.com (Postfix, from userid 1003)
- id 339A61A0; Fri,  1 Jul 2022 00:28:31 +0300 (EEST)
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Hans de Goede <hdegoede@redhat.com>, Wolfram Sang <wsa@kernel.org>,
- linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-i2c@vger.kernel.org, linux-pci@vger.kernel.org,
- ibm-acpi-devel@lists.sourceforge.net, platform-driver-x86@vger.kernel.org
-Date: Fri,  1 Jul 2022 00:28:19 +0300
-Message-Id: <20220630212819.42958-5-andriy.shevchenko@linux.intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220630212819.42958-1-andriy.shevchenko@linux.intel.com>
+ t=1656654461; x=1688190461;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=Isy2vf1MMMuyEw6FjN6hYjOB38jJmfhpCIoqFRQ0Z2M=;
+ b=JLB8+YEPUrM5SHJwacFavhymhFajNEByQF+1srlkPZgi/NeOjqY9dTik
+ Rn4YKBb7TEG5HueBE0ZvHgVInAW5WU2rhqy2hQM2sl3JP36ZVOivLbFbl
+ ns8O3Hp9h8c0bmPHBbqOgluoZyb9N+ygRaC8gmMAElpSmV9by7ZBtZFNB
+ hvDdiEl2X8z4KKhvbfF65TXB2moOSXLUwKSAwOiPUlx6jI07VcB5dIWt8
+ x0+ESy4EbNNwTXNV+GEA6xIa4wXqtWOmT6ro/k7vp5H+rZ1LY/CkATleE
+ 8y+oiRx+jqnfTS9aZa4eYRj9GDHe24cNVjfGO9geupU0C5gbBMt5cYXDC Q==;
+X-IronPort-AV: E=McAfee;i="6400,9594,10394"; a="281322764"
+X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; d="scan'208";a="281322764"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 22:47:36 -0700
+X-IronPort-AV: E=Sophos;i="5.92,236,1650956400"; d="scan'208";a="566121503"
+Received: from lahna.fi.intel.com (HELO lahna) ([10.237.72.162])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2022 22:47:31 -0700
+Received: by lahna (sSMTP sendmail emulation); Fri, 01 Jul 2022 08:47:28 +0300
+Date: Fri, 1 Jul 2022 08:47:28 +0300
+From: Mika Westerberg <mika.westerberg@linux.intel.com>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Message-ID: <Yr6KcPlC/3rYAtKE@lahna>
 References: <20220630212819.42958-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-X-Spam-Score: -5.8 (-----)
+Content-Disposition: inline
+In-Reply-To: <20220630212819.42958-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Score: -2.8 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Replace open coded variant of
- acpi_match_video_device_handle()
- helper. Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
- --- drivers/platform/x86/thinkpad_acpi.c | 4 +--- 1 file changed,
- 1 insertion(+), 3 deletions(-) 
- Content analysis details:   (-5.8 points, 6.0 required)
+ Content preview:  Hi Andy, On Fri, Jul 01, 2022 at 12:28:15AM +0300,
+ Andy Shevchenko
+ wrote: > extern long acpi_is_video_device(acpi_handle handle); > +extern
+ bool acpi_match_video_device_handle(acpi_handle handle); I think we can do
+ slightly better here. The only caller of acpi_is_video_device() is in
+ drivers/acpi/video_detect.c
+ so we can move it there and make it static (is_video_device()). 
+ Content analysis details:   (-2.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
- high trust [192.55.52.93 listed in list.dnswl.org]
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: intel.com]
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [192.55.52.120 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 SPF_NONE               SPF: sender does not publish an SPF Record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1o71iQ-002jgr-Cd
-Subject: [ibm-acpi-devel] [PATCH v1 5/5] platform/x86: thinkpad_acpi:
- Convert to use acpi_match_video_device_handle() helper
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+ -0.4 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1o79VF-00337x-Ll
+Subject: Re: [ibm-acpi-devel] [PATCH v1 1/5] ACPI: utils: Introduce
+ acpi_match_video_device_handle() helper
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -113,39 +115,31 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Mark Gross <markgross@kernel.org>,
+Cc: Mark Gross <markgross@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ linux-acpi@vger.kernel.org, linux-pci@vger.kernel.org,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, linux-kernel@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, Wolfram Sang <wsa@kernel.org>,
+ Hans de Goede <hdegoede@redhat.com>, linux-i2c@vger.kernel.org,
  Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>, Len Brown <lenb@kernel.org>
+ "Rafael J. Wysocki" <rafael@kernel.org>, ibm-acpi-devel@lists.sourceforge.net,
+ Len Brown <lenb@kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Replace open coded variant of acpi_match_video_device_handle() helper.
+Hi Andy,
 
-Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- drivers/platform/x86/thinkpad_acpi.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+On Fri, Jul 01, 2022 at 12:28:15AM +0300, Andy Shevchenko wrote:
+>  extern long acpi_is_video_device(acpi_handle handle);
+> +extern bool acpi_match_video_device_handle(acpi_handle handle);
 
-diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index 22d4e8633e30..624cb9436522 100644
---- a/drivers/platform/x86/thinkpad_acpi.c
-+++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -748,9 +748,7 @@ static acpi_status __init tpacpi_acpi_handle_locate_callback(acpi_handle handle,
- 			u32 level, void *context, void **return_value)
- {
- 	if (!strcmp(context, "video")) {
--		struct acpi_device *dev = acpi_fetch_acpi_dev(handle);
--
--		if (!dev || strcmp(ACPI_VIDEO_HID, acpi_device_hid(dev)))
-+		if (!acpi_match_video_device_handle(handle))
- 			return AE_OK;
- 	}
- 
--- 
-2.35.1
+I think we can do slightly better here. The only caller of
+acpi_is_video_device() is in drivers/acpi/video_detect.c so we can move
+it there and make it static (is_video_device()).
 
+Then we can name this one acpi_is_video_device() instead and in addition
+make it take struct acpi_device as parameter instead of acpi_handle (I
+think we should not use acpi_handles in drivers if possible).
 
 
 _______________________________________________
