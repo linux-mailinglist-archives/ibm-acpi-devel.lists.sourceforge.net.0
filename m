@@ -2,79 +2,114 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D856D57B4AF
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 20 Jul 2022 12:42:50 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.94.2)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18551599547
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 19 Aug 2022 08:24:10 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1oE79d-00085v-30; Wed, 20 Jul 2022 10:42:09 +0000
+	id 1oOvPm-0000t5-NW;
+	Fri, 19 Aug 2022 06:23:30 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.94.2)
- (envelope-from <ibm-acpi-devel@tlund.pp.se>) id 1oE79a-00085p-Mv
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 20 Jul 2022 10:42:07 +0000
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
+ (envelope-from <andy.shevchenko@gmail.com>) id 1oOvPl-0000sz-Ss
+ for ibm-acpi-devel@lists.sourceforge.net;
+ Fri, 19 Aug 2022 06:23:29 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:References:Message-ID:
- In-Reply-To:Subject:To:From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=StCRJDA5Cm696EZYXjdQ1luo7CkfL94iRRU4oNk3d98=; b=PjrIryJvhmIozcRm+9souJpG9O
- OTBT2+HLVlv51qP9C1Bt1i5c52RfN6Tdy3GABsxSzlVU4kVVZjtyVf+pCC4Pg9ab1dvj1XRweht2G
- 44oP6CeUAIDTxsp6B963v6X6Hrat07AUC2/mXtNqP6JP84JG9/xEQF0puiW6nQeti8dY=;
+ bh=fY9LveBLnFiSKbYjRHuFcLH7o9uOpu0WQwKbq0SBCjI=; b=EwapRMExg/qBoYNci+4zlHyN1v
+ 15prZGHiyG6qonuY5P5rBTpgqbCjo98Q4fR+YOJOIrBEFeC3eWZwKEkLyqf0y+7QSOM1OHfupJAMY
+ zHU0Rlnqz9wOCo1HWAyZdBGez/gT+3aTDsskwR0pZ9Yv/kR9lVPCcgoLGzDsN28nRjY4=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:References:Message-ID:In-Reply-To:Subject:To:
- From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=StCRJDA5Cm696EZYXjdQ1luo7CkfL94iRRU4oNk3d98=; b=DfRYbjT7K8kNYFWj9My2uR0hOR
- eH445L5r1MBdm6GVrwS2QYkQk/o+uscCu+drqpRIO7FxcOGkM6QNb0oeIzfRQU//TaHIC2kYXC+zi
- cHTrrsHYrSHLP4y3qTsXmw4JXr0/GRWh20OJaSzxIKjfIl65MgUXXNaHlQuLlhopkmlo=;
-Received: from envy.nxs.se ([212.247.200.182])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.94.2)
- id 1oE79X-004w3O-Or
- for ibm-acpi-devel@lists.sourceforge.net; Wed, 20 Jul 2022 10:42:07 +0000
-Received: by envy.nxs.se (Postfix, from userid 1000)
- id 2D3AC136A86; Wed, 20 Jul 2022 12:41:52 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
- by envy.nxs.se (Postfix) with ESMTP id 0E7907755E
+ bh=fY9LveBLnFiSKbYjRHuFcLH7o9uOpu0WQwKbq0SBCjI=; b=Khfh1NdaeReU4s3AY6FlbpDarP
+ S/P3Z+G75om4bRzEVa4UT72ry9Er6zJaWdXCidWjqRWa9XlAKwmixaqRdnorb5i9Jrva8cpC1pp4A
+ Y2tDUWs41Ji80+B1FBJCilDTahxFWFvHEXg80KxCX1jT0kIdXo1xmijVdWXfWjN1/Uq8=;
+Received: from mail-qt1-f173.google.com ([209.85.160.173])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1oOvPk-0000bm-5O for ibm-acpi-devel@lists.sourceforge.net;
+ Fri, 19 Aug 2022 06:23:29 +0000
+Received: by mail-qt1-f173.google.com with SMTP id cr9so2689154qtb.13
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Wed, 20 Jul 2022 12:41:52 +0200 (CEST)
-Date: Wed, 20 Jul 2022 12:41:52 +0200 (CEST)
-From: Tomas Agartz <ibm-acpi-devel@tlund.pp.se>
-X-X-Sender: tlund@envy.nxs.se
-To: ibm-acpi-devel@lists.sourceforge.net
-In-Reply-To: <alpine.DEB.2.21.2207152128550.13226@envy.nxs.se>
-Message-ID: <alpine.DEB.2.21.2207201236310.13226@envy.nxs.se>
-References: <alpine.DEB.2.21.2207152128550.13226@envy.nxs.se>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+ Thu, 18 Aug 2022 23:23:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc;
+ bh=fY9LveBLnFiSKbYjRHuFcLH7o9uOpu0WQwKbq0SBCjI=;
+ b=TjqudFaW/qj1ie2RbOptrz2HTLfhnQ0w3n7Z6veDV64KlFGtbQzBRK6HPWWj5jMxJt
+ oHqTN5GSOp+cUfJkEY9LNxVsj5FhUVwsAKBnTB66YI7ivf+7iVDj+qoWK+a777FlCtNH
+ ZbVVIxMYa4d2aMpnlIhLYJOlqjoEUD9+UMFpXx0q/bL/umZNfiStNjs3WXsbUOA2GKmW
+ q1oQzRQc3oX/tcc43Wk0rH2SlTyHkR3XOmFUO4xFqeWokBv6/EPa1pgrXuhqLec5Susi
+ 03yxAZRobpw6YtpIc7X6+hZ/gL+9WfyI6GpfkxGbF2HidldmArMTSqi8XGwkn3WHZvpY
+ nT7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20210112;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc;
+ bh=fY9LveBLnFiSKbYjRHuFcLH7o9uOpu0WQwKbq0SBCjI=;
+ b=FtE6yVUoQVqZp52Ve+mfYM6u3pfO2+b8bf00zlrVo+Sh+knPw+LiUG2HqZJcIAvhGN
+ q8I5wlEzrOP88esfVCwOFSM/vRl4T8IDZOUWnJCzFElbTqYmvcv2YAYh4Ti8SGZYfTZq
+ KSD7jhqv46ZX7sGECYTdD70t5sGqkMgWMJzYpzD/MQNX5I265YX+Tg7Uan2uMIm2xwPS
+ 9N5hVjdYDfSNi6MrILEgsOFG1vDnVOL2BDJTHBXHt42a6Tr91hwgInxMqVtMmoD0AxKT
+ 2bx4BkxM9HC5AnKx9ILiDH8wJjY6uDCH5Evd19jRGkpMxkE83kPVsi23oh1oZx7keFMI
+ ZD3Q==
+X-Gm-Message-State: ACgBeo1DgWXwUkMxE++915T7dskiAoC7NiCh2iEr51P8q9/k1hxFbzTE
+ NLGCB1+TUvFA7BYMjqXXSPtcNAHpUShF29F67TY=
+X-Google-Smtp-Source: AA6agR7/N1zPVsasyqkyG/YF+U2KyCp9duOxoXwYcnvf2RRSPdXQSkddTw+2IQC/XZoltV8H+EDmscYRRPJqEIAKK2I=
+X-Received: by 2002:ac8:7f92:0:b0:344:8cd8:59a1 with SMTP id
+ z18-20020ac87f92000000b003448cd859a1mr5566251qtj.384.1660890201997; Thu, 18
+ Aug 2022 23:23:21 -0700 (PDT)
 MIME-Version: 1.0
-X-Spam-Score: -2.3 (--)
+References: <20220818210058.7229-1-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20220818210058.7229-1-wsa+renesas@sang-engineering.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 19 Aug 2022 09:22:45 +0300
+Message-ID: <CAHp75VeM2q7wdnREoenyYpJ-tso2G6M-uyGFJGjPGL8hfUmzhQ@mail.gmail.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri, 15 Jul 2022, Tomas Agartz wrote: > I have a ThinkPad
- X1 Carbon Gen 9 (Product Name: 20XW005PMX) and have an > unhandled HKEY events
- to report. This happens when I press Fn + T. > > thinkpad_acpi: unhandled
- HKEY event 0x131a 
- Content analysis details:   (-2.3 points, 6.0 required)
+ Content preview:  On Fri, Aug 19,
+ 2022 at 12:06 AM Wolfram Sang wrote: > > Follow
+ the advice of the below link and prefer 'strscpy' in this We refer to the
+ functions like this: strscpy() (note no quote marks). > subsystem. Conversion
+ is 1:1 because the return value is not used. > Generated by a coccinelle
+ script. Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [212.247.200.182 listed in list.dnswl.org]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.160.173 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [andy.shevchenko[at]gmail.com]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [212.247.200.182 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ [209.85.160.173 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1oE79X-004w3O-Or
-Subject: Re: [ibm-acpi-devel] thinkpad_acpi: unhandled HKEY event 0x131a
+X-Headers-End: 1oOvPk-0000bm-5O
+Subject: Re: [ibm-acpi-devel] [PATCH] platform: move from strlcpy with
+ unused retval to strscpy
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -87,24 +122,127 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
+Cc: Thinkpad-acpi devel ML <ibm-acpi-devel@lists.sourceforge.net>,
+ Dell.Client.Kernel@dell.com,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Platform Driver <platform-driver-x86@vger.kernel.org>,
+ Mark Gross <markgross@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
+ Prasanth Ksr <prasanth.ksr@dell.com>,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
+ Divya Bharathi <divya.bharathi@dell.com>,
+ Maximilian Luz <luzmaximilian@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Fri, 15 Jul 2022, Tomas Agartz wrote:
-
-> I have a ThinkPad X1 Carbon Gen 9 (Product Name: 20XW005PMX) and have an 
-> unhandled HKEY events to report. This happens when I press Fn + T.
+On Fri, Aug 19, 2022 at 12:06 AM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
 >
-> thinkpad_acpi: unhandled HKEY event 0x131a
+> Follow the advice of the below link and prefer 'strscpy' in this
 
-Some more info:
+We refer to the functions like this: strscpy() (note no quote marks).
 
-In some Lenovo application that came bundled with the Windows install, I 
-found that Fn+T is supposed to "change Intelligent cooling automatic mode 
-setting".
+> subsystem. Conversion is 1:1 because the return value is not used.
+> Generated by a coccinelle script.
 
-//tlund
+I assume you are experimenting with coccinelle, so I have no objection
+to the change, but in PDx86 we usually want to have one patch per
+driver. Can you split?
+
+You also may add
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+to each of them.
+
+> Link: https://lore.kernel.org/r/CAHk-=wgfRnXz0W3D37d01q3JFkr_i_uTL=V6A6G1oUZcprmknw@mail.gmail.com/
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  drivers/platform/surface/surface3_power.c          | 2 +-
+>  drivers/platform/x86/dell/dell-wmi-sysman/sysman.c | 2 +-
+>  drivers/platform/x86/intel/chtwc_int33fe.c         | 6 +++---
+>  drivers/platform/x86/thinkpad_acpi.c               | 4 ++--
+>  4 files changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/platform/surface/surface3_power.c b/drivers/platform/surface/surface3_power.c
+> index 444ec81ba02d..4c53d116d59b 100644
+> --- a/drivers/platform/surface/surface3_power.c
+> +++ b/drivers/platform/surface/surface3_power.c
+> @@ -519,7 +519,7 @@ static int mshw0011_probe(struct i2c_client *client)
+>         i2c_set_clientdata(client, data);
+>
+>         memset(&board_info, 0, sizeof(board_info));
+> -       strlcpy(board_info.type, "MSHW0011-bat0", I2C_NAME_SIZE);
+> +       strscpy(board_info.type, "MSHW0011-bat0", I2C_NAME_SIZE);
+>
+>         bat0 = i2c_acpi_new_device(dev, 1, &board_info);
+>         if (IS_ERR(bat0))
+> diff --git a/drivers/platform/x86/dell/dell-wmi-sysman/sysman.c b/drivers/platform/x86/dell/dell-wmi-sysman/sysman.c
+> index 636bdfa83284..0a6411a8a104 100644
+> --- a/drivers/platform/x86/dell/dell-wmi-sysman/sysman.c
+> +++ b/drivers/platform/x86/dell/dell-wmi-sysman/sysman.c
+> @@ -270,7 +270,7 @@ void strlcpy_attr(char *dest, char *src)
+>         size_t len = strlen(src) + 1;
+>
+>         if (len > 1 && len <= MAX_BUFF)
+> -               strlcpy(dest, src, len);
+> +               strscpy(dest, src, len);
+>
+>         /*len can be zero because any property not-applicable to attribute can
+>          * be empty so check only for too long buffers and log error
+> diff --git a/drivers/platform/x86/intel/chtwc_int33fe.c b/drivers/platform/x86/intel/chtwc_int33fe.c
+> index c52ac23e2331..1ea989df513c 100644
+> --- a/drivers/platform/x86/intel/chtwc_int33fe.c
+> +++ b/drivers/platform/x86/intel/chtwc_int33fe.c
+> @@ -270,7 +270,7 @@ cht_int33fe_register_max17047(struct device *dev, struct cht_int33fe_data *data)
+>         }
+>
+>         memset(&board_info, 0, sizeof(board_info));
+> -       strlcpy(board_info.type, "max17047", I2C_NAME_SIZE);
+> +       strscpy(board_info.type, "max17047", I2C_NAME_SIZE);
+>         board_info.dev_name = "max17047";
+>         board_info.fwnode = fwnode;
+>         data->battery_fg = i2c_acpi_new_device(dev, 1, &board_info);
+> @@ -361,7 +361,7 @@ static int cht_int33fe_typec_probe(struct platform_device *pdev)
+>         }
+>
+>         memset(&board_info, 0, sizeof(board_info));
+> -       strlcpy(board_info.type, "typec_fusb302", I2C_NAME_SIZE);
+> +       strscpy(board_info.type, "typec_fusb302", I2C_NAME_SIZE);
+>         board_info.dev_name = "fusb302";
+>         board_info.fwnode = fwnode;
+>         board_info.irq = fusb302_irq;
+> @@ -381,7 +381,7 @@ static int cht_int33fe_typec_probe(struct platform_device *pdev)
+>         memset(&board_info, 0, sizeof(board_info));
+>         board_info.dev_name = "pi3usb30532";
+>         board_info.fwnode = fwnode;
+> -       strlcpy(board_info.type, "pi3usb30532", I2C_NAME_SIZE);
+> +       strscpy(board_info.type, "pi3usb30532", I2C_NAME_SIZE);
+>
+>         data->pi3usb30532 = i2c_acpi_new_device(dev, 3, &board_info);
+>         if (IS_ERR(data->pi3usb30532)) {
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+> index 22d4e8633e30..8dad0428a83c 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -7623,9 +7623,9 @@ static int __init volume_create_alsa_mixer(void)
+>         data = card->private_data;
+>         data->card = card;
+>
+> -       strlcpy(card->driver, TPACPI_ALSA_DRVNAME,
+> +       strscpy(card->driver, TPACPI_ALSA_DRVNAME,
+>                 sizeof(card->driver));
+> -       strlcpy(card->shortname, TPACPI_ALSA_SHRTNAME,
+> +       strscpy(card->shortname, TPACPI_ALSA_SHRTNAME,
+>                 sizeof(card->shortname));
+>         snprintf(card->mixername, sizeof(card->mixername), "ThinkPad EC %s",
+>                  (thinkpad_id.ec_version_str) ?
+> --
+> 2.35.1
+>
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 _______________________________________________
