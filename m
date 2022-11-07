@@ -2,127 +2,136 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4EFB617B01
-	for <lists+ibm-acpi-devel@lfdr.de>; Thu,  3 Nov 2022 11:45:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F8461F3AC
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  7 Nov 2022 13:49:29 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1oqXiZ-00033K-4D;
-	Thu, 03 Nov 2022 10:45:03 +0000
+	id 1os1YN-0005Nj-V3;
+	Mon, 07 Nov 2022 12:48:39 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <m.szczepaniak.000@gmail.com>) id 1oqXiL-00032r-6x
+ (envelope-from <hdegoede@redhat.com>) id 1os1YL-0005Nd-Pf
  for ibm-acpi-devel@lists.sourceforge.net;
- Thu, 03 Nov 2022 10:44:49 +0000
+ Mon, 07 Nov 2022 12:48:37 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Cc:To:Subject:From:MIME-Version:Date:Message-ID:
- Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=owpU4LalTd0M3JO/7Vo0GI1Kpm6M5hOKtTLk0oKieC0=; b=IWmRKgScBHjoK2PNYV2MCUPnSe
- 1agdkXM32+ruUeP8sKrXvMZpHZJOeefKYD6/GTtfgdmRDJzpBjGFpcNfHBanL/wwhApRLziCAWpy2
- 9pAhM7Ckdxxjck4qS8NLyhxogZWkUvE2wWaFSN1/KwK+U7LVHZrGRZVKvrcgguIX1V94=;
+ bh=qyNpTQ3bNlZrzUgnH5zTxhZYS/OypFRShTgaHqtgAPc=; b=aCVyzGP4J/mizLLSjB/0UMnrm5
+ 1a7PK4ePIMw4k7Pz4IIs4Q4KF3md6HTHIwsGbrCaMvJJWaOdydiLYKH6DQa4BTQbA7EgWYFA8wBXQ
+ N5SsYQDWJ6o8D/eaurUCAcR+Tqtg/LJPK2p1bUJJOx/XrCtr341T+SJgx56wVLJrbUaA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Cc:To:Subject:From:MIME-Version:Date:Message-ID:Content-Type:Sender:
- Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date
- :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=owpU4LalTd0M3JO/7Vo0GI1Kpm6M5hOKtTLk0oKieC0=; b=F
- q78EAO2hVskfWFobPCoNOp2rGhckCMXawd9NeY5cYV12V2D3dvGxhEodvVlLuurbRLCyurIhPlUv/
- n9J2hulZuK6sPM/IJZxVsf2KKhnrRUXtnS/4RSIglu7pbC92Sk6Ap0xx195Bi/bo5nNDewH9V3Ayh
- YrjQGFHZmaz4i7Ic=;
-Received: from mail-lf1-f51.google.com ([209.85.167.51])
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=qyNpTQ3bNlZrzUgnH5zTxhZYS/OypFRShTgaHqtgAPc=; b=LkbZlgPe1+bIGIgvqyq9ARb141
+ NhcicV0KXo1a1oEe84vyK7A078IG3sAs1MZaH4igU3K3kHHqOGRElzXUE7ON4j9bMjqEeWZ0Utatj
+ UJjZB7BI8NKAjimwtCji2O5FBN0EEl1RIonDVWjMd1XB4gH6ejpV688IVsgECIA8jUPE=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1oqXiC-00ANom-Ne for ibm-acpi-devel@lists.sourceforge.net;
- Thu, 03 Nov 2022 10:44:45 +0000
-Received: by mail-lf1-f51.google.com with SMTP id j16so2067722lfe.12
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1os1YH-00F33J-7X for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 07 Nov 2022 12:48:37 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1667825306;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=qyNpTQ3bNlZrzUgnH5zTxhZYS/OypFRShTgaHqtgAPc=;
+ b=FEhdEFnxXKjxFCDVOFaGdPQr/ryM/IXM34zMK84dA0QAexyX9G5egYXhP6Ma3zx4/KJlrZ
+ hK2+anSTJ5eiOUkvmz9NPI55QquIvku9DL5/+GMeQNpKI7Forki7DjUfXpj4mhLedji/1q
+ q/JGAIUwtxWIBTiNn1PR/XqicYXe68Q=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-277-htXE104mNgqwIXl2CH7VtA-1; Mon, 07 Nov 2022 07:48:25 -0500
+X-MC-Unique: htXE104mNgqwIXl2CH7VtA-1
+Received: by mail-ed1-f71.google.com with SMTP id
+ y20-20020a056402271400b004630f3a32c3so8238469edd.15
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Thu, 03 Nov 2022 03:44:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=content-language:cc:to:subject:from:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=owpU4LalTd0M3JO/7Vo0GI1Kpm6M5hOKtTLk0oKieC0=;
- b=D65D1RtaEd/XWhtSzTuzVG+gjDTsVmxm+8cCjjpQP6uaBmz0a8L7Whuq29EI6vA5Q8
- hklJX/le4sJy6kgJn0IfOkzaTCD/khTuj7pQrOIKyPtbWuNt9o3rmEMWCe3tfp44HJX8
- eUhQWc7RBPbT8PFCVp07kxb42VcdAKWf5sXcVsoFZBN3yxqKf/RpB3FTIp2M+SZab2F6
- n1elNHhIls23UtvTX1LYs78w5RMUninRVXtjVT1hMLsBOjvMX31/OhQAV+hj4vW2YCjy
- kpci907/FEe6RQ/AeBslR5SUhWKL+nQ3CAFibzXFLINh57cN78iKtMvQ13VD6YsO2Bgg
- PxpQ==
+ Mon, 07 Nov 2022 04:48:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=content-language:cc:to:subject:from:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=owpU4LalTd0M3JO/7Vo0GI1Kpm6M5hOKtTLk0oKieC0=;
- b=WYyjPjGwdpoBBzBZtUkQnoEz8NWQPGjOME/5n2c0/OpHQi1CYAf/n1faOj2PCYIGko
- gwFc+7nCXLNLk5ndA1c3YIzpeaDgfgENAzz09s9keRs4a9oMGQZedDEnrVrXsOSwjkA/
- RQsMjBm2lsGIHeqA/SbJI9h0p25ZS0acOnTbW6tVnxT2VQWenaHk+uJzeSjfCPkvz9ws
- PceNYJpveQBXOkJ6hbe2uZSJzBOxJkG7G+yxj5wp9z8r85bpAxN7nfQPr9ZqUkGT5qBQ
- yf0G+lBjKYrOLceB2hWGgOYSI07z9LwqU1MdUMAWPHIfGO9gBcMoQsrMzWPGePBV4rIF
- fwdg==
-X-Gm-Message-State: ACrzQf006WNbAw301TdluxfSQV0ANqBvFoItrvzwAMCSvDtOQ4aVDgan
- XLGJ8nRGViyPlFnu97MPOcuVe3Y/MGK+Hg==
-X-Google-Smtp-Source: AMsMyM7+eIt2cX/TSEQcX9ZEGgfqkzU7DPbAjm67jriiPp6JlHbqj/os/DOJFBlGt4Q276wYWp0Yrg==
-X-Received: by 2002:a05:6512:4011:b0:4a2:5148:9e48 with SMTP id
- br17-20020a056512401100b004a251489e48mr10778626lfb.337.1667472274087; 
- Thu, 03 Nov 2022 03:44:34 -0700 (PDT)
-Received: from [192.168.69.3] ([91.189.216.255])
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=qyNpTQ3bNlZrzUgnH5zTxhZYS/OypFRShTgaHqtgAPc=;
+ b=YfhJI0PjKFbx8pqmOQj/wxA7QfTiO82PeeaqZl5y/oPpvpKtQcNo7GBozb+WRctzjQ
+ C5fHt42z7FSrvYaHuxuzIuPnMmwksoZyHH8QfupodD9CsuSFTTPwq1Mdo4dusLFEBMr8
+ 1N2iktz35XisLCOy41zJAVLxdb3/CzcbZWk2iwYbxoxXJ6ZHFggpJTRgRss2oAuJgDuG
+ 12MCPvsqx+WVGB1uu2WDxUX1D2hIsgYRAICpuEWHm77sTkOgY5iwP/o0SmHJENvBjyu4
+ o6fS4y4mv07PuO7qKLfeVO/QiKFsGXw9bIE1zeUN+YfNczLjdBeM4IA9MbLYMpb4Ms1x
+ hXXw==
+X-Gm-Message-State: ACrzQf1l7hhhLBb1mTsfo6ZJ5bcKkQvc25FEQXYriJJ0UcMjIf4ibk2C
+ YCgCUGgbGGa8Qd0wQH6nOjOjHFVaW8QhB8WNzfznJHKebbVImoow8kjXLQYNYFGZo5a8lEonOaY
+ jJ9Ue9tnHi5c2UxHIPieMhJfDw/A6jyeZvmA=
+X-Received: by 2002:a50:e616:0:b0:461:fc07:b630 with SMTP id
+ y22-20020a50e616000000b00461fc07b630mr50132179edm.219.1667825304094; 
+ Mon, 07 Nov 2022 04:48:24 -0800 (PST)
+X-Google-Smtp-Source: AMsMyM6QWLox4LV6N7P5SMAHcQNIJdEfww5QxUfM4i3qzTQTLJtYDme+b+TLApyKEjVRi5p2mmZ5kA==
+X-Received: by 2002:a50:e616:0:b0:461:fc07:b630 with SMTP id
+ y22-20020a50e616000000b00461fc07b630mr50132161edm.219.1667825303868; 
+ Mon, 07 Nov 2022 04:48:23 -0800 (PST)
+Received: from [10.40.98.142] ([78.108.130.194])
  by smtp.gmail.com with ESMTPSA id
- 17-20020ac25f51000000b004978e51b691sm79994lfz.266.2022.11.03.03.44.33
+ ue5-20020a170907c68500b007a559542fcfsm3398631ejc.70.2022.11.07.04.48.23
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 03 Nov 2022 03:44:33 -0700 (PDT)
-Message-ID: <a06159d0-0178-df1a-0a05-a8304ae2967c@gmail.com>
-Date: Thu, 3 Nov 2022 11:44:32 +0100
+ Mon, 07 Nov 2022 04:48:23 -0800 (PST)
+Message-ID: <d2872c2a-46eb-528b-5e2f-d8b75c745b1b@redhat.com>
+Date: Mon, 7 Nov 2022 13:48:22 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.3
-From: =?UTF-8?Q?Micha=c5=82_Szczepaniak?= <m.szczepaniak.000@gmail.com>
-To: ibm-acpi-devel@lists.sourceforge.net
+ Thunderbird/102.3.1
+To: =?UTF-8?Q?Micha=c5=82_Szczepaniak?= <m.szczepaniak.000@gmail.com>,
+ ibm-acpi-devel@lists.sourceforge.net
+References: <55400326-e64f-5444-94e5-22b8214d00b6@gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <55400326-e64f-5444-94e5-22b8214d00b6@gmail.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Language: en-US
-X-Spam-Score: 0.1 (/)
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  
- Content preview:  Thinklight has only two values, on/off so it's reasonable
-   for max_brightness to be 0 and 1 as if you write anything between 0 and 255
-    it will be 255 anyway so there's no point for it to be 255. Signed-off-by:
-    Michał Szczepaniak --- drivers/platform/x86/thinkpad_acpi.c | 1 + 1 file
-    changed, 1 insertion(+) 
+ Content preview:  Hi Michał, On 10/8/22 20:49, Michał Szczepaniak wrote: >
+    Thinklight has only two values, on/off so it's reasonable for max_brightness
+    to be 0 and 1 as if you write anything between 0 and 255 it will be 255 anyw
+    [...] 
  
- Content analysis details:   (0.1 points, 6.0 required)
+ Content analysis details:   (-0.2 points, 6.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
-  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
-                             provider
-                             [m.szczepaniak.000[at]gmail.com]
- -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-                             in digit
-                             [m.szczepaniak.000[at]gmail.com]
  -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
-                             [209.85.167.51 listed in wl.mailspike.net]
+                             [170.10.129.124 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
                               no trust
-                             [209.85.167.51 listed in list.dnswl.org]
-  0.0 HTML_MESSAGE           BODY: HTML included in message
+                             [170.10.129.124 listed in list.dnswl.org]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
                              envelope-from domain
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
   0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
                              valid
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-X-Headers-End: 1oqXiC-00ANom-Ne
-Subject: [ibm-acpi-devel] [PATCH RESEND] platform/x86: thinkpad_acpi: Fix a
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
+ -0.0 NICE_REPLY_A           Looks like a legit reply (A)
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1os1YH-00F33J-7X
+Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: Fix a
  max_brightness of thinklight
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -137,108 +146,43 @@ List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
 Cc: hmh@hmh.eng.br, platform-driver-x86@vger.kernel.org
-Content-Type: multipart/mixed; boundary="===============8120565481501172724=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-This is a multi-part message in MIME format.
---===============8120565481501172724==
-Content-Type: multipart/alternative;
- boundary="------------VoK3PH3FNXwDfiO9uewS4kXj"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------VoK3PH3FNXwDfiO9uewS4kXj
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Thinklight has only two values, on/off so it's reasonable for 
-max_brightness to be 0 and 1 as if you write anything between 0 and 255 
-it will be 255 anyway so there's no point for it to be 255.
-
-Signed-off-by: Michał Szczepaniak<m.szczepaniak.000@gmail.com>
----
-  drivers/platform/x86/thinkpad_acpi.c | 1 +
-  1 file changed, 1 insertion(+)
-
-diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index 6a823b850a77..4a7369868f2e 100644
---- a/drivers/platform/x86/thinkpad_acpi.c
-+++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -5562,6 +5562,7 @@ static enum led_brightness light_sysfs_get(struct led_classdev *led_cdev)
-  static struct tpacpi_led_classdev tpacpi_led_thinklight = {
-  	.led_classdev = {
-  		.name		= "tpacpi::thinklight",
-+		.max_brightness = 1,
-  		.brightness_set_blocking = &light_sysfs_set,
-  		.brightness_get	= &light_sysfs_get,
-  	}
--- 
-2.37.3
-
-
-
-
-
---------------VoK3PH3FNXwDfiO9uewS4kXj
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    Thinklight has only two values, on/off so it's reasonable for
-    max_brightness to be 0 and 1 as if you write anything between 0 and
-    255 it will be 255 anyway so there's no point for it to be 255.<br>
-    <br>
-    <pre>Signed-off-by: Michał Szczepaniak <a class="moz-txt-link-rfc2396E" href="mailto:m.szczepaniak.000@gmail.com">&lt;m.szczepaniak.000@gmail.com&gt;</a>
----
- drivers/platform/x86/thinkpad_acpi.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index 6a823b850a77..4a7369868f2e 100644
---- a/drivers/platform/x86/thinkpad_acpi.c
-+++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -5562,6 +5562,7 @@ static enum led_brightness light_sysfs_get(struct led_classdev *led_cdev)
- static struct tpacpi_led_classdev tpacpi_led_thinklight = {
- 	.led_classdev = {
- 		.name		= "tpacpi::thinklight",
-+		.max_brightness = 1,
- 		.brightness_set_blocking = &amp;light_sysfs_set,
- 		.brightness_get	= &amp;light_sysfs_get,
- 	}
--- 
-2.37.3
-</pre>
-    <br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------VoK3PH3FNXwDfiO9uewS4kXj--
-
-
---===============8120565481501172724==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-
---===============8120565481501172724==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
-
---===============8120565481501172724==--
-
+SGkgTWljaGHFgiwKCk9uIDEwLzgvMjIgMjA6NDksIE1pY2hhxYIgU3pjemVwYW5pYWsgd3JvdGU6
+Cj4gVGhpbmtsaWdodCBoYXMgb25seSB0d28gdmFsdWVzLCBvbi9vZmYgc28gaXQncyByZWFzb25h
+YmxlIGZvciBtYXhfYnJpZ2h0bmVzcyB0byBiZSAwIGFuZCAxIGFzIGlmIHlvdSB3cml0ZSBhbnl0
+aGluZyBiZXR3ZWVuIDAgYW5kIDI1NSBpdCB3aWxsIGJlIDI1NSBhbnl3YXkgc28gdGhlcmUncyBu
+byBwb2ludCBmb3IgaXQgdG8gYmUgMjU1Lgo+IAo+IEFsc28gc29ycnkgZm9yIHJlcGVhdGVkIG1l
+c3NhZ2VzLCBJIGdvdCBubyByZXBseSBzbyBJJ20gdHJ5aW5nIHRvIGZpZ3VyZSBvdXQgd2hhdCBJ
+IGRpZCB3cm9uZy4KCllvdXIgcGF0Y2ggaXMgbWlzc2luZyBhIFNpZ25lZC1vZmYtYnkgbGluZSBp
+biB0aGUgY29tbWl0LW1lc3NhZ2UuIEkgY2FuIG9ubHkKYWNjZXB0IHBhdGNoZXMgd2l0aCBhIFNp
+Z25lZC1vZmYtYnkgbGluZSBpbiB0aGUgY29tbWl0LW1lc3NhZ2UgbGlrZSB0aGlzOgoKU2lnbmVk
+LW9mZi1ieTogWW91ciBSZWFsIE5hbWUgPGVtYWlsQHlvdXIuZG9tYWluPgoKU2VlOgoKaHR0cHM6
+Ly93d3cua2VybmVsLm9yZy9kb2MvaHRtbC9sYXRlc3QvcHJvY2Vzcy9zdWJtaXR0aW5nLXBhdGNo
+ZXMuaHRtbCNzaWduLXlvdXItd29yay10aGUtZGV2ZWxvcGVyLXMtY2VydGlmaWNhdGUtb2Ytb3Jp
+Z2luCgpBbHNvIHlvdXIgcGF0Y2ggaXMgbWFsZm9ybWVkIChpdCBoYXMgYmVlbiByZWZsb3dlZCBi
+eSB5b3VyIGVtYWlsIGNsaWVudCkKYW5kIGl0IGRvZXMgbm90IGFwcGx5IHByb3Blcmx5LgoKU2lu
+Y2UgdGhpcyBpcyBvbmx5IGEgdHJpdmlhbCBzaW5nbGUgbGluZSBjaGFuZ2UgSSd2ZSBqdXN0IG1h
+bnVhbGx5IHJlY3JlYXRlZAp0aGUgcGF0Y2ggbXlzZWxmLCB3aXRoIG1lIGFzIGF1dGhvciB0byBh
+dm9pZCB0aGUgUy1vLWIgcHJvYmxlbS4KCkkgaGF2ZSBnaXZlbiB5b3UgY3JlZGl0IGJ5IGFkZGlu
+ZzoKClJlcG9ydGVkLWJ5OiBNaWNoYcWCIFN6Y3plcGFuaWFrIDxtLnN6Y3plcGFuaWFrLjAwMEBn
+bWFpbC5jb20+Cgp0byB0aGUgY29tbWl0IG1lc3NhZ2Ugb2YgdGhlIHBhdGNoLgoKUmVnYXJkcywK
+CkhhbnMKCgoKPiAKPiAKPiAtLS0KPiDCoGRyaXZlcnMvcGxhdGZvcm0veDg2L3RoaW5rcGFkX2Fj
+cGkuYyB8IDEgKwo+IMKgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspCj4gCj4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvcGxhdGZvcm0veDg2L3RoaW5rcGFkX2FjcGkuYyBiL2RyaXZlcnMvcGxh
+dGZvcm0veDg2L3RoaW5rcGFkX2FjcGkuYwo+IGluZGV4IDIyZDRlODYzM2UzMGU5Li43NzVjMmYz
+MjdkYzNhOCAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL3BsYXRmb3JtL3g4Ni90aGlua3BhZF9hY3Bp
+LmMKPiArKysgYi9kcml2ZXJzL3BsYXRmb3JtL3g4Ni90aGlua3BhZF9hY3BpLmMKPiBAQCAtNTU2
+Miw2ICs1NTYyLDcgQEAgc3RhdGljIGVudW0gbGVkX2JyaWdodG5lc3MgbGlnaHRfc3lzZnNfZ2V0
+KHN0cnVjdCBsZWRfY2xhc3NkZXYgKmxlZF9jZGV2KQo+IMKgc3RhdGljIHN0cnVjdCB0cGFjcGlf
+bGVkX2NsYXNzZGV2IHRwYWNwaV9sZWRfdGhpbmtsaWdodCA9IHsKPiDCoMKgwqDCoCAubGVkX2Ns
+YXNzZGV2ID0gewo+IMKgwqDCoMKgIMKgwqDCoCAubmFtZcKgwqDCoCDCoMKgwqAgPSAidHBhY3Bp
+Ojp0aGlua2xpZ2h0IiwKPiArwqDCoMKgIMKgwqDCoCAubWF4X2JyaWdodG5lc3PCoMKgwqAgPSAx
+LAo+IMKgwqDCoMKgIMKgwqDCoCAuYnJpZ2h0bmVzc19zZXRfYmxvY2tpbmcgPSAmbGlnaHRfc3lz
+ZnNfc2V0LAo+IMKgwqDCoMKgIMKgwqDCoCAuYnJpZ2h0bmVzc19nZXTCoMKgwqAgPSAmbGlnaHRf
+c3lzZnNfZ2V0LAo+IMKgwqDCoMKgIH0KPiAKPiAKPiAKPiAKCgoKX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KaWJtLWFjcGktZGV2ZWwgbWFpbGluZyBsaXN0
+CmlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJj
+ZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby9pYm0tYWNwaS1kZXZlbAo=
