@@ -2,116 +2,139 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE0D462033F
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  8 Nov 2022 00:05:28 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3E76297A7
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 15 Nov 2022 12:41:08 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1osBAV-0000Hd-JY;
-	Mon, 07 Nov 2022 23:04:39 +0000
+	id 1ouuIG-0004dV-Ul;
+	Tue, 15 Nov 2022 11:39:56 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <bryanhundven@gmail.com>) id 1osBAU-0000HT-Lb
+ (envelope-from <hdegoede@redhat.com>) id 1ouuIC-0004d6-Up
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 07 Nov 2022 23:04:38 +0000
+ Tue, 15 Nov 2022 11:39:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=5BAlM0WgbOcIqtBhtOApESWCjHesB9BmgD/t9gwsTQw=; b=h0nvOOGB3k7Jtp0fRrPbAShqf1
- 119aLPZvuFFTjbT26hetHRZA8XkuaM3ra/WBCs+TlvG8sU573cMEGJeDjESD42IXvYC2wdXjmsegO
- 1mzWeBDE67cMwZm36djnIv5H36ZJg7OAF5FfWf7nEmYfUryIiWqpTTn+v91erboWBKzE=;
+ bh=clJblXD10wtzgzD9dPDP2bGq4INWjHFqJItPDD4Hsv0=; b=ctYLJF3fVeljMrUvoTay4RJP0+
+ exZ2eBrINoAci1IHr3deQ08kIOezfZlm59OjFCBPP6AeyYGHVjmuj2pMXmXHhxhjEpsxBqirpDOZ4
+ YnmQVQCpwXAximk/OdGX2eGAwR6izXID8U9rXMq6KN1gqksvYOrOUh11uk2nFzeNCNXU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=5BAlM0WgbOcIqtBhtOApESWCjHesB9BmgD/t9gwsTQw=; b=e1wDe/fE97QSPQpm3oHnBueVj7
- wuwKDFs9G63hEsBkZRKpjnE2kBsDlHb3yF9uIZYNMB22VgCWW4UAno12NUjiehk36+4cZHl0XmOZY
- cDEjQO2vTXLPZUZb7mHL1WhJqSPoGdPGzhItVHbowyGn5bh6jvxePNPXzuekoLzW6JNc=;
-Received: from mail-ej1-f53.google.com ([209.85.218.53])
+ bh=clJblXD10wtzgzD9dPDP2bGq4INWjHFqJItPDD4Hsv0=; b=bI0OKkclEpcvAGBi1QJL+RZsmn
+ u2d9T+N9111uuOPm4hSUwvkKOI77UE71XS2cZy2fcvyPnZHxIO8Vzq5RaR87xXUkCoU27gjFPyaEG
+ v4LYQUy9GtHaf91At4cKzn1o66m4yGHF5zTqBCkJh3B8Vi2tI0rxXiC70cjtPtW6QSY8=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1osBAQ-0007lv-6K for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 07 Nov 2022 23:04:38 +0000
-Received: by mail-ej1-f53.google.com with SMTP id b2so34148060eja.6
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1ouuI8-0007pR-MP for ibm-acpi-devel@lists.sourceforge.net;
+ Tue, 15 Nov 2022 11:39:52 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1668512381;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=clJblXD10wtzgzD9dPDP2bGq4INWjHFqJItPDD4Hsv0=;
+ b=VYNGhDidoNd4bgjG/+oXC3nLW4vXakJHMvBDd/S+B2JbwN/Ac0uihAneZ21ZdaNxobbqIs
+ sPCMtbTnvYeIu4RttfBd/ko2sNmAD58MmRTooenLcqVHTCSc30eWAHPyVKAEHaE00jWaTx
+ seFdc1nlSWrPn6zswircVg5Von6vT9g=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_128_GCM_SHA256) id
+ us-mta-458-mqdfUOPBNV6OzKDwNBSlvw-1; Tue, 15 Nov 2022 06:39:38 -0500
+X-MC-Unique: mqdfUOPBNV6OzKDwNBSlvw-1
+Received: by mail-ed1-f70.google.com with SMTP id
+ w17-20020a056402269100b00461e28a75ccso9805966edd.8
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 07 Nov 2022 15:04:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=5BAlM0WgbOcIqtBhtOApESWCjHesB9BmgD/t9gwsTQw=;
- b=MC4iGBC7/iallwaScUeQRvuV6qyQf6UzFTeuBDuhwegjwYLNjqA2n/dvO0+jjWEIEh
- TPZBMn/y8+nl9qeuMqOZnv5z1JfHcm7wnZkgN5lpEV+5EHsTESRdQjAAXgISv7xs674L
- Hi0KClRfP8n9RyEHsZEVEILlP892MOSfkNekPohN+PN1699s2knwOfkzta+0oq7gEyuC
- GOdAsgpUzfFJPobMfYbEx6FrwdVm4zKyJKLQnMhA9kI/Xdu0GVPXJZQrw3pITii4GjbY
- yRr1LOisLkmgDuT0H7H+B8VIR7fL2RBQ3DK43uNHRJjU5UcSgHMhXwQ2U+o1kAxMhv7D
- 2MHA==
+ Tue, 15 Nov 2022 03:39:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=1e100.net; s=20210112;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=5BAlM0WgbOcIqtBhtOApESWCjHesB9BmgD/t9gwsTQw=;
- b=qxtYit/QoBRM7U19vZilIa8CBOLNH5WcSGXhlfQtMSiSqusRCz0VtvNoFzYMqTjf28
- xfYOlG+o2k1HAgdkAif0QwWjt+sltC5VFJGCq4qh62FYeK1gULRndk/Y2I/sZJi0Jtt9
- WK7RphUBSZqpFf3I2/U42JwVfTswbwqkcljHwK/V6RxQmVW4Lj08+1vbG6hUa+q1K4qD
- C5bpe9RRK0b6RNG81iKOKHYbizn87L8oh1YUK1jYzBepQUfO2mtiECICBSjhREPaug2x
- 52jYlrt/A/uLt9HQKMzvk9NbU7Bw5elY+wNbdK7kzd33P5IRnRcOmfvq+DIYy6FWVE1+
- KxJQ==
-X-Gm-Message-State: ACrzQf1DNIGDkGLVVdP1/K/3FIKpgqUOuNHp+Qd3YQ5ak/SXZ+cQwfHU
- 4zz81hNqTBw0oCcLHRrbO+Dg6YQpi+bXQ8qjDDBN8pVO050=
-X-Google-Smtp-Source: AMsMyM7iP3tJJeCk2UWPd/l+3AnnwYXtb7tIiKCDRlUpU6oL/GUI2nW7Q3qZmScqGRRS0A8Joh+kPJVJEOTAChwVle0=
-X-Received: by 2002:a17:907:7e85:b0:7ad:bf64:b5de with SMTP id
- qb5-20020a1709077e8500b007adbf64b5demr48937897ejc.20.1667862267554; Mon, 07
- Nov 2022 15:04:27 -0800 (PST)
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=clJblXD10wtzgzD9dPDP2bGq4INWjHFqJItPDD4Hsv0=;
+ b=O83J0D8//snUss/05Vjxj700ljMOP0fnzRjRBmWKyQEqG5CErUCEZhOOXSy5gncFIb
+ 1Mxrh6ZNrfPhTLDOondMElLAhvMGTLEnAjnFm+XEhKguqWpKP3jmjlyRYrYuhEN8QKbj
+ NXefv/hplRVFOn6OHVXbL0ynVu1opLNznXPssDZKHeCcphWQA+LbU5t1vlnWB3xG6yL5
+ YDsZHGso5dkxKpYv9FQ/JCO+7sTrRWQGhtPnMBGfdnvXy88a9/+EhnQyCrZr0uXqk14v
+ VnImgWC5T9bAKe9hwr/UxvZTSab3J7IGg6kPvmw4TQLfkEpNydozwge+w1YQWS965GQl
+ ortw==
+X-Gm-Message-State: ANoB5pkLkfN6y8oLaxi01tCBhU7WEA8knkW43TZSHakOMDoOWQZ61KGl
+ JYYBMpoSNcyOL0PiDFrcto6QwOh1jaASnEZPvt4ZFDY05S0mqR1zfVz/lccOavHQqujRoa33CDy
+ BRR7F+MRh7+ROtFedhllr4a3HIOszpS8HOGA=
+X-Received: by 2002:a17:906:95d1:b0:7ad:b9f3:a66a with SMTP id
+ n17-20020a17090695d100b007adb9f3a66amr13975580ejy.282.1668512376687; 
+ Tue, 15 Nov 2022 03:39:36 -0800 (PST)
+X-Google-Smtp-Source: AA0mqf6X0v0rVFVgQR/Ee2b2v/q8p2rGqG/St+w6cQIpP6qRC1fhgioIAclUhTJm1L5FHSpDJEhUog==
+X-Received: by 2002:a17:906:95d1:b0:7ad:b9f3:a66a with SMTP id
+ n17-20020a17090695d100b007adb9f3a66amr13975572ejy.282.1668512376516; 
+ Tue, 15 Nov 2022 03:39:36 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c1e:bf00:d69d:5353:dba5:ee81?
+ (2001-1c00-0c1e-bf00-d69d-5353-dba5-ee81.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c1e:bf00:d69d:5353:dba5:ee81])
+ by smtp.gmail.com with ESMTPSA id
+ ay26-20020a056402203a00b00461816beef9sm6000717edb.14.2022.11.15.03.39.35
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 15 Nov 2022 03:39:35 -0800 (PST)
+Message-ID: <edd01f60-63fc-3556-4790-1684d4d059cc@redhat.com>
+Date: Tue, 15 Nov 2022 12:39:35 +0100
 MIME-Version: 1.0
-References: <20221107191620.33621-1-bryanhundven@gmail.com>
- <TYZPR03MB599462927BF2D385ED627BBCBD3C9@TYZPR03MB5994.apcprd03.prod.outlook.com>
- <e5d23406-edb6-47bd-8e5a-227cb2181ca1@app.fastmail.com>
-In-Reply-To: <e5d23406-edb6-47bd-8e5a-227cb2181ca1@app.fastmail.com>
-From: Bryan Hundven <bryanhundven@gmail.com>
-Date: Mon, 7 Nov 2022 15:04:15 -0800
-Message-ID: <CAJ+oik08QE071LVQ6ck9kTRqWZ2LTfXAdHsoAc2vqTsm-Ve3iA@mail.gmail.com>
-To: Mark Pearson <mpearson-lenovo@squebb.ca>
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+To: "Limonciello, Mario" <mario.limonciello@amd.com>,
+ =?UTF-8?Q?Lennard_G=c3=a4her?= <gaeher@mpi-sws.org>
+References: <20221108072023.17069-1-gaeher@mpi-sws.org>
+ <abbd370f-4240-db15-5add-b848a5108c21@amd.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <abbd370f-4240-db15-5add-b848a5108c21@amd.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+X-Spam-Score: -2.9 (--)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-1.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Mark, I rebooted back into the default Debian (sid) 6.0.6-2
- linux image and I do see the `thinkpad_acpi: secondary fan control detected
- & enabled` message. Is there a recommendation from lenovo for thinkfan [...]
- Content analysis details:   (-0.2 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Hi, On 11/8/22 13:47, Limonciello, Mario wrote: > On 11/8/2022
+    01:20, Lennard Gäher wrote: >> Previously, the s2idle quirk was only active
+    for the 21A0 machine type >> of the P14s Gen2a product. This als [...] 
+ 
+ Content analysis details:   (-2.9 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [bryanhundven[at]gmail.com]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.218.53 listed in list.dnswl.org]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.218.53 listed in wl.mailspike.net]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+                              no trust
+                             [170.10.133.124 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+                             [170.10.133.124 listed in wl.mailspike.net]
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1osBAQ-0007lv-6K
-Subject: Re: [ibm-acpi-devel] Fw: [External] [PATCH] platform/x86:
- thinkpad_acpi: Add fan quirk to X1 Extreme 4th Gen
+                             author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1ouuI8-0007pR-MP
+Subject: Re: [ibm-acpi-devel] [PATCH] x86/thinkpad_acpi: Enable s2idle quirk
+ for 21A1 machine type
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -124,181 +147,45 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: ibm-acpi-devel@lists.sourceforge.net
-Content-Type: multipart/mixed; boundary="===============8797151901274684332=="
+Cc: ibm-acpi-devel@lists.sourceforge.net, hmh@hmh.eng.br,
+ platform-driver-x86@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
---===============8797151901274684332==
-Content-Type: multipart/alternative; boundary="000000000000fdefa705ece97120"
-
---000000000000fdefa705ece97120
-Content-Type: text/plain; charset="UTF-8"
-
-Mark,
-
-I rebooted back into the default Debian (sid) 6.0.6-2 linux image and I do
-see the `thinkpad_acpi: secondary fan control detected & enabled` message.
-Is there a recommendation from lenovo for thinkfan (
-https://github.com/vmatare/thinkfan) config - or another fan control tool -
-for X1 Extreme Gen 4i (20Y5007HUS)?
-I have tried quite a few different configurations, and figured that maybe
-the quirk needed to be specifically enabled. It either runs really hot or
-sounds like a jet engine.
-
--Bryan
-
-On Mon, Nov 7, 2022 at 2:09 PM Mark Pearson <mpearson-lenovo@squebb.ca>
-wrote:
-
-> Hi Bryan
->
-> In theory that shouldn't be needed - I added some auto detection code to
-> the driver a little while back:
->
-> https://github.com/torvalds/linux/commit/bf779aaf56ea23864e39e9862b3b3a8436236e07
-> And specifically removed the P1 G4 there as I'd tested it and the 2nd fan
-> was auto-detected on my system.
->
-> I take it that's not working on your system? Can we debug it and
-> understand why? I really wanted to get away from having to add more and
-> more quirks as more platforms were added.
->
-> Mark
-> Note - moved to a new email address as I was fedup with Outlook. I'm the
-> same person as markpearson@lenovo.com :)
->
->
-> ------------------------------
->
-> *From:* Bryan Hundven <bryanhundven@gmail.com>
-> *Sent:* November 7, 2022 14:16
-> *Subject:* [External] [ibm-acpi-devel] [PATCH] platform/x86:
-> thinkpad_acpi: Add fan quirk to X1 Extreme 4th Gen
->
-> P1/X1 Extreme 4th Gen needs 2nd Controller fan quirk.
->
-> Signed-off-by: Bryan Hundven <bryanhundven@gmail.com>
-> ---
->  drivers/platform/x86/thinkpad_acpi.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c
-> b/drivers/platform/x86/thinkpad_acpi.c
-> index 20e5c043a8e8..2c8a25950fc9 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -8825,6 +8825,7 @@ static const struct tpacpi_quirk fan_quirk_table[]
-> __initconst = {
->          TPACPI_Q_LNV3('N', '2', 'N', TPACPI_FAN_2CTL),  /* P53 / P73 */
->          TPACPI_Q_LNV3('N', '2', 'E', TPACPI_FAN_2CTL),  /* P1 / X1
-> Extreme (1st gen) */
->          TPACPI_Q_LNV3('N', '2', 'O', TPACPI_FAN_2CTL),  /* P1 / X1
-> Extreme (2nd gen) */
-> +       TPACPI_Q_LNV3('N', '4', '0', TPACPI_FAN_2CTL),  /* P1 / X1 Extreme
-> (4th gen) */
->          TPACPI_Q_LNV3('N', '3', '0', TPACPI_FAN_2CTL),  /* P15 (1st gen)
-> / P15v (1st gen) */
->          TPACPI_Q_LNV3('N', '3', '7', TPACPI_FAN_2CTL),  /* T15g (2nd gen)
-> */
->          TPACPI_Q_LNV3('N', '1', 'O', TPACPI_FAN_NOFAN), /* X1 Tablet (2nd
-> gen) */
-> --
-> 2.38.1
->
->
->
->
-
---000000000000fdefa705ece97120
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Mark,<div><br></div><div>I rebooted back into the default =
-Debian (sid) 6.0.6-2 linux image and I do see the `thinkpad_acpi: secondary=
- fan control detected &amp; enabled` message.</div><div>Is there a recommen=
-dation from lenovo for thinkfan (<a href=3D"https://github.com/vmatare/thin=
-kfan">https://github.com/vmatare/thinkfan</a>) config - or another fan cont=
-rol tool - for X1 Extreme Gen 4i (20Y5007HUS)?</div><div>I have tried quite=
- a few different configurations, and figured that maybe the quirk needed to=
- be specifically enabled. It either runs really hot or sounds like a jet en=
-gine.</div><div><br></div><div>-Bryan</div></div><br><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 7, 2022 at 2:09 PM M=
-ark Pearson &lt;<a href=3D"mailto:mpearson-lenovo@squebb.ca">mpearson-lenov=
-o@squebb.ca</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div class=3D"msg-3168276424743762201"><u></u><div><div>Hi Bryan=
-<br></div><div><br></div><div>In theory that shouldn&#39;t be needed - I ad=
-ded some auto detection code to the driver a little while back:<br></div><d=
-iv><a href=3D"https://github.com/torvalds/linux/commit/bf779aaf56ea23864e39=
-e9862b3b3a8436236e07" target=3D"_blank">https://github.com/torvalds/linux/c=
-ommit/bf779aaf56ea23864e39e9862b3b3a8436236e07</a><br></div><div>And specif=
-ically removed the P1 G4 there as I&#39;d tested it and the 2nd fan was aut=
-o-detected on my system.<br></div><div><br></div><div>I take it that&#39;s =
-not working on your system? Can we debug it and understand why? I really wa=
-nted to get away from having to add more and more quirks as more platforms =
-were added.<br></div><div><br></div><div>Mark<br></div><div>Note - moved to=
- a new email address as I was fedup with Outlook. I&#39;m the same person a=
-s <a href=3D"mailto:markpearson@lenovo.com" target=3D"_blank">markpearson@l=
-enovo.com</a>=C2=A0:)<br></div><div><br></div><blockquote type=3D"cite" id=
-=3D"m_-3168276424743762201qt"><div id=3D"m_-3168276424743762201qt-appendons=
-end"><br></div><div><hr style=3D"display:inline-block;width:98%"><br></div>=
-<div id=3D"m_-3168276424743762201qt-divRplyFwdMsg" dir=3D"ltr"><div><span s=
-tyle=3D"font-family:Calibri,sans-serif"><span style=3D"color:rgb(0,0,0)"><b=
->From:</b> Bryan Hundven &lt;<a href=3D"mailto:bryanhundven@gmail.com" targ=
-et=3D"_blank">bryanhundven@gmail.com</a>&gt;<br> <b>Sent:</b> November 7, 2=
-022 14:16<br>  <b>Subject:</b> [External] [ibm-acpi-devel] [PATCH] platform=
-/x86: thinkpad_acpi: Add fan quirk to X1 Extreme 4th Gen</span></span> </di=
-v><div>=C2=A0<br></div></div><div><span style=3D"font-size:13px"><span><spa=
-n style=3D"font-size:11pt"><div><div>P1/X1 Extreme 4th Gen needs 2nd Contro=
-ller fan quirk.<br></div><div> <br></div><div> Signed-off-by: Bryan Hundven=
- &lt;<a href=3D"mailto:bryanhundven@gmail.com" target=3D"_blank">bryanhundv=
-en@gmail.com</a>&gt;<br></div><div> ---<br></div><div> =C2=A0drivers/platfo=
-rm/x86/thinkpad_acpi.c | 1 +<br></div><div> =C2=A01 file changed, 1 inserti=
-on(+)<br></div><div> <br></div><div> diff --git a/drivers/platform/x86/thin=
-kpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c<br></div><div> index 20e=
-5c043a8e8..2c8a25950fc9 100644<br></div><div> --- a/drivers/platform/x86/th=
-inkpad_acpi.c<br></div><div> +++ b/drivers/platform/x86/thinkpad_acpi.c<br>=
-</div><div> @@ -8825,6 +8825,7 @@ static const struct tpacpi_quirk fan_quir=
-k_table[] __initconst =3D {<br></div><div> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 TPACPI_Q_LNV3(&#39;N&#39;, &#39;2&#39;, &#39;N&#39;, TPA=
-CPI_FAN_2CTL),=C2=A0 /* P53 / P73 */<br></div><div> =C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 TPACPI_Q_LNV3(&#39;N&#39;, &#39;2&#39;, &#39;E&=
-#39;, TPACPI_FAN_2CTL),=C2=A0 /* P1 / X1 Extreme (1st gen) */<br></div><div=
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TPACPI_Q_LNV3(&#39;N&#39=
-;, &#39;2&#39;, &#39;O&#39;, TPACPI_FAN_2CTL),=C2=A0 /* P1 / X1 Extreme (2n=
-d gen) */<br></div><div> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TPACPI_Q_LNV=
-3(&#39;N&#39;, &#39;4&#39;, &#39;0&#39;, TPACPI_FAN_2CTL),=C2=A0 /* P1 / X1=
- Extreme (4th gen) */<br></div><div> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 TPACPI_Q_LNV3(&#39;N&#39;, &#39;3&#39;, &#39;0&#39;, TPACPI_FA=
-N_2CTL),=C2=A0 /* P15 (1st gen) / P15v (1st gen) */<br></div><div> =C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TPACPI_Q_LNV3(&#39;N&#39;, &#39;=
-3&#39;, &#39;7&#39;, TPACPI_FAN_2CTL),=C2=A0 /* T15g (2nd gen) */<br></div>=
-<div> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TPACPI_Q_LNV3(&#39;N=
-&#39;, &#39;1&#39;, &#39;O&#39;, TPACPI_FAN_NOFAN), /* X1 Tablet (2nd gen) =
-*/<br></div><div> -- <br></div><div> 2.38.1<br></div><div>=C2=A0<br></div><=
-/div></span></span></span></div></blockquote><div><br></div></div></div></b=
-lockquote></div>
-
---000000000000fdefa705ece97120--
-
-
---===============8797151901274684332==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-
---===============8797151901274684332==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
-
---===============8797151901274684332==--
-
+SGksCgpPbiAxMS84LzIyIDEzOjQ3LCBMaW1vbmNpZWxsbywgTWFyaW8gd3JvdGU6Cj4gT24gMTEv
+OC8yMDIyIDAxOjIwLCBMZW5uYXJkIEfDpGhlciB3cm90ZToKPj4gUHJldmlvdXNseSwgdGhlIHMy
+aWRsZSBxdWlyayB3YXMgb25seSBhY3RpdmUgZm9yIHRoZSAyMUEwIG1hY2hpbmUgdHlwZQo+PiBv
+ZiB0aGUgUDE0cyBHZW4yYSBwcm9kdWN0LiBUaGlzIGFsc28gZW5hYmxlcyBpdCBmb3IgdGhlIHNl
+Y29uZCAyMUExIHR5cGUsCj4+IHRodXMgcmVkdWNpbmcgd2FrZS11cCB0aW1lcyBmcm9tIHMyaWRs
+ZS4KPj4KPj4gU2lnbmVkLW9mZi1ieTogTGVubmFyZCBHw6RoZXIgPGdhZWhlckBtcGktc3dzLm9y
+Zz4KPj4gU3VnZ2VzdGVkLWJ5OiBNYXJpbyBMaW1vbmNpZWxsbyA8bWFyaW8ubGltb25jaWVsbG9A
+YW1kLmNvbT4KPiAKPiBSZXZpZXdlZC1ieTogTWFyaW8gTGltb25jaWVsbG8gPG1hcmlvLmxpbW9u
+Y2llbGxvQGFtZC5jb20+Cj4gTGluazogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2Ry
+bS9hbWQvLS9pc3N1ZXMvMjE4MQoKVGhhbmsgeW91LCBJJ3ZlIGFwcGxpZWQgdGhlIHBhdGNoIHdp
+dGggYm90aCB0YWdzIGFkZGVkOgoKVGhhbmsgeW91IGZvciB5b3VyIHBhdGNoLCBJJ3ZlIGFwcGxp
+ZWQgdGhpcyBwYXRjaCB0byBteSBmaXhlcwpicmFuY2g6Cmh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcv
+cHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L3BkeDg2L3BsYXRmb3JtLWRyaXZlcnMteDg2LmdpdC9s
+b2cvP2g9Zml4ZXMKCk5vdGUgaXQgd2lsbCBzaG93IHVwIGluIG15IGZpeGVzIGJyYW5jaCBvbmNl
+IEkndmUgcHVzaGVkIG15CmxvY2FsIGJyYW5jaCB0aGVyZSwgd2hpY2ggbWlnaHQgdGFrZSBhIHdo
+aWxlLgoKSSB3aWxsIGluY2x1ZGUgdGhpcyBwYXRjaCBpbiBteSBuZXh0IGZpeGVzIHB1bGwtcmVx
+IHRvIExpbnVzCmZvciB0aGUgY3VycmVudCBrZXJuZWwgZGV2ZWxvcG1lbnQgY3ljbGUuCgpSZWdh
+cmRzLAoKSGFucwoKCgo+IAo+PiAtLS0KPj4gwqAgZHJpdmVycy9wbGF0Zm9ybS94ODYvdGhpbmtw
+YWRfYWNwaS5jIHwgOCArKysrKysrKwo+PiDCoCAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25z
+KCspCj4+Cj4+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BsYXRmb3JtL3g4Ni90aGlua3BhZF9hY3Bp
+LmMgYi9kcml2ZXJzL3BsYXRmb3JtL3g4Ni90aGlua3BhZF9hY3BpLmMKPj4gaW5kZXggMjBlNWMw
+NDNhOGU4Li44NDc2ZGZlZjRlNjIgMTAwNjQ0Cj4+IC0tLSBhL2RyaXZlcnMvcGxhdGZvcm0veDg2
+L3RoaW5rcGFkX2FjcGkuYwo+PiArKysgYi9kcml2ZXJzL3BsYXRmb3JtL3g4Ni90aGlua3BhZF9h
+Y3BpLmMKPj4gQEAgLTQ0OTcsNiArNDQ5NywxNCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRtaV9z
+eXN0ZW1faWQgZndidWdfbGlzdFtdIF9faW5pdGNvbnN0ID0gewo+PiDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoCBETUlfTUFUQ0goRE1JX1BST0RVQ1RfTkFNRSwgIjIxQTAiKSwKPj4gwqDCoMKg
+wqDCoMKgwqDCoMKgIH0KPj4gwqDCoMKgwqDCoCB9LAo+PiArwqDCoMKgIHsKPj4gK8KgwqDCoMKg
+wqDCoMKgIC5pZGVudCA9ICJQMTRzIEdlbjIgQU1EIiwKPj4gK8KgwqDCoMKgwqDCoMKgIC5kcml2
+ZXJfZGF0YSA9ICZxdWlya19zMmlkbGVfYnVnLAo+PiArwqDCoMKgwqDCoMKgwqAgLm1hdGNoZXMg
+PSB7Cj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIERNSV9NQVRDSChETUlfQk9BUkRfVkVORE9S
+LCAiTEVOT1ZPIiksCj4+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIERNSV9NQVRDSChETUlfUFJP
+RFVDVF9OQU1FLCAiMjFBMSIpLAo+PiArwqDCoMKgwqDCoMKgwqAgfQo+PiArwqDCoMKgIH0sCj4+
+IMKgwqDCoMKgwqAge30KPj4gwqAgfTsKPj4gwqAgCj4gCgoKCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fCmlibS1hY3BpLWRldmVsIG1haWxpbmcgbGlzdApp
+Ym0tYWNwaS1kZXZlbEBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vm
+b3JnZS5uZXQvbGlzdHMvbGlzdGluZm8vaWJtLWFjcGktZGV2ZWwK
