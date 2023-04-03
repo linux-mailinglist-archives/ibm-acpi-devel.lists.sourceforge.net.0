@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id A769B6D417F
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  3 Apr 2023 12:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C64706D4181
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  3 Apr 2023 12:04:05 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1pjH1p-0007zv-M3;
-	Mon, 03 Apr 2023 10:03:08 +0000
+	id 1pjH2O-00085S-Di;
+	Mon, 03 Apr 2023 10:03:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1pjH1o-0007zj-JW
+ (envelope-from <hdegoede@redhat.com>) id 1pjH2M-00084k-Vp
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 03 Apr 2023 10:03:07 +0000
+ Mon, 03 Apr 2023 10:03:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
  From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=rjmzd/YE21ORQOPGQC93EsHd4KdzCGtkIKV/EHIywtI=; b=OMMMGgKQvZyRnHFdGW7afFp1uJ
- SNQaeeBYCJKu9R1rnrZNPTRa75CiQWaGuZ7tTJgw9bUjfbUlCwqPxYFHiX2+VRMkCiOOLoH5TxRb2
- B2pNmZxrqKvAakVpv/hToGHqNWV2ALN1+PH8rqrb/iqO1x2STkG1F+v3m2c6cJnek41I=;
+ bh=wA8QAb0BytdfB1jw9T76UqPrNQns0erlp298xSbCHJo=; b=cGlX99VcBHL45J15oXe9coXbzd
+ L9YdozUQVEchgFLpRB/czA7x4KAkOtZfrzZYSxpb6alKBwJNgfuGCACYyCzZmOla6+8cIeBf1A1RD
+ JhnEn/1TueSZoJ87PjMitbVAJghIb2p6pFldXPYaCkj54Tqr1zM4Mv3aPmp6zYMOhCmQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
@@ -31,64 +31,64 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=rjmzd/YE21ORQOPGQC93EsHd4KdzCGtkIKV/EHIywtI=; b=ALbMKLLCQ/0lCo7JvgNpHNZ9Qe
- kdIeooPB7q23DDlcJz4u8sOzOhQuCFZ+bGgeLtYtBlP2t55AVZSIcsLl9oXS8ZzKkUWHvGD198a7t
- UmUV3Byjr6NXdZ5o1SrdrDf/MXP81xRKLbN0uwHbP/d9UsCnG3fpoAe4awex5sdx9GwY=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ bh=wA8QAb0BytdfB1jw9T76UqPrNQns0erlp298xSbCHJo=; b=H6UlCSDAmm3JL8JGtTbXGZr7WR
+ HLAge5tisvMRapM54kDwivC1S4Pmav5grXgEmNi5+13JxiY3udHUpQW8vAVH/sjovsKMiDXxzy9bn
+ FLv1nnCNv3NGIKcfJoydCZXqQjNtDAH0Z/tKSueG6LkxwMzOhGmhSD6oK/OAefb5M4CM=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1pjH1k-00DfKj-2x for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 03 Apr 2023 10:03:07 +0000
+ id 1pjH2L-00DfMI-9l for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 03 Apr 2023 10:03:42 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1680516178;
+ s=mimecast20190719; t=1680516215;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=rjmzd/YE21ORQOPGQC93EsHd4KdzCGtkIKV/EHIywtI=;
- b=bAmCcl2fYs9Rlql70Mme9mmbTULFVMlJQgw5W62uZ7JxU/18FT4g13Hg6wcVxMsswe2HT/
- j6W1pttqyqE7l4sRdYG2xX2LEPMZNJWXFQiIbJ7P89+DpxhlP09hoQZmgPp9OQvBBUk3bw
- glubYjY9cg7QoGN25bx5lxORqoUDFyE=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=wA8QAb0BytdfB1jw9T76UqPrNQns0erlp298xSbCHJo=;
+ b=gyAMoQUo7ZmPhpFGLRXhrCmUDDyYi/ue/FEtXyKxWGqCSEsmMebs230/VrtnQuOFUvXcrf
+ Qs2jVQqYMjRGYuV+Bm/sh6o3tDndh1fsB6B8gr4AAtF3rzKYTNwNRKqctECcRCwNwZRKe3
+ ZULzdd+nheynQOv6yleqTTaSS/khUA4=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-615-4wBcNMEOM-2smgj_xHoBAQ-1; Mon, 03 Apr 2023 06:02:57 -0400
-X-MC-Unique: 4wBcNMEOM-2smgj_xHoBAQ-1
-Received: by mail-ed1-f69.google.com with SMTP id
- b1-20020aa7dc01000000b004ad062fee5eso40079980edu.17
+ us-mta-602-oMfRW4-EPSuAyvBP_mawfQ-1; Mon, 03 Apr 2023 06:03:32 -0400
+X-MC-Unique: oMfRW4-EPSuAyvBP_mawfQ-1
+Received: by mail-ed1-f72.google.com with SMTP id
+ j21-20020a508a95000000b004fd82403c91so40125705edj.3
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 03 Apr 2023 03:02:56 -0700 (PDT)
+ Mon, 03 Apr 2023 03:03:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20210112; t=1680516175;
+ d=1e100.net; s=20210112; t=1680516211;
  h=content-transfer-encoding:in-reply-to:from:references:cc:to
  :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=rjmzd/YE21ORQOPGQC93EsHd4KdzCGtkIKV/EHIywtI=;
- b=N45NF/AhRY7evaEHP99KwGoDW3ulbovAvQQkdGC2Y5R12n0UyYTiiVH75cRmU9cw8Q
- x/W19orzli5vpLatJIYMhLMIqvD7NPombIdW4JDuuWjhzQDIhsltURPyK0jOv3DQHX9O
- pQJt9xdLFNQpVxzYpSYNCRxllvoT8Z6KoTuEeuWcpbwXc7r2WI9Z8Zwf4wNNJJ7TDZ6+
- TToH8jr2AfhNXe7rQ18q16FQez2KmsUIzB8k3tz7/JTZmyJFo9XEbC2OwE0fXBMf5B0c
- W2suUUp3UDqacgmRaFt0Cs4Z7FnVrAWMulDwg0jlK95Pmm2Gt65HNHKt4HYpUx41qdsd
- jhJg==
-X-Gm-Message-State: AAQBX9dNt5k9fLQqDAZsqS13nGidpGjoUQ7GDuSA0xU5n3XxyTlwIJRq
- OYXcmjNvTn0VMcHUd2zLEzAmTTPkotnwVsYufz458dE/hcQrRz438E1tEXUi38znTAnZMEMDksM
- ALOCsDj8oJmmoaXGxPA3evs3lRLIc4f6RCwnDeZMFZCY=
-X-Received: by 2002:a17:906:2350:b0:8a9:e330:3a23 with SMTP id
- m16-20020a170906235000b008a9e3303a23mr33600699eja.26.1680516175801; 
- Mon, 03 Apr 2023 03:02:55 -0700 (PDT)
-X-Google-Smtp-Source: AKy350agIn0Z0BbxQrKaHifZIEBKc5yhaJP+oZ1IQ62dW0fNCJWsj/pNyk/lJ7Zxx4QPY7mHa5cEMw==
-X-Received: by 2002:a17:906:2350:b0:8a9:e330:3a23 with SMTP id
- m16-20020a170906235000b008a9e3303a23mr33600677eja.26.1680516175495; 
- Mon, 03 Apr 2023 03:02:55 -0700 (PDT)
+ bh=wA8QAb0BytdfB1jw9T76UqPrNQns0erlp298xSbCHJo=;
+ b=ySWD+u/2IFX2CZ/hgpRr8j+P0E72gM4g6flSWA6FGFvFh/77n9LO4GwkygHtAvH1FQ
+ 7lgJv0DeVsl5MtqRYT66AhTQ9oWbRjOtEixX2Be8+sVUEGHK0+2ZLUs/V4EvOiB3qE2P
+ a33dnDJqGMWgzUY7Dubk8L+i1R/6Cb3OOU6qLN2E+44sm61n5ewtomljnQC186+5TyD/
+ o0zuU/B+i5uHzBZUfwTxD4581+4WD4GzGzt4hszkBp/Zrja0I1knbcW653uo/QzV5tl3
+ kKfl1apCrS2D6DTAX4HRchy/A0EcgK+gB6lHFHgSVE7mpfTt57kDozKTRA1+pLvcH60i
+ qgYQ==
+X-Gm-Message-State: AAQBX9f2N4CDOEHogCDEBgpKfeECWW0xGckeWFzps7cu2ZgK3mZTpgA3
+ +H4lokqxd/a4Xpo0xSJX8lLfkOIwL9WxWCmEFtDDtbWw4arUK7R+oDB7K9xJq/H+Gb3TKZs/I8y
+ U4dcyfE1E4uTzIllzpp1suYCXE7hgWa4n+cA=
+X-Received: by 2002:aa7:d49a:0:b0:502:7d3f:1f04 with SMTP id
+ b26-20020aa7d49a000000b005027d3f1f04mr10062088edr.19.1680516211102; 
+ Mon, 03 Apr 2023 03:03:31 -0700 (PDT)
+X-Google-Smtp-Source: AKy350a0nPW43YqlMdcDjiYd0jFbBqM/6O0e3gYnr0BMt9FfSlb1Dm3DExUKfArY9LumLUt0EDLCnw==
+X-Received: by 2002:aa7:d49a:0:b0:502:7d3f:1f04 with SMTP id
+ b26-20020aa7d49a000000b005027d3f1f04mr10062074edr.19.1680516210787; 
+ Mon, 03 Apr 2023 03:03:30 -0700 (PDT)
 Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
  (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
  by smtp.gmail.com with ESMTPSA id
- m24-20020a17090679d800b00946c1068b14sm4248587ejo.120.2023.04.03.03.02.54
+ f24-20020a50a6d8000000b004acbda55f6bsm4381529edc.27.2023.04.03.03.03.29
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 03 Apr 2023 03:02:54 -0700 (PDT)
-Message-ID: <12a26960-1cc8-80df-e284-d0fa4768f558@redhat.com>
-Date: Mon, 3 Apr 2023 12:02:53 +0200
+ Mon, 03 Apr 2023 03:03:30 -0700 (PDT)
+Message-ID: <a192e386-5385-d18a-9816-273e433eb833@redhat.com>
+Date: Mon, 3 Apr 2023 12:03:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
@@ -99,9 +99,9 @@ In-Reply-To: <20230331232447.37204-1-asbachb.kernel@impl.it>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US, nl
-X-Spam-Score: -1.6 (-)
+X-Spam-Score: -2.9 (--)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
@@ -110,15 +110,15 @@ X-Spam-Report: Spam detection software,
  that contain NVME SSDs across a variety of generations have >> trouble
  resuming
  from suspend to idle when the IOMMU translation layer is >> ac [...] 
- Content analysis details:   (-1.6 points, 6.0 required)
+ Content analysis details:   (-2.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.129.124 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [170.10.129.124 listed in wl.mailspike.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ no trust [170.10.133.124 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.133.124 listed in wl.mailspike.net]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -126,9 +126,9 @@ X-Spam-Report: Spam detection software,
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -1.3 NICE_REPLY_A           Looks like a legit reply (A)
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1pjH1k-00DfKj-2x
+ -2.0 NICE_REPLY_A           Looks like a legit reply (A)
+ -0.7 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1pjH2L-00DfMI-9l
 Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: Add
  missing T14s Gen1 type to s2idle quirk list
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -187,9 +187,6 @@ ThinkPads.
 Thank you for your patch, I've applied this patch to my fixes
 branch:
 https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=fixes
-
-Note it will show up in my fixes branch once I've pushed my
-local branch there, which might take a while.
 
 I will include this patch in my next fixes pull-req to Linus
 for the current kernel development cycle.
