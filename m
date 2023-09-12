@@ -2,138 +2,91 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E611878297E
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 21 Aug 2023 14:50:46 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F8679D308
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 12 Sep 2023 15:58:59 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1qY4MC-0007n6-EA;
-	Mon, 21 Aug 2023 12:50:08 +0000
+	id 1qg3uM-00062t-Fz;
+	Tue, 12 Sep 2023 13:58:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1qY4MB-0007n0-D6
+ (envelope-from <tom.troughton@protonmail.ch>) id 1qg3uK-00062n-5N
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 21 Aug 2023 12:50:07 +0000
+ Tue, 12 Sep 2023 13:58:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Message-ID:Subject:From:
+ To:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=U2tMdqihoLdVc/FNclnLyyqSQNriGxLnDeEcp+obbhU=; b=b58TsiXLOotT5Zz/w55LfIaFkn
- AxcNsOWa6EQdfKEbfOdZSwMhQNn7ALWOuw9e03ip3CWfaY+1va7HtuqhPFcc64p6qEDDQ1GgtEtcU
- c+g40aJkSsCsNVmZmav9GJrmcGjYiXLQRTJawa5IqhW0yfTvoEHwLu2M3bGekqJ1bKxQ=;
+ bh=CN9qU18MyY2oyv5GaCqpcXrjG59LZ0ydbz9YoTVvlRQ=; b=M8DInqfYqlrUmx59GyaFSlzdtt
+ EH+4L2jWhsAJPWMih7wg5hD4hnq14Zf8hSlEjcIShEhEq8yVWKzeKy7GTe+AooOl+HI1Y6JMrp/Va
+ 4G2RIVPrSULr7ckiYAKjaoIdGLuMth/W/yUBlu9WNhM6I8Og1uc86EMY5ZQDwwEVQgZE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=U2tMdqihoLdVc/FNclnLyyqSQNriGxLnDeEcp+obbhU=; b=CvpAbDAP1PR7H8A1lR9tWVWPZe
- nTy1XGuPnZ5lKbI0HESVTv7/ggAp3LtBKelsCZFg3MJ/4iUK8ZM+BOm1r0P1lBgBxiBT6pnXcxyPc
- FDGq2gg/TPV+uAOUYYPkkIB2YRZ5i7GToVpiYMAA4cHbgeyka3N0GPTOaTUbvru5axCA=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-1.v28.lw.sourceforge.com with esmtps
+ h=Content-Type:MIME-Version:Message-ID:Subject:From:To:Date:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=CN9qU18MyY2oyv5GaCqpcXrjG59LZ0ydbz9YoTVvlRQ=; b=R
+ rHjkufbFX2oBniEKDkrb9aqYN/cQsjjJ34HYc6AEcUM1fp1Y6ppMkHGf1/bm+D1nFeoFM+zP9P4Cu
+ JrKywsd/it6dqSX+0RzXtssJ5oGTzCUzUeyEPWDxcBSIo5PvUpFkq6uSMNt7YSM/Qa0ZMVYaMUnmu
+ bAvs90kktiOoQazk=;
+Received: from mail-4327.protonmail.ch ([185.70.43.27])
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qY4M9-00BNJs-Kb for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 21 Aug 2023 12:50:07 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1692622199;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=U2tMdqihoLdVc/FNclnLyyqSQNriGxLnDeEcp+obbhU=;
- b=L5VtZk9w658Wu9ZkxuC9MVn2q8ErxKVx7ng7iHCqFevK1lFX2GA+Wqjp/dLid3TG5fAsTJ
- Uw6akBRcqOTfnspM8VeRcUIs5NVGEahhO+wH/8iMek9I0hQMCYNrx5XnHr995lf3bM1414
- pRGfwKMxCg6LRqt7Dkb5cVrEiZrl+0w=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-554-OGBxo6jSNy-4iRezwR-iiw-1; Mon, 21 Aug 2023 08:49:58 -0400
-X-MC-Unique: OGBxo6jSNy-4iRezwR-iiw-1
-Received: by mail-ej1-f69.google.com with SMTP id
- a640c23a62f3a-9a0955ac1dcso192254266b.0
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 21 Aug 2023 05:49:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692622197; x=1693226997;
- h=content-transfer-encoding:in-reply-to:from:references:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=U2tMdqihoLdVc/FNclnLyyqSQNriGxLnDeEcp+obbhU=;
- b=HOte3KknHChecPnQOKwsA2ytCMv3T14PVMOueCj48dgN+Pdc5jK3gKznXe0yXgxOg+
- /RJbHS2E71UGpLlqcsp4FWuBheNObFk+nxhYSN29BIAX+WK3KTCbQXFn9K6wEcHdR1c9
- ub0wBR0uKAGwInfCChSxLpb1/LQvmiWBonAu2TYR5WRqLfw81RPnFEf75JeyLTEZvzcI
- dyoRiCpdN1XlLAJZp2i4mQeSPfrx8Uu38LlCcjdW7o5xN0iMMbtvv9gcSdmumpDuf5Tc
- FHYyxKJlWMHXZtw7YKmoKvA85mOntHAec/FqmgAH0+kkNljyIZndBkz2UyzlYudoEwec
- TyEQ==
-X-Gm-Message-State: AOJu0Yyjaa2dFcwdAn1C1PdNaszK4Sro7Dl4yXyPgP7S2yAiffWlsaPW
- Wsmj4ek1Kr3ASHNCdqdifMoWDA8/GF5LqoWuh3+kg+wq2mLzULti3SG4+sGh69kkH1+MyL3WWz2
- GEQqzId490bACal6bAoEtSFIXWeZBw0eLjjI=
-X-Received: by 2002:a17:906:1da2:b0:99b:c830:cf23 with SMTP id
- u2-20020a1709061da200b0099bc830cf23mr5454459ejh.27.1692622197180; 
- Mon, 21 Aug 2023 05:49:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGfv9DsJSZhAGR7ioe4x0Zc5TqTJCwThGMpHNpW8bHZXlrcqN3j3A6qu33K7waNuUF/HM/ziQ==
-X-Received: by 2002:a17:906:1da2:b0:99b:c830:cf23 with SMTP id
- u2-20020a1709061da200b0099bc830cf23mr5454446ejh.27.1692622196895; 
- Mon, 21 Aug 2023 05:49:56 -0700 (PDT)
-Received: from [10.40.98.142] ([78.108.130.194])
- by smtp.gmail.com with ESMTPSA id
- r25-20020a170906a21900b00992f309cfe8sm6503224ejy.178.2023.08.21.05.49.56
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 21 Aug 2023 05:49:56 -0700 (PDT)
-Message-ID: <d237c65d-f63e-f085-119f-8faf4ecf082c@redhat.com>
-Date: Mon, 21 Aug 2023 14:49:55 +0200
+ id 1qg3uJ-00030J-RW for ibm-acpi-devel@lists.sourceforge.net;
+ Tue, 12 Sep 2023 13:58:25 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
+ s=protonmail3; t=1694527074; x=1694786274;
+ bh=CN9qU18MyY2oyv5GaCqpcXrjG59LZ0ydbz9YoTVvlRQ=;
+ h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=btnivIBNvkcSWWCrraAi/QT5JP/0xlDH6IoC45M0+hTZvyY0wDezZsrfEFVKTPcnL
+ Jtp69/buomLCFAb0r4VRzd6pVHCVXlkUSjMdcg/c657RivlXoJQHAOdUOpM0Oid8y0
+ wPPTCakQE3nJE9o+evCjxFv1cq2t+n32AFOAt46VI5FtlQ+8RcU+rSz6qXJZVW7X7C
+ XyykG4HUpsUqaWBH6PyJT54vrNfC6yUapVvkQpapk/IEyfD66+lwOo/ZQFXIvijtE+
+ siCdYcO10yJSo6nsNpdvgw7D2JW9pb7fu/2aKDCBntGK/UhfL30omWlwPPwNcANE/p
+ R5jCnAe+/F4rg==
+Date: Tue, 12 Sep 2023 13:57:44 +0000
+To: "ibm-acpi-devel@lists.sourceforge.net"
+ <ibm-acpi-devel@lists.sourceforge.net>
+Message-ID: <5ahTXXVCA2HRvBMLjyL-HGlXN_YWmJ3WmwSVkUaNHw6J3GVtUo2y9ugqiH3ITu_wDbmnvn1pz76PlyreYUk9Wjcd7mYf2KuHXe2Tn0oiwpI=@protonmail.ch>
+Feedback-ID: 25687:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Ruan Jinjie <ruanjinjie@huawei.com>,
- ibm-acpi-devel@lists.sourceforge.net, platform-driver-x86@vger.kernel.org,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- Mark Gross <markgross@kernel.org>
-References: <20230810122012.2110410-1-ruanjinjie@huawei.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20230810122012.2110410-1-ruanjinjie@huawei.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-X-Spam-Score: -3.6 (---)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, On 8/10/23 14:20,
- Ruan Jinjie wrote: > Use memdup_user_nul()
- helper instead of open-coding to simplify the code. > > Signed-off-by: Ruan
- Jinjie <ruanjinjie@huawei.com> Thank you for your patch, I've applied this
- patch to my review-hans branch:
- https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=review-hans
- Content analysis details:   (-3.6 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  Hi, Running Ubuntu 22.04. At every boot I get the message:
+    ​***-ThinkPad-L13-Yoga-Gen-2a kernel: [ 2.195376] thinkpad_acpi: Unknown/reserved
+    multi mode value 0x0000 for type 4, please report this to ibm-acpi-devel@lists.sourceforge.net
+    
+ 
+ Content analysis details:   (-0.2 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.133.124 listed in list.dnswl.org]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [170.10.133.124 listed in wl.mailspike.net]
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+                             provider
+                             [tom.troughton[at]protonmail.ch]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
+                             envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -3.4 NICE_REPLY_A           Looks like a legit reply (A)
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qY4M9-00BNJs-Kb
-Subject: Re: [ibm-acpi-devel] [PATCH -next] platform/x86: thinkpad_acpi:
- Switch to memdup_user_nul() helper
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+X-Headers-End: 1qg3uJ-00030J-RW
+Subject: [ibm-acpi-devel] L13 Gen 2 AMD Yoga
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -146,67 +99,98 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+From: "tom.troughton--- via ibm-acpi-devel"
+ <ibm-acpi-devel@lists.sourceforge.net>
+Reply-To: tom.troughton@protonmail.ch
+Content-Type: multipart/mixed; boundary="===============2916902862100643578=="
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi,
+This is a multi-part message in MIME format.
 
-On 8/10/23 14:20, Ruan Jinjie wrote:
-> Use memdup_user_nul() helper instead of open-coding to simplify the code.
-> 
-> Signed-off-by: Ruan Jinjie <ruanjinjie@huawei.com>
+--===============2916902862100643578==
+Content-Type: multipart/alternative;
+ boundary="b1_yay4iOJ7NKMCOh37Uddn9ImyTiDp41G40xRXKlbP3nk"
 
-Thank you for your patch, I've applied this patch to my review-hans 
-branch:
-https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=review-hans
+This is a multi-part message in MIME format.
 
-Note it will show up in my review-hans branch once I've pushed my
-local branch there, which might take a while.
+--b1_yay4iOJ7NKMCOh37Uddn9ImyTiDp41G40xRXKlbP3nk
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Once I've run some tests on this branch the patches there will be
-added to the platform-drivers-x86/for-next branch and eventually
-will be included in the pdx86 pull-request to Linus for the next
-merge-window.
+SGksCgpSdW5uaW5nIFVidW50dSAyMi4wNC4gQXQgZXZlcnkgYm9vdCBJIGdldCB0aGUgbWVzc2Fn
+ZToKCuKAiyoqKi1UaGlua1BhZC1MMTMtWW9nYS1HZW4tMmEga2VybmVsOiBbIDIuMTk1Mzc2XSB0
+aGlua3BhZF9hY3BpOiBVbmtub3duL3Jlc2VydmVkIG11bHRpIG1vZGUgdmFsdWUgMHgwMDAwIGZv
+ciB0eXBlIDQsIHBsZWFzZSByZXBvcnQgdGhpcyB0byBpYm0tYWNwaS1kZXZlbEBsaXN0cy5zb3Vy
+Y2Vmb3JnZS5uZXQKCkkgc2VlIHRoZXJlIHdhcyBhIG1lc3NhZ2UgZWFybGllciB0aGlzIHllYXIg
+KGh0dHBzOi8vc291cmNlZm9yZ2UubmV0L3AvaWJtLWFjcGkvbWFpbG1hbi9tZXNzYWdlLzM3NjQ0
+MTQ4LykgdGhhdCBpcyBwZXJoYXBzIGFib3V0IHRoZSBzYW1lIHRoaW5nLiBBYm91dCB0YWJsZXQg
+bW9kZTogV2hlbiBsb2FkaW5nIFVidW50dSwgdGhlIHNjcmVlbiBkb2VzIG5vdCBhZGp1c3Qgb3Jp
+ZW50YXRpb24gd2hlbiB0aGUgc2NyZWVuIGlzIGZsaXBwZWQgdG8gdGFibGV0IG1vZGUsIGJ1dCB3
+aGVuIGxvYWRpbmcgVWJ1bnR1IG9uIFggaXQgZG9lcyB3b3JrLgoKU2VudCBmcm9tIFtQcm90b25N
+YWlsXShodHRwczovL3Byb3Rvbm1haWwuY2gpLCBlbmNyeXB0ZWQgZW1haWwgYmFzZWQgaW4gU3dp
+dHplcmxhbmQu
 
-Regards,
+--b1_yay4iOJ7NKMCOh37Uddn9ImyTiDp41G40xRXKlbP3nk
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Hans
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7Ij5IaSw8L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7
+IGZvbnQtc2l6ZTogMTRweDsiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJp
+YWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPlJ1bm5pbmcgVWJ1bnR1IDIyLjA0LiBB
+dCBldmVyeSBib290IEkgZ2V0IHRoZSBtZXNzYWdlOjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFt
+aWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+PGJyPjwvZGl2PjxkaXYg
+c3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyI+
+PHNwYW4+PGI+PC9iPuKAiyoqKi1UaGlua1BhZC1MMTMtWW9nYS1HZW4tMmEga2VybmVsOiBbICZu
+YnNwOyAmbmJzcDsyLjE5NTM3Nl0gdGhpbmtwYWRfYWNwaTogVW5rbm93bi9yZXNlcnZlZCBtdWx0
+aSBtb2RlIHZhbHVlIDB4MDAwMCBmb3IgdHlwZSA0LCBwbGVhc2UgcmVwb3J0IHRoaXMgdG8gPGEg
+dGFyZ2V0PSJfYmxhbmsiIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIgaHJlZj0i
+bWFpbHRvOmlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJjZWZvcmdlLm5ldCI+aWJtLWFjcGktZGV2
+ZWxAbGlzdHMuc291cmNlZm9yZ2UubmV0PC9hPjwvc3Bhbj48YnI+PC9kaXY+PGRpdiBzdHlsZT0i
+Zm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48YnI+PC9k
+aXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
+IDE0cHg7Ij5JIHNlZSB0aGVyZSB3YXMgYSBtZXNzYWdlIGVhcmxpZXIgdGhpcyB5ZWFyICg8c3Bh
+bj48YSB0YXJnZXQ9Il9ibGFuayIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3BlbmVyIiBo
+cmVmPSJodHRwczovL3NvdXJjZWZvcmdlLm5ldC9wL2libS1hY3BpL21haWxtYW4vbWVzc2FnZS8z
+NzY0NDE0OC8iPmh0dHBzOi8vc291cmNlZm9yZ2UubmV0L3AvaWJtLWFjcGkvbWFpbG1hbi9tZXNz
+YWdlLzM3NjQ0MTQ4LzwvYT48L3NwYW4+KSB0aGF0IGlzIHBlcmhhcHMgYWJvdXQgdGhlIHNhbWUg
+dGhpbmcuIEFib3V0IHRhYmxldCBtb2RlOiBXaGVuIGxvYWRpbmcgVWJ1bnR1LCB0aGUgc2NyZWVu
+IGRvZXMgbm90IGFkanVzdCBvcmllbnRhdGlvbiB3aGVuIHRoZSBzY3JlZW4gaXMgZmxpcHBlZCB0
+byB0YWJsZXQgbW9kZSwgYnV0IHdoZW4gbG9hZGluZyBVYnVudHUgb24gWCBpdCBkb2VzIHdvcmsu
+IDxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZTogMTRweDsiPjxicj48L2Rpdj4NCjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0
+dXJlX2Jsb2NrIiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNp
+emU6IDE0cHg7Ij4NCiAgICA8ZGl2IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay11
+c2VyIj4NCiAgICAgICAgU2VudCBmcm9tIDxhIGhyZWY9Imh0dHBzOi8vcHJvdG9ubWFpbC5jaCIg
+cmVsPSJub29wZW5lciBub3JlZmVycmVyIiB0YXJnZXQ9Il9ibGFuayI+UHJvdG9uTWFpbDwvYT4s
+IGVuY3J5cHRlZCBlbWFpbCBiYXNlZCBpbiBTd2l0emVybGFuZC48L2Rpdj4NCiAgICANCiAgICAg
+ICAgICAgIDxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLXByb3RvbiBwcm90
+b25tYWlsX3NpZ25hdHVyZV9ibG9jay1lbXB0eSI+DQogICAgICAgIA0KICAgICAgICAgICAgPC9k
+aXY+DQo8L2Rpdj4NCg==
+
+
+--b1_yay4iOJ7NKMCOh37Uddn9ImyTiDp41G40xRXKlbP3nk--
 
 
 
-> ---
->  drivers/platform/x86/thinkpad_acpi.c | 13 +++----------
->  1 file changed, 3 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-> index 85772bad753e..d70c89d32534 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -908,16 +908,9 @@ static ssize_t dispatch_proc_write(struct file *file,
->  	if (count > PAGE_SIZE - 1)
->  		return -EINVAL;
->  
-> -	kernbuf = kmalloc(count + 1, GFP_KERNEL);
-> -	if (!kernbuf)
-> -		return -ENOMEM;
-> -
-> -	if (copy_from_user(kernbuf, userbuf, count)) {
-> -		kfree(kernbuf);
-> -		return -EFAULT;
-> -	}
-> -
-> -	kernbuf[count] = 0;
-> +	kernbuf = memdup_user_nul(userbuf, count);
-> +	if (IS_ERR(kernbuf))
-> +		return PTR_ERR(kernbuf);
->  	ret = ibm->write(kernbuf);
->  	if (ret == 0)
->  		ret = count;
+--===============2916902862100643578==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 
+--===============2916902862100643578==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+
+--===============2916902862100643578==--
+
+
