@@ -2,80 +2,125 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72C6779D4D0
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 12 Sep 2023 17:30:40 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C42079EDC9
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 13 Sep 2023 17:58:52 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1qg5L6-0003M5-HE;
-	Tue, 12 Sep 2023 15:30:09 +0000
+	id 1qgSFp-0005IM-Nr;
+	Wed, 13 Sep 2023 15:58:13 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hello@maedartmann.name>) id 1qg5L4-0003Lx-RS
+ (envelope-from <hdegoede@redhat.com>) id 1qgSFo-0005IG-Ge
  for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 12 Sep 2023 15:30:08 +0000
+ Wed, 13 Sep 2023 15:58:12 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:MIME-Version:Subject:References:
- In-Reply-To:Message-ID:To:From:Date:Sender:Reply-To:Cc:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=w9qnW1NaqdjbZNYC3LCJ761R5Bid7EEv8HbF/vZt1b4=; b=I7S72EDNkX38D8XgF2CkgjGywY
- QlQ6JNrxwQDO8+E1tvfl2MUo9kmgtOAQREwaS9GoFbJDOpbNfTo2dVZ9pNTA8zC7SxFLSm+HnsLy9
- WCIzfqF4ue0q5ABIdHGaepX13OyNyeGQ4YslzTF1Cxz4KjD4FEXXiwpHJ3Gm/PO+BWUc=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=8oFlWNsBoPiP27e6QLLTn7WyeRku9K4oycwIoawQoLA=; b=HT74hLkz9B85tLIDrK5Asthe33
+ jliU9osVedP00XEj9diXuNcbdTX7HqFBEqlVtIQxk1g76EwpVqWn3sCbX59brXny1g0M1ZU0oKn/6
+ jdFFkLK0R/xwMcgvFd8gEDqJCIO2GSb8pxSQFnWnVQfvuRekRqyi4GIew1ycYfp465DE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:MIME-Version:Subject:References:In-Reply-To:Message-ID:To:
- From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=w9qnW1NaqdjbZNYC3LCJ761R5Bid7EEv8HbF/vZt1b4=; b=l1yPSkBDwu8jeeKZsOfJJaDnw1
- mxBZMCtbjRDzE05d1EuJQ0zttWucZmbygSA096wk524/IkTS0hF9/mxgtAkDOgW2YCDjOXN5mPUPt
- hTa/7k+QnmnE6CwK3ZOJab7HWKUQCQZsEEnCZbLXikejv/G9Wty+Xug7na1jgzroNhCU=;
-Received: from mail.dartmann.net ([202.61.205.135])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ bh=8oFlWNsBoPiP27e6QLLTn7WyeRku9K4oycwIoawQoLA=; b=ZQwaH+UQ1O35UzUUsER+QhRvvz
+ FKj+PI6uJY//pHDcmRSmLouu4ec/vuBu4jwLRQWEFdlkokWKq2arnQ3KprG8YO9sqNP0vTdT8WY2q
+ iGiK4AhOK9z/C8R8B+CXmHGvO4Ptas0Fow+eOjJSYSP+G468Kz8h3700RSs5oXJBnuvI=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qg5Kx-000840-7k for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 12 Sep 2023 15:30:07 +0000
-Date: Tue, 12 Sep 2023 17:12:16 +0200 (GMT+02:00)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maedartmann.name;
- s=dkim; t=1694531539;
+ id 1qgSFn-003uuJ-K7 for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 13 Sep 2023 15:58:12 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1694620685;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=w9qnW1NaqdjbZNYC3LCJ761R5Bid7EEv8HbF/vZt1b4=;
- b=bg2QCcXZ6PDjiEZBnOba44CIv/YUJbW9Lx0VCHyXGFBZki3bW5y2fSUSUr+9iHjsRVxQ03
- +Nc0/IUnaR6v5mLuOl9TlFmcOTmIBUVUk0UYT6TWDKJU32U4km7SWuYTmzHsgAQz+4CI5s
- f43uxri0+IRnt96so1FlBjjPCw78B1H/JWeSQ+YjQwwQmflllG2Fdh2355kWeHR3BNBUyg
- XmmapllsU/xpPcyXGgO8zcCZY8VUcTlBNbtWAqTkvy6fmmgXqhZ7GLaLUVHowv6MQPL9YH
- 0Rvis3/zdgth38YJhqvl3PUBhigyhzBpWhLNjGDxu6uPhyPLSrmlCcqH1F64aA==
-Authentication-Results: mail.dartmann.net;
- auth=pass smtp.mailfrom=hello@maedartmann.name
-To: ibm-acpi-devel@lists.sourceforge.net
-Message-ID: <59c84826-b333-47b2-8ed4-b34495d396e5@maedartmann.name>
-In-Reply-To: <5ahTXXVCA2HRvBMLjyL-HGlXN_YWmJ3WmwSVkUaNHw6J3GVtUo2y9ugqiH3ITu_wDbmnvn1pz76PlyreYUk9Wjcd7mYf2KuHXe2Tn0oiwpI=@protonmail.ch>
-References: <5ahTXXVCA2HRvBMLjyL-HGlXN_YWmJ3WmwSVkUaNHw6J3GVtUo2y9ugqiH3ITu_wDbmnvn1pz76PlyreYUk9Wjcd7mYf2KuHXe2Tn0oiwpI=@protonmail.ch>
+ bh=8oFlWNsBoPiP27e6QLLTn7WyeRku9K4oycwIoawQoLA=;
+ b=gZ1Qjuo2rcmLWcbNoUVTVfrYy+1YmwNyl6A2+VnGJeHeUVPUzxpaaVFrA5shGh4pdh3Jh7
+ 9yFbKkvGmrUg9PYkuVGF0pK8vDCzftvf89aCPSNC703yzdFSWB+DfLfZBuMC2qiH4X6dTd
+ CVaCgxpchY2PZaoNzlU3oPi4ElyPBmw=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-637-SbSTjZinPWumFSNL11L6fA-1; Wed, 13 Sep 2023 11:58:04 -0400
+X-MC-Unique: SbSTjZinPWumFSNL11L6fA-1
+Received: by mail-ed1-f70.google.com with SMTP id
+ 4fb4d7f45d1cf-52c03bb5327so4669995a12.0
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Wed, 13 Sep 2023 08:58:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1694620683; x=1695225483;
+ h=content-transfer-encoding:in-reply-to:from:references:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=8oFlWNsBoPiP27e6QLLTn7WyeRku9K4oycwIoawQoLA=;
+ b=N9/s58ygP+FiDtP3JewBzEtCsiuNEy+HGmZBpEE/+/Vkn1dQ1q63yYS6wj46SqDjkk
+ cEUJJaiJ7XUhVn6ypeXRqkri5cjyPGOqVN6aOqwitNPzUEnnLoIBofbNCs8ghzALQ8dC
+ q4+47V8JIakDiPGhdXZX9BlViujdpD2WgrgE4nQ3bgzIWZqj7A25y+M//OuQQkyKKkMu
+ Atfzb2NbHWC/Ed1kx6zKOa1JqvpcwgVD8cCNmewVXeqPh3abXqY+8jWwZmOJ0mzYfaZI
+ oh0wKzoFQLC0Fqq+0behAD36dOyQnKbsrUvU0Mz+D8YlfhUiCtg3HcUW4ZsIEPBCZgWF
+ iRPA==
+X-Gm-Message-State: AOJu0YzsvSUa4cjDfAkNKPnGsvgiGSwCIQhYemsQCC0KmCXMKIcvy/t+
+ VM8hX6Z6XuDhC68dpl7QkOHQOrQMJdOoBw2TgB09NoRswfTun0D/2abxCrktg9SURWUGC2ypsxr
+ CabcsF5crxbrYfXQiLacUK6aCDOfmPpQAE24=
+X-Received: by 2002:a05:6402:1484:b0:52f:b00a:99be with SMTP id
+ e4-20020a056402148400b0052fb00a99bemr2638852edv.33.1694620683027; 
+ Wed, 13 Sep 2023 08:58:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHWdV0KLFyUcrOIrlW9A4stCQfGP5LxWC94fX/K6+RReONlj26k4SqNBtFWTgx5SelVrWKEsg==
+X-Received: by 2002:a05:6402:1484:b0:52f:b00a:99be with SMTP id
+ e4-20020a056402148400b0052fb00a99bemr2638832edv.33.1694620682667; 
+ Wed, 13 Sep 2023 08:58:02 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ o1-20020a056402444100b0052ff9bae873sm336955edb.5.2023.09.13.08.58.01
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 13 Sep 2023 08:58:02 -0700 (PDT)
+Message-ID: <d26d4b15-765b-a444-b740-97f95f2db58d@redhat.com>
+Date: Wed, 13 Sep 2023 17:58:01 +0200
 MIME-Version: 1.0
-X-Correlation-ID: <59c84826-b333-47b2-8ed4-b34495d396e5@maedartmann.name>
-X-Spamd-Bar: /
-X-Spam-Score: -0.2 (/)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: Fernando Eckhardt Valle <fevalle@ipt.br>, hmh@hmh.eng.br,
+ markgross@kernel.org, ibm-acpi-devel@lists.sourceforge.net,
+ platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
+ mpearson-lenovo@squebb.ca
+References: <20230906195204.4478-1-fevalle@ipt.br>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20230906195204.4478-1-fevalle@ipt.br>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+X-Spam-Score: -1.7 (-)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, I have the same issue on my machine (same hardware). It
- is because the driver that usually controls the flipping mechanism does not
- work with the screen orientation sensor in the L13 Yoga G2 AMD. 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Hi Fernando, On 9/6/23 21:52, Fernando Eckhardt Valle wrote:
+ > Newer Thinkpads have a feature called Mac Address Passthrough. > This patch
+ provides a sysfs interface that userspace can use > to get this auxiliary
+ [...] Content analysis details:   (-1.7 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [170.10.129.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [170.10.129.124 listed in wl.mailspike.net]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 HTML_MESSAGE           BODY: HTML included in message
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -83,8 +128,12 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1qg5Kx-000840-7k
-Subject: [ibm-acpi-devel]  L13 Gen 2 AMD Yoga
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -1.5 NICE_REPLY_A           Looks like a legit reply (A)
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1qgSFn-003uuJ-K7
+Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: sysfs
+ interface to auxmac
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -97,60 +146,160 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-From: Mae Dartmann via ibm-acpi-devel <ibm-acpi-devel@lists.sourceforge.net>
-Reply-To: Mae Dartmann <hello@maedartmann.name>
-Content-Type: multipart/mixed; boundary="===============7011797941048835690=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
---===============7011797941048835690==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_3_75553886.1694531536756"
+Hi Fernando,
 
-------=_Part_3_75553886.1694531536756
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+On 9/6/23 21:52, Fernando Eckhardt Valle wrote:
+> Newer Thinkpads have a feature called Mac Address Passthrough.
+> This patch provides a sysfs interface that userspace can use
+> to get this auxiliary mac address.
+> 
+> Signed-off-by: Fernando Eckhardt Valle <fevalle@ipt.br>
 
-Hi,
+Thank you for your patch. 
 
-I have the same issue on my machine (same hardware). It is because the driver that usually controls the flipping mechanism does not work with the screen orientation sensor in the L13 Yoga G2 AMD.
+At a minimum for this patch to be accepted you will need
+to document the new sysfs interface in:
 
-I wrote an entry into the mailing list a while ago and never got a response. I think we're on our own with this issue...
+Documentation/admin-guide/laptops/thinkpad-acpi.rst
 
-Best,
-Mae
+But I wonder if we should export this information to
+userspace in this way ?
 
-------=_Part_3_75553886.1694531536756
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+The reason why I'm wondering is because mac-address passthrough
+in case of using e.g. Lenovo Thunderbolt docks is already
+supported by the kernel by code for this in drivers/net/usb/r8152.c :
 
-<html>
- <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- </head>
- <body>
-  <span dir="ltr" style="margin-top:0; margin-bottom:0;">Hi,</span> <br> <br> <span dir="ltr" style="margin-top:0; margin-bottom:0;">I have the same issue on my machine (same hardware). It is because the driver that usually controls the flipping mechanism does not work with the screen orientation sensor in the L13 Yoga G2 AMD.</span> <br> <br> <span dir="ltr" style="margin-top:0; margin-bottom:0;">I wrote an entry into the mailing list a while ago and never got a response. I think we're on our own with this issue...</span> <br> <br> <span dir="ltr" style="margin-top:0; margin-bottom:0;">Best,</span> <br> <span dir="ltr" style="margin-top:0; margin-bottom:0;">Mae</span> <br>
- </body>
-</html>
-------=_Part_3_75553886.1694531536756--
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/usb/r8152.c#n1613
 
+So I'm wondering if we really need this, is there a planned
+userspace API consumer of the new sysfs interface ?
 
---===============7011797941048835690==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Or is this only intended as a way for a user to query this, iow
+is this purely intended for informational purposes ?
+
+Regards,
+
+Hans
 
 
---===============7011797941048835690==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+
+
+
+
+> ---
+>  drivers/platform/x86/thinkpad_acpi.c | 77 ++++++++++++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+> 
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+> index d70c89d32..0b1c36b0d 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -10785,6 +10785,78 @@ static struct ibm_struct dprc_driver_data = {
+>  	.name = "dprc",
+>  };
+>  
+> +/*
+> + * Auxmac
+> + *
+> + * This auxiliary mac address is enabled in the bios through the
+> + * Mac Address Passthrough feature. In most cases, there are three
+> + * possibilities: Internal Mac, Second Mac, and disabled.
+> + *
+> + */
+> +
+> +#define AUXMAC_LEN 12
+> +#define AUXMAC_START 9
+> +#define AUXMAC_STRLEN 22
+> +static char auxmac[AUXMAC_LEN];
+> +
+> +static int auxmac_init(struct ibm_init_struct *iibm)
+> +{
+> +	acpi_status status;
+> +	struct acpi_buffer buffer = { ACPI_ALLOCATE_BUFFER, NULL };
+> +	union acpi_object *obj;
+> +
+> +	status = acpi_evaluate_object(NULL, "\\MACA", NULL, &buffer);
+> +
+> +	if (ACPI_FAILURE(status))
+> +		return -ENODEV;
+> +
+> +	obj = (union acpi_object *)buffer.pointer;
+> +
+> +	if (obj->type != ACPI_TYPE_STRING || obj->string.length != AUXMAC_STRLEN) {
+> +		pr_info("Invalid buffer for mac addr passthrough.\n");
+> +		goto auxmacinvalid;
+> +	}
+> +
+> +	if (strncmp(obj->string.pointer + 0x8, "#", 1) != 0 ||
+> +	    strncmp(obj->string.pointer + 0x15, "#", 1) != 0) {
+> +		pr_info("Invalid header for mac addr passthrough.\n");
+> +		goto auxmacinvalid;
+> +	}
+> +
+> +	memcpy(auxmac, obj->string.pointer + AUXMAC_START, AUXMAC_LEN);
+> +	kfree(obj);
+> +	return 0;
+> +
+> +auxmacinvalid:
+> +	kfree(obj);
+> +	memcpy(auxmac, "unavailable", 11);
+> +	return 0;
+> +}
+> +
+> +static struct ibm_struct auxmac_data = {
+> +	.name = "auxmac",
+> +};
+> +
+> +static ssize_t auxmac_show(struct device *dev,
+> +			   struct device_attribute *attr,
+> +			   char *buf)
+> +{
+> +	if (strncmp(auxmac, "XXXXXXXXXXXX", AUXMAC_LEN) == 0)
+> +		memcpy(auxmac, "disabled", 9);
+> +
+> +	return sysfs_emit(buf, "%s\n", auxmac);
+> +}
+> +static DEVICE_ATTR_RO(auxmac);
+> +
+> +static struct attribute *auxmac_attributes[] = {
+> +	&dev_attr_auxmac.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group auxmac_attr_group = {
+> +	.attrs = auxmac_attributes,
+> +};
+> +
+>  /* --------------------------------------------------------------------- */
+>  
+>  static struct attribute *tpacpi_driver_attributes[] = {
+> @@ -10843,6 +10915,7 @@ static const struct attribute_group *tpacpi_groups[] = {
+>  	&proxsensor_attr_group,
+>  	&kbdlang_attr_group,
+>  	&dprc_attr_group,
+> +	&auxmac_attr_group,
+>  	NULL,
+>  };
+>  
+> @@ -11414,6 +11487,10 @@ static struct ibm_init_struct ibms_init[] __initdata = {
+>  		.init = tpacpi_dprc_init,
+>  		.data = &dprc_driver_data,
+>  	},
+> +	{
+> +		.init = auxmac_init,
+> +		.data = &auxmac_data,
+> +	},
+>  };
+>  
+>  static int __init set_ibm_param(const char *val, const struct kernel_param *kp)
+
+
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
-
---===============7011797941048835690==--
-
