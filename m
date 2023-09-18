@@ -2,143 +2,136 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A9A579EF6A
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 13 Sep 2023 18:54:30 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1727A4AB0
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 18 Sep 2023 15:42:16 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1qgT7r-00086a-1i;
-	Wed, 13 Sep 2023 16:54:03 +0000
+	id 1qiEVU-0003nL-Os;
+	Mon, 18 Sep 2023 13:41:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1qgT7p-00086T-R6
+ (envelope-from <hdegoede@redhat.com>) id 1qiEVS-0003nF-Qs
  for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 13 Sep 2023 16:54:01 +0000
+ Mon, 18 Sep 2023 13:41:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=EUAQM9nUVDpynXNTWZkPqYipd38tYN+dKS0WVUg2qcc=; b=hQb1MjO0EmQulEn/O+w5fcdPjA
- YOqP7QFq2FBBaSB8ceKf87oJSTHf6iO84YW5J99be11SlmBwxQei3/yXZ9ahD3kTZ24uDyhyQcCA2
- rU5ON52ScL5hk4wgKbeiCf4eMZoVF7gZkr3RBeYQaEaobpktEyWD0UvvDbF/EcqbLczk=;
+ bh=4TTxQOCDOWFA0p2jwGlB97ue19qCIKfMgOp8dZqLo94=; b=aOuqBUeaIGkxuMrlYhvH7lNWuy
+ 73GWA81rnLfR5hpcZfhNrwi2tmc63jDjRccU0nvuuNFaj+KlXx8NwQkzxOYBmFwP3bFUz+Yow1Ss2
+ nMTbV/GZ/TvIlQrQpcKLaBD1Q+cvVWTxfdF7Qqlebx4fT1ARJ6qVnPethD+c6eZBMa28=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=EUAQM9nUVDpynXNTWZkPqYipd38tYN+dKS0WVUg2qcc=; b=Ryo+kZMaHGCtCc73FqLpe/fqld
- L5Er/3LpD9KttM9Aq0L+wbZwB3Fe12uFzupLiBRnw+YPZCtimj4Fw0JFjBnMIx7M0KRTT7cFoMGuY
- 3v2tGI/dJX7dLQmUUc3WDkr4/HqVBS6wwBsot5BLsR+Gmygu1+DL4/VbtaPSGNzt+qew=;
+ bh=4TTxQOCDOWFA0p2jwGlB97ue19qCIKfMgOp8dZqLo94=; b=Mitrzzz64Sja1cuf0q7Bcnpsyv
+ aNNxvl8mWO+cvC97lZLMM/SvF9A+n1piVpY6Z8un0mL6iqMdmp/G5iMAk1VghUK6r3ToCMBGDDT2i
+ 92yRxYjvDshxtyx9TaiPRwJueQb58kOHLg55qfN1L8COUBO4G/wMbxt6okcUpsSuEYaI=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qgT7l-0005c5-DM for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 13 Sep 2023 16:54:01 +0000
+ id 1qiEVO-00Cvgu-Gg for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 18 Sep 2023 13:41:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1694624031;
+ s=mimecast20190719; t=1695044492;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=EUAQM9nUVDpynXNTWZkPqYipd38tYN+dKS0WVUg2qcc=;
- b=VeTPCGHIsqZjnHz3UFDpzjbRcws5NXTSViA4/I4m8kj97VyeBZVmtnIhQ4n0pYGJPlerlD
- lsngGchpti5dYDlomb1y/Yzx+pHLqYd2trsF89m7BuAsEd5rqqngJ0hOnniQhipiW8UycQ
- Q9P70EydHuY6c8dJJOD1rjGMhI/SX9Q=
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com
- [209.85.167.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=4TTxQOCDOWFA0p2jwGlB97ue19qCIKfMgOp8dZqLo94=;
+ b=Uk9GkvEdD31p7/toJxFM2tX3u5DBNLzJKCryjmG9L5o6JvMbwVdTtA6cB/FGoakSZCnZE/
+ AT9J+iTsMc/MuQ5uhG6hz5HBY4t7v8g/LN98gz9od6HT13hOiHkr0YVglN5rU3XQUxVKoU
+ LaHhvBP/HC78QBlsqQyA5J2dDiUepv4=
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com
+ [209.85.208.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-526-c0x2F8R-N92lBg_K1_KF-g-1; Wed, 13 Sep 2023 12:53:50 -0400
-X-MC-Unique: c0x2F8R-N92lBg_K1_KF-g-1
-Received: by mail-lf1-f71.google.com with SMTP id
- 2adb3069b0e04-500b575b32aso1454e87.0
+ us-mta-582-tZ0gDZznOIyRoBIVBkGWsQ-1; Mon, 18 Sep 2023 09:41:31 -0400
+X-MC-Unique: tZ0gDZznOIyRoBIVBkGWsQ-1
+Received: by mail-lj1-f198.google.com with SMTP id
+ 38308e7fff4ca-2bfdcba1144so36088831fa.1
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Wed, 13 Sep 2023 09:53:49 -0700 (PDT)
+ Mon, 18 Sep 2023 06:41:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1694624028; x=1695228828;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:to:subject:user-agent:mime-version:date:message-id
+ d=1e100.net; s=20230601; t=1695044489; x=1695649289;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=EUAQM9nUVDpynXNTWZkPqYipd38tYN+dKS0WVUg2qcc=;
- b=YDqCcOsu2AfMACBS0HuqWn1k80nbKJQ7wIhjV7GJPOuRTm9N+neyFmQBKAS8EyAPTh
- IpAJUNB3oJfRrxQOzZvm7O9UZy4GcOb44Ic1p4cPq7+bfLw6hlmPd3dKPfH6lD1j2SMZ
- vdgeX/UL5oxg0RzbhwEZYVzT8D3J4wUipNR2q+A+Uwvr83nBLSUORAEmh25Di8gNtxUe
- nGtAspCervS5TD2Ay2TiGaxpFl/0pFcW593NgA2Mp/w2mvidDvrOtuFwbheFJuntvpuu
- fC+KPNxiEQd3fOJuccTLZk2/sjD+7B4vIez/MoYRWPUG1IokwujvE//ebBwMZyTZuT54
- GYtg==
-X-Gm-Message-State: AOJu0YxYiukJWOSB6ltLmSDosSRI8TBfBbn0JrABsud2KbRJxzwuahy2
- Rn6sdHVNS8V/9PVRvEZxXvjfaw0HU85kCUB7m5dlhUoEGrzhisat2rmycnnDlLW5jzbB1LOH2tB
- fY20hO03+0CPdBdtgR7+WUkwsqvurbupFB0U=
-X-Received: by 2002:a05:6512:3050:b0:4fe:49d:6ae2 with SMTP id
- b16-20020a056512305000b004fe049d6ae2mr3681519lfb.0.1694624028523; 
- Wed, 13 Sep 2023 09:53:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGp8B1gEI/3ZQ9C3N8IdbLVsl6t5HP7MRJGoKh3mgc6mi3ZCeY0JqdjSTaCUnx7fBbgv42XOQ==
-X-Received: by 2002:a05:6512:3050:b0:4fe:49d:6ae2 with SMTP id
- b16-20020a056512305000b004fe049d6ae2mr3681506lfb.0.1694624028147; 
- Wed, 13 Sep 2023 09:53:48 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
- (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ bh=4TTxQOCDOWFA0p2jwGlB97ue19qCIKfMgOp8dZqLo94=;
+ b=QwrxcfxicgaaFnvFSyIeLiWKD04Kvgfd2XTjjUowsRtUeSM+tYs5B2xpmP6J80TbFs
+ mpa4gATSgKc8+mXSfS7SpEZqajsggMQzCETn87X4QrT5HC8nopEi65WXCEF8bdQTML3b
+ o7hg5eZXCf3h+x+Frn5oENaL28M+/nDTvEG36Zl9tJQutZ8mUADmVJdyeGGGg0jvTWX6
+ TZ7KVzOO8KujLZ+I7nfSba7hFe2/XrYVtBrVBPz9nrlYWo9r3Ao82WCPwrd75YjfJOrH
+ k158UXI+YRbCuU1amd8uwgNEqloCa0PF02mGuSjvfcNe6JybTNsHRVpFPzWv/jbplrCk
+ lf/w==
+X-Gm-Message-State: AOJu0Yy2M1G3p+1sPI5yS7DggRwZCvptW+oGqaUY428c7sItYcL0CiKu
+ v6GWFU5iOzwBnmU0yy2BuT71CO4X8gXljKMHUg+59wNfP4CPGKMF+jFnm/k0NwCJIblQILfRvUI
+ 8yZADyQ+0Zh5ralbApiY++k6RIPm/6+r77kKSAkJVQr4=
+X-Received: by 2002:a2e:854e:0:b0:2bd:bc9:30aa with SMTP id
+ u14-20020a2e854e000000b002bd0bc930aamr7755915ljj.23.1695044489207; 
+ Mon, 18 Sep 2023 06:41:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEgqBmH2hwom+Lx5lEzqnk0cF22EnYtz2nqSN55UwRLMM+A4J8u3a+gcEep0pBcMiR7e0h5Gw==
+X-Received: by 2002:a2e:854e:0:b0:2bd:bc9:30aa with SMTP id
+ u14-20020a2e854e000000b002bd0bc930aamr7755897ljj.23.1695044488880; 
+ Mon, 18 Sep 2023 06:41:28 -0700 (PDT)
+Received: from [10.40.98.142] ([78.108.130.194])
  by smtp.gmail.com with ESMTPSA id
- sb5-20020a170906edc500b0099bc0daf3d7sm8758990ejb.182.2023.09.13.09.53.47
+ s7-20020a17090699c700b009adcb6c0f0dsm5133635ejn.38.2023.09.18.06.41.24
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 13 Sep 2023 09:53:47 -0700 (PDT)
-Message-ID: <50da04e3-5e12-89d3-e3ad-f2ff4533a615@redhat.com>
-Date: Wed, 13 Sep 2023 18:53:46 +0200
+ Mon, 18 Sep 2023 06:41:26 -0700 (PDT)
+Message-ID: <6a4a9acf-aa1d-dc73-b171-76654e1b9d47@redhat.com>
+Date: Mon, 18 Sep 2023 15:41:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-To: Mark Pearson <mpearson-lenovo@squebb.ca>,
- Fernando Eckhardt Valle <fevalle@ipt.br>,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- "markgross@kernel.org" <markgross@kernel.org>,
- ibm-acpi-devel@lists.sourceforge.net,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- linux-kernel@vger.kernel.org
-References: <20230906195204.4478-1-fevalle@ipt.br>
- <d26d4b15-765b-a444-b740-97f95f2db58d@redhat.com>
- <c05afb18-bca5-4500-877d-d44ef3abc310@app.fastmail.com>
+To: =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Fernando Eckhardt Valle <fevalle@ipt.br>
+References: <20230915123136.4286-1-fevalle@ipt.br>
+ <97ac516a-5d9f-f58d-2313-d7d3453f58cb@linux.intel.com>
 From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <c05afb18-bca5-4500-877d-d44ef3abc310@app.fastmail.com>
+In-Reply-To: <97ac516a-5d9f-f58d-2313-d7d3453f58cb@linux.intel.com>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
+Content-Language: en-US
 X-Spam-Score: -1.7 (-)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Mark, Fernando, On 9/13/23 18:41, Mark Pearson wrote: >
- > > On Wed, Sep 13, 2023, at 11:58 AM, Hans de Goede wrote: >> Hi Fernando,
- >> >> On 9/6/23 21:52, Fernando Eckhardt Valle wrote: >>> Newer Thinkpads
- have a fea [...] 
+ 
+ Content preview:  Hi, On 9/15/23 18:18, Ilpo Järvinen wrote: > On Fri, 15 Sep
+    2023, Fernando Eckhardt Valle wrote: <snip> 
+ 
  Content analysis details:   (-1.7 points, 6.0 required)
- pts rule name              description
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [170.10.133.124 listed in wl.mailspike.net]
+  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+                             [170.10.133.124 listed in wl.mailspike.net]
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.133.124 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+                              no trust
+                             [170.10.133.124 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+                             envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -1.5 NICE_REPLY_A           Looks like a legit reply (A)
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qgT7l-0005c5-DM
-Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: sysfs
+X-Headers-End: 1qiEVO-00Cvgu-Gg
+Subject: Re: [ibm-acpi-devel] [PATCH v2] platform/x86: thinkpad_acpi: sysfs
  interface to auxmac
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -152,76 +145,25 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: linux-doc@vger.kernel.org, corbet@lwn.net,
+ LKML <linux-kernel@vger.kernel.org>, platform-driver-x86@vger.kernel.org,
+ markgross@kernel.org, ibm-acpi-devel@lists.sourceforge.net, hmh@hmh.eng.br,
+ Mark Pearson <mpearson-lenovo@squebb.ca>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Mark, Fernando,
-
-On 9/13/23 18:41, Mark Pearson wrote:
-> 
-> 
-> On Wed, Sep 13, 2023, at 11:58 AM, Hans de Goede wrote:
->> Hi Fernando,
->>
->> On 9/6/23 21:52, Fernando Eckhardt Valle wrote:
->>> Newer Thinkpads have a feature called Mac Address Passthrough.
->>> This patch provides a sysfs interface that userspace can use
->>> to get this auxiliary mac address.
->>>
->>> Signed-off-by: Fernando Eckhardt Valle <fevalle@ipt.br>
->>
->> Thank you for your patch. 
->>
->> At a minimum for this patch to be accepted you will need
->> to document the new sysfs interface in:
->>
->> Documentation/admin-guide/laptops/thinkpad-acpi.rst
->>
->> But I wonder if we should export this information to
->> userspace in this way ?
->>
->> The reason why I'm wondering is because mac-address passthrough
->> in case of using e.g. Lenovo Thunderbolt docks is already
->> supported by the kernel by code for this in drivers/net/usb/r8152.c :
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/usb/r8152.c#n1613
->>
->> So I'm wondering if we really need this, is there a planned
->> userspace API consumer of the new sysfs interface ?
->>
->> Or is this only intended as a way for a user to query this, iow
->> is this purely intended for informational purposes ?
->>
-> Hi Hans,
-> 
-> We've previously had strong pushback from the maintainers in the net tree that the MAC passthru should not be done there and should be done in user-space. I'd have to dig up the threads, but there was a preference for it to not be done in the kernel (and some frustrations at having vendor specific changes in the net driver).
-> 
-> We've also seen various timing issues (some related to ME FW doing it's thing) that makes it tricky to handle in the kernel - with added delays being needed leading to patches that can't be accepted.
-> 
-> This approach is one of the steps towards fixing this. Fernando did discuss and review this with me beforehand (apologies - I meant to add a note saying I'd been involved). If you think there is a better approach please let us know, but we figured as this is a Lenovo specific thing it made sense to have it here in thinkpad_acpi.
-> 
-> There will be a consumer (I think it's a script and udev rule) to update the MAC if a passthru-MAC address is provided via the BIOS. This will be open-source, but we haven't really figured out how to release it yet.
-> 
-> Fernando - please correct anything I've gotten wrong!
-
-Ah that is all good to know. That pretty much takes care of
-my objections / answers my questions.
-
-Fernando can you please submit a v2 which:
-
-1. Adds documentation as mentioned already
-2. Moves the special handling of "XXXXXXXXXXXX" from show()
-   to init() (writing to auxmac[] in show() is a bit weird,
-   also we only need to do this once, so it is init code)
-
-Regards,
-
-Hans
-
-
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+SGksCgpPbiA5LzE1LzIzIDE4OjE4LCBJbHBvIErDpHJ2aW5lbiB3cm90ZToKPiBPbiBGcmksIDE1
+IFNlcCAyMDIzLCBGZXJuYW5kbyBFY2toYXJkdCBWYWxsZSB3cm90ZToKCjxzbmlwPgoKPj4gKwkJ
+Z290byBhdXhtYWNpbnZhbGlkOwo+PiArCX0KPj4gKwo+PiArCWlmIChzdHJuY21wKG9iai0+c3Ry
+aW5nLnBvaW50ZXIgKyAweDgsICIjIiwgMSkgIT0gMCB8fAo+PiArCSAgICBzdHJuY21wKG9iai0+
+c3RyaW5nLnBvaW50ZXIgKyAweDE1LCAiIyIsIDEpICE9IDApIHsKPiAKPiBXaHkgdXNlIHN0cm5j
+bXAgd2l0aCAoLi4uLCAxKT8gVGhlc2Ugb2Zmc2V0cyBzaG91bGQgZGVmaW5lcyBhYm92ZSBhbmQg
+bm90IAo+IHVzZSBsaXRlcmFscy4KClJpZ2h0LCBnb29kIHBvaW50LgoKVG8gYmUgZXh0cmEgY2xl
+YXIgaGVyZSwgdGhpcyBzaG91bGQgYmUgcmVwbGFjZWQgYnkgIT0gJyMnIHN0YXRlbWVudHMsIGUu
+Zy46CgoJaWYgKG9iai0+c3RyaW5nLnBvaW50ZXJbQVVYTUFDX0JFR0lOX01BUktFUl0gIT0gJyMn
+IHx8CgkgICAgb2JqLT5zdHJpbmcucG9pbnRlcltBVVhNQUNfRU5EX01BUktFUl0gIT0gJyMnKSB7
+CgkJLi4uCgpSZWdhcmRzLAoKSGFucwoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwppYm0tYWNwaS1kZXZlbCBtYWlsaW5nIGxpc3QKaWJtLWFjcGktZGV2
+ZWxAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xp
+c3RzL2xpc3RpbmZvL2libS1hY3BpLWRldmVsCg==
