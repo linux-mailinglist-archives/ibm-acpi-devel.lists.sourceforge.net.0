@@ -2,140 +2,135 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EDBC7AD3F1
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 25 Sep 2023 10:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27AE87AD8BC
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 25 Sep 2023 15:16:38 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1qkhPt-0004ZS-Nc;
-	Mon, 25 Sep 2023 08:58:10 +0000
+	id 1qklRS-0007Uz-4g;
+	Mon, 25 Sep 2023 13:16:02 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1qkhPs-0004ZL-Br
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1qklRR-0007Uk-1U
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 25 Sep 2023 08:58:08 +0000
+ Mon, 25 Sep 2023 13:16:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Subject:Cc:To:From:Date:References:
+ In-Reply-To:Message-Id:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=9jYoDjvuIiF2NPGNNFR7POpOKaph301yFE9PJUJP/aA=; b=jT/G4VIcvctttKqmb22GKape0U
- IEb3MK0u+Ihlpeya+jyOxWVnYMK3Sj1/dxrUJ14EPV62/GBBJ4nCr8J8EMF+at5jVPgSgOwkuOaiv
- 23kSnE+m3uDqG434T3xjcTKkfEJ1DhWmlkIX94X1DsJ/H0/pJSMHUOglKRLpDh/jm3FQ=;
+ bh=GuYaxQnJLWNAfmB5LaJ/NWEiM96TNXNxEIYmi/0fQfA=; b=CC/HvILLXFinX4CIva9xxrWNVV
+ MImDfHLw3rLX+cYaG+DoeuCeFWufEBNnN3lXKUjhAC/yIe31Cb4pFpqNRC1HlZb7+IYMsymZUq/qW
+ HCxZ2bS9NUT6k/OKTRmQbtD/hkb+aebAdqMEyyRU/p+qCQiMuoI02NHf3ipwOYqNI7Cg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Type:Subject:Cc:To:From:Date:References:In-Reply-To:Message-Id:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=9jYoDjvuIiF2NPGNNFR7POpOKaph301yFE9PJUJP/aA=; b=Pkh4zygUXocguxl66f/VeIgw3w
- qIObvRqUM72BWbchKtsK294dql3XRS2hAU4n5YjwQ3jHTvyTrox5YRtM/sWjUU/JTaiPmkQ5ThmRc
- jHHRcMKqZEvcfyIBLi1h37tUlWmGMO8HyOTRTKXwZfNsW8vsxrlIE+M2KHpLfC5u+t/Y=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=GuYaxQnJLWNAfmB5LaJ/NWEiM96TNXNxEIYmi/0fQfA=; b=mN+RZ7bLWhe5fqVse7YqBfHmCK
+ ppf8rxPDlUPdpQMp5v/ogBlV7ePiO1QxJQTFbyYOll3Sd9pMLhDgXPGOv4Rmd0QtuXZWZvR1Cxbmj
+ 9FtgxDs0sSQ0vcVO8V1ZXF/rjW6aSxdCbLyryrgOBmWrXKwZA4Ie23UjfMUe23gv/rec=;
+Received: from out4-smtp.messagingengine.com ([66.111.4.28])
  by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1qkhPr-005gX5-3f for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 25 Sep 2023 08:58:08 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1695632280;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=9jYoDjvuIiF2NPGNNFR7POpOKaph301yFE9PJUJP/aA=;
- b=fCimPoqy1XdpgxlA7aUyWSK8RSlObGiHYSVJ95Oeecj5+0SATVu9SBVwjKeTXMRWhOLjIp
- TVeXlNlHPolRsx/3v9ORMdcFEWlBiNryRaVDhZM9ZRmtsNiDRm8YrwmiyfCiAKcdzI01Df
- pLLmO6VrwIspWdcYiHBmuIOc/xebiXw=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-246-tzq--CQwOriWWDdz1qWZSw-1; Mon, 25 Sep 2023 04:57:59 -0400
-X-MC-Unique: tzq--CQwOriWWDdz1qWZSw-1
-Received: by mail-ed1-f70.google.com with SMTP id
- 4fb4d7f45d1cf-532af7e9dc0so4297406a12.0
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 25 Sep 2023 01:57:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695632278; x=1696237078;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=9jYoDjvuIiF2NPGNNFR7POpOKaph301yFE9PJUJP/aA=;
- b=Ci6+rbDzWTfw9kBvBxzQnAsTe3Yui4J+oUjIS3i2XZfIfe7gnrB0fr6AysuB3EXkYj
- dECJUvvQL7k0Db7UlAZpBnmrgTAiOv0ze7vHbfXdFqFVl7/UzVD8Xff+BO1ElfImwtM7
- A8QaU4ikSE1nN8s98UDyQyI9ft+gbWPF8jtnsmvZ9v13/5g/WLoDk3STC4gOaXFtj24t
- /Xf90cjvvgvZyuzMMUJSM1xxw8U7Q7EcUWPBrqKnQpOgbKY4wywZwGNfI4i2Z5X7y9bt
- KUKxxKO1zshAP7qGcHDBdWrq9e8wlx5vPHzSlK6jgmPmK0zC8Z5iPhc0Pnmoj3fOu0Eh
- dxCg==
-X-Gm-Message-State: AOJu0YySozdOBEyaxO0MRPtGaHb0MRGKupSVQc5MJIAeidsJp5uibvW9
- F6n5c66lKaNTM5I8unHncS1V7YTZvN0kAZ+pe0omLxx0xHdsnF9Ap3qhvi+4fOnEG4ruGeszVE5
- a0mNz2bm0CL/Zog8ShV9dx4nvYk123N1qGTc=
-X-Received: by 2002:aa7:d7d4:0:b0:52f:a42a:85a3 with SMTP id
- e20-20020aa7d7d4000000b0052fa42a85a3mr5145195eds.0.1695632278261; 
- Mon, 25 Sep 2023 01:57:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEWi9IMy9qmd+fxRBkEfI4zNh3gSWBYXC8dXmPklh/1AUGyK3RZVi4CUBMQfEKDMBdqZ0ZdKg==
-X-Received: by 2002:aa7:d7d4:0:b0:52f:a42a:85a3 with SMTP id
- e20-20020aa7d7d4000000b0052fa42a85a3mr5145189eds.0.1695632277950; 
- Mon, 25 Sep 2023 01:57:57 -0700 (PDT)
-Received: from [192.168.43.127] ([109.37.149.50])
- by smtp.gmail.com with ESMTPSA id
- n18-20020a05640206d200b005224d960e66sm5201641edy.96.2023.09.25.01.57.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 Sep 2023 01:57:55 -0700 (PDT)
-Message-ID: <74ad10fa-f0f6-f80f-7db3-fb01aae6f2d5@redhat.com>
-Date: Mon, 25 Sep 2023 10:57:52 +0200
+ id 1qklRN-005tGR-Gv for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 25 Sep 2023 13:16:01 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailout.nyi.internal (Postfix) with ESMTP id 0064D5C26F7;
+ Mon, 25 Sep 2023 08:56:24 -0400 (EDT)
+Received: from imap52 ([10.202.2.102])
+ by compute5.internal (MEProxy); Mon, 25 Sep 2023 08:56:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:sender
+ :subject:subject:to:to; s=fm3; t=1695646584; x=1695732984; bh=Gu
+ YaxQnJLWNAfmB5LaJ/NWEiM96TNXNxEIYmi/0fQfA=; b=PqZbUoiAyGkzFKLha3
+ Psvg7JkD+vdeOtZsc+v2Qtv5fzlZFsgi/RiWmOQabYiP7AzDSxvjC+NN3w9SVy45
+ /Ck0yHNVq0kmP9Zj6ZxoADe4ETOIf1gBbgmdUJdEKs/EYHY3UukpfsbZZHtBC8qc
+ 1SWC48hL0qesGSlX/PB53rV1GOfI/27m12q9G8oNBJnqhI1gexDCAEB/acEfIhqp
+ hV07Aq1gKn47czQTGlrIpURiNUWAuqIES3dEJudEajVfgVbccw1iuR4FMrMx8Z2U
+ ChkQvhunKUpXApOs/KwGd0zenlfldjOmd+wGaVYHMsIUln3xYB3wWTMRzPJG1rRl
+ ClOQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:sender:subject
+ :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+ :x-sasl-enc; s=fm2; t=1695646584; x=1695732984; bh=GuYaxQnJLWNAf
+ mB5LaJ/NWEiM96TNXNxEIYmi/0fQfA=; b=YizDOkAcYDPJNJIKsg0K5Xa5pYa3F
+ 6MvMQDB12OFvC8DDmu2Tmie4kerF2y6wpyyyxXt0wh5/TVyc5Wrouhcj/mSudzjG
+ jmpA36KMdV4PkS0gSj9R05u9U9mS4hWebpMPqEPYK9458DIvaBnERdpF4jd8sNMl
+ d/0vNSt/1eB6ni8ddjTe6SUWCDWuly7Aao2cxuMyZbroRt4HG3tRSRU9is+uYRLl
+ UyPatJIbT8+Aj9mfa133KZf/KvNpn86Oc3V3CPNr7lxWLNAum354HOI5iuvxmbPL
+ iBHYETn8evveD5HYqOm69tQdRfmxqBUPsW//Lw4/oEBzZjWWb5dVwu2Qg==
+X-ME-Sender: <xms:eIMRZc188YaI18If8_Qi0hYPJBOurGH-1f4svv21vjCxeTDHHfu1HA>
+ <xme:eIMRZXFt5IXq1MxSu01uk3IfDih-IM5az3pTX1XL3w-8AQKqVBtRcE8N7M2zEmsPb
+ kpJSY2auUO4eMPouYM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrudelgedgheejucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedfofgr
+ rhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssg
+ drtggrqeenucggtffrrghtthgvrhhnpeeivedtkeeftdefhfdugfelgeehieeivdefffek
+ jeetuddvueeijefgjeekudevtdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuve
+ hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhhpvggrrhhs
+ ohhnqdhlvghnohhvohesshhquhgvsggsrdgtrg
+X-ME-Proxy: <xmx:eIMRZU53IhaB_TWRcOGvjRTJGadg-HQHeLtDdNuC3hpildY0fACE8w>
+ <xmx:eIMRZV1MqEjvvSVTqacPFM3Lh1nbeR7ZJPKTb3JmsGh7iHHhfyiiXQ>
+ <xmx:eIMRZfHVQ2w-HVNxjSu2qd0c55A3N58R3Tqit6uHDQgXsRt2bG3GyQ>
+ <xmx:eIMRZU6vmz7suZuPg1Oh-DggHz2EcWQgVuZhVHsxZ6QS-c0GdrBSzg>
+Feedback-ID: ibe194615:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 75C14C6008B; Mon, 25 Sep 2023 08:56:24 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-761-gece9e40c48-fm-20230913.001-gece9e40c
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Jiri Slaby <jirislaby@kernel.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Len Brown <lenb@kernel.org>, hmh@hmh.eng.br,
- Mark Pearson <mpearson-lenovo@squebb.ca>
+Message-Id: <de3914ef-6f35-47c2-b2da-a509c775ebd8@app.fastmail.com>
+In-Reply-To: <e86b094a-f55a-4bdd-9d98-5710567c54cb@kernel.org>
 References: <047d3c51-0a9e-4c3e-beef-625a7aa4f3c3@kernel.org>
  <505264f5-cbbb-4ffe-a3e4-93d2397e80da@kernel.org>
  <beeab87b-820a-475a-b0c6-99b1b8e491ea@kernel.org>
  <207922c7-7a56-499b-bbfd-9e8d6a0a06df@kernel.org>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <207922c7-7a56-499b-bbfd-9e8d6a0a06df@kernel.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-X-Spam-Score: -1.7 (-)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+ <74ad10fa-f0f6-f80f-7db3-fb01aae6f2d5@redhat.com>
+ <e86b094a-f55a-4bdd-9d98-5710567c54cb@kernel.org>
+Date: Mon, 25 Sep 2023 08:56:04 -0400
+From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
+To: "Jiri Slaby" <jirislaby@kernel.org>, "Hans de Goede" <hdegoede@redhat.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, "Len Brown" <lenb@kernel.org>,
+ "Henrique de Moraes Holschuh" <hmh@hmh.eng.br>
+X-Spam-Score: -0.9 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  +Cc Mark Pearson for thinkpad_acpi dytc support Jiri, On 9/25/23
-    09:38, Jiri Slaby wrote: > On 25. 09. 23, 9:19, Jiri Slaby wrote: >> But
-   convert_dytc_to_profile() doesn't handle this at all. Do I have a newer DYTC
-    interface? Or a broken one? > >    � [...] 
- 
- Content analysis details:   (-1.7 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Thanks Hans & Jiri, On Mon, Sep 25, 2023, at 5:15 AM, Jiri
+ Slaby wrote: > Hi, > > On 25. 09. 23, 10:57, Hans de Goede wrote: >> Jiri,
+ Thank you for all the debugging you have done on this. Can you please file
+ >> a bug wi [...] 
+ Content analysis details:   (-0.9 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
-                              no trust
-                             [170.10.133.124 listed in list.dnswl.org]
-  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
-                             [170.10.133.124 listed in wl.mailspike.net]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [66.111.4.28 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [66.111.4.28 listed in wl.mailspike.net]
+ -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
-                             envelope-from domain
+ envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
-  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -1.5 NICE_REPLY_A           Looks like a legit reply (A)
- -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1qkhPr-005gX5-3f
+ author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1qklRN-005tGR-Gv
 Subject: Re: [ibm-acpi-devel] WARNING at drivers/acpi/platform_profile.c:74
  in platform_profile_show()
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -151,34 +146,38 @@ List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
 Cc: "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
- platform-driver-x86@vger.kernel.org,
+ "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>,
  Linux kernel mailing list <linux-kernel@vger.kernel.org>,
  ibm-acpi-devel@lists.sourceforge.net
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-K0NjIE1hcmsgUGVhcnNvbiBmb3IgdGhpbmtwYWRfYWNwaSBkeXRjIHN1cHBvcnQKCkppcmksCgpP
-biA5LzI1LzIzIDA5OjM4LCBKaXJpIFNsYWJ5IHdyb3RlOgo+IE9uIDI1LiAwOS4gMjMsIDk6MTks
-IEppcmkgU2xhYnkgd3JvdGU6Cj4+IEJ1dCBjb252ZXJ0X2R5dGNfdG9fcHJvZmlsZSgpIGRvZXNu
-J3QgaGFuZGxlIHRoaXMgYXQgYWxsLiBEbyBJIGhhdmUgYSBuZXdlciBEWVRDIGludGVyZmFjZT8g
-T3IgYSBicm9rZW4gb25lPwo+IAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBDYXNl
-ICgweDAwKQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB7Cj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTG9jYWwxID0gMHgwMTAwCj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTG9jYWwxIHw9IDB4ODAwMDAwMDAKPiDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBMb2NhbDEgfD0gMHgwMAo+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIExvY2FsMSB8PSAweDAxCj4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIH0KPiAKPiBJLmUuIHZlcnNpb24gOC4wLCBpdCBzZWVtcy4K
-PiAKPiBGdWxsIERTRFQgZm9yIHJlZmVyZW5jZToKPiBodHRwczovL2RlY2liZWwuZmkubXVuaS5j
-ei9+eHNsYWJ5L24vRFNEVC5kc2wKCk1hcmssIGNhbiB5b3UgcGxlYXNlIHRha2UgYSBsb29rIGF0
-IHRoaXMgKGl0IGlzIGEgdGhpbmtwYWRfYWNwaSBkeXRjIGlzc3VlKT8KCkppcmksIFRoYW5rIHlv
-dSBmb3IgYWxsIHRoZSBkZWJ1Z2dpbmcgeW91IGhhdmUgZG9uZSBvbiB0aGlzLiBDYW4geW91IHBs
-ZWFzZSBmaWxlCmEgYnVnIHdpdGggdGhlIGRldGFpbHMgLyBzdW1tYXJ5IGhlcmU6CgpodHRwczov
-L2J1Z3ppbGxhLmtlcm5lbC5vcmcvZW50ZXJfYnVnLmNnaT9wcm9kdWN0PURyaXZlcnMKClVzaW5n
-IFBsYXRmb3JtX3g4NiBhcyBjb21wb25lbnQgc28gdGhhdCBNYXJrIGhhcyBhbGwgdGhlIGluZm8g
-aW4gb25lIHBsYWNlID8KCgpSZWdhcmRzLAoKSGFucwoKcC5zLgoKTWFyaywgbWF5YmUgc2hvdWxk
-IGFkZCB5b3UgdG8gdGhlIE1BSU5UQUlORVJTIHNlY3Rpb24gZm9yIHRoaW5rcGFkX2FjcGkgPwoK
-CgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwppYm0tYWNw
-aS1kZXZlbCBtYWlsaW5nIGxpc3QKaWJtLWFjcGktZGV2ZWxAbGlzdHMuc291cmNlZm9yZ2UubmV0
-Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2libS1hY3BpLWRl
-dmVsCg==
+Thanks Hans & Jiri,
+
+On Mon, Sep 25, 2023, at 5:15 AM, Jiri Slaby wrote:
+> Hi,
+>
+> On 25. 09. 23, 10:57, Hans de Goede wrote:
+>> Jiri, Thank you for all the debugging you have done on this. Can you please file
+>> a bug with the details / summary here:
+>> 
+>> https://bugzilla.kernel.org/enter_bug.cgi?product=Drivers
+>> 
+>> Using Platform_x86 as component so that Mark has all the info in one place ?
+>
+> Done:
+> https://bugzilla.kernel.org/show_bug.cgi?id=217947
+>
+Ack - replied to the ticket with details. 
+
+We'll need to debug what is going on and I think I need a patch to improve the PSC vs AMT mode detection (and handling the error to....)
+
+Mark
+
+
+_______________________________________________
+ibm-acpi-devel mailing list
+ibm-acpi-devel@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
