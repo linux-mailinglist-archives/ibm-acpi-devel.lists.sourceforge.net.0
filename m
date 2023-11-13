@@ -2,131 +2,137 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E45D7EA18C
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 13 Nov 2023 17:55:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C497EA1BF
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 13 Nov 2023 18:16:17 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1r2aDS-0004vb-Jn;
-	Mon, 13 Nov 2023 16:55:14 +0000
+	id 1r2aXQ-00058G-6D;
+	Mon, 13 Nov 2023 17:15:52 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1r2aDR-0004vU-3D
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1r2aXN-000589-Si
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 13 Nov 2023 16:55:13 +0000
+ Mon, 13 Nov 2023 17:15:50 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:Cc:
+ To:From:Date:References:In-Reply-To:Message-Id:MIME-Version:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4nE4dUxYqdoe8QHwz0M06hubKIFptkAxqfhEejltdOs=; b=G4Nmj6bwTi9HFS+qUjUBkswkdL
- V6QXUtg+JvBavhPuE/Z7Ffl8GWH1pQdVrR0YLP1Jlsh/lwcjXTwcH24TW7fj6UfoSUK5wzyofHn8R
- VdGXEDTkEqLxiIsyZLLOYGjyxcfsU050dF7/ytS37GF5DbJ5glPcHwE8s1AX6WLyp1Rg=;
+ bh=Xjl3PNRx506qQQwOSRwtutB1hA6UYpeEKoxJbO5Gnkw=; b=NRfZD8VQagWHxZDCB2BpZ1b0Dw
+ HMmD/VnBQ0GPFi8dZOjx/142h/nMxQev8lfTEuNgZbID8PZnJH7yG4/kV4tuEjjE/s/4Zg7resNCI
+ ARA2SAu8XKKMA43QP1nBPs0Ml0Ldl+aVtvUS9JVOWgKTRDgCERuRZ6xbHnEMbBNbno/Y=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:Subject:Cc:To:From:Date:References
+ :In-Reply-To:Message-Id:MIME-Version:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4nE4dUxYqdoe8QHwz0M06hubKIFptkAxqfhEejltdOs=; b=Vb97Sq2+JhzGsHXXRGDJbCIhK2
- fnZNY50ywUSow4JONzuJgXog8lYtFRHn6MqZCBYyDGlyLmm9zJA550UMDiauDlOJyFLwbjSG8WZ/V
- W2Tj8cVVBRosKTApXr7Fnej0CXQ9XYSnh+UBkjpbbh1EP4KYi5nfCt71vKFvbUtl73c8=;
+ bh=Xjl3PNRx506qQQwOSRwtutB1hA6UYpeEKoxJbO5Gnkw=; b=P62jgsnHHHE3E3ajNcLadJSthe
+ ICZFkM05hqgYBCXgAxcO66d5GaF8bYMRvoS2CpcsXeSj73PjTN6lXrUY0uE/7w1P1BptuHnkn0jD4
+ cwHGomzNoNipxgPPChhQ3PTuc5X1I3yvhCTVzczZG/noMJ/4rGuIsXwwN7w8ZqmC2EWA=;
 Received: from out2-smtp.messagingengine.com ([66.111.4.26])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ by sfi-mx-1.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1r2aDN-0006jl-Tx for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 13 Nov 2023 16:55:11 +0000
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
- by mailout.nyi.internal (Postfix) with ESMTP id 72BF35C020C;
- Mon, 13 Nov 2023 11:55:02 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
- by compute1.internal (MEProxy); Mon, 13 Nov 2023 11:55:02 -0500
+ id 1r2aXN-004v1c-2C for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 13 Nov 2023 17:15:49 +0000
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailout.nyi.internal (Postfix) with ESMTP id BFFFD5C0217;
+ Mon, 13 Nov 2023 12:15:41 -0500 (EST)
+Received: from imap52 ([10.202.2.102])
+ by compute3.internal (MEProxy); Mon, 13 Nov 2023 12:15:41 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to; s=fm1; t=1699894502; x=
- 1699980902; bh=4nE4dUxYqdoe8QHwz0M06hubKIFptkAxqfhEejltdOs=; b=e
- pNEY1q9ENltwLtFJDHhFkZb4EYkpnBlfK+dfBc0Ym9N9kj+4mBaTDu9uoZbnIp5+
- XEZwtYKwZC631ioYurMjRPmePcQCY+w8Qu+S5syYcL/XYbUoDbjUjKgwLSiQid4b
- +GbgOEvittuByugR1UOHwxAsNtKhhPt9Pt0kNPPaPYD+q/qHoGCpPoUDNtMvoiXo
- Fnye7a4wbSu9tN7lP1r5T7FAclyKEtKXqCUlDTaQE5PpQkSyLgQeWMJqUy971x6G
- IMA95RBy+W8le87b1/TcObhxW7vo7rWM6uyBbEcBae9Dl3Qz402lTGUR23HDJH53
- zFmFjXercrZA7HEKbyMlQ==
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:sender:subject:subject:to:to; s=fm1; t=
+ 1699895741; x=1699982141; bh=Xjl3PNRx506qQQwOSRwtutB1hA6UYpeEKox
+ JbO5Gnkw=; b=VVJnelt04xr7An3ZNx3CBH8DA55apBOBObvi4RSzti0koVspfE1
+ qNbJpl06bYm8WqP24Y5eLizWnUoI+vGaVzSYPd9GRpCmkvpIL949ZPzIho0guXj0
+ MQa/E1k0HBKCNyLLD0ITtbJ6XejDTATfhv/WManOXewwFdX1ErNUH+oqTQWPcMYr
+ BBahN0bncWgKmOH1yP3Zn6q0J8i+J8OFt4ftwi+xc8jOWWR0FKQzLAIwAnZglAMs
+ zufP2XOOlY0RDlrfMwYXCXpq+oDRQnGGaaN9dTw7XfCtggQpdfCQW2eMVa8qwl1n
+ NysQ6xPUFiVRxZwhcqalvbbaYMVvWqKblDA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1699894502; x=
- 1699980902; bh=4nE4dUxYqdoe8QHwz0M06hubKIFptkAxqfhEejltdOs=; b=B
- VXWqpGHbNJoTofNZEb43l23Hr6kXGkONbMXPM2Zez1d0rQ1lX3CSk5PKv60Xga13
- yvmD8RTSnwhcofSIiexxPh7GoaQmSwlEQMz6yNuBepPHI9bwbzpRvsSx58OwRCLd
- x9o7XzbUlQw6DJqYpGn0xoTA9tUdatnrRpn1qd2OUrPpj99tRHdndYYRRt4aOsdS
- dh+9M/BuX18Nd1hezPhm2RZ93/lv4zx7lDqEY4Ue0aEBKgOy1E7LfbDBWq/JIu+x
- sHA6F2wEQN2zFrvND6bnKOdANi5cCDaULcAsUVJqpuyBQp+x4m7BRmIAFV8lgDwe
- h4KPQpagjj+TQX9qomOgw==
-X-ME-Sender: <xms:5lRSZT32p3ftJeLgsAe_U8Bh0loKOzJ_Ukha1tXgGDRoTqOt4-YQUw>
- <xme:5lRSZSHC8AdWL1tVIaBLzC_zdOojp_497VvTPZsPcOIjnBIeSPsb-S8Jq-hqccY-L
- DsvSijDeybIo5DLNRc>
-X-ME-Received: <xmr:5lRSZT6muDtKDafYze-K2ZYifb-hTDqZ75i6GzM71Xxk_Ov1JBLn-gjsKOROGUj4fb4NoN-fbtfwPmk2>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeftddgledvucetufdoteggodetrfdotf
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+ :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
+ 1699895741; x=1699982141; bh=Xjl3PNRx506qQQwOSRwtutB1hA6UYpeEKox
+ JbO5Gnkw=; b=ZWod9TPuyH01dQsK7C6Old4FnZ9V4sTNrKGhmIdG6Rmdf1ixPMy
+ fHyKQ6H+IrOr/oEdQhbLRX1aB019oSqyzD80r7SaHfqcXKcvdYHWYBYmx3DxrOw0
+ fbvLizZMfrZagVqUeKe4M20Ffk1c3YdmcTRuLTQqMGW8iGzUfOgWfMaHoXMVa++Y
+ U9342ROppG5YQ2bDv7GB8lQFvjghep8NWayx7ep8s6X1A7lVvqwaZBt2TRkxPWuA
+ Nbz+qVorOtRLtphr94TZNtSOCOe1S5O1+FqNyuLsbzV8uX1Xp1UwU1vANtV9IUpi
+ DquuK1AzIH395IFSlCkc5C54E07KMPNG9VA==
+X-ME-Sender: <xms:vVlSZTBYjVGxdNmO0S4PYQjm2WpFuODVCMjfB8gUsN8fzv8ioNwm5A>
+ <xme:vVlSZZjIn-o1XIlMoGv73gRaWPgTpnRDK__QbsQAZ5GqCFbXCdW-vA22tk1-ZAtJz
+ Y99cSQ_cqnGeu3xp0E>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvkedrudeftddgleehucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucgoteeftdduqddtudculdduhedmnecujfgurhephf
- fvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrrhhkucfrvggrrhhs
- ohhnuceomhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsggsrdgtrgeqnecuggftrf
- grthhtvghrnhepfedtvdejfeelffevhffgjeejheduteetieeguefgkefhhfegjeduueet
- hefgvdffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
- epmhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsggsrdgtrg
-X-ME-Proxy: <xmx:5lRSZY3oBZ3FaRuboYKU-1iRES4qrqBU9RUq0rPot7hNM9md60owdA>
- <xmx:5lRSZWF2sg6UHHLzeOeSR-fiHGD9pYvI3dJ7o0Uyq8_RgQQAT0C74Q>
- <xmx:5lRSZZ8pqlhuRZwfqcjrqmRn8_rP7BmR0m3BruVuM8bqmBlyj1fJgA>
- <xmx:5lRSZTOEg4vU5UHMzE8JfHnYYh_a4ZXsdZlO-CULJQe0f8VCPaUFeA>
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdfo
+ rghrkhcurfgvrghrshhonhdfuceomhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsg
+ gsrdgtrgeqnecuggftrfgrthhtvghrnhephfefgedufeetgfetlefgkefgvdejleelvefg
+ hfejfffhtdeitdejfeekvdeugfeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+ hmpehmrghilhhfrhhomhepmhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsggsrdgt
+ rg
+X-ME-Proxy: <xmx:vVlSZelQwSe6UBOUu5fHM5coyocRTmri4TDlbjxeXSGubU2V2xJVuQ>
+ <xmx:vVlSZVw1sIXRGWmhgXzVY-ulyippl2Yz8NqRQ9donS1_SG1CbgHpoA>
+ <xmx:vVlSZYQkC3FaJycU9YnJkx4Jx5jQ9AhGwURM1SCC5wlETzyHWY_D9w>
+ <xmx:vVlSZedwNdNuKwXvamJpeI4M47o05GDyJXn5NeUWmRjhAxaZRU7uaA>
 Feedback-ID: ibe194615:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 13 Nov 2023 11:55:01 -0500 (EST)
-From: Mark Pearson <mpearson-lenovo@squebb.ca>
-To: mpearson-lenovo@squebb.ca
-Date: Mon, 13 Nov 2023 11:54:33 -0500
-Message-ID: <20231113165453.6335-1-mpearson-lenovo@squebb.ca>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <mpearson-lenovo@squebb.ca>
-References: <mpearson-lenovo@squebb.ca>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 4CF54C6008B; Mon, 13 Nov 2023 12:15:41 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-1108-g3a29173c6d-fm-20231031.005-g3a29173c
 MIME-Version: 1.0
+Message-Id: <36bb8aaf-643c-4736-abe5-e5a911f24aa1@app.fastmail.com>
+In-Reply-To: <c8a025e-2da2-693f-aa94-679aba79827b@linux.intel.com>
+References: <mpearson-lenovo@squebb.ca>
+ <20231113165453.6335-1-mpearson-lenovo@squebb.ca>
+ <c8a025e-2da2-693f-aa94-679aba79827b@linux.intel.com>
+Date: Mon, 13 Nov 2023 12:15:20 -0500
+From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
+To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
 X-Spam-Score: -0.9 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Some new Thinkpads have a new improved performance mode
- available.
- Add support to make this mode usable. To avoid having to create a new profile, 
- just use the improved performance mode in place of the existing performance
- mode, when available. 
+ 
+ Content preview:  Thanks Ilpo, On Mon, Nov 13, 2023, at 11:59 AM, Ilpo Järvinen
+    wrote: > On Mon, 13 Nov 2023, Mark Pearson wrote: > >> Some new Thinkpads
+    have a new improved performance mode available. >> Add support to make this
+    [...] 
+ 
  Content analysis details:   (-0.9 points, 6.0 required)
- pts rule name              description
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [66.111.4.26 listed in wl.mailspike.net]
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [66.111.4.26 listed in list.dnswl.org]
+                             low trust
+                             [66.111.4.26 listed in list.dnswl.org]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ -0.0 SPF_PASS               SPF: sender matches SPF record
+  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+                             [66.111.4.26 listed in wl.mailspike.net]
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
+                             author's domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+                             valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.0 T_SCC_BODY_TEXT_LINE   No description available.
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1r2aDN-0006jl-Tx
-Subject: [ibm-acpi-devel] [PATCH v3] platform/x86: Add support for improved
- performance mode
+                             envelope-from domain
+ -0.0 T_SCC_BODY_TEXT_LINE   No description available.
+  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1r2aXN-004v1c-2C
+Subject: Re: [ibm-acpi-devel] [PATCH v3] platform/x86: Add support for
+ improved performance mode
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -139,123 +145,97 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: ibm-acpi-devel@lists.sourceforge.net, linux-kernel@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, hdegoede@redhat.com,
- mario.limonciello@amd.com, ilpo.jarvinen@linux.intel.com
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Cc: Hans de Goede <hdegoede@redhat.com>, ibm-acpi-devel@lists.sourceforge.net,
+ "Limonciello, Mario" <mario.limonciello@amd.com>,
+ LKML <linux-kernel@vger.kernel.org>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Some new Thinkpads have a new improved performance mode available.
-Add support to make this mode usable.
-
-To avoid having to create a new profile, just use the improved performance
-mode in place of the existing performance mode, when available.
-
-Tested on P14s AMD G4 AMD.
-
-Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
----
-Changes in v2: updated implementation for DYTC_UP_SUPPORT define
-Changes in v3: 
- - Add in missing BIT for define, somehow lost in previous commit
- - Cosmetic clean-ups
-
- drivers/platform/x86/thinkpad_acpi.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
-
-diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index ad460417f901..3a9d2cc71b6a 100644
---- a/drivers/platform/x86/thinkpad_acpi.c
-+++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -10136,6 +10136,7 @@ static struct ibm_struct proxsensor_driver_data = {
- 
- #define DYTC_CMD_SET          1 /* To enable/disable IC function mode */
- #define DYTC_CMD_MMC_GET      8 /* To get current MMC function and mode */
-+#define DYTC_CMD_UP_CAP     0xA /* To get Ultra-performance capability */
- #define DYTC_CMD_RESET    0x1ff /* To reset back to default */
- 
- #define DYTC_CMD_FUNC_CAP     3 /* To get DYTC capabilities */
-@@ -10152,6 +10153,7 @@ static struct ibm_struct proxsensor_driver_data = {
- 
- #define DYTC_FUNCTION_STD     0  /* Function = 0, standard mode */
- #define DYTC_FUNCTION_CQL     1  /* Function = 1, lap mode */
-+#define DYTC_FUNCTION_TMS     9  /* Function = 9, TMS mode */
- #define DYTC_FUNCTION_MMC     11 /* Function = 11, MMC mode */
- #define DYTC_FUNCTION_PSC     13 /* Function = 13, PSC mode */
- #define DYTC_FUNCTION_AMT     15 /* Function = 15, AMT mode */
-@@ -10163,11 +10165,14 @@ static struct ibm_struct proxsensor_driver_data = {
- #define DYTC_MODE_MMC_LOWPOWER 3  /* Low power mode */
- #define DYTC_MODE_MMC_BALANCE  0xF  /* Default mode aka balanced */
- #define DYTC_MODE_MMC_DEFAULT  0  /* Default mode from MMC_GET, aka balanced */
-+#define DYTC_NOMODE            0xF  /* When Function does not have a mode */
- 
- #define DYTC_MODE_PSC_LOWPOWER 3  /* Low power mode */
- #define DYTC_MODE_PSC_BALANCE  5  /* Default mode aka balanced */
- #define DYTC_MODE_PSC_PERFORM  7  /* High power mode aka performance */
- 
-+#define DYTC_UP_SUPPORT    BIT(8)  /* Ultra-performance (TMS) mode support */
-+
- #define DYTC_ERR_MASK       0xF  /* Bits 0-3 in cmd result are the error result */
- #define DYTC_ERR_SUCCESS      1  /* CMD completed successful */
- 
-@@ -10185,6 +10190,7 @@ static enum platform_profile_option dytc_current_profile;
- static atomic_t dytc_ignore_event = ATOMIC_INIT(0);
- static DEFINE_MUTEX(dytc_mutex);
- static int dytc_capabilities;
-+static bool dytc_ultraperf_cap;
- static bool dytc_mmc_get_available;
- static int profile_force;
- 
-@@ -10355,6 +10361,17 @@ static int dytc_profile_set(struct platform_profile_handler *pprof,
- 	if (err)
- 		goto unlock;
- 
-+	/* Set TMS mode appropriately (enable for performance), if available */
-+	if (dytc_ultraperf_cap) {
-+		int cmd;
-+
-+		cmd = DYTC_SET_COMMAND(DYTC_FUNCTION_TMS, DYTC_NOMODE,
-+				       profile == PLATFORM_PROFILE_PERFORMANCE);
-+		err = dytc_command(cmd, &output);
-+		if (err)
-+			return err;
-+	}
-+
- 	if (dytc_capabilities & BIT(DYTC_FC_MMC)) {
- 		if (profile == PLATFORM_PROFILE_BALANCED) {
- 			/*
-@@ -10429,6 +10446,7 @@ static struct platform_profile_handler dytc_profile = {
- static int tpacpi_dytc_profile_init(struct ibm_init_struct *iibm)
- {
- 	int err, output;
-+	int cmd;
- 
- 	/* Setup supported modes */
- 	set_bit(PLATFORM_PROFILE_LOW_POWER, dytc_profile.choices);
-@@ -10484,6 +10502,16 @@ static int tpacpi_dytc_profile_init(struct ibm_init_struct *iibm)
- 		dbg_printk(TPACPI_DBG_INIT, "No DYTC support available\n");
- 		return -ENODEV;
- 	}
-+	err = dytc_command(DYTC_CMD_UP_CAP, &output);
-+	dytc_ultraperf_cap = output & DYTC_UP_SUPPORT;
-+	if (dytc_ultraperf_cap) {
-+		pr_debug("TMS is supported\n");
-+		/* Disable TMS by default - only use with performance mode */
-+		cmd = DYTC_SET_COMMAND(DYTC_FUNCTION_TMS, DYTC_NOMODE, 0);
-+		err = dytc_command(cmd, &output);
-+		if (err)
-+			return err;
-+	}
- 
- 	dbg_printk(TPACPI_DBG_INIT,
- 			"DYTC version %d: thermal mode available\n", dytc_version);
--- 
-2.41.0
-
-
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+VGhhbmtzIElscG8sCgpPbiBNb24sIE5vdiAxMywgMjAyMywgYXQgMTE6NTkgQU0sIElscG8gSsOk
+cnZpbmVuIHdyb3RlOgo+IE9uIE1vbiwgMTMgTm92IDIwMjMsIE1hcmsgUGVhcnNvbiB3cm90ZToK
+Pgo+PiBTb21lIG5ldyBUaGlua3BhZHMgaGF2ZSBhIG5ldyBpbXByb3ZlZCBwZXJmb3JtYW5jZSBt
+b2RlIGF2YWlsYWJsZS4KPj4gQWRkIHN1cHBvcnQgdG8gbWFrZSB0aGlzIG1vZGUgdXNhYmxlLgo+
+PiAKPj4gVG8gYXZvaWQgaGF2aW5nIHRvIGNyZWF0ZSBhIG5ldyBwcm9maWxlLCBqdXN0IHVzZSB0
+aGUgaW1wcm92ZWQgcGVyZm9ybWFuY2UKPj4gbW9kZSBpbiBwbGFjZSBvZiB0aGUgZXhpc3Rpbmcg
+cGVyZm9ybWFuY2UgbW9kZSwgd2hlbiBhdmFpbGFibGUuCj4+IAo+PiBUZXN0ZWQgb24gUDE0cyBB
+TUQgRzQgQU1ELgo+PiAKPj4gU2lnbmVkLW9mZi1ieTogTWFyayBQZWFyc29uIDxtcGVhcnNvbi1s
+ZW5vdm9Ac3F1ZWJiLmNhPgo+PiAtLS0KPj4gQ2hhbmdlcyBpbiB2MjogdXBkYXRlZCBpbXBsZW1l
+bnRhdGlvbiBmb3IgRFlUQ19VUF9TVVBQT1JUIGRlZmluZQo+PiBDaGFuZ2VzIGluIHYzOiAKPj4g
+IC0gQWRkIGluIG1pc3NpbmcgQklUIGZvciBkZWZpbmUsIHNvbWVob3cgbG9zdCBpbiBwcmV2aW91
+cyBjb21taXQKPj4gIC0gQ29zbWV0aWMgY2xlYW4tdXBzCj4+IAo+PiAgZHJpdmVycy9wbGF0Zm9y
+bS94ODYvdGhpbmtwYWRfYWNwaS5jIHwgMjggKysrKysrKysrKysrKysrKysrKysrKysrKysrKwo+
+PiAgMSBmaWxlIGNoYW5nZWQsIDI4IGluc2VydGlvbnMoKykKPj4gCj4+IGRpZmYgLS1naXQgYS9k
+cml2ZXJzL3BsYXRmb3JtL3g4Ni90aGlua3BhZF9hY3BpLmMgYi9kcml2ZXJzL3BsYXRmb3JtL3g4
+Ni90aGlua3BhZF9hY3BpLmMKPj4gaW5kZXggYWQ0NjA0MTdmOTAxLi4zYTlkMmNjNzFiNmEgMTAw
+NjQ0Cj4+IC0tLSBhL2RyaXZlcnMvcGxhdGZvcm0veDg2L3RoaW5rcGFkX2FjcGkuYwo+PiArKysg
+Yi9kcml2ZXJzL3BsYXRmb3JtL3g4Ni90aGlua3BhZF9hY3BpLmMKPj4gQEAgLTEwMTM2LDYgKzEw
+MTM2LDcgQEAgc3RhdGljIHN0cnVjdCBpYm1fc3RydWN0IHByb3hzZW5zb3JfZHJpdmVyX2RhdGEg
+PSB7Cj4+ICAKPj4gICNkZWZpbmUgRFlUQ19DTURfU0VUICAgICAgICAgIDEgLyogVG8gZW5hYmxl
+L2Rpc2FibGUgSUMgZnVuY3Rpb24gbW9kZSAqLwo+PiAgI2RlZmluZSBEWVRDX0NNRF9NTUNfR0VU
+ICAgICAgOCAvKiBUbyBnZXQgY3VycmVudCBNTUMgZnVuY3Rpb24gYW5kIG1vZGUgKi8KPj4gKyNk
+ZWZpbmUgRFlUQ19DTURfVVBfQ0FQICAgICAweEEgLyogVG8gZ2V0IFVsdHJhLXBlcmZvcm1hbmNl
+IGNhcGFiaWxpdHkgKi8KPj4gICNkZWZpbmUgRFlUQ19DTURfUkVTRVQgICAgMHgxZmYgLyogVG8g
+cmVzZXQgYmFjayB0byBkZWZhdWx0ICovCj4+ICAKPj4gICNkZWZpbmUgRFlUQ19DTURfRlVOQ19D
+QVAgICAgIDMgLyogVG8gZ2V0IERZVEMgY2FwYWJpbGl0aWVzICovCj4+IEBAIC0xMDE1Miw2ICsx
+MDE1Myw3IEBAIHN0YXRpYyBzdHJ1Y3QgaWJtX3N0cnVjdCBwcm94c2Vuc29yX2RyaXZlcl9kYXRh
+ID0gewo+PiAgCj4+ICAjZGVmaW5lIERZVENfRlVOQ1RJT05fU1REICAgICAwICAvKiBGdW5jdGlv
+biA9IDAsIHN0YW5kYXJkIG1vZGUgKi8KPj4gICNkZWZpbmUgRFlUQ19GVU5DVElPTl9DUUwgICAg
+IDEgIC8qIEZ1bmN0aW9uID0gMSwgbGFwIG1vZGUgKi8KPj4gKyNkZWZpbmUgRFlUQ19GVU5DVElP
+Tl9UTVMgICAgIDkgIC8qIEZ1bmN0aW9uID0gOSwgVE1TIG1vZGUgKi8KPj4gICNkZWZpbmUgRFlU
+Q19GVU5DVElPTl9NTUMgICAgIDExIC8qIEZ1bmN0aW9uID0gMTEsIE1NQyBtb2RlICovCj4+ICAj
+ZGVmaW5lIERZVENfRlVOQ1RJT05fUFNDICAgICAxMyAvKiBGdW5jdGlvbiA9IDEzLCBQU0MgbW9k
+ZSAqLwo+PiAgI2RlZmluZSBEWVRDX0ZVTkNUSU9OX0FNVCAgICAgMTUgLyogRnVuY3Rpb24gPSAx
+NSwgQU1UIG1vZGUgKi8KPj4gQEAgLTEwMTYzLDExICsxMDE2NSwxNCBAQCBzdGF0aWMgc3RydWN0
+IGlibV9zdHJ1Y3QgcHJveHNlbnNvcl9kcml2ZXJfZGF0YSA9IHsKPj4gICNkZWZpbmUgRFlUQ19N
+T0RFX01NQ19MT1dQT1dFUiAzICAvKiBMb3cgcG93ZXIgbW9kZSAqLwo+PiAgI2RlZmluZSBEWVRD
+X01PREVfTU1DX0JBTEFOQ0UgIDB4RiAgLyogRGVmYXVsdCBtb2RlIGFrYSBiYWxhbmNlZCAqLwo+
+PiAgI2RlZmluZSBEWVRDX01PREVfTU1DX0RFRkFVTFQgIDAgIC8qIERlZmF1bHQgbW9kZSBmcm9t
+IE1NQ19HRVQsIGFrYSBiYWxhbmNlZCAqLwo+PiArI2RlZmluZSBEWVRDX05PTU9ERSAgICAgICAg
+ICAgIDB4RiAgLyogV2hlbiBGdW5jdGlvbiBkb2VzIG5vdCBoYXZlIGEgbW9kZSAqLwo+PiAgCj4+
+ICAjZGVmaW5lIERZVENfTU9ERV9QU0NfTE9XUE9XRVIgMyAgLyogTG93IHBvd2VyIG1vZGUgKi8K
+Pj4gICNkZWZpbmUgRFlUQ19NT0RFX1BTQ19CQUxBTkNFICA1ICAvKiBEZWZhdWx0IG1vZGUgYWth
+IGJhbGFuY2VkICovCj4+ICAjZGVmaW5lIERZVENfTU9ERV9QU0NfUEVSRk9STSAgNyAgLyogSGln
+aCBwb3dlciBtb2RlIGFrYSBwZXJmb3JtYW5jZSAqLwo+PiAgCj4+ICsjZGVmaW5lIERZVENfVVBf
+U1VQUE9SVCAgICBCSVQoOCkgIC8qIFVsdHJhLXBlcmZvcm1hbmNlIChUTVMpIG1vZGUgc3VwcG9y
+dCAqLwo+PiArCj4+ICAjZGVmaW5lIERZVENfRVJSX01BU0sgICAgICAgMHhGICAvKiBCaXRzIDAt
+MyBpbiBjbWQgcmVzdWx0IGFyZSB0aGUgZXJyb3IgcmVzdWx0ICovCj4+ICAjZGVmaW5lIERZVENf
+RVJSX1NVQ0NFU1MgICAgICAxICAvKiBDTUQgY29tcGxldGVkIHN1Y2Nlc3NmdWwgKi8KPj4gIAo+
+PiBAQCAtMTAxODUsNiArMTAxOTAsNyBAQCBzdGF0aWMgZW51bSBwbGF0Zm9ybV9wcm9maWxlX29w
+dGlvbiBkeXRjX2N1cnJlbnRfcHJvZmlsZTsKPj4gIHN0YXRpYyBhdG9taWNfdCBkeXRjX2lnbm9y
+ZV9ldmVudCA9IEFUT01JQ19JTklUKDApOwo+PiAgc3RhdGljIERFRklORV9NVVRFWChkeXRjX211
+dGV4KTsKPj4gIHN0YXRpYyBpbnQgZHl0Y19jYXBhYmlsaXRpZXM7Cj4+ICtzdGF0aWMgYm9vbCBk
+eXRjX3VsdHJhcGVyZl9jYXA7Cj4+ICBzdGF0aWMgYm9vbCBkeXRjX21tY19nZXRfYXZhaWxhYmxl
+Owo+PiAgc3RhdGljIGludCBwcm9maWxlX2ZvcmNlOwo+PiAgCj4+IEBAIC0xMDM1NSw2ICsxMDM2
+MSwxNyBAQCBzdGF0aWMgaW50IGR5dGNfcHJvZmlsZV9zZXQoc3RydWN0IHBsYXRmb3JtX3Byb2Zp
+bGVfaGFuZGxlciAqcHByb2YsCj4+ICAJaWYgKGVycikKPj4gIAkJZ290byB1bmxvY2s7Cj4+ICAK
+Pj4gKwkvKiBTZXQgVE1TIG1vZGUgYXBwcm9wcmlhdGVseSAoZW5hYmxlIGZvciBwZXJmb3JtYW5j
+ZSksIGlmIGF2YWlsYWJsZSAqLwo+PiArCWlmIChkeXRjX3VsdHJhcGVyZl9jYXApIHsKPj4gKwkJ
+aW50IGNtZDsKPj4gKwo+PiArCQljbWQgPSBEWVRDX1NFVF9DT01NQU5EKERZVENfRlVOQ1RJT05f
+VE1TLCBEWVRDX05PTU9ERSwKPj4gKwkJCQkgICAgICAgcHJvZmlsZSA9PSBQTEFURk9STV9QUk9G
+SUxFX1BFUkZPUk1BTkNFKTsKPj4gKwkJZXJyID0gZHl0Y19jb21tYW5kKGNtZCwgJm91dHB1dCk7
+Cj4+ICsJCWlmIChlcnIpCj4+ICsJCQlyZXR1cm4gZXJyOwo+PiArCX0KPj4gKwo+PiAgCWlmIChk
+eXRjX2NhcGFiaWxpdGllcyAmIEJJVChEWVRDX0ZDX01NQykpIHsKPj4gIAkJaWYgKHByb2ZpbGUg
+PT0gUExBVEZPUk1fUFJPRklMRV9CQUxBTkNFRCkgewo+PiAgCQkJLyoKPj4gQEAgLTEwNDI5LDYg
+KzEwNDQ2LDcgQEAgc3RhdGljIHN0cnVjdCBwbGF0Zm9ybV9wcm9maWxlX2hhbmRsZXIgZHl0Y19w
+cm9maWxlID0gewo+PiAgc3RhdGljIGludCB0cGFjcGlfZHl0Y19wcm9maWxlX2luaXQoc3RydWN0
+IGlibV9pbml0X3N0cnVjdCAqaWlibSkKPj4gIHsKPj4gIAlpbnQgZXJyLCBvdXRwdXQ7Cj4+ICsJ
+aW50IGNtZDsKPj4gIAo+PiAgCS8qIFNldHVwIHN1cHBvcnRlZCBtb2RlcyAqLwo+PiAgCXNldF9i
+aXQoUExBVEZPUk1fUFJPRklMRV9MT1dfUE9XRVIsIGR5dGNfcHJvZmlsZS5jaG9pY2VzKTsKPj4g
+QEAgLTEwNDg0LDYgKzEwNTAyLDE2IEBAIHN0YXRpYyBpbnQgdHBhY3BpX2R5dGNfcHJvZmlsZV9p
+bml0KHN0cnVjdCBpYm1faW5pdF9zdHJ1Y3QgKmlpYm0pCj4+ICAJCWRiZ19wcmludGsoVFBBQ1BJ
+X0RCR19JTklULCAiTm8gRFlUQyBzdXBwb3J0IGF2YWlsYWJsZVxuIik7Cj4+ICAJCXJldHVybiAt
+RU5PREVWOwo+PiAgCX0KPj4gKwllcnIgPSBkeXRjX2NvbW1hbmQoRFlUQ19DTURfVVBfQ0FQLCAm
+b3V0cHV0KTsKPgo+IEhtbSwgYXJlIHlvdSBtaXNzaW5nIGVycm9yIGhhbmRsaW5nIGhlcmU/Cj4K
+RG9oLi4uLnllcywgaXQgc2hvdWxkIGNoZWNrIHRoYXQuIE15IGJhZC4KCkknbGwgaG9sZCBvZmYg
+YSBkYXkgb3IgdHdvIG9uIHRoZSBuZXh0IHBhdGNoIHNvIEknbSBub3Qgc3BhbW1pbmcgdGhlIGxp
+c3QgaW4gY2FzZSB0aGVyZSBpcyBvdGhlciBmZWVkYmFjaywgYW5kIGRvIGEgZml4IGZvciB0aGF0
+LiAKSSBkb24ndCB3YW50IHRoZSBkcml2ZXIgdG8gZXJyb3Igb3V0IG9uIHRoaXMgLSBidXQgaXQg
+c2hvdWxkbid0IGNoZWNrIChhbmQgcG90ZW50aWFsbHkgZW5hYmxlKSB0aGUgZmVhdHVyZSBpZiB0
+aGF0IHJlZ2lzdGVyIHJlYWQgZmFpbHMuIEkgd2lsbCBnbyBhbmQgZG91YmxlIGNoZWNrIG9uIHNv
+bWUgb2xkZXIgcGxhdGZvcm1zIHRvbyBhcyBhIHNhbml0eSBjaGVjay4KClRoYW5rcyBmb3IgdGhl
+IHJldmlldy4KTWFyawoKCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fCmlibS1hY3BpLWRldmVsIG1haWxpbmcgbGlzdAppYm0tYWNwaS1kZXZlbEBsaXN0cy5z
+b3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5uZXQvbGlzdHMvbGlzdGlu
+Zm8vaWJtLWFjcGktZGV2ZWwK
