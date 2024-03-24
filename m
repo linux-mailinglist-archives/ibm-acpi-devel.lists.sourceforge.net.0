@@ -2,140 +2,127 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C84A83A809
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 24 Jan 2024 12:37:04 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57125887F2F
+	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 24 Mar 2024 22:26:56 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1rSbYT-00024W-Hs;
-	Wed, 24 Jan 2024 11:36:30 +0000
+	id 1roVMP-0006K8-RI;
+	Sun, 24 Mar 2024 21:26:33 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1rSbYS-00024Q-5t
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1roVMJ-0006Jv-P9
  for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 24 Jan 2024 11:36:29 +0000
+ Sun, 24 Mar 2024 21:26:27 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=lDSRakiKAT2B6ofx7EvlBV9eTcBblML4nZlCUITHSSM=; b=mQR5t34siG0y2oig/MkTlslPfg
- ocQFTIz2LBop/BxgrYJ4MJ3C/ZBpLAqCh49GVlAUeS2rJKHvx6hImqBiufcLSgjIVLFjWXb8XkBla
- HMsVbD1FI/fRY3YF5Rrz+L7vyxLtPR4kUWz8aktklkXwy/TLExgYQn/bByYhHImnjLtc=;
+ bh=h31yFYMuvD8W4+jwFqiAM6h7FP1FGnBAkqLSOrHU3Lw=; b=bVYS7uwpVW9gi+/aDsdzRVXxKe
+ T+wi+tZa+Ag8MV4sOSH5qum7eedkdtnTfzIVPXRprzUmeCQ1cKB5l2eVvu6LXrNUeqS8sISKGCh9Z
+ 3c6tQwt5NTSj8J+EohZWDOe3yOv3acE5V+odCXUPxQdqUN4kIUv3eUbTiTIpAAmYxsPE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=lDSRakiKAT2B6ofx7EvlBV9eTcBblML4nZlCUITHSSM=; b=SRhy/JN9rDNUXKWbzKw7OExzlR
- 7wCVmVNbyPKQd1Fv7A2SYj4al5IRho3RdptMVnvDLJ8XM/CbgHL3GkKIyEsbHx97JcnT6C7YO1UBW
- 8wrKDV7VixHExOVhnDDIHAB4mPSzr9spX2mJkIxiDujDBywFVdfBvtOAoTn8E9FUDel4=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
+ bh=h31yFYMuvD8W4+jwFqiAM6h7FP1FGnBAkqLSOrHU3Lw=; b=XU2UP04qB5Isuv+1GJAxi8mN86
+ /yZKos0KAjo7d9Rg5v5vrCIb58gShPwGznoLGYi3XdW1mHDrRx02WHW3wabIhOO8QviRQBMlT2x5S
+ wSltM+uPRDRS2/T5rFfsXdgG7loQradNOYTr8AQLbyJF3Oo+6milpYRswnFORHYBbdRU=;
+Received: from fhigh5-smtp.messagingengine.com ([103.168.172.156])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1rSbYQ-0006Tt-6m for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 24 Jan 2024 11:36:29 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1706096175;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=lDSRakiKAT2B6ofx7EvlBV9eTcBblML4nZlCUITHSSM=;
- b=Jd+AmFV+zEkE6a14JY3vjO7vn7gjLu2D/2Q7D8Hgwg9zrPUimARchuwmWsxFhufmLO5X1O
- 5QiaQQTmP02u2PoszmFU55SwJnDD7u9dqC9d2yCJPzMictIJZHuKEKght1EGEnWtCEur74
- rkHPCIVsacRFQDP4C9Fym85rUoBMZWo=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-215-HPVwpEa5Mi2am7TGU-p4pQ-1; Wed, 24 Jan 2024 06:36:14 -0500
-X-MC-Unique: HPVwpEa5Mi2am7TGU-p4pQ-1
-Received: by mail-ej1-f70.google.com with SMTP id
- a640c23a62f3a-a2b6c2a6083so261523966b.3
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Wed, 24 Jan 2024 03:36:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1706096173; x=1706700973;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=lDSRakiKAT2B6ofx7EvlBV9eTcBblML4nZlCUITHSSM=;
- b=Rykg6/b94A/k1QtvTsaHsXkUFJSvO2uH5vUVpkF238guwadSzcPy8mZoRvgLXduaB+
- uTqfQumhF1YzKKZpFo8nNHeM3jKSWdZJ4PHmKoSCUWchx/UWzNDXk5elEZYW5nvNfZP0
- JIEugyWXJ57c0Xdr01AKTjqNPkvViizv0beVD5Vpx6VPTjmgYA0kf3QbWv1A/8PseXBW
- L06U+P/LBzbXXLdEayN9Ax7mY+G04ADt/qUx1PNvvHsirOpxDc/y49iuZ35mR9KIP8+/
- 8jknaePjvrjtRwKDmKYf1unRBCYbT9/cJdI0/Vvj89GCZyix4QagLCX7T4EnIZPI+TgG
- BiLA==
-X-Gm-Message-State: AOJu0YyLHKSDkRNOVV+N4WHiCSn0FrNF40Gzx8R/N6h61GqEt6CCrP+G
- d2XtRmyl4d556Qpzs1ErImV91tqMT4wnA2rBwAd3x4lNrmftAQI7sfTAvE/xhHiRHd4LXjTJBVq
- qkR9ujvTQtM7haGZ56Yij8VLErWoJ9FpgLlKmgHC4UQGuNnXEt8mhLakp0tMp88KRmav2TVn9cP
- oMWzEu
-X-Received: by 2002:aa7:d153:0:b0:559:ccc4:157e with SMTP id
- r19-20020aa7d153000000b00559ccc4157emr1898786edo.30.1706096172841; 
- Wed, 24 Jan 2024 03:36:12 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEbkFhaqGgp4JIgULoQZvHb32PfGeuysNhs3QSQci33vcD3ZgfhotbQsVxpLHBxR5pDXxUVMA==
-X-Received: by 2002:aa7:d153:0:b0:559:ccc4:157e with SMTP id
- r19-20020aa7d153000000b00559ccc4157emr1898779edo.30.1706096172463; 
- Wed, 24 Jan 2024 03:36:12 -0800 (PST)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
- (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
- by smtp.gmail.com with ESMTPSA id
- a5-20020a50ff05000000b0055bff4843casm4588208edu.49.2024.01.24.03.36.11
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 24 Jan 2024 03:36:12 -0800 (PST)
-Message-ID: <27f9a2a2-b7d9-45a0-b326-c755d5c3c674@redhat.com>
-Date: Wed, 24 Jan 2024 12:36:11 +0100
+ id 1roVMI-0002ZV-Ow for ibm-acpi-devel@lists.sourceforge.net;
+ Sun, 24 Mar 2024 21:26:27 +0000
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailfhigh.nyi.internal (Postfix) with ESMTP id 01C4611400BD;
+ Sun, 24 Mar 2024 17:08:35 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+ by compute3.internal (MEProxy); Sun, 24 Mar 2024 17:08:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:subject:subject:to:to; s=fm3; t=1711314514; x=
+ 1711400914; bh=h31yFYMuvD8W4+jwFqiAM6h7FP1FGnBAkqLSOrHU3Lw=; b=T
+ /NM5Y/xMwutq0VrqeHwqRc2r8ppPk9dY1B2IZL8uT9NpuLsalDAujHe0vKOxWN7D
+ kDcR/gLhDd3GPsmlLdfo4AIe/6IdiX6V48z3zZtYtJBE4koHbE5Ykh6M9bnyaTU0
+ xdNCFs9USPfsZL8AFFr1M09w5hBvCUlHaPV/LP/w37Ok86m+3iDg+DLdt8PtOmgu
+ 49EBR2KuMVi2c9d1MdofmkjFmvVDoDz/WWY/J8DzIyJFdQ427puh7bmIvNn6by3q
+ J0/Std9DHJaKlaE28IgSAB6RlwaP/aTAUp6HdJeKfkWMYNsd01KbJxKh9sXWrXzN
+ QZbxJaiZbdPsXsStBMFbA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1711314514; x=
+ 1711400914; bh=h31yFYMuvD8W4+jwFqiAM6h7FP1FGnBAkqLSOrHU3Lw=; b=l
+ X/aY3JHbBgmpQojhGhfXeLCwqqnVCMFCSqjoavW14X6VPeYjSpLSLditBG3khcVo
+ Wh4h+IgGHvptPU2/iCZj1S3I+344KNuPSLvOB6xAHUQfSDaua9F9kCJG7486xNPE
+ Xuhv7WSucI+mCrPYwPa8Sq12Vq4S7yBvOvub0cF/Vz2chdvtiNi9LsSYdmlefgm/
+ RYny9wAKEU+2Aw3NXsOcBFR2MitoimbyIyCf/UER+GjA6zYET0zlwzV0Ipd964HX
+ fSUJ+TcAgWdso35kKxAEo+f8d69EBSL4oCDdb9adLIpJKeE0agR52MDErxcM2JNR
+ JzAbE7kKPpt/cLkfkMjyw==
+X-ME-Sender: <xms:UpYAZmi0k0huX4N1N70jkM2iLw3_yK4A05HIypRnLfoK83ZoqnIRhg>
+ <xme:UpYAZnBcz2K8DLpkbYU-TO6rwx-zYoFSrA7rN4TpPezzEC8TgYyLZJzyayi9TOHY1
+ p3asiCyIZ4HI6mGd-c>
+X-ME-Received: <xmr:UpYAZuFT963srjrqy1__Ujkdiitn9JbOru9My5xUw_h1Gjo1US945jCWkb17>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledruddtjedgudeglecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+ necuuegrihhlohhuthemuceftddtnecuogetfedtuddqtdduucdludehmdenucfjughrpe
+ fhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeforghrkhcurfgvrghr
+ shhonhcuoehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggrqeenucggtf
+ frrghtthgvrhhnpeeftddvjeefleffvefhgfejjeehudetteeigeeugfekhffhgeejudeu
+ teehgfdvffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+ hmpehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggr
+X-ME-Proxy: <xmx:UpYAZvRI-v2pPnEQrqdStZ75-P448KxQavA-owbAUmMKEWUAwo2XoA>
+ <xmx:UpYAZjwMUBZYv_m5Tz0zlrnbGOMReOToiZYPOIKm9Sa1B-Wz088CiA>
+ <xmx:UpYAZt65STtAo-7V_NOXk7myip5IwXwktp3sxTXhhJzIvV8enaHn_A>
+ <xmx:UpYAZgwpp8p0UAXfuqDD43W4wxsRlvE4_J5rpyBxTNcUHp5NV4TC1w>
+ <xmx:UpYAZrgYPPLgGFH8f9mXXrHSzlAvXWNHfy1kPOMmqWohzzAVp8Qj9w>
+Feedback-ID: ibe194615:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 24 Mar 2024 17:08:33 -0400 (EDT)
+From: Mark Pearson <mpearson-lenovo@squebb.ca>
+To: mpearson-lenovo@squebb.ca
+Date: Sun, 24 Mar 2024 17:07:57 -0400
+Message-ID: <20240324210817.192033-1-mpearson-lenovo@squebb.ca>
+X-Mailer: git-send-email 2.44.0
+In-Reply-To: <mpearson-lenovo@squebb.ca>
+References: <mpearson-lenovo@squebb.ca>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: =?UTF-8?Q?Rafa=C5=82_Lalik?= <rafallalik@gmail.com>
-References: <5367c372-a56e-4fae-9467-d27722eacea5@gmail.com>
- <17047781-70f4-40ce-8228-ea28f07ae108@redhat.com>
- <CAJ_dsKP__qDio9=k7-8qEGkADgXvshjmfjfmrVjaMEZV3mFAjQ@mail.gmail.com>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <CAJ_dsKP__qDio9=k7-8qEGkADgXvshjmfjfmrVjaMEZV3mFAjQ@mail.gmail.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-X-Spam-Score: -1.7 (-)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+X-Spam-Score: -0.9 (/)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  Hi Rafał, On 1/23/24 23:25, Rafał Lalik wrote: > Hi, > >
-    Thanks for reply. > > I cannot recall it now but I think the issue hit me
-    with one of the 6.x version and stays until now, but I don't remember when
-    one [...] 
- 
- Content analysis details:   (-1.7 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Hi, This series adds support trackpoint doubletap and some
+ new hotkey functionality which is being added on Lenovo laptops. - FN+N -
+ display system debug info. Used by customer support with Windows users. [...]
+ Content analysis details:   (-0.9 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
-  0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
-                             [170.10.129.124 listed in wl.mailspike.net]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
-                              no trust
-                             [170.10.129.124 listed in list.dnswl.org]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [103.168.172.156 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
-                             envelope-from domain
-  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
-                             valid
+ envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
-                             author's domain
- -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
- -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -1.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1rSbYQ-0006Tt-6m
-Subject: Re: [ibm-acpi-devel] thinkpad-acpi crashes on loading
+ author's domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Headers-End: 1roVMI-0002ZV-Ow
+Subject: [ibm-acpi-devel] [PATCH 0/4] platform/x86,
+ input: Support for new events on
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -148,150 +135,51 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: ibm-acpi-devel@lists.sourceforge.net, ilpo.jarvinen@linux.intel.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: ibm-acpi-devel@lists.sourceforge.net, dmitry.torokhov@gmail.com,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ vsankar@lenovo.com, hdegoede@redhat.com, hmh@hmh.eng.br,
+ linux-input@vger.kernel.org, ilpo.jarvinen@linux.intel.com,
+ peter.hutterer@redhat.com, njoshi1@lenovo.com
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-SGkgUmFmYcWCLAoKT24gMS8yMy8yNCAyMzoyNSwgUmFmYcWCIExhbGlrIHdyb3RlOgo+IEhpLAo+
-IAo+IFRoYW5rcyBmb3IgcmVwbHkuCj4gCj4gSSBjYW5ub3QgcmVjYWxsIGl0IG5vdyBidXQgSSB0
-aGluayB0aGUgaXNzdWUgaGl0IG1lIHdpdGggb25lIG9mIHRoZSA2LnggdmVyc2lvbiBhbmQgc3Rh
-eXMgdW50aWwgbm93LCBidXQgSSBkb24ndCByZW1lbWJlciB3aGVuIG9uZSBleGFjdGx5Lgo+IAo+
-IEkgYW0gbm90IHZlcnkgZmFtaWxpYXIgd2l0aCBrZXJuZWwgaW50ZXJuYWxzLiBEbyB5b3UgaGF2
-ZSBhbnkgaWRlYSBob3cgSSBjb3VsZCBzdGFydCBkaWdnaW5nIGl0Pwo+IAo+IFdoYXQgcGFydCBv
-ZiBrZXJuZWwgSSBjb3VsZCBsb29rIGludG8gdG8gbWFrZSBpdCBwZXJoYXBzIHdvcmtpbmcgYWdh
-aW4gb3IgYmVpbmcgY2xvc2VyIHRvIHNvbHV0aW9uP8KgCgpJIGhhdmUgbm8gaWRlYS4gWW91IGFy
-ZSB0aGUgb25seSBwZXJzb24gcmVwb3J0aW5nIHRoaXMsIHNvIHRoaXMgbGlrZWx5CmlzIHNvbWV0
-aGluZyBzcGVjaWZpYyB0byB5b3VyIHNldHVwLiBJdCBjb3VsZCBldmVuIG1lYW4geW91ciBsYXB0
-b3AKaXMgc3RhcnRpbmcgdG8gYnJlYWsgZG93biAvIGJlIGEgaGFyZHdhcmUgZGVmZWN0LgoKTWF5
-YmUgeW91IGNhbiB0cnkgZ2VudG9vJ3MgcHJlLWJ1aWxkIGtlcm5lbCBiaW5hcmllcyBhbmQgc2Vl
-IGlmIHRob3NlCmhhdmUgdGhlIHNhbWUgaXNzdWUgPwoKT3IgdHJ5IHNldHRpbmcgeW91ciB1c2Ut
-ZmxhZ3MgYW5kIHRoZSBrZXJuZWwtY29uZmlnIHRvIHRoZSBkZWZhdWx0CmdlbnRvbyBzZXR0aW5n
-cyA/CgpCYXNpY2FsbHkgZm9yIHN0YXJ0ZXJzIEkgd291bGQgdHJ5IHRvIHJlbW92ZSBhbnkgY29u
-ZmlndXJhdGlvbiB3aGljaAppcyBzcGVjaWFsIHRvIHlvdXIgaW5zdGFsbGF0aW9uLiBJIGV4cGVj
-dCB0aGF0IHdpbGwgbGVhZCB0byBhIHN0YWJsZQpzZXR1cCBhZ2FpbiAodW5sZXNzIHRoZXJlIHJl
-YWxseSBpcyBhIGh3IChSQU0/KSBkZWZlY3QpLgoKVGhlbiBhZnRlciB0aGlzIHlvdSBjYW4gcmUt
-aW50cm9kdWNlIGFueSBjdXN0b21pemF0aW9ucyB5b3UgaGF2ZQpkb25lICpvbmUgYXQgYSB0aW1l
-KiB1bnRpbCB5b3UgaGF2ZSBmb3VuZCB3aGF0IGNhdXNlcyB0aGUgcHJvYmxlbSBhbmQKdGhlbiB3
-ZSBjYW4gc2VlIGZyb20gdGhlcmUuCgpSZWdhcmRzLAoKSGFucwoKCgoKCj4gd3QuLCAyMyBzdHkg
-MjAyNCwgMTE6MDIgdcW8eXRrb3duaWsgSGFucyBkZSBHb2VkZSA8aGRlZ29lZGVAcmVkaGF0LmNv
-bSA8bWFpbHRvOmhkZWdvZWRlQHJlZGhhdC5jb20+PiBuYXBpc2HFgjoKPiAKPiAgICAgSGksCj4g
-Cj4gICAgIE9uIDEvMjMvMjQgMDI6MjIsIFJhZmFsIExhbGlrIHdyb3RlOgo+ICAgICA+IEhpLAo+
-ICAgICA+Cj4gICAgID4gSSBhbSBleHBlcmllbmNpbmcgaXNzdWVzIHdpdGggdHBhY3BpIG1vZHVs
-ZS4gSXQgc3RhcnRlZCB3aXRoIG9uZSBvZiB0aGUga2VybmVsLTYgdmVyc2lvbnMsIGJ1dCBjYW5u
-b3QgcGluIHBvaW50IGV4YWN0IHZlcnNpb24uIEl0IHN0YXRlZCB3aXRoIGJlaW5nIHVuYWJsZSB0
-byBoaWJlcm5hdGUgdGhlIHN5c3RlbS4gSSBmaWd1cmVkIG91dCBpdCB3YXMgZHVlIHRvIG9uZSBv
-ZiB0aGUgdWRldi13b3JrZXIgcHJvY2Vzc2VzIGJlaW5nIGluIHRoZSAndW5pbnRlcnJ1cHRpYmxl
-IHNsZWVwJyBzdGF0ZS4KPiAgICAgPgo+ICAgICA+IEkgZGlnIHRoZSBpc3N1ZSBmdXJ0aGVyIGFu
-ZCBmb3VuZCBvdXQgdGhhdCB0aGVyZSBhcmUgaXNzdWVzIHdpdGggdGhlIHRoaW5rcGFkX2FjcGkg
-bW9kdWxlIHdoaWNoIGNyYXNoZXMgb24gbG9hZGluZy4gaXQgd2FzIGF1dG9sb2FkZWQgc28gSSBi
-bGFja2xpc3RlZCBpdCBhbmQgdGhlIGhpYmVybmF0aW9uIGlzc3VlcyB3ZXJlIGdvbmUuCj4gICAg
-ID4KPiAgICAgPiBCdXQgbm93IHdpdGggaXQgYmVpbmcgYmxhY2tsaXN0ZWQgb24gYm9vdCwgSSBt
-YSB0cnlpbmcgdG8gbG9hZCBpdCBtYW51YWxseSB3aXRoIGZvbGxvd2luZyByZXN1bHQuCj4gICAg
-ID4KPiAgICAgPiDCoCAjIG1vZHByb2JlIHRoaW5rcGFkX2FjcGkKPiAgICAgPiDCoCBLaWxsZWQK
-PiAKPiAgICAgVGhlIGNyYXNoIHNlZW1zIHRvIGhhcHBlbiBvbiBtb2R1bGUgbG9hZGluZyB0aW1l
-LCBiZWZvcmUgZXZlbgo+ICAgICB0aGUgbW9kdWxlJ3MgaW5pdCgpIGZ1bmN0aW9uIGlzIHJ1bi4K
-PiAKPiAgICAgWW91IG1lbnRpb24gdGhhdCB5b3UgYXJlIHNlZWluZyB0aGlzIHdpdGggbXVsdGlw
-bGUga2VybmVsCj4gICAgIHZlcnNpb25zIHJpZ2h0ID8KPiAKPiAgICAgU28gSSBndWVzcyB0aGlz
-IGlzIHNvbWV0aGluZyBzcGVjaWZpYyB0byB5b3VyIGtlcm5lbCBjb25maWd1cmF0aW9uCj4gICAg
-IGFuZC9vciB0aGUgY29tcGlsZXIgeW91IGFyZSB1c2luZy4KPiAKPiAgICAgUmVnYXJkcywKPiAK
-PiAgICAgSGFucwo+IAo+IAo+IAo+ICAgICA+IGRtZXNnIHNob3dzIG1lIHRoaXM6Cj4gICAgID4K
-PiAgICAgPiBbwqAgNTkwLjUzMTgyOV0gQlVHOiB1bmFibGUgdG8gaGFuZGxlIHBhZ2UgZmF1bHQg
-Zm9yIGFkZHJlc3M6IGZmZmZjOTAwMDMzZWJlOTgKPiAgICAgPiBbwqAgNTkwLjUzMTgzOF0gI1BG
-OiBzdXBlcnZpc29yIHJlYWQgYWNjZXNzIGluIGtlcm5lbCBtb2RlCj4gICAgID4gW8KgIDU5MC41
-MzE4NDFdICNQRjogZXJyb3JfY29kZSgweDAwMDApIC0gbm90LXByZXNlbnQgcGFnZQo+ICAgICA+
-IFvCoCA1OTAuNTMxODQ1XSBQR0QgMTAwMDAwMDY3IFA0RCAxMDAwMDAwNjcgUFVEIDEwMDEyYzA2
-NyBQTUQgMTA3ODUzMDY3IFBURSAwCj4gICAgID4gW8KgIDU5MC41MzE4NTJdIE9vcHM6IDAwMDAg
-WyMyXSBQUkVFTVBUIFNNUCBQVEkKPiAgICAgPiBbwqAgNTkwLjUzMTg3NF0gQ1BVOiAwIFBJRDog
-MTA5ODUgQ29tbTogbW9kcHJvYmUgVGFpbnRlZDogUMKgwqDCoMKgIFVEwqDCoMKgIE/CoMKgwqDC
-oMKgwqAgNi43LjEtZ2VudG9vLXIxICMxCj4gICAgID4gW8KgIDU5MC41MzE4NzhdIEhhcmR3YXJl
-IG5hbWU6IExFTk9WTyAyMEFSUzBYTDAwLzIwQVJTMFhMMDAsIEJJT1MgR0pFVEE0V1cgKDIuNTQg
-KSAwMy8yNy8yMDIwCj4gICAgID4gW8KgIDU5MC41MzE4ODBdIFJJUDogMDAxMDppZGVtcG90ZW50
-X2luaXRfbW9kdWxlKzB4YWMvMHgyOTAKPiAgICAgPiBbwqAgNTkwLjUzMTg4N10gQ29kZTogN2Eg
-Y2EgYWUgMDAgNDkgYzEgZWQgMzggMzEgYzkgNGEgOGIgMTQgZWQgMjAgMzEgZDQgODIgNGUgOGQg
-MjQgZWQgMjAgMzEgZDQgODIgNDggOGQgNDIgZjggNDggODUgZDIgNDggMGYgNDQgYzEgNDggODUg
-YzAgNzQgMWIgPDRjPiAzYiAzOCAwZiA4NCBiZiAwMCAwMCAwMCA0OCA4YiA0MCAwOCA0OCA4NSBj
-MCA3NCAwOSA0OCA4MyBlOCAwOAo+ICAgICA+IFvCoCA1OTAuNTMxODkxXSBSU1A6IDAwMTg6ZmZm
-ZmM5MDAwM2ZjZmU5OCBFRkxBR1M6IDAwMDEwMjgyCj4gICAgID4gW8KgIDU5MC41MzE4OTVdIFJB
-WDogZmZmZmM5MDAwMzNlYmU5OCBSQlg6IDAwMDA1NjJlMTA1YWU1NjAgUkNYOiAwMDAwMDAwMDAw
-MDAwMDAwCj4gICAgID4gW8KgIDU5MC41MzE4OThdIFJEWDogZmZmZmM5MDAwMzNlYmVhMCBSU0k6
-IGZmZmZmZmZmODIyNDY3YmQgUkRJOiAwMDAwMDAwMDAwMDAwMDAwCj4gICAgID4gW8KgIDU5MC41
-MzE5MDBdIFJCUDogMDAwMDAwMDAwMDAwMDAwMCBSMDg6IDAwMDAwMDAwMDAwMDAwMDAgUjA5OiAw
-MDAwMDAwMDAwMDAwMDAwCj4gICAgID4gW8KgIDU5MC41MzE5MDJdIFIxMDogMDAwMDAwMDAwMDAw
-MDAwMCBSMTE6IDAwMDAwMDAwMDAwMDAwMDAgUjEyOiBmZmZmZmZmZjgyZDQzMzk4Cj4gICAgID4g
-W8KgIDU5MC41MzE5MDVdIFIxMzogMDAwMDAwMDAwMDAwMDA0ZiBSMTQ6IGZmZmY4ODgyMzNmMzQw
-MDAgUjE1OiBmZmZmODg4MjA3ZTY3MzM4Cj4gICAgID4gW8KgIDU5MC41MzE5MDddIEZTOsKgIDAw
-MDA3ZmYwMDRiZDVjNDAoMDAwMCkgR1M6ZmZmZjg4ODMzMjIwMDAwMCgwMDAwKSBrbmxHUzowMDAw
-MDAwMDAwMDAwMDAwCj4gICAgID4gW8KgIDU5MC41MzE5MTBdIENTOsKgIDAwMTAgRFM6IDAwMDAg
-RVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzCj4gICAgID4gW8KgIDU5MC41MzE5MTNdIENS
-MjogZmZmZmM5MDAwMzNlYmU5OCBDUjM6IDAwMDAwMDAxMmRjYzAwMDQgQ1I0OiAwMDAwMDAwMDAw
-MTcwNmYwCj4gICAgID4gW8KgIDU5MC41MzE5MTVdIENhbGwgVHJhY2U6Cj4gICAgID4gW8KgIDU5
-MC41MzE5MThdwqAgPFRBU0s+Cj4gICAgID4gW8KgIDU5MC41MzE5MjFdwqAgPyBfX2RpZSsweDFh
-LzB4NjAKPiAgICAgPiBbwqAgNTkwLjUzMTkyN13CoCA/IHBhZ2VfZmF1bHRfb29wcysweDE1OC8w
-eDQ0MAo+ICAgICA+IFvCoCA1OTAuNTMxOTMyXcKgID8gZml4dXBfZXhjZXB0aW9uKzB4MWQvMHgy
-ZjAKPiAgICAgPiBbwqAgNTkwLjUzMTkzNl3CoCA/IGV4Y19wYWdlX2ZhdWx0KzB4N2UvMHgxMzAK
-PiAgICAgPiBbwqAgNTkwLjUzMTk0Ml3CoCA/IGFzbV9leGNfcGFnZV9mYXVsdCsweDIyLzB4MzAK
-PiAgICAgPiBbwqAgNTkwLjUzMTk0OV3CoCA/IGlkZW1wb3RlbnRfaW5pdF9tb2R1bGUrMHhhYy8w
-eDI5MAo+ICAgICA+IFvCoCA1OTAuNTMxOTUzXcKgID8gaWRlbXBvdGVudF9pbml0X21vZHVsZSsw
-eDg2LzB4MjkwCj4gICAgID4gW8KgIDU5MC41MzE5NTddwqAgX194NjRfc3lzX2Zpbml0X21vZHVs
-ZSsweDRkLzB4ODAKPiAgICAgPiBbwqAgNTkwLjUzMTk2Ml3CoCBkb19zeXNjYWxsXzY0KzB4NDcv
-MHhlMAo+ICAgICA+IFvCoCA1OTAuNTMxOTY2XcKgIGVudHJ5X1NZU0NBTExfNjRfYWZ0ZXJfaHdm
-cmFtZSsweDRiLzB4NTMKPiAgICAgPiBbwqAgNTkwLjUzMTk3MV0gUklQOiAwMDMzOjB4N2ZmMDA0
-Y2RjYWQ5Cj4gICAgID4gW8KgIDU5MC41MzE5NzVdIENvZGU6IGZmIGMzIDY2IDJlIDBmIDFmIDg0
-IDAwIDAwIDAwIDAwIDAwIDBmIDFmIDQ0IDAwIDAwIDQ4IDg5IGY4IDQ4IDg5IGY3IDQ4IDg5IGQ2
-IDQ4IDg5IGNhIDRkIDg5IGMyIDRkIDg5IGM4IDRjIDhiIDRjIDI0IDA4IDBmIDA1IDw0OD4gM2Qg
-MDEgZjAgZmYgZmYgNzMgMDEgYzMgNDggOGIgMGQgMjcgNzMgMGMgMDAgZjcgZDggNjQgODkgMDEg
-NDgKPiAgICAgPiBbwqAgNTkwLjUzMTk3OF0gUlNQOiAwMDJiOjAwMDA3ZmZlZGFhMjczYTggRUZM
-QUdTOiAwMDAwMDIwMiBPUklHX1JBWDogMDAwMDAwMDAwMDAwMDEzOQo+ICAgICA+IFvCoCA1OTAu
-NTMxOTgyXSBSQVg6IGZmZmZmZmZmZmZmZmZmZGEgUkJYOiAwMDAwNTYyZTEwNWFkYzkwIFJDWDog
-MDAwMDdmZjAwNGNkY2FkOQo+ICAgICA+IFvCoCA1OTAuNTMxOTg0XSBSRFg6IDAwMDAwMDAwMDAw
-MDAwMDAgUlNJOiAwMDAwNTYyZTEwNWFlNTYwIFJESTogMDAwMDAwMDAwMDAwMDAwMwo+ICAgICA+
-IFvCoCA1OTAuNTMxOTg2XSBSQlA6IDAwMDAwMDAwMDAwMDAwMDAgUjA4OiAwMDAwN2ZmMDA0ZGE0
-YjIwIFIwOTogMDAwMDAwMDAwMDAwMDAzZgo+ICAgICA+IFvCoCA1OTAuNTMxOTg4XSBSMTA6IDAw
-MDAwMDAwMDAwMDAwNTAgUjExOiAwMDAwMDAwMDAwMDAwMjAyIFIxMjogMDAwMDU2MmUxMDVhZTU2
-MAo+ICAgICA+IFvCoCA1OTAuNTMxOTkxXSBSMTM6IDAwMDAwMDAwMDAwNDAwMDAgUjE0OiAwMDAw
-NTYyZTEwNWFkZGMwIFIxNTogMDAwMDAwMDAwMDAwMDAzZgo+ICAgICA+IFvCoCA1OTAuNTMxOTk0
-XcKgIDwvVEFTSz4KPiAgICAgPiBbwqAgNTkwLjUzMTk5Nl0gTW9kdWxlcyBsaW5rZWQgaW46IHRo
-aW5rcGFkX2FjcGkoKykgbnZyYW0gbGVkdHJpZ19hdWRpbyBwbGF0Zm9ybV9wcm9maWxlIDgwMjFx
-IHVpbnB1dCBudmlkaWEoUE8pIGZ1c2UgbmZ0X2NoYWluX25hdCBuZl9uYXQgaGlkX2xlbm92byBi
-YnN3aXRjaChPKSBzbmRfYWxvb3AgcmZjb21tIGJsdWV0b290aCBlY2RoX2dlbmVyaWMgZWNjIHV2
-Y3ZpZGVvIHZpZGVvYnVmMl92bWFsbG9jIHZpZGVvYnVmMl9tZW1vcHMgdXZjIHZpZGVvYnVmMl92
-NGwyIHZpZGVvZGV2IHZpZGVvYnVmMl9jb21tb24gbWMgc25kX2hkYV9jb2RlY19oZG1pIGRtX211
-bHRpcGF0aCBkbV9tb2QgZGF4IGkyY19kZXYgaW50ZWxfcmFwbF9tc3IgcnRzeF9wY2lfc2RtbWMg
-aW50ZWxfcmFwbF9jb21tb24geDg2X3BrZ190ZW1wX3RoZXJtYWwgaW50ZWxfcG93ZXJjbGFtcCBp
-d2xtdm0gY29yZXRlbXAga3ZtX2ludGVsIGt2bSBpcnFieXBhc3MgaW5wdXRfbGVkcyBzbmRfaGRh
-X2NvZGVjX2dlbmVyaWMgbGVkX2NsYXNzIHJ0c3hfcGNpIGl3bHdpZmkgaTkxNSB0cG1fdGlzIHRw
-bV90aXNfY29yZSBzbmRfaGRhX2ludGVsIGkyY19hbGdvX2JpdCBzbmRfaW50ZWxfZHNwY2ZnIGRy
-bV9idWRkeSBlMTAwMGUgc25kX2hkYV9jb2RlYyBkcm1fZGlzcGxheV9oZWxwZXIgc25kX2h3ZGVw
-IHR0bSBzbmRfaGRhX2NvcmUgW2xhc3QgdW5sb2FkZWQ6IG52aWRpYShQTyldCj4gICAgID4gW8Kg
-IDU5MC41MzIwNDhdIENSMjogZmZmZmM5MDAwMzNlYmU5OAo+ICAgICA+IFvCoCA1OTAuNTMyMDUx
-XSAtLS1bIGVuZCB0cmFjZSAwMDAwMDAwMDAwMDAwMDAwIF0tLS0KPiAgICAgPiBbwqAgNTkwLjUz
-MjA1NF0gUklQOiAwMDEwOnRwYWNwaV9yZmtfcHJvY2ZzX3dyaXRlKzB4OTAvMHgxNDAgW3RoaW5r
-cGFkX2FjcGldCj4gICAgID4gW8KgIDU5MC41MzIwNzZdIENvZGU6IGM0IDA4IDg5IGQ4IDViIDVk
-IDQxIDVjIDQxIDVkIGMzIGJkIDAxIDAwIDAwIDAwIGViIDllIDgzIGZkIGZmIDc0IGU3IGY2IDA1
-IDI1IDcwIDAwIDAwIDgwIDc1IDU0IDRhIDhiIDA0IGU1IDcwIDg1IDRiIGExIDg5IGVmIDw0OD4g
-OGIgNDAgMTAgNDggOGIgNDAgMDggZTggMzMgY2UgNzggZTAgNGEgOGIgMmMgZTUgNzAgODUgNGIg
-YTEgODkKPiAgICAgPiBbwqAgNTkwLjUzMjA3OV0gUlNQOiAwMDE4OmZmZmZjOTAwMDMzZWJjNzgg
-RUZMQUdTOiAwMDAxMDI0Ngo+ICAgICA+IFvCoCA1OTAuNTMyMDgyXSBSQVg6IDAwMDAwMDAwMDAw
-MDAwMDAgUkJYOiAwMDAwMDAwMDAwMDAwMDAwIFJDWDogMDAwMDAwMDAwMDAwMDA2NQo+ICAgICA+
-IFvCoCA1OTAuNTMyMDg0XSBSRFg6IDAwMDAwMDAwMDAwMDAwMDYgUlNJOiBmZmZmZmZmZmExNGJj
-MGQ3IFJESTogMDAwMDAwMDAwMDAwMDAwMQo+ICAgICA+IFvCoCA1OTAuNTMyMDg2XSBSQlA6IDAw
-MDAwMDAwMDAwMDAwMDEgUjA4OiBmZmZmZmZmZmExNGNkMDk2IFIwOTogMDAwMDAwMDAwMDAwMDAy
-Ywo+ICAgICA+IFvCoCA1OTAuNTMyMDg5XSBSMTA6IDAwMDAwMDAwMDAwMDAwMDAgUjExOiBmZmZm
-YzkwMDAzM2ViYTYwIFIxMjogMDAwMDAwMDAwMDAwMDAwMAo+ICAgICA+IFvCoCA1OTAuNTMyMDkx
-XSBSMTM6IDAwMDAwMDAwMDAwMDAxMjQgUjE0OiBmZmZmZmZmZmExNGNkMDkwIFIxNTogMDAwMDAw
-MDAwMDAwMDAwMAo+ICAgICA+IFvCoCA1OTAuNTMyMDkzXSBGUzrCoCAwMDAwN2ZmMDA0YmQ1YzQw
-KDAwMDApIEdTOmZmZmY4ODgzMzIyMDAwMDAoMDAwMCkga25sR1M6MDAwMDAwMDAwMDAwMDAwMAo+
-ICAgICA+IFvCoCA1OTAuNTMyMDk2XSBDUzrCoCAwMDEwIERTOiAwMDAwIEVTOiAwMDAwIENSMDog
-MDAwMDAwMDA4MDA1MDAzMwo+ICAgICA+IFvCoCA1OTAuNTMyMDk4XSBDUjI6IGZmZmZjOTAwMDMz
-ZWJlOTggQ1IzOiAwMDAwMDAwMTJkY2MwMDA0IENSNDogMDAwMDAwMDAwMDE3MDZmMAo+ICAgICA+
-IFvCoCA1OTAuNTMyMTAxXSBub3RlOiBtb2Rwcm9iZVsxMDk4NV0gZXhpdGVkIHdpdGggaXJxcyBk
-aXNhYmxlZAo+ICAgICA+IFvCoCA1OTAuNTMyMTAzXSBub3RlOiBtb2Rwcm9iZVsxMDk4NV0gZXhp
-dGVkIHdpdGggcHJlZW1wdF9jb3VudCAxCj4gICAgID4KPiAgICAgPgo+ICAgICA+Cj4gICAgID4g
-RHVubm8gd2hldGVociB0aGlzIGlzIGtlcm5lbCBidWcgb3Igc29tZSBvdGhlciBwcm9ibGVtIHdp
-dGggbXkga2VybmVsLiBTbyBqdXN0IGxldCB5b3Uga25vdyBhbmQgcGxlYXNlIGdpdmUgbWUgc29t
-ZSBpZGVhcyBoZXJlLgo+ICAgICA+Cj4gICAgID4gcmVnYXJkcywKPiAgICAgPiBSYWZhxYIKPiAg
-ICAgPgo+IAoKCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-XwppYm0tYWNwaS1kZXZlbCBtYWlsaW5nIGxpc3QKaWJtLWFjcGktZGV2ZWxAbGlzdHMuc291cmNl
-Zm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2li
-bS1hY3BpLWRldmVsCg==
+Hi,
+
+This series adds support trackpoint doubletap and some new hotkey
+functionality which is being added on Lenovo laptops.
+ - FN+N - display system debug info. Used by customer support with
+   Windows users.
+ - FN+G - disable/enable trackpoint doubletap.
+
+We combined these into a series because there was commonality between
+what the different features were doing.
+Please let us know if you would prefer to have them as separate commits.
+
+Many thanks to Peter Hutterer and Benjamin Tissoires for the guidance on
+what would be best for exporting the events from trackpoint doubletap to
+userspace. Any mistakes are ours :)
+
+Features have been tested on Z13 G2 (doubletap & FN+G) and X1 Carbon 
+G12 (FN+N)
+
+Mark Pearson (4):
+  Input: Add trackpoint doubletap and system debug info keycodes
+  platform/x86: thinkpad_acpi: Support for trackpoint doubletap
+  platform/x86: thinkpad_acpi: Support for system debug info hotkey
+  platform/x86: thinkpad_acpi: Support hotkey to disable trackpoint
+    doubletap
+
+ drivers/platform/x86/thinkpad_acpi.c   | 31 ++++++++++++++++++++++++++
+ include/uapi/linux/input-event-codes.h |  2 ++
+ 2 files changed, 33 insertions(+)
+
+-- 
+2.44.0
+
+
+
+_______________________________________________
+ibm-acpi-devel mailing list
+ibm-acpi-devel@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
