@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6179C887F30
+	by mail.lfdr.de (Postfix) with ESMTPS id 41520887F2E
 	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 24 Mar 2024 22:26:56 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1roVMO-0002bk-7X;
-	Sun, 24 Mar 2024 21:26:32 +0000
+	id 1roVMG-00050e-10;
+	Sun, 24 Mar 2024 21:26:24 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1roVMJ-0002bQ-JV
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1roVME-00050K-64
  for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 24 Mar 2024 21:26:27 +0000
+ Sun, 24 Mar 2024 21:26:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=aeOBteVst3EdJ6UR71Pe68DjYvvvoVNomGTQddIcz0M=; b=hPrdDW6Qq7wBq+EIY0Jup0UpUT
- CgD/bPKL0FMlqHf6jcHqHF3YFBkl2zBWbXuKGOhRVagsafEFCwpA0BgzptfWSMh2Hmzo7B3cWBVdZ
- rtZmLc5xANWnIL9d2fuLOCO7e5BqVYi2+cW7YNsT4hakxJPXZgdBgoePOsHOmMVDXr3s=;
+ bh=htD7Xc/EdF+0+xuTojpID1s7Z/g8szPikEsSNl9QK4E=; b=C9pfeXQOXO2MYOMW56K2HOlCNy
+ 8a+shp2ZQOgpaPs7/7UqWIwZual4LQIjp5I7+kISKk7Sm56H0HDmT5TyoLcxwdGitYmYXiNKA1HqY
+ fvnvMBqNsIO3LR4eTjHCwVeteM8tZjkQpSg+tkWr/Ce8SWvj7XsJIckiT1enymVd7gHA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
@@ -31,47 +31,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=aeOBteVst3EdJ6UR71Pe68DjYvvvoVNomGTQddIcz0M=; b=WZQKxrPJlvKFMqos4s8gJHBBhz
- Csge1IMhW2hYPTQz5UINV5SYrphlsQ8JoFhl8R2TEjbLCMjhj2SWxQoVBNzXAvBD0gUHPlyLnOwLk
- ts/wRc9A53pymSaaC1BKJBw69JXDapQ23IYDDQZRhi1D+pHR7uKYqH6gfF79gT7Itsfs=;
+ bh=htD7Xc/EdF+0+xuTojpID1s7Z/g8szPikEsSNl9QK4E=; b=fT6dvuLuRacYM6yMYYc1ojOi8K
+ 9oGMMxiplpJpNiSOk9iLoa2hqV7vQyKrFVkTqrf76QxqM3ma+AHgZJr4YRts1hQEW+G+jVjM2thJx
+ bMQdm+TcUxKjAQK6gL19FPapPWN6IlHnvJZIpQAoIJNKtmc5hjq1WS8syc85e3M9sZW0=;
 Received: from fhigh5-smtp.messagingengine.com ([103.168.172.156])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1roVMI-0002ZW-Op for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 24 Mar 2024 21:26:27 +0000
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
- by mailfhigh.nyi.internal (Postfix) with ESMTP id C6F791140105;
- Sun, 24 Mar 2024 17:08:36 -0400 (EDT)
+ id 1roVMD-0002ZE-UT for ibm-acpi-devel@lists.sourceforge.net;
+ Sun, 24 Mar 2024 21:26:22 +0000
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailfhigh.nyi.internal (Postfix) with ESMTP id 95FD311400FF;
+ Sun, 24 Mar 2024 17:08:37 -0400 (EDT)
 Received: from mailfrontend2 ([10.202.2.163])
- by compute6.internal (MEProxy); Sun, 24 Mar 2024 17:08:36 -0400
+ by compute5.internal (MEProxy); Sun, 24 Mar 2024 17:08:37 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
  :cc:content-transfer-encoding:content-type:date:date:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:subject:subject:to:to; s=fm3; t=1711314516; x=
- 1711400916; bh=aeOBteVst3EdJ6UR71Pe68DjYvvvoVNomGTQddIcz0M=; b=F
- ABWxOxMaiAaFjfrTIpn8xZ1SlsSP+zN8bbO3cyoB4+bw8ZqYmmh27wQTwhnpT90g
- GuWg+WHa3j5y0sdz6C4TOhFeJPk9FX/6UBPr45QITUvMK3jRRuV3wP1EB4I/ytz3
- mMj6LOdc1aOYVZU4y2MDg4nMg1ifXcXpaV9Etw8veYX9tAGDd3KT/cIe3cEvHZQw
- PRVSHp5+ZchFXBi2Q1nE6XUi+2DinsUdcRil4vKgGhDj44L+Y0UC6QWKa30rtwCn
- ek+Qjvt0I2fWwA1CFsIadEKOUN5gM4yiLWCbaNTqW5F3L8ld63JgTfCrCwNvBrFZ
- zKsOIox3ztQoz/R/y6+ag==
+ :reply-to:subject:subject:to:to; s=fm3; t=1711314517; x=
+ 1711400917; bh=htD7Xc/EdF+0+xuTojpID1s7Z/g8szPikEsSNl9QK4E=; b=X
+ v1PQDAa87vYZtlhCdr3oMr7hfMiDnB89+TG5GUhKLECL3PYa1RA5T2QZnYYyjDNE
+ xXW10F0Z3fjEffKgulh7IqWRQfmZNi5ZA1Jxpy2kFtMv5fIak9DeJvDmhUssawu8
+ b2TOWNR4fE1mxCXgGpgka2QtL0EMw61iGMHFhN96uFEwO3nV9KIl/tpahl3HtCBG
+ +DF+RCyQPjarj7FuUbaRdW/qKptCNjF7SKvF8DUrV7zlii+jva7U/L/22c/ToXj1
+ wZKxwh/ZX3tz/TPCgDnMmmGM/g4l6aKMe93zP0Cw5RFPz/qayd6TNM2AGdq5gxt+
+ xQHs8Wmi22dI5flAnwRKg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:date:date:feedback-id:feedback-id:from:from
  :in-reply-to:in-reply-to:message-id:mime-version:references
  :reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1711314516; x=
- 1711400916; bh=aeOBteVst3EdJ6UR71Pe68DjYvvvoVNomGTQddIcz0M=; b=U
- nZTQ76FfFKZNJu+L4b0fitqZ6J4QNki1q208Gblip6G/yXxvduazhfX16nUdPq5n
- 8ezV9RPHRag6nJbEcSWAbKSLsLeuKD/qOypZmGuVh/YBJHoT79wCpNcbv4GGF77m
- +fzPmfaB8XVYc1RVncN66J57mUj3u6CeC4uWvh+myiOdZMbagjuq4pyXW1m5Z22o
- EbkTulzstdZZ3KDLyk9YGAqA6Wf7ULOA0fogbxaepZ3vEgOJWBsfLKIbCzdUgNGq
- ChDSXljhwbJKPqdruS3AAEVEP07jP29N7lfdCj5SAsnb+GOMF46N16q6cpNEucG+
- APgng802rB+/Y0ctueBJg==
-X-ME-Sender: <xms:VJYAZlUbvctG-24CBUWo4RHHCz2Pexclvlgxqyh599gEHGKvXLXEDw>
- <xme:VJYAZlkdZdbJaJUYgN_4wUOtcCMjs0JnVsH9dJg4m84ximwHUvjOj4Zj_WyhpSjCk
- YTJQMP4SBbR10LP86U>
-X-ME-Received: <xmr:VJYAZhbN11RKmLHUiOw9_gSbAuxbgdoBCJdQrhSMfrstaGqb4YhVoDBrODQP>
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1711314517; x=
+ 1711400917; bh=htD7Xc/EdF+0+xuTojpID1s7Z/g8szPikEsSNl9QK4E=; b=t
+ IXQnmSodIWj9KeSSIvelemGDk4kfHZAmPdxTEBrHvZLB0ZIQecaDDSShgGzN+IL1
+ RHU+ydpGCY2lgDMMX/ndd4eTVxfrMC6tCLnMJDLFdbDSvmVy3Fd5eamknqWHLH59
+ RUKl8kBDc7GsOVzITTIIXSDQ2HNVUFillNIBamwcYnMQljpJzqAB9ZRtr2zsZvL/
+ AO5CxYHuUtXfYnaj9lvlwCAgDNf1FYZXAcuXgl2yuMPisRDBBLZLChwbkVuhgJf1
+ 9tCzkzhXM1iqsc7cWGfA7vus5izM1LrDlfF0mDAFU92zEZ5RT8BAC49ura1x3yF2
+ b6eW++LyOYvSm0gR66vpA==
+X-ME-Sender: <xms:VZYAZvqvBPfiJ2SXZYFaJ4UOdwPhNVutreTEGc3Dpyy_VarbpIySEA>
+ <xme:VZYAZpqlh7GbzUL6n-bAhYga6v4MHbHw1AcGOG9erwLn7O_q8vQtidCehXygPPKA3
+ QSWrA1ldhhNzxxQvOE>
+X-ME-Received: <xmr:VZYAZsM24qKaFODb0YTz8pH3sTZAFcKBUoJWobW6C6YO6dlVsecgfAAq8g12>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledruddtjedgudegkecutefuodetggdotefrod
  ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
  necuuegrihhlohhuthemuceftddtnecuogetfedtuddqtdduucdludehmdenucfjughrpe
@@ -80,18 +80,18 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledruddtjedgudegkecutefuodetgg
  frrghtthgvrhhnpeeftddvjeefleffvefhgfejjeehudetteeigeeugfekhffhgeejudeu
  teehgfdvffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
  hmpehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggr
-X-ME-Proxy: <xmx:VJYAZoWCT2uUUREK9HlbAqjpqNovF5SPNVOT-u2rf-DTtt6M3DnKyA>
- <xmx:VJYAZvnU_QTY6D6ZwvQZ5TjFEktl2q0FMbCpIjMlORWelEzxMaIqtA>
- <xmx:VJYAZlcA3vFkvU_2IFT6aw2OXgvcklqOR4p5EdADNSKVSZVD_0J7nQ>
- <xmx:VJYAZpHgpaSnq1szIYQLn0JGvIDKPgpnwAeD48jPSXWc_XECPdWcsg>
- <xmx:VJYAZplkzV1U5uWVGf_YFXyNluKRHGSbMN5IQQCMR2f40XBhfslVFg>
+X-ME-Proxy: <xmx:VZYAZi7vK3IBIws3FvTm77jleA98ggtz3eCya9rEnJTF5vT67wKDBg>
+ <xmx:VZYAZu7uQ7TP28-0C1dx9rUQzxlUT1TssiR-BmZuv3lwWi4gZLhqDQ>
+ <xmx:VZYAZqgr5fHPthcfctxM4JUF33q-AuvzMGZd4ZL9Zemv4hsNBYbBTw>
+ <xmx:VZYAZg4YSkXRzU53LSyEhrhJFaf7NKyX4VnEC2eX2SqUBtx253IX6Q>
+ <xmx:VZYAZhJT-3BbQx8bvU4I8Sk2_wTsjIUIID_iiOVXquNuoW3gE3KDPg>
 Feedback-ID: ibe194615:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
  24 Mar 2024 17:08:36 -0400 (EDT)
 From: Mark Pearson <mpearson-lenovo@squebb.ca>
 To: mpearson-lenovo@squebb.ca
-Date: Sun, 24 Mar 2024 17:07:59 -0400
-Message-ID: <20240324210817.192033-3-mpearson-lenovo@squebb.ca>
+Date: Sun, 24 Mar 2024 17:08:00 -0400
+Message-ID: <20240324210817.192033-4-mpearson-lenovo@squebb.ca>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240324210817.192033-1-mpearson-lenovo@squebb.ca>
 References: <mpearson-lenovo@squebb.ca>
@@ -104,18 +104,13 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Lenovo trackpoints are adding the ability to generate a
- doubletap
- event. This handles the doubletap event and sends the KEY_DOUBLECLICK event
- to userspace. Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
- Signed-off-by:
- Vishnu Sankar <vsankar@lenovo.com> --- drivers/platform/x86/thinkpad_acpi.c
- | 17 +++++++++++++++++ 1 file changed, 17 insertions( [...] 
+ Content preview: New Lenovo platforms are adding the FN+N key to generate
+ system
+ debug details that support can use for collecting important details on any
+ customer cases for Windows. Add the infrastructure so we can [...] 
  Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [103.168.172.156 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
@@ -125,9 +120,11 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1roVMI-0002ZW-Op
-Subject: [ibm-acpi-devel] [PATCH 2/4] platform/x86: thinkpad_acpi: Support
- for trackpoint doubletap
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [103.168.172.156 listed in list.dnswl.org]
+X-Headers-End: 1roVMD-0002ZE-UT
+Subject: [ibm-acpi-devel] [PATCH 3/4] platform/x86: thinkpad_acpi: Support
+ for system debug info hotkey
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -149,51 +146,40 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Lenovo trackpoints are adding the ability to generate a doubletap event.
-This handles the doubletap event and sends the KEY_DOUBLECLICK event to
-userspace.
+New Lenovo platforms are adding the FN+N key to generate system debug
+details that support can use for collecting important details on any
+customer cases for Windows.
+Add the infrastructure so we can do the same on Linux by generating a
+SYS_DEBUG_INFO keycode to userspace.
 
 Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
-Signed-off-by: Vishnu Sankar <vsankar@lenovo.com>
+Signed-off-by: Nitin Joshi <njoshi1@lenovo.com>
 ---
- drivers/platform/x86/thinkpad_acpi.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ drivers/platform/x86/thinkpad_acpi.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index 82429e59999d..2bbb32c898e9 100644
+index 2bbb32c898e9..854ce971bde2 100644
 --- a/drivers/platform/x86/thinkpad_acpi.c
 +++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -232,6 +232,7 @@ enum tpacpi_hkey_event_t {
+@@ -1787,6 +1787,7 @@ enum {	/* hot key scan codes (derived from ACPI DSDT) */
+ 	TP_ACPI_HOTKEYSCAN_NOTIFICATION_CENTER,
+ 	TP_ACPI_HOTKEYSCAN_PICKUP_PHONE,
+ 	TP_ACPI_HOTKEYSCAN_HANGUP_PHONE,
++	TP_ACPI_HOTKEYSCAN_SYS_DEBUG_INFO = 81,
  
- 	/* Misc */
- 	TP_HKEY_EV_RFKILL_CHANGED	= 0x7000, /* rfkill switch changed */
-+	TP_HKEY_EV_TRACKPOINT_DOUBLETAP = 0x8036, /* doubletap on Trackpoint*/
- };
+ 	/* Hotkey keymap size */
+ 	TPACPI_HOTKEY_MAP_LEN
+@@ -3337,6 +3338,9 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
+ 		KEY_NOTIFICATION_CENTER,	/* Notification Center */
+ 		KEY_PICKUP_PHONE,		/* Answer incoming call */
+ 		KEY_HANGUP_PHONE,		/* Decline incoming call */
++		KEY_UNKNOWN,			/* AMT Toggle (event), 0x31A */
++		KEY_UNKNOWN, KEY_UNKNOWN,
++		KEY_SYS_DEBUG_INFO,             /* System debug info, 0x31D */
+ 		},
+ 	};
  
- /****************************************************************************
-@@ -4081,6 +4082,22 @@ static void hotkey_notify(struct ibm_struct *ibm, u32 event)
- 				break;
- 			}
- 			fallthrough;	/* to default */
-+		case 8:
-+			/* 0x8036: Trackpoint doubletaps */
-+			if (hkey == TP_HKEY_EV_TRACKPOINT_DOUBLETAP) {
-+				send_acpi_ev = true;
-+				ignore_acpi_ev = false;
-+				known_ev = true;
-+				/* Send to user space */
-+				mutex_lock(&tpacpi_inputdev_send_mutex);
-+				input_report_key(tpacpi_inputdev, KEY_DOUBLECLICK, 1);
-+				input_sync(tpacpi_inputdev);
-+				input_report_key(tpacpi_inputdev, KEY_DOUBLECLICK, 0);
-+				input_sync(tpacpi_inputdev);
-+				mutex_unlock(&tpacpi_inputdev_send_mutex);
-+				break;
-+			}
-+			fallthrough;	/* to default */
- 		default:
- 			known_ev = false;
- 		}
 -- 
 2.44.0
 
