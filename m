@@ -2,125 +2,119 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AAF589C0DA
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  8 Apr 2024 15:13:44 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C36D89C7E9
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  8 Apr 2024 17:12:25 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1rtooP-0001EF-U4;
-	Mon, 08 Apr 2024 13:13:26 +0000
+	id 1rtqf6-0004bS-To;
+	Mon, 08 Apr 2024 15:11:57 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1rtooN-0001E1-Ux
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1rtqf5-0004bI-KA
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 08 Apr 2024 13:13:24 +0000
+ Mon, 08 Apr 2024 15:11:56 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Subject:Cc:To:From:Date:References:
+ In-Reply-To:Message-Id:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7ck6h7oGqY5cwfuLDZYTXRLzHj6mfJjTZhLoQldbd3c=; b=mV/g188h9CxEiq+cgXZmGklwDY
- Xuu0zma3dTfr6Vlm9n4HrviEvmTyl7+cVFYlIXdg6CiOaYLijVlrYKjSAZVu9PBABN2Wxh7m1AgQp
- d9L6QPH8j5vrX5TypbV410tdd8TldY78npOw/GqSlnJrzPtKp0affWyoPRJWhH3hfSq8=;
+ bh=bCWpPGV2vJYgZ3bq3vRrz3FGsmLszaLN5U7PO44bhCI=; b=mWFGaOYKqxGD0BoGiHileNXXK3
+ Z07kP42/KILEFC4d8iwNUM58jTfCUhv2EeJMxQ1x3Cc0wd/o3DOqlrQho5BNDPd6iRnuXHXkKcgBy
+ zzrJnh77K+QSF61XU8Cg/jRdoEDJgUqAcGLenSwiiZhiTntaW0nTylAl59wha5RWznT8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Type:Subject:Cc:To:From:Date:References:In-Reply-To:Message-Id:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=7ck6h7oGqY5cwfuLDZYTXRLzHj6mfJjTZhLoQldbd3c=; b=JFQ/FGjIwXKquMPyZwuyNaZptc
- SzilkaLFOAyzaN6XsM1FjolGOZMQ+kV40xiFtPm/NihawsF8aWnx4cx2M2l8R53Jj7OcDuPrA8e0j
- Qz1Z/oEpwoA0o3iZyU6W4ZbOlgu3m65yg4ThTrtW5P+tjOemhCdMFBkzipddetcFhRUA=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=bCWpPGV2vJYgZ3bq3vRrz3FGsmLszaLN5U7PO44bhCI=; b=SRFfhMQ8+Vnl0jEclm0BjyeQUz
+ tsSEwNgzTKKddI33rYH4FSR3gV6wrTc4ltoceShXTcg63Q2T43onF9XdFbBo8HEfEVO1jf1N0k8Cj
+ C+FW821x1Uv3p/xNGrMGsyTDjWECPjO30lFO5IjBxg1V/893Tdonr3fF1mhAWcUtrqBU=;
+Received: from wfout5-smtp.messagingengine.com ([64.147.123.148])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1rtooK-0003Sw-A8 for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 08 Apr 2024 13:13:24 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1712581989;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=7ck6h7oGqY5cwfuLDZYTXRLzHj6mfJjTZhLoQldbd3c=;
- b=dXP7Fm4EVnnj6wLFF4IktP47reD9TWMKB0UYyKLkJJjydydrHpAY+afSQUANpaLEYn1GcV
- 9GpB8gYFdem0e06004NhAkAU8VQjmOTkIQobpduwx+sHCyYpD3IaLoslH2wakvanwE8eNK
- 4PL8NM47THeokW5JuyPo0SluVcKhnjM=
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-158-ZSNqjCfBPBa2zGF6Yzv-1w-1; Mon, 08 Apr 2024 09:13:08 -0400
-X-MC-Unique: ZSNqjCfBPBa2zGF6Yzv-1w-1
-Received: by mail-qk1-f199.google.com with SMTP id
- af79cd13be357-78d6005b2d0so204935885a.3
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 08 Apr 2024 06:13:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1712581988; x=1713186788;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=7ck6h7oGqY5cwfuLDZYTXRLzHj6mfJjTZhLoQldbd3c=;
- b=bhJicIX1KCqzFOzgg8WHyiZozhNla4rmhFR+nbOUlTySoBPgcNJF9l1SCINfuhNt4T
- ZkiyTfuFDFisHRT6RyFo0VZaS5klGtsomfbgX9wkamf9MQ+FKCOTiGBW72XAJfS1psGP
- bqAFvzP6CGAVDUte9HTXGwr6vaPCp14CJC4SywwFBgArAtIeOnUmWUwgd4bhFX2dIKIf
- Z9sp1WbgTlQ2XFAoYS7otHMrHR5XBuEkHhEGyZXlN1AeBUwN7G4jYIWBmkzwTD7qIrMu
- 4v3H5Y6P382Q57FYvEuz7s9FKCNLMpJ8vromV+Y9DG5ZWSkTxFLxH0wyW2ZynjPt7hiF
- 93rw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVZ7U6noxzs1yTdhuGY01fxaGCmgf/SVRNXQtT5bzDE38DkHggOhIKqmn3lXc8rSFLtsCuHpx0iDVcVfGo5aHR2jH79VZY9xBJkKf+EWR/LColyl1w=
-X-Gm-Message-State: AOJu0Yy3aD/2PuTNQNYFPj4bRL9e839hu1l2n7dpEp08yQ2FGMZiuYow
- o+uJRPTQF9af04kmxtP424Kx29g6BzRXOny64XQqyqosb953gVK78Deb4ueNNLJdtzwnCDR4N5f
- qRlDGwNdeILyldKk40RJOwrqqx6zvKqztOIfFefRQnQ3c5AGlE96iusspOV/bzQG3OyMyX3iP
-X-Received: by 2002:a05:620a:4d14:b0:78d:6b3d:9a34 with SMTP id
- wa20-20020a05620a4d1400b0078d6b3d9a34mr314389qkn.43.1712581987918; 
- Mon, 08 Apr 2024 06:13:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFaaNdf0+aehQaiEaOUOB91zwM2iwnImBi5etNoZRMALgRd/jitUy/yEBySE/LqXxJmVF3lrQ==
-X-Received: by 2002:a05:620a:4d14:b0:78d:6b3d:9a34 with SMTP id
- wa20-20020a05620a4d1400b0078d6b3d9a34mr314361qkn.43.1712581987632; 
- Mon, 08 Apr 2024 06:13:07 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
- (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
- by smtp.gmail.com with ESMTPSA id
- y27-20020a05620a09db00b0078d623428c5sm1471784qky.88.2024.04.08.06.13.06
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 08 Apr 2024 06:13:07 -0700 (PDT)
-Message-ID: <3f49d41e-649d-4a07-9a1a-301a2f52613c@redhat.com>
-Date: Mon, 8 Apr 2024 15:13:05 +0200
+ id 1rtqf1-0001vB-Ov for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 08 Apr 2024 15:11:56 +0000
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailfout.west.internal (Postfix) with ESMTP id 52A501C000E1;
+ Mon,  8 Apr 2024 10:56:23 -0400 (EDT)
+Received: from imap52 ([10.202.2.102])
+ by compute3.internal (MEProxy); Mon, 08 Apr 2024 10:56:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:subject
+ :subject:to:to; s=fm3; t=1712588182; x=1712674582; bh=bCWpPGV2vJ
+ YgZ3bq3vRrz3FGsmLszaLN5U7PO44bhCI=; b=DLNhd8JYzB3+bRSSRNyvtjPFZy
+ 7L2UummJ5c8SIg2vWVcF0DproH/wJmUPOz5bxXuGmNRLTYg07aW/mz74NUETTc2s
+ wq9ke0TuZ6bFEmSBo1SJLRTqjDCzFmxXcsiAEtMKaCnupJxED31XGQIkcQ1zRJeC
+ pgOuePuOOMoyic2bLNXVJs0Su3sUr2o00W2A0UikZEYaY59lLprY6UCTP1/q41q4
+ Y2IH8c/up11UvgRXPJmM4dXOEgWXvt3DETcd6I6x/y9lBppZKGsW48nrvZb9oRLE
+ ahoKHsUbeSXJUzJRE8f5ieD0cKntYppt4lc4P/XNAA0w/8giBM3p6il2FWGw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:subject:subject:to
+ :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm2; t=1712588182; x=1712674582; bh=bCWpPGV2vJYgZ3bq3vRrz3FGsmLs
+ zaLN5U7PO44bhCI=; b=e1TuCh66ExaTJ5mMSci9uxjBSdh8YePTAdXxa/KFBQ+V
+ wokLBtcCDb7TS30pwZMlMortskyCCUf3olQ6ENpBwfU990rVgEDfqREBFyTs9Dnn
+ IjeeFZ2LVxZZFalnT58rGH08SZaJpich7pyBa8AlB5BBXNg90gYaXqoNBvp6I45I
+ Xy2WZpOE+vy5n7M/QVUF8NJJvFsk0YxA1WzGx4YYOoYyGpVBswnwdwWBKpXbRZKk
+ 7i5SBIH5z6KVCN0pcOr0zZ1Jb5l7pGfD21tFWlc1PkgznQ5UWtGA5xp8ldxqm+QT
+ +xuxax0Ai3CJ8xX7nYGDThJzJYNYTMilpjcTjVf5yQ==
+X-ME-Sender: <xms:lgUUZtBiFYcQspTQiF_PDSC1PnalTnMmbd382eSRDiwVSix1t11MOA>
+ <xme:lgUUZrgOmHppfF9lcScIedcgeGZD5pBPSlKRtf1vH2pzNIMHAdgW-h9b9LSi8sc4t
+ N3tyixI1kNwriShhCw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudegiedgkedvucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedfofgr
+ rhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssg
+ drtggrqeenucggtffrrghtthgvrhhnpeeiueefjeeiveetuddvkeetfeeltdevffevudeh
+ ffefjedufedvieejgedugeekhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
+ epmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggr
+X-ME-Proxy: <xmx:lgUUZons9-jeK2MfxW_wGy-Zgf66EiA9OnhoRboSx3Mw_Ect6KTakA>
+ <xmx:lgUUZnw4QhG5vNeFtm_ynfrFh5T9WFQWgAX6esdQtkoTvOUrSTJnXw>
+ <xmx:lgUUZiQ5ha7EAc0BHCYSG2hMYR4PHQOnFiHlEKXIqsBAsX6sNeWz-g>
+ <xmx:lgUUZqZIJmZAcDs72TEaOU4hSbbhq6-Aynseo0VUmUm41OWLcHve2w>
+ <xmx:lgUUZnJc_E4BFyb8Ou12ytisOPdkCbxghCRb-3uPgP2Jfu95QdOpsw03>
+Feedback-ID: ibe194615:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 251DFC60097; Mon,  8 Apr 2024 10:56:22 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-368-gc733b1d8df-fm-20240402.001-gc733b1d8
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Mark Pearson <mpearson-lenovo@squebb.ca>
+Message-Id: <e88a2f41-f89d-444c-a09a-487097c6e9eb@app.fastmail.com>
+In-Reply-To: <e1ccf281-5c77-4447-a6c7-5b0b008c7c56@redhat.com>
 References: <mpearson-lenovo@squebb.ca>
  <20240324210817.192033-1-mpearson-lenovo@squebb.ca>
- <20240324210817.192033-5-mpearson-lenovo@squebb.ca>
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20240324210817.192033-5-mpearson-lenovo@squebb.ca>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-X-Spam-Score: -1.7 (-)
+ <20240324210817.192033-3-mpearson-lenovo@squebb.ca>
+ <e1ccf281-5c77-4447-a6c7-5b0b008c7c56@redhat.com>
+Date: Mon, 08 Apr 2024 10:56:25 -0400
+From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
+To: "Hans de Goede" <hdegoede@redhat.com>
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, On 3/24/24 10:08 PM, Mark Pearson wrote: > The hotkey
- combination FN+G can be used to disable the trackpoint > doubletap feature
- on Windows. > Add matching functionality for Linux. > > Signed-off-by: [...]
- Content analysis details:   (-1.7 points, 6.0 required)
+ Content preview:  Hi Hans, Many thanks for the review. On Mon, Apr 8, 2024,
+ at 9:04 AM, Hans de Goede wrote: > Hi Mark, > > On 3/24/24 10:07 PM, Mark
+ Pearson wrote: >> Lenovo trackpoints are adding the ability to generate a
+ doubletap event. >> This handle [...] 
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.133.124 listed in list.dnswl.org]
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [64.147.123.148 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [170.10.133.124 listed in wl.mailspike.net]
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
@@ -128,11 +122,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -1.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1rtooK-0003Sw-A8
-Subject: Re: [ibm-acpi-devel] [PATCH 4/4] platform/x86: thinkpad_acpi:
- Support hotkey to disable trackpoint doubletap
+X-Headers-End: 1rtqf1-0001vB-Ov
+Subject: Re: [ibm-acpi-devel] [PATCH 2/4] platform/x86: thinkpad_acpi:
+ Support for trackpoint doubletap
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -146,109 +138,109 @@ List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
 Cc: dmitry.torokhov@gmail.com, linux-kernel@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, vsankar@lenovo.com,
- ibm-acpi-devel@lists.sourceforge.net, hmh@hmh.eng.br,
- linux-input@vger.kernel.org, ilpo.jarvinen@linux.intel.com,
- peter.hutterer@redhat.com, njoshi1@lenovo.com
+ "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>, Vishnu Sankar <vsankar@lenovo.com>,
+ ibm-acpi-devel@lists.sourceforge.net,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>, linux-input@vger.kernel.org,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Peter Hutterer <peter.hutterer@redhat.com>, Nitin Joshi1 <njoshi1@lenovo.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi,
+Hi Hans,
 
-On 3/24/24 10:08 PM, Mark Pearson wrote:
-> The hotkey combination FN+G can be used to disable the trackpoint
-> doubletap feature on Windows.
-> Add matching functionality for Linux.
-> 
-> Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
-> Signed-off-by: Vishnu Sankar <vsankar@lenovo.com>
-> ---
->  drivers/platform/x86/thinkpad_acpi.c | 24 +++++++++++++++++-------
->  1 file changed, 17 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-> index 854ce971bde2..21756aa3d28d 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -167,6 +167,7 @@ enum tpacpi_hkey_event_t {
->  	TP_HKEY_EV_VOL_MUTE		= 0x1017, /* Mixer output mute */
->  	TP_HKEY_EV_PRIVACYGUARD_TOGGLE	= 0x130f, /* Toggle priv.guard on/off */
->  	TP_HKEY_EV_AMT_TOGGLE		= 0x131a, /* Toggle AMT on/off */
-> +	TP_HKEY_EV_DOUBLETAP_TOGGLE	= 0x131c, /* Toggle trackpoint doubletap on/off */
->  	TP_HKEY_EV_PROFILE_TOGGLE	= 0x131f, /* Toggle platform profile */
->  
->  	/* Reasons for waking up from S3/S4 */
-> @@ -354,6 +355,7 @@ static struct {
->  	u32 hotkey_poll_active:1;
->  	u32 has_adaptive_kbd:1;
->  	u32 kbd_lang:1;
-> +	u32 trackpoint_doubletap:1;
->  	struct quirk_entry *quirks;
->  } tp_features;
->  
-> @@ -3598,6 +3600,9 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
->  
->  	hotkey_poll_setup_safe(true);
->  
-> +	/* Enable doubletap by default */
-> +	tp_features.trackpoint_doubletap = 1;
-> +
->  	return 0;
->  }
->  
-> @@ -3739,6 +3744,7 @@ static bool hotkey_notify_extended_hotkey(const u32 hkey)
->  	case TP_HKEY_EV_PRIVACYGUARD_TOGGLE:
->  	case TP_HKEY_EV_AMT_TOGGLE:
->  	case TP_HKEY_EV_PROFILE_TOGGLE:
-> +	case TP_HKEY_EV_DOUBLETAP_TOGGLE:
->  		tpacpi_driver_event(hkey);
->  		return true;
->  	}
-> @@ -4092,13 +4098,15 @@ static void hotkey_notify(struct ibm_struct *ibm, u32 event)
->  				send_acpi_ev = true;
->  				ignore_acpi_ev = false;
->  				known_ev = true;
-> -				/* Send to user space */
-> -				mutex_lock(&tpacpi_inputdev_send_mutex);
-> -				input_report_key(tpacpi_inputdev, KEY_DOUBLECLICK, 1);
-> -				input_sync(tpacpi_inputdev);
-> -				input_report_key(tpacpi_inputdev, KEY_DOUBLECLICK, 0);
-> -				input_sync(tpacpi_inputdev);
-> -				mutex_unlock(&tpacpi_inputdev_send_mutex);
-> +				if (tp_features.trackpoint_doubletap) {
-> +					/* Send to user space */
-> +					mutex_lock(&tpacpi_inputdev_send_mutex);
-> +					input_report_key(tpacpi_inputdev, KEY_DOUBLECLICK, 1);
-> +					input_sync(tpacpi_inputdev);
-> +					input_report_key(tpacpi_inputdev, KEY_DOUBLECLICK, 0);
-> +					input_sync(tpacpi_inputdev);
-> +					mutex_unlock(&tpacpi_inputdev_send_mutex);
-> +				}
->  				break;
->  			}
->  			fallthrough;	/* to default */
+Many thanks for the review.
 
-This chunk will need to change after incorporating my review comments into
-patch 2/4. With that said this looks good to me:
+On Mon, Apr 8, 2024, at 9:04 AM, Hans de Goede wrote:
+> Hi Mark,
+>
+> On 3/24/24 10:07 PM, Mark Pearson wrote:
+>> Lenovo trackpoints are adding the ability to generate a doubletap event.
+>> This handles the doubletap event and sends the KEY_DOUBLECLICK event to
+>> userspace.
+>> 
+>> Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+>> Signed-off-by: Vishnu Sankar <vsankar@lenovo.com>
+>> ---
+>>  drivers/platform/x86/thinkpad_acpi.c | 17 +++++++++++++++++
+>>  1 file changed, 17 insertions(+)
+>> 
+>> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+>> index 82429e59999d..2bbb32c898e9 100644
+>> --- a/drivers/platform/x86/thinkpad_acpi.c
+>> +++ b/drivers/platform/x86/thinkpad_acpi.c
+>> @@ -232,6 +232,7 @@ enum tpacpi_hkey_event_t {
+>>  
+>>  	/* Misc */
+>>  	TP_HKEY_EV_RFKILL_CHANGED	= 0x7000, /* rfkill switch changed */
+>> +	TP_HKEY_EV_TRACKPOINT_DOUBLETAP = 0x8036, /* doubletap on Trackpoint*/
+>>  };
+>>  
+>>  /****************************************************************************
+>> @@ -4081,6 +4082,22 @@ static void hotkey_notify(struct ibm_struct *ibm, u32 event)
+>>  				break;
+>>  			}
+>>  			fallthrough;	/* to default */
+>
+> This now no longer fallsthrough to default. IMHO the best thing to do
+> here is add a new preparation patch which initializes known_ev to false
+> inside the while before the switch-case (together with the send_acpi_ev
+> and ignore_acpi_ev init). and then change this fallthrough to a break
+> in the preparation patch. You can then also remove the default case
+> altogether in this prep patch.
+>
+Ack - that makes sense. I'll look at doing that.
 
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+>> +		case 8:
+>> +			/* 0x8036: Trackpoint doubletaps */
+>> +			if (hkey == TP_HKEY_EV_TRACKPOINT_DOUBLETAP) {
+>> +				send_acpi_ev = true;
+>> +				ignore_acpi_ev = false;
+>
+> These 2 values are set as the default above the switch-case, please
+> drop these 2 lines.
 
-Regards,
+Agreed. Will change.
 
-Hans
+>
+>> +				known_ev = true;
+>> +				/* Send to user space */
+>> +				mutex_lock(&tpacpi_inputdev_send_mutex);
+>> +				input_report_key(tpacpi_inputdev, KEY_DOUBLECLICK, 1);
+>> +				input_sync(tpacpi_inputdev);
+>> +				input_report_key(tpacpi_inputdev, KEY_DOUBLECLICK, 0);
+>> +				input_sync(tpacpi_inputdev);
+>> +				mutex_unlock(&tpacpi_inputdev_send_mutex);
+>
+> This code duplicates tpacpi_input_send_key(), what you want to do here
+> is define a hotkey_keycode_map scancode range for new 0x8xxx codes like how this
+> was done when extended scancodes where added to deal with the new 0x13xx hotkey
+> event codes for the 2017+ models.
+>
+> See commit 696c6523ec8f ("platform/x86: thinkpad_acpi: add mapping for 
+> new hotkeys")
+>
+> Despite re-using tpacpi_input_send_key() there are 2 reasons why we want
+> scancodes for these new "keys".
+>
+> 1. By adding the keys to the hotkey_keycode_map they automatically
+> also get input_set_capability(tpacpi_inputdev, EV_KEY, hotkey_keycode_map[i]);
+> called on them advertising to userspace that tpacpi_inputdev can actually
+> generate these keypresses. Something which is currently lacking from your
+> patch. Related to this did you test this with evtest? I think that the input
+> core will suppress the events when you do not set the capability ?
+>
+> 2. This allows remapping scancodes to different KEY_foo values with hwdb
+> entries.
+>
+Will look into doing this.
+There was a reason originally I did it like this, but I can't remember what it was. I'll revisit it.
 
+I did test with evtest but I ended up having to cheat as there's quite a few layers in userspace and I got a bit bogged down chewing my way through those (building them against the right headers etc). 
+I ended up using an already existing code to make sure it was doing the right thing in the driver - and then assumed that once the keycode was 'released', and the different user space projects updated per normal procedure, it would work. It's possible it meant I bypassed/missed this issue so I'll retry once I've made the updates.
 
-> @@ -11228,6 +11236,8 @@ static void tpacpi_driver_event(const unsigned int hkey_event)
->  		/* Notify user space the profile changed */
->  		platform_profile_notify();
->  	}
-> +	if (hkey_event == TP_HKEY_EV_DOUBLETAP_TOGGLE)
-> +		tp_features.trackpoint_doubletap = !tp_features.trackpoint_doubletap;
->  }
->  
->  static void hotkey_driver_event(const unsigned int scancode)
-
+Mark
 
 
 _______________________________________________
