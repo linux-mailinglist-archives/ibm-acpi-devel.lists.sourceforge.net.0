@@ -2,123 +2,126 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16DF89CEF8
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  9 Apr 2024 01:32:24 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1A289CF20
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  9 Apr 2024 02:01:11 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1rtySw-0008Ry-A9;
-	Mon, 08 Apr 2024 23:31:54 +0000
+	id 1rtyuq-0001Lm-U1;
+	Tue, 09 Apr 2024 00:00:45 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <dmitry.torokhov@gmail.com>) id 1rtySv-0008Rp-BJ
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1rtyup-0001Lb-Ea
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 08 Apr 2024 23:31:53 +0000
+ Tue, 09 Apr 2024 00:00:43 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Subject:Cc:To:From:Date:References:
+ In-Reply-To:Message-Id:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=ZzTpKViV2Dcm/KyMkuaFPP0/U/kgyCGskJ3yYQuoi34=; b=gAaW4XbbN1T3b4Cl8ixJezM12X
- yXJ1xzPmUO7z3c0vxMQWrT3m/HEvozfzQrarJdnYh+EBPjhOc/Tn9ylrmGINhS1WMFpCmkh6IJqhE
- WgPG8+oeMKu/UeyAEtixV7UDui7uJMIl8UtRJleufumd+NQG2n9WoZUAQ6IUf4HUX0uY=;
+ bh=3jJTrn3M9PnPBPpdaXwd3Dwyudp0ERNih8NQ9xLiPv0=; b=NEsze8EBIZ4pkZf/rvKmdJSgW8
+ R/fXc7BugE302LJyzVC98beCA6+9FhUw6vNHpTZywoui0ewjj04U1MrquLCykmZUR643MTUyX8Qto
+ bajugnCtCSHeFyFHa89ZNDtzXK12/ckgm084KK0zEp/qlfzA0VazOwz30Vsg4d6Pd/PQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Type:Subject:Cc:To:From:Date:References:In-Reply-To:Message-Id:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=ZzTpKViV2Dcm/KyMkuaFPP0/U/kgyCGskJ3yYQuoi34=; b=actPZ72svl7OITFWGsvZ0rII/7
- josnFyA6ggxzEISzDs3f905U30mVa9TYtfeJo0IfUYHfu4xSuMHfMp+zRSyXTbp2TOO/DydQhJnqy
- FBJ1xWsmmoYxJVtdrOy18QM2RcWeQBiGWgO6bfZr6fAEj1k8IrZYd+YyXBwKoJ+uxbAw=;
-Received: from mail-pl1-f171.google.com ([209.85.214.171])
+ bh=3jJTrn3M9PnPBPpdaXwd3Dwyudp0ERNih8NQ9xLiPv0=; b=aKDjmZp+d0Uay1+tbE2un3eq0k
+ 5cmonkgyAS4KLR8DBYdasICNWZsAQKvzaf1D8SwYtPRyTNYE0ea1oI6RcXJ+LOhN5NFbZ6KozfjAF
+ EFqKQ5UxwW87fjC+tZ4Q+An9pSRo2PTQNMrFCZZlkvobOYTyxK8Pr60XJw0Fmf+rDnFY=;
+Received: from fhigh5-smtp.messagingengine.com ([103.168.172.156])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1rtySs-0006fb-Fm for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 08 Apr 2024 23:31:53 +0000
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-1e4149e7695so11935095ad.0
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 08 Apr 2024 16:31:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1712619100; x=1713223900; darn=lists.sourceforge.net;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=ZzTpKViV2Dcm/KyMkuaFPP0/U/kgyCGskJ3yYQuoi34=;
- b=a+VjBsGVVSyJfiwL/UJKTbUlYV3OnhiCCbqV2EHm2+y+aK0o5LrP/H13nByk4M8CiE
- 3I66iHpCv/GBdBKaQCjczd+P0wHHtxJX4nBY8avkaZvX0r9eze5sytgMIp9+RfuUoRMq
- V00m0LWPjoSl4EUOwIQSHuinyV/IyhViLDOLP5NI8w4CUzNYmmf6/MxWQAmh10xytIkz
- ppIlGxazvfD1X301ej/QCK/rOaJCX9BnY6plHARcy6ayVDHSjutgm2vdONS6nwZUjFOk
- h8weRnWZHgDG3qJJPdYsnjHph6I9uQnqY6waUCG6JmHiaxbeKoIg6jNSNQW6dJywQWVQ
- ufgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1712619100; x=1713223900;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ZzTpKViV2Dcm/KyMkuaFPP0/U/kgyCGskJ3yYQuoi34=;
- b=BWTEuHZsCTOA/V70L4S6KwV8mu3OE5PI8viLqLgAwVhFf7S6zjSIUIPZFd+u6+W/oy
- IpzfSDA4QcHc22KH8iMAX0v/EAsgQf/y5SJYg/lBlKmcncQWMITHZZuJ1uRJCWZyLYEX
- thgS4LH3oDPHWQhfxNpQFZInYg6xAeenEKnMip9sCAXc3RQCn+y1B/bBrXxFYNSyBVct
- mf2oRu039Ft/K/664TD+uf/ZeoX7vTTr7woHxMiIAwzjZ6Nda9dbFbOX0+2pWw8B2q/X
- Ka7ExGZ69sqX+11CXmymWBE58VsKCjgFvr6egekU4tNYxrA1GT1jfR8Gm0cWPHRJFbSN
- MRnQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVotKCpqRwBbw0oAdZdc1zIWZ9wOIKvNFc2W3r7IApHmNmDAOHt1maXfl8ypIB/pTjH15jv5JvHv94sm2IaB3j4cxPjGq5F2bO7NPkTiGirSTVCCqI=
-X-Gm-Message-State: AOJu0Yw4JQ/wj8g8KAyxk+pc4YshVrYrDnGBa0RJ8bu/QKWKjEM74LHY
- rXRsHl6KefAIue1mRc5LqFpRQQ53VI+kFnTjr+d/4QFAQSCzT5ij
-X-Google-Smtp-Source: AGHT+IFS3F36fsetJvUPZpbat4+TSuZ7yDpgMTewKajtRAYjXpPSRT5ZA67Q5InVAxnXRnhV/VFnHw==
-X-Received: by 2002:a17:902:c946:b0:1e4:24bc:48e with SMTP id
- i6-20020a170902c94600b001e424bc048emr4222078pla.22.1712619099622; 
- Mon, 08 Apr 2024 16:31:39 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:a480:1072:3aaf:99a0])
- by smtp.gmail.com with ESMTPSA id
- jj20-20020a170903049400b001dee9d80bdcsm7569687plb.107.2024.04.08.16.31.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 08 Apr 2024 16:31:39 -0700 (PDT)
-Date: Mon, 8 Apr 2024 16:31:36 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Mark Pearson <mpearson-lenovo@squebb.ca>
-Message-ID: <ZhR-WPx7dgKxziMb@google.com>
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1rtyul-0007sj-LV for ibm-acpi-devel@lists.sourceforge.net;
+ Tue, 09 Apr 2024 00:00:43 +0000
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+ by mailfhigh.nyi.internal (Postfix) with ESMTP id F295C114012F;
+ Mon,  8 Apr 2024 20:00:28 -0400 (EDT)
+Received: from imap52 ([10.202.2.102])
+ by compute3.internal (MEProxy); Mon, 08 Apr 2024 20:00:29 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:subject
+ :subject:to:to; s=fm3; t=1712620828; x=1712707228; bh=3jJTrn3M9P
+ nPBPpdaXwd3Dwyudp0ERNih8NQ9xLiPv0=; b=onb6kH+/eoNGbV/QZHdUzkd+ZE
+ 7b92FM70Gc8HQOO5KN5/wQt8UVCF3TR7lGWPPBPzrlslu12hH27T0Kke/uQCNmOO
+ C80pO6G6ag0ouBlWv2PFBT6b3QaiCYAk2sJrILENZn85+ndrpyXaHAb7iJESkk+W
+ Mlg5hSsRwMYPBpXJNEiVCocogyFj0hJTfBremmT82x23pZMHwjZtIl8FaogA4fWI
+ phgkC8P/jnH4wGCGbtEUSHQ8GIhVPVIFfYJWHjUdv7mJpr1RWUAgEfc636ueGfqu
+ 3H7yjp5J7+9WtrFK1Gypdi2yEN4DlzXivFjDHded2YAWubyuYqZ49/sAz/lg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:subject:subject:to
+ :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+ fm2; t=1712620828; x=1712707228; bh=3jJTrn3M9PnPBPpdaXwd3Dwyudp0
+ ERNih8NQ9xLiPv0=; b=hx8VlIy2mYvNIWumG6XMu+XCDCrmaqTjFNO3ItLMYlH4
+ XhNzNJHaUGwIXQAczHTbvR6SMcBuoiWvsdqJ6X321w5jmxodYaoVlLD/SiTTgW4l
+ l7EwrN/S8KtAA2D6GamAS5HZR56ZbeJgjkXipOKL+MKrn1E3o84oqiOsL86Ibah5
+ nRdozI2+YMOHLObElsE+AOU8rL+r0Zww02w41mHXmDlTowUaq4+NchDbRZBXTSJ0
+ 1OcRUXyr5WoKSQosBm3+5uhgdNTEaazocOF++e2zNmqRIxFXFcn8dGY4X5/QWgfz
+ yYkSDwXov70TIRT6AGunumJJGsrMwc2A5o5iWV2Gxg==
+X-ME-Sender: <xms:HIUUZmYKrqfu5if1nxPNdDOv8wW5Cp7Qx57uv0FJ6kl3zkke0s6czQ>
+ <xme:HIUUZpYtcBRddWDF_3c5pEgrTQ44w56sh2kkrcRBnWxqiNU8V6j8SeYhMvKXeCC0O
+ knx9i2JCfSPS1qri_w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudegkedgtdegucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedfofgr
+ rhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssg
+ drtggrqeenucggtffrrghtthgvrhhnpeeiueefjeeiveetuddvkeetfeeltdevffevudeh
+ ffefjedufedvieejgedugeekhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
+ epmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggr
+X-ME-Proxy: <xmx:HIUUZg-FYI6_bB9Dkfd5Y-zkDTzr26pyv5cki8FoZWxZoaSlbSutqA>
+ <xmx:HIUUZoqNW0dzoT03O4jV4AzABptbAQP8wjtzoD_YIc0ep72NybdItA>
+ <xmx:HIUUZhoEoQa6gSgnE9Ade_-W6tRH7gMTP9gaxnCGGuVQQStyNLUCHA>
+ <xmx:HIUUZmS3HFEwfiodwz5E_bMWdXaAzAyshL2UNJhyT0kkaUf9ZahNbw>
+ <xmx:HIUUZujQGB0JJwgtnhiysPEdZVXZWRZHrlba0fAFZ-stgnDaZrZQdD4Z>
+Feedback-ID: ibe194615:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+ id 4842EC60097; Mon,  8 Apr 2024 20:00:28 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-368-gc733b1d8df-fm-20240402.001-gc733b1d8
+MIME-Version: 1.0
+Message-Id: <c6427b27-3c9d-4aa4-abfa-c3588b5d9a42@app.fastmail.com>
+In-Reply-To: <ZhR-WPx7dgKxziMb@google.com>
 References: <mpearson-lenovo@squebb.ca>
  <20240324210817.192033-1-mpearson-lenovo@squebb.ca>
  <20240324210817.192033-2-mpearson-lenovo@squebb.ca>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20240324210817.192033-2-mpearson-lenovo@squebb.ca>
-X-Spam-Score: -0.2 (/)
+ <ZhR-WPx7dgKxziMb@google.com>
+Date: Mon, 08 Apr 2024 20:00:30 -0400
+From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
+To: "Dmitry Torokhov" <dmitry.torokhov@gmail.com>
+X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Mark, On Sun, Mar 24, 2024 at 05:07:58PM -0400,
- Mark Pearson
- wrote: > Add support for new input events on Lenovo laptops that need
- exporting
- to > user space. > > Lenovo trackpoints are adding the ability to [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Hi Dmitry On Mon, Apr 8, 2024, at 7:31 PM, Dmitry Torokhov
+ wrote: > Hi Mark, > > On Sun, Mar 24, 2024 at 05:07:58PM -0400, Mark Pearson
+ wrote: >> Add support for new input events on Lenovo laptops that need exp
+ [...] Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [209.85.214.171 listed in list.dnswl.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
+ low trust [103.168.172.156 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
- provider [dmitry.torokhov[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.214.171 listed in wl.mailspike.net]
-X-Headers-End: 1rtySs-0006fb-Fm
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Headers-End: 1rtyul-0007sj-LV
 Subject: Re: [ibm-acpi-devel] [PATCH 1/4] Input: Add trackpoint doubletap
  and system debug info keycodes
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -134,35 +137,50 @@ List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
 Cc: ibm-acpi-devel@lists.sourceforge.net, linux-kernel@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, vsankar@lenovo.com, hdegoede@redhat.com,
- hmh@hmh.eng.br, linux-input@vger.kernel.org, ilpo.jarvinen@linux.intel.com,
- peter.hutterer@redhat.com, njoshi1@lenovo.com
+ "platform-driver-x86@vger.kernel.org"
+ <platform-driver-x86@vger.kernel.org>, Vishnu Sankar <vsankar@lenovo.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>, linux-input@vger.kernel.org,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Peter Hutterer <peter.hutterer@redhat.com>, Nitin Joshi1 <njoshi1@lenovo.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Mark,
+Hi Dmitry
 
-On Sun, Mar 24, 2024 at 05:07:58PM -0400, Mark Pearson wrote:
-> Add support for new input events on Lenovo laptops that need exporting to
-> user space.
-> 
-> Lenovo trackpoints are adding the ability to generate a doubletap event.
-> Add a new keycode to allow this to be used by userspace.
+On Mon, Apr 8, 2024, at 7:31 PM, Dmitry Torokhov wrote:
+> Hi Mark,
+>
+> On Sun, Mar 24, 2024 at 05:07:58PM -0400, Mark Pearson wrote:
+>> Add support for new input events on Lenovo laptops that need exporting to
+>> user space.
+>> 
+>> Lenovo trackpoints are adding the ability to generate a doubletap event.
+>> Add a new keycode to allow this to be used by userspace.
+>
+> What is the intended meaning of this keycode? How does it differ from
+> the driver sending BTN_LEFT press/release twice?
 
-What is the intended meaning of this keycode? How does it differ from
-the driver sending BTN_LEFT press/release twice?
-> 
-> Lenovo support is using FN+N with Windows to collect needed details for
-> support cases. Add a keycode so that we'll be able to provide similar
-> support on Linux.
+Double tapping on the trackpoint is a unique event - it's not the same as BTN_LEFT twice. The BIOS will send a new ACPI event for it and it's not meant to be the same as mouse button clicks.
 
-Is there a userspace consumer for this?
+For example, on Windows this launches a utility that let's you do various configurations on your laptop (some Lenovo specific), but that's not available on Linux (yet). We did want to make it flexible in this implementation so users could use it for whatever was useful to them.
 
-Thanks.
+>> 
+>> Lenovo support is using FN+N with Windows to collect needed details for
+>> support cases. Add a keycode so that we'll be able to provide similar
+>> support on Linux.
+>
+> Is there a userspace consumer for this?
 
--- 
-Dmitry
+There isn't yet, though we would like to implement something, and do plan to. 
+We still have to work through the details of the best way to do this, and if it's Lenovo specific, or (probably better) something generic.
+
+I don't have as much knowledge on the user-space side development, and my experience is it tends to move a bit slower for getting things implemented. We thought we'd get the framework in, so it's available, and then work with user-space folk to deliver a solution in a suitable manner.
+Ultimately this is something we'll need in our Linux preloads and the aim is to make it easier for Linux users to get help from our support team (not always the easiest currently).
+I don't know if other vendors have something similar, but I wouldn't be surprised if this could be re-used in other cases so I hope it's not Lenovo specific. It felt like it would be useful functionality to have :)
+
+Mark
 
 
 _______________________________________________
