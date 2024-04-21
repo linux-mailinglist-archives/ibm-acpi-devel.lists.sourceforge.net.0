@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52C9F8ABFDE
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 21 Apr 2024 17:46:39 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4805D8ABFE2
+	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 21 Apr 2024 17:46:43 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1ryZOE-0003UE-Le;
-	Sun, 21 Apr 2024 15:46:03 +0000
+	id 1ryZOR-00012t-3k;
+	Sun, 21 Apr 2024 15:46:15 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1ryZO5-0003Sa-63
+ (envelope-from <hdegoede@redhat.com>) id 1ryZO3-00011Y-8w
  for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 21 Apr 2024 15:45:53 +0000
+ Sun, 21 Apr 2024 15:45:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fuG5/FiMeJxxWLVKewZftLA5M7sA1AJN6R27AAxM6lk=; b=h6KtkZXioqYARGbPOxV+dkWOoY
- xY9igNBx3lOr1BhgdhHqM60B9MAUfiocHZj1DGGk8l5MEQ2dv95J1CYGxEjPAoEoVzHr/uUYGvcCt
- QDgsG+N/W/t28klOUkbGXCN5PR9YwhastJsE3wt5q/kG6yna8r3ByGd5E/R2NhBF1ZV0=;
+ bh=+dNVfH4aGVacLkbXT0WRWWwSuiiGQo9z/8wu7tgvq18=; b=ctToJdhM5ovirdKKCJB+IFL03e
+ Ep0d0S77dRLg58xDtBnukCZ+WDjd4c/0Pf1yBdGHs8uFIK78K8qjTWukD7sapLapmUsP0scQrPE37
+ ddW5m2QUGBFI2IwXq1yLAbwSrEVVRRi1PtbZsEcDCMxTJatvN1u5GnwYtP7gDu+W+jXA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
@@ -31,85 +31,82 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=fuG5/FiMeJxxWLVKewZftLA5M7sA1AJN6R27AAxM6lk=; b=T3A2hiYQr4UvUzcZ70Qcei20X0
- 7BnVy67va8Gh2w4D54bOvWzeChoVijWZqCCyJwJ8K2MoafpmqB4IKe08eLEMgsQ/LkzGOGmMM/6Ti
- IcjGFWI0sajhhHBkjRMs1ZSOs6GVFKyYQuYvO831Zni8d3obPalbmosJqzSJOX1SIIFk=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=+dNVfH4aGVacLkbXT0WRWWwSuiiGQo9z/8wu7tgvq18=; b=CC3JOXAk3ETPFlp0E81cWJrYCg
+ +2MemgFsBdYC2K6YGWbhaUqgwJ+A9v8ob8xs4aDNQIGmjWZzIE3tGtxy9kTWAmEpb37TjemZ42v7j
+ g8I6Xj2BsyLaXCv3lPQdLqiM2meaeAUP3RuGFtW+CxJOY4qEZeQxZcBHqzGDzq9iLtPU=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ryZO4-0003TR-G2 for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 21 Apr 2024 15:45:53 +0000
+ id 1ryZO1-0003TI-Qn for ibm-acpi-devel@lists.sourceforge.net;
+ Sun, 21 Apr 2024 15:45:51 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1713714342;
+ s=mimecast20190719; t=1713714344;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=fuG5/FiMeJxxWLVKewZftLA5M7sA1AJN6R27AAxM6lk=;
- b=am3yNrHVMpDsxm9cQC0XjD17aw6nGcUSCPwPCBxMxefGSZWdMZPMP9/Yno5q3Pd2v9eqI4
- 7BjjdcHMsoWvvzBCamt9+NuoDE+AX4MdNJHA+zNjGcytjLY2N4bcaxTQZxgZKlsaeWbJ+5
- tsGjB5uoYLEO0Po21bIssci1Pnpnwek=
+ bh=+dNVfH4aGVacLkbXT0WRWWwSuiiGQo9z/8wu7tgvq18=;
+ b=dW4Wf0MkfG6I4ucRlOUIbZspe47lBvVDG2hSSqYRrwPWnk2yDLifP4iMJem94CzLWLwlps
+ +dwSUl296Ws40bY/0cXZM9B1oUGS6/cfVVEQauGu0q3/FULkXcQxhncHPdLbkBfHpeFWyN
+ fWSZ3nsEzKN4NtIJEiI/vb4VY6gZLL8=
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
  [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-114-GNHxUrG_MAWYizY2M7oFFw-1; Sun, 21 Apr 2024 11:45:36 -0400
-X-MC-Unique: GNHxUrG_MAWYizY2M7oFFw-1
+ us-mta-663-Smf0iJuyOPqSaf_2W2UNjg-1; Sun, 21 Apr 2024 11:45:38 -0400
+X-MC-Unique: Smf0iJuyOPqSaf_2W2UNjg-1
 Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
  [10.11.54.2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 5E0E01011351;
- Sun, 21 Apr 2024 15:45:36 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id A69F91011324;
+ Sun, 21 Apr 2024 15:45:37 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.39.192.66])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 4265D40357A7;
- Sun, 21 Apr 2024 15:45:35 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8BC4C402482D;
+ Sun, 21 Apr 2024 15:45:36 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
  Andy Shevchenko <andy@kernel.org>,
  Mark Pearson <mpearson-lenovo@squebb.ca>,
  Henrique de Moraes Holschuh <hmh@hmh.eng.br>
-Date: Sun, 21 Apr 2024 17:45:03 +0200
-Message-ID: <20240421154520.37089-8-hdegoede@redhat.com>
+Date: Sun, 21 Apr 2024 17:45:04 +0200
+Message-ID: <20240421154520.37089-9-hdegoede@redhat.com>
 In-Reply-To: <20240421154520.37089-1-hdegoede@redhat.com>
 References: <20240421154520.37089-1-hdegoede@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.2
 X-Spam-Score: -0.6 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  tpacpi_driver_event() already only responds to hkey events
- which it knows about. Make it return a bool and return true when it has
- handled
- the event. This avoids the need to list TP_HKEY_EV_foo values to which it
- responds both in its caller and in the function itself. 
+ Content preview:  Factor out the adaptive kbd non hotkey event handling into
+ adaptive_keyboard_change_row() and adaptive_keyboard_s_quickview_row() helpers
+ and move the handling of TP_HKEY_EV_DFR_CHANGE_ROW and TP_HKEY [...] 
  Content analysis details:   (-0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [170.10.129.124 listed in wl.mailspike.net]
  0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to
  DNSWL was blocked.  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [170.10.133.124 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [170.10.133.124 listed in wl.mailspike.net]
- 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ for more information. [170.10.129.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.4 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ryZO4-0003TR-G2
-Subject: [ibm-acpi-devel] [PATCH 07/24] platform/x86: thinkpad_acpi: Make
- tpacpi_driver_event() return if it handled the event
+X-Headers-End: 1ryZO1-0003TI-Qn
+Subject: [ibm-acpi-devel] [PATCH 08/24] platform/x86: thinkpad_acpi: Move
+ adaptive kbd event handling to tpacpi_driver_event()
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -129,179 +126,129 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-tpacpi_driver_event() already only responds to hkey events which it knows
-about. Make it return a bool and return true when it has handled the event.
+Factor out the adaptive kbd non hotkey event handling into
+adaptive_keyboard_change_row() and adaptive_keyboard_s_quickview_row()
+helpers and move the handling of TP_HKEY_EV_DFR_CHANGE_ROW and
+TP_HKEY_EV_DFR_S_QUICKVIEW_ROW to tpacpi_driver_event().
 
-This avoids the need to list TP_HKEY_EV_foo values to which it responds
-both in its caller and in the function itself.
+This groups all the handling of hotkey events which do not emit
+a key press event together in tpacpi_driver_event().
 
-Instead callers can now call it unconditionally and check the return value.
+This is a preparation patch for moving to sparse-keymaps.
 
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/platform/x86/thinkpad_acpi.c | 115 ++++++++++++++-------------
- 1 file changed, 61 insertions(+), 54 deletions(-)
+ drivers/platform/x86/thinkpad_acpi.c | 85 +++++++++++++++-------------
+ 1 file changed, 45 insertions(+), 40 deletions(-)
 
 diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index c009885c8820..0bbc462d604c 100644
+index 0bbc462d604c..e8d30f4af126 100644
 --- a/drivers/platform/x86/thinkpad_acpi.c
 +++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -1918,7 +1918,7 @@ static u32 hotkey_acpi_mask;		/* events enabled in firmware */
- 
- static u16 *hotkey_keycode_map;
- 
--static void tpacpi_driver_event(const unsigned int hkey_event);
-+static bool tpacpi_driver_event(const unsigned int hkey_event);
- static void hotkey_driver_event(const unsigned int scancode);
- static void hotkey_poll_setup(const bool may_warn);
- 
-@@ -3726,13 +3726,8 @@ static bool adaptive_keyboard_hotkey_notify_hotkey(const u32 hkey)
- 
- static bool hotkey_notify_extended_hotkey(const u32 hkey)
- {
--	switch (hkey) {
--	case TP_HKEY_EV_PRIVACYGUARD_TOGGLE:
--	case TP_HKEY_EV_AMT_TOGGLE:
--	case TP_HKEY_EV_PROFILE_TOGGLE:
--		tpacpi_driver_event(hkey);
-+	if (tpacpi_driver_event(hkey))
- 		return true;
--	}
- 
- 	if (hkey >= TP_HKEY_EV_EXTENDED_KEY_START &&
- 	    hkey <= TP_HKEY_EV_EXTENDED_KEY_END) {
-@@ -11081,72 +11076,84 @@ static struct platform_driver tpacpi_hwmon_pdriver = {
-  * HKEY event callout for other subdrivers go here
-  * (yes, it is ugly, but it is quick, safe, and gets the job done
-  */
--static void tpacpi_driver_event(const unsigned int hkey_event)
-+static bool tpacpi_driver_event(const unsigned int hkey_event)
- {
--	if (ibm_backlight_device) {
--		switch (hkey_event) {
--		case TP_HKEY_EV_BRGHT_UP:
--		case TP_HKEY_EV_BRGHT_DOWN:
-+	switch (hkey_event) {
-+	case TP_HKEY_EV_BRGHT_UP:
-+	case TP_HKEY_EV_BRGHT_DOWN:
-+		if (ibm_backlight_device)
- 			tpacpi_brightness_notify_change();
--		}
--	}
--	if (alsa_card) {
--		switch (hkey_event) {
--		case TP_HKEY_EV_VOL_UP:
--		case TP_HKEY_EV_VOL_DOWN:
--		case TP_HKEY_EV_VOL_MUTE:
--			volume_alsa_notify_change();
--		}
--	}
--	if (tp_features.kbdlight && hkey_event == TP_HKEY_EV_KBD_LIGHT) {
--		enum led_brightness brightness;
--
--		mutex_lock(&kbdlight_mutex);
--
- 		/*
--		 * Check the brightness actually changed, setting the brightness
--		 * through kbdlight_set_level() also triggers this event.
-+		 * Key press events are suppressed by default hotkey_user_mask
-+		 * and should still be reported if explicitly requested.
- 		 */
--		brightness = kbdlight_sysfs_get(NULL);
--		if (kbdlight_brightness != brightness) {
--			kbdlight_brightness = brightness;
--			led_classdev_notify_brightness_hw_changed(
--				&tpacpi_led_kbdlight.led_classdev, brightness);
-+		return false;
-+	case TP_HKEY_EV_VOL_UP:
-+	case TP_HKEY_EV_VOL_DOWN:
-+	case TP_HKEY_EV_VOL_MUTE:
-+		if (alsa_card)
-+			volume_alsa_notify_change();
-+
-+		/* Key events are suppressed by default hotkey_user_mask */
-+		return false;
-+	case TP_HKEY_EV_KBD_LIGHT:
-+		if (tp_features.kbdlight) {
-+			enum led_brightness brightness;
-+
-+			mutex_lock(&kbdlight_mutex);
-+
-+			/*
-+			 * Check the brightness actually changed, setting the brightness
-+			 * through kbdlight_set_level() also triggers this event.
-+			 */
-+			brightness = kbdlight_sysfs_get(NULL);
-+			if (kbdlight_brightness != brightness) {
-+				kbdlight_brightness = brightness;
-+				led_classdev_notify_brightness_hw_changed(
-+					&tpacpi_led_kbdlight.led_classdev, brightness);
-+			}
-+
-+			mutex_unlock(&kbdlight_mutex);
- 		}
--
--		mutex_unlock(&kbdlight_mutex);
--	}
--
--	if (hkey_event == TP_HKEY_EV_THM_CSM_COMPLETED) {
-+		/* Key events are suppressed by default hotkey_user_mask */
-+		return false;
-+	case TP_HKEY_EV_THM_CSM_COMPLETED:
- 		lapsensor_refresh();
- 		/* If we are already accessing DYTC then skip dytc update */
- 		if (!atomic_add_unless(&dytc_ignore_event, -1, 0))
- 			dytc_profile_refresh();
--	}
- 
--	if (lcdshadow_dev && hkey_event == TP_HKEY_EV_PRIVACYGUARD_TOGGLE) {
--		enum drm_privacy_screen_status old_hw_state;
--		bool changed;
-+		return true;
-+	case TP_HKEY_EV_PRIVACYGUARD_TOGGLE:
-+		if (lcdshadow_dev) {
-+			enum drm_privacy_screen_status old_hw_state;
-+			bool changed;
- 
--		mutex_lock(&lcdshadow_dev->lock);
--		old_hw_state = lcdshadow_dev->hw_state;
--		lcdshadow_get_hw_state(lcdshadow_dev);
--		changed = lcdshadow_dev->hw_state != old_hw_state;
--		mutex_unlock(&lcdshadow_dev->lock);
-+			mutex_lock(&lcdshadow_dev->lock);
-+			old_hw_state = lcdshadow_dev->hw_state;
-+			lcdshadow_get_hw_state(lcdshadow_dev);
-+			changed = lcdshadow_dev->hw_state != old_hw_state;
-+			mutex_unlock(&lcdshadow_dev->lock);
- 
--		if (changed)
--			drm_privacy_screen_call_notifier_chain(lcdshadow_dev);
--	}
--	if (hkey_event == TP_HKEY_EV_AMT_TOGGLE) {
-+			if (changed)
-+				drm_privacy_screen_call_notifier_chain(lcdshadow_dev);
-+		}
-+		return true;
-+	case TP_HKEY_EV_AMT_TOGGLE:
- 		/* If we're enabling AMT we need to force balanced mode */
- 		if (!dytc_amt_active)
- 			/* This will also set AMT mode enabled */
- 			dytc_profile_set(NULL, PLATFORM_PROFILE_BALANCED);
- 		else
- 			dytc_control_amt(!dytc_amt_active);
--	}
--	if (hkey_event == TP_HKEY_EV_PROFILE_TOGGLE)
-+
-+		return true;
-+	case TP_HKEY_EV_PROFILE_TOGGLE:
- 		platform_profile_cycle();
-+		return true;
-+	}
-+
-+	return false;
+@@ -3677,51 +3677,50 @@ static int adaptive_keyboard_get_next_mode(int mode)
+ 	return adaptive_keyboard_modes[i];
  }
  
- static void hotkey_driver_event(const unsigned int scancode)
++static void adaptive_keyboard_change_row(void)
++{
++	int mode;
++
++	if (adaptive_keyboard_mode_is_saved) {
++		mode = adaptive_keyboard_prev_mode;
++		adaptive_keyboard_mode_is_saved = false;
++	} else {
++		mode = adaptive_keyboard_get_mode();
++		if (mode < 0)
++			return;
++		mode = adaptive_keyboard_get_next_mode(mode);
++	}
++
++	adaptive_keyboard_set_mode(mode);
++}
++
++static void adaptive_keyboard_s_quickview_row(void)
++{
++	int mode = adaptive_keyboard_get_mode();
++
++	if (mode < 0)
++		return;
++
++	adaptive_keyboard_prev_mode = mode;
++	adaptive_keyboard_mode_is_saved = true;
++
++	adaptive_keyboard_set_mode(FUNCTION_MODE);
++}
++
+ static bool adaptive_keyboard_hotkey_notify_hotkey(const u32 hkey)
+ {
+-	int current_mode = 0;
+-	int new_mode = 0;
+-
+-	switch (hkey) {
+-	case TP_HKEY_EV_DFR_CHANGE_ROW:
+-		if (adaptive_keyboard_mode_is_saved) {
+-			new_mode = adaptive_keyboard_prev_mode;
+-			adaptive_keyboard_mode_is_saved = false;
+-		} else {
+-			current_mode = adaptive_keyboard_get_mode();
+-			if (current_mode < 0)
+-				return false;
+-			new_mode = adaptive_keyboard_get_next_mode(
+-					current_mode);
+-		}
+-
+-		if (adaptive_keyboard_set_mode(new_mode) < 0)
+-			return false;
+-
++	if (tpacpi_driver_event(hkey))
+ 		return true;
+ 
+-	case TP_HKEY_EV_DFR_S_QUICKVIEW_ROW:
+-		current_mode = adaptive_keyboard_get_mode();
+-		if (current_mode < 0)
+-			return false;
+-
+-		adaptive_keyboard_prev_mode = current_mode;
+-		adaptive_keyboard_mode_is_saved = true;
+-
+-		if (adaptive_keyboard_set_mode (FUNCTION_MODE) < 0)
+-			return false;
+-		return true;
+-
+-	default:
+-		if (hkey < TP_HKEY_EV_ADAPTIVE_KEY_START ||
+-		    hkey > TP_HKEY_EV_ADAPTIVE_KEY_END) {
+-			pr_info("Unhandled adaptive keyboard key: 0x%x\n", hkey);
+-			return false;
+-		}
+-		tpacpi_input_send_key(hkey - TP_HKEY_EV_ADAPTIVE_KEY_START +
+-				      TP_ACPI_HOTKEYSCAN_ADAPTIVE_START);
+-		return true;
++	if (hkey < TP_HKEY_EV_ADAPTIVE_KEY_START ||
++	    hkey > TP_HKEY_EV_ADAPTIVE_KEY_END) {
++		pr_info("Unhandled adaptive keyboard key: 0x%x\n", hkey);
++		return false;
+ 	}
++
++	tpacpi_input_send_key(hkey - TP_HKEY_EV_ADAPTIVE_KEY_START +
++			      TP_ACPI_HOTKEYSCAN_ADAPTIVE_START);
++	return true;
+ }
+ 
+ static bool hotkey_notify_extended_hotkey(const u32 hkey)
+@@ -11117,6 +11116,12 @@ static bool tpacpi_driver_event(const unsigned int hkey_event)
+ 		}
+ 		/* Key events are suppressed by default hotkey_user_mask */
+ 		return false;
++	case TP_HKEY_EV_DFR_CHANGE_ROW:
++		adaptive_keyboard_change_row();
++		return true;
++	case TP_HKEY_EV_DFR_S_QUICKVIEW_ROW:
++		adaptive_keyboard_s_quickview_row();
++		return true;
+ 	case TP_HKEY_EV_THM_CSM_COMPLETED:
+ 		lapsensor_refresh();
+ 		/* If we are already accessing DYTC then skip dytc update */
 -- 
 2.44.0
 
