@@ -2,17 +2,17 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55DA78ABFEB
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 21 Apr 2024 17:46:53 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A86838ABFE7
+	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 21 Apr 2024 17:46:49 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1ryZOb-0003Kq-4R;
-	Sun, 21 Apr 2024 15:46:25 +0000
+	id 1ryZOW-00013f-9G;
+	Sun, 21 Apr 2024 15:46:20 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1ryZOF-00038d-PU
+ (envelope-from <hdegoede@redhat.com>) id 1ryZOL-00012f-VT
  for ibm-acpi-devel@lists.sourceforge.net;
  Sun, 21 Apr 2024 15:46:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -21,9 +21,9 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=vvdv18IJGOuumFikPskbXJYsileD8TWgYyzZkZDzd08=; b=jpEvIyZ9E9SlqgdQJBr231fwd7
- fO1eBEo49XJxkupDqUfc1dbz+lHpqABTZqRWfsbKrgnZC0s/0GQgv12XUBdOjfGUFp+yCJ8r4nHpT
- 2yi4Mgca4JbyxMuYQXSFypQFnI2jDY3E221BmjpZXWeuymuhF0aMzNQ8aohZbZPSPQG4=;
+ bh=E+mzqNt5w3qnJcmko8jwwdLwE5oPIFcZ7M11zY2tmRU=; b=YVruYuJ4aAQRUu7bZZxIzZrpl3
+ 7FT3auUL3FSeuhFldqaDWGjeK8F/VYHEzkzrYVPw1s6Hce31dR74+nANXWbMH2cRUeeq9Np1EbyJl
+ W0wBfrTODqX1VV4fFPlvPywyKY3N2fAeKMQb89/EWLrfcpRZ92EeyEfxp+NN5lep+rW8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
@@ -31,46 +31,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=vvdv18IJGOuumFikPskbXJYsileD8TWgYyzZkZDzd08=; b=Fo4G4ldwTy+IjZ+sW2ruWZmqrf
- e2A4pgRTOSf/639PN35RVWONq23OmQjyOeure57oHMiURO4FjdHkVvFrmaxdcTnWknKpL93mFNFT0
- 9ReOEF0UgdsVbNIAPgI4+RENeYrRMkIRkDpl4038Tr1/Fi7dzoa6HTV3KFNRZAxJdxKc=;
+ bh=E+mzqNt5w3qnJcmko8jwwdLwE5oPIFcZ7M11zY2tmRU=; b=mGxDRDbfMOHyt2MLjEsb6IRVwk
+ v5M+1TBGmrZPXUhRoYY85wiOccS0QT+F/BrpVpDdqoeWsa9+SrAFsFeLq0jHoMC7gGItPGtyBhY7k
+ hXJQ+eO/GAHd/+RQ6vrMJKFIFAiXRxmzMYDen6f7hw0Q6Y+Rg4DJqwIEUY6D6hRO37G4=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ryZOD-0003UW-Ss for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 21 Apr 2024 15:46:03 +0000
+ id 1ryZOE-0003Ub-Ty for ibm-acpi-devel@lists.sourceforge.net;
+ Sun, 21 Apr 2024 15:46:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1713714356;
+ s=mimecast20190719; t=1713714357;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vvdv18IJGOuumFikPskbXJYsileD8TWgYyzZkZDzd08=;
- b=SKcxL0G2T+0x4XaL0KdJGyIMtLtZX5PTrSmb5x0JfCCxD63yNvgRiBOdhXZO551gtoXFB3
- +C2C7kixqAyHdy6Et8jSTSW7My6fEHjYRdshsWk95EmA9gJNFarMwfLFM7FTcHoM8x9Wz5
- ho+6yzzYP7y8e7FRupRQ19aS4XrzucM=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-269-3Ig_eV2VOv6zmer-9rB3Yw-1; Sun, 21 Apr 2024 11:45:53 -0400
-X-MC-Unique: 3Ig_eV2VOv6zmer-9rB3Yw-1
+ bh=E+mzqNt5w3qnJcmko8jwwdLwE5oPIFcZ7M11zY2tmRU=;
+ b=XAA4JyXO16ufkKL3VV8p6I+tQJgPsVJRbxdqFUtED1ReLeK117I7Zz5ZFu3/yeniJ7eaE7
+ 7uCfVyv2c9y4m0Yj2aizgeD2S7exN+p1gYMWZaCukKZqtDuwN/CzNQ8u2LzzC8FOtw4x/0
+ s/SK9e5kk7Rwf5Z+W0rHsKX4r7MSg5g=
+Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
+ by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-677-HS1oUmW_NnubOSSC2Rz-dA-1; Sun,
+ 21 Apr 2024 11:45:55 -0400
+X-MC-Unique: HS1oUmW_NnubOSSC2Rz-dA-1
 Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
  [10.11.54.2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 5F7A0802E4D;
- Sun, 21 Apr 2024 15:45:53 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id AB1203C00098;
+ Sun, 21 Apr 2024 15:45:54 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.39.192.66])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 44718402482D;
- Sun, 21 Apr 2024 15:45:52 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8D76A40357A7;
+ Sun, 21 Apr 2024 15:45:53 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
  Andy Shevchenko <andy@kernel.org>,
  Mark Pearson <mpearson-lenovo@squebb.ca>,
  Henrique de Moraes Holschuh <hmh@hmh.eng.br>
-Date: Sun, 21 Apr 2024 17:45:16 +0200
-Message-ID: <20240421154520.37089-21-hdegoede@redhat.com>
+Date: Sun, 21 Apr 2024 17:45:17 +0200
+Message-ID: <20240421154520.37089-22-hdegoede@redhat.com>
 In-Reply-To: <20240421154520.37089-1-hdegoede@redhat.com>
 References: <20240421154520.37089-1-hdegoede@redhat.com>
 MIME-Version: 1.0
@@ -82,11 +82,11 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  The X1 carbon 2014 / 2nd gen's adaptive keyboard top row's
- "Home" mode, which is 1 of the 2 modes Linux supports, has clipping-tool
- and cloud buttons which so far are not mapped. I assume these were left as
- KEY_RESERVED because no suitable KEY_FOO codes were available when support
- was added. 
+ Content preview:  From: Mark Pearson <mpearson-lenovo@squebb.ca> Modify how
+ known_ev event is handled in preparation for adding new hkey event range.
+ Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca> Link:
+ https://lore.kernel.org/r/20240417173124.9953-1-mpearson-lenovo@squebb.ca
+ Reviewed-by: Hans de Goede <hdegoede@redhat.com> Signed-off-by: [...] 
  Content analysis details:   (-5.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -104,9 +104,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.4 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ryZOD-0003UW-Ss
-Subject: [ibm-acpi-devel] [PATCH 20/24] platform/x86: thinkpad_acpi: Add
- mappings for adaptive kbd clipping-tool and cloud keys
+X-Headers-End: 1ryZOE-0003Ub-Ty
+Subject: [ibm-acpi-devel] [PATCH 21/24] platform/x86: thinkpad_acpi:
+ Simplify known_ev handling
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -126,44 +126,53 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-The X1 carbon 2014 / 2nd gen's adaptive keyboard top row's "Home" mode,
-which is 1 of the 2 modes Linux supports, has clipping-tool and cloud
-buttons which so far are not mapped.
+From: Mark Pearson <mpearson-lenovo@squebb.ca>
 
-I assume these were left as KEY_RESERVED because no suitable KEY_FOO codes
-were available when support was added.
+Modify how known_ev event is handled in preparation for adding new hkey
+event range.
 
-In the mean time we have gotten KEY_SELECTIVE_SCREENSHOT and this has been
-used for the clipping-tool function under Fn + PrtSc on more traditional
-ThinkPad keyboards already.
-
-Finding a KEY_FOO code for the cloud key is harder looking at the symbol
-it seems to refer to cloud-storage which made me think of file syncing,
-or file transfer which has let me to pick KEY_XFER for this.
-
-Note this is based on looking at a picture of the adaptive top row
-in Home mode and has not been tested on an actual adaptive keyboard.
-
+Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+Link: https://lore.kernel.org/r/20240417173124.9953-1-mpearson-lenovo@squebb.ca
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/platform/x86/thinkpad_acpi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/platform/x86/thinkpad_acpi.c | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index 5e34f70c21a4..fc60857b39ec 100644
+index fc60857b39ec..cd54a2455ac8 100644
 --- a/drivers/platform/x86/thinkpad_acpi.c
 +++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -3231,8 +3231,8 @@ static const struct key_entry keymap_lenovo[] __initconst = {
- 	/* Adaptive keyboard mappings for Carbon X1 2014 translated scancodes 0x20 - 0x33 */
- 	{ KE_KEY, TP_ACPI_HOTKEYSCAN_MUTE2, { KEY_RESERVED } },
- 	{ KE_KEY, TP_ACPI_HOTKEYSCAN_BRIGHTNESS_ZERO, { KEY_BRIGHTNESS_MIN } },
--	{ KE_KEY, TP_ACPI_HOTKEYSCAN_CLIPPING_TOOL, { KEY_RESERVED } },
--	{ KE_KEY, TP_ACPI_HOTKEYSCAN_CLOUD, { KEY_RESERVED } },
-+	{ KE_KEY, TP_ACPI_HOTKEYSCAN_CLIPPING_TOOL, { KEY_SELECTIVE_SCREENSHOT } },
-+	{ KE_KEY, TP_ACPI_HOTKEYSCAN_CLOUD, { KEY_XFER } },
- 	{ KE_KEY, TP_ACPI_HOTKEYSCAN_UNK9, { KEY_RESERVED } },
- 	{ KE_KEY, TP_ACPI_HOTKEYSCAN_VOICE, { KEY_VOICECOMMAND } },
- 	{ KE_KEY, TP_ACPI_HOTKEYSCAN_UNK10, { KEY_RESERVED } },
+@@ -3840,6 +3840,7 @@ static void hotkey_notify(struct ibm_struct *ibm, u32 event)
+ 		}
+ 
+ 		send_acpi_ev = true;
++		known_ev = false;
+ 
+ 		switch (hkey >> 12) {
+ 		case 1:
+@@ -3863,8 +3864,6 @@ static void hotkey_notify(struct ibm_struct *ibm, u32 event)
+ 				/* FIXME: kick libata if SATA link offline */
+ 				known_ev = true;
+ 				break;
+-			default:
+-				known_ev = false;
+ 			}
+ 			break;
+ 		case 4:
+@@ -3887,11 +3886,8 @@ static void hotkey_notify(struct ibm_struct *ibm, u32 event)
+ 				tpacpi_send_radiosw_update();
+ 				send_acpi_ev = 0;
+ 				known_ev = true;
+-				break;
+ 			}
+-			fallthrough;	/* to default */
+-		default:
+-			known_ev = false;
++			break;
+ 		}
+ 		if (!known_ev) {
+ 			pr_notice("unhandled HKEY event 0x%04x\n", hkey);
 -- 
 2.44.0
 
