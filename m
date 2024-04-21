@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48F588ABFE9
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 21 Apr 2024 17:46:51 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A754E8ABFE4
+	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 21 Apr 2024 17:46:46 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1ryZOX-0003XW-UA;
-	Sun, 21 Apr 2024 15:46:22 +0000
+	id 1ryZOW-000382-5K;
+	Sun, 21 Apr 2024 15:46:20 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1ryZOL-0003V3-Ki
+ (envelope-from <hdegoede@redhat.com>) id 1ryZOM-00035y-7t
  for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 21 Apr 2024 15:46:10 +0000
+ Sun, 21 Apr 2024 15:46:11 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=uJu5U2rYPpaHTQ7q0KTXMZY1pF1nfHsUq1/3p+/ppH4=; b=FzCsK+41/3gM4Jn0DpIftuKdd7
- Q8RfctVNS7nTZekkOgf96YF9U55dqVHlm+66YCrAaxKv4hOCGJYoKFeY7S8x3pk60rTqzLwbNPo7g
- r5nxFsZkC3JDR20bMF1j/qwQYyUTBIbcUq9I4p/vK/Jr7MFblfiWIYKggcyz2zXndAm8=;
+ bh=R6QrbtZCHBRTks1Xbnahfy+zyxyziZb4NRLnWdsoqbM=; b=hYIGToy60OVoyqdVNSm/rGof9G
+ xhe8BerHEZVTNms2zbuigIQUCC+ttCUD/OjrXe28DaKxT5bWDB+EQQ+uNNeZe20YuTUsqcX6UGhhb
+ YR6TeIZzVOccc1S/5N3kIlpjflPDIR1l5r8HBrjse0EX1U2x8Wl/wcX8CD7q4IPTIwzg=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
@@ -31,46 +31,46 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=uJu5U2rYPpaHTQ7q0KTXMZY1pF1nfHsUq1/3p+/ppH4=; b=Bglb7qOHW3d4RVGW2Ae/pEGgQ8
- HUoOxcw+H8UOMgK6HmcKh73FffU16FO6g8nljzcimpkir7wxWxhawpjFYdaDpjixGoS44Z3D73sxM
- WpkqG4poqnX+iTf9soBbiBqwkRYexDMrpm+euqRTzML8m9rJBVT6Fx55Bmsi7wgDPJFM=;
+ bh=R6QrbtZCHBRTks1Xbnahfy+zyxyziZb4NRLnWdsoqbM=; b=JGOy1oKSEIkwX//psGf/9mt5E0
+ VWHVNqp/6m9dqIxQ3YVeLIhi4oZjff7D8T0HcQCtXj0y0WChuZQ1yaz4K2kW1yGnSb66zAPwwsZpR
+ gIE5y/02uz2tW0f9Hf9aumtsBqz9EfOyh0TTTJMTBqYV5TvAAUMQTVoyLiLzgggVHJ6E=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ryZOH-0003Ud-EQ for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 21 Apr 2024 15:46:07 +0000
+ id 1ryZOH-0003Ug-E9 for ibm-acpi-devel@lists.sourceforge.net;
+ Sun, 21 Apr 2024 15:46:06 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
  s=mimecast20190719; t=1713714354;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=uJu5U2rYPpaHTQ7q0KTXMZY1pF1nfHsUq1/3p+/ppH4=;
- b=iGjfFXuzaaoyvQPy1krn1JquIxo5+FqWstU3qhnEvEzL0y6CcURoVV/NnWY1FVYKmOxnZ2
- BDgI+4PnQrYtn/FFgdDE/fxkZMCGZw1M1E5Wz+MhfVsgDsgTGHPvEwjFKF+7hzk6w2w1UG
- ghk7hrlsDobQFdTqUclguvlSuIIeUC4=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-266-9npPsJJAPkGpf5ZVscnDJw-1; Sun, 21 Apr 2024 11:45:49 -0400
-X-MC-Unique: 9npPsJJAPkGpf5ZVscnDJw-1
+ bh=R6QrbtZCHBRTks1Xbnahfy+zyxyziZb4NRLnWdsoqbM=;
+ b=GCg0SmPBtJZXLJjgFFq3X0nK1M0skHOBCAFxEwWU4RfGnp6NV7TF2d4tPmS7l1YyRMITi5
+ U6s+B9PKNxmD4u0/uPpsqf3l6+xeaFfIh8HQESkprcQYIOihZKJJqNTxR/cBV1lfpZGvXD
+ 1BLA1Estlj3e3pzSsjibPTxDo42bBtQ=
+Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
+ by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-102-M3aZLmX3PQKXRNHEPER4bg-1; Sun,
+ 21 Apr 2024 11:45:51 -0400
+X-MC-Unique: M3aZLmX3PQKXRNHEPER4bg-1
 Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.rdu2.redhat.com
  [10.11.54.2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 5EAE780B935;
- Sun, 21 Apr 2024 15:45:49 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id A67693C00098;
+ Sun, 21 Apr 2024 15:45:50 +0000 (UTC)
 Received: from localhost.localdomain (unknown [10.39.192.66])
- by smtp.corp.redhat.com (Postfix) with ESMTP id 4427E40C122D;
- Sun, 21 Apr 2024 15:45:48 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 8C465407F3D4;
+ Sun, 21 Apr 2024 15:45:49 +0000 (UTC)
 From: Hans de Goede <hdegoede@redhat.com>
 To: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
  Andy Shevchenko <andy@kernel.org>,
  Mark Pearson <mpearson-lenovo@squebb.ca>,
  Henrique de Moraes Holschuh <hmh@hmh.eng.br>
-Date: Sun, 21 Apr 2024 17:45:13 +0200
-Message-ID: <20240421154520.37089-18-hdegoede@redhat.com>
+Date: Sun, 21 Apr 2024 17:45:14 +0200
+Message-ID: <20240421154520.37089-19-hdegoede@redhat.com>
 In-Reply-To: <20240421154520.37089-1-hdegoede@redhat.com>
 References: <20240421154520.37089-1-hdegoede@redhat.com>
 MIME-Version: 1.0
@@ -82,9 +82,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: Change the default keymap to report the correct keycodes for
- the volume and brightness keys. Reporting key events for these is already
- filtered out by the hotkey_reserved_mask which masks these keys o [...] 
+ Content preview: The input core already filters out EV_KEY events for
+ KEY_RESERVED, 
+ remove the check for this in tpacpi_input_send_key() and rely on the input
+ core filtering instead. Also change tpacpi_input_send_key() to only report
+ the scancode once instead of reporting it on both press and release. Together
+ these 2 changes make tpacpi_input_send_key() behave the same as sparse_ [...]
  Content analysis details:   (-0.6 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -104,9 +107,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.4 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1ryZOH-0003Ud-EQ
-Subject: [ibm-acpi-devel] [PATCH 17/24] platform/x86: thinkpad_acpi: Use
- correct keycodes for volume and brightness keys
+X-Headers-End: 1ryZOH-0003Ug-E9
+Subject: [ibm-acpi-devel] [PATCH 18/24] platform/x86: thinkpad_acpi: Drop
+ KEY_RESERVED special handling
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -126,116 +129,56 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Change the default keymap to report the correct keycodes for the volume and
-brightness keys. Reporting key events for these is already filtered out by
-the hotkey_reserved_mask which masks these keys out of hotkey_user_mask at
-initialization time, so there is no need to also map them to KEY_RESERVED.
+The input core already filters out EV_KEY events for KEY_RESERVED,
+remove the check for this in tpacpi_input_send_key() and rely
+on the input core filtering instead.
 
-This avoids users, who want these to be reported, having to also remap
-the keycodes on top of overriding hotkey_user_mask to report these
-and Linux userspace has already been overridding the KEY_RESERVED mappings
-with the correct keycodes through udev/hwdb/60-keyboard.hwdb for years now.
+Also change tpacpi_input_send_key() to only report the scancode
+once instead of reporting it on both press and release. Together
+these 2 changes make tpacpi_input_send_key() behave the same as
+sparse_keymap_report_event().
 
-Also drop hotkey_unmap() it was only used to dynamically map the brightness
-keys to KEY_RESERVED and after removing that it has no remaining users.
+The goal of this patch is to have a separate commit with
+the slightly different behavior from sparse_keymap_report_event()
+before switching over to using the sparse-keymap helpers.
 
 Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 ---
- drivers/platform/x86/thinkpad_acpi.c | 45 +++++++++++++---------------
- 1 file changed, 21 insertions(+), 24 deletions(-)
+ drivers/platform/x86/thinkpad_acpi.c | 18 ++++++++----------
+ 1 file changed, 8 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index 30219ba43208..5db46220d400 100644
+index 5db46220d400..f70f87b216cb 100644
 --- a/drivers/platform/x86/thinkpad_acpi.c
 +++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -3097,15 +3097,6 @@ static void hotkey_exit(void)
- 	mutex_unlock(&hotkey_mutex);
- }
- 
--static void __init hotkey_unmap(const unsigned int scancode)
--{
--	if (hotkey_keycode_map[scancode] != KEY_RESERVED) {
--		clear_bit(hotkey_keycode_map[scancode],
--			  tpacpi_inputdev->keybit);
--		hotkey_keycode_map[scancode] = KEY_RESERVED;
--	}
--}
--
- /*
-  * HKEY quirks:
-  *   TPACPI_HK_Q_INIMASK:	Supports FN+F3,FN+F4,FN+F12
-@@ -3224,22 +3215,28 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
- 		KEY_UNKNOWN,	/* 0x0D: FN+INSERT */
- 		KEY_UNKNOWN,	/* 0x0E: FN+DELETE */
- 
--		/* brightness: firmware always reacts to them */
--		KEY_RESERVED,	/* 0x0F: FN+HOME (brightness up) */
--		KEY_RESERVED,	/* 0x10: FN+END (brightness down) */
-+		/* brightness: firmware always reacts to them.
-+		 * Suppressed by default through hotkey_reserved_mask.
-+		 */
-+		KEY_BRIGHTNESSUP,	/* 0x0F: FN+HOME (brightness up) */
-+		KEY_BRIGHTNESSDOWN,	/* 0x10: FN+END (brightness down) */
- 
--		/* Thinklight: firmware always react to it */
--		KEY_RESERVED,	/* 0x11: FN+PGUP (thinklight toggle) */
-+		/* Thinklight: firmware always react to it.
-+		 * Suppressed by default through hotkey_reserved_mask.
-+		 */
-+		KEY_KBDILLUMTOGGLE,	/* 0x11: FN+PGUP (thinklight toggle) */
- 
- 		KEY_UNKNOWN,	/* 0x12: FN+PGDOWN */
- 		KEY_ZOOM,	/* 0x13: FN+SPACE (zoom) */
- 
- 		/* Volume: firmware always react to it and reprograms
- 		 * the built-in *extra* mixer.  Never map it to control
--		 * another mixer by default. */
--		KEY_RESERVED,	/* 0x14: VOLUME UP */
--		KEY_RESERVED,	/* 0x15: VOLUME DOWN */
--		KEY_RESERVED,	/* 0x16: MUTE */
-+		 * another mixer by default.
-+		 * Suppressed by default through hotkey_reserved_mask.
-+		 */
-+		KEY_VOLUMEUP,	/* 0x14: VOLUME UP */
-+		KEY_VOLUMEDOWN,	/* 0x15: VOLUME DOWN */
-+		KEY_MUTE,	/* 0x16: MUTE */
- 
- 		KEY_VENDOR,	/* 0x17: Thinkpad/AccessIBM/Lenovo */
- 
-@@ -3282,7 +3279,8 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
- 		KEY_BRIGHTNESSUP,	/* 0x0F: FN+HOME (brightness up) */
- 		KEY_BRIGHTNESSDOWN,	/* 0x10: FN+END (brightness down) */
- 
--		KEY_RESERVED,	/* 0x11: FN+PGUP (thinklight toggle) */
-+		/* Suppressed by default through hotkey_reserved_mask. */
-+		KEY_KBDILLUMTOGGLE,	/* 0x11: FN+PGUP (thinklight toggle) */
- 
- 		KEY_UNKNOWN,	/* 0x12: FN+PGDOWN */
- 		KEY_ZOOM,	/* 0x13: FN+SPACE (zoom) */
-@@ -3297,10 +3295,11 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
- 		 * change unless you get test reports from all Lenovo
- 		 * models.  May cause the BIOS to interfere with the
- 		 * HDA mixer.
-+		 * Suppressed by default through hotkey_reserved_mask.
- 		 */
--		KEY_RESERVED,	/* 0x14: VOLUME UP */
--		KEY_RESERVED,	/* 0x15: VOLUME DOWN */
--		KEY_RESERVED,	/* 0x16: MUTE */
-+		KEY_VOLUMEUP,	/* 0x14: VOLUME UP */
-+		KEY_VOLUMEDOWN,	/* 0x15: VOLUME DOWN */
-+		KEY_MUTE,	/* 0x16: MUTE */
- 
- 		KEY_VENDOR,	/* 0x17: Thinkpad/AccessIBM/Lenovo */
- 
-@@ -3599,8 +3598,6 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
- 		 * for userspace to do something even remotely sane */
- 		hotkey_reserved_mask |= TP_ACPI_HKEY_BRGHTUP_MASK |
- 					TP_ACPI_HKEY_BRGHTDWN_MASK;
--		hotkey_unmap(TP_ACPI_HOTKEYSCAN_FNHOME);
--		hotkey_unmap(TP_ACPI_HOTKEYSCAN_FNEND);
+@@ -2283,19 +2283,17 @@ static bool tpacpi_input_send_key(const u32 hkey, bool *send_acpi_ev)
  	}
  
- #ifdef CONFIG_THINKPAD_ACPI_HOTKEY_POLL
+ 	keycode = hotkey_keycode_map[scancode];
+-	if (keycode != KEY_RESERVED) {
+-		mutex_lock(&tpacpi_inputdev_send_mutex);
+ 
+-		input_event(tpacpi_inputdev, EV_MSC, MSC_SCAN, scancode);
+-		input_report_key(tpacpi_inputdev, keycode, 1);
+-		input_sync(tpacpi_inputdev);
++	mutex_lock(&tpacpi_inputdev_send_mutex);
+ 
+-		input_event(tpacpi_inputdev, EV_MSC, MSC_SCAN, scancode);
+-		input_report_key(tpacpi_inputdev, keycode, 0);
+-		input_sync(tpacpi_inputdev);
++	input_event(tpacpi_inputdev, EV_MSC, MSC_SCAN, scancode);
++	input_report_key(tpacpi_inputdev, keycode, 1);
++	input_sync(tpacpi_inputdev);
+ 
+-		mutex_unlock(&tpacpi_inputdev_send_mutex);
+-	}
++	input_report_key(tpacpi_inputdev, keycode, 0);
++	input_sync(tpacpi_inputdev);
++
++	mutex_unlock(&tpacpi_inputdev_send_mutex);
+ 
+ 	return true;
+ }
 -- 
 2.44.0
 
