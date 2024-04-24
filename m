@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id B54A58B0DAA
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 24 Apr 2024 17:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3FC28B1202
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 24 Apr 2024 20:19:59 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1rzeGk-0007Dk-EB;
-	Wed, 24 Apr 2024 15:10:46 +0000
+	id 1rzhDL-0003qw-ON;
+	Wed, 24 Apr 2024 18:19:27 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1rzeGe-0007DU-RN
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1rzhDK-0003qo-5F
  for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 24 Apr 2024 15:10:41 +0000
+ Wed, 24 Apr 2024 18:19:26 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Type:Subject:Cc:To:From:Date:References:
  In-Reply-To:Message-Id:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
  :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=VZAWpB6Ocdkpz4p+ylKN0qFjUruBbqLgESwFAjcrV/I=; b=Nu4/VqY2Tyrcygb85IoK90Y1Ix
- SdT+6om9T5kCgWG9ZlzzjcPv49MSfkECHju/3MsDI9rz42Af00d6U66eyaeKVzCHceamkCBkw+fWT
- LIcMxU7UbwCcHZm/zYWxwjRi76psQcR0jhvkT4EOcdp51hAZ+1UUhJ5zsJ1JboB8KE1s=;
+ bh=p3NzkKKYuyUG+6KgbxqEHm1k+2YfJhY6iMUSSgfltac=; b=JnvLGqv7U/p1t5t+p0Fu5wbldp
+ iKRiPTHECwFkjxrHtEZCSvzlQep5JsFMxLNpjh6hqkM6Fma6+ANMLkx3xLBtIsacgdwTSyxdfJvqs
+ f+P8XpaOH0cSSGvrR1Xl/iy51wNzziyvfdAnGsVyRVxGEvmGsKEK8QrkB4LElYy34g+8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Type:Subject:Cc:To:From:Date:References:In-Reply-To:Message-Id:
@@ -31,70 +31,69 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=VZAWpB6Ocdkpz4p+ylKN0qFjUruBbqLgESwFAjcrV/I=; b=KzIVEv26JA+g9l45vcnPckyFjz
- XRwaAF9sd0QupORq1enwRllYZhPK/KiND8zP7YVqrwnxKW6BNXT2FDWlishlaRX55OETo2N03XdVt
- BC+xEbyL7HvUdBnrkJbirVwexX8SBnzOJGEP165BZFnqLtiU44xEq+KdiwswgR569j/Y=;
-Received: from wfout3-smtp.messagingengine.com ([64.147.123.146])
+ bh=p3NzkKKYuyUG+6KgbxqEHm1k+2YfJhY6iMUSSgfltac=; b=l/Cq8F0+mLdmskHgT8g/dp9ZW3
+ 9QLBQZEU3iY3adzRLNo/4a5BItOp+diL4yWxaSD/sYt2NtDd52+7UbSYOe6Zc1tXN2QebuXJQU5eH
+ IvTSgQlR3dJ07NU0OSCqpIIktCJz+rO8WgeceWucGSLDR1nzHV0YuVHYqARBuTkXb6zw=;
+Received: from wfhigh7-smtp.messagingengine.com ([64.147.123.158])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1rzeGd-0007Pw-EZ for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 24 Apr 2024 15:10:40 +0000
+ id 1rzhDI-0007cm-FN for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 24 Apr 2024 18:19:26 +0000
 Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailfout.west.internal (Postfix) with ESMTP id 8442E1C0018E;
- Wed, 24 Apr 2024 11:10:33 -0400 (EDT)
+ by mailfhigh.west.internal (Postfix) with ESMTP id DCA3C1800126;
+ Wed, 24 Apr 2024 14:19:12 -0400 (EDT)
 Received: from imap52 ([10.202.2.102])
- by compute3.internal (MEProxy); Wed, 24 Apr 2024 11:10:34 -0400
+ by compute3.internal (MEProxy); Wed, 24 Apr 2024 14:19:13 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
  :cc:content-type:content-type:date:date:from:from:in-reply-to
  :in-reply-to:message-id:mime-version:references:reply-to:subject
- :subject:to:to; s=fm1; t=1713971433; x=1714057833; bh=VZAWpB6Ocd
- kpz4p+ylKN0qFjUruBbqLgESwFAjcrV/I=; b=cepLRKMIXbRFPDqchg+Q/z+mEw
- OPZ7Cf/u9xKR81FMrTp/uE7//fMx/2Un/6UvzvvguEDnFKwmipVy1R7sA7qw3OdE
- QfrJyAHBs/UmEd+eC+0oLXHKWl1mbrUT3FuCDoy0yDO/omiPrN/bArB4eP6V3+en
- xbaw1DEeGxWiN0PcD38DMA/2rTjba7HKOHH2lf/OvmchX60juSy+ujfxFghMeA1T
- xtLikwRu91UxufRUdX/brSkgOGWVvQgjTLcb4gyiXRUia1fqcLvGSQReJrWNJC1S
- aH1bvCX0yqI0asCQz2H8PusofSAJ6tpZqvRLcgE6LYylb5l2fiAYRM3XYlxQ==
+ :subject:to:to; s=fm1; t=1713982752; x=1714069152; bh=p3NzkKKYuy
+ UG+6KgbxqEHm1k+2YfJhY6iMUSSgfltac=; b=EgPYTfZuTiE5Kre6KUpd966bef
+ IzLx65IXl04dc638w4vJDH2Ha6L3GA4r8xagWcsweARtGv2JiwYCiQYJi3igMLEc
+ 94HfATS6O8HrWovJRLdKfE73GOpRf6rMi/qmf/YMLNSJSlh/FzX+5+iEgaFJHzNe
+ nOHyDYFFBwEXjImfRCoMUMNzYAX9Ly6aVliWts3UsDKH7UG3qB1yrz2/s+o/utaY
+ Um+mISKxJNeyNw+DsO2Cu6fB68V51gCs4njdpxAlL4+BW1pv3eXV0wuNiiyjNdd9
+ 09u5hVOr0hEyItUaRiNnrUBerCPWEh5Y+4Z/kWB7VBNXsxVE2bMvPzTm+TeA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-type:content-type:date:date
  :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
  :message-id:mime-version:references:reply-to:subject:subject:to
  :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm3; t=1713971433; x=1714057833; bh=VZAWpB6Ocdkpz4p+ylKN0qFjUruB
- bqLgESwFAjcrV/I=; b=JRgJpyoTHpjfa6WMB9CQNto5Gb7IaWKzUiYgkt+EvEBT
- ZRuR3gA3RrRvsc7VupQuM7z/ztEULkp8wvJgCC3NFKildioxpki9mr/K1gW3wb5I
- b+WrC8qYhnO1DQ+utGRS8HrtVoYqUiWgH7PKw5fcbnzginG84+hgpCb26rfPJvKO
- YjssxPaVtSCPcMTmC+U3vyQ8XYFeL8QVQ58DTpiBhBV1YFZY8HbMZgOimx4q59gN
- SkHp+0phb9cy0msR17r5cOv7gSY7VkVrEwFKkWgMM7+0rMBQ/QsDQ1Gq2Fg2/qPw
- BnTGU8i/6EM8Zgla6JxMXHWobKTeCwHAtHPx5vYDzg==
-X-ME-Sender: <xms:5yApZnHQb9-z4DXR-5rHWU3ZX-cPSUC509Qlqdo2c_4l0x7svpuQUg>
- <xme:5yApZkViAwZ6uhC1_eNsX5E3Z1aHZRwbJXULul2Rt_EKrE0-jBnHN0hKAr0S_QoO6
- 1EmGWWCmUbGuDpyV5Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudelhedgvdehucetufdoteggodetrfdotf
+ fm3; t=1713982752; x=1714069152; bh=p3NzkKKYuyUG+6KgbxqEHm1k+2Yf
+ JhY6iMUSSgfltac=; b=Tz0zDUQNJ7Eix74TnsEUfQvIcK+ajtTUgnWwz2wBaTRd
+ SOI9pJyjX3NQ+ZPUN+p+jXBRWj4qCLcFx49V/4MCL2CYe2JGGt/NaW3KNwWoQrrC
+ E0BLFOqMxwHz9E+2FBoRvdGsVWGwBLuyTClgxfsEnEVz9a5bYIzmHpkJO9J9neHe
+ ZHGaF7QgZXmC1z+jdB4qugpC7iyyLnXSnm6DUUF3frfiU9nN/jW2IqL86TNxkrWJ
+ 5KpLWt8+1kfygpic32Uiaf+zEQ41/bMU2Wwk0VLI4IuH9TAgHe0vihteOlu/c6Cy
+ h805dOr6XqMnUc8/oxn7248Y6hBQMJGc06Xi1kOfUA==
+X-ME-Sender: <xms:H00pZhw4WbO36SCty2PN2Jcvc_eCj9-Y6QR16hXWQG5ty0xOVBjE_A>
+ <xme:H00pZhQoLM92Nx8rzjFv9XUDPj3X9NDnRygdwx7o1bGK4FScm5db8HqlrlUOSZ2YH
+ yEtZBROcUxuNhZkHKA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrudelhedgieegucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
  uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
  cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedfofgr
  rhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssg
- drtggrqeenucggtffrrghtthgvrhhnpeeiueefjeeiveetuddvkeetfeeltdevffevudeh
- ffefjedufedvieejgedugeekhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmh
- epmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggr
-X-ME-Proxy: <xmx:5yApZpItt_77mxhRq-hJ4zxxowBlAj99HHxvoMs4R4nwoxWLgj_D5g>
- <xmx:5yApZlH_aur8Rp7AzzckPff9LPk1nwZLvqhrUqzLznRqtwRyGqaLPw>
- <xmx:5yApZtU_4clf8mquSdg8qTNZe8IVTTq9Hh_aF-t2TD-_hu50T_uZyg>
- <xmx:5yApZgMohGO-d005XWyr28E2S8Pt5M02DBJT4_UlDM8OepksuThv4w>
- <xmx:6SApZsEHTufyiPyDo6WhU2ydSUECnV0HlPWR-_dTFu9b8o7EMY9VwXc_>
+ drtggrqeenucggtffrrghtthgvrhhnpeeivedtkeeftdefhfdugfelgeehieeivdefffek
+ jeetuddvueeijefgjeekudevtdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuve
+ hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhhpvggrrhhs
+ ohhnqdhlvghnohhvohesshhquhgvsggsrdgtrg
+X-ME-Proxy: <xmx:H00pZrVgnyPsT8uKy4aQtH7oEk3pn4XAvtxmPlEqp8Q_xEI2YxNI6A>
+ <xmx:IE0pZjg3fr1J93an07iFx3quT2hEaQ2drEtsFSe_UbV0soAM1Hx5uw>
+ <xmx:IE0pZjCXPcjUUWgmeoDUwF6anjgVgwZKdujuVztpD7NXHuLz0tI_1w>
+ <xmx:IE0pZsIbNRkhBAZYqnvBbJt1IGakAz_ppR46WL50dm8CJJfvJN-RsA>
+ <xmx:IE0pZlDf_43mQdoQKtyX0A9bujrZK2U5sXKyBWuV6elKpkkvhDeDDCbq>
 Feedback-ID: ibe194615:Fastmail
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id B2AF0C60097; Wed, 24 Apr 2024 11:10:31 -0400 (EDT)
+ id D5B48C60097; Wed, 24 Apr 2024 14:19:11 -0400 (EDT)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.11.0-alpha0-386-g4cb8e397f9-fm-20240415.001-g4cb8e397
 MIME-Version: 1.0
-Message-Id: <30bc231b-4893-40d2-bfae-250a4ddb0c8f@app.fastmail.com>
-In-Reply-To: <77524ca0-89bb-4223-bd42-532f34fdd055@redhat.com>
+Message-Id: <8f150aef-0d56-4c5b-af17-9c66084a3ae7@app.fastmail.com>
+In-Reply-To: <20240424122834.19801-23-hdegoede@redhat.com>
 References: <20240424122834.19801-1-hdegoede@redhat.com>
- <20240424122834.19801-17-hdegoede@redhat.com>
- <5e0e0317-9e27-4a6b-8b7a-3828f4e3f7fb@app.fastmail.com>
- <77524ca0-89bb-4223-bd42-532f34fdd055@redhat.com>
-Date: Wed, 24 Apr 2024 11:11:34 -0400
+ <20240424122834.19801-23-hdegoede@redhat.com>
+Date: Wed, 24 Apr 2024 14:19:40 -0400
 From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
 To: "Hans de Goede" <hdegoede@redhat.com>,
  =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
@@ -107,20 +106,21 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Wed, Apr 24, 2024, at 10:47 AM, Hans de Goede wrote: >
- Hi Mark, > > On 4/24/24 4:17 PM, Mark Pearson wrote: >> Hi Hans, >> >> On
- Wed, Apr 24, 2024, at 8:28 AM, Hans de Goede wrote: >>> Change the h [...]
+ Content preview:  Hi Hans, On Wed, Apr 24, 2024, at 8:28 AM,
+ Hans de Goede wrote:
+ > From: Mark Pearson <mpearson-lenovo@squebb.ca> > > Lenovo trackpoints are
+ adding the ability to generate a doubletap event. > This handles the [...]
  Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
  blocked.  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: messagingengine.com]
+ for more information. [URIs: squebb.ca]
  0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to
  DNSWL was blocked.  See
  http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [64.147.123.146 listed in list.dnswl.org]
+ for more information. [64.147.123.158 listed in list.dnswl.org]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -130,9 +130,9 @@ X-Spam-Report: Spam detection software,
  author's domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
-X-Headers-End: 1rzeGd-0007Pw-EZ
-Subject: Re: [ibm-acpi-devel] [PATCH v2 16/24] platform/x86: thinkpad_acpi:
- Change hotkey_reserved_mask initialization
+X-Headers-End: 1rzhDI-0007cm-FN
+Subject: Re: [ibm-acpi-devel] [PATCH v2 22/24] platform/x86: thinkpad_acpi:
+ Support for trackpoint doubletap
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,101 +152,101 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
+Hi Hans,
 
+On Wed, Apr 24, 2024, at 8:28 AM, Hans de Goede wrote:
+> From: Mark Pearson <mpearson-lenovo@squebb.ca>
+>
+> Lenovo trackpoints are adding the ability to generate a doubletap event.
+> This handles the doubletap event and sends the KEY_PROG4 event to
+> userspace. Despite the driver itself not using KEY_PROG1 - KEY_PROG3 this
+> still uses KEY_PROG4 because of some keys being remapped to KEY_PROG1 -
+> KEY_PROG3 by default by the upstream udev hwdb containing:
+>
+> evdev:name:ThinkPad Extra Buttons:dmi:bvn*:bvr*:bd*:svnLENOVO*:pn*:*
+>  ...
+>  KEYBOARD_KEY_17=prog1
+>  KEYBOARD_KEY_1a=f20       # Microphone mute button
+>  KEYBOARD_KEY_45=bookmarks
+>  KEYBOARD_KEY_46=prog2     # Fn + PrtSc, on Windows: Snipping tool
+>  KEYBOARD_KEY_4a=prog3     # Fn + Right shift, on Windows: No idea
+>
+> Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+> Signed-off-by: Vishnu Sankar <vishnuocv@gmail.com>
+> Link: https://lore.kernel.org/r/20240417173124.9953-2-mpearson-lenovo@squebb.ca
+> [hdegoede@redhat.com: Adjust for switch to sparse-keymap keymaps]
+> Tested-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> ---
+>  drivers/platform/x86/thinkpad_acpi.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c 
+> b/drivers/platform/x86/thinkpad_acpi.c
+> index a53b00fecf1a..b6d6466215e1 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -248,6 +248,9 @@ enum tpacpi_hkey_event_t {
+> 
+>  	/* Misc */
+>  	TP_HKEY_EV_RFKILL_CHANGED	= 0x7000, /* rfkill switch changed */
+> +
+> +	/* Misc2 */
+> +	TP_HKEY_EV_TRACK_DOUBLETAP      = 0x8036, /* trackpoint doubletap */
+>  };
+> 
+>  
+> /****************************************************************************
+> @@ -3268,6 +3271,7 @@ static const struct key_entry keymap_lenovo[] 
+> __initconst = {
+>  	 * after switching to sparse keymap support. The mappings above use 
+> translated
+>  	 * scancodes to preserve uAPI compatibility, see 
+> tpacpi_input_send_key().
+>  	 */
+> +	{ KE_KEY, TP_HKEY_EV_TRACK_DOUBLETAP /* 0x8036 */, { KEY_PROG4 } },
+>  	{ KE_END }
+>  };
+> 
+> @@ -3817,6 +3821,17 @@ static bool hotkey_notify_6xxx(const u32 hkey, 
+> bool *send_acpi_ev)
+>  	return true;
+>  }
+> 
+> +static bool hotkey_notify_8xxx(const u32 hkey, bool *send_acpi_ev)
+> +{
+> +	switch (hkey) {
+> +	case TP_HKEY_EV_TRACK_DOUBLETAP:
+> +		tpacpi_input_send_key(hkey, send_acpi_ev);
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>  static void hotkey_notify(struct ibm_struct *ibm, u32 event)
+>  {
+>  	u32 hkey;
+> @@ -3893,6 +3908,10 @@ static void hotkey_notify(struct ibm_struct 
+> *ibm, u32 event)
+>  				known_ev = true;
+>  			}
+>  			break;
+> +		case 8:
+> +			/* 0x8000-0x8FFF: misc2 */
+> +			known_ev = hotkey_notify_8xxx(hkey, &send_acpi_ev);
+> +			break;
+>  		}
+>  		if (!known_ev) {
+>  			pr_notice("unhandled HKEY event 0x%04x\n", hkey);
+> -- 
+> 2.44.0
 
-On Wed, Apr 24, 2024, at 10:47 AM, Hans de Goede wrote:
-> Hi Mark,
->
-> On 4/24/24 4:17 PM, Mark Pearson wrote:
->> Hi Hans,
->> 
->> On Wed, Apr 24, 2024, at 8:28 AM, Hans de Goede wrote:
->>> Change the hotkey_reserved_mask initialization to hardcode the list
->>> of reserved keys. There are only a few reserved keys and the code to
->>> iterate over the keymap will be removed when moving to sparse-keymaps.
->>>
->>> Tested-by: Mark Pearson <mpearson-lenovo@squebb.ca>
->>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->>> ---
->>>  drivers/platform/x86/thinkpad_acpi.c | 21 +++++++++++++++------
->>>  1 file changed, 15 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/platform/x86/thinkpad_acpi.c 
->>> b/drivers/platform/x86/thinkpad_acpi.c
->>> index 952bac635a18..cf5c741d1343 100644
->>> --- a/drivers/platform/x86/thinkpad_acpi.c
->>> +++ b/drivers/platform/x86/thinkpad_acpi.c
->>> @@ -3545,6 +3545,19 @@ static int __init hotkey_init(struct 
->>> ibm_init_struct *iibm)
->>>  	dbg_printk(TPACPI_DBG_INIT | TPACPI_DBG_HKEY,
->>>  		   "using keymap number %lu\n", keymap_id);
->>>
->>> +	/* Keys which should be reserved on both IBM and Lenovo models */
->>> +	hotkey_reserved_mask = TP_ACPI_HKEY_KBD_LIGHT_MASK |
->>> +			       TP_ACPI_HKEY_VOLUP_MASK |
->>> +			       TP_ACPI_HKEY_VOLDWN_MASK |
->>> +			       TP_ACPI_HKEY_MUTE_MASK;
->>> +	/*
->>> +	 * Reserve brightness up/down unconditionally on IBM models, on Lenovo
->>> +	 * models these are disabled based on acpi_video_get_backlight_type().
->>> +	 */
->>> +	if (keymap_id == TPACPI_KEYMAP_IBM_GENERIC)
->>> +		hotkey_reserved_mask |= TP_ACPI_HKEY_BRGHTUP_MASK |
->>> +					TP_ACPI_HKEY_BRGHTDWN_MASK;
->>> +
->>>  	hotkey_keycode_map = kmemdup(&tpacpi_keymaps[keymap_id],
->>>  			TPACPI_HOTKEY_MAP_SIZE,	GFP_KERNEL);
->>>  	if (!hotkey_keycode_map) {
->>> @@ -3560,9 +3573,6 @@ static int __init hotkey_init(struct 
->>> ibm_init_struct *iibm)
->>>  		if (hotkey_keycode_map[i] != KEY_RESERVED) {
->>>  			input_set_capability(tpacpi_inputdev, EV_KEY,
->>>  						hotkey_keycode_map[i]);
->>> -		} else {
->>> -			if (i < sizeof(hotkey_reserved_mask)*8)
->>> -				hotkey_reserved_mask |= 1 << i;
->> 
->> Just to check my understanding here - does this change mean that the keys marked as KEY_RESERVED in the lenovo map won't make it into the mask?
->> 
->> e.g the ones in this block:
->>                 KEY_RESERVED,        /* Mute held, 0x103 */
->>                 KEY_BRIGHTNESS_MIN,  /* Backlight off */
->>                 KEY_RESERVED,        /* Clipping tool */
->>                 KEY_RESERVED,        /* Cloud */
->>                 KEY_RESERVED,
->>                 KEY_VOICECOMMAND,    /* Voice */
->>                 KEY_RESERVED,
->>                 KEY_RESERVED,        /* Gestures */
->>                 KEY_RESERVED,
->>                 KEY_RESERVED,
->>                 KEY_RESERVED,
->>                 KEY_CONFIG,          /* Settings */
->>                 KEY_RESERVED,        /* New tab */
->>                 KEY_REFRESH,         /* Reload */
->>                 KEY_BACK,            /* Back */
->>                 KEY_RESERVED,        /* Microphone down */
->>                 KEY_RESERVED,        /* Microphone up */
->>                 KEY_RESERVED,        /* Microphone cancellation */
->>                 KEY_RESERVED,        /* Camera mode */
->>                 KEY_RESERVED,        /* Rotate display, 0x116 */
->> 
->> I'm not sure what the effect will be and I don't have the 2014 X1 Carbon (I assume it's the G1) available to test with unfortunately.
->
-> Only the 32 original hotkeys are affected by any of the hotkey_*_mask
-> values, note:
->
-> 			if (i < sizeof(hotkey_reserved_mask)*8)
-> 				hotkey_reserved_mask |= 1 << i;
->
-> The (i < sizeof(hotkey_reserved_mask)*8) condition translates to
-> (i < 32) so this code only ever set bits in hotkey_reserved_mask
-> for the 32 original hotkeys.
->
-Ah - excellent. I had missed that.
-Thanks!
+Instead of needing hotkey_notify_8xxx, now we are using the sparse_keymap can we just use hotkey_notify_hotkey for case 8? No need to check what the hkey is either.
 
-Reviewed-by Mark Pearson <mpearson-lenovo@squebb.ca>
-(and that applies for all patches in the series up to this one...getting through them slowly)
+Note - the future patch for the FN+G key (patch 24/24) will also need modifying as we'll need to move the check if the doubletap has been disabled for the doubletap hkey, but it's two lines so still seems cleaner overall.
+
+I prototyped it on my system, and it worked.
 
 Mark
 
