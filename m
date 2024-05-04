@@ -2,103 +2,92 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9984C8B6C43
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 30 Apr 2024 09:54:43 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
-	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE5538BBCCC
+	for <lists+ibm-acpi-devel@lfdr.de>; Sat,  4 May 2024 17:37:52 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1s1iJd-0007ks-0N;
-	Tue, 30 Apr 2024 07:54:17 +0000
+	id 1s3HRG-00023p-PI;
+	Sat, 04 May 2024 15:36:38 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mjt@tls.msk.ru>) id 1s1iJZ-0007ki-S0
+ (envelope-from <gregkh@linuxfoundation.org>) id 1s3HRC-00023f-JE
  for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 30 Apr 2024 07:54:14 +0000
+ Sat, 04 May 2024 15:36:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- References:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=4raDn3dUMJitG83JXMjEkbS5FtVtRyp2YGyYjg5why4=; b=O/PQOi4/b2oKpUVNjhQIt5EV7N
- yWMaGMKQhP2cEYScWcwQVPMjpBLk7ayU0GUzt6caeqs5jbMO7pm+6277OXK3Pa4/FN/ESE4z/e/Gx
- 1AOP4fZW8lTnIjMcy7+wDZlz2tpRCE+8ysmQUvB4VOGn33rUFrk3iRcbe8QeFMDq6X8I=;
+ bh=BEHfgGo/0W1gAL/HvOUGuMMBGSuTJXz3WVsWmH84pNc=; b=m0lPXy5km0l1dIQrELy6JrIcKH
+ 7eH1UbZpEzkRteHCx3d07QuWztMLufA1sYwibRfe1eVuCk4vosLQMvt8HnnVCSEdR1pRuD8SBgSBS
+ BqDB/yNuoeuyU/+vQsVN/jAY2XfHYclGtRDLkXiKMMKXBqSytW7JzUnJ7KlnEJCuNfpk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:To:From:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=4raDn3dUMJitG83JXMjEkbS5FtVtRyp2YGyYjg5why4=; b=MI6SfFRjhH3qL9xWiy72UdN1MR
- btt9hU4M0G3Amp9vFW8a9uHIZ4d8PG6c+g/oAucMUELMjQQkXzDgjxC9SJNZVufCdwMn81g5xcrb2
- gPhIG/J+CTG/tdd/Qn/yj50lXiMm6dT/CGYc9c70BMHS3m4YbB7H/iekGazWKc/pvFJk=;
-Received: from isrv.corpit.ru ([86.62.121.231])
+ bh=BEHfgGo/0W1gAL/HvOUGuMMBGSuTJXz3WVsWmH84pNc=; b=GshbyiGsqkKPvAXYkRf+LW7Pdy
+ VB9pQyARWsR2cp39XlzFdpZ4EJqlFyxtooqYiO4YYxHjYmZVly3H2y0SYUjtnbsx5kjgKvpP5PjtE
+ t2LyNSI85F9kEBU0BdyKpdB9xLVKr4LHA0DzU/gpytq1jlKwxdF0WGz3oPxYXqGbO3bg=;
+Received: from dfw.source.kernel.org ([139.178.84.217])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1s1iJY-0000kS-Nj for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 30 Apr 2024 07:54:14 +0000
-Received: from tsrv.corpit.ru (tsrv.tls.msk.ru [192.168.177.2])
- by isrv.corpit.ru (Postfix) with ESMTP id C12CE6300E
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Tue, 30 Apr 2024 10:54:11 +0300 (MSK)
-Received: from [192.168.177.130] (mjt.wg.tls.msk.ru [192.168.177.130])
- by tsrv.corpit.ru (Postfix) with ESMTP id C0FEEC3A94
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Tue, 30 Apr 2024 10:54:06 +0300 (MSK)
-Message-ID: <abc39e3d-dff5-4d67-ba71-cf20afc99d9e@tls.msk.ru>
-Date: Tue, 30 Apr 2024 10:54:06 +0300
+ id 1s3HRC-0004AP-0m for ibm-acpi-devel@lists.sourceforge.net;
+ Sat, 04 May 2024 15:36:34 +0000
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 7E42260AB9;
+ Sat,  4 May 2024 15:36:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92CBEC072AA;
+ Sat,  4 May 2024 15:36:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1714836983;
+ bh=nwu87VDHK729eGU2R6RqtqlA5jPb1XtrfjcVNZX2UW8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=gOU9LDkGC/Nk0n7vDBEZnWdd/OxMBxqcUv0bWurd537fHJ4jcdyDDcv+QbZAK3nE/
+ ++E8Cs160Smi3bmrYhGFtE6q5sBfTKr4b7AubdwbVrdiO9sZW2n1rHLERpHgtLVwFL
+ eCOt84oekveT8FaBGhnj3Hf2FmZa93ZVT3j5PrVE=
+Date: Sat, 4 May 2024 17:36:20 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Lukas Wunner <lukas@wunner.de>
+Message-ID: <2024050409-confident-delouse-a976@gregkh>
+References: <cover.1713608122.git.lukas@wunner.de> <ZjZGzg5LFU2AT3_D@wunner.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Michael Tokarev <mjt@tls.msk.ru>
-To: ibm-acpi-devel@lists.sourceforge.net
-References: <0532cbc2-be3b-4b4d-8291-b524e3ab058c@tls.msk.ru>
-Content-Language: en-US
-Autocrypt: addr=mjt@tls.msk.ru; keydata=
- xsBLBETIiwkBCADh3cFB56BQYPjtMZCfK6PSLR8lw8EB20rsrPeJtd91IoNZlnCjSoxd9Th1
- bLUR8YlpRJ2rjc6O1Bc04VghqUOHgS/tYt8vLjcGWixzdhSLJgPDK3QQZPAvBjMbCt1B6euC
- WuD87Pv5Udlpnzf4aMwxkgfTusx+ynae/o+T5r7tXD+isccbC3SiGhmAPxFyY3zGcFk4+Rxc
- 0tP8YY2FWE/baHu+lBDTUN79efWAkHhex1XzVZsV7ZD16rzDbXFK5m6ApvGJWlr5YDEEydTF
- WwmvwBfr4OINVxzEG/ujNiG4fpMf2NsnFGyB9aSbFjXZevB4qWkduYYW+xpK1EryszHtAAYp
- zSBNaWNoYWVsIFRva2FyZXYgPG1qdEB0bHMubXNrLnJ1PsLAlgQTAQoAQAIbAwYLCQgHAwIE
- FQIIAwQWAgMBAh4BAheAAhkBFiEEbuGV0Yhuj/uBDUMkRXzgoIBEZcUFAmBbcjwFCS5e6jMA
- CgkQRXzgoIBEZcUTIQgA1hPsOF82pXxbcJXBMc4zB9OQu4AlnZvERoGyw7I2222QzaN3RFuj
- Fia//mapXzpIQNF08l/AA6cx+CKPeGnXwyZfF9fLa4RfifmdNKME8C00XlqnoJDZBGzq8yMy
- LAKDxl9OQWFcDwDxV+irg5U3fbtNVhvV0kLbS2TyQ0aU5w60ERS2NcyDWplOo7AOzZWChcA4
- UFf78oVdZdCW8YDtU0uQFhA9moNnrePy1HSFqduxnlFHEI+fDj/TiOm2ci48b8SBBJOIJFjl
- SBgH8+SfT9ZqkzhN9vh3YJ49831NwASVm0x1rDHcIwWD32VFZViZ3NjehogRNH9br0PSUYOC
- 3s7ATQRX2BjLAQgAnak3m0imYOkv2tO/olULFa686tlwuvl5kL0NWCdGQeXv2uMxy36szcrh
- K1uYhpiQv4r2qNd8BJtYlnYIK16N8GBdkplaDIHcBMbU4t+6bQzEIJIaWoq1hzakmHHngE2a
- pNMnUf/01GFvCRPlv3imkujE/5ILbagjtdyJaHF0wGOSlTnNT4W8j+zPJ/XK0I5EVQwtbmoc
- GY62LKxxz2pID6sPZV4zQVY4JdUQaFvOz1emnBxakkt0cq3Qnnqso1tjiy7vyH9CAwPR/48W
- fpK6dew4Fk+STYtBeixOTfSUS8qRS/wfpUeNa5RnEdTtFQ9IcjpQ/nPrvJJsu9FqwlpjMwAR
- AQABwsBlBBgBCAAPBQJX2BjLAhsMBQkSzAMAAAoJEEV84KCARGXFUKcH/jqKETECkbyPktdP
- cWVqw2ZIsmGxMkIdnZTbPwhORseGXMHadQODayhU9GWfCDdSPkWDWzMamD+qStfl9MhlVT60
- HTbo6wu1W/ogUS70qQPTY9IfsvAj6f8TlSlK0eLMa3s2UxL2oe5FkNs2CnVeRlr4Yqvp/ZQV
- 6LXtew4GPRrmplUT/Cre9QIUqR4pxYCQaMoOXQQw3Y0csBwoDYUQujn3slbDJRIweHoppBzT
- rM6ZG5ldWQN3n3d71pVuv80guylX8+TSB8Mvkqwb5I36/NAFKl0CbGbTuQli7SmNiTAKilXc
- Y5Uh9PIrmixt0JrmGVRzke6+11mTjVlio/J5dCM=
-In-Reply-To: <0532cbc2-be3b-4b4d-8291-b524e3ab058c@tls.msk.ru>
-X-Spam-Score: 0.0 (/)
+Content-Disposition: inline
+In-Reply-To: <ZjZGzg5LFU2AT3_D@wunner.de>
+X-Spam-Score: -1.4 (-)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  30.04.2024 10:34,
- Michael Tokarev wrote: ... Forgot to mention:
- this is debian kernel 6.6.13-1~bpo12+1. I tried that one after observing
- exactly the same issue on regular bookworm 6.1.0 kernels. /mjt 
- Content analysis details:   (0.0 points, 6.0 required)
+ Content preview:  On Sat, May 04, 2024 at 04:31:42PM +0200, Lukas Wunner wrote:
+ > Dear Greg, > > On Sat, Apr 20, 2024 at 10:00:00PM +0200, Lukas Wunner wrote:
+ > > Introduce a generic ->show() callback to expose a strin [...] 
+ Content analysis details:   (-1.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+ blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+ for more information. [URIs: linuxfoundation.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
-X-Headers-End: 1s1iJY-0000kS-Nj
-Subject: Re: [ibm-acpi-devel] thinkpad s495s: power button stops working
- after hibernation/resume: acpi_evalf(STRW, vd, ...) failed: AE_NOT_FOUND
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid -1.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1s3HRC-0004AP-0m
+Subject: Re: [ibm-acpi-devel] [PATCH 0/6] Deduplicate string exposure in
+ sysfs
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -111,17 +100,66 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
+Cc: Mark Rutland <mark.rutland@arm.com>, Tyrel Datwyler <tyreld@linux.ibm.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, storagedev@microchip.com,
+ Yicong Yang <yangyicong@hisilicon.com>, ibm-acpi-devel@lists.sourceforge.net,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>, Will Deacon <will@kernel.org>,
+ Jijie Shao <shaojijie@huawei.com>, Khuong Dinh <khuong@os.amperecomputing.com>,
+ Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
+ Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
+ linux-rdma@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
+ "Luke D. Jones" <luke@ljones.dev>, Nilesh Javali <njavali@marvell.com>,
+ Ilpo Jaervinen <ilpo.jarvinen@linux.intel.com>,
+ Guenter Roeck <linux@roeck-us.net>, platform-driver-x86@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Azael Avalos <coproscefalo@gmail.com>, linux-arm-kernel@lists.infradead.org,
+ linux-hwmon@vger.kernel.org, linux-scsi@vger.kernel.org,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Don Brace <don.brace@microchip.com>, Bjorn Andersson <andersson@kernel.org>,
+ Anil Gurumur thy <anil.gurumurthy@qlogic.com>, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ GR-QLogic-Storage-Upstream@marvell.com, Shuai Xue <xueshuai@linux.alibaba.com>,
+ Corentin Chary <corentin.chary@gmail.com>, linuxppc-dev@lists.ozlabs.org
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="us-ascii"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-30.04.2024 10:34, Michael Tokarev wrote:
-...
-Forgot to mention: this is debian kernel 6.6.13-1~bpo12+1.
-I tried that one after observing exactly the same issue on
-regular bookworm 6.1.0 kernels.
+On Sat, May 04, 2024 at 04:31:42PM +0200, Lukas Wunner wrote:
+> Dear Greg,
+> 
+> On Sat, Apr 20, 2024 at 10:00:00PM +0200, Lukas Wunner wrote:
+> > Introduce a generic ->show() callback to expose a string as a device
+> > attribute in sysfs.  Deduplicate various identical callbacks across
+> > the tree.
+> > 
+> > Result:  Minus 216 LoC, minus 1576 bytes vmlinux size (x86_64 allyesconfig).
+> > 
+> > This is a byproduct of my upcoming PCI device authentication v2 patches.
+> > 
+> > 
+> > Lukas Wunner (6):
+> >   driver core: Add device_show_string() helper for sysfs attributes
+> >   hwmon: Use device_show_string() helper for sysfs attributes
+> >   IB/qib: Use device_show_string() helper for sysfs attributes
+> >   perf: Use device_show_string() helper for sysfs attributes
+> >   platform/x86: Use device_show_string() helper for sysfs attributes
+> >   scsi: Use device_show_string() helper for sysfs attributes
+> 
+> This series hasn't been applied to driver-core-next AFAICS and the
+> merge window is drawing closer.
+> 
+> So far only patches 1, 2 and 5 have been ack'ed by the respective
+> subsystem maintainers.  If the missing acks are the reason it hasn't
+> been applied, would it be possibe to apply only 1, 2 and 5?
+> 
+> I would then resubmit the other ones individually to the subsystem
+> maintainers in the next cycle.
 
-/mjt
+I'll just pick it up now, thanks!
+
+greg k-h
 
 
 _______________________________________________
