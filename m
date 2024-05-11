@@ -2,92 +2,109 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE5538BBCCC
-	for <lists+ibm-acpi-devel@lfdr.de>; Sat,  4 May 2024 17:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1875A8C2FF5
+	for <lists+ibm-acpi-devel@lfdr.de>; Sat, 11 May 2024 08:57:32 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1s3HRG-00023p-PI;
-	Sat, 04 May 2024 15:36:38 +0000
+	id 1s5get-0005Yy-CW;
+	Sat, 11 May 2024 06:56:39 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <gregkh@linuxfoundation.org>) id 1s3HRC-00023f-JE
+ (envelope-from <mjt@tls.msk.ru>) id 1s5gep-0005Yr-Qd
  for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 04 May 2024 15:36:34 +0000
+ Sat, 11 May 2024 06:56:36 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ References:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BEHfgGo/0W1gAL/HvOUGuMMBGSuTJXz3WVsWmH84pNc=; b=m0lPXy5km0l1dIQrELy6JrIcKH
- 7eH1UbZpEzkRteHCx3d07QuWztMLufA1sYwibRfe1eVuCk4vosLQMvt8HnnVCSEdR1pRuD8SBgSBS
- BqDB/yNuoeuyU/+vQsVN/jAY2XfHYclGtRDLkXiKMMKXBqSytW7JzUnJ7KlnEJCuNfpk=;
+ bh=0Vzc5s4Z+BeDZqL2oVTM2EFuWcYqMyTpm9w4Ei/QYXo=; b=DwNQcydhC64d0GR2LNuNHPQ1QZ
+ ww0byolNlPeVqt5nuu+h0gkJCJTVjiSOPTlYXwBeAFBOeZjcNtfMimPlqEG/Rgxm3SW4u7bys/Bu6
+ Y5mAr+lm2D/bgQ7ZE7nBvYNhIWvxOL41BVvTcXApjXzXeen0v1HwG0fP3khZ0v6B0NXY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:To:From:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=BEHfgGo/0W1gAL/HvOUGuMMBGSuTJXz3WVsWmH84pNc=; b=GshbyiGsqkKPvAXYkRf+LW7Pdy
- VB9pQyARWsR2cp39XlzFdpZ4EJqlFyxtooqYiO4YYxHjYmZVly3H2y0SYUjtnbsx5kjgKvpP5PjtE
- t2LyNSI85F9kEBU0BdyKpdB9xLVKr4LHA0DzU/gpytq1jlKwxdF0WGz3oPxYXqGbO3bg=;
-Received: from dfw.source.kernel.org ([139.178.84.217])
+ bh=0Vzc5s4Z+BeDZqL2oVTM2EFuWcYqMyTpm9w4Ei/QYXo=; b=cVj8BIBKmRWec5fEF18/AbQGA/
+ 5dS0z8BK86Aicz4fi00UKdz6WsX4KTsVNEr23uOjWjLw7sz8IXZ/Qj3uchBiyGka5Bhy4EoGw+LZe
+ 2G+HyR+tPp8cGygRG8Hsk7S2c/oIUQg/rdgKsO1Sl+btKSNeE3qDmOShgFHJmdOSdc6U=;
+Received: from isrv.corpit.ru ([86.62.121.231])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1s3HRC-0004AP-0m for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 04 May 2024 15:36:34 +0000
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 7E42260AB9;
- Sat,  4 May 2024 15:36:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92CBEC072AA;
- Sat,  4 May 2024 15:36:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1714836983;
- bh=nwu87VDHK729eGU2R6RqtqlA5jPb1XtrfjcVNZX2UW8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=gOU9LDkGC/Nk0n7vDBEZnWdd/OxMBxqcUv0bWurd537fHJ4jcdyDDcv+QbZAK3nE/
- ++E8Cs160Smi3bmrYhGFtE6q5sBfTKr4b7AubdwbVrdiO9sZW2n1rHLERpHgtLVwFL
- eCOt84oekveT8FaBGhnj3Hf2FmZa93ZVT3j5PrVE=
-Date: Sat, 4 May 2024 17:36:20 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Lukas Wunner <lukas@wunner.de>
-Message-ID: <2024050409-confident-delouse-a976@gregkh>
-References: <cover.1713608122.git.lukas@wunner.de> <ZjZGzg5LFU2AT3_D@wunner.de>
+ id 1s5gem-00014d-9B for ibm-acpi-devel@lists.sourceforge.net;
+ Sat, 11 May 2024 06:56:36 +0000
+Received: from tsrv.corpit.ru (tsrv.tls.msk.ru [192.168.177.2])
+ by isrv.corpit.ru (Postfix) with ESMTP id 3236B65D4A
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Sat, 11 May 2024 09:56:22 +0300 (MSK)
+Received: from [192.168.177.130] (mjt.wg.tls.msk.ru [192.168.177.130])
+ by tsrv.corpit.ru (Postfix) with ESMTP id BBD9FCBFF5
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Sat, 11 May 2024 09:56:18 +0300 (MSK)
+Message-ID: <9756cf6a-eff2-44d7-b894-92e7b4880d5f@tls.msk.ru>
+Date: Sat, 11 May 2024 09:56:18 +0300
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <ZjZGzg5LFU2AT3_D@wunner.de>
-X-Spam-Score: -1.4 (-)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+User-Agent: Mozilla Thunderbird
+From: Michael Tokarev <mjt@tls.msk.ru>
+To: ibm-acpi-devel@lists.sourceforge.net
+References: <0532cbc2-be3b-4b4d-8291-b524e3ab058c@tls.msk.ru>
+Content-Language: en-US
+Autocrypt: addr=mjt@tls.msk.ru; keydata=
+ xsBLBETIiwkBCADh3cFB56BQYPjtMZCfK6PSLR8lw8EB20rsrPeJtd91IoNZlnCjSoxd9Th1
+ bLUR8YlpRJ2rjc6O1Bc04VghqUOHgS/tYt8vLjcGWixzdhSLJgPDK3QQZPAvBjMbCt1B6euC
+ WuD87Pv5Udlpnzf4aMwxkgfTusx+ynae/o+T5r7tXD+isccbC3SiGhmAPxFyY3zGcFk4+Rxc
+ 0tP8YY2FWE/baHu+lBDTUN79efWAkHhex1XzVZsV7ZD16rzDbXFK5m6ApvGJWlr5YDEEydTF
+ WwmvwBfr4OINVxzEG/ujNiG4fpMf2NsnFGyB9aSbFjXZevB4qWkduYYW+xpK1EryszHtAAYp
+ zSBNaWNoYWVsIFRva2FyZXYgPG1qdEB0bHMubXNrLnJ1PsLAlgQTAQoAQAIbAwYLCQgHAwIE
+ FQIIAwQWAgMBAh4BAheAAhkBFiEEbuGV0Yhuj/uBDUMkRXzgoIBEZcUFAmBbcjwFCS5e6jMA
+ CgkQRXzgoIBEZcUTIQgA1hPsOF82pXxbcJXBMc4zB9OQu4AlnZvERoGyw7I2222QzaN3RFuj
+ Fia//mapXzpIQNF08l/AA6cx+CKPeGnXwyZfF9fLa4RfifmdNKME8C00XlqnoJDZBGzq8yMy
+ LAKDxl9OQWFcDwDxV+irg5U3fbtNVhvV0kLbS2TyQ0aU5w60ERS2NcyDWplOo7AOzZWChcA4
+ UFf78oVdZdCW8YDtU0uQFhA9moNnrePy1HSFqduxnlFHEI+fDj/TiOm2ci48b8SBBJOIJFjl
+ SBgH8+SfT9ZqkzhN9vh3YJ49831NwASVm0x1rDHcIwWD32VFZViZ3NjehogRNH9br0PSUYOC
+ 3s7ATQRX2BjLAQgAnak3m0imYOkv2tO/olULFa686tlwuvl5kL0NWCdGQeXv2uMxy36szcrh
+ K1uYhpiQv4r2qNd8BJtYlnYIK16N8GBdkplaDIHcBMbU4t+6bQzEIJIaWoq1hzakmHHngE2a
+ pNMnUf/01GFvCRPlv3imkujE/5ILbagjtdyJaHF0wGOSlTnNT4W8j+zPJ/XK0I5EVQwtbmoc
+ GY62LKxxz2pID6sPZV4zQVY4JdUQaFvOz1emnBxakkt0cq3Qnnqso1tjiy7vyH9CAwPR/48W
+ fpK6dew4Fk+STYtBeixOTfSUS8qRS/wfpUeNa5RnEdTtFQ9IcjpQ/nPrvJJsu9FqwlpjMwAR
+ AQABwsBlBBgBCAAPBQJX2BjLAhsMBQkSzAMAAAoJEEV84KCARGXFUKcH/jqKETECkbyPktdP
+ cWVqw2ZIsmGxMkIdnZTbPwhORseGXMHadQODayhU9GWfCDdSPkWDWzMamD+qStfl9MhlVT60
+ HTbo6wu1W/ogUS70qQPTY9IfsvAj6f8TlSlK0eLMa3s2UxL2oe5FkNs2CnVeRlr4Yqvp/ZQV
+ 6LXtew4GPRrmplUT/Cre9QIUqR4pxYCQaMoOXQQw3Y0csBwoDYUQujn3slbDJRIweHoppBzT
+ rM6ZG5ldWQN3n3d71pVuv80guylX8+TSB8Mvkqwb5I36/NAFKl0CbGbTuQli7SmNiTAKilXc
+ Y5Uh9PIrmixt0JrmGVRzke6+11mTjVlio/J5dCM=
+In-Reply-To: <0532cbc2-be3b-4b4d-8291-b524e3ab058c@tls.msk.ru>
+X-Spam-Score: 0.0 (/)
+X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Sat, May 04, 2024 at 04:31:42PM +0200, Lukas Wunner wrote:
- > Dear Greg, > > On Sat, Apr 20, 2024 at 10:00:00PM +0200, Lukas Wunner wrote:
- > > Introduce a generic ->show() callback to expose a strin [...] 
- Content analysis details:   (-1.4 points, 6.0 required)
- pts rule name              description
+ 
+ Content preview:  30.04.2024 10:34, Michael Tokarev wrote: > Hi! > > This is
+    my first thinkpad, and since I use linux almost exclusively, > it is running
+    linux too (debian bookworm).  However, there are a few > probs [...] 
+ 
+ Content analysis details:   (0.0 points, 6.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
- blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: linuxfoundation.org]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
+                             blocked.  See
+                             http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
+                              for more information.
+                             [URIs: corpit.ru]
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid -1.2 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1s3HRC-0004AP-0m
-Subject: Re: [ibm-acpi-devel] [PATCH 0/6] Deduplicate string exposure in
- sysfs
+  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+X-Headers-End: 1s5gem-00014d-9B
+Subject: Re: [ibm-acpi-devel] thinkpad s495s: power button stops working
+ after hibernation/resume: acpi_evalf(STRW, vd, ...) failed: AE_NOT_FOUND
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -100,69 +117,66 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Mark Rutland <mark.rutland@arm.com>, Tyrel Datwyler <tyreld@linux.ibm.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, storagedev@microchip.com,
- Yicong Yang <yangyicong@hisilicon.com>, ibm-acpi-devel@lists.sourceforge.net,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>, Will Deacon <will@kernel.org>,
- Jijie Shao <shaojijie@huawei.com>, Khuong Dinh <khuong@os.amperecomputing.com>,
- Sudarsana Kalluru <sudarsana.kalluru@qlogic.com>,
- Dennis Dalessandro <dennis.dalessandro@cornelisnetworks.com>,
- linux-rdma@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
- "Luke D. Jones" <luke@ljones.dev>, Nilesh Javali <njavali@marvell.com>,
- Ilpo Jaervinen <ilpo.jarvinen@linux.intel.com>,
- Guenter Roeck <linux@roeck-us.net>, platform-driver-x86@vger.kernel.org,
- Jean Delvare <jdelvare@suse.com>, "James E.J. Bottomley" <jejb@linux.ibm.com>,
- Hans de Goede <hdegoede@redhat.com>,
- Jonathan Cameron <jonathan.cameron@huawei.com>,
- Azael Avalos <coproscefalo@gmail.com>, linux-arm-kernel@lists.infradead.org,
- linux-hwmon@vger.kernel.org, linux-scsi@vger.kernel.org,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Don Brace <don.brace@microchip.com>, Bjorn Andersson <andersson@kernel.org>,
- Anil Gurumur thy <anil.gurumurthy@qlogic.com>, linux-kernel@vger.kernel.org,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- GR-QLogic-Storage-Upstream@marvell.com, Shuai Xue <xueshuai@linux.alibaba.com>,
- Corentin Chary <corentin.chary@gmail.com>, linuxppc-dev@lists.ozlabs.org
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"; Format="flowed"
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Sat, May 04, 2024 at 04:31:42PM +0200, Lukas Wunner wrote:
-> Dear Greg,
-> 
-> On Sat, Apr 20, 2024 at 10:00:00PM +0200, Lukas Wunner wrote:
-> > Introduce a generic ->show() callback to expose a string as a device
-> > attribute in sysfs.  Deduplicate various identical callbacks across
-> > the tree.
-> > 
-> > Result:  Minus 216 LoC, minus 1576 bytes vmlinux size (x86_64 allyesconfig).
-> > 
-> > This is a byproduct of my upcoming PCI device authentication v2 patches.
-> > 
-> > 
-> > Lukas Wunner (6):
-> >   driver core: Add device_show_string() helper for sysfs attributes
-> >   hwmon: Use device_show_string() helper for sysfs attributes
-> >   IB/qib: Use device_show_string() helper for sysfs attributes
-> >   perf: Use device_show_string() helper for sysfs attributes
-> >   platform/x86: Use device_show_string() helper for sysfs attributes
-> >   scsi: Use device_show_string() helper for sysfs attributes
-> 
-> This series hasn't been applied to driver-core-next AFAICS and the
-> merge window is drawing closer.
-> 
-> So far only patches 1, 2 and 5 have been ack'ed by the respective
-> subsystem maintainers.  If the missing acks are the reason it hasn't
-> been applied, would it be possibe to apply only 1, 2 and 5?
-> 
-> I would then resubmit the other ones individually to the subsystem
-> maintainers in the next cycle.
-
-I'll just pick it up now, thanks!
-
-greg k-h
-
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+MzAuMDQuMjAyNCAxMDozNCwgTWljaGFlbCBUb2thcmV2IHdyb3RlOgo+IEhpIQo+IAo+IFRoaXMg
+aXMgbXkgZmlyc3QgdGhpbmtwYWQsIGFuZCBzaW5jZSBJIHVzZSBsaW51eCBhbG1vc3QgZXhjbHVz
+aXZlbHksCj4gaXQgaXMgcnVubmluZyBsaW51eCB0b28gKGRlYmlhbiBib29rd29ybSkuwqAgSG93
+ZXZlciwgdGhlcmUgYXJlIGEgZmV3Cj4gcHJvYnMgd2l0aCBpdCB3aGljaCBJJ2QgbG92ZSB0byBk
+ZWJ1ZyBhbmQgZmluZCBzb2x1dGlvbiB0by4KPiAKPiBPbmUgb2YgdGhlIHByb2JzIGlzIHRoZSBw
+b3dlciBidXR0b246IGl0IHN0b3BzIHdvcmtpbmcgYWZ0ZXIgdGhlIGZpcnN0Cj4gc3VzcGVuZC1y
+ZXN1bWUgY3ljbGUuCj4gCj4gSW5pdGlhbGx5IGl0IGlzIHJlZ2lzdGVyZWQgYXMgZXZlbnQ1ICJQ
+b3dlciBCdXR0b24iLsKgIEFmdGVyIGZyZXNoIGJvb3QsCj4gYGlucHV0IHJlY29yZGAgc2hvd3Mg
+RVZfS0VZL0tFWV9QT1dFUiBrZXlwcmVzcyBldmVudHMgY29taW5nIGZyb20gaXQuCj4gU28gZmFy
+LCBzbyBnb29kLgo+IAo+IE5vdywgSSBwZXJmb3JtIGhpYmVybmF0aW9uOiBgZWNobyBkaXNrID4g
+L3N5cy9wb3dlci9zdGF0ZWAgb3IKPiBgc3lzdGVtY3RsIGhpYmVybmF0ZWAgKEkgaGF2ZSB0byB1
+c2UgYHNodXRkb3duYCBtZXRob2QgaGVyZSBpbnN0ZWFkIG9mCj4gYHBsYXRmb3JtYCwgc2luY2Ug
+dGhlIGxhdHRlciBkb2VzIG5vdCB3b3JrLCB3aGljaCBpcyBhbm90aGVyIGlzc3VlCj4gSSdtIHRy
+eWluZyB0byBmaXgpLsKgIFRoZXJlJ3Mgbm8gR1VJIG9yIGFueXRoaW5nIGZhbmN5IHJ1bm5pbmcs
+IC0KPiBqdXN0IHBsYWluIG9sZCBjb21tYW5kIGxpbmUgb24gYSBsaW51eCB0dHkuCj4gCj4gQW5k
+IGFmdGVyIHJlc3VtZSwgdGhpcyBidXR0b24gZG9lcyBub3QgcHJvZHVjZSBhbnkgZXZlbnRzIGlu
+IGxpbnV4Cj4gYW55bW9yZSwgYWZ0ZXIgYSBub3RlIGluIGRtZXNnOgo+IAo+IFvCoMKgIDI0Ljc4
+ODA1NF0gdGhpbmtwYWRfYWNwaTogYWNwaV9ldmFsZihTVFJXLCB2ZCwgLi4uKSBmYWlsZWQ6IEFF
+X05PVF9GT1VORAo+IFvCoMKgIDI0Ljc4ODA1OF0gdGhpbmtwYWRfYWNwaTogQ2Fubm90IHNldCBh
+ZGFwdGl2ZSBrZXlib2FyZCBtb2RlLgo+IAo+IEhlcmUncyB0aGUgZnVsbCBgZG1lc2cgfCBncmVw
+IHRoaW5rcGFkYCBvdXRwdXQ6Cj4gCj4gW8KgwqDCoCAzLjI5NDAyNV0gdGhpbmtwYWRfYWNwaTog
+VGhpbmtQYWQgQUNQSSBFeHRyYXMgdjAuMjYKPiBbwqDCoMKgIDMuMjk1NDI3XSB0aGlua3BhZF9h
+Y3BpOiBodHRwOi8vaWJtLWFjcGkuc2YubmV0Lwo+IFvCoMKgwqAgMy4yOTU0MzFdIHRoaW5rcGFk
+X2FjcGk6IFRoaW5rUGFkIEJJT1MgUjEzRVQ1NVcoMS4yOSApLCBFQyBSMTNIVDU1Vwo+IFvCoMKg
+wqAgMy4yOTU0MzNdIHRoaW5rcGFkX2FjcGk6IExlbm92byBUaGlua1BhZCBUNDk1cywgbW9kZWwg
+MjBRS1MwRVEwTgo+IFvCoMKgwqAgMy4yOTgzNjJdIHRoaW5rcGFkX2FjcGk6IHJhZGlvIHN3aXRj
+aCBmb3VuZDsgcmFkaW9zIGFyZSBlbmFibGVkCj4gW8KgwqDCoCAzLjMwMDY1M10gdGhpbmtwYWRf
+YWNwaTogVGhpcyBUaGlua1BhZCBoYXMgc3RhbmRhcmQgQUNQSSBiYWNrbGlnaHQgYnJpZ2h0bmVz
+cyBjb250cm9sLCBzdXBwb3J0ZWQgYnkgdGhlIEFDUEkgdmlkZW8gZHJpdmVyCj4gW8KgwqDCoCAz
+LjMwMzE5M10gdGhpbmtwYWRfYWNwaTogRGlzYWJsaW5nIHRoaW5rcGFkLWFjcGkgYnJpZ2h0bmVz
+cyBldmVudHMgYnkgZGVmYXVsdC4uLgo+IFvCoMKgwqAgMy4zMTg4MTldIHRoaW5rcGFkX2FjcGk6
+IHJma2lsbCBzd2l0Y2ggdHBhY3BpX2JsdWV0b290aF9zdzogcmFkaW8gaXMgdW5ibG9ja2VkCj4g
+W8KgwqDCoCAzLjM2NDQyNV0gdGhpbmtwYWRfYWNwaTogU3RhbmRhcmQgQUNQSSBiYWNrbGlnaHQg
+aW50ZXJmYWNlIGF2YWlsYWJsZSwgbm90IGxvYWRpbmcgbmF0aXZlIG9uZQo+IFvCoMKgwqAgMy4z
+OTkzNTRdIHRoaW5rcGFkX2FjcGk6IHNlY29uZGFyeSBmYW4gY29udHJvbCBkZXRlY3RlZCAmIGVu
+YWJsZWQKPiBbwqDCoMKgIDMuNDI1ODg0XSB0aGlua3BhZF9hY3BpOiBiYXR0ZXJ5IDEgcmVnaXN0
+ZXJlZCAoc3RhcnQgOTUsIHN0b3AgMTAwLCBiZWhhdmlvdXJzOiAweDcpCj4gW8KgwqDCoCAzLjQz
+MzUxNV0gaW5wdXQ6IFRoaW5rUGFkIEV4dHJhIEJ1dHRvbnMgYXMgL2RldmljZXMvcGxhdGZvcm0v
+dGhpbmtwYWRfYWNwaS9pbnB1dC9pbnB1dDEwCj4gW8KgwqAgMjQuMjAyOTIzXSB0aGlua3BhZF9h
+Y3BpOiBhY3BpX2V2YWxmKEdUUlcsIGRkLCAuLi4pIGZhaWxlZDogQUVfTk9UX0ZPVU5ECj4gW8Kg
+wqAgMjQuMjAyOTUzXSB0aGlua3BhZF9hY3BpOiBDYW5ub3QgcmVhZCBhZGFwdGl2ZSBrZXlib2Fy
+ZCBtb2RlLgo+IFvCoMKgIDI0Ljc4ODA1NF0gdGhpbmtwYWRfYWNwaTogYWNwaV9ldmFsZihTVFJX
+LCB2ZCwgLi4uKSBmYWlsZWQ6IEFFX05PVF9GT1VORAo+IFvCoMKgIDI0Ljc4ODA1OF0gdGhpbmtw
+YWRfYWNwaTogQ2Fubm90IHNldCBhZGFwdGl2ZSBrZXlib2FyZCBtb2RlLgoKSSB0cmllZCBjdXJy
+ZW50IDYuNyBrZXJuZWwgZm9yIHRoaXMsIHdoaWNoIHNob3dzIGV4YWN0bHkgdGhlIHNhbWUgYmVo
+YXZpb3IuCgpBbHNvIEkgdHJpZWQgcmVtb3ZpbmcgdGhpbmtwYWRfYWNwaSBtb2R1bGUgYmVmb3Jl
+IGhpYmVybmF0ZSBhbmQgbW9kcHJvYmluZwppdCBhZnRlciwgLSB0aGlzIHdheSwgdGhlIG1vZHVs
+ZSBkb2VzIG5vdCByZXBvcnQgdGhlIGVycm9yIGFib3ZlLCBidXQgdGhlCnBvd2VyIGJ1dHRvbiBz
+dGlsbCBkb2VzIG5vdGhpbmcuCgo+IFdoYXQncyB0aGUgcHJvYmxlbSBoZXJlLCBhbnkgaGludHMg
+aG93IHRvIGRlYnVnIGl0IGZ1cnRoZXI/CgpBbnkgZGVidWdnaW5nIHRpcHM/CgpUaGFua3MhCgov
+bWp0Ci0tIApHUEcgS2V5IHRyYW5zaXRpb24gKGZyb20gcnNhMjA0OCB0byByc2E0MDk2KSBzaW5j
+ZSAyMDI0LTA0LTI0LgpOZXcga2V5OiByc2E0MDk2LzYxQUQzRDk4RUNERjJDOEUgIDlEOEIgRTE0
+RSAzRjJBIDlERDcgOTE5OSAgMjhGMSA2MUFEIDNEOTggRUNERiAyQzhFCk9sZCBrZXk6IHJzYTIw
+NDgvNDU3Q0UwQTA4MDQ0NjVDNSAgNkVFMSA5NUQxIDg4NkUgOEZGQiA4MTBEICA0MzI0IDQ1N0Mg
+RTBBMCA4MDQ0IDY1QzUKVHJhbnNpdGlvbiBzdGF0ZW1lbnQ6IGh0dHA6Ly93d3cuY29ycGl0LnJ1
+L21qdC9ncGctdHJhbnNpdGlvbi0yMDI0LnR4dAoKCgpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwppYm0tYWNwaS1kZXZlbCBtYWlsaW5nIGxpc3QKaWJtLWFj
+cGktZGV2ZWxAbGlzdHMuc291cmNlZm9yZ2UubmV0Cmh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2Uu
+bmV0L2xpc3RzL2xpc3RpbmZvL2libS1hY3BpLWRldmVsCg==
