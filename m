@@ -2,112 +2,140 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F3598C4C66
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue, 14 May 2024 08:39:11 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2BD38CC227
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 22 May 2024 15:31:27 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1s6lnl-000391-MP;
-	Tue, 14 May 2024 06:38:18 +0000
+	id 1s9m3G-0004Ah-OU;
+	Wed, 22 May 2024 13:30:43 +0000
 Received: from [172.30.20.202] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mjt@tls.msk.ru>) id 1s6lni-00038r-LY
+ (envelope-from <hdegoede@redhat.com>) id 1s9m3F-0004Ab-He
  for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 14 May 2024 06:38:15 +0000
+ Wed, 22 May 2024 13:30:41 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- References:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iQrKxof3M1HRHA8oKtSuucufJJlA0bP2Ldw3AT6IN60=; b=bVec6xPV6i67u7laTejAVv0Ro0
- 48eB/E5ZGOgyR7QIKLlyIrZchj67jkG9NwkkPhpAIjdtIgUCf4rAllYGHNx0x5Ep9beYrDQmBcYKh
- 7mQuqwcDXkHg2VK9NY/jqnm6Ah53WupLFXlb9U4D9/AQBlK3bgOfvyO5kh8bcyt0V75Q=;
+ bh=zU+6vg1pXYH/Fq9smC8GcZpWa9dzU2v7jBLJSVG9HRU=; b=ZrzemKj//A3wS8OYuf4LC9dXsf
+ NB18L4VarEEKTsZ7Bdta9X0hrNxOyNKHA3N+sUL7vHa0NM8oLA0N2fksDzMXyCNnw2NFJRil5xdRW
+ OmmMcQw5207mAKpaELbWWq+MdH0DxF3fcTtYQIqrYgqPYQ7YtJ+6tocQKrR4FM3k7DyA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:To:From:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=iQrKxof3M1HRHA8oKtSuucufJJlA0bP2Ldw3AT6IN60=; b=BGkOs6SL2Y0Kmb8vaa8CWr93At
- oAu8ZmsKtWrsOPP7O7gR7UjBRDSxxXq6UAu40sed9O/cGFMakRmlztyfrNOnKnusGW6HJscV3HjMx
- 41y1Bhyi/fgQeOZQiAF6EnhLpQ8bulMyi1zqoeSLMyAcuSMq7MpO4tTbGK3nVCra/vn8=;
-Received: from isrv.corpit.ru ([86.62.121.231])
+ bh=zU+6vg1pXYH/Fq9smC8GcZpWa9dzU2v7jBLJSVG9HRU=; b=almsodmJ8Sn9yvEAsi/op5y3KZ
+ 63hGSjKJe685wxcIBGIFn8do93XqJVi6hGu96QljeFQlwHUwkFhY1k3S+dd3ZffGGuK7D4d9gresV
+ Zt9xSRH7CSeOF1c+KOqAoO1UU6Xfl/ZT6avh+4wihA/MIDJjZ0rRttIMn760HC2dJFpE=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1s6lnh-00023P-CI for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 14 May 2024 06:38:15 +0000
-Received: from tsrv.corpit.ru (tsrv.tls.msk.ru [192.168.177.2])
- by isrv.corpit.ru (Postfix) with ESMTP id D7F566681F
+ id 1s9m3F-00078c-QN for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 22 May 2024 13:30:41 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1716384630;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=zU+6vg1pXYH/Fq9smC8GcZpWa9dzU2v7jBLJSVG9HRU=;
+ b=KXIMpx7r6B35q1d8IzQeLzBfGMYGu8pZ8RidEnqidVwWz8s5hb0q5yCVBLe0uE2XuEU4ft
+ Mbso3T1NAHQdffhytVoC2SbAxKbc0SjL65jD4jIrx9ZCDn/Q+Et5RJt2Ss+d48IqLFBxUy
+ 87CvUrUA95e5k+bWfx+eDPPnPChdXXw=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-595-uQFsK8KVOCiYrq7QrDkvTg-1; Wed, 22 May 2024 09:30:27 -0400
+X-MC-Unique: uQFsK8KVOCiYrq7QrDkvTg-1
+Received: by mail-ej1-f71.google.com with SMTP id
+ a640c23a62f3a-a5a05c4e0efso68696466b.1
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Tue, 14 May 2024 09:38:09 +0300 (MSK)
-Received: from [192.168.177.130] (mjt.wg.tls.msk.ru [192.168.177.130])
- by tsrv.corpit.ru (Postfix) with ESMTP id A0A4CCE3AA
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Tue, 14 May 2024 09:38:00 +0300 (MSK)
-Message-ID: <44d24dea-1cc3-4059-9c55-1d8189eef4ae@tls.msk.ru>
-Date: Tue, 14 May 2024 09:38:00 +0300
+ Wed, 22 May 2024 06:30:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716384626; x=1716989426;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=zU+6vg1pXYH/Fq9smC8GcZpWa9dzU2v7jBLJSVG9HRU=;
+ b=GRSyM6Zyujshui46Z/u5kpISOf3qyhvch7I2jLOJVJdy49MgZjTiDZCt6Zg5UejO9E
+ rzne4Bu++1bWNslr0MgqnPkZSmC7j8l89WnChAtxnidzuvjmKqo97pozy5V+L3lMlO5A
+ nOupDnFSqpLOJi0kqcYJz6jkwSkDExK9gA2HM3oXnsw5Scoig3RpQPgyW8thUMR6nXON
+ w0Quze0tCkqsS7hBPg4387U1iK/cJLWDAFx9zl5pf9LtODz5/n96OCiY9BkJTC9cMfFy
+ hycpMyPnSRvhLde/05iDsPQ///9UO/sA0O5KQh6ABdYOLCuf4X7grdK3i2wG2zikohIz
+ VRoA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXntaGSgEQsXl1MJTU+ICmsQrzL0ljrYTXC4wYAw9ohKmJu3GpgGRDV1wkTXxSVXQhNs5MrBlbZ4Y334qwMtK1GxgaaeDH+mtzMpmRWHla/RQdAwRI=
+X-Gm-Message-State: AOJu0YwVy0Ec8f/K4JOZYzGo+SODlxzn/BmpLuy+9SaWppuVZhGW1/cI
+ 0h2YdlJBSL7QnlvWiKZZvoIbzszHdHzL9NgmS/cjBYDetb3vH3sRit+WY/dir2d3XT0WZkj1/OW
+ 785OGlQftmkjhJCKKwaj6dLRI7WhXUYq8GBHXGhAa7bvpJzJ/pUuiq+iNox+0RlhBrTiYerbD
+X-Received: by 2002:a17:906:d506:b0:a58:7298:fdfe with SMTP id
+ a640c23a62f3a-a62281253bamr118451166b.53.1716384626445; 
+ Wed, 22 May 2024 06:30:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEPs3As7TFkv/OA57+pBCFs+X1ihzxAdT//3QweWc2AAkyU5EJ3VQ3d5O3RGGsiWJBeuQQMPg==
+X-Received: by 2002:a17:906:d506:b0:a58:7298:fdfe with SMTP id
+ a640c23a62f3a-a62281253bamr118449166b.53.1716384626007; 
+ Wed, 22 May 2024 06:30:26 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a5a17894d57sm1789298166b.73.2024.05.22.06.30.24
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 22 May 2024 06:30:25 -0700 (PDT)
+Message-ID: <889a480d-a535-4e31-a0d1-b1ea23d484ea@redhat.com>
+Date: Wed, 22 May 2024 15:30:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Michael Tokarev <mjt@tls.msk.ru>
-To: ibm-acpi-devel@lists.sourceforge.net
-References: <0532cbc2-be3b-4b4d-8291-b524e3ab058c@tls.msk.ru>
-Content-Language: en-US
-Autocrypt: addr=mjt@tls.msk.ru; keydata=
- xsBLBETIiwkBCADh3cFB56BQYPjtMZCfK6PSLR8lw8EB20rsrPeJtd91IoNZlnCjSoxd9Th1
- bLUR8YlpRJ2rjc6O1Bc04VghqUOHgS/tYt8vLjcGWixzdhSLJgPDK3QQZPAvBjMbCt1B6euC
- WuD87Pv5Udlpnzf4aMwxkgfTusx+ynae/o+T5r7tXD+isccbC3SiGhmAPxFyY3zGcFk4+Rxc
- 0tP8YY2FWE/baHu+lBDTUN79efWAkHhex1XzVZsV7ZD16rzDbXFK5m6ApvGJWlr5YDEEydTF
- WwmvwBfr4OINVxzEG/ujNiG4fpMf2NsnFGyB9aSbFjXZevB4qWkduYYW+xpK1EryszHtAAYp
- zSBNaWNoYWVsIFRva2FyZXYgPG1qdEB0bHMubXNrLnJ1PsLAlgQTAQoAQAIbAwYLCQgHAwIE
- FQIIAwQWAgMBAh4BAheAAhkBFiEEbuGV0Yhuj/uBDUMkRXzgoIBEZcUFAmBbcjwFCS5e6jMA
- CgkQRXzgoIBEZcUTIQgA1hPsOF82pXxbcJXBMc4zB9OQu4AlnZvERoGyw7I2222QzaN3RFuj
- Fia//mapXzpIQNF08l/AA6cx+CKPeGnXwyZfF9fLa4RfifmdNKME8C00XlqnoJDZBGzq8yMy
- LAKDxl9OQWFcDwDxV+irg5U3fbtNVhvV0kLbS2TyQ0aU5w60ERS2NcyDWplOo7AOzZWChcA4
- UFf78oVdZdCW8YDtU0uQFhA9moNnrePy1HSFqduxnlFHEI+fDj/TiOm2ci48b8SBBJOIJFjl
- SBgH8+SfT9ZqkzhN9vh3YJ49831NwASVm0x1rDHcIwWD32VFZViZ3NjehogRNH9br0PSUYOC
- 3s7ATQRX2BjLAQgAnak3m0imYOkv2tO/olULFa686tlwuvl5kL0NWCdGQeXv2uMxy36szcrh
- K1uYhpiQv4r2qNd8BJtYlnYIK16N8GBdkplaDIHcBMbU4t+6bQzEIJIaWoq1hzakmHHngE2a
- pNMnUf/01GFvCRPlv3imkujE/5ILbagjtdyJaHF0wGOSlTnNT4W8j+zPJ/XK0I5EVQwtbmoc
- GY62LKxxz2pID6sPZV4zQVY4JdUQaFvOz1emnBxakkt0cq3Qnnqso1tjiy7vyH9CAwPR/48W
- fpK6dew4Fk+STYtBeixOTfSUS8qRS/wfpUeNa5RnEdTtFQ9IcjpQ/nPrvJJsu9FqwlpjMwAR
- AQABwsBlBBgBCAAPBQJX2BjLAhsMBQkSzAMAAAoJEEV84KCARGXFUKcH/jqKETECkbyPktdP
- cWVqw2ZIsmGxMkIdnZTbPwhORseGXMHadQODayhU9GWfCDdSPkWDWzMamD+qStfl9MhlVT60
- HTbo6wu1W/ogUS70qQPTY9IfsvAj6f8TlSlK0eLMa3s2UxL2oe5FkNs2CnVeRlr4Yqvp/ZQV
- 6LXtew4GPRrmplUT/Cre9QIUqR4pxYCQaMoOXQQw3Y0csBwoDYUQujn3slbDJRIweHoppBzT
- rM6ZG5ldWQN3n3d71pVuv80guylX8+TSB8Mvkqwb5I36/NAFKl0CbGbTuQli7SmNiTAKilXc
- Y5Uh9PIrmixt0JrmGVRzke6+11mTjVlio/J5dCM=
-In-Reply-To: <0532cbc2-be3b-4b4d-8291-b524e3ab058c@tls.msk.ru>
-X-Spam-Score: -5.0 (-----)
-X-Spam-Report: Spam detection software, running on the system "util-spamd-2.v13.lw.sourceforge.com",
+To: Vlastimil Babka <vbabka@suse.cz>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Andy Shevchenko <andy@kernel.org>, Mark Pearson <mpearson-lenovo@squebb.ca>,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>
+References: <20240424122834.19801-1-hdegoede@redhat.com>
+ <20240424122834.19801-20-hdegoede@redhat.com>
+ <1ae4267e-9515-4037-980e-b1f2961b166b@suse.cz>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <1ae4267e-9515-4037-980e-b1f2961b166b@suse.cz>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+X-Spam-Score: -5.2 (-----)
+X-Spam-Report: Spam detection software,
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- 
- Content preview:  30.04.2024 10:34, Michael Tokarev wrote: > Hi! > > This is
-    my first thinkpad, and since I use linux almost exclusively, > it is running
-    linux too (debian bookworm).  However, there are a few > probs [...] 
- 
- Content analysis details:   (-5.0 points, 6.0 required)
- 
-  pts rule name              description
+ Content preview:  Hi Vlastimil, On 5/22/24 1:50 PM, Vlastimil Babka wrote: >
+ On 4/24/24 2:28 PM, Hans de Goede wrote: >> Switch the hotkey keymap handling
+ over to the sparse-keymap helpers, >> there should be no functional changes
+ f [...] Content analysis details:   (-5.2 points, 6.0 required)
+ pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
-                             high trust
-                             [86.62.121.231 listed in list.dnswl.org]
-  0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
-                             blocked.  See
-                             http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
-                              for more information.
-                             [URIs: askubuntu.com]
-  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
-X-Headers-End: 1s6lnh-00023P-CI
-Subject: Re: [ibm-acpi-devel] thinkpad s495s: power button stops working
- after hibernation/resume: acpi_evalf(STRW, vd, ...) failed: AE_NOT_FOUND
+ high trust [170.10.129.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
+ [170.10.129.124 listed in wl.mailspike.net]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 SPF_NONE               SPF: sender does not publish an SPF Record
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1s9m3F-00078c-QN
+Subject: Re: [ibm-acpi-devel] [PATCH v2 19/24] platform/x86: thinkpad_acpi:
+ Switch to using sparse-keymap helpers
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -120,66 +148,56 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"; Format="flowed"
+Cc: ibm-acpi-devel@lists.sourceforge.net, platform-driver-x86@vger.kernel.org,
+ Nitin Joshi <njoshi1@lenovo.com>, Vishnu Sankar <vishnuocv@gmail.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-MzAuMDQuMjAyNCAxMDozNCwgTWljaGFlbCBUb2thcmV2IHdyb3RlOgo+IEhpIQo+IAo+IFRoaXMg
-aXMgbXkgZmlyc3QgdGhpbmtwYWQsIGFuZCBzaW5jZSBJIHVzZSBsaW51eCBhbG1vc3QgZXhjbHVz
-aXZlbHksCj4gaXQgaXMgcnVubmluZyBsaW51eCB0b28gKGRlYmlhbiBib29rd29ybSkuwqAgSG93
-ZXZlciwgdGhlcmUgYXJlIGEgZmV3Cj4gcHJvYnMgd2l0aCBpdCB3aGljaCBJJ2QgbG92ZSB0byBk
-ZWJ1ZyBhbmQgZmluZCBzb2x1dGlvbiB0by4KPiAKPiBPbmUgb2YgdGhlIHByb2JzIGlzIHRoZSBw
-b3dlciBidXR0b246IGl0IHN0b3BzIHdvcmtpbmcgYWZ0ZXIgdGhlIGZpcnN0Cj4gc3VzcGVuZC1y
-ZXN1bWUgY3ljbGUuCj4gCj4gSW5pdGlhbGx5IGl0IGlzIHJlZ2lzdGVyZWQgYXMgZXZlbnQ1ICJQ
-b3dlciBCdXR0b24iLsKgIEFmdGVyIGZyZXNoIGJvb3QsCj4gYGlucHV0IHJlY29yZGAgc2hvd3Mg
-RVZfS0VZL0tFWV9QT1dFUiBrZXlwcmVzcyBldmVudHMgY29taW5nIGZyb20gaXQuCj4gU28gZmFy
-LCBzbyBnb29kLgo+IAo+IE5vdywgSSBwZXJmb3JtIGhpYmVybmF0aW9uOiBgZWNobyBkaXNrID4g
-L3N5cy9wb3dlci9zdGF0ZWAgb3IKPiBgc3lzdGVtY3RsIGhpYmVybmF0ZWAgKEkgaGF2ZSB0byB1
-c2UgYHNodXRkb3duYCBtZXRob2QgaGVyZSBpbnN0ZWFkIG9mCj4gYHBsYXRmb3JtYCwgc2luY2Ug
-dGhlIGxhdHRlciBkb2VzIG5vdCB3b3JrLCB3aGljaCBpcyBhbm90aGVyIGlzc3VlCj4gSSdtIHRy
-eWluZyB0byBmaXgpLsKgIFRoZXJlJ3Mgbm8gR1VJIG9yIGFueXRoaW5nIGZhbmN5IHJ1bm5pbmcs
-IC0KPiBqdXN0IHBsYWluIG9sZCBjb21tYW5kIGxpbmUgb24gYSBsaW51eCB0dHkuCj4gCj4gQW5k
-IGFmdGVyIHJlc3VtZSwgdGhpcyBidXR0b24gZG9lcyBub3QgcHJvZHVjZSBhbnkgZXZlbnRzIGlu
-IGxpbnV4Cj4gYW55bW9yZSwgYWZ0ZXIgYSBub3RlIGluIGRtZXNnOgo+IAo+IFvCoMKgIDI0Ljc4
-ODA1NF0gdGhpbmtwYWRfYWNwaTogYWNwaV9ldmFsZihTVFJXLCB2ZCwgLi4uKSBmYWlsZWQ6IEFF
-X05PVF9GT1VORAo+IFvCoMKgIDI0Ljc4ODA1OF0gdGhpbmtwYWRfYWNwaTogQ2Fubm90IHNldCBh
-ZGFwdGl2ZSBrZXlib2FyZCBtb2RlLgo+IAo+IEhlcmUncyB0aGUgZnVsbCBgZG1lc2cgfCBncmVw
-IHRoaW5rcGFkYCBvdXRwdXQ6Cj4gCj4gW8KgwqDCoCAzLjI5NDAyNV0gdGhpbmtwYWRfYWNwaTog
-VGhpbmtQYWQgQUNQSSBFeHRyYXMgdjAuMjYKPiBbwqDCoMKgIDMuMjk1NDI3XSB0aGlua3BhZF9h
-Y3BpOiBodHRwOi8vaWJtLWFjcGkuc2YubmV0Lwo+IFvCoMKgwqAgMy4yOTU0MzFdIHRoaW5rcGFk
-X2FjcGk6IFRoaW5rUGFkIEJJT1MgUjEzRVQ1NVcoMS4yOSApLCBFQyBSMTNIVDU1Vwo+IFvCoMKg
-wqAgMy4yOTU0MzNdIHRoaW5rcGFkX2FjcGk6IExlbm92byBUaGlua1BhZCBUNDk1cywgbW9kZWwg
-MjBRS1MwRVEwTgo+IFvCoMKgwqAgMy4yOTgzNjJdIHRoaW5rcGFkX2FjcGk6IHJhZGlvIHN3aXRj
-aCBmb3VuZDsgcmFkaW9zIGFyZSBlbmFibGVkCj4gW8KgwqDCoCAzLjMwMDY1M10gdGhpbmtwYWRf
-YWNwaTogVGhpcyBUaGlua1BhZCBoYXMgc3RhbmRhcmQgQUNQSSBiYWNrbGlnaHQgYnJpZ2h0bmVz
-cyBjb250cm9sLCBzdXBwb3J0ZWQgYnkgdGhlIEFDUEkgdmlkZW8gZHJpdmVyCj4gW8KgwqDCoCAz
-LjMwMzE5M10gdGhpbmtwYWRfYWNwaTogRGlzYWJsaW5nIHRoaW5rcGFkLWFjcGkgYnJpZ2h0bmVz
-cyBldmVudHMgYnkgZGVmYXVsdC4uLgo+IFvCoMKgwqAgMy4zMTg4MTldIHRoaW5rcGFkX2FjcGk6
-IHJma2lsbCBzd2l0Y2ggdHBhY3BpX2JsdWV0b290aF9zdzogcmFkaW8gaXMgdW5ibG9ja2VkCj4g
-W8KgwqDCoCAzLjM2NDQyNV0gdGhpbmtwYWRfYWNwaTogU3RhbmRhcmQgQUNQSSBiYWNrbGlnaHQg
-aW50ZXJmYWNlIGF2YWlsYWJsZSwgbm90IGxvYWRpbmcgbmF0aXZlIG9uZQo+IFvCoMKgwqAgMy4z
-OTkzNTRdIHRoaW5rcGFkX2FjcGk6IHNlY29uZGFyeSBmYW4gY29udHJvbCBkZXRlY3RlZCAmIGVu
-YWJsZWQKPiBbwqDCoMKgIDMuNDI1ODg0XSB0aGlua3BhZF9hY3BpOiBiYXR0ZXJ5IDEgcmVnaXN0
-ZXJlZCAoc3RhcnQgOTUsIHN0b3AgMTAwLCBiZWhhdmlvdXJzOiAweDcpCj4gW8KgwqDCoCAzLjQz
-MzUxNV0gaW5wdXQ6IFRoaW5rUGFkIEV4dHJhIEJ1dHRvbnMgYXMgL2RldmljZXMvcGxhdGZvcm0v
-dGhpbmtwYWRfYWNwaS9pbnB1dC9pbnB1dDEwCj4gW8KgwqAgMjQuMjAyOTIzXSB0aGlua3BhZF9h
-Y3BpOiBhY3BpX2V2YWxmKEdUUlcsIGRkLCAuLi4pIGZhaWxlZDogQUVfTk9UX0ZPVU5ECj4gW8Kg
-wqAgMjQuMjAyOTUzXSB0aGlua3BhZF9hY3BpOiBDYW5ub3QgcmVhZCBhZGFwdGl2ZSBrZXlib2Fy
-ZCBtb2RlLgo+IFvCoMKgIDI0Ljc4ODA1NF0gdGhpbmtwYWRfYWNwaTogYWNwaV9ldmFsZihTVFJX
-LCB2ZCwgLi4uKSBmYWlsZWQ6IEFFX05PVF9GT1VORAo+IFvCoMKgIDI0Ljc4ODA1OF0gdGhpbmtw
-YWRfYWNwaTogQ2Fubm90IHNldCBhZGFwdGl2ZSBrZXlib2FyZCBtb2RlLgoKSSBmb3VuZCBhbm90
-aGVyIG1lbnRpb24gb2YgLSBhcHBhcmVudGx5IC0gdGhpcyBpc3N1ZSwgb24gdGhlIHNhbWUgaGFy
-ZHdhcmUgKHRob3VnaAp0aGUgcXVlc3Rpb24gd2FzIGFib3V0IHNvbWV0aGluZyBlbHNlKToKCiAg
-IGh0dHBzOi8vYXNrdWJ1bnR1LmNvbS9xdWVzdGlvbnMvMTIyNDM1OC90aGlua3BhZC10NDk1cy1z
-dXNwZW5kLWlzc3VlCgpzbyBpdCBsb29rcyBsaWtlIHRoZSBpc3N1ZSB3aXRoIHRoZSBwb3dlciBi
-dXR0b24gbG9zaW5nIGV2ZW50cyB3aXRoIGxpbnV4IGlzIG9sZChpc2gpLgoKQWxzbywgSSB2ZXJp
-ZmllZCBob3cgaXQgd29ya3Mgb24gd2luZG93cyAoaW5zdGFsbGluZyB3aW5kb3dzMTAgb24gdGhp
-cyBsYXB0b3ApIC0KaXQgd29ya3MgZXhhY3RseSBhcyBleHBlY3RlZCwgYWZ0ZXIgdmFyaW91cyBz
-dXNwZW5kL2hpYmVybmF0ZS9ldGMgY3ljbGVzLCBzbyB0aGUKcHJvYmxlbSBpc24ndCBoYXJkd2Fy
-ZSAoZmlybXdhcmUpLiAgQnV0IGluIGNhc2Ugb2Ygd2luZG93cywgSSBndWVzcyBpdCBpcyB1c2lu
-ZwplcXVpdmFsZW50IG9mICJwbGF0Zm9ybSIgaGliZXJuYXRpb24gbW9kZSwgd2hpbGUgb24gbGlu
-dXggSSBoYXZlIHRvIHN3aXRjaCB0bwoic2h1dGRvd24iIG9yIGVsc2UgaXQgZG9lc24ndCByZXN1
-bWUuCgpUaGFua3MsCgovbWp0CgoKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KaWJtLWFjcGktZGV2ZWwgbWFpbGluZyBsaXN0CmlibS1hY3BpLWRldmVsQGxp
-c3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczovL2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9s
-aXN0aW5mby9pYm0tYWNwaS1kZXZlbAo=
+Hi Vlastimil,
+
+On 5/22/24 1:50 PM, Vlastimil Babka wrote:
+> On 4/24/24 2:28 PM, Hans de Goede wrote:
+>> Switch the hotkey keymap handling over to the sparse-keymap helpers,
+>> there should be no functional changes from this.
+>>
+>> Note all the mappings to KEY_UNKNOWN are removed since that is the default
+>> behavior of sparse_keymap_report_event() for unknown scancodes.
+>>
+>> Also drop the big comment about making changes to the keymaps since
+>> the contents of that comment are mostly obsolete.
+>>
+>> Tested-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> 
+> Hi,
+> 
+> I believe this is what gave me the following error compiling current
+> Linus's master:
+> 
+> ERROR: modpost: "sparse_keymap_report_event"
+> [drivers/platform/x86/thinkpad_acpi.ko] undefined!
+> ERROR: modpost: "sparse_keymap_setup"
+> [drivers/platform/x86/thinkpad_acpi.ko] undefined!
+> 
+> probably config THINKPAD_ACPI now has to depend/select INPUT_SPARSEKMAP?
+> It's fixed when I configure it =m manually.
+
+Thank you for reporting this. This should be fixed by:
+
+https://lore.kernel.org/platform-driver-x86/20240522074813.379b9fc2@gandalf.local.home/T/#u
+
+Which I will include in my next pdx86 fixes pull-request to Linus.
+
+Regards,
+
+Hans
+
+
+
+
+
+_______________________________________________
+ibm-acpi-devel mailing list
+ibm-acpi-devel@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
