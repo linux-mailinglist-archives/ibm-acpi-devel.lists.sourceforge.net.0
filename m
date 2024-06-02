@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9054F8D7486
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun,  2 Jun 2024 11:20:01 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id B82FD8D7489
+	for <lists+ibm-acpi-devel@lfdr.de>; Sun,  2 Jun 2024 11:20:04 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1sDhN3-0002RO-JE;
-	Sun, 02 Jun 2024 09:19:22 +0000
+	id 1sDhMy-0000gb-Lx;
+	Sun, 02 Jun 2024 09:19:16 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <andy.shevchenko@gmail.com>) id 1sDhN2-0002RF-1i
+ (envelope-from <andy.shevchenko@gmail.com>) id 1sDhMx-0000gU-VE
  for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 02 Jun 2024 09:19:20 +0000
+ Sun, 02 Jun 2024 09:19:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
  In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hEQkEETN3f5Yn0iqlG10Wl7KADsqruL4/D3OgEYqnG4=; b=eRIfsM6ZC8FB/q6oekoh37o5IC
- qyLveHTUFJFNzP4Z2LHTAn57Fym1AMRQMP/Arfpw/rAvmb7As1rfvUgFcqVyPTmAvnJdbNHyteVo+
- xaXP3ow75zi/53w9viI3sox+kwCeSzsgBza3ESC7gjV69tpf7hkusQ7q1j19xRFqFoh4=;
+ bh=1e1E9nJ02VthJQG6BksHzCS/eo0JYScGGxTDHZa5DFQ=; b=Atx3j5jpF+gJM2DvM61+cgRUwH
+ QkuVFdRVB39cHj2Qer73UAaVocibagXWxW0AaFEB3zR+YIp8rHzglSWXHxqMfhAVvdFUnsSqno+KP
+ qztMU1j1sfxneLPQPsFtlj9ksafNuKwHYdEJfVrh3+Us5IzVvTYOgP5BQq7WIIjoIkD8=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
@@ -31,18 +31,18 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=hEQkEETN3f5Yn0iqlG10Wl7KADsqruL4/D3OgEYqnG4=; b=dnG5rRTCntW8JzpD6vMCoChF9y
- Eqc/vwITMHh+Wp+1l3DDkeqSd+vuVP6USVJ2KfQ9xIhXPiEOULBb/6plSzvgQBMsKcBXF6wyEfzEj
- K1hEDV+a+GDwiCz/ExgsGpaVpTSWy47F9czw2kHu5SP7i5mAj7yXvw6IMfI+XeleR634=;
-Received: from fgw20-7.mail.saunalahti.fi ([62.142.5.81])
+ bh=1e1E9nJ02VthJQG6BksHzCS/eo0JYScGGxTDHZa5DFQ=; b=aq4M7d184qlIG2wNz5Fk5yY0K1
+ Z/HYP15zeOpkr8g/lp13o50EjZp2moE57XMAJu4MFz7mBWUWH5JTSzxFm0yzOBG1CN0K62oRt93+w
+ hT9xOCV2r5A4N7VesTQqeu1Lvx8jtFXODpZCEA8xZs245eeINnpF/6jXdMr4GyNcxEPk=;
+Received: from fgw22-7.mail.saunalahti.fi ([62.142.5.83])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1sDhN1-0005G3-Uu for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 02 Jun 2024 09:19:19 +0000
+ id 1sDhMx-0005Fe-Dt for ibm-acpi-devel@lists.sourceforge.net;
+ Sun, 02 Jun 2024 09:19:15 +0000
 Received: from localhost (88-113-26-230.elisa-laajakaista.fi [88.113.26.230])
- by fgw22.mail.saunalahti.fi (Halon) with ESMTP
- id e585c43e-20be-11ef-8e3d-005056bdf889;
- Sun, 02 Jun 2024 12:02:53 +0300 (EEST)
+ by fgw20.mail.saunalahti.fi (Halon) with ESMTP
+ id e5f4102e-20be-11ef-8d47-005056bd6ce9;
+ Sun, 02 Jun 2024 12:02:54 +0300 (EEST)
 From: Andy Shevchenko <andy.shevchenko@gmail.com>
 To: Hans de Goede <hdegoede@redhat.com>,
  Andy Shevchenko <andy.shevchenko@gmail.com>,
@@ -52,15 +52,15 @@ To: Hans de Goede <hdegoede@redhat.com>,
  Mark Pearson <mpearson-lenovo@squebb.ca>,
  platform-driver-x86@vger.kernel.org, linux-kernel@vger.kernel.org,
  ibm-acpi-devel@lists.sourceforge.net, linux-input@vger.kernel.org
-Date: Sun,  2 Jun 2024 11:57:59 +0300
-Message-ID: <20240602090244.1666360-7-andy.shevchenko@gmail.com>
+Date: Sun,  2 Jun 2024 11:58:00 +0300
+Message-ID: <20240602090244.1666360-8-andy.shevchenko@gmail.com>
 X-Mailer: git-send-email 2.45.1
 In-Reply-To: <20240602090244.1666360-1-andy.shevchenko@gmail.com>
 References: <20240602090244.1666360-1-andy.shevchenko@gmail.com>
 MIME-Version: 1.0
-X-Spam-Score: 3.2 (+++)
+X-Spam-Score: -1.8 (-)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
@@ -68,38 +68,36 @@ X-Spam-Report: Spam detection software,
  Content preview:  Use 2-argument strscpy(), which is not only shorter but also
  provides an additional check that destination buffer is an array.
  Signed-off-by:
- Andy Shevchenko --- drivers/platform/x86/thinkpad_acpi.c | 6 ++---- 1 file
- changed, 2 insertions(+), 4 deletions(-) 
- Content analysis details:   (3.2 points, 6.0 required)
+ Andy Shevchenko --- drivers/platform/x86/touchscreen_dmi.c | 2 +- 1 file
+ changed, 1 insertion(+), 1 deletion(-) 
+ Content analysis details:   (-1.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 DKIM_ADSP_CUSTOM_MED   No valid author signature, adsp_override is
- CUSTOM_MED
- 0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
- query to Validity was blocked.  See
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [62.142.5.83 listed in list.dnswl.org]
+ 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
+ The query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [62.142.5.81 listed in sa-trusted.bondedsender.org]
+ [62.142.5.83 listed in sa-accredit.habeas.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [62.142.5.81 listed in bl.score.senderscore.com]
- 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
- 1.0 FORGED_GMAIL_RCVD      'From' gmail.com does not match 'Received'
- headers
+ [62.142.5.83 listed in bl.score.senderscore.com]
  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
  provider [andy.shevchenko[at]gmail.com]
+ 1.0 FORGED_GMAIL_RCVD      'From' gmail.com does not match 'Received'
+ headers
+ 0.0 DKIM_ADSP_CUSTOM_MED   No valid author signature, adsp_override is
+ CUSTOM_MED
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to
- DNSWL was blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [62.142.5.81 listed in list.dnswl.org]
+ 1.0 SPF_SOFTFAIL           SPF: sender does not match SPF record (softfail)
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
  1.2 NML_ADSP_CUSTOM_MED    ADSP custom_med hit, and not from a mailing
  list
-X-Headers-End: 1sDhN1-0005G3-Uu
-Subject: [ibm-acpi-devel] [PATCH v1 6/7] platform/x86: thinkpad_acpi: Use
+X-Headers-End: 1sDhMx-0005Fe-Dt
+Subject: [ibm-acpi-devel] [PATCH v1 7/7] platform/x86: touchscreen_dmi: Use
  2-argument strscpy()
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -125,26 +123,22 @@ an additional check that destination buffer is an array.
 
 Signed-off-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 ---
- drivers/platform/x86/thinkpad_acpi.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/platform/x86/touchscreen_dmi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-index 397b409064c9..f269ca1ff771 100644
---- a/drivers/platform/x86/thinkpad_acpi.c
-+++ b/drivers/platform/x86/thinkpad_acpi.c
-@@ -7416,10 +7416,8 @@ static int __init volume_create_alsa_mixer(void)
- 	data = card->private_data;
- 	data->card = card;
+diff --git a/drivers/platform/x86/touchscreen_dmi.c b/drivers/platform/x86/touchscreen_dmi.c
+index 2d9ca2292ea1..879a63e4ecd0 100644
+--- a/drivers/platform/x86/touchscreen_dmi.c
++++ b/drivers/platform/x86/touchscreen_dmi.c
+@@ -1907,7 +1907,7 @@ static int __init ts_parse_props(char *str)
+ 	u32 u32val;
+ 	int i, ret;
  
--	strscpy(card->driver, TPACPI_ALSA_DRVNAME,
--		sizeof(card->driver));
--	strscpy(card->shortname, TPACPI_ALSA_SHRTNAME,
--		sizeof(card->shortname));
-+	strscpy(card->driver, TPACPI_ALSA_DRVNAME);
-+	strscpy(card->shortname, TPACPI_ALSA_SHRTNAME);
- 	snprintf(card->mixername, sizeof(card->mixername), "ThinkPad EC %s",
- 		 (thinkpad_id.ec_version_str) ?
- 			thinkpad_id.ec_version_str : "(unknown)");
+-	strscpy(orig_str, str, sizeof(orig_str));
++	strscpy(orig_str, str);
+ 
+ 	/*
+ 	 * str is part of the static_command_line from init/main.c and poking
 -- 
 2.45.1
 
