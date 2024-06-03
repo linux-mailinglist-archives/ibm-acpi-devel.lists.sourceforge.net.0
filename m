@@ -2,138 +2,119 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C818D885D
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  3 Jun 2024 20:02:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BB578D8870
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon,  3 Jun 2024 20:08:32 +0200 (CEST)
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1sEBzp-0003jc-N6;
-	Mon, 03 Jun 2024 18:01:26 +0000
+	id 1sEC6D-0003sk-Gp;
+	Mon, 03 Jun 2024 18:08:01 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1sEBzm-0003jS-PY
+ (envelope-from <trevi55@gmail.com>) id 1sEC6B-0003sT-Tk
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 03 Jun 2024 18:01:23 +0000
+ Mon, 03 Jun 2024 18:08:00 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Subject:To:From:Date:References:
- In-Reply-To:Message-Id:MIME-Version:Sender:Reply-To:Cc:
- Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
- List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=mWEDQN4gKLb7xj9APq0IctXvuDK1fgcwSWagAJ581yY=; b=Ue0Q6KBAKeBSPFjr2YRrF5rcET
- 22G0ZvHpJcl9m2NtgHK4gvGEf47Xx/lVQoUv0UiRVGzCyBGbAyBOcNISE1680qNijjnxz8zFXFIGs
- l1PCz6b9LBqq3CuwirTcSQnsWiJQo1olIsTZ6MAaRC0nRVn+EXbEBOMYxyhnMDWJemiQ=;
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:MIME-Version
+ :Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=gzt7Cc3p1nrBVC/lF2fLLA1bBiKiTKLVgH9WUXugDj4=; b=D5ZthVWmhmZa6sFFfKG/k06AJt
+ yhbD2Y3W8O8j2i+YNEDf6yKqJQz46XVXqZabaQ83AeH9IXo1L/ou8egSikL6oih2yieXm8oNW7XLE
+ nO47wE8FVfXaq5ZKt2Azs/HCOuKiw/I6xd6ETkNeRRmwIpAC+/c+tF5NPdNftaMRUG5o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Subject:To:From:Date:References:In-Reply-To:Message-Id:
- MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:References:
+ In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=mWEDQN4gKLb7xj9APq0IctXvuDK1fgcwSWagAJ581yY=; b=EWvReuQCNJ2ZZB5z6MSAAcKXvV
- 6DNRkj0zEKe+RF8tAfSZLYuwpz25m9aX1smHKvCVDqScbk9vMhnhcEVuXo2hSs414VOEtW8oqPu0C
- AAa1SFmvDlCqgWH2zHK54fFagah1KtsNILsG9hMhK48FuU+2MTG/lf7FIDSeHBUexRus=;
-Received: from wfout1-smtp.messagingengine.com ([64.147.123.144])
+ bh=gzt7Cc3p1nrBVC/lF2fLLA1bBiKiTKLVgH9WUXugDj4=; b=X6xxuBaDQz+9sebQ3OI25GdOIG
+ jFBssmsMoqKtf57v5JmpxO2WFuNLSWSYIYEMYS+UPeMt7M97M0eeb9H2l2Djq3dd/K0zpzI3Q5H9P
+ lq8xvjAuBQ8xDXc3fH2FywjXzkgwNvgD5d1tPD8gX0gn2VCEJyHpStcOiGiRzq0pFOC4=;
+Received: from mail-wm1-f44.google.com ([209.85.128.44])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1sEBzm-0001sn-9X for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 03 Jun 2024 18:01:23 +0000
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
- by mailfout.west.internal (Postfix) with ESMTP id 300521C0015C
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1sEC6C-0002GC-2Y for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 03 Jun 2024 18:08:00 +0000
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-4213485697fso21819625e9.1
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon,  3 Jun 2024 13:44:35 -0400 (EDT)
-Received: from imap52 ([10.202.2.102])
- by compute3.internal (MEProxy); Mon, 03 Jun 2024 13:44:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :content-type:content-type:date:date:from:from:in-reply-to
- :in-reply-to:message-id:mime-version:references:reply-to:subject
- :subject:to:to; s=fm2; t=1717436674; x=1717523074; bh=mWEDQN4gKL
- b7xj9APq0IctXvuDK1fgcwSWagAJ581yY=; b=SSFsG7fHUlQ2rTDTIUWghNDqle
- NIvhxTAAHDN9HeTYEcwX42TYSqtpG2bA3zBvYcekObEWlGFhb7tjY65SgtnihvC/
- XXr5vRvlHxYKHSxy9lHUWZTFmsy6mORmBP1/ORGDQQBN2wFwuBI5VdA9EloI8YO0
- 3pfEK71GXXO8ii1yo+di1gqfArG4S4qKn239rQJm5CTjV5VdgQhGSJnljVK9tzGH
- yahV2DOSEXK14qy+ZyUiSnhWLiltbzLUrO2QKOlLk86vk/BNZa6oUDCiOoIuCiMH
- Vut4KSeib/4Ylk+UvDQJf00xvEZrV6soV3v7Bt/ud04Yiey3k8A18KdEUjIg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1717436674; x=1717523074; bh=mWEDQN4gKLb7xj9APq0IctXvuDK1
- fgcwSWagAJ581yY=; b=KG1K4mjytNx4cW00dLhxZVQ8I8WHsNOPa28oCG3ZRmok
- 2ruj9k83oOMXTnAJcpE3Q+aAmjcM+NBqmQVCoNImmz4UIaVupZkfPgTXEGhi88PV
- gChBKU++B18d+UWAfr6otzkSXNz3pcK5epf4bDuGtEoP0X7nccyBtVr3oV8+4x2J
- kcVGu3lq6N7h2Ruv0OHRLEXjsciHaSG7/PHd5AM73djL095EdxIyACP5smOJG63A
- CDlUek4sfPfkL/APBuBs0zYFN8bJnpwkdAWVhKAi/Cv4Xr4mmTp7D9CitlvE7fE5
- m9h2gdo/hoziOHEYxZPLXGKkc2cg3MvlkL0lmhcP3Q==
-X-ME-Sender: <xms:AgFeZlbeqhgNbncFIL_H8sqtYaiICMZZL7i4PCiNP9tZGr66nyYwVA>
- <xme:AgFeZsYKwNc9apVYBiEuuNMTaZYJVrhuKb9kC6ruICh54KzBaZr035Lz_1cnxAnZa
- H4QnTE7QZUXKdHUhbk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdelvddgudduiecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
- necuuegrihhlohhuthemuceftddtnecunecujfgurhepofgfggfkjghffffhvffutgesth
- dtredtreertdenucfhrhhomhepfdforghrkhcurfgvrghrshhonhdfuceomhhpvggrrhhs
- ohhnqdhlvghnohhvohesshhquhgvsggsrdgtrgeqnecuggftrfgrthhtvghrnhepfeekge
- evudefhedvlefgtdekudefteeufeejvdduledtfefhgfdtgedvvdegffehnecuvehluhhs
- thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhhpvggrrhhsohhnqd
- hlvghnohhvohesshhquhgvsggsrdgtrg
-X-ME-Proxy: <xmx:AgFeZn_SWgBjlLy0Obbxx8RvB1y86mBEGaSOXXwgD7QxjLM2WviY1Q>
- <xmx:AgFeZjomwTNsrJ157Dy_Y7d2JXTvdCAb6P8IVO9knZbKgH2XX84FvA>
- <xmx:AgFeZgonUVeplFIbHfRFhzTYfopaXxG3U2_8slnm1hrfZ-E9pcAcaw>
- <xmx:AgFeZpQ3v0Dcl4Qii9UminLIfmALtneXSg7SD0LWUKcQTvIrmKhWsQ>
- <xmx:AgFeZnQgGuonq_9uNdxEX4dR5ZPsh8SExbm7-HQqp2JJaX-FfVuUwJFR>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
- id 852B0C60099; Mon,  3 Jun 2024 13:44:34 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.11.0-alpha0-491-g033e30d24-fm-20240520.001-g033e30d2
-MIME-Version: 1.0
-Message-Id: <f7db748d-eddc-4c63-9221-7a9dbd4e0f94@app.fastmail.com>
+ Mon, 03 Jun 2024 11:07:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1717438068; x=1718042868;
+ h=content-disposition:content-transfer-encoding:mime-version:subject
+ :references:in-reply-to:message-id:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=gzt7Cc3p1nrBVC/lF2fLLA1bBiKiTKLVgH9WUXugDj4=;
+ b=QPTRYthHS/2nsEqjO1uTijPJXESqi1A5zB445D1japGzgDhq2TMdzJi4IM51T+PXzI
+ bBkYybqqhHgPzXtHHt/4XUElYJvkAdAH3BvuZUZj1eIQC52qVvSn4XzhU/KaJahFJVBW
+ xg/aM7PfdtcETkvcfpvUzq/ye+CE2Owv/UvcGnuOvu/lrEsQzmB9cbSrRgvNygAsjLBX
+ PSpm8A4q3TsSL+UA8TGjh0zJpQ8oObtoWoRS/EhmZGUANxpbUsAdpguO/FID6eidsyh5
+ cjtDBGyl4j15p5r149dTrCpSi1TobER1RHWjICia36865db2r3/hElSijSVivE60Rx5D
+ vKmw==
+X-Gm-Message-State: AOJu0YzluVuRUTa5pMpQdYGyTbYXSNBAmYwcaZvpNmZPBjyk2zh6bQsn
+ UYlduLuL8YfJbhO+weZc5a56llkZwpQbEroDjomtRJ/H+nItzF2D
+X-Google-Smtp-Source: AGHT+IEDwLgifPaP+2x63WgKxylAE0u/6feUt3msvPHq6yh9ASPbmi57WJrnKA0H/gCgKFNvjU0dmA==
+X-Received: by 2002:a05:600c:45cb:b0:41f:fca0:8c04 with SMTP id
+ 5b1f17b1804b1-4212e04998fmr76294095e9.11.1717438067354; 
+ Mon, 03 Jun 2024 11:07:47 -0700 (PDT)
+Received: from tricky (84.127.152.83.dyn.user.ono.com. [84.127.152.83])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42132d5308csm111115325e9.35.2024.06.03.11.07.46
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Mon, 03 Jun 2024 11:07:46 -0700 (PDT)
+Date: Mon, 3 Jun 2024 20:07:40 +0200
+From: "=?utf-8?Q?Marco_Trevisan_(Trevi=C3=B1o)?=" <mail@3v1n0.net>
+To: Pellaeon Lin <nfsmwlin@gmail.com>
+Message-ID: <8ADA47CC-8883-4977-AC6E-C4BCD7365EB0@getmailspring.com>
 In-Reply-To: <CADjcfxZy3LPTmapAvqO7uNZx1Dow5JscyG3L-J3_YB1zaCf1WQ@mail.gmail.com>
 References: <CADjcfxZy3LPTmapAvqO7uNZx1Dow5JscyG3L-J3_YB1zaCf1WQ@mail.gmail.com>
-Date: Mon, 03 Jun 2024 13:44:14 -0400
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
-To: ibm-acpi-devel@lists.sourceforge.net
-X-Spam-Score: -0.2 (/)
+X-Mailer: Mailspring
+MIME-Version: 1.0
+Content-Disposition: inline
+X-Spam-Score: -4.5 (----)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Pellaeon, On Mon, Jun 3, 2024, at 7:46 AM, Pellaeon Lin
- wrote: > Hi, > > I have a ThinkPad X13 Gen 2 AMD with PrivacyGuard. But by
- pressing the > combination key Fn+D it does not toggle the PrivacyGuard,
- the Pr [...] 
- Content analysis details:   (-0.2 points, 6.0 required)
+ Content preview:  Hi, Not sure if something changed or it is different in newer
+ models,
+ but the privacy screen feature so far has been exposed as a KMS property
+ you can inspect and set with tools like proptest (in libdrm-t [...] 
+ Content analysis details:   (-4.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 URIBL_BLOCKED          ADMINISTRATOR NOTICE: The query to URIBL was
- blocked.  See
- http://wiki.apache.org/spamassassin/DnsBlocklists#dnsbl-block
- for more information. [URIs: squebb.ca]
+ -5.0 RCVD_IN_DNSWL_HI       RBL: Sender listed at https://www.dnswl.org/,
+ high trust [209.85.128.44 listed in list.dnswl.org]
  0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
  The query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [64.147.123.144 listed in sa-accredit.habeas.com]
+ [209.85.128.44 listed in sa-accredit.habeas.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [64.147.123.144 listed in bl.score.senderscore.com]
+ [209.85.128.44 listed in bl.score.senderscore.com]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.128.44 listed in wl.mailspike.net]
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [trevi55[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.2 HEADER_FROM_DIFFERENT_DOMAINS From and EnvelopeFrom 2nd level
+ mail domains are different
+ 0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
+ in digit [trevi55[at]gmail.com]
+ 0.0 FREEMAIL_FORGED_FROMDOMAIN 2nd level domains in From and
+ EnvelopeFrom freemail headers are different
  -0.0 T_SCC_BODY_TEXT_LINE   No description available.
-X-Headers-End: 1sEBzm-0001sn-9X
+X-Headers-End: 1sEC6C-0002GC-2Y
 Subject: Re: [ibm-acpi-devel] PrivacyGuard doesn't work even by sending ACPI
  commands directly
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -148,54 +129,68 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
+Cc: "=?utf-8?Q?ibm-acpi-devel=40lists.sourceforge.net?="
+ <ibm-acpi-devel@lists.sourceforge.net>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Pellaeon,
+Hi,
 
-On Mon, Jun 3, 2024, at 7:46 AM, Pellaeon Lin wrote:
+Not sure if something changed or it is different in newer models, but
+the privacy screen feature so far has been exposed as a KMS property you
+can inspect and set with tools like proptest (in libdrm-tests package
+for what concerns ubuntu)
+
+Cheers
+
+On giu 3 2024, at 1:46 pm, Pellaeon Lin <nfsmwlin@gmail.com> wrote:
+
 > Hi,
->
+> 
 > I have a ThinkPad X13 Gen 2 AMD with PrivacyGuard. But by pressing the
-> combination key Fn+D it does not toggle the PrivacyGuard, the PrivacyGuard
-> stays on. I've tested:
->
+> combination key Fn+D it does not toggle the PrivacyGuard, the
+> PrivacyGuard stays on. I've tested:
+> 
 > - Fn+D does toggle PrivacyGuard when I'm in the BIOS
-> - Fn+D has no effect on Ubuntu 22.10, Ubuntu 23.04, Ubuntu 23.10, Ubuntu
-> 24.04 and Fedora 40 (except Ubuntu 23.10 and 24.04, all was tested using
-> LiveUSB)
->
-> In all of the Linux cases, I can confirm that by pressing Fn+D, the status
-> value of /proc/acpi/ibm/lcdshadow actually changes.
->
+> - Fn+D has no effect on Ubuntu 22.10, Ubuntu 23.04, Ubuntu 23.10,
+> Ubuntu 24.04 and Fedora 40 (except Ubuntu 23.10 and 24.04, all was
+> tested using LiveUSB)
+> 
+> In all of the Linux cases, I can confirm that by pressing Fn+D, the
+> status value of /proc/acpi/ibm/lcdshadow actually changes.
+> 
 > I've always thought this was a Ubuntu-specific issue, until I tested Fedora.
->
-> I tested this further by installing the acpi-call-dkms package on Ubuntu
-> and issues the following call:
->
+> 
+> I tested this further by installing the acpi-call-dkms package on
+> Ubuntu and issues the following call:
+> 
 > echo '\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x1' | sudo tee /proc/acpi/call
->
-> It returned 0 (which should mean success), but PrivacyGuard is still ON.
-> Then I tried to call it with 0x0:
->
+> 
+> It returned 0 (which should mean success), but PrivacyGuard is still
+> ON. Then I tried to call it with 0x0:
+> 
 > echo '\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x0' | sudo tee /proc/acpi/call
->
+> 
 > Also getting 0 in return. PrivacyGuard is still ON.
->
-> Based on my limited understanding of ACPI and the kernel, at this point it
-> might be a firmware issue? (fwupdmgr shows that there is no available
-> updates) But based on my reading and understanding of thinkpad_acpi.c, the
-> particular ACPI call that I issued is also how the Linux driver currently
-> operates the PrivacyGuard feature, which means the driver might also be
-> affected by this issue. So I'm hoping someone could help me debug this
-> further, or point out anything that I'm not understanding correctly.
->
-I've forwarded this to the team to check out (I don't have an X13 G2 AMD on hand myself).
-My understanding is that the kernel wasn't involved for the privacy FN+D feature - the BIOS handled it (and sent an ACPI notification so you could track the status). At least on the platforms I've tested this on - it just worked.
-
-I'll see what they reply.
-Mark
+> 
+> Based on my limited understanding of ACPI and the kernel, at this
+> point it might be a firmware issue? (fwupdmgr shows that there is no
+> available updates) But based on my reading and understanding of
+> thinkpad_acpi.c, the particular ACPI call that I issued is also how
+> the Linux driver currently operates the PrivacyGuard feature, which
+> means the driver might also be affected by this issue. So I'm hoping
+> someone could help me debug this further, or point out anything that
+> I'm not understanding correctly.
+> 
+> Thanks!
+> _______________________________________________
+> 
+> ibm-acpi-devel mailing list
+> 
+> ibm-acpi-devel@lists.sourceforge.net
+> 
+> https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
 
 
 _______________________________________________
