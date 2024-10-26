@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A5879B16E4
-	for <lists+ibm-acpi-devel@lfdr.de>; Sat, 26 Oct 2024 12:07:52 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62E5C9B16E8
+	for <lists+ibm-acpi-devel@lfdr.de>; Sat, 26 Oct 2024 12:08:06 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1t4dhl-00014O-5o;
-	Sat, 26 Oct 2024 10:07:33 +0000
+	id 1t4di0-00043Z-Rj;
+	Sat, 26 Oct 2024 10:07:48 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1t4dhk-00014I-C1
+ (envelope-from <hdegoede@redhat.com>) id 1t4dhz-00043S-MV
  for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 26 Oct 2024 10:07:32 +0000
+ Sat, 26 Oct 2024 10:07:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
  From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hJlGYIZ2ZF/J/o37/9Owky4ZqndhKDqZ37hsXKaaOtI=; b=aqzstVPJiHKXgWIqt8/YRLzt7H
- amdgzz9+B2kfWMMJis2uiGdTNqZnHCWaK+droheeqtrdNmL0UR35steIBC3o0KxKT7Bewo3MlJ+pF
- D2SLclpOKH9zHvNlbZQN7TyAqSkt6y+KDUyf6MdHspoLTVP3SJGd0T2H8n4Kfabg7BDo=;
+ bh=86pihVpFCTMFYss1/Iltby9/esixmfhGJjvS5+uk3X8=; b=MDsgBEXXHVkkn89KKTh8sucAix
+ HEpRw3+a/Qs2BysdE7OAziPlh14FKFxUz4ARCMSS7iYi7TpkHcxZx0fe5K+2QkamDd+S2g3g+6t1K
+ UGMI4bnTHjFjIUvYSFpgAqY26TYfhzBWQFBvOfazSvBNhXvJzL58grQGuUyR88E5KQbE=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
@@ -31,74 +31,74 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=hJlGYIZ2ZF/J/o37/9Owky4ZqndhKDqZ37hsXKaaOtI=; b=QupHmYdMA6xYdR5/F/SZfh2Caf
- a/1873wtj90ozbnOSdtPVw6ncfHN4/s6VqRRWqZ53fKvP3Tixx+MzM4PWrsYzCi7rxuvBk+jtyBI8
- EQhSz8IoonYN5lUYguCKMgsJdlidJtkd9gtz/8DKsbovnjJIM4JK/Hj2sIInn2jpqgjc=;
+ bh=86pihVpFCTMFYss1/Iltby9/esixmfhGJjvS5+uk3X8=; b=fvfpnXu6j7AeDH3sMYrqkdXcy1
+ X5mUulyplUoxqq4sulwxFRCWtz1K939RRN3uwQaFFyW6M9INrPGCfO9LSCU+yUiuzG9oe9EX0vd5B
+ DCmIq2SoGULUsz5+kppZwlIrF/e9N/zjYREdcAi7qLafL6UkD2NT6VbA/X+xGA6HuoMY=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1t4dhj-0001AI-M6 for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 26 Oct 2024 10:07:32 +0000
+ id 1t4dhy-0001B2-Dh for ibm-acpi-devel@lists.sourceforge.net;
+ Sat, 26 Oct 2024 10:07:47 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1729937245;
+ s=mimecast20190719; t=1729937260;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=hJlGYIZ2ZF/J/o37/9Owky4ZqndhKDqZ37hsXKaaOtI=;
- b=AqfRCOQ1OOdyl8L0iNNjh4hcGsPNbRaSX1u1AY4fTyirPHIhp2juf35MbZYWrjGirRprEm
- nuQZ7lFgmWF2OaxvssQ8QKsOTEqVRnW58Xa5CXwIHBpp+5buaL58G1R7vhbB6Uqei41JgC
- G5Ss4jbIEvdEa75nSaZlIt4+FuGp3Iw=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=86pihVpFCTMFYss1/Iltby9/esixmfhGJjvS5+uk3X8=;
+ b=boS7LHsvyh/7fkENtVkCXnrA10Qit4x/q35gs/E7eFIirNh7hx739SDxJTDFS3nhkpN8RU
+ vm0dLrAqyQbvcpryZe2kWODtfG0wGBybQch4CH0Tk8Zm1OxJjdq+xrtLMJFqQkmq/oTN+Z
+ nvYDM7zwLfI0o6WRAsNjwvj+TUmapS4=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-495-jPKMBYC5MjWxCVBJuF6TBg-1; Sat, 26 Oct 2024 06:07:22 -0400
-X-MC-Unique: jPKMBYC5MjWxCVBJuF6TBg-1
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-43159c07193so25567615e9.0
+ us-mta-145-RTwHzl4LPq2dc69qmuKPWw-1; Sat, 26 Oct 2024 06:07:37 -0400
+X-MC-Unique: RTwHzl4LPq2dc69qmuKPWw-1
+Received: by mail-ej1-f72.google.com with SMTP id
+ a640c23a62f3a-a9a2c3e75f0so183948866b.1
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Sat, 26 Oct 2024 03:07:22 -0700 (PDT)
+ Sat, 26 Oct 2024 03:07:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1729937241; x=1730542041;
+ d=1e100.net; s=20230601; t=1729937256; x=1730542056;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=hJlGYIZ2ZF/J/o37/9Owky4ZqndhKDqZ37hsXKaaOtI=;
- b=vG9nmxMt4XQEqt6r6koFQzOl/65dAeFefeUM6vnjzZ2vsUM6dQTiLh4DUOOat4tV5K
- hxe/Ur8tW491nigUJCefbhQTOtc5K05kkY70+p4h0eMLxXFG5lJ/OD66ct+NalHNJ07u
- dxWePbwbCKqVGjXB/woNCLrVDNm4vGxAR8s6ZqwpYpd7Oh7o3fKoFAetYCrT50/eA2pP
- 9VHvBGIuxP+pogudpMtskrEEQy5rhTzr0ATDbh8bmwUT2aZlLOqlEuo7HWk5b5KNQDrw
- kQFfLMVaNfyQVmmcHj/TJTf5D8n/r0IpXDZOH78Lvbi6tzWzAgGrJSExYaxkWbbaLaE/
- p9hw==
+ bh=86pihVpFCTMFYss1/Iltby9/esixmfhGJjvS5+uk3X8=;
+ b=svceQerpSYz/NwSxz1peotuNVLg9d9LN5IAfI6vBASSecZaamKlI8iMoxAH7OoBveH
+ M46L/+1DfOvM3iI2erbE8qdW4Iv/bVhSHnTB7PmQpLtmN2RODKXYm4GtqwU0/I43oPYd
+ biawT2Pt2HRFWP2SXet6Eu3UlVsEJZF11IAlZDUwZ3dX2b6J2b0vZVMPx+PDJAnPLJIA
+ eBLyzMtGcJldXJ+owIecqswhU/OwX1YWDzt5pzHuQpQuE9YGsUBNz/przts7amNo4OMM
+ HSCDtYZ+no+4yHEsL9u1vkIJiSXzBYAeA3SK68vS3IgMXepsM+O4GmGoUeEr3K7CS+Ht
+ x1uA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUv7SZO4BItZHg2EAt8WwdGle2qlfHfTS+q1Rc17dC8F0iSojQqKTsyRHPPl3BXdwKIlmu6OxVh9TT2qmBbGQ==@lists.sourceforge.net
-X-Gm-Message-State: AOJu0YyVCGwWKzcZA4MIoj447NeiiI5/j2GsoY9sm3dotPiiZ0Ta93+I
- 8w9ehC4o0bfMG8p7HWuCKkQ2KUBCkX9KStmD4UQoOLl9D5MGg2uTuqjPLYqgwfwBQJgeoPTFEO+
- H3SiCs8GV4VNJ+1MNFeyUko2h4Qz4qfs54EK7FkI5hznFr1AxyAlJVQYA9O80h3WBT2jYK+oX
-X-Received: by 2002:adf:ff86:0:b0:37c:d2e3:1298 with SMTP id
- ffacd0b85a97d-380612475d5mr2002233f8f.55.1729937241348; 
- Sat, 26 Oct 2024 03:07:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEWz8jQCbczQY1pIa/BTZuS+AN8DQuG9MqmGw6yTkV5fY3mqJbhjU3xrUt8/z0htouCksMjtQ==
-X-Received: by 2002:adf:ff86:0:b0:37c:d2e3:1298 with SMTP id
- ffacd0b85a97d-380612475d5mr2002195f8f.55.1729937240932; 
- Sat, 26 Oct 2024 03:07:20 -0700 (PDT)
+ AJvYcCV3rM8xTWcLLiNqaOHqTXy4zY5hRNOX0rQdyxeYG28Dc+KUTGvuqWBQxXJbmwCi+Ysf0ygLd69+pNzIz9ftmA==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0YywDC0x4vIa4S6aV59VRmQJHqMH+kRVjSFdzlKK6Rm1QQOeT6v9
+ HkbykM+VBrwavQqsK0rUd1P20DAXfXhmRzXDGPlZGY7o6bO1E7NiWYzt+9QSrFr0Uuz4CEc49qj
+ mToUxVqrxCrld5XAbDz7vGqn3FmpOJp7a2OwR8Sha8QvpfriNCUQs1wkwTWcaGk+C9RyO3hxZ
+X-Received: by 2002:a17:907:9727:b0:a9a:230b:ff2c with SMTP id
+ a640c23a62f3a-a9de5f2226dmr168739066b.30.1729937256127; 
+ Sat, 26 Oct 2024 03:07:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGugRUzTiO3bQ3RT5C4neQOCWw/sRdC3diGmPwKsQoYtVGLDDEjNj2gnVCayaCXt7maanra6g==
+X-Received: by 2002:a17:907:9727:b0:a9a:230b:ff2c with SMTP id
+ a640c23a62f3a-a9de5f2226dmr168735166b.30.1729937255762; 
+ Sat, 26 Oct 2024 03:07:35 -0700 (PDT)
 Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
  (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a9b1f0277b7sm160237066b.50.2024.10.26.03.07.18
+ a640c23a62f3a-a9b1f0298cfsm159302066b.74.2024.10.26.03.07.34
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 26 Oct 2024 03:07:19 -0700 (PDT)
-Message-ID: <dc490fa5-c02b-46d9-a9ef-271181756407@redhat.com>
-Date: Sat, 26 Oct 2024 12:07:18 +0200
+ Sat, 26 Oct 2024 03:07:35 -0700 (PDT)
+Message-ID: <e302a05d-cea1-4004-8727-8beee52dc112@redhat.com>
+Date: Sat, 26 Oct 2024 12:07:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 To: Mario Limonciello <mario.limonciello@amd.com>,
  =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
 References: <20241025193055.2235-1-mario.limonciello@amd.com>
- <20241025193055.2235-5-mario.limonciello@amd.com>
+ <20241025193055.2235-6-mario.limonciello@amd.com>
 From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <20241025193055.2235-5-mario.limonciello@amd.com>
+In-Reply-To: <20241025193055.2235-6-mario.limonciello@amd.com>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US, nl
@@ -109,9 +109,10 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, On 25-Oct-24 9:30 PM, Mario Limonciello wrote: > In order
- to prepare for having support for multiple platform handlers > a list will
- be needed to iterate over them for various platform > profile handl [...]
+ Content preview:  Hi, On 25-Oct-24 9:30 PM,
+ Mario Limonciello wrote: > guard(mutex)
+ can be used to automatically release mutexes when going > out of scope. >
+ > Tested-by: Matthew Schwartz <matthew.schwartz@linux.dev> > Sig [...] 
  Content analysis details:   (-2.4 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -129,9 +130,9 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.5 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1t4dhj-0001AI-M6
-Subject: Re: [ibm-acpi-devel] [PATCH 4/8] ACPI: platform_profile: Add a list
- to platform profile handler
+X-Headers-End: 1t4dhy-0001B2-Dh
+Subject: Re: [ibm-acpi-devel] [PATCH 5/8] ACPI: platform_profile: Use
+ guard(mutex) for register/unregister
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -167,9 +168,8 @@ Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 Hi,
 
 On 25-Oct-24 9:30 PM, Mario Limonciello wrote:
-> In order to prepare for having support for multiple platform handlers
-> a list will be needed to iterate over them for various platform
-> profile handler calls.
+> guard(mutex) can be used to automatically release mutexes when going
+> out of scope.
 > 
 > Tested-by: Matthew Schwartz <matthew.schwartz@linux.dev>
 > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
@@ -185,53 +185,61 @@ Hans
 
 
 > ---
->  drivers/acpi/platform_profile.c  | 5 ++++-
->  include/linux/platform_profile.h | 1 +
->  2 files changed, 5 insertions(+), 1 deletion(-)
+>  drivers/acpi/platform_profile.c | 19 ++++++-------------
+>  1 file changed, 6 insertions(+), 13 deletions(-)
 > 
 > diff --git a/drivers/acpi/platform_profile.c b/drivers/acpi/platform_profile.c
-> index c24744da20916..0c60fc970b6e8 100644
+> index 0c60fc970b6e8..81928adccfade 100644
 > --- a/drivers/acpi/platform_profile.c
 > +++ b/drivers/acpi/platform_profile.c
-> @@ -10,6 +10,7 @@
->  #include <linux/sysfs.h>
+> @@ -180,41 +180,34 @@ int platform_profile_register(struct platform_profile_handler *pprof)
+>  {
+>  	int err;
 >  
->  static struct platform_profile_handler *cur_profile;
-> +static LIST_HEAD(platform_profile_handler_list);
->  static DEFINE_MUTEX(profile_lock);
+> -	mutex_lock(&profile_lock);
+> +	guard(mutex)(&profile_lock);
+>  	/* We can only have one active profile */
+> -	if (cur_profile) {
+> -		mutex_unlock(&profile_lock);
+> +	if (cur_profile)
+>  		return -EEXIST;
+> -	}
 >  
->  static const char * const profile_names[] = {
-> @@ -198,6 +199,7 @@ int platform_profile_register(struct platform_profile_handler *pprof)
->  		mutex_unlock(&profile_lock);
+>  	/* Sanity check the profile handler field are set */
+>  	if (!pprof || bitmap_empty(pprof->choices, PLATFORM_PROFILE_LAST) ||
+> -		!pprof->profile_set || !pprof->profile_get) {
+> -		mutex_unlock(&profile_lock);
+> +		!pprof->profile_set || !pprof->profile_get)
+>  		return -EINVAL;
+> -	}
+>  
+>  	err = sysfs_create_group(acpi_kobj, &platform_profile_group);
+> -	if (err) {
+> -		mutex_unlock(&profile_lock);
+> +	if (err)
 >  		return err;
->  	}
-> +	list_add_tail(&pprof->list, &platform_profile_handler_list);
+> -	}
+>  	list_add_tail(&pprof->list, &platform_profile_handler_list);
 >  
 >  	cur_profile = pprof;
->  	mutex_unlock(&profile_lock);
-> @@ -207,8 +209,9 @@ EXPORT_SYMBOL_GPL(platform_profile_register);
+> -	mutex_unlock(&profile_lock);
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(platform_profile_register);
 >  
 >  int platform_profile_remove(struct platform_profile_handler *pprof)
 >  {
-> -	sysfs_remove_group(acpi_kobj, &platform_profile_group);
-> +	list_del(&pprof->list);
+> +	guard(mutex)(&profile_lock);
+> +
+>  	list_del(&pprof->list);
 >  
-> +	sysfs_remove_group(acpi_kobj, &platform_profile_group);
->  	mutex_lock(&profile_lock);
+>  	sysfs_remove_group(acpi_kobj, &platform_profile_group);
+> -	mutex_lock(&profile_lock);
 >  	cur_profile = NULL;
->  	mutex_unlock(&profile_lock);
-> diff --git a/include/linux/platform_profile.h b/include/linux/platform_profile.h
-> index 58279b76d740e..9ded63a9ae6f1 100644
-> --- a/include/linux/platform_profile.h
-> +++ b/include/linux/platform_profile.h
-> @@ -29,6 +29,7 @@ enum platform_profile_option {
->  struct platform_profile_handler {
->  	const char *name;
->  	unsigned long choices[BITS_TO_LONGS(PLATFORM_PROFILE_LAST)];
-> +	struct list_head list;
->  	int (*profile_get)(struct platform_profile_handler *pprof,
->  				enum platform_profile_option *profile);
->  	int (*profile_set)(struct platform_profile_handler *pprof,
+> -	mutex_unlock(&profile_lock);
+>  	return 0;
+>  }
+>  EXPORT_SYMBOL_GPL(platform_profile_remove);
 
 
 
