@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2AB89B2CD0
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 28 Oct 2024 11:26:41 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E0B9B2CD1
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 28 Oct 2024 11:26:43 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1t5Mwy-0003ZB-UT;
-	Mon, 28 Oct 2024 10:26:16 +0000
+	id 1t5Mwu-0006DI-94;
+	Mon, 28 Oct 2024 10:26:12 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1t5Mwx-0003Yx-9U
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1t5Mws-0006D9-At
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 28 Oct 2024 10:26:15 +0000
+ Mon, 28 Oct 2024 10:26:10 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
  References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
  Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
  :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=zpVCVnKNAbqxoyZ/9RQal9LIDE3t1qOufDxKPWWH5zM=; b=fcyCeHwpK5Krxf6g/o3c+hisa7
- EE2CSXX6iCyZxCuuWnXvwHi6bvn+HEZyN5eTWV0CRkAyDQ11LCE2ADR+koww6Obytsul4bYPBMEhG
- o7B2SWsX34wOCTLzfxo7KdSd9ErAgQmF1Ohu2mWDtjiaeUENfOvHdYx/6FOAD46stWAY=;
+ bh=sar9VsxVQKkAejXjEiNOhId5O63SyubO6yyvZ3N3wos=; b=ZoYtLEN65rQD/t1u0sa2zUkCak
+ PPC9RNH6lzFL44rcnPjUVhmGxKJ3jEH/pFkEkg7FuUpGnyeO38TgbcwA8YzYw/jK7axU7/xxHNolD
+ TkpZXzZHZ6nX+F2P395/ZS8Z/SrNuJwYCWTVfCrJ8otdAvcn8Kz+YPIM6rkTedtxkyzw=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
@@ -31,47 +31,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=zpVCVnKNAbqxoyZ/9RQal9LIDE3t1qOufDxKPWWH5zM=; b=M/cib84++d+K3OTvoCZQD6ctUp
- r8t2IdUtzPDvUzdi1CL9VN0SWw7KcjF7pDZhVcFqXgMnxaTlUaPifUrndKoH2aIMqypAdpiTH7R9m
- y+4gkeg5PcZ0pG8airBTJJ6p8As/4QDfVOA6UJf0INulVGhA344jJF1HS75p6nZn3tt8=;
-Received: from fout-b6-smtp.messagingengine.com ([202.12.124.149])
+ bh=sar9VsxVQKkAejXjEiNOhId5O63SyubO6yyvZ3N3wos=; b=D2XZuhVMx3DOw/WFdQNa6uxzl1
+ V9OTa94XswItLSifPh2pkZZ9N1iozMJDt6af6UwKIlXbU1IFHNENW6fyBOiWWZU2Bs5QNl1P/jxnQ
+ B2Mcz65D5RUpK58jaYJ1O6SqondZ6kFxuPpdY5oFjDUTWr+E9cveq4V9cq/y7LICiVgQ=;
+Received: from fhigh-b1-smtp.messagingengine.com ([202.12.124.152])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1t5Mww-0002IS-Cz for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 28 Oct 2024 10:26:15 +0000
+ id 1t5Mwr-0002IB-DF for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 28 Oct 2024 10:26:10 +0000
 Received: from phl-compute-02.internal (phl-compute-02.phl.internal
  [10.202.2.42])
- by mailfout.stl.internal (Postfix) with ESMTP id 9990E11400FC;
- Mon, 28 Oct 2024 06:07:39 -0400 (EDT)
+ by mailfhigh.stl.internal (Postfix) with ESMTP id A4E0825400E3;
+ Mon, 28 Oct 2024 06:09:15 -0400 (EDT)
 Received: from phl-imap-10 ([10.202.2.85])
- by phl-compute-02.internal (MEProxy); Mon, 28 Oct 2024 06:07:40 -0400
+ by phl-compute-02.internal (MEProxy); Mon, 28 Oct 2024 06:09:16 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
  :cc:content-transfer-encoding:content-type:content-type:date
  :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1730110059;
- x=1730196459; bh=zpVCVnKNAbqxoyZ/9RQal9LIDE3t1qOufDxKPWWH5zM=; b=
- Bz3gPrvSE1u2Jp3zcvNqLIgtS7gDWMUnjYMZwbN9jT0laM+CoThXEGY5b8gRoiHd
- YDzGI+8HQP5xXE77HxV/LglCXiU6zz4fpUExBPX2qEmH+wo8FBMn62SRi1yYfPzw
- Zu4NkaD8cNaiU/0ybJqyCWOl6cPmU029/bQdFAfwma1AhNRF3+bEkwE2TbOdSWgZ
- hKPo3avc4gQ7m5oiGNw+c6ZoJbH/id3P0yeu82lcDCycOSOy/tnNjwgnu7cfosC2
- tU0cRFzIbL4UAkpPudUvI2G8912MlMzd39qaShQusIEQJHoHCPyz+I4yiSXuTztj
- SdAfrJ6EwxOwWzNUH2jOlQ==
+ :references:reply-to:subject:subject:to:to; s=fm1; t=1730110155;
+ x=1730196555; bh=sar9VsxVQKkAejXjEiNOhId5O63SyubO6yyvZ3N3wos=; b=
+ Uj6S+w3EsK7vBGgYgRiNHAeBCOjO+hluLm/ZDEx16mTCxKPnbtQc8xJN4zWjXo+i
+ +ddku4qMcPJ4Jw/zggHuT75VDnU8ZB3nKvJYcDaZDuaS27FunM5GfPsxHW9Tfzuu
+ Cro6LlUUFiT3fc3XJjrii9/UpciZIgUsh5p+Z5/uR02KoApd9QNbWhPpOvXPyQ+B
+ aQkqN3xyfaRQOw/2BQOwtyWCm79QhePNv0GlARInbliOp54dZEb7ZsyojJbhQPn9
+ r6VMhLdWFNeHxR8quV3svsp6W/NBihxCzkHKMudb76Qf7ZODKsfrhJZpf5E/DKuu
+ cMoPfN3bYbLpzOAn9uloKA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:content-type:date:date:feedback-id:feedback-id
  :from:from:in-reply-to:in-reply-to:message-id:mime-version
  :references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1730110059; x=
- 1730196459; bh=zpVCVnKNAbqxoyZ/9RQal9LIDE3t1qOufDxKPWWH5zM=; b=N
- WdQ7+GI2ygJZ7I+cYyb9tXX8HC6956Uclg4Q3v2NfImYW3tvzkEaKdhbR19Xpp4H
- So+KxxThq2XslwtVrBv0y77qRMXMbAZkxEDEJB7P8y+FGW1x5KdufrocBNvxmIf7
- 8sME9CeQOB3EzkyfuUGuDfDrpZ56Llm6grv12lk0DCY05JN1ZAAURpZSNBgAR0gK
- hhTYHkFmu8m1mhy48CwDcGYelv3v7yKM3WLwVbsr+ovV+Qsr8eCQkB0+DaSCn0Qd
- uVRqD+Y8xHbmxjq2oTKuIT/Ib59YPK1IZn3ESZ5FBlwOYjtp5H20IOcq22pUwslD
- RKJSe0Frk5r/1tkXH6Fjw==
-X-ME-Sender: <xms:aWIfZ8n4NI9jOTrhs_B-s3cAwpFYqVDbSBoPD_JPNdLAMV5_519pMg>
- <xme:aWIfZ72fVIDaVXnD70Tv6g_0gCGgOt_yCcNYQyT3tG6gq4ETRDKFylefTXImAcyAw
- 6W_s1SheLB0GTLkE9A>
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1730110155; x=
+ 1730196555; bh=sar9VsxVQKkAejXjEiNOhId5O63SyubO6yyvZ3N3wos=; b=m
+ 06uzmj6UrsA6Qz3BrugQ3VMh8EJHifVlKz31dTerIC8Nc/uYJ4vxWwKugOAsdHQc
+ ZoIxWHi13/tWPB1tYPW9PQzDqAkk7vYETZ9YVuF0SGdhtTeEr4kR7APZvdpTZGNZ
+ LhgaO7P0KHxKCzoKGcZ2Gd/wLN24FIyHAz1CjRPorRe8mkO+R1cNmk3fMp7l/5mq
+ Wo0zaS0ei9YUl+ndJbphQ9OGE8UTvPmlt7h+9wWZek9J4PMddY/5TT0P1PUTiRgG
+ hV39SjLaYHGOK3sc0cSJqLSgPd7CoFJc7alnXef37CD81ZGzA5ggtuCPwGkY2h2r
+ lzQsS58+Gn0bbevWyJeEA==
+X-ME-Sender: <xms:ymIfZ7DP-SF0NnlxihdXVJPG84rrLBdEZwOv9RMk9xt6oZPm-6UdbA>
+ <xme:ymIfZxiqK0ZpDAGFME6hJUvwyIb-i0TZyjXOTUBUnVJOw2IIJs5qEPhPA4zoOKn6X
+ BN07IVqGFvXKw7OlCo>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdejkedgudduucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
  rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
@@ -79,7 +79,7 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdejkedgudduucetufdoteggod
  necuhfhrohhmpedfofgrrhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnh
  hovhhosehsqhhuvggssgdrtggrqeenucggtffrrghtthgvrhhnpefhuedvheetgeehtdeh
  tdevheduvdejjefggfeijedvgeekhfefleehkeehvdffheenucevlhhushhtvghrufhiii
- gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhho
+ gvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhho
  sehsqhhuvggssgdrtggrpdhnsggprhgtphhtthhopedvuddpmhhouggvpehsmhhtphhouh
  htpdhrtghpthhtohepshhhhigrmhdqshhunhgurghrrdhsqdhksegrmhgurdgtohhmpdhr
  tghpthhtohepmhgrrhhiohdrlhhimhhonhgtihgvlhhlohesrghmugdrtghomhdprhgtph
@@ -89,25 +89,25 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdejkedgudduucetufdoteggod
  nhesghhmrghilhdrtghomhdprhgtphhtthhopehhmhhhsehhmhhhrdgvnhhgrdgsrhdprh
  gtphhtthhopehsohihvghrsehirhhlrdhhuhdprhgtphhtthhopehlvghnsgeskhgvrhhn
  vghlrdhorhhg
-X-ME-Proxy: <xmx:aWIfZ6opKMutfh8H0IjY5UvPokSKzzK8DOsnhaZH1ZzFzOdXEBky-A>
- <xmx:aWIfZ4nlI68s1IQGm7PiDVmEtktDibFd9EavHboWC_B1PH6EaVqglw>
- <xmx:aWIfZ62VEXeSovcriCz6wwmmyKYd15xgwIywFpBkqFn9D7S33LXq9A>
- <xmx:aWIfZ_vEWAFwfQvS6OoHbqDiF3VXHvLYnMM7HUzKjaaFAl6bpsvp9A>
- <xmx:a2IfZ0WG9t8KGBr82f2tt_TAJ27K_GAnM7KWXlB_lghM0g6sEIZvD_KL>
+X-ME-Proxy: <xmx:ymIfZ2lU6bB_nQCB6QBhlau5S4mCOfg0wNDw6Gt1fX5qugpWIGO-vw>
+ <xmx:ymIfZ9yy3hjeaciaQQCLZdLt7xqyRPMJLVcbpCZWRpP9RS14dQJNJQ>
+ <xmx:ymIfZwSUl5KDdYo8NaAWlKR78KTG9jzZOXYUKjxdAJvmq3Gzox5_Uw>
+ <xmx:ymIfZwY6HAZmRpVLn3OBYd6TSHHOTOwv17FI7JRTaJEsJ62XvjaHsw>
+ <xmx:y2IfZ5SmE_-4EeWtNR4G_HnlCuKLDtuqjDRmS9XG1jgOSEtuP99Fajk3>
 Feedback-ID: ibe194615:Fastmail
 Received: by mailuser.phl.internal (Postfix, from userid 501)
- id C94833C0066; Mon, 28 Oct 2024 06:07:37 -0400 (EDT)
+ id 5C2A73C0066; Mon, 28 Oct 2024 06:09:14 -0400 (EDT)
 X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Date: Mon, 28 Oct 2024 06:07:16 -0400
+Date: Mon, 28 Oct 2024 06:08:54 -0400
 From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
 To: "Limonciello, Mario" <mario.limonciello@amd.com>,
  "Hans de Goede" <hdegoede@redhat.com>,
  =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Message-Id: <c5d52213-cb1b-408c-8fb5-a7401f690d24@app.fastmail.com>
-In-Reply-To: <20241025193055.2235-2-mario.limonciello@amd.com>
+Message-Id: <67ce52b7-d63b-432d-8cad-50063c06c394@app.fastmail.com>
+In-Reply-To: <20241025193055.2235-4-mario.limonciello@amd.com>
 References: <20241025193055.2235-1-mario.limonciello@amd.com>
- <20241025193055.2235-2-mario.limonciello@amd.com>
+ <20241025193055.2235-4-mario.limonciello@amd.com>
 X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
@@ -115,15 +115,14 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Thanks Mario, On Fri, Oct 25, 2024, at 3:30 PM,
- Mario Limonciello
- wrote: > In order to prepare for allowing multiple handlers, introduce >
- a name field that can be used to distinguish between different > handlers.
- [...] Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  On Fri, Oct 25, 2024, at 3:30 PM, Mario Limonciello wrote:
+ > To allow registering and unregistering multiple platform handlers calls
+ > to platform_profile_remove() will need to know which handler is t [...]
+ Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [202.12.124.149 listed in list.dnswl.org]
+ low trust [202.12.124.152 listed in list.dnswl.org]
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
@@ -133,9 +132,9 @@ X-Spam-Report: Spam detection software,
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1t5Mww-0002IS-Cz
-Subject: Re: [ibm-acpi-devel] [PATCH 1/8] ACPI: platform-profile: Add a name
- member to handlers
+X-Headers-End: 1t5Mwr-0002IB-DF
+Subject: Re: [ibm-acpi-devel] [PATCH 3/8] ACPI: platform_profile: Add
+ platform handler argument to platform_profile_remove()
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -168,157 +167,210 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Thanks Mario,
+
 
 On Fri, Oct 25, 2024, at 3:30 PM, Mario Limonciello wrote:
-> In order to prepare for allowing multiple handlers, introduce
-> a name field that can be used to distinguish between different
-> handlers.
+> To allow registering and unregistering multiple platform handlers calls
+> to platform_profile_remove() will need to know which handler is to be
+> removed.  Add an argument for this.
 >
 > Tested-by: Matthew Schwartz <matthew.schwartz@linux.dev>
 > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 > ---
->  drivers/platform/surface/surface_platform_profile.c | 1 +
->  drivers/platform/x86/acer-wmi.c                     | 1 +
->  drivers/platform/x86/amd/pmf/sps.c                  | 1 +
->  drivers/platform/x86/asus-wmi.c                     | 1 +
->  drivers/platform/x86/dell/dell-pc.c                 | 1 +
->  drivers/platform/x86/hp/hp-wmi.c                    | 1 +
->  drivers/platform/x86/ideapad-laptop.c               | 1 +
->  drivers/platform/x86/inspur_platform_profile.c      | 1 +
->  drivers/platform/x86/thinkpad_acpi.c                | 1 +
->  include/linux/platform_profile.h                    | 1 +
->  10 files changed, 10 insertions(+)
+>  drivers/acpi/platform_profile.c                     | 2 +-
+>  drivers/platform/surface/surface_platform_profile.c | 2 +-
+>  drivers/platform/x86/acer-wmi.c                     | 4 ++--
+>  drivers/platform/x86/amd/pmf/sps.c                  | 2 +-
+>  drivers/platform/x86/asus-wmi.c                     | 4 ++--
+>  drivers/platform/x86/dell/dell-pc.c                 | 2 +-
+>  drivers/platform/x86/hp/hp-wmi.c                    | 2 +-
+>  drivers/platform/x86/ideapad-laptop.c               | 2 +-
+>  drivers/platform/x86/inspur_platform_profile.c      | 4 +++-
+>  drivers/platform/x86/thinkpad_acpi.c                | 2 +-
+>  include/linux/platform_profile.h                    | 2 +-
+>  11 files changed, 15 insertions(+), 13 deletions(-)
 >
+> diff --git a/drivers/acpi/platform_profile.c 
+> b/drivers/acpi/platform_profile.c
+> index d2f7fd7743a13..c24744da20916 100644
+> --- a/drivers/acpi/platform_profile.c
+> +++ b/drivers/acpi/platform_profile.c
+> @@ -205,7 +205,7 @@ int platform_profile_register(struct 
+> platform_profile_handler *pprof)
+>  }
+>  EXPORT_SYMBOL_GPL(platform_profile_register);
+> 
+> -int platform_profile_remove(void)
+> +int platform_profile_remove(struct platform_profile_handler *pprof)
+>  {
+>  	sysfs_remove_group(acpi_kobj, &platform_profile_group);
+> 
 > diff --git a/drivers/platform/surface/surface_platform_profile.c 
 > b/drivers/platform/surface/surface_platform_profile.c
-> index 3de864bc66108..61aa488a80eb5 100644
+> index 958afd7bce223..0879b739c5e8b 100644
 > --- a/drivers/platform/surface/surface_platform_profile.c
 > +++ b/drivers/platform/surface/surface_platform_profile.c
-> @@ -211,6 +211,7 @@ static int surface_platform_profile_probe(struct 
+> @@ -228,7 +228,7 @@ static int surface_platform_profile_probe(struct 
 > ssam_device *sdev)
 > 
->  	tpd->sdev = sdev;
-> 
-> +	tpd->handler.name = "Surface Platform Profile";
->  	tpd->handler.profile_get = ssam_platform_profile_get;
->  	tpd->handler.profile_set = ssam_platform_profile_set;
-> 
-> diff --git a/drivers/platform/x86/acer-wmi.c b/drivers/platform/x86/acer-wmi.c
-> index d09baa3d3d902..53fbc9b4d3df7 100644
-> --- a/drivers/platform/x86/acer-wmi.c
-> +++ b/drivers/platform/x86/acer-wmi.c
-> @@ -1878,6 +1878,7 @@ static int acer_platform_profile_setup(void)
->  	if (quirks->predator_v4) {
->  		int err;
-> 
-> +		platform_profile_handler.name = "acer-wmi";
->  		platform_profile_handler.profile_get =
->  			acer_predator_v4_platform_profile_get;
->  		platform_profile_handler.profile_set =
-> diff --git a/drivers/platform/x86/amd/pmf/sps.c 
-> b/drivers/platform/x86/amd/pmf/sps.c
-> index 92f7fb22277dc..e2d0cc92c4396 100644
-> --- a/drivers/platform/x86/amd/pmf/sps.c
-> +++ b/drivers/platform/x86/amd/pmf/sps.c
-> @@ -405,6 +405,7 @@ int amd_pmf_init_sps(struct amd_pmf_dev *dev)
->  		amd_pmf_set_sps_power_limits(dev);
->  	}
-> 
-> +	dev->pprof.name = "amd-pmf";
->  	dev->pprof.profile_get = amd_pmf_profile_get;
->  	dev->pprof.profile_set = amd_pmf_profile_set;
-> 
-> diff --git a/drivers/platform/x86/asus-wmi.c b/drivers/platform/x86/asus-wmi.c
-> index 2ccc23b259d3e..c7c104c65a85a 100644
-> --- a/drivers/platform/x86/asus-wmi.c
-> +++ b/drivers/platform/x86/asus-wmi.c
-> @@ -3910,6 +3910,7 @@ static int platform_profile_setup(struct asus_wmi *asus)
-> 
->  	dev_info(dev, "Using throttle_thermal_policy for platform_profile support\n");
-> 
-> +	asus->platform_profile_handler.name = "asus-wmi";
->  	asus->platform_profile_handler.profile_get = asus_wmi_platform_profile_get;
->  	asus->platform_profile_handler.profile_set = asus_wmi_platform_profile_set;
-> 
-> diff --git a/drivers/platform/x86/dell/dell-pc.c 
-> b/drivers/platform/x86/dell/dell-pc.c
-> index 972385ca1990b..3cf79e55e3129 100644
-> --- a/drivers/platform/x86/dell/dell-pc.c
-> +++ b/drivers/platform/x86/dell/dell-pc.c
-> @@ -247,6 +247,7 @@ static int thermal_init(void)
->  	thermal_handler = kzalloc(sizeof(*thermal_handler), GFP_KERNEL);
->  	if (!thermal_handler)
->  		return -ENOMEM;
-> +	thermal_handler->name = "dell-pc";
->  	thermal_handler->profile_get = thermal_platform_profile_get;
->  	thermal_handler->profile_set = thermal_platform_profile_set;
-> 
-> diff --git a/drivers/platform/x86/hp/hp-wmi.c b/drivers/platform/x86/hp/hp-wmi.c
-> index 81ccc96ffe40a..26cac73caf2b9 100644
-> --- a/drivers/platform/x86/hp/hp-wmi.c
-> +++ b/drivers/platform/x86/hp/hp-wmi.c
-> @@ -1624,6 +1624,7 @@ static int thermal_profile_setup(void)
->  		set_bit(PLATFORM_PROFILE_COOL, platform_profile_handler.choices);
->  	}
-> 
-> +	platform_profile_handler.name = "hp-wmi";
->  	set_bit(PLATFORM_PROFILE_BALANCED, platform_profile_handler.choices);
->  	set_bit(PLATFORM_PROFILE_PERFORMANCE, platform_profile_handler.choices);
-> 
-> diff --git a/drivers/platform/x86/ideapad-laptop.c 
-> b/drivers/platform/x86/ideapad-laptop.c
-> index 9d8c3f064050e..1f94c14c3b832 100644
-> --- a/drivers/platform/x86/ideapad-laptop.c
-> +++ b/drivers/platform/x86/ideapad-laptop.c
-> @@ -1102,6 +1102,7 @@ static int ideapad_dytc_profile_init(struct 
-> ideapad_private *priv)
-> 
->  	mutex_init(&priv->dytc->mutex);
-> 
-> +	priv->dytc->pprof.name = "ideapad-laptop";
->  	priv->dytc->priv = priv;
->  	priv->dytc->pprof.profile_get = dytc_profile_get;
->  	priv->dytc->pprof.profile_set = dytc_profile_set;
-> diff --git a/drivers/platform/x86/inspur_platform_profile.c 
-> b/drivers/platform/x86/inspur_platform_profile.c
-> index 8440defa67886..03da2c8cf6789 100644
-> --- a/drivers/platform/x86/inspur_platform_profile.c
-> +++ b/drivers/platform/x86/inspur_platform_profile.c
-> @@ -177,6 +177,7 @@ static int inspur_wmi_probe(struct wmi_device 
-> *wdev, const void *context)
->  	priv->wdev = wdev;
->  	dev_set_drvdata(&wdev->dev, priv);
-> 
-> +	priv->handler.name = "inspur-wmi";
->  	priv->handler.profile_get = inspur_platform_profile_get;
->  	priv->handler.profile_set = inspur_platform_profile_set;
-> 
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c 
-> b/drivers/platform/x86/thinkpad_acpi.c
-> index 4c1b0553f8720..c8c316b8507a5 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -10549,6 +10549,7 @@ static void dytc_profile_refresh(void)
+>  static void surface_platform_profile_remove(struct ssam_device *sdev)
+>  {
+> -	platform_profile_remove();
+> +	platform_profile_remove(&sdev->tpd->handler);
 >  }
 > 
->  static struct platform_profile_handler dytc_profile = {
-> +	.name = "thinkpad-acpi",
->  	.profile_get = dytc_profile_get,
->  	.profile_set = dytc_profile_set,
->  };
+>  static const struct ssam_device_id ssam_platform_profile_match[] = {
+> diff --git a/drivers/platform/x86/acer-wmi.c 
+> b/drivers/platform/x86/acer-wmi.c
+> index 53fbc9b4d3df7..71761d4220c26 100644
+> --- a/drivers/platform/x86/acer-wmi.c
+> +++ b/drivers/platform/x86/acer-wmi.c
+> @@ -2546,7 +2546,7 @@ static int acer_platform_probe(struct 
+> platform_device *device)
+> 
+>  error_hwmon:
+>  	if (platform_profile_support)
+> -		platform_profile_remove();
+> +		platform_profile_remove(&platform_profile_handler);
+>  error_platform_profile:
+>  	acer_rfkill_exit();
+>  error_rfkill:
+> @@ -2569,7 +2569,7 @@ static void acer_platform_remove(struct 
+> platform_device *device)
+>  	acer_rfkill_exit();
+> 
+>  	if (platform_profile_support)
+> -		platform_profile_remove();
+> +		platform_profile_remove(&platform_profile_handler);
+>  }
+> 
+>  #ifdef CONFIG_PM_SLEEP
+> diff --git a/drivers/platform/x86/amd/pmf/sps.c 
+> b/drivers/platform/x86/amd/pmf/sps.c
+> index e2d0cc92c4396..cfa88c0c9e594 100644
+> --- a/drivers/platform/x86/amd/pmf/sps.c
+> +++ b/drivers/platform/x86/amd/pmf/sps.c
+> @@ -425,5 +425,5 @@ int amd_pmf_init_sps(struct amd_pmf_dev *dev)
+> 
+>  void amd_pmf_deinit_sps(struct amd_pmf_dev *dev)
+>  {
+> -	platform_profile_remove();
+> +	platform_profile_remove(&dev->pprof);
+>  }
+> diff --git a/drivers/platform/x86/asus-wmi.c 
+> b/drivers/platform/x86/asus-wmi.c
+> index c7c104c65a85a..f5f8cda7fd19c 100644
+> --- a/drivers/platform/x86/asus-wmi.c
+> +++ b/drivers/platform/x86/asus-wmi.c
+> @@ -4885,7 +4885,7 @@ static int asus_wmi_add(struct platform_device 
+> *pdev)
+>  fail_custom_fan_curve:
+>  fail_platform_profile_setup:
+>  	if (asus->platform_profile_support)
+> -		platform_profile_remove();
+> +		platform_profile_remove(&asus->platform_profile_handler);
+>  fail_fan_boost_mode:
+>  fail_platform:
+>  	kfree(asus);
+> @@ -4912,7 +4912,7 @@ static void asus_wmi_remove(struct 
+> platform_device *device)
+>  	asus_wmi_battery_exit(asus);
+> 
+>  	if (asus->platform_profile_support)
+> -		platform_profile_remove();
+> +		platform_profile_remove(&asus->platform_profile_handler);
+> 
+>  	kfree(asus);
+>  }
+> diff --git a/drivers/platform/x86/dell/dell-pc.c 
+> b/drivers/platform/x86/dell/dell-pc.c
+> index 3cf79e55e3129..4196154cc37d9 100644
+> --- a/drivers/platform/x86/dell/dell-pc.c
+> +++ b/drivers/platform/x86/dell/dell-pc.c
+> @@ -273,7 +273,7 @@ static int thermal_init(void)
+>  static void thermal_cleanup(void)
+>  {
+>  	if (thermal_handler) {
+> -		platform_profile_remove();
+> +		platform_profile_remove(thermal_handler);
+>  		kfree(thermal_handler);
+>  	}
+>  }
+> diff --git a/drivers/platform/x86/hp/hp-wmi.c 
+> b/drivers/platform/x86/hp/hp-wmi.c
+> index 26cac73caf2b9..bb8771d8b5cd8 100644
+> --- a/drivers/platform/x86/hp/hp-wmi.c
+> +++ b/drivers/platform/x86/hp/hp-wmi.c
+> @@ -1692,7 +1692,7 @@ static void __exit hp_wmi_bios_remove(struct 
+> platform_device *device)
+>  	}
+> 
+>  	if (platform_profile_support)
+> -		platform_profile_remove();
+> +		platform_profile_remove(&platform_profile_handler);
+>  }
+> 
+>  static int hp_wmi_resume_handler(struct device *device)
+> diff --git a/drivers/platform/x86/ideapad-laptop.c 
+> b/drivers/platform/x86/ideapad-laptop.c
+> index 1f94c14c3b832..50819ac919e87 100644
+> --- a/drivers/platform/x86/ideapad-laptop.c
+> +++ b/drivers/platform/x86/ideapad-laptop.c
+> @@ -1135,7 +1135,7 @@ static void ideapad_dytc_profile_exit(struct 
+> ideapad_private *priv)
+>  	if (!priv->dytc)
+>  		return;
+> 
+> -	platform_profile_remove();
+> +	platform_profile_remove(&priv->dytc->pprof);
+>  	mutex_destroy(&priv->dytc->mutex);
+>  	kfree(priv->dytc);
+> 
+> diff --git a/drivers/platform/x86/inspur_platform_profile.c 
+> b/drivers/platform/x86/inspur_platform_profile.c
+> index 03da2c8cf6789..f6bc5ca9da91d 100644
+> --- a/drivers/platform/x86/inspur_platform_profile.c
+> +++ b/drivers/platform/x86/inspur_platform_profile.c
+> @@ -190,7 +190,9 @@ static int inspur_wmi_probe(struct wmi_device 
+> *wdev, const void *context)
+> 
+>  static void inspur_wmi_remove(struct wmi_device *wdev)
+>  {
+> -	platform_profile_remove();
+> +	struct inspur_wmi_priv *priv;
+> +	priv = dev_get_drvdata(&wdev->dev);
+> +	platform_profile_remove(&priv->handler);
+>  }
+> 
+>  static const struct wmi_device_id inspur_wmi_id_table[] = {
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c 
+> b/drivers/platform/x86/thinkpad_acpi.c
+> index c8c316b8507a5..619a4db74e5f3 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -10637,7 +10637,7 @@ static int tpacpi_dytc_profile_init(struct 
+> ibm_init_struct *iibm)
+> 
+>  static void dytc_profile_exit(void)
+>  {
+> -	platform_profile_remove();
+> +	platform_profile_remove(&dytc_profile);
+>  }
+> 
+>  static struct ibm_struct  dytc_profile_driver_data = {
 > diff --git a/include/linux/platform_profile.h b/include/linux/platform_profile.h
-> index f5492ed413f36..6fa988e417428 100644
+> index 6fa988e417428..58279b76d740e 100644
 > --- a/include/linux/platform_profile.h
 > +++ b/include/linux/platform_profile.h
-> @@ -27,6 +27,7 @@ enum platform_profile_option {
+> @@ -36,7 +36,7 @@ struct platform_profile_handler {
 >  };
 > 
->  struct platform_profile_handler {
-> +	const char *name;
->  	unsigned long choices[BITS_TO_LONGS(PLATFORM_PROFILE_LAST)];
->  	int (*profile_get)(struct platform_profile_handler *pprof,
->  				enum platform_profile_option *profile);
+>  int platform_profile_register(struct platform_profile_handler *pprof);
+> -int platform_profile_remove(void);
+> +int platform_profile_remove(struct platform_profile_handler *pprof);
+>  int platform_profile_cycle(void);
+>  void platform_profile_notify(void);
+> 
 > -- 
 > 2.43.0
 
