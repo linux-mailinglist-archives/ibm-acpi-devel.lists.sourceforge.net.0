@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 044FF9B9C34
-	for <lists+ibm-acpi-devel@lfdr.de>; Sat,  2 Nov 2024 03:15:08 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
-	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB44C9B9C35
+	for <lists+ibm-acpi-devel@lfdr.de>; Sat,  2 Nov 2024 03:15:18 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1t73f6-0006rx-HT;
-	Sat, 02 Nov 2024 02:14:48 +0000
+	id 1t73fK-0003w1-V4;
+	Sat, 02 Nov 2024 02:15:02 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1t73f3-0006rm-Ud
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1t73fH-0003vo-Lo
  for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 02 Nov 2024 02:14:45 +0000
+ Sat, 02 Nov 2024 02:14:59 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
  References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
  Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
  :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=KTD4lt+iLU7cN0yZuhFfops1FCqb+x9RwToKur8jpZw=; b=ZhPYG88eQ528F0lfmg9CTA9PhU
- WWL3b/UacOi1xdHcHRBEYb3Tw5X8f5EzjHPLTMyitDxPOut6R6SSspnI9xl3gm2lzrR9ROkV5t32d
- BKNOuCHUE4elpmMAcoPreRawx4S5swiucsaqGQIrT8VzZaTyrGOXYctpobn+NulruJ+s=;
+ bh=CkrPl1J6C0IRjJJqxSDvwcu6yt6xdBEFuHH1XZwtxT4=; b=l0bra0i8VLwgSHe9XoXQtA/26B
+ NanZwE8HeYCT6i8cS+8ulDBls9sbgrXeU7VT/3y/YMSh2l8jwpge4H+OHZoSpstxbOpRUJ/gWkIL/
+ A4o+6yhOn04qz9kcQhhDlHClEyxZlfxVoUv7KFLeK+vxwl3lRsaWo8MCEEpgUq8tbvNQ=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
@@ -31,47 +31,47 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=KTD4lt+iLU7cN0yZuhFfops1FCqb+x9RwToKur8jpZw=; b=OFgpmp8nJiZUHO9m69kp1rKU6y
- mCCTXzi9PSxSBgbB+S1lH2Ii7CpKC7LQLAxwW8iAH7BzuvDbzVa5ctUSV9b6R6iC3xJdm3kA0Qj12
- vwZ3SZVaKiCvDu0gFdCP/lb0paqS4NNUx9d4TmXrLUcSeri8A/VVc9kPQK7ggbzDStFE=;
-Received: from fout-b3-smtp.messagingengine.com ([202.12.124.146])
+ bh=CkrPl1J6C0IRjJJqxSDvwcu6yt6xdBEFuHH1XZwtxT4=; b=cSllgqTZK++iQKsN4kqJ/N2ccB
+ Ef5ene/EutGH3P4lBQAd1rZV2yO5Ru3D05FEWukCkLYdP4OecLOi8uBa5vwPdkw4UC4JoALHNRktO
+ 2Ee7b0XgcixuhxQBAEDyg4omroo//zTQk4fgG0g/a9lEDEtBj0bj3wHHxganoG1CV/co=;
+Received: from fhigh-b6-smtp.messagingengine.com ([202.12.124.157])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1t73f0-0003Mm-CL for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 02 Nov 2024 02:14:42 +0000
+ id 1t73fG-0003PR-BU for ibm-acpi-devel@lists.sourceforge.net;
+ Sat, 02 Nov 2024 02:14:59 +0000
 Received: from phl-compute-02.internal (phl-compute-02.phl.internal
  [10.202.2.42])
- by mailfout.stl.internal (Postfix) with ESMTP id 5E22311400C3;
- Fri,  1 Nov 2024 22:14:31 -0400 (EDT)
+ by mailfhigh.stl.internal (Postfix) with ESMTP id 5B0D325400FC;
+ Fri,  1 Nov 2024 22:14:52 -0400 (EDT)
 Received: from phl-imap-10 ([10.202.2.85])
- by phl-compute-02.internal (MEProxy); Fri, 01 Nov 2024 22:14:31 -0400
+ by phl-compute-02.internal (MEProxy); Fri, 01 Nov 2024 22:14:52 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
  :cc:content-transfer-encoding:content-type:content-type:date
  :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1730513671;
- x=1730600071; bh=KTD4lt+iLU7cN0yZuhFfops1FCqb+x9RwToKur8jpZw=; b=
- HkUUd6Dychnkm2xHYUjZhzPQSqucYeVq80IBqxI6bSEFhCRALzVlex5EeD5eHjfl
- U73DKRuGDUxv/NRImApMkJIvOhlBKfE8W1t87Ezc3Pav+jaT/upZ9sjKxnzHzwuE
- AZvVPVhTq7org9b/TrQHTjfhjcPKl4MZ0EyiDKgUhVylki2JZpw62I82gS2aMjCn
- YpSL7iQwXOiO6rQoaUIj3znaoFH5aVHCfCcQF38B/mx6Icb9RDRdR0Oh/D3LDw3H
- NmYBsnnFsA6my8DoztlCgnyfTiF7TObKpAxo7bxQvcvW3gKi+24WXmIyCqevQZfI
- K6KGCTXYmpUBo+F0NEgWNw==
+ :references:reply-to:subject:subject:to:to; s=fm1; t=1730513692;
+ x=1730600092; bh=CkrPl1J6C0IRjJJqxSDvwcu6yt6xdBEFuHH1XZwtxT4=; b=
+ hnqA5leKwpfDw02iQCa76dsOowb09WlDqiQFWenoB/VjM0L/7gKBFk7EugXuXJcC
+ FLuD9hKPuOxPSojdkiiuS2dkfBsdd5fb+uzLAz47y9bNHZsCia//MC+h/atm0bMD
+ zuvZZIuL+IJfjocmCl6NtWBJnbB8aXHSVj0qgLRVu7Ou9REZhKdEnIq2EBStgqw5
+ tVjoZJAzzWHf1zalkhB5KYBVjZOD7HVc+esvCfoVoPnrZ70Vnn0AmMYxt0afPTwH
+ EpNTpY2TsXUik2eU9nShcUQ3lg2GXIODam2uLUhJPs4oAJbxu+GxzyHzMAJu+MNP
+ jQoDWOLeZTJnXsWHbgXpUQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:content-type:date:date:feedback-id:feedback-id
  :from:from:in-reply-to:in-reply-to:message-id:mime-version
  :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1730513671; x=
- 1730600071; bh=KTD4lt+iLU7cN0yZuhFfops1FCqb+x9RwToKur8jpZw=; b=n
- x/Apu0MNOWO9/74SQCfSAI5wXGepUHIy/pEBkwYMN0lN11N6Gur4CGCJMH6MxUa7
- d6+s28jeIgO7jUbGINr6XEmM2VMEcGchI6tLyQdR9odppcQTak8dPfETfVyxSWBa
- 00WjK7q3CiCuws0/sPbwdwPNq093OJz2RrNhKZSwaHbvfy0A+s9/wu1Mvmg0JaWb
- UhAEJ1czaoFl2dBp6cMV1bC3PHdQVIybP6tnlT5etoJTDv5agnNzttwZM09nxwTi
- u8bAwOuD8520Fr9/MZhzJ17cmJ7112Fs2Qr/aSzIjHI7tfzs4VU25/+IO6m0NkGA
- rLfDLkbvpsIq3EcbeYkiQ==
-X-ME-Sender: <xms:BoslZ1Z__YH8k-GK41nBQTxnNO9aIxyIwuZDjD0KN8-8fZG47Yfrqg>
- <xme:BoslZ8aXlFgW8SOpWoUjNMvokkSY_zxhKjPk1q9mer-HmdDy5n_iGbIIx1-8fqsvy
- XQFOwpcdkH58OXKMA4>
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1730513692; x=
+ 1730600092; bh=CkrPl1J6C0IRjJJqxSDvwcu6yt6xdBEFuHH1XZwtxT4=; b=E
+ 0vdTR9sQnVY1R8BWJXyoutjE/6jAeOnABNkeJYtuC6f4VufKx/m5l3+Izsphqixx
+ TnCEvWDMo4cHZ2ioWhC3YzJPbepVWTYSkSMXar6IfiNwQAz0EpIoaiqSNWHEY0V8
+ OuV2BsYvQj3TjkzU9edUX0mJMeOCCE4AWc//RfB0g7A7SBqDlsTTjnc9+PgQbuWZ
+ sJFgWZ150Kcw3nsMt69XWlMhTH2AnESGnZv81fox8vCPNZdbeNxq9cPc8acgHgmo
+ OTiHbHQ6rvpxU8Ge4kISU8tNxbatMiaa/bUG4w6XwsjNVtKJTBcXii3azPxUnG4e
+ Sp+X9qKABrfpDqR4J67YA==
+X-ME-Sender: <xms:HIslZ3iu5PxY0x5RPSEf348rdlX1c7ZhVo_bSMGIO7HhfxFFrz4hgQ>
+ <xme:HIslZ0A1tFDfcVzfA2yjWcc641HxknWT_wWh2wOD7I-GrXAITRfR-YtPf2jw7dolT
+ biJBktwCqCFSw5Tz9E>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeltddggeefucetufdoteggodetrfdotf
  fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
  rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
@@ -79,7 +79,7 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeltddggeefucetufdoteggod
  necuhfhrohhmpedfofgrrhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnh
  hovhhosehsqhhuvggssgdrtggrqeenucggtffrrghtthgvrhhnpefhuedvheetgeehtdeh
  tdevheduvdejjefggfeijedvgeekhfefleehkeehvdffheenucevlhhushhtvghrufhiii
- gvpeefnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhho
+ gvpeegnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhho
  sehsqhhuvggssgdrtggrpdhnsggprhgtphhtthhopedvuddpmhhouggvpehsmhhtphhouh
  htpdhrtghpthhtohepshhhhigrmhdqshhunhgurghrrdhsqdhksegrmhgurdgtohhmpdhr
  tghpthhtohepmhgrrhhiohdrlhhimhhonhgtihgvlhhlohesrghmugdrtghomhdprhgtph
@@ -89,52 +89,52 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdeltddggeefucetufdoteggod
  nhesghhmrghilhdrtghomhdprhgtphhtthhopehhmhhhsehhmhhhrdgvnhhgrdgsrhdprh
  gtphhtthhopehsohihvghrsehirhhlrdhhuhdprhgtphhtthhopehlvghnsgeskhgvrhhn
  vghlrdhorhhg
-X-ME-Proxy: <xmx:BoslZ3_biM1FFz9eKo_rxileDmUosTKd1k4jvIEq1uEZA__RbhpH1A>
- <xmx:BoslZzr7cDiln-fgfWxxz0RAihswEdC7dJmS5_u3MkFkJqsq9aSz6g>
- <xmx:BoslZwrYjKuPMMLzt3iERHjciuHojvI8ziU6ZFbaglTXLCLw0AXQ0Q>
- <xmx:BoslZ5SUL-twp5Dsnzh1TTjczxETs6oVToHHh8FPjMft_WlEoIfegw>
- <xmx:B4slZ0qbywQ4V5CWnXlCVvtVBHidKg3Nwv606d_bDykCzB0-WjOcjekx>
+X-ME-Proxy: <xmx:HIslZ3GE8tLHQ7mLkFhtWvhejna9mMMiDDRPFu8yNtxNwvZ6nw44DQ>
+ <xmx:HIslZ0RWTw-0cE-YtGdYGMnYu3SrD_vMM6jPCJAqwPUUwA_5v4StLA>
+ <xmx:HIslZ0yXPIdQZdkmdKK-OkHZPtzbPXNB4lCGZ2HgQU0tR9KrK9koFg>
+ <xmx:HIslZ65PsecglyYQxysPTPtBoW0UaQNZIsB4gaNgfrJDS2gATrMKug>
+ <xmx:HIslZxzKy-BimVu7KPudm_WCn59kRDMTvSxXdIyOcS-y3xxlfAVsfox6>
 Feedback-ID: ibe194615:Fastmail
 Received: by mailuser.phl.internal (Postfix, from userid 501)
- id B689F3C0066; Fri,  1 Nov 2024 22:14:30 -0400 (EDT)
+ id 051323C0066; Fri,  1 Nov 2024 22:14:52 -0400 (EDT)
 X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Date: Fri, 01 Nov 2024 22:14:10 -0400
+Date: Fri, 01 Nov 2024 22:14:31 -0400
 From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
 To: "Limonciello, Mario" <mario.limonciello@amd.com>,
  "Hans de Goede" <hdegoede@redhat.com>,
  =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Message-Id: <51a93c87-7192-4df0-b61d-a4da57ac0903@app.fastmail.com>
-In-Reply-To: <20241031040952.109057-12-mario.limonciello@amd.com>
+Message-Id: <2ed34c9d-bd75-4668-b1c8-ac663ad17b25@app.fastmail.com>
+In-Reply-To: <20241031040952.109057-15-mario.limonciello@amd.com>
 References: <20241031040952.109057-1-mario.limonciello@amd.com>
- <20241031040952.109057-12-mario.limonciello@amd.com>
+ <20241031040952.109057-15-mario.limonciello@amd.com>
 X-Spam-Score: -0.9 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-2.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  Content preview:  On Thu, Oct 31, 2024, at 12:09 AM, Mario Limonciello wrote:
- > Migrate away from using an interruptible mutex to scoped_cond_guard. >
- > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com> > -- [...] 
+ > As multiple platform profile handlers may come and go, send a notification
+ > to userspace each time that a platform profile handler is reg [...] 
  Content analysis details:   (-0.9 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [202.12.124.146 listed in list.dnswl.org]
+ low trust [202.12.124.157 listed in list.dnswl.org]
  -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
  valid
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
+ author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1t73f0-0003Mm-CL
-Subject: Re: [ibm-acpi-devel] [PATCH v3 11/22] ACPI: platform_profile: Use
- `scoped_cond_guard` for platform_profile_cycle()
+X-Headers-End: 1t73fG-0003PR-BU
+Subject: Re: [ibm-acpi-devel] [PATCH v3 14/22] ACPI: platform_profile:
+ Notify change events on register and unregister
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -168,74 +168,44 @@ Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
 On Thu, Oct 31, 2024, at 12:09 AM, Mario Limonciello wrote:
-> Migrate away from using an interruptible mutex to scoped_cond_guard.
+> As multiple platform profile handlers may come and go, send a notification
+> to userspace each time that a platform profile handler is registered or
+> unregistered.
 >
+> Tested-by: Matthew Schwartz <matthew.schwartz@linux.dev>
 > Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 > ---
->  drivers/acpi/platform_profile.c | 39 +++++++++++++--------------------
->  1 file changed, 15 insertions(+), 24 deletions(-)
+>  drivers/acpi/platform_profile.c | 3 +++
+>  1 file changed, 3 insertions(+)
 >
-> diff --git a/drivers/acpi/platform_profile.c b/drivers/acpi/platform_profile.c
-> index 63a5f5ac33898..2d971dba2d917 100644
+> diff --git a/drivers/acpi/platform_profile.c 
+> b/drivers/acpi/platform_profile.c
+> index 57c66d7dbf827..7bd32f1e8d834 100644
 > --- a/drivers/acpi/platform_profile.c
 > +++ b/drivers/acpi/platform_profile.c
-> @@ -124,36 +124,27 @@ int platform_profile_cycle(void)
->  	enum platform_profile_option next;
->  	int err;
-> 
-> -	err = mutex_lock_interruptible(&profile_lock);
-> -	if (err)
-> -		return err;
-> +	scoped_cond_guard(mutex_intr, return -ERESTARTSYS, &profile_lock) {
-> +		if (!cur_profile)
-> +			return -ENODEV;
-> 
-> -	if (!cur_profile) {
-> -		mutex_unlock(&profile_lock);
-> -		return -ENODEV;
-> -	}
-> +		err = cur_profile->profile_get(cur_profile, &profile);
-> +		if (err)
-> +			return err;
-> 
-> -	err = cur_profile->profile_get(cur_profile, &profile);
-> -	if (err) {
-> -		mutex_unlock(&profile_lock);
-> -		return err;
-> -	}
-> +		next = find_next_bit_wrap(cur_profile->choices, PLATFORM_PROFILE_LAST,
-> +					  profile + 1);
-> 
-> -	next = find_next_bit_wrap(cur_profile->choices, PLATFORM_PROFILE_LAST,
-> -				  profile + 1);
-> +		if (WARN_ON(next == PLATFORM_PROFILE_LAST))
-> +			return -EINVAL;
-> 
-> -	if (WARN_ON(next == PLATFORM_PROFILE_LAST)) {
-> -		mutex_unlock(&profile_lock);
-> -		return -EINVAL;
-> +		err = cur_profile->profile_set(cur_profile, next);
-> +		if (err)
-> +			return err;
->  	}
-> 
-> -	err = cur_profile->profile_set(cur_profile, next);
-> -	mutex_unlock(&profile_lock);
-> -
-> -	if (!err)
-> -		sysfs_notify(acpi_kobj, NULL, "platform_profile");
-> -
-> -	return err;
+> @@ -182,6 +182,7 @@ int platform_profile_register(struct 
+> platform_profile_handler *pprof)
+>  	if (err)
+>  		return err;
+>  	list_add_tail(&pprof->list, &platform_profile_handler_list);
 > +	sysfs_notify(acpi_kobj, NULL, "platform_profile");
-> +	return 0;
->  }
->  EXPORT_SYMBOL_GPL(platform_profile_cycle);
+> 
+>  	cur_profile = pprof;
+>  	return 0;
+> @@ -195,6 +196,8 @@ int platform_profile_remove(struct 
+> platform_profile_handler *pprof)
+>  	list_del(&pprof->list);
+> 
+>  	cur_profile = NULL;
+> +
+> +	sysfs_notify(acpi_kobj, NULL, "platform_profile");
+>  	if (!platform_profile_is_registered())
+>  		sysfs_remove_group(acpi_kobj, &platform_profile_group);
 > 
 > -- 
 > 2.43.0
 
-For patches 8 to 11 - Looks good to me (guards are new to me - I had to go read up on them. Very cool and a nice clean-up)
-
+Looks good to me.
 Reviewed-by: Mark Pearson <mpearson-lenovo@squebb.ca>
 
 Mark
