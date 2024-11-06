@@ -2,98 +2,129 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F0FC9BDAF6
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed,  6 Nov 2024 02:10:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 607AE9BE6A2
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed,  6 Nov 2024 13:03:22 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1t8UYv-0007eZ-D3;
-	Wed, 06 Nov 2024 01:10:21 +0000
+	id 1t8ekK-0007Ug-5W;
+	Wed, 06 Nov 2024 12:02:48 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1t8UYp-0007dw-At
+ (envelope-from <hdegoede@redhat.com>) id 1t8ekI-0007UU-NG
  for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 06 Nov 2024 01:10:15 +0000
+ Wed, 06 Nov 2024 12:02:46 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=grFBD2PZmn36LNfL/C4nJaglAs/MHfW4kUVNnHKibwg=; b=PKIcrgVeBUjJlhokdtmMqD0Xul
- Eb7TsVnHgCByXBVyxGDAywD1+ZwwEv5j+ceYVimansJtIgBSo5EHHfvw2EusPVOvXLxJu3ok7MP0V
- 2BJY9cOS8tLRyOc9zyXvY6haHE2YNza+vaTmfWtXtHnon/orqPOzHvyLSOgXzyBl1Ybs=;
+ bh=wHFUrZJG3IhctJbo9qudNI74wu1wMhSAFpJ8ifZ89rY=; b=IXKNy3/X0W6YfWmLGoCzml0ggg
+ GVI6+mbyeS9zgQ0aFeovNcMFDekgP9CR0UJRFI4X65va6Pb1ORSgWJEzUw7AE0yn4RI9IeGZyrKp+
+ CTpkcAyQgarlws7e8BgQGPRxftj+9WN/V+RqkI8iCwoNKm+At2QyR0xcsPI2YRKsC3Jo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=grFBD2PZmn36LNfL/C4nJaglAs/MHfW4kUVNnHKibwg=; b=L2m7bp39hW6MF4MbAoCbqlCTNa
- gwgCcYw2KqJRQ28wr8xa8RrfBkuCDyobVO7GuwXcIfmjpi06Pp4T7EAYfAyXAmx3Y9dReweRqDXeX
- Yu3KXjKT+IDt3ZHJYbanYWNhmpHspslL8tARHGHuxV+sW0ecdK7PPNOU9x5puKOMs7c8=;
-Received: from mgamail.intel.com ([192.198.163.15])
+ bh=wHFUrZJG3IhctJbo9qudNI74wu1wMhSAFpJ8ifZ89rY=; b=B9/ek7RzA026FhCwSczf3YNLfy
+ qOUbV9cLR6PS3iXcpAB1Fmk8xMz89x1uQxTs8OkzVY+sDDH7JmnzafGhpT4V6A2ESzcVdS7e+Gw0Y
+ McmLKabYsuo3ndBdt1C96hvWBbkeFj4j8OEECfO1AB5fkCckvBr2Ju8do52SkyojD4mA=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1t8UYl-0006kq-93 for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 06 Nov 2024 01:10:15 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730855411; x=1762391411;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=8wkwyTaOOs9Q5NnvxbQhqZPtZs3GJ1PNsILlDFMD+Ic=;
- b=K9U+ZfCLIbd+80EI5P7EXUcu6o6RFWHKrS6hLbVGPpOYQJaYLgP+vj+0
- EuASn0YPlEY4CeD4u5UEoMW1JP1wg9rnFwPFBsskBAn8TmUt3yF8i17pm
- 9MIQLsjqZj2KqJA9fI8h2XNAuBaUMy6qPTM5kovMq25UYQgQ0/Hmxusgo
- Z2lKieHtzCLcw5aAPPDg/PFxujQoyiWgrrOFAJSOsrIv9SQCUs84699As
- GUlebHTZWqaNG/9GKrHKyubHH949dunaAyV4+D4YXQZ5JeVLnPELRyrKJ
- uDak7K/wVyNULXzWXUGq8WjNdGojTO0Vr+pJMovB7+fsDYiRgxO27xVvn Q==;
-X-CSE-ConnectionGUID: jeB3+iVuRZS+pB2N7UeshA==
-X-CSE-MsgGUID: h06FJU3jTN2wbvnvRqPKSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="30740740"
-X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="30740740"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 17:10:00 -0800
-X-CSE-ConnectionGUID: 8QkttW8lSlGJTh+nJBv2Tw==
-X-CSE-MsgGUID: nvQubyb8SZOi3RncHdWtHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="89395669"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by orviesa004.jf.intel.com with ESMTP; 05 Nov 2024 17:09:56 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1t8UYS-000mgP-3B;
- Wed, 06 Nov 2024 01:09:52 +0000
-Date: Wed, 6 Nov 2024 09:09:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Mario Limonciello <mario.limonciello@amd.com>,
- Hans de Goede <hdegoede@redhat.com>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Message-ID: <202411060835.GlMKVSsy-lkp@intel.com>
-References: <20241105153316.378-12-mario.limonciello@amd.com>
+ id 1t8ekE-00038Q-Ng for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 06 Nov 2024 12:02:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1730894550;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wHFUrZJG3IhctJbo9qudNI74wu1wMhSAFpJ8ifZ89rY=;
+ b=ZelFw1s2x/GVx9COVsKOUILg4zK2n/rD5QyF2MdVfqtsJxQ9z8ij2Rtv/8Jc2D0OKK5eRJ
+ 73LufhfhxtDVF/l1lNbQCMv3ZELIn33AcMZhWHfSQ11Hf6SKPT6Z+JNib0XVlG9GUwoLiC
+ oZ248s9Tua+oYnyv5QHK3+zrMT7bixY=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-609-msULdq-mMl2btgnCz0gbvA-1; Wed, 06 Nov 2024 07:02:29 -0500
+X-MC-Unique: msULdq-mMl2btgnCz0gbvA-1
+X-Mimecast-MFC-AGG-ID: msULdq-mMl2btgnCz0gbvA
+Received: by mail-ed1-f71.google.com with SMTP id
+ 4fb4d7f45d1cf-5c934295846so4630466a12.1
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Wed, 06 Nov 2024 04:02:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1730894548; x=1731499348;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=wHFUrZJG3IhctJbo9qudNI74wu1wMhSAFpJ8ifZ89rY=;
+ b=OEOa6hVmR/deoczPJrXZRMEUY+ig/h3D3Fm6euRxs3AkKjaI4qyYlqtjlOnw/gKKKN
+ ODSWGC/VOb22nJinJjISLcLKc0XWzw0ptsJmcKrn4gixoHQq2HRpuNzRU+4HNwoDhL1i
+ v3TdU6pOAFr4Vk/F/lwYeIzPlchsJZkdm0eAU2C9d9vmZ2tgVEZpGBWWxxYSP9l00GnJ
+ FMOkHhIpMICTMv1fZQe2oV5IGYynTNTBFG7QkMfB2xqWe5HNRcl0hf+vrbDXr+gaiDZF
+ rD11Y3qz1OXhP8nreXQONO4KdPAPeTG5I8YjuL5I0YfsSCpJr2dO3sm+7fiH8n6sNCnA
+ WlcQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXXdSF/Opj4uR66KGS4O1+xQjcBNJ2aabb6Ldy7bDWjvSjI9h9SLcrNb0yYS7ahCZXYw4Uy8lxRQNbji6xr9w==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0YyCF8odMYltBDUCvr9mnNMVS6x5O4zXw58xk40fhp3FUc1B5FsL
+ vRMAHGA2u4P1+iHMGwb6wlZxT5pbkArdEWcZKkjI4KhgrKLp1ad1UmYEGCWXG+1e1PRXraqW4i1
+ 3Mc2uZpPDUFAXJP4lAKLSbhkOykwzTCQ08Rv3PNuqpR7ZxHO0LSmJKAhvZ/7XRoEH2CYJEYIhHk
+ MChH4H
+X-Received: by 2002:a17:907:7e90:b0:a9d:e1d6:42a1 with SMTP id
+ a640c23a62f3a-a9e655aa36amr1859338466b.30.1730894547928; 
+ Wed, 06 Nov 2024 04:02:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFNJE0pGbd+J391fMlx8hWRHnGKZWnQKHUov4H3doeDcVwFWy91F0V80/t9gtBCJAkPyjoYjg==
+X-Received: by 2002:a17:907:7e90:b0:a9d:e1d6:42a1 with SMTP id
+ a640c23a62f3a-a9e655aa36amr1859335466b.30.1730894547546; 
+ Wed, 06 Nov 2024 04:02:27 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a9eb16a1440sm269817566b.31.2024.11.06.04.02.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 06 Nov 2024 04:02:27 -0800 (PST)
+Message-ID: <f3a50d1a-aa0c-4cf5-9138-a1da4ebdc671@redhat.com>
+Date: Wed, 6 Nov 2024 13:02:26 +0100
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20241105153316.378-12-mario.limonciello@amd.com>
-X-Spam-Score: -2.8 (--)
+User-Agent: Mozilla Thunderbird
+To: Vishnu Sankar <vishnuocv@gmail.com>, ilpo.jarvinen@linux.intel.com,
+ ibm-acpi-devel@lists.sourceforge.net, platform-driver-x86@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241105235505.8493-1-vishnuocv@gmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20241105235505.8493-1-vishnuocv@gmail.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: uEzYevQzvk-12HDKJ359W2Oc2vGCOAgMMXvq_gkWJ6Q_1730894548
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+X-Spam-Score: -0.5 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Mario,
- kernel test robot noticed the following build warnings:
- [auto build test WARNING on d68cb6023356af3bd3193983ad4ec03954a0b3e2] 
- Content analysis details:   (-2.8 points, 6.0 required)
+ Content preview:  Hi, On 6-Nov-24 12:55 AM,
+ Vishnu Sankar wrote: > Fix for Thinkpad's
+ with ECFW showing incorrect fan speed. > Some models use decimal instead
+ of hexadecimal for the fan speed stored > in the EC registers. [...] 
+ Content analysis details:   (-0.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [192.198.163.15 listed in list.dnswl.org]
+ -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.129.124 listed in wl.mailspike.net]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [170.10.129.124 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- 0.0 T_SPF_TEMPERROR        SPF: test of record failed (temperror)
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
@@ -102,9 +133,9 @@ X-Spam-Report: Spam detection software,
  author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1t8UYl-0006kq-93
-Subject: Re: [ibm-acpi-devel] [PATCH v4 11/20] ACPI: platform_profile: Add
- choices attribute for class interface
+X-Headers-End: 1t8ekE-00038Q-Ng
+Subject: Re: [ibm-acpi-devel] [PATCH] Thinkpad_acpi: Fix for ThinkPad's with
+ ECFW showing incorrect fan speed
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -117,77 +148,132 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Alexis Belmonte <alexbelm48@gmail.com>,
- Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Gergo Koteles <soyer@irl.hu>,
- "Luke D . Jones" <luke@ljones.dev>,
- Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
- Ai Chao <aichao@kylinos.cn>, open list <linux-kernel@vger.kernel.org>,
- "open list:MICROSOFT SURFACE PLATFORM PROFILE DRIVER"
- <platform-driver-x86@vger.kernel.org>, Lee Chun-Yi <jlee@suse.com>,
- "open list:ACPI" <linux-acpi@vger.kernel.org>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Corentin Chary <corentin.chary@gmail.com>, oe-kbuild-all@lists.linux.dev,
- Mark Pearson <mpearson-lenovo@squebb.ca>, Ike Panhc <ike.pan@canonical.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- Maximilian Luz <luzmaximilian@gmail.com>,
- "open list:THINKPAD ACPI EXTRAS DRIVER" <ibm-acpi-devel@lists.sourceforge.net>,
- Len Brown <lenb@kernel.org>
+Cc: Vishnu Sankar <vsankar@lenovo.com>,
+ Mark Pearson <mpearson-lenovo@squebb.ca>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Mario,
+Hi,
 
-kernel test robot noticed the following build warnings:
+On 6-Nov-24 12:55 AM, Vishnu Sankar wrote:
+> Fix for Thinkpad's with ECFW showing incorrect fan speed.
+> Some models use decimal instead of hexadecimal for the fan speed stored
+> in the EC registers.
+> for eg: the rpm register will have 0x4200 instead of 0x1068.
+> Here the actual RPM is "4200" in decimal.
+> 
+> A quirk added to handle this.
 
-[auto build test WARNING on d68cb6023356af3bd3193983ad4ec03954a0b3e2]
+Thank you for your patch/series, I've applied this patch
+(series) to my review-hans branch:
+https://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git/log/?h=review-hans
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mario-Limonciello/ACPI-platform-profile-Add-a-name-member-to-handlers/20241105-233922
-base:   d68cb6023356af3bd3193983ad4ec03954a0b3e2
-patch link:    https://lore.kernel.org/r/20241105153316.378-12-mario.limonciello%40amd.com
-patch subject: [PATCH v4 11/20] ACPI: platform_profile: Add choices attribute for class interface
-config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20241106/202411060835.GlMKVSsy-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241106/202411060835.GlMKVSsy-lkp@intel.com/reproduce)
+> Signed-off-by: Vishnu Sankar <vishnuocv@gmail.com>
+> Signed-off-by: Vishnu Sankar <vsankar@lenovo.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411060835.GlMKVSsy-lkp@intel.com/
+Note I have dropped this second duplicate Signed-off-by,
+I have kept the first one since that matches the From: 
+from this email / the git commit author field.
 
-All warnings (new ones prefixed by >>):
+I will include this patch in my next fixes pull-req to Linus
+for the current kernel development cycle.
 
->> drivers/acpi/platform_profile.c:55: warning: Function parameter or struct member 'choices' not described in '_get_class_choices'
+Regards,
+
+Hans
 
 
-vim +55 drivers/acpi/platform_profile.c
 
-    48	
-    49	/**
-    50	 * _get_class_choices - Get the available profile choices for a class device
-    51	 * @dev: The class device
-    52	 * Return: The available profile choices
-    53	 */
-    54	static int _get_class_choices(struct device *dev, unsigned long *choices)
-  > 55	{
-    56		struct platform_profile_handler *handler;
-    57		int i;
-    58	
-    59		scoped_cond_guard(mutex_intr, return -ERESTARTSYS, &profile_lock) {
-    60			handler = dev_get_drvdata(dev);
-    61			for_each_set_bit(i, handler->choices, PLATFORM_PROFILE_LAST)
-    62				*choices |= BIT(i);
-    63		}
-    64	
-    65		return 0;
-    66	}
-    67	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+
+> Suggested-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+> ---
+>  drivers/platform/x86/thinkpad_acpi.c | 28 +++++++++++++++++++++++++---
+>  1 file changed, 25 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
+> index 4c1b0553f872..6371a9f765c1 100644
+> --- a/drivers/platform/x86/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/thinkpad_acpi.c
+> @@ -7936,6 +7936,7 @@ static u8 fan_control_resume_level;
+>  static int fan_watchdog_maxinterval;
+>  
+>  static bool fan_with_ns_addr;
+> +static bool ecfw_with_fan_dec_rpm;
+>  
+>  static struct mutex fan_mutex;
+>  
+> @@ -8682,7 +8683,11 @@ static ssize_t fan_fan1_input_show(struct device *dev,
+>  	if (res < 0)
+>  		return res;
+>  
+> -	return sysfs_emit(buf, "%u\n", speed);
+> +	/* Check for fan speeds displayed in hexadecimal */
+> +	if (!ecfw_with_fan_dec_rpm)
+> +		return sysfs_emit(buf, "%u\n", speed);
+> +	else
+> +		return sysfs_emit(buf, "%x\n", speed);
+>  }
+>  
+>  static DEVICE_ATTR(fan1_input, S_IRUGO, fan_fan1_input_show, NULL);
+> @@ -8699,7 +8704,11 @@ static ssize_t fan_fan2_input_show(struct device *dev,
+>  	if (res < 0)
+>  		return res;
+>  
+> -	return sysfs_emit(buf, "%u\n", speed);
+> +	/* Check for fan speeds displayed in hexadecimal */
+> +	if (!ecfw_with_fan_dec_rpm)
+> +		return sysfs_emit(buf, "%u\n", speed);
+> +	else
+> +		return sysfs_emit(buf, "%x\n", speed);
+>  }
+>  
+>  static DEVICE_ATTR(fan2_input, S_IRUGO, fan_fan2_input_show, NULL);
+> @@ -8775,6 +8784,7 @@ static const struct attribute_group fan_driver_attr_group = {
+>  #define TPACPI_FAN_2CTL		0x0004		/* selects fan2 control */
+>  #define TPACPI_FAN_NOFAN	0x0008		/* no fan available */
+>  #define TPACPI_FAN_NS		0x0010		/* For EC with non-Standard register addresses */
+> +#define TPACPI_FAN_DECRPM	0x0020		/* For ECFW's with RPM in register as decimal */
+>  
+>  static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
+>  	TPACPI_QEC_IBM('1', 'Y', TPACPI_FAN_Q1),
+> @@ -8803,6 +8813,7 @@ static const struct tpacpi_quirk fan_quirk_table[] __initconst = {
+>  	TPACPI_Q_LNV3('R', '1', 'D', TPACPI_FAN_NS),	/* 11e Gen5 GL-R */
+>  	TPACPI_Q_LNV3('R', '0', 'V', TPACPI_FAN_NS),	/* 11e Gen5 KL-Y */
+>  	TPACPI_Q_LNV3('N', '1', 'O', TPACPI_FAN_NOFAN),	/* X1 Tablet (2nd gen) */
+> +	TPACPI_Q_LNV3('R', '0', 'Q', TPACPI_FAN_DECRPM),/* L480 */
+>  };
+>  
+>  static int __init fan_init(struct ibm_init_struct *iibm)
+> @@ -8847,6 +8858,13 @@ static int __init fan_init(struct ibm_init_struct *iibm)
+>  		tp_features.fan_ctrl_status_undef = 1;
+>  	}
+>  
+> +	/* Check for the EC/BIOS with RPM reported in decimal*/
+> +	if (quirks & TPACPI_FAN_DECRPM) {
+> +		pr_info("ECFW with fan RPM as decimal in EC register\n");
+> +		ecfw_with_fan_dec_rpm = 1;
+> +		tp_features.fan_ctrl_status_undef = 1;
+> +	}
+> +
+>  	if (gfan_handle) {
+>  		/* 570, 600e/x, 770e, 770x */
+>  		fan_status_access_mode = TPACPI_FAN_RD_ACPI_GFAN;
+> @@ -9067,7 +9085,11 @@ static int fan_read(struct seq_file *m)
+>  		if (rc < 0)
+>  			return rc;
+>  
+> -		seq_printf(m, "speed:\t\t%d\n", speed);
+> +		/* Check for fan speeds displayed in hexadecimal */
+> +		if (!ecfw_with_fan_dec_rpm)
+> +			seq_printf(m, "speed:\t\t%d\n", speed);
+> +		else
+> +			seq_printf(m, "speed:\t\t%x\n", speed);
+>  
+>  		if (fan_status_access_mode == TPACPI_FAN_RD_TPEC_NS) {
+>  			/*
+
 
 
 _______________________________________________
