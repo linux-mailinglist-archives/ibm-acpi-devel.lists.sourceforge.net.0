@@ -2,129 +2,98 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53ABC9BD918
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  5 Nov 2024 23:50:35 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F0FC9BDAF6
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed,  6 Nov 2024 02:10:57 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
+	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1t8SN8-0007dZ-3C;
-	Tue, 05 Nov 2024 22:50:02 +0000
+	id 1t8UYv-0007eZ-D3;
+	Wed, 06 Nov 2024 01:10:21 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1t8SN2-0007cb-DO
+ (envelope-from <lkp@intel.com>) id 1t8UYp-0007dw-At
  for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 05 Nov 2024 22:49:57 +0000
+ Wed, 06 Nov 2024 01:10:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
- References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iUEnUbiKHm7hBg4xQi/z/U9mNVNxeKdQypXGGIH3KZs=; b=kS5htY+hg71LSvm1zfqLQ/ZTR1
- XgFfzYJMLFP7l06BYqJNAv/PZm5zruQKcBpkt2omkyIu8nFuW7VY3S31VrQpdELEqPa0nUe/F6YA8
- k6PjTEIz5nUGZ7URxnbajhuEkFUsm1kFjDZi4LqHPzp+7wov60d/RQrAGFX5yVEMcbHU=;
+ bh=grFBD2PZmn36LNfL/C4nJaglAs/MHfW4kUVNnHKibwg=; b=PKIcrgVeBUjJlhokdtmMqD0Xul
+ Eb7TsVnHgCByXBVyxGDAywD1+ZwwEv5j+ceYVimansJtIgBSo5EHHfvw2EusPVOvXLxJu3ok7MP0V
+ 2BJY9cOS8tLRyOc9zyXvY6haHE2YNza+vaTmfWtXtHnon/orqPOzHvyLSOgXzyBl1Ybs=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
- Message-Id:Cc:To:From:Date:MIME-Version:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=iUEnUbiKHm7hBg4xQi/z/U9mNVNxeKdQypXGGIH3KZs=; b=TCBliwUdnNGhPFPWXCX9NXDCaE
- YBxtTFMN2y8XhA51y3GehV/mZkidcsJiG+lzRO3weA3JujvPSJQFlNgNLvp7iCHfsH5ExO8o9gKbK
- ai5u03eSW8dIcbaGgi6RpPZcRTw09YTEPlRHVLAV4bsNOWJDaqFBz7VpKG9jZ7POZQrw=;
-Received: from fhigh-b6-smtp.messagingengine.com ([202.12.124.157])
+ bh=grFBD2PZmn36LNfL/C4nJaglAs/MHfW4kUVNnHKibwg=; b=L2m7bp39hW6MF4MbAoCbqlCTNa
+ gwgCcYw2KqJRQ28wr8xa8RrfBkuCDyobVO7GuwXcIfmjpi06Pp4T7EAYfAyXAmx3Y9dReweRqDXeX
+ Yu3KXjKT+IDt3ZHJYbanYWNhmpHspslL8tARHGHuxV+sW0ecdK7PPNOU9x5puKOMs7c8=;
+Received: from mgamail.intel.com ([192.198.163.15])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1t8SN2-0000Dt-9k for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 05 Nov 2024 22:49:57 +0000
-Received: from phl-compute-02.internal (phl-compute-02.phl.internal
- [10.202.2.42])
- by mailfhigh.stl.internal (Postfix) with ESMTP id 356F52540167;
- Tue,  5 Nov 2024 17:49:45 -0500 (EST)
-Received: from phl-imap-10 ([10.202.2.85])
- by phl-compute-02.internal (MEProxy); Tue, 05 Nov 2024 17:49:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1730846985;
- x=1730933385; bh=iUEnUbiKHm7hBg4xQi/z/U9mNVNxeKdQypXGGIH3KZs=; b=
- Otca8lJLeoySiSUIS2wTsg2ijN0G2lGe05lUHAhThP6VP4GKQUj6X8prXwdbOACS
- FxryAWHdTLyoG3+hJrXw1klaFfI5Sj2MdPKKY2Wms98fCqDi97c0q0QITHPhataH
- TOhZLxcvYNtJ4JLlH2eMdggjIapq+w8GDBmPsWVbB0Xd5pjTQefulrdbawrL+u8o
- +3+8DQZTf1bnYwVeQrgqy3wD4u3TOkFLHpX2jtxBi5tZ9myhf7+6GYHfNBqjwPj+
- 4Q1Vbo98GaAX7Hq5aHyfelpzjsNxtcql/lVbO4Mdpa9/TWltVbkdDNImch4RqOnH
- 4gRIJQdEGden8FB4pfYjMQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1730846985; x=
- 1730933385; bh=iUEnUbiKHm7hBg4xQi/z/U9mNVNxeKdQypXGGIH3KZs=; b=B
- pfhZV8RhBiTDKAPIagIdHMCA2XCO7hW1Z2EyIO1pExpkmwyGPSARx70DHieozEeU
- Shfc9hjpPLqKHmH/leZQQK2aZRoQCiPHIwmEBdO77qxhY+2QCt2c7QbK7IUt5afV
- P1souhqQyMnuyxIvW3cTtThQG2ISt17xHMAvdX43r2ArcYgQS4IOnCRl2nFOX2t2
- c4uTtF5QQS+TynXLm2hI4xSwe45CGQezyjaLHSM35lc7DOxqbTCK3amb6g5ZRTSR
- /Ojcz/N4v23EqQxMpPUZMCGkabC7Up6FXxrx/9BRX2N9bLcJSWTbW08xYHBg5IZm
- DuiiE52rBZ9SZImrdQjMQ==
-X-ME-Sender: <xms:B6EqZ7JuMiZZkN_YUWWr1mgetoP6YbT8ygPff_CE9-cAZido3u2utg>
- <xme:B6EqZ_Ip-0JKwFN-ly5V0jYQgvG0k0DGmX8ffIS7wxiObXyYOMk-6iy1qzwyNrFZ6
- WpB_z8KAGisv2uq4iU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrtddugddtfecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdpuffr
- tefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnth
- hsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthejredtredttden
- ucfhrhhomhepfdforghrkhcurfgvrghrshhonhdfuceomhhpvggrrhhsohhnqdhlvghnoh
- hvohesshhquhgvsggsrdgtrgeqnecuggftrfgrthhtvghrnhephfeuvdehteeghedthedt
- veehuddvjeejgffgieejvdegkefhfeelheekhedvffehnecuvehluhhsthgvrhfuihiivg
- epudenucfrrghrrghmpehmrghilhhfrhhomhepmhhpvggrrhhsohhnqdhlvghnohhvohes
- shhquhgvsggsrdgtrgdpnhgspghrtghpthhtohepvddupdhmohguvgepshhmthhpohhuth
- dprhgtphhtthhopehshhihrghmqdhsuhhnuggrrhdrshdqkhesrghmugdrtghomhdprhgt
- phhtthhopehmrghrihhordhlihhmohhntghivghllhhosegrmhgurdgtohhmpdhrtghpth
- htohepihhkvgdrphgrnhestggrnhhonhhitggrlhdrtghomhdprhgtphhtthhopegrlhgv
- gigsvghlmhegkeesghhmrghilhdrtghomhdprhgtphhtthhopegtohhrvghnthhinhdrtg
- hhrghrhiesghhmrghilhdrtghomhdprhgtphhtthhopehluhiimhgrgihimhhilhhirghn
- sehgmhgrihhlrdgtohhmpdhrtghpthhtohephhhmhheshhhmhhdrvghnghdrsghrpdhrtg
- hpthhtohepshhohigvrhesihhrlhdrhhhupdhrtghpthhtoheplhgvnhgssehkvghrnhgv
- lhdrohhrgh
-X-ME-Proxy: <xmx:B6EqZzugGKsIQBZiZsoGbZiYOU_kL2pm2lhoWFQYJqWCfsMdEl8fuA>
- <xmx:B6EqZ0anuB4vF9-bBX9i2lNPOOPO-tDFq1jf1_ACtLJzoRCTMfr4GA>
- <xmx:B6EqZybhsx_O5afOsUh6b9LMAOfMzIG9GVOBqAnr1w84DFkwDi3doA>
- <xmx:B6EqZ4CdzR9OOU9DVVt53_JDQ-FObiVGCTIdiUGcSPbizRxas-MgUg>
- <xmx:CaEqZ0b6ol7zOnfVvjwtrFIguck8vclh8egUKEaaQrd4eQ4_riV96KPM>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id AD6153C0066; Tue,  5 Nov 2024 17:49:43 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+ id 1t8UYl-0006kq-93 for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 06 Nov 2024 01:10:15 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730855411; x=1762391411;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=8wkwyTaOOs9Q5NnvxbQhqZPtZs3GJ1PNsILlDFMD+Ic=;
+ b=K9U+ZfCLIbd+80EI5P7EXUcu6o6RFWHKrS6hLbVGPpOYQJaYLgP+vj+0
+ EuASn0YPlEY4CeD4u5UEoMW1JP1wg9rnFwPFBsskBAn8TmUt3yF8i17pm
+ 9MIQLsjqZj2KqJA9fI8h2XNAuBaUMy6qPTM5kovMq25UYQgQ0/Hmxusgo
+ Z2lKieHtzCLcw5aAPPDg/PFxujQoyiWgrrOFAJSOsrIv9SQCUs84699As
+ GUlebHTZWqaNG/9GKrHKyubHH949dunaAyV4+D4YXQZ5JeVLnPELRyrKJ
+ uDak7K/wVyNULXzWXUGq8WjNdGojTO0Vr+pJMovB7+fsDYiRgxO27xVvn Q==;
+X-CSE-ConnectionGUID: jeB3+iVuRZS+pB2N7UeshA==
+X-CSE-MsgGUID: h06FJU3jTN2wbvnvRqPKSA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="30740740"
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="30740740"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 17:10:00 -0800
+X-CSE-ConnectionGUID: 8QkttW8lSlGJTh+nJBv2Tw==
+X-CSE-MsgGUID: nvQubyb8SZOi3RncHdWtHg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="89395669"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+ by orviesa004.jf.intel.com with ESMTP; 05 Nov 2024 17:09:56 -0800
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1t8UYS-000mgP-3B;
+ Wed, 06 Nov 2024 01:09:52 +0000
+Date: Wed, 6 Nov 2024 09:09:38 +0800
+From: kernel test robot <lkp@intel.com>
+To: Mario Limonciello <mario.limonciello@amd.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Message-ID: <202411060835.GlMKVSsy-lkp@intel.com>
+References: <20241105153316.378-12-mario.limonciello@amd.com>
 MIME-Version: 1.0
-Date: Tue, 05 Nov 2024 17:49:23 -0500
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
-To: "Limonciello, Mario" <mario.limonciello@amd.com>,
- "Hans de Goede" <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Message-Id: <ab676d6e-30aa-45ac-85c8-32d093eeb5e3@app.fastmail.com>
-In-Reply-To: <20241105153316.378-21-mario.limonciello@amd.com>
-References: <20241105153316.378-1-mario.limonciello@amd.com>
- <20241105153316.378-21-mario.limonciello@amd.com>
-X-Spam-Score: -0.9 (/)
+Content-Disposition: inline
+In-Reply-To: <20241105153316.378-12-mario.limonciello@amd.com>
+X-Spam-Score: -2.8 (--)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Mario, On Tue, Nov 5, 2024, at 10:33 AM, Mario Limonciello
- wrote: > The class interface allows changing multiple platform profiles on
- a system > to different values. The semantics of it are similar to the le
- [...] Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  Hi Mario,
+ kernel test robot noticed the following build warnings:
+ [auto build test WARNING on d68cb6023356af3bd3193983ad4ec03954a0b3e2] 
+ Content analysis details:   (-2.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [202.12.124.157 listed in list.dnswl.org]
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
+ medium trust [192.198.163.15 listed in list.dnswl.org]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 T_SPF_TEMPERROR        SPF: test of record failed (temperror)
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
@@ -132,9 +101,10 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1t8SN2-0000Dt-9k
-Subject: Re: [ibm-acpi-devel] [PATCH v4 20/20] Documentation: Add
- documentation about class interface for platform profiles
+ -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1t8UYl-0006kq-93
+Subject: Re: [ibm-acpi-devel] [PATCH v4 11/20] ACPI: platform_profile: Add
+ choices attribute for class interface
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -150,15 +120,16 @@ List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>,
 Cc: Alexis Belmonte <alexbelm48@gmail.com>,
  Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
  Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Gergo Koteles <soyer@irl.hu>,
- "Luke D . Jones" <luke@ljones.dev>, Ai Chao <aichao@kylinos.cn>,
- open list <linux-kernel@vger.kernel.org>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- Lee Chun-Yi <jlee@suse.com>,
- "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
- Corentin Chary <corentin.chary@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Ike Panhc <ike.pan@canonical.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Gergo Koteles <soyer@irl.hu>,
+ "Luke D . Jones" <luke@ljones.dev>,
+ Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+ Ai Chao <aichao@kylinos.cn>, open list <linux-kernel@vger.kernel.org>,
+ "open list:MICROSOFT SURFACE PLATFORM PROFILE DRIVER"
+ <platform-driver-x86@vger.kernel.org>, Lee Chun-Yi <jlee@suse.com>,
+ "open list:ACPI" <linux-acpi@vger.kernel.org>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Corentin Chary <corentin.chary@gmail.com>, oe-kbuild-all@lists.linux.dev,
+ Mark Pearson <mpearson-lenovo@squebb.ca>, Ike Panhc <ike.pan@canonical.com>,
  Matthew Schwartz <matthew.schwartz@linux.dev>,
  Maximilian Luz <luzmaximilian@gmail.com>,
  "open list:THINKPAD ACPI EXTRAS DRIVER" <ibm-acpi-devel@lists.sourceforge.net>,
@@ -169,77 +140,54 @@ Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
 Hi Mario,
 
-On Tue, Nov 5, 2024, at 10:33 AM, Mario Limonciello wrote:
-> The class interface allows changing multiple platform profiles on a system
-> to different values. The semantics of it are similar to the legacy
-> interface.
->
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
->  .../userspace-api/sysfs-platform_profile.rst  | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->
-> diff --git a/Documentation/userspace-api/sysfs-platform_profile.rst 
-> b/Documentation/userspace-api/sysfs-platform_profile.rst
-> index 4fccde2e45639..418c61b096304 100644
-> --- a/Documentation/userspace-api/sysfs-platform_profile.rst
-> +++ b/Documentation/userspace-api/sysfs-platform_profile.rst
-> @@ -40,3 +40,31 @@ added. Drivers which wish to introduce new profile 
-> names must:
->   1. Explain why the existing profile names cannot be used.
->   2. Add the new profile name, along with a clear description of the
->      expected behaviour, to the sysfs-platform_profile ABI 
-> documentation.
-> +
-> +Multiple driver support
-> +=======================
-> +When multiple drivers on a system advertise a platform profile 
-> handler, the
-> +platform profile handler core will only advertise the profiles that are
-> +commong between all drivers to the ``/sys/firmware/acpi`` interfaces.
+kernel test robot noticed the following build warnings:
 
-Typo (commong)
+[auto build test WARNING on d68cb6023356af3bd3193983ad4ec03954a0b3e2]
 
-> +
-> +This is to ensure there is no ambiguity on what the profile names mean 
-> when
-> +all handlers don't support a profile.
-> +
-> +Individual drivers will register a 'platform_profile' class device 
-> that has
-> +similar semantics as the ``/sys/firmware/acpi/platform_profile`` 
-> interface.
-> +
-> +To discover available profiles from the class interface the user can 
-> read the
-> +``choices`` attribute.
-> +
-> +If a user wants to select a profile for a specific driver, they can do 
-> so
-> +by writing to the ``profile`` attribute of the driver's class device.
-> +
-> +This will allow users to set different profiles for different drivers 
-> on the
-> +same system. If the selected profile by individual drivers differes the
+url:    https://github.com/intel-lab-lkp/linux/commits/Mario-Limonciello/ACPI-platform-profile-Add-a-name-member-to-handlers/20241105-233922
+base:   d68cb6023356af3bd3193983ad4ec03954a0b3e2
+patch link:    https://lore.kernel.org/r/20241105153316.378-12-mario.limonciello%40amd.com
+patch subject: [PATCH v4 11/20] ACPI: platform_profile: Add choices attribute for class interface
+config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20241106/202411060835.GlMKVSsy-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241106/202411060835.GlMKVSsy-lkp@intel.com/reproduce)
 
-typo (differes)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411060835.GlMKVSsy-lkp@intel.com/
 
-> +platform profile handler core will display the profile 'custom' to 
-> indicate
-> +that the profiles are not the same.
-> +
-> +While the ``platform_profile`` attribute has the value ``custom``, 
-> writing a
-> +common profile from ``platform_profile_choices`` to the 
-> platform_profile
-> +attribute of the platform profile handler core will set the profile 
-> for all
-> +drivers.
-> -- 
-> 2.43.0
+All warnings (new ones prefixed by >>):
 
-Thanks
-Mark
+>> drivers/acpi/platform_profile.c:55: warning: Function parameter or struct member 'choices' not described in '_get_class_choices'
+
+
+vim +55 drivers/acpi/platform_profile.c
+
+    48	
+    49	/**
+    50	 * _get_class_choices - Get the available profile choices for a class device
+    51	 * @dev: The class device
+    52	 * Return: The available profile choices
+    53	 */
+    54	static int _get_class_choices(struct device *dev, unsigned long *choices)
+  > 55	{
+    56		struct platform_profile_handler *handler;
+    57		int i;
+    58	
+    59		scoped_cond_guard(mutex_intr, return -ERESTARTSYS, &profile_lock) {
+    60			handler = dev_get_drvdata(dev);
+    61			for_each_set_bit(i, handler->choices, PLATFORM_PROFILE_LAST)
+    62				*choices |= BIT(i);
+    63		}
+    64	
+    65		return 0;
+    66	}
+    67	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
 
 _______________________________________________
