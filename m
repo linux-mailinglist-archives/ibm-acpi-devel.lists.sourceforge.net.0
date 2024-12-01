@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB9CC9DF25D
-	for <lists+ibm-acpi-devel@lfdr.de>; Sat, 30 Nov 2024 18:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D909DF477
+	for <lists+ibm-acpi-devel@lfdr.de>; Sun,  1 Dec 2024 03:56:59 +0100 (CET)
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1tHRVA-0001Tc-F3;
-	Sat, 30 Nov 2024 17:43:29 +0000
+	id 1tHa8C-00085n-Ae;
+	Sun, 01 Dec 2024 02:56:21 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <lkp@intel.com>) id 1tHRV9-0001TV-8S
+ (envelope-from <lkp@intel.com>) id 1tHa8B-00085d-4t
  for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 30 Nov 2024 17:43:28 +0000
+ Sun, 01 Dec 2024 02:56:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
  Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=fg0B4vbR/1M1Gn2UpjtBNPaamQkZ6zChQFgCQOZJ2M0=; b=IRiUIPGcPwzymBJSc9FGi0W+iR
- wwW69chhhSvK1NUXUZuWcWmH3OmxJytqXYrobq13INjbAYX2gZASGTeJkypO9JDSs79vpc1psorNp
- lvxKyFOUA5SRhOw/8890p7e+dNCUAz836h9YlKF7IBI/uQFXzN+bsbBXPxfdYEhdeMVY=;
+ bh=XF6ngkZz6sAd7VAKaHjebQE5jS8pAI06Z3CfbCNnobw=; b=NY4M3nt6EqzApEbHBg9oypk+qJ
+ S3/hs6jWUtHVL6mg+UMb4SoFuydAaztzjY8dF3zK4RjUHCaZ26ibSSNi/byJn9jjJz7saEwRdUm4W
+ 35Dz+P7hudlEUmuYm0P49PRjIhQeAx8RL9iTGcmJWFRHcHO7fApNymQyzzhLSqhxOeaI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
@@ -31,48 +31,48 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=fg0B4vbR/1M1Gn2UpjtBNPaamQkZ6zChQFgCQOZJ2M0=; b=HaTM3tx8M6ZMJW5eduE5APvn0g
- XLvwu0EnHsEJgHLFVm+6qdX2DZyyrjp+14NdcY968bUvpNcDlwPkx8hpkOJwUeIAYV0+HCEF0QsPO
- GUsAja3EDv01D9UEql5b+RZ0Lnlg4qzGG9fMmB0F6JfwTMug1aBhFppeTqv2Qd+39ZwQ=;
-Received: from mgamail.intel.com ([192.198.163.15])
+ bh=XF6ngkZz6sAd7VAKaHjebQE5jS8pAI06Z3CfbCNnobw=; b=nJ4gEgOplbsySX24FfnHzMr/KS
+ BPiOV7z+FmKc3E6UiYxw387w06qiqEtuBP84IQu8+Ky2MxbnotvGKgHVKgZH7OTucqVPFVGzqKVfN
+ vOFxld8eq9ym+DxxlWkhwmN5Lyj6BYjpkTa4L6cJ3BLwbO4KWYXBiO/SsKY+C+Hwu85Y=;
+Received: from mgamail.intel.com ([198.175.65.13])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1tHRV5-0002jt-Ve for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 30 Nov 2024 17:43:27 +0000
+ id 1tHa87-0008OY-T7 for ibm-acpi-devel@lists.sourceforge.net;
+ Sun, 01 Dec 2024 02:56:19 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732988604; x=1764524604;
+ t=1733021776; x=1764557776;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=hp79E4kQ26QL67QnIKLFTCKPhH95s/jPskxdhk6jR3A=;
- b=mjTBT4RYBFdegNHm+5RPHqnm8PQBjoiDyxp+oZnB6QryVvl4MKUhWwk2
- +UyrerOq2jmiuH8VNWSa0PXQqQalUypgbbtf555axQRn1iQNkUszv/6nm
- AjzYnnmkG51n9fBqwVe7VwpCUTXLJ6hNo1bmN26W6JS740IDPh3ofRl2x
- vq2RwuJHaUWD2Lbxy+YD/+3W52O11GWgC4+U67f1+UcFurw9Es/r0K8Zd
- J/xxrvh9OXwIs/hyIdUVlTzsLU1x/a+gukIqesnOfpTAg5/ImxL0QC+zJ
- HW3KBYGY2JvQOGIZLj68Iya2F3wg8RUwbG+X1Tx1ch2vGtUogP0astBVj A==;
-X-CSE-ConnectionGUID: 7Gmx0i8jRsa3fX4XLQjcBw==
-X-CSE-MsgGUID: jQWRO2TPTyi+4KHC/fvVEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11272"; a="33319828"
-X-IronPort-AV: E=Sophos;i="6.12,198,1728975600"; d="scan'208";a="33319828"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2024 09:43:18 -0800
-X-CSE-ConnectionGUID: STfJSgtMSQuLn6aITruuUg==
-X-CSE-MsgGUID: 9i8jZTqRS2GKg5alYFu95w==
+ bh=2MDLGdtixIr+eogn07QqelKmKPJW7oyKKYZK2ByJj5Y=;
+ b=YX0cVn2VAxr6dmhh3qxEctqFjtuaJgvGLfeR/DuF5Ea9G+qNUZ3PksJ7
+ IHZ6+uwEO8GcVazMyIHreOwAYnw/UValR0QNCqK5X5Ecnig8KiLNfJsTp
+ dSxbnTq+aJbqxF+PaxovguBZe+lTahQ4kw+oz4E0d2mJOg0N0ZD8aRwls
+ DHtbUWox9vxaKgHefaRIdVYSFREyAjVNMitE5g29pjZ5+bGE2qKzg9Y39
+ 0/da9Eh3gSIUlfUnhh9WnSWlde9FQKAJjnbK93WT9tVyskjRqQI29UADA
+ 9iIJIfAjXiMMjrPw9lceo5spftjzdh14ke4m0BLf/VwgrnXbY90Gtpvrb Q==;
+X-CSE-ConnectionGUID: /lUVDUphTkq94F4r0nIXuQ==
+X-CSE-MsgGUID: tqGM5vhFQ2KEIet8DL4T8g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11272"; a="44248028"
+X-IronPort-AV: E=Sophos;i="6.12,199,1728975600"; d="scan'208";a="44248028"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2024 18:56:04 -0800
+X-CSE-ConnectionGUID: awvlkQ0XQouCl51C2mZQ+w==
+X-CSE-MsgGUID: NoGx+l5vQ26mWR/7dI8L2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,198,1728975600"; d="scan'208";a="93546463"
+X-IronPort-AV: E=Sophos;i="6.12,199,1728975600"; d="scan'208";a="97890037"
 Received: from lkp-server02.sh.intel.com (HELO 36a1563c48ff) ([10.239.97.151])
- by orviesa008.jf.intel.com with ESMTP; 30 Nov 2024 09:43:12 -0800
+ by orviesa004.jf.intel.com with ESMTP; 30 Nov 2024 18:55:59 -0800
 Received: from kbuild by 36a1563c48ff with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tHRUs-0000s3-29;
- Sat, 30 Nov 2024 17:43:10 +0000
-Date: Sun, 1 Dec 2024 01:42:47 +0800
+ (envelope-from <lkp@intel.com>) id 1tHa7o-0001An-2a;
+ Sun, 01 Dec 2024 02:55:56 +0000
+Date: Sun, 1 Dec 2024 10:55:19 +0800
 From: kernel test robot <lkp@intel.com>
 To: Mario Limonciello <mario.limonciello@amd.com>,
  Hans de Goede <hdegoede@redhat.com>,
  Ilpo =?unknown-8bit?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>
-Message-ID: <202412010129.zSeGQmOm-lkp@intel.com>
+Message-ID: <202412011002.Hb0aRIsM-lkp@intel.com>
 References: <20241130140454.455-3-mario.limonciello@amd.com>
 MIME-Version: 1.0
 Content-Disposition: inline
@@ -94,14 +94,14 @@ X-Spam-Report: Spam detection software,
  The query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [192.198.163.15 listed in sa-accredit.habeas.com]
+ [198.175.65.13 listed in sa-accredit.habeas.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [192.198.163.15 listed in bl.score.senderscore.com]
+ [198.175.65.13 listed in bl.score.senderscore.com]
  -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at https://www.dnswl.org/,
- medium trust [192.198.163.15 listed in list.dnswl.org]
+ medium trust [198.175.65.13 listed in list.dnswl.org]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  0.0 T_SPF_TEMPERROR        SPF: test of record failed (temperror)
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
@@ -112,7 +112,7 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1tHRV5-0002jt-Ve
+X-Headers-End: 1tHa87-0008OY-T7
 Subject: Re: [ibm-acpi-devel] [PATCH v8 02/22] platform/x86/dell: dell-pc:
  Create platform device
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -158,37 +158,24 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Mario-Limonciello/ACPI-pl
 base:   2ba9f676d0a2e408aef14d679984c26373bf37b7
 patch link:    https://lore.kernel.org/r/20241130140454.455-3-mario.limonciello%40amd.com
 patch subject: [PATCH v8 02/22] platform/x86/dell: dell-pc: Create platform device
-config: i386-buildonly-randconfig-003-20241130 (https://download.01.org/0day-ci/archive/20241201/202412010129.zSeGQmOm-lkp@intel.com/config)
+config: x86_64-randconfig-121-20241201 (https://download.01.org/0day-ci/archive/20241201/202412011002.Hb0aRIsM-lkp@intel.com/config)
 compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241201/202412010129.zSeGQmOm-lkp@intel.com/reproduce)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241201/202412011002.Hb0aRIsM-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412010129.zSeGQmOm-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412011002.Hb0aRIsM-lkp@intel.com/
 
-All warnings (new ones prefixed by >>):
+sparse warnings: (new ones prefixed by >>)
+>> drivers/platform/x86/dell/dell-pc.c:252:32: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected long error @@     got struct platform_device *static [assigned] [toplevel] platform_device @@
+   drivers/platform/x86/dell/dell-pc.c:252:32: sparse:     expected long error
+   drivers/platform/x86/dell/dell-pc.c:252:32: sparse:     got struct platform_device *static [assigned] [toplevel] platform_device
+>> drivers/platform/x86/dell/dell-pc.c:252:31: sparse: sparse: incorrect type in return expression (different base types) @@     expected int @@     got void * @@
+   drivers/platform/x86/dell/dell-pc.c:252:31: sparse:     expected int
+   drivers/platform/x86/dell/dell-pc.c:252:31: sparse:     got void *
 
-   drivers/platform/x86/dell/dell-pc.c: In function 'thermal_init':
->> drivers/platform/x86/dell/dell-pc.c:252:32: warning: passing argument 1 of 'ERR_PTR' makes integer from pointer without a cast [-Wint-conversion]
-     252 |                 return ERR_PTR(platform_device);
-         |                                ^~~~~~~~~~~~~~~
-         |                                |
-         |                                struct platform_device *
-   In file included from include/linux/kernfs.h:9,
-                    from include/linux/sysfs.h:16,
-                    from include/linux/kobject.h:20,
-                    from include/linux/dmi.h:6,
-                    from drivers/platform/x86/dell/dell-pc.c:15:
-   include/linux/err.h:39:48: note: expected 'long int' but argument is of type 'struct platform_device *'
-      39 | static inline void * __must_check ERR_PTR(long error)
-         |                                           ~~~~~^~~~~
->> drivers/platform/x86/dell/dell-pc.c:252:24: warning: returning 'void *' from a function with return type 'int' makes integer from pointer without a cast [-Wint-conversion]
-     252 |                 return ERR_PTR(platform_device);
-         |                        ^~~~~~~~~~~~~~~~~~~~~~~~
-
-
-vim +/ERR_PTR +252 drivers/platform/x86/dell/dell-pc.c
+vim +252 drivers/platform/x86/dell/dell-pc.c
 
    233	
    234	static int thermal_init(void)
