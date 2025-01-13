@@ -2,151 +2,138 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE82A03535
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  7 Jan 2025 03:37:10 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1678A0C28E
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 13 Jan 2025 21:25:55 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1tUzSC-0004Yd-FE;
-	Tue, 07 Jan 2025 02:36:24 +0000
+	id 1tXQzs-0005wv-Dn;
+	Mon, 13 Jan 2025 20:25:16 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1tUzSA-0004YL-Mk
+ (envelope-from <dmitry.torokhov@gmail.com>) id 1tXQzq-0005wm-0Q
  for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 07 Jan 2025 02:36:22 +0000
+ Mon, 13 Jan 2025 20:25:14 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
- References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=whxcJEUUdxrpr853/By+jQ/3XvE0gYgglj51JD5j1jQ=; b=ghOg4Xrcmi6JbpplwBXfT/yCJL
- v78udzcaH61dzqetb+UvFmdcOl2mwfj01dBiD5IaeRPWLMztNjAB16OkE+Da4j451Z2kmb12PVNPG
- uK4c8kiomLwSepz99WUpO5PqKiZruGeWi/a/8fQo0axP0rWske4UoVoQzjettLV2inu8=;
+ bh=BGwCOTFKopyF1Twjy34AnWbAxudSAUcqWUBnPveTEco=; b=Ort5HADmm1yg6GBT8cDSs7ihc7
+ mPZ0Ge7EdbLb+aElYRnAoNfOIbhRwD6bE8OYkERjlSsFGaDxX8Mcpo8t7TUnRwiYAUuzS0CvEl6As
+ JM5zSCWHrSLTf39XODD05w7XM9HOfTV/vAdGFpuOQlebIDhNg6avxjakcvxETijISsFY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
- Message-Id:Cc:To:From:Date:MIME-Version:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=whxcJEUUdxrpr853/By+jQ/3XvE0gYgglj51JD5j1jQ=; b=Mp9C9cq7wxZlXWM7ZhX8jQSZDe
- uKZCRaJc/VK5MDJA8rSS03piBFJdIOXFWTfaz3FtXCcVECOf+zB0bSSuynFMTD8PwqUaTwTkpgRwV
- ykr1QTz6tA+5Pge0dbPEK+X1uoiI8wjvHy9xsz5H5ZBX3eqY5MaqFO0tmu+Vonz8O6c0=;
-Received: from fhigh-a3-smtp.messagingengine.com ([103.168.172.154])
+ bh=BGwCOTFKopyF1Twjy34AnWbAxudSAUcqWUBnPveTEco=; b=kNs+ANWaUJe76Y0SNp/24/VwLq
+ 4TvCoseo6LWouivKa7SGlsNXeS4Xy2P+Z/FH0yLrMTRSt16yvDJHgxCkHtHdyOvxLZsTCYgVpdz7a
+ QNB0DVeKnu0n9+72qPNiwEgreg0CWbDVIvnE4bcMmxpPX7ckmuOpVnf5WtBQsJe6b6Lw=;
+Received: from mail-pl1-f169.google.com ([209.85.214.169])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1tUzS9-0000dm-Hu for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 07 Jan 2025 02:36:22 +0000
-Received: from phl-compute-02.internal (phl-compute-02.phl.internal
- [10.202.2.42])
- by mailfhigh.phl.internal (Postfix) with ESMTP id E29D111402C7;
- Mon,  6 Jan 2025 21:19:37 -0500 (EST)
-Received: from phl-imap-10 ([10.202.2.85])
- by phl-compute-02.internal (MEProxy); Mon, 06 Jan 2025 21:19:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1736216377;
- x=1736302777; bh=whxcJEUUdxrpr853/By+jQ/3XvE0gYgglj51JD5j1jQ=; b=
- 1ey1cL42WMzvARuyEMRIBMC9LrPdi4v1z8kYxhu9HtWXiDqYgLAPEM/YJYaJepdQ
- 42viM+jxqTLa9BjxvMk7vs0pvvyq6Quft1YhdN3rFHa8SO3EcYmNe9WbJkqo9OHV
- CSvRpjpp4tWrAZR6nPlq53fH0FBB93pmYkoSSL09vH5dwl4/nFLSoon7ZSX/dnhj
- FQaHqdPUY4G6n59yzCWOioEOpeB9GHoANzowt4vmpYEP7kb1Y95jJ84JTMnai15S
- oFimElCd6b9YthOfSm9Zh0FnCVELSlI2ERJE16/l6nknsijXgHgiwfJc6LOJIGwi
- nzT344WhGwaBMP8BFyTdpw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1736216377; x=
- 1736302777; bh=whxcJEUUdxrpr853/By+jQ/3XvE0gYgglj51JD5j1jQ=; b=Z
- Gt1F8RM2WkZ6kPyG8jDXCR0gFgMelur824ObxECH0o+99a+rkOUVCwhKT/VgwKgG
- L49JiS1yRKuuCKO22JKT/CHpHLxTcAL67Sp+pneD/kg7mnLUxGvOjB+bSEol8i9S
- uPo5IwvIB9TNe9a9Nofhs2IuARRdHO5/F65oKqXgBN4cFK43sZSNQ8aRgfnTcG9/
- vKZLS0D26ZKxa2t0fQg8OHqJEUl2PxZssQP0A56oEf9jL+vJf+Lz5AJslS4ebaoQ
- 45okAxLdEjW2TUMYnnhGAUJhl2jQh1oIpEPEn0uacPjYTDjwnMYaYWo2zyxopMao
- 1Rxof4lVitvQfXONL4J4A==
-X-ME-Sender: <xms:N498Z2nHU_4oIfOt9pJSv0DjOhtM-b3Zz8jYeDTPrH2CQedZRZX9nQ>
- <xme:N498Z91ZlrnjbDpVHSGg5Crg5q9SyDUtI8q69U7NQvluvKljUn8HFCmU3gF-z1JPX
- zpK3jlSJhI1kPvk3Pw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudeguddggeeiucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
- rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
- htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
- necuhfhrohhmpedfofgrrhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnh
- hovhhosehsqhhuvggssgdrtggrqeenucggtffrrghtthgvrhhnpefhuedvheetgeehtdeh
- tdevheduvdejjefggfeijedvgeekhfefleehkeehvdffheenucevlhhushhtvghrufhiii
- gvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhho
- sehsqhhuvggssgdrtggrpdhnsggprhgtphhtthhopedvkedpmhhouggvpehsmhhtphhouh
- htpdhrtghpthhtohepshhhhigrmhdqshhunhgurghrrdhsqdhksegrmhgurdgtohhmpdhr
- tghpthhtohepmhgrrhhiohdrlhhimhhonhgtihgvlhhlohesrghmugdrtghomhdprhgtph
- htthhopehurdhklhgvihhnvgdqkhhovghnihhgsegsrgihlhhisghrvgdrtghomhdprhgt
- phhtthhopehikhgvrdhprghnsegtrghnohhnihgtrghlrdgtohhmpdhrtghpthhtohepug
- gvlhhlrdgtlhhivghnthdrkhgvrhhnvghlseguvghllhdrtghomhdprhgtphhtthhopegr
- lhgvgigsvghlmhegkeesghhmrghilhdrtghomhdprhgtphhtthhopegtohhlihhnrdhird
- hkihhnghesghhmrghilhdrtghomhdprhgtphhtthhopegtohhrvghnthhinhdrtghhrghr
- hiesghhmrghilhdrtghomhdprhgtphhtthhopeguvghrvghkjhhohhhnrdgtlhgrrhhkse
- hgmhgrihhlrdgtohhm
-X-ME-Proxy: <xmx:N498Z0op3Y51SDYOkqk2ZtRdIMc3zl_Rj4aL8GdpBtAKS1PuWu4WYg>
- <xmx:N498Z6l8XgiHhtNWEO08cmrs6tuPYrtJZ98SACGJ-AgIuRRydvNOlw>
- <xmx:N498Z02uSipbzfLSVNWbIiB5OWdiFHmHWLWaQf4EhhsJw4B18mFmXQ>
- <xmx:N498ZxsBSBBjfGCv60L6kw_rvshlfAmLt26kisLRkmnressUJp1b6w>
- <xmx:OY98Z2HXH_teyoKA0gRjuLXUOjuzfNumWAgrVkQ-X9EycfIIeJIoCg9n>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id F00793C0066; Mon,  6 Jan 2025 21:19:34 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1tXQzp-0002OK-D4 for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 13 Jan 2025 20:25:13 +0000
+Received: by mail-pl1-f169.google.com with SMTP id
+ d9443c01a7336-2156e078563so70368275ad.2
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Mon, 13 Jan 2025 12:25:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1736799903; x=1737404703; darn=lists.sourceforge.net;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=BGwCOTFKopyF1Twjy34AnWbAxudSAUcqWUBnPveTEco=;
+ b=ZdhTzvstni4rt6GL6epDewT6OvoiAjwr/p6NRkqJUjm/bcicbrdllzfZVLJZCDkSaG
+ xOne3VyJcTZoaMAhZZHyRDQKXxAjqyMk6mBvnKndriWGB53rYGgRBnwbA7eEJnNwplTh
+ 7/VuGzRMyNVgp3o+5DgA7JuoBmGzqKDK3F9grg89jatOakHAvtPr5gC2CsUaA2jr07Js
+ e5RJm/vXWLQrHf8X18IQQ1JVRl4RZNz6kfOw6xMPU1yCenesgkkl3/yeH9LSa2o0epI3
+ zDnyNNuX75W4Bpk/zRHvUZrZyLubSRP3PzTAitOw2oJqH/y98nhz9mr08ugKNpmABYAX
+ SGXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736799903; x=1737404703;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=BGwCOTFKopyF1Twjy34AnWbAxudSAUcqWUBnPveTEco=;
+ b=igBJNQojTe9wi9Wh44LaFCAsWHzS0phkJghT4M7Ue36mXV6qWtQ3NX/c17YaV7txdL
+ T3O35ChLRKeiGBnlusl3bx/By7vkeou4WEEcFU9tUA0JRCHOzL8ZCtwi8YGGq3ToFKfT
+ UmE3T7jzIRaWvZ8hrP7Jzk5cAFtTUcqNEU+hOmat3w9IhoeJiK+0n/1Yd9N1KUQd0+II
+ uJnpMi3H+ZmI3762vkJzq0x1wgOv7hmOxJgs90+OrVJBJXC2WioPOrBPjwSHH2yT63V8
+ 5uBDYd1a+Le9BBTIgeHE2QCEFnrFSTFTsKh064jAhdA+ctQWCGUUfJIC16alH8p6xsQt
+ KdIg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVOnR4NvB90O9wUhQn0Y5AU4OtksV3J/qLmxVm4sJYPWbNlRzL0XxeCi1fo3+hoT5+LxIXouFQ9rnOgIcY90w==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0YwyKpVRCDoxvyXxG4MLJSX5NnxCJfm8mViGerilzf2h5lvnX2kP
+ v0dzC+IqNEo4NFTrBdDh0nOepOtNq1YbELznKDnmhcIl42XLbcks
+X-Gm-Gg: ASbGncvgZ7Js6fXI95ir1pUKJcZ8JjDQXldKPyuGO5tPkvdqeFceKjSgRV6RTMN89WM
+ YfQyPmk56vZmR2J52jHtOyyPvO2p8hb9YrIsI/Q5H3zy+oEOF9B0y6yuI2dyI+UQZOm8+6kVlFx
+ BxAxpew7lNVtjxNYKbABIh8aylM+QTSpIzGE0uJnPIrD76Xx4ISqvhmOUbXnX8eexoTAs8HTXc/
+ lXA2NMgnHC1f3RrNstaZfizc4XUNniuwT0Oui1oOi7RPHsnMnCtkWErSA==
+X-Google-Smtp-Source: AGHT+IHa7tva12SDzJmJ8jNTW7dI9GlDi/mHqt9o3Hq3MYPiugFM4H34JsPIiidkO2N5wy1N9vAg4Q==
+X-Received: by 2002:a17:903:124d:b0:216:4cc2:b1e0 with SMTP id
+ d9443c01a7336-21a83f4c041mr288607995ad.20.1736799902584; 
+ Mon, 13 Jan 2025 12:25:02 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:2345:9641:c9a2:f3ca])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-21a9f22f306sm57364435ad.194.2025.01.13.12.25.01
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Jan 2025 12:25:02 -0800 (PST)
+Date: Mon, 13 Jan 2025 12:24:59 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Illia Ostapyshyn <illia@yshyn.com>
+Message-ID: <Z4V2m9VWqM0xZS1I@google.com>
+References: <20241114173930.44983-1-illia@yshyn.com>
+ <20241114173930.44983-2-illia@yshyn.com>
 MIME-Version: 1.0
-Date: Mon, 06 Jan 2025 21:19:14 -0500
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
-To: "Kurt Borja" <kuurtb@gmail.com>,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>
-Message-Id: <33a5b6a2-e4df-4bfc-88a9-a9e8309c7f7a@app.fastmail.com>
-In-Reply-To: <20250106044605.12494-1-kuurtb@gmail.com>
-References: <20250106044605.12494-1-kuurtb@gmail.com>
-X-Spam-Score: -0.9 (/)
+Content-Disposition: inline
+In-Reply-To: <20241114173930.44983-2-illia@yshyn.com>
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Kurt, On Sun, Jan 5, 2025, at 11:45 PM, Kurt Borja wrote:
- > Hello,
- > > Some drivers may need to dynamically modify their selected `choices`.
- > Such is the case of the acer-wmi driver, which implemented thei [...] 
- Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  On Thu, Nov 14, 2024 at 06:39:29PM +0100, Illia Ostapyshyn
+ wrote: > The F11 key on the new Lenovo Thinkpad T14 Gen 5, T16 Gen 3, and
+ P14s > Gen 5 laptops includes a symbol showing a smartphone and a l [...]
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [209.85.214.169 listed in list.dnswl.org]
  0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
  The query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [103.168.172.154 listed in sa-trusted.bondedsender.org]
+ [209.85.214.169 listed in sa-trusted.bondedsender.org]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [103.168.172.154 listed in bl.score.senderscore.com]
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [103.168.172.154 listed in list.dnswl.org]
- -0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [103.168.172.154 listed in wl.mailspike.net]
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- -0.0 SPF_PASS               SPF: sender matches SPF record
+ [209.85.214.169 listed in bl.score.senderscore.com]
+ 0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail
+ provider [dmitry.torokhov[at]gmail.com]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.214.169 listed in wl.mailspike.net]
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
-X-Headers-End: 1tUzS9-0000dm-Hu
-Subject: Re: [ibm-acpi-devel] [RFC PATCH 0/3] ACPI: platform_profile: Let
- drivers dynamically refresh choices
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1tXQzp-0002OK-D4
+Subject: Re: [ibm-acpi-devel] [PATCH 1/2] Input: allocate keycode for phone
+ linking
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -159,58 +146,53 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Ike Panhc <ike.pan@canonical.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- ibm-acpi-devel@lists.sourceforge.net, hridesh699@gmail.com, "Limonciello, 
- Mario" <mario.limonciello@amd.com>,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- Shyam Sundar S K <Shyam-sundar.S-k@amd.com>,
- Alexis Belmonte <alexbelm48@gmail.com>, "Luke D . Jones" <luke@ljones.dev>,
- Lyndon Sanche <lsanche@lyndeno.ca>, Ai Chao <aichao@kylinos.cn>,
- "Derek J . Clark" <derekjohn.clark@gmail.com>,
- "linux-acpi@vger.kernel.org" <linux-acpi@vger.kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Gergo Koteles <soyer@irl.hu>, Colin Ian King <colin.i.king@gmail.com>,
- Len Brown <lenb@kernel.org>, Lee Chun-Yi <jlee@suse.com>,
- Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Dell.Client.Kernel@dell.com, josh@joshuagrisham.com,
- Armin Wolf <W_Armin@gmx.de>, linux-kernel@vger.kernel.org,
- Corentin Chary <corentin.chary@gmail.com>,
- Maximilian Luz <luzmaximilian@gmail.com>
+Cc: Hans de Goede <hdegoede@redhat.com>, linux-kernel@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, ibm-acpi-devel@lists.sourceforge.net,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>, linux-input@vger.kernel.org,
+ Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Kurt,
+On Thu, Nov 14, 2024 at 06:39:29PM +0100, Illia Ostapyshyn wrote:
+> The F11 key on the new Lenovo Thinkpad T14 Gen 5, T16 Gen 3, and P14s
+> Gen 5 laptops includes a symbol showing a smartphone and a laptop
+> chained together.  According to the user manual, it starts the Microsoft
+> Phone Link software used to connect to Android/iOS devices and relay
+> messages/calls or sync data.
+> 
+> As there are no suitable keycodes for this action, introduce a new one.
+> 
+> Signed-off-by: Illia Ostapyshyn <illia@yshyn.com>
 
-On Sun, Jan 5, 2025, at 11:45 PM, Kurt Borja wrote:
-> Hello,
->
-> Some drivers may need to dynamically modify their selected `choices`.
-> Such is the case of the acer-wmi driver, which implemented their own
-> profile cycling method, because users expect different profiles to be
-> available whether the laptop is on AC or not [1].
->
-> These series would allow acer-wmi to simplify this custom cycling method
-> to use platform_profile_cycle(), as it's already being proposed in these
-> series [2]; without changing expected behaviors, by refreshing their
-> selected choices on AC connect/disconnect events, which would also solve
-> this discussion [3].
->
-> Additionally, I think the platform_profile_ops approach would enable us
-> to hide the platform_profile_handler in the future, and instead just pass
-> the class device to get/set methods like the HWMON subsystem does.
->
-> I think having this kind of flexibility is valuable. Let me know what you
-> think!
->
+Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
 
-I personally would love to see how this would be used for the acer issue highlighted to see how it would work out. It feels like the series is short a patch :)
+Please feel free to merge with the corresponding driver change.
 
-As a side note, I did (many moons ago) propose a change to alter profiles used depending on AC/battery mode (in the thinkpad driver), and it was rejected as something that should be done in user space.
-Your use case does seem somewhat different, but it's similar enough that if you get it working I'd be interested to see if I can take advantage of the approach too.
+> ---
+>  include/uapi/linux/input-event-codes.h | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/include/uapi/linux/input-event-codes.h b/include/uapi/linux/input-event-codes.h
+> index a4206723f503..5a199f3d4a26 100644
+> --- a/include/uapi/linux/input-event-codes.h
+> +++ b/include/uapi/linux/input-event-codes.h
+> @@ -519,6 +519,7 @@
+>  #define KEY_NOTIFICATION_CENTER	0x1bc	/* Show/hide the notification center */
+>  #define KEY_PICKUP_PHONE	0x1bd	/* Answer incoming call */
+>  #define KEY_HANGUP_PHONE	0x1be	/* Decline incoming call */
+> +#define KEY_LINK_PHONE		0x1bf   /* AL Phone Syncing */
+>  
+>  #define KEY_DEL_EOL		0x1c0
+>  #define KEY_DEL_EOS		0x1c1
+> -- 
+> 2.47.0
+> 
 
-Mark
+Thanks.
+
+-- 
+Dmitry
 
 
 _______________________________________________
