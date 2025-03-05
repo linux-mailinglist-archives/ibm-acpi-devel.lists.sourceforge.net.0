@@ -2,145 +2,155 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86339A4F57B
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed,  5 Mar 2025 04:37:00 +0100 (CET)
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF48A4FDD2
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed,  5 Mar 2025 12:38:24 +0100 (CET)
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1tpfYU-0003pH-9c;
-	Wed, 05 Mar 2025 03:36:23 +0000
+	id 1tpn4T-0007F8-KT;
+	Wed, 05 Mar 2025 11:37:54 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1tpfYS-0003ou-1V
+ (envelope-from <hdegoede@redhat.com>) id 1tpn4R-0007F2-ER
  for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 05 Mar 2025 03:36:21 +0000
+ Wed, 05 Mar 2025 11:37:52 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
- References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
+ From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=hs1JOBCtOs6uvUuOlg7Ww2Sx+hHGJabLYw2G13Hxk4k=; b=hD2lnqNggzdDz+4nsLoOzQJXIn
- BTkTMCYn2PbBw3Xt87xdKhsoZPeIQosDR9HoZ0vT6OJhT4eXxrYCqHvqms4x7/l8sGfehI5J+7Jw8
- ffP2JQSXRwPIttznT8SHdNSAqggWoxP37B+Qk+hUfv5ab8kmIK0fmFFXmhajjU48z9no=;
+ bh=YpWTzpxBLEnQJns4RP/LsZzHqEk4J0vD1x4Ly1ln6+U=; b=NgtE58gvzT/NI1fvxT4+J+dlij
+ OFhBFJ4HLcqoQMTzgbEss0AzeB7RZ1M8YfZM4LkGkeRQDww0cOq8A36SbTCRIl1SS2RygG6D2rUtM
+ pRRzrRCN0AU0A0dPJ5N8zNd0oZz/kKwCL4mBBg4ia4G7X/TLa1Fy/tZA+1PdIPYAkUmU=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
- Message-Id:Cc:To:From:Date:MIME-Version:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
+ Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=hs1JOBCtOs6uvUuOlg7Ww2Sx+hHGJabLYw2G13Hxk4k=; b=eN7a2ZN//CW+8fwqwg8WwQuSbJ
- 9AK5Lc9Lnyzdn9BOrX4HVzZJX5dZRZU1egaRlFYC8Tzl5Dwx0/UVrTWSxJH4Z5KASG1GqbB70xOuj
- jQ89NZl9rCGXG4FHWSJmFGc/GpuOPSpMXcfYmApESeyTWirSGIwj49km1BfgX5PjGgNc=;
-Received: from fout-b6-smtp.messagingengine.com ([202.12.124.149])
+ bh=YpWTzpxBLEnQJns4RP/LsZzHqEk4J0vD1x4Ly1ln6+U=; b=Rv38aanj0FrzOjbuZve7LOI4Vm
+ Emu32Ujz0hj7Kcsm9nDVlm3ehIz31tBjNvQjfkHYtraRS4j5mHFIObBHnvtxCRHvkl/2rzzr61zyp
+ UCF3onY/DVzxOlxs+JSrl6wFkA0YYfNv71y+gY2Ix0kZM2BzN166ZFGjNQ5PgrFHVJ6w=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1tpfYR-0003Yq-H5 for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 05 Mar 2025 03:36:20 +0000
-Received: from phl-compute-06.internal (phl-compute-06.phl.internal
- [10.202.2.46])
- by mailfout.stl.internal (Postfix) with ESMTP id 5087311401BA;
- Tue,  4 Mar 2025 22:20:44 -0500 (EST)
-Received: from phl-imap-10 ([10.202.2.85])
- by phl-compute-06.internal (MEProxy); Tue, 04 Mar 2025 22:20:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1741144844;
- x=1741231244; bh=hs1JOBCtOs6uvUuOlg7Ww2Sx+hHGJabLYw2G13Hxk4k=; b=
- JUEUqnJJhQdL9R5JDD0Pa+hfz+vmmIYXP/OpHNtCZTNaPEwd4ZTOZVAbZH4sRUnB
- twvimisOSzpj8lbfkuCDbBmqzsjjM7jeaOfpEiT3GgNnrz98QRHIFwUpq6Cib27a
- YmgD+sro4PRe9GyFsTGld2N23iJYEEt8MCp3BjAPGuE1dqhsImfNOUf9AjjBlhCg
- XYQagBGlB+C9uwWK53SzCeHFvp5l3hWDXef2QVVCU5E/dmCM7RLrqDAQNXvD/7+K
- wXN7CR0znP+y1DHuT1jWdhUsV9r97jC4iAfQd2edzlJRZJcXLvY9km46hYyDYrTT
- OwtHPWTyNsITwdhj1UFxSA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1741144844; x=
- 1741231244; bh=hs1JOBCtOs6uvUuOlg7Ww2Sx+hHGJabLYw2G13Hxk4k=; b=E
- 1iYtkh4xqo2XToS9lVvzPWE6RJqCfzrN0tbP5FacDguKfzS8JmvictYhYQgAqWgB
- JtSGD228nigHXUDmTjPdc4P6zsIrtLsuydxfY1la30NzmzS6RLcfQFuq+IrWY+B7
- PJ0J5F3y48xln59/3ykJwbLHPmHZ65qIE9KLafTWCg/Yt7u2/GoFRyZdq0f/Eapi
- AtINVyiMUf3vmnFsKHs2uAsCE5cFC3Imr5VkPUkcZ0O6XLf71yL75NH5CKP1xp9p
- ceEySoif/RJM5VvVSEPnDsJy+Qq3I1GK1EbAf1z8wcIsurC1zhkbCL78vPU0GDx9
- H15JhNlbLggoonBp8B3+A==
-X-ME-Sender: <xms:C8PHZx8UpM_Dn3zeC_QNjBYxFcEfSHWHOZ8GgwdJZvqQRNRNZ8LJNA>
- <xme:C8PHZ1uHeonKLMGHDR5DLPXUU5CYEbCZ0DT3i6fcFdwNEbC207q4XjEAD5rzsVF0c
- v1AzZCEEHCv7VCzcW0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddutdefjeefucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
- pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
- gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertder
- tddtnecuhfhrohhmpedfofgrrhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlh
- gvnhhovhhosehsqhhuvggssgdrtggrqeenucggtffrrghtthgvrhhnpefhuedvheetgeeh
- tdehtdevheduvdejjefggfeijedvgeekhfefleehkeehvdffheenucevlhhushhtvghruf
- hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhho
- vhhosehsqhhuvggssgdrtggrpdhnsggprhgtphhtthhopeejpdhmohguvgepshhmthhpoh
- huthdprhgtphhtthhopehnihhtjhhoshhhihesghhmrghilhdrtghomhdprhgtphhtthho
- pehnjhhoshhhihdusehlvghnohhvohdrtghomhdprhgtphhtthhopehilhhpohdrjhgrrh
- hvihhnvghnsehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepihgsmhdqrggt
- phhiqdguvghvvghlsehlihhsthhsrdhsohhurhgtvghfohhrghgvrdhnvghtpdhrtghpth
- htohephhguvghgohgvuggvsehrvgguhhgrthdrtghomhdprhgtphhtthhopehlihhnuhig
- qdguohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphhlrghtfhhorh
- hmqdgurhhivhgvrhdqgiekieesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:C8PHZ_C7C0g-s3pEAXfzboTq0P5nQoUS1VH-3T2jENHzWTuebZEtdA>
- <xmx:C8PHZ1cR_N2LLrZL1_HbypqeMqTjc5fGeoI038SdXBlAM_f4t6ml_A>
- <xmx:C8PHZ2NQX6ZH1VAfqOr5-FCWuT6ihG_UN601jwknPQEtgrSt1xvRsw>
- <xmx:C8PHZ3nI-O6G-cs5voRXCsf3GG3A_DH-8fJJywjaUrNC5uIE4482tw>
- <xmx:DMPHZyC_Smqoipxp2BjZ3UvimVGq2JygKH8eGYv0jKx5JMBx8fwMWTIJ>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 558943C0066; Tue,  4 Mar 2025 22:20:43 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+ id 1tpn4K-0005a7-VC for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 05 Mar 2025 11:37:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1741174653;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=YpWTzpxBLEnQJns4RP/LsZzHqEk4J0vD1x4Ly1ln6+U=;
+ b=Y38MHY1Qsjh2y/AV462LcnsS4DCCxvPnsUcWvAIQFaUIdbLu9GENzGFEispY2Q5AUkdBi6
+ JhWzrkkpuZJWA95Vk2FuLG8FVJQBA1iXXgPT3din+DeemkEBPFq6mknr2unSmqtFPijr6k
+ zlroyvq+9mfifffjqptbESQtrEnfTqc=
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
+ [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-22-AUJB5RroOHSumO7KExTYrA-1; Wed, 05 Mar 2025 06:37:26 -0500
+X-MC-Unique: AUJB5RroOHSumO7KExTYrA-1
+X-Mimecast-MFC-AGG-ID: AUJB5RroOHSumO7KExTYrA_1741174646
+Received: by mail-ej1-f69.google.com with SMTP id
+ a640c23a62f3a-ac21873859aso59347366b.2
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Wed, 05 Mar 2025 03:37:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1741174645; x=1741779445;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=YpWTzpxBLEnQJns4RP/LsZzHqEk4J0vD1x4Ly1ln6+U=;
+ b=Y1AC3CHcpjhjvEQjj5ri+4y8GMDObUssl0DdebSVw9RW2IgBH7/HeTP9ExXWroVnhF
+ wEYDIaYDIJpjwItfqQOJY1scyhLFHm0etrwJjl/xsWj0u0WqOPMGQ/iH7l14x5TETxXs
+ Et3lZThQcF33X1aHTZwMgKZ2Q3wpMzv2LUWm+rJw3nqOKrjGpPGvYvd6gUupGWwUXemX
+ 2neougby69PJBtbJ5vH+dB3uRAGn41mxK62VzZHQS0fmbts1kwCdURR2ydc8Z1AkjzR7
+ bpYe1S9iE2BUixNgBIT1Ju2OhTH3wI63l6AmTDHSi9k89it0zqg3EwYzmrGPNXlds3g3
+ VptA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXP53LMQro8N6EVNco+FAynozjXMJ/BdUVMk34eNiMKu8KdsJZ2Ib1M4cf66SVxFCUYteY+bI1ugbU8iGY37Q==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0YwrKwHok2prwDLFk+Tv6iCOnIP6PS5He8Jz48oBOt/8ve2gch6s
+ Rihvfc2CVfiIRwTe3WzSTyxWsmRnpiPU0mYL3WwGLMJF2qde+sysHMdit3qjdcgadnx7WXtMXf3
+ fDQOSz0WM2nSDVkt5kiBpvmYliATBkcol759VcYc1CmWfh2eUaBJlPO+9IjYw7uJBrOV8VmsQbP
+ 1fONDE
+X-Gm-Gg: ASbGnct/U8jqcniWihtuH/AYGe2xsxqK0Si3HxKHmF4/6z/HERnsKDOhvvVyS1F6OQD
+ OubVrGa48uOg0UpF4HdWIyxTd8Bo7I/WlFH9J8hX8X6e8w7ykjUa539LLe8EE0dOQYdbVnu03KE
+ AZrv2bmiyI8LQHYcFDCyOpeL26RhoM/qa5AoZpjh8LFdEYTJ7eQ6vZd0Si7+CVnL2hKUbX0hv7B
+ 4vseoXHvhWUjSMto8vQpOgmzwKSXCj1dsYS5w9anvTB3FxUQ8wbSazfm8rpPXStlK6xcWSaUrc9
+ q/p7k6/pWvdf1+fvWS8+NCPt3DkvnAy9e9B1Lu96HTZmq/cgEh88L1/5nM5erhUwLQenOpRQKW1
+ GIEXDgrYF1IbM05gFhmyQ1oTHkPjYzo3F/9zF4JiFFL/i51kHGmkMdKFiLcYCOwHsQQ==
+X-Received: by 2002:a17:907:2d21:b0:ac1:de84:dea1 with SMTP id
+ a640c23a62f3a-ac20da878e7mr288838566b.43.1741174645119; 
+ Wed, 05 Mar 2025 03:37:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEn2fTEi1XfV8aqSw2zYnOzYdQ8RDqzxm6GhrXG0VCSnNWZhob/ImwbXjXzOGAfScAecHnEaA==
+X-Received: by 2002:a17:907:2d21:b0:ac1:de84:dea1 with SMTP id
+ a640c23a62f3a-ac20da878e7mr288834766b.43.1741174644586; 
+ Wed, 05 Mar 2025 03:37:24 -0800 (PST)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
+ (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
+ [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-abf67fa3c05sm628915166b.72.2025.03.05.03.37.23
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 05 Mar 2025 03:37:24 -0800 (PST)
+Message-ID: <f853b726-898c-4400-ab5a-50d3c19caea9@redhat.com>
+Date: Wed, 5 Mar 2025 12:37:23 +0100
 MIME-Version: 1.0
-Date: Tue, 04 Mar 2025 22:20:23 -0500
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
-To: "Nitin Joshi" <nitjoshi@gmail.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- "Hans de Goede" <hdegoede@redhat.com>
-Message-Id: <0cedc065-8cb7-4ef8-8989-6b113eb43460@app.fastmail.com>
-In-Reply-To: <20250305023319.6318-1-nitjoshi@gmail.com>
+User-Agent: Mozilla Thunderbird
+To: Mark Pearson <mpearson-lenovo@squebb.ca>, Nitin Joshi
+ <nitjoshi@gmail.com>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>
 References: <20250305023319.6318-1-nitjoshi@gmail.com>
-X-Spam-Score: -0.9 (/)
+ <0cedc065-8cb7-4ef8-8989-6b113eb43460@app.fastmail.com>
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <0cedc065-8cb7-4ef8-8989-6b113eb43460@app.fastmail.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: qErkvnkZIJI9CVW_eTPAfx1VUAeP430QBvXQzjAC3G0_1741174646
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, nl
+X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Tue, Mar 4, 2025, at 9:33 PM, Nitin Joshi wrote: > Some
- Thinkpad products support Human Presence Detection (HPD) features. > Add
- new sysfs entry so that userspace can determine if feature is > supp [...]
- Content analysis details:   (-0.9 points, 6.0 required)
+ Content preview:  Hi Nitin, Mark, On 5-Mar-25 4:20 AM, Mark Pearson wrote: >
+ > On Tue, Mar 4, 2025, at 9:33 PM, Nitin Joshi wrote: >> Some Thinkpad products
+ support Human Presence Detection (HPD) features. >> Add new sysfs entry so
+ th [...] 
+ Content analysis details:   (-0.2 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/,
- low trust [202.12.124.149 listed in list.dnswl.org]
- 0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
- query to Validity was blocked.  See
- https://knowledge.validity.com/hc/en-us/articles/20961730681243
- for more information.
- [202.12.124.149 listed in sa-accredit.habeas.com]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [202.12.124.149 listed in bl.score.senderscore.com]
+ [170.10.133.124 listed in bl.score.senderscore.com]
+ 0.0 RCVD_IN_VALIDITY_CERTIFIED_BLOCKED RBL: ADMINISTRATOR NOTICE:
+ The query to Validity was blocked.  See
+ https://knowledge.validity.com/hc/en-us/articles/20961730681243
+ for more information.
+ [170.10.133.124 listed in sa-accredit.habeas.com]
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [170.10.133.124 listed in list.dnswl.org]
+ 0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [170.10.133.124 listed in wl.mailspike.net]
+ 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
- -0.0 SPF_HELO_PASS          SPF: HELO matches SPF record
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1tpfYR-0003Yq-H5
+ -0.0 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1tpn4K-0005a7-VC
 Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: Add new
  sysfs to check user presence sensing status
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -162,165 +172,214 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
+Hi Nitin, Mark,
 
-On Tue, Mar 4, 2025, at 9:33 PM, Nitin Joshi wrote:
-> Some Thinkpad products support Human Presence Detection (HPD) features.
-> Add new sysfs entry so that userspace can determine if feature is
-> supported or not.
->
-> Reviewed-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+On 5-Mar-25 4:20 AM, Mark Pearson wrote:
+> 
+> On Tue, Mar 4, 2025, at 9:33 PM, Nitin Joshi wrote:
+>> Some Thinkpad products support Human Presence Detection (HPD) features.
+>> Add new sysfs entry so that userspace can determine if feature is
+>> supported or not.
+>>
+>> Reviewed-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+> 
+> Just in case we're breaking protocol - I have reviewed this off mailing list with Nitin and gave it the thumbs up. The tag is correct.
 
-Just in case we're breaking protocol - I have reviewed this off mailing list with Nitin and gave it the thumbs up. The tag is correct.
+Adding a Reviewed-by tag based on internal reviews done before
+submitting v1 is fine, no worries.
 
-Mark
+I do wonder what the use-case for this exactly is?
 
-> Signed-off-by: Nitin Joshi <nitjoshi@gmail.com>
-> ---
->  .../admin-guide/laptops/thinkpad-acpi.rst     | 20 +++++
->  drivers/platform/x86/thinkpad_acpi.c          | 79 +++++++++++++++++++
->  2 files changed, 99 insertions(+)
->
-> diff --git a/Documentation/admin-guide/laptops/thinkpad-acpi.rst 
-> b/Documentation/admin-guide/laptops/thinkpad-acpi.rst
-> index 4ab0fef7d440..02e6c4306f90 100644
-> --- a/Documentation/admin-guide/laptops/thinkpad-acpi.rst
-> +++ b/Documentation/admin-guide/laptops/thinkpad-acpi.rst
-> @@ -1576,6 +1576,26 @@ percentage level, above which charging will stop.
->  The exact semantics of the attributes may be found in
->  Documentation/ABI/testing/sysfs-class-power.
+The current documentation of "so that userspace can determine if
+feature related to HPD should be enabled or disabled."
+
+is a bit vague. The reason I'm asking is because I'm wondering
+if this is the best API to expose this to userspace.
+
+Also if I understand things correctly this is only about checking
+if:
+
+1) There is HPD support on the machine at all (if yes this file
+will exist)
+2) If HPD is supported on this machine, is it also enabled or
+disabled in the BIOS?
+
+IOW this is not about actually getting the HPD result,
+which would be "human present" or "human not present", right ?
+
+Any plans to export the actual HPD result ?
+
+Also if this is just about checking the BIOS setting why not
+just use the think-lmi driver / firmware-attribute sysfs API
+for that ?
+
+
+>> Signed-off-by: Nitin Joshi <nitjoshi@gmail.com>
+>> ---
+>>  .../admin-guide/laptops/thinkpad-acpi.rst     | 20 +++++
+>>  drivers/platform/x86/thinkpad_acpi.c          | 79 +++++++++++++++++++
+>>  2 files changed, 99 insertions(+)
+>>
+>> diff --git a/Documentation/admin-guide/laptops/thinkpad-acpi.rst 
+>> b/Documentation/admin-guide/laptops/thinkpad-acpi.rst
+>> index 4ab0fef7d440..02e6c4306f90 100644
+>> --- a/Documentation/admin-guide/laptops/thinkpad-acpi.rst
+>> +++ b/Documentation/admin-guide/laptops/thinkpad-acpi.rst
+>> @@ -1576,6 +1576,26 @@ percentage level, above which charging will stop.
+>>  The exact semantics of the attributes may be found in
+>>  Documentation/ABI/testing/sysfs-class-power.
+>>
+>> +User Presence Sensing Detection
+>> +------
+>> +
+>> +sysfs: hpd_bios_enabled
+>> +
+>> +Some Thinkpad products support Human Presence Detection (HPD) features.
+>> +Added new sysfs entry so that userspace can determine if feature related to
+>> +HPD should be enabled or disabled.
+
+"Added new sysfs entry ..." sounds more like something for a commit
+message then for in an ABI Documentation file. In 5 years the "adding
+new sysfs" language is going to look really weird in this file.
+
+Please just describe the function + intended uses without using
+"Adding new".
+
+>> +
+>> +The available commands are::
+>> +
+>> +        cat /sys/devices/platform/thinkpad_acpi/hpd_bios_enabled
+>> +
+>> +BIOS status is mentioned as below:
+>> +- 0 = Disable
+>> +- 1 = Enable
+>> +
+>> +The property is read-only. If the platform doesn't have support the sysfs
+>> +class is not created.
+>> +
+>>  Multiple Commands, Module Parameters
+>>  ------------------------------------
+>>
+>> diff --git a/drivers/platform/x86/thinkpad_acpi.c 
+>> b/drivers/platform/x86/thinkpad_acpi.c
+>> index 72a10ed2017c..daf31b2a4c73 100644
+>> --- a/drivers/platform/x86/thinkpad_acpi.c
+>> +++ b/drivers/platform/x86/thinkpad_acpi.c
+>> @@ -11039,6 +11039,80 @@ static const struct attribute_group 
+>> auxmac_attr_group = {
+>>  	.attrs = auxmac_attributes,
+>>  };
+>>
+>> +/*************************************************************************
+>> + * CHPD subdriver, for the Lenovo Human Presence Detection feature.
+>> + */
+>> +#define CHPD_GET_SENSOR_STATUS           0x00200000
+>> +#define CHPD_GET_BIOS_UI_STATUS          0x00100000
+>> +
+>> +static bool has_user_presence_sensing;
+>> +static int hpd_bios_status;
+>> +static int chpd_command(int command, int *output)
+>> +{
+>> +	acpi_handle chpd_handle;
+>> +
+>> +	if (ACPI_FAILURE(acpi_get_handle(hkey_handle, "CHPD", &chpd_handle))) {
+>> +		/* Platform doesn't support CHPD */
+>> +		return -ENODEV;
+>> +	}
+>> +
+>> +	if (!acpi_evalf(chpd_handle, output, NULL, "dd", command))
+>> +		return -EIO;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/* sysfs hpd bios status */
+>> +static ssize_t hpd_bios_enabled_show(struct device *dev,
+>> +				struct device_attribute *attr,
+>> +				char *buf)
+>> +{
+>> +	return sysfs_emit(buf, "%d\n", hpd_bios_status);
+>> +}
+>> +static DEVICE_ATTR_RO(hpd_bios_enabled);
+>> +
+>> +static struct attribute *chpd_attributes[] = {
+>> +	&dev_attr_hpd_bios_enabled.attr,
+>> +	NULL
+>> +};
+>> +
+>> +static umode_t chpd_attr_is_visible(struct kobject *kobj,
+>> +					struct attribute *attr, int n)
+>> +{
+>> +	return has_user_presence_sensing ? attr->mode : 0;
+>> +}
+>> +
+>> +static const struct attribute_group chpd_attr_group = {
+>> +	.is_visible = chpd_attr_is_visible,
+>> +	.attrs = chpd_attributes,
+>> +};
+>> +
+>> +static int tpacpi_chpd_init(struct ibm_init_struct *iibm)
+>> +{
+>> +	int err, output;
+>> +
+>> +	err = chpd_command(CHPD_GET_SENSOR_STATUS, &output);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	if (output == 1)
+>> +		return -ENODEV;
+>> +
+>> +	has_user_presence_sensing = true;
+>> +	/* Get User Presence Sensing BIOS status */
+>> +	err = chpd_command(CHPD_GET_BIOS_UI_STATUS, &output);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	hpd_bios_status = (output >> 1) & BIT(0);
+
+Please add a define for this rather then just hardcoding
+a shift by 1.
+
+>> +
+>> +	return err;
+>> +}
+>> +
+>> +static struct ibm_struct chpd_driver_data = {
+>> +	.name = "chpd",
+>> +};
+>> +
+>>  /* --------------------------------------------------------------------- */
+>>
+>>  static struct attribute *tpacpi_driver_attributes[] = {
+>> @@ -11098,6 +11172,7 @@ static const struct attribute_group *tpacpi_groups[] = {
+>>  	&kbdlang_attr_group,
+>>  	&dprc_attr_group,
+>>  	&auxmac_attr_group,
+>> +	&chpd_attr_group,
+>>  	NULL,
+>>  };
+>>
+>> @@ -11694,6 +11769,10 @@ static struct ibm_init_struct ibms_init[] 
+>> __initdata = {
+>>  		.init = auxmac_init,
+>>  		.data = &auxmac_data,
+>>  	},
+>> +	{
+>> +		.init = tpacpi_chpd_init,
+>> +		.data = &chpd_driver_data,
+>> +	},
+>>  };
+>>
+>>  static int __init set_ibm_param(const char *val, const struct kernel_param *kp)
+>> -- 
+>> 2.43.0
 > 
-> +User Presence Sensing Detection
-> +------
-> +
-> +sysfs: hpd_bios_enabled
-> +
-> +Some Thinkpad products support Human Presence Detection (HPD) features.
-> +Added new sysfs entry so that userspace can determine if feature related to
-> +HPD should be enabled or disabled.
-> +
-> +The available commands are::
-> +
-> +        cat /sys/devices/platform/thinkpad_acpi/hpd_bios_enabled
-> +
-> +BIOS status is mentioned as below:
-> +- 0 = Disable
-> +- 1 = Enable
-> +
-> +The property is read-only. If the platform doesn't have support the sysfs
-> +class is not created.
-> +
->  Multiple Commands, Module Parameters
->  ------------------------------------
-> 
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c 
-> b/drivers/platform/x86/thinkpad_acpi.c
-> index 72a10ed2017c..daf31b2a4c73 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -11039,6 +11039,80 @@ static const struct attribute_group 
-> auxmac_attr_group = {
->  	.attrs = auxmac_attributes,
->  };
-> 
-> +/*************************************************************************
-> + * CHPD subdriver, for the Lenovo Human Presence Detection feature.
-> + */
-> +#define CHPD_GET_SENSOR_STATUS           0x00200000
-> +#define CHPD_GET_BIOS_UI_STATUS          0x00100000
-> +
-> +static bool has_user_presence_sensing;
-> +static int hpd_bios_status;
-> +static int chpd_command(int command, int *output)
-> +{
-> +	acpi_handle chpd_handle;
-> +
-> +	if (ACPI_FAILURE(acpi_get_handle(hkey_handle, "CHPD", &chpd_handle))) {
-> +		/* Platform doesn't support CHPD */
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (!acpi_evalf(chpd_handle, output, NULL, "dd", command))
-> +		return -EIO;
-> +
-> +	return 0;
-> +}
-> +
-> +/* sysfs hpd bios status */
-> +static ssize_t hpd_bios_enabled_show(struct device *dev,
-> +				struct device_attribute *attr,
-> +				char *buf)
-> +{
-> +	return sysfs_emit(buf, "%d\n", hpd_bios_status);
-> +}
-> +static DEVICE_ATTR_RO(hpd_bios_enabled);
-> +
-> +static struct attribute *chpd_attributes[] = {
-> +	&dev_attr_hpd_bios_enabled.attr,
-> +	NULL
-> +};
-> +
-> +static umode_t chpd_attr_is_visible(struct kobject *kobj,
-> +					struct attribute *attr, int n)
-> +{
-> +	return has_user_presence_sensing ? attr->mode : 0;
-> +}
-> +
-> +static const struct attribute_group chpd_attr_group = {
-> +	.is_visible = chpd_attr_is_visible,
-> +	.attrs = chpd_attributes,
-> +};
-> +
-> +static int tpacpi_chpd_init(struct ibm_init_struct *iibm)
-> +{
-> +	int err, output;
-> +
-> +	err = chpd_command(CHPD_GET_SENSOR_STATUS, &output);
-> +	if (err)
-> +		return err;
-> +
-> +	if (output == 1)
-> +		return -ENODEV;
-> +
-> +	has_user_presence_sensing = true;
-> +	/* Get User Presence Sensing BIOS status */
-> +	err = chpd_command(CHPD_GET_BIOS_UI_STATUS, &output);
-> +	if (err)
-> +		return err;
-> +
-> +	hpd_bios_status = (output >> 1) & BIT(0);
-> +
-> +	return err;
-> +}
-> +
-> +static struct ibm_struct chpd_driver_data = {
-> +	.name = "chpd",
-> +};
-> +
->  /* --------------------------------------------------------------------- */
-> 
->  static struct attribute *tpacpi_driver_attributes[] = {
-> @@ -11098,6 +11172,7 @@ static const struct attribute_group *tpacpi_groups[] = {
->  	&kbdlang_attr_group,
->  	&dprc_attr_group,
->  	&auxmac_attr_group,
-> +	&chpd_attr_group,
->  	NULL,
->  };
-> 
-> @@ -11694,6 +11769,10 @@ static struct ibm_init_struct ibms_init[] 
-> __initdata = {
->  		.init = auxmac_init,
->  		.data = &auxmac_data,
->  	},
-> +	{
-> +		.init = tpacpi_chpd_init,
-> +		.data = &chpd_driver_data,
-> +	},
->  };
-> 
->  static int __init set_ibm_param(const char *val, const struct kernel_param *kp)
-> -- 
-> 2.43.0
+
+
+Regards,
+
+Hans
+
 
 
 _______________________________________________
