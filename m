@@ -2,28 +2,28 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C87A2A98A30
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 23 Apr 2025 14:58:28 +0200 (CEST)
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EAA4A98BCA
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 23 Apr 2025 15:48:59 +0200 (CEST)
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1u7Zfe-0006RV-6e;
-	Wed, 23 Apr 2025 12:57:46 +0000
+	id 1u7aSi-0005yD-1O;
+	Wed, 23 Apr 2025 13:48:27 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1u7Zfb-0006Qm-N0
+ (envelope-from <hdegoede@redhat.com>) id 1u7aSg-0005y3-FX
  for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 23 Apr 2025 12:57:44 +0000
+ Wed, 23 Apr 2025 13:48:25 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
  From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=12B1PA9yEjf0DLZx8TkvEXffVCSElLdrcmHq6YCB56o=; b=BigKqYN6tSOX5dxPqKe2sfupT3
- LdgdtlhZ3xqL5v4+zZKceAIXpw9vkMiWyqSj418NxbG2qMCg2nJyUJPZe158TzWpVQT+CitQNBm4i
- dYfCO+CgOniuH9/J47DLU6dZyfVRx0Ta8PsnXE+ve8kWDLJKjKqL9+IS/2GOnaD76zpY=;
+ bh=pEh8oqHI4NLy6ofA3ZhONsfHcZpJeelP6XBNrh5dM0o=; b=ZSskxxvYiZU/45OsVG9Ctubpuq
+ YbJhMvW334FIdKRAcR4RJ+rcXrQ7zrAAlRSDPAXheuEjOJdYdBHZjWtrNMLXOQMfGEGu3bC3GY71x
+ yMB6URPrsnPoCGOxAf1GlnCRPAj8xvNkDx6aFd1zz0oCcqk1X1OjZY4m1gOJEcM+oOqI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
@@ -31,80 +31,79 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=12B1PA9yEjf0DLZx8TkvEXffVCSElLdrcmHq6YCB56o=; b=JvfR1PpLpbK9+L1xHw2qZTmxaC
- thnC0W1DIPF0p85rMHPscLK5zyMOnI6BTjyQPD6mzrLjMgr/XF9ruIB/0wHBucItYpNyvgXJpGcil
- EwZ+94IK+yDT/WheGzCcectvw/4od3iJF077943gDALFHGtfQZa5orb44DZViBEY2zCM=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=pEh8oqHI4NLy6ofA3ZhONsfHcZpJeelP6XBNrh5dM0o=; b=G+ssc9N28SyIlASFQZI4uCt8Ai
+ ssEryJl30b3QBzQtTLM3SMcl4EpoWizCR134/RNGxfcz3EJFjwyPo/cwlpwFvAA2Civ6Dg//uNDx2
+ ky6sGFHmLhUhKXE2ypA9JwI/wt/oDwIQnb1pLzv1JP9uJmiiiAEIiqfhKYsP7Q5qjChc=;
+Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
- id 1u7ZfM-0001KR-0h for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 23 Apr 2025 12:57:44 +0000
+ id 1u7aSN-0004YP-Qy for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 23 Apr 2025 13:48:23 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745413026;
+ s=mimecast20190719; t=1745416066;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=12B1PA9yEjf0DLZx8TkvEXffVCSElLdrcmHq6YCB56o=;
- b=NnZi4fleRpVSIqmb3zcwf6mliBpi3VTQiqdOGo4nEoca8/+cKSLxzqQoJF7znkxarXhYdU
- nxvJV5Ak9vIW7COKnsEJOaaHfC+na3Y7JZ9jdihJj/1C9leCZt05Ddw40UClidp80Gwia+
- dCISs4/XBs+QFHa9PJyv/clo2ql4HsU=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=pEh8oqHI4NLy6ofA3ZhONsfHcZpJeelP6XBNrh5dM0o=;
+ b=XP8rrXgG/wUEXvewKIUjgWngDPD+ZLZGbuiMr2PvysQ3hzVg7QpOiyuuS4ghiaNJpQZRm3
+ VAtYiwRn2gmVyGVwgySPBQsvvPbwxtZQXd0S2XUP1lmWmteQjKADCygMdsfdgBORALHY7c
+ AnsITNBWdgggvBv+7voJ5PFmwWWEE9U=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-230-7Kl52902ObClmyQm5Eu9mg-1; Wed, 23 Apr 2025 08:57:05 -0400
-X-MC-Unique: 7Kl52902ObClmyQm5Eu9mg-1
-X-Mimecast-MFC-AGG-ID: 7Kl52902ObClmyQm5Eu9mg_1745413024
-Received: by mail-ej1-f70.google.com with SMTP id
- a640c23a62f3a-acb66d17be4so421400766b.2
+ us-mta-157-2a-zRpAnOs2ir2E23FUHFA-1; Wed, 23 Apr 2025 09:47:45 -0400
+X-MC-Unique: 2a-zRpAnOs2ir2E23FUHFA-1
+X-Mimecast-MFC-AGG-ID: 2a-zRpAnOs2ir2E23FUHFA_1745416064
+Received: by mail-ej1-f71.google.com with SMTP id
+ a640c23a62f3a-ac37ed2b99fso447575166b.3
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Wed, 23 Apr 2025 05:57:05 -0700 (PDT)
+ Wed, 23 Apr 2025 06:47:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745413023; x=1746017823;
+ d=1e100.net; s=20230601; t=1745416064; x=1746020864;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=12B1PA9yEjf0DLZx8TkvEXffVCSElLdrcmHq6YCB56o=;
- b=RGUUpxvCmk1tdPhOtXOyPaxEUlr2GulqhiKm2t97SehFct6vMRtbb/Uo3MS2aNfQ4+
- kZXRLXdlsCryeJbYl9z5DH+rHUpJYbnofRhVVzFCDYjxDrTHo2LWj0pePb1t1AsX+NTL
- iFMqWUfkjf/CsD8XoF1Q48/5wydMNoBBFdZi+lUF61E04NKDXUKOcZyz7R0Rn2fbZWyI
- M3OmA+KYQ57L+DTonjdRpP2etJpJoopJBxEhsxYpA9p61PDpWTqnOwbcz73jBWYIjIXk
- F+1U+NEKOOs9n2tt8/OBbV6vyL7NnHDDhxPfFaBt1xk3UBYKYCam/GNRKRJLIeNPk3dO
- 4xRQ==
+ bh=pEh8oqHI4NLy6ofA3ZhONsfHcZpJeelP6XBNrh5dM0o=;
+ b=SCN/cmwrLz3Pxf/HldOCvbEXtUT/bLwNpVFmDufPfmWfDHX5bMiiasARjTQ4FhQky1
+ eRWoMzengmjIJtrkjwtFifGhl6/ldd/nvpULtN4Th2SYFOQCV2Ug7jmmIqNJwcxZxvUf
+ WsYufnx7qkruiXUheEUw4TtV+L+ecdGZCZtEA3TwIRS1mzkL5tejAFBp7H5ZxQidQK14
+ JyvPQ4bE9ELKchyVxJM0jO512CBVN9ubYmeGhjMzbhW+9Ox1AL4HTN8v3aRKCGUWER9J
+ KNBJtkRv5HwAi8ThiaPzNGX1vXx3FpbjaixOU045AKQH0zPEM92pT8a6ybSTbJypdJUl
+ uYfA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCURWDhM1QZ95UidXADnpWp0dBlMW0EIhBnAbqqmoYcdA/KLuPrQ+J7YK6ebJgpcAYQ1G16sOojsS3q1cAzVaw==@lists.sourceforge.net
-X-Gm-Message-State: AOJu0YzSy4+qRTdUEsuaw417Nc0SyynxROYRr7AJGXh2DwQ2LGPIZbsY
- kfS7ojUkEL/4Y1DHLGsn6D5MbZcV3ZhoVsfyV0n4H30kn2Wim1iRro2Rf9d7biItvK/rRZ2Q2Yf
- w245+W3YuuBQkyvGMgGY7DGGKnos6SoS/mMbE/f8jXGb6fjZKlMnG9JU6fKYV8NgqJXcUbcmqnE
- oZEL0uxvY=
-X-Gm-Gg: ASbGnctz0aRiGBJviK+VoVosvsExANteNT7caSUblf5H5MzzIDNim1+J48Nwd4trDFT
- dH/TdlTZXI9bO6Zge0cEEEsdbCqW/fANxmr7NjWhwyrW3BKi6wI2mHC2Qu3LXGgoX3zK6/riXqP
- MVS/O3VX130HXForQM2qDbuvnEwHNDYnEerOGxQE25f50YUsXzVU9aKJJZBc+rM3PFp918qrWpL
- so2abx4uusgxhDUehtZKTrxTBkF42C3KsL7JN4noG3Ds+dKU8q/vMX8UpJ+VCRLP5fP9/JIaFcv
- GL6Zb0XOY1H4E43zuWwASONomn/Q6cjdZ5JJK3vDLUeuwhkl+HIhePBT62nRGT/MbqX+2kR2OB+
- RRzAssy8HIMPZqbu/+nLRmjkluVqD8cROPKPyBPzVrioP4dPMHqD8HuGKBF57cA==
-X-Received: by 2002:a17:906:f58e:b0:ac7:ed56:8a34 with SMTP id
- a640c23a62f3a-acb74b38ba7mr1275528966b.21.1745413023437; 
- Wed, 23 Apr 2025 05:57:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHcgYy5tLoCSouhG5GrAwJ191lCJmSl2bY21h12SJe30vu8KQiBBanEpoiW5zb7psxiio+7eQ==
-X-Received: by 2002:a17:906:f58e:b0:ac7:ed56:8a34 with SMTP id
- a640c23a62f3a-acb74b38ba7mr1275527666b.21.1745413023026; 
- Wed, 23 Apr 2025 05:57:03 -0700 (PDT)
+ AJvYcCVExeveJoZJBt/EXLTRMCvitZny6XWD4Ms3d6Ei1TQtLHFUm1rdy2gmPOTugswQ3NIMc9uYzqi6+EVbVMnx+A==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0YzhGKHsFEcDw13TmiKe3qZQkC+HTIkwP1gjhmjwRkbkLbUHZf4t
+ 56V2mSa9Nl9I+DCR00kzNArEMCxtVNvypksfF6ozUfsQiANFmR4GGto6KWk2B8zSX3ALIvzoXr+
+ MPzqT6+h5Eybw1FA4bYt1BVKh0loSlMeOMxtH62tUJsjiV8tFJzVh3AcXsbNG2rMPj+AFC2ld
+X-Gm-Gg: ASbGncu/yJcZ4s+e/RHqwou79PrwM1Q48FDwB4DQKkCJZ94/9Asr4CjdkPFx/hHcbag
+ tYaomevYsveYLajVFNDqMfY1OsRB6guY/8XYmAHGiLE1Wyb/MAD8K+S8UuNS6CGV+dJxzf2xNDt
+ koA0Ukrxzd7BkI1KLyaf11118TkO0Isut0z7bC3sgF1fHQ3q3/Gp7ovklgmsqHHKJE/+2+DRbwr
+ 92lU3AruLchepI7HSJVYuMk45WMRqPz05IFxv4HoyPyy+NLdpO7WW6yV9lAlMMSxpZsJS87tv0h
+ lNsCG2WcJ3PFyK0CfSsf7yG0twpXrvHfVNlmvqdn7LKHrALGegF8nJausSs40sjYbZuSiqY7Klu
+ U41cZDFZwIS5IQ/S44JdokK4RQ4NjytOQv0VkWUpBeos6sFilzS3SlSV7By7wyw==
+X-Received: by 2002:a17:907:868a:b0:ace:3ede:9d23 with SMTP id
+ a640c23a62f3a-ace3ede9ef6mr294555166b.34.1745416064110; 
+ Wed, 23 Apr 2025 06:47:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHZwCd4q8Iokzw2yZU81DNOMfOSrFMtikCSA7cLDSXiPQczujmjm2QDHuxC93G+YzH5mjtTGg==
+X-Received: by 2002:a17:907:868a:b0:ace:3ede:9d23 with SMTP id
+ a640c23a62f3a-ace3ede9ef6mr294552766b.34.1745416063693; 
+ Wed, 23 Apr 2025 06:47:43 -0700 (PDT)
 Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
  (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-acb8cca2323sm644457766b.181.2025.04.23.05.57.02
+ a640c23a62f3a-acb6efaa976sm803547466b.180.2025.04.23.06.47.42
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Apr 2025 05:57:02 -0700 (PDT)
-Message-ID: <191aad89-689c-4d34-ac8c-274e13fd6936@redhat.com>
-Date: Wed, 23 Apr 2025 14:57:01 +0200
+ Wed, 23 Apr 2025 06:47:43 -0700 (PDT)
+Message-ID: <045d37f5-259c-4553-8257-51ab6fc43534@redhat.com>
+Date: Wed, 23 Apr 2025 15:47:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 To: Nitin Joshi <nitjoshi@gmail.com>, ilpo.jarvinen@linux.intel.com
-References: <20250423055130.9146-1-nitjoshi@gmail.com>
-In-Reply-To: <20250423055130.9146-1-nitjoshi@gmail.com>
+References: <20250423133912.16334-1-nitjoshi@gmail.com>
+In-Reply-To: <20250423133912.16334-1-nitjoshi@gmail.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: ynjh7CvfbQtP1bvkD-GldV5AA1yFoEfMM2urXirVgfw_1745413024
+X-Mimecast-MFC-PROC-ID: b6gvykuvatVBWh9j94TYwEJIvozx6qMhO-yQ--z5h9I_1745416064
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US, nl
 X-Spam-Score: -0.5 (/)
@@ -114,27 +113,26 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Nitin, On 23-Apr-25 7:51 AM,
- Nitin Joshi wrote: > New Lenovo
+ Content preview:  Hi, On 23-Apr-25 3:39 PM, Nitin Joshi wrote: > New Lenovo
  Thinkpad models, e.g. the 'X9-14 Gen 1' and 'X9-15 Gen 1' > has new shortcut
  on F9 key i.e to switch camera shutter and it > send a new 0x131b hke [...]
  Content analysis details:   (-0.5 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
+ no trust [170.10.129.124 listed in list.dnswl.org]
  0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [170.10.133.124 listed in sa-trusted.bondedsender.org]
+ [170.10.129.124 listed in sa-trusted.bondedsender.org]
  0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
  query to Validity was blocked.  See
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
- [170.10.133.124 listed in bl.score.senderscore.com]
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.133.124 listed in list.dnswl.org]
+ [170.10.129.124 listed in bl.score.senderscore.com]
  0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
- [170.10.133.124 listed in wl.mailspike.net]
+ [170.10.129.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
  -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -146,8 +144,8 @@ X-Spam-Report: Spam detection software,
  author's domain
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
  -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1u7ZfM-0001KR-0h
-Subject: Re: [ibm-acpi-devel] [PATCH v2] platform/x86: thinkpad-acpi: Add
+X-Headers-End: 1u7aSN-0004YP-Qy
+Subject: Re: [ibm-acpi-devel] [PATCH v3] platform/x86: thinkpad-acpi: Add
  support for new hotkey for camera shutter switch
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -170,9 +168,9 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Nitin,
+Hi,
 
-On 23-Apr-25 7:51 AM, Nitin Joshi wrote:
+On 23-Apr-25 3:39 PM, Nitin Joshi wrote:
 > New Lenovo Thinkpad models, e.g. the 'X9-14 Gen 1' and 'X9-15 Gen 1'
 > has new shortcut on F9 key i.e to switch camera shutter and it
 > send a new 0x131b hkey event when F9 key is pressed.
@@ -182,20 +180,17 @@ On 23-Apr-25 7:51 AM, Nitin Joshi wrote:
 > Reviewed-by: Mark Pearson <mpearson-lenovo@squebb.ca>
 > Signed-off-by: Nitin Joshi <nitjoshi@gmail.com>
 > ---
+> Changes in v3:
+> * Avoid wasteful get_camera_shutter() calls and Minor changes based on review comments to make
+>   code more readable.
 > Changes in v2:
-> 
 > * Added ASL method to get camera shutter status and send it to userspace.
-
-Thank you for the new version, overall this looks good,
-one small remark below.
-
-
 > ---
->  drivers/platform/x86/thinkpad_acpi.c | 43 +++++++++++++++++++++++++++-
->  1 file changed, 42 insertions(+), 1 deletion(-)
+>  drivers/platform/x86/thinkpad_acpi.c | 46 +++++++++++++++++++++++++++-
+>  1 file changed, 45 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-> index 5790095c175e..80b02e8538e8 100644
+> index 5790095c175e..0b011dcfc626 100644
 > --- a/drivers/platform/x86/thinkpad_acpi.c
 > +++ b/drivers/platform/x86/thinkpad_acpi.c
 > @@ -182,6 +182,7 @@ enum tpacpi_hkey_event_t {
@@ -210,20 +205,31 @@ one small remark below.
 >  	}
 >  }
 >  
+> +#define GCES_METHOD_ERR BIT(31)
+
+Does this bit really indicate an error ? From other vendors
+this often is a device-not-present bit and the bit being set
+would mean in this case that there is no camera-shutter on
+the laptop we're running on.
+
+This also matches with the -ENODEV return.
+
+If this indeed is a device-not-present bit then this define
+should be renamed to match that.
+
+
 > +static int get_camera_shutter(void)
 > +{
 > +	acpi_handle gces_handle;
 > +	int output;
 > +
-> +	if (ACPI_FAILURE(acpi_get_handle(hkey_handle, "GCES", &gces_handle))) {
-> +		/* Platform doesn't support GCES */
+> +	if (ACPI_FAILURE(acpi_get_handle(hkey_handle, "GCES", &gces_handle)))
 > +		return -ENODEV;
-> +	}
 > +
 > +	if (!acpi_evalf(gces_handle, &output, NULL, "dd", 0))
 > +		return -EIO;
 > +
-> +	if (output & BIT(31))
+> +	if (output & GCES_METHOD_ERR)
 > +		return -ENODEV;
 > +
 > +	return output;
@@ -249,21 +255,20 @@ one small remark below.
 >  
 >  	vdbg_printk(TPACPI_DBG_INIT | TPACPI_DBG_HKEY,
 >  			"initializing hotkey subdriver\n");
-> @@ -3467,6 +3488,13 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
+> @@ -3467,6 +3488,12 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
 >  	if (res)
 >  		return res;
 >  
 > +	camera_shutter_state = get_camera_shutter();
 > +	if (camera_shutter_state >= 0) {
 > +		input_set_capability(tpacpi_inputdev, EV_SW, SW_CAMERA_LENS_COVER);
-> +		input_report_switch(tpacpi_inputdev,
-> +				SW_CAMERA_LENS_COVER, camera_shutter_state);
+> +		input_report_switch(tpacpi_inputdev, SW_CAMERA_LENS_COVER, camera_shutter_state);
 > +	}
 > +
 >  	if (tp_features.hotkey_wlsw) {
 >  		input_set_capability(tpacpi_inputdev, EV_SW, SW_RFKILL_ALL);
 >  		input_report_switch(tpacpi_inputdev,
-> @@ -3633,6 +3661,8 @@ static void adaptive_keyboard_s_quickview_row(void)
+> @@ -3633,6 +3660,8 @@ static void adaptive_keyboard_s_quickview_row(void)
 >  /* 0x1000-0x1FFF: key presses */
 >  static bool hotkey_notify_hotkey(const u32 hkey, bool *send_acpi_ev)
 >  {
@@ -272,57 +277,34 @@ one small remark below.
 >  	/* Never send ACPI netlink events for original hotkeys (hkey: 0x1001 - 0x1020) */
 >  	if (hkey >= TP_HKEY_EV_ORIG_KEY_START && hkey <= TP_HKEY_EV_ORIG_KEY_END) {
 >  		*send_acpi_ev = false;
-> @@ -3643,6 +3673,17 @@ static bool hotkey_notify_hotkey(const u32 hkey, bool *send_acpi_ev)
+> @@ -3643,6 +3672,21 @@ static bool hotkey_notify_hotkey(const u32 hkey, bool *send_acpi_ev)
 >  			return true;
 >  	}
 >  
-> +	camera_shutter_state = get_camera_shutter();
-
-Doing this on every hotkey_notify_hotkey() seems wasteful /
-inefficient. I suggest to move this inside the if, like this:
-
-	if (hkey == TP_HKEY_EV_CAMERASHUTTER_TOGGLE) {
-		camera_shutter_state = get_camera_shutter();
-		if (camera_shutter_state < 0) {
-			pr_err("Error retrieving camera shutter state after shutter event\n");
-			return true;
-		}
-
-		mutex_lock(&tpacpi_inputdev_send_mutex);
-
-		input_report_switch(tpacpi_inputdev,
-		...
-
-> +	if (hkey == TP_HKEY_EV_CAMERASHUTTER_TOGGLE && (camera_shutter_state >= 0)) {
+> +	if (hkey == TP_HKEY_EV_CAMERASHUTTER_TOGGLE) {
+> +		camera_shutter_state = get_camera_shutter();
+> +		if (camera_shutter_state < 0) {
+> +			pr_err("Error retrieving camera shutter state after shutter event\n");
+> +			return true;
+> +		}
 > +		mutex_lock(&tpacpi_inputdev_send_mutex);
 > +
-> +		input_report_switch(tpacpi_inputdev,
-> +			SW_CAMERA_LENS_COVER, camera_shutter_state);
+> +		input_report_switch(tpacpi_inputdev, SW_CAMERA_LENS_COVER, camera_shutter_state);
 > +		input_sync(tpacpi_inputdev);
 > +
 > +		mutex_unlock(&tpacpi_inputdev_send_mutex);
-
-
-I believe you should add a "return true" after the unlock to avoid this
-code from triggering later:
-
-                if (!known_ev) {
-                        pr_notice("unhandled HKEY event 0x%04x\n", hkey);
-                        pr_notice("please report the conditions when this event happened to %s
-                                  TPACPI_MAIL);
-		}
-
-and also to avoid needlessly going through hotkey_notify_hotkey();
-
+> +		return true;
 > +	}
 > +
 >  	return tpacpi_input_send_key(hkey, send_acpi_ev);
 >  }
+>  
+
+Otherwise this looks good to me now.
 
 Regards,
 
 Hans
-
 
 
 
