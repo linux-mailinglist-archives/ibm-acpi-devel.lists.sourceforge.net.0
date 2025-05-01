@@ -2,28 +2,37 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EAA4A98BCA
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 23 Apr 2025 15:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE82AA5D93
+	for <lists+ibm-acpi-devel@lfdr.de>; Thu,  1 May 2025 13:05:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
+	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
+	List-Unsubscribe:List-Id:Subject:In-Reply-To:References:To:MIME-Version:Date:
+	Message-ID:Sender:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=QeeyinRFqCcA/HRYnbhfM2sYgMj+ARBRK69X6Es5fbs=; b=bzSnCMbMd1qilLYSheiScVkATI
+	hC+5PWSKdnu/9rrYhZN90J3nAq39n8MPFvMq2JShlA0vPmqeJyJG47OtuZAeuOlLSj9HGRPedQ1US
+	V2SUhnatVZbZqjnP6Rd5FwXQirXKaKArNusVWIR5yTzQ2Yc/ox7mhKo/VQg+nE/+3lFU=;
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1u7aSi-0005yD-1O;
-	Wed, 23 Apr 2025 13:48:27 +0000
+	id 1uARiZ-0000Cx-NL;
+	Thu, 01 May 2025 11:04:39 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1u7aSg-0005y3-FX
+ (envelope-from <hdegoede@redhat.com>) id 1uARiU-0000Cn-Mc
  for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 23 Apr 2025 13:48:25 +0000
+ Thu, 01 May 2025 11:04:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
  From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=pEh8oqHI4NLy6ofA3ZhONsfHcZpJeelP6XBNrh5dM0o=; b=ZSskxxvYiZU/45OsVG9Ctubpuq
- YbJhMvW334FIdKRAcR4RJ+rcXrQ7zrAAlRSDPAXheuEjOJdYdBHZjWtrNMLXOQMfGEGu3bC3GY71x
- yMB6URPrsnPoCGOxAf1GlnCRPAj8xvNkDx6aFd1zz0oCcqk1X1OjZY4m1gOJEcM+oOqI=;
+ bh=mz0vmjJwisUmluXzsGrk3z7j5pBRTnIIjtSZr4C3XOE=; b=bKibK37vfwjQIGuOCGKEMQjwor
+ cRt8OlyYp9yazrCsrZmS2yp7GDHytf1slE4RvuKgYBZ8IAnjarrRgPNA9hxuft69T90v67kZTtq8X
+ YDHs0n+jpBjVe7+AxnVASRZE2xmhnjTwinqmLHXvZfEJYx//DxqoiG/fLH8o9lFo4d2s=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
  h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
@@ -31,92 +40,95 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=pEh8oqHI4NLy6ofA3ZhONsfHcZpJeelP6XBNrh5dM0o=; b=G+ssc9N28SyIlASFQZI4uCt8Ai
- ssEryJl30b3QBzQtTLM3SMcl4EpoWizCR134/RNGxfcz3EJFjwyPo/cwlpwFvAA2Civ6Dg//uNDx2
- ky6sGFHmLhUhKXE2ypA9JwI/wt/oDwIQnb1pLzv1JP9uJmiiiAEIiqfhKYsP7Q5qjChc=;
+ bh=mz0vmjJwisUmluXzsGrk3z7j5pBRTnIIjtSZr4C3XOE=; b=LRTgjwtAITdXYFD7e6LhOxWZgt
+ ZGH36/vonuW8zCqCI+IeopLgLeooHkARXhcthFAh8+VxTctn384JnQxuUN3YWeQYByvI/8TZKSCCK
+ 4v9tdO0zchyXhCXRJy2QEhu8/CUliJM5WXHQNxIB7ZuZaWn2hMbxqnfkCfH/J/9AI0gc=;
 Received: from us-smtp-delivery-124.mimecast.com ([170.10.129.124])
- by sfi-mx-2.v28.lw.sourceforge.com with esmtp (Exim 4.95)
- id 1u7aSN-0004YP-Qy for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 23 Apr 2025 13:48:23 +0000
+ by sfi-mx-2.v28.lw.sourceforge.com with esmtps
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1uARiE-0006Cw-Lm for ibm-acpi-devel@lists.sourceforge.net;
+ Thu, 01 May 2025 11:04:34 +0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1745416066;
+ s=mimecast20190719; t=1746097447;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=pEh8oqHI4NLy6ofA3ZhONsfHcZpJeelP6XBNrh5dM0o=;
- b=XP8rrXgG/wUEXvewKIUjgWngDPD+ZLZGbuiMr2PvysQ3hzVg7QpOiyuuS4ghiaNJpQZRm3
- VAtYiwRn2gmVyGVwgySPBQsvvPbwxtZQXd0S2XUP1lmWmteQjKADCygMdsfdgBORALHY7c
- AnsITNBWdgggvBv+7voJ5PFmwWWEE9U=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=mz0vmjJwisUmluXzsGrk3z7j5pBRTnIIjtSZr4C3XOE=;
+ b=i5kc4+xPf4QsMwXkxE5+zGcJt2b3rS/YfNciKApx62I+zsM6etc+GIp3cUFWElTjCCANKY
+ ZB5Wd0neb/rAwbePlOv9I2Ivgcx1+BHoVwzpewBfqOwqKSLppIjQHHDgSFu45Mstw0sfp1
+ QMZXmbfSDkhAQnUtbQUjQ7xdePHAsMQ=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-157-2a-zRpAnOs2ir2E23FUHFA-1; Wed, 23 Apr 2025 09:47:45 -0400
-X-MC-Unique: 2a-zRpAnOs2ir2E23FUHFA-1
-X-Mimecast-MFC-AGG-ID: 2a-zRpAnOs2ir2E23FUHFA_1745416064
-Received: by mail-ej1-f71.google.com with SMTP id
- a640c23a62f3a-ac37ed2b99fso447575166b.3
+ us-mta-191-gI6EaJAePvu4g46y1XoM_Q-1; Thu, 01 May 2025 07:04:06 -0400
+X-MC-Unique: gI6EaJAePvu4g46y1XoM_Q-1
+X-Mimecast-MFC-AGG-ID: gI6EaJAePvu4g46y1XoM_Q_1746097445
+Received: by mail-ed1-f72.google.com with SMTP id
+ 4fb4d7f45d1cf-5f92fc82c39so189776a12.3
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Wed, 23 Apr 2025 06:47:45 -0700 (PDT)
+ Thu, 01 May 2025 04:04:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1745416064; x=1746020864;
+ d=1e100.net; s=20230601; t=1746097445; x=1746702245;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=pEh8oqHI4NLy6ofA3ZhONsfHcZpJeelP6XBNrh5dM0o=;
- b=SCN/cmwrLz3Pxf/HldOCvbEXtUT/bLwNpVFmDufPfmWfDHX5bMiiasARjTQ4FhQky1
- eRWoMzengmjIJtrkjwtFifGhl6/ldd/nvpULtN4Th2SYFOQCV2Ug7jmmIqNJwcxZxvUf
- WsYufnx7qkruiXUheEUw4TtV+L+ecdGZCZtEA3TwIRS1mzkL5tejAFBp7H5ZxQidQK14
- JyvPQ4bE9ELKchyVxJM0jO512CBVN9ubYmeGhjMzbhW+9Ox1AL4HTN8v3aRKCGUWER9J
- KNBJtkRv5HwAi8ThiaPzNGX1vXx3FpbjaixOU045AKQH0zPEM92pT8a6ybSTbJypdJUl
- uYfA==
+ bh=mz0vmjJwisUmluXzsGrk3z7j5pBRTnIIjtSZr4C3XOE=;
+ b=XNqEZmKHcs330y3aYzTf4FfPuZznsUVZd+EHhvkeRm74wpDsjaRoiFpVY8FsggL+UO
+ TcUHWEApGYSDK6YYMvsa3GsKUE/G0Fwmlfxvc2RghQsZyJDaFVaopSi1CiDhKuw6S4sO
+ EFYjBIaWDYI9Rbuw+V3g5iwFpI/xHBmd3XqrXR2IslQo5HghE5ik896On6lF8z7mRnQL
+ YgKIxJ4Z+c2wC496vCiCFufh5dW0khbTrlxUrmeWuZoLA6/60Q0pHLHAR6rBOYIDML/8
+ vr3qSfWnlVyebb1Pa2+fIOxvKvwR9WMcaSSQh4Tawa98yHm1GSX1p5XnRKxv1NxsnGgb
+ 95ig==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVExeveJoZJBt/EXLTRMCvitZny6XWD4Ms3d6Ei1TQtLHFUm1rdy2gmPOTugswQ3NIMc9uYzqi6+EVbVMnx+A==@lists.sourceforge.net
-X-Gm-Message-State: AOJu0YzhGKHsFEcDw13TmiKe3qZQkC+HTIkwP1gjhmjwRkbkLbUHZf4t
- 56V2mSa9Nl9I+DCR00kzNArEMCxtVNvypksfF6ozUfsQiANFmR4GGto6KWk2B8zSX3ALIvzoXr+
- MPzqT6+h5Eybw1FA4bYt1BVKh0loSlMeOMxtH62tUJsjiV8tFJzVh3AcXsbNG2rMPj+AFC2ld
-X-Gm-Gg: ASbGncu/yJcZ4s+e/RHqwou79PrwM1Q48FDwB4DQKkCJZ94/9Asr4CjdkPFx/hHcbag
- tYaomevYsveYLajVFNDqMfY1OsRB6guY/8XYmAHGiLE1Wyb/MAD8K+S8UuNS6CGV+dJxzf2xNDt
- koA0Ukrxzd7BkI1KLyaf11118TkO0Isut0z7bC3sgF1fHQ3q3/Gp7ovklgmsqHHKJE/+2+DRbwr
- 92lU3AruLchepI7HSJVYuMk45WMRqPz05IFxv4HoyPyy+NLdpO7WW6yV9lAlMMSxpZsJS87tv0h
- lNsCG2WcJ3PFyK0CfSsf7yG0twpXrvHfVNlmvqdn7LKHrALGegF8nJausSs40sjYbZuSiqY7Klu
- U41cZDFZwIS5IQ/S44JdokK4RQ4NjytOQv0VkWUpBeos6sFilzS3SlSV7By7wyw==
-X-Received: by 2002:a17:907:868a:b0:ace:3ede:9d23 with SMTP id
- a640c23a62f3a-ace3ede9ef6mr294555166b.34.1745416064110; 
- Wed, 23 Apr 2025 06:47:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHZwCd4q8Iokzw2yZU81DNOMfOSrFMtikCSA7cLDSXiPQczujmjm2QDHuxC93G+YzH5mjtTGg==
-X-Received: by 2002:a17:907:868a:b0:ace:3ede:9d23 with SMTP id
- a640c23a62f3a-ace3ede9ef6mr294552766b.34.1745416063693; 
- Wed, 23 Apr 2025 06:47:43 -0700 (PDT)
+ AJvYcCWgctguKWiIp2KQ3daygk9NGPMuYnGYUtPuJKYQEY7RxtoWPD4z4cjwgViK/P2UFkwx0mnCQzJ0CtOwUHfjxA==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0Yx+dW0PlfVSk3f+IWOUPgFV4gBe840saMwtLb5hWrXvhpoT8znv
+ c6TTZigcNp/2Uta1Q5xBIZKRCKbWcTscqI0+K1sIoZy2W9jRO91BnIi3/gkuWIVkpcAuo2pdkux
+ ONFqtbXxVXhYpajArnCaqjZcNEJmxkmobWRaDEonx5SpkEWcVMLb+lg3Vv6UX8HkFtgquwLizHB
+ Vv91AA
+X-Gm-Gg: ASbGncs3SGmapEYrJPwTeFrEu+PMmka0PlcLBQnObG3EyoaOyfzHBnUUiYMrfOqV00W
+ pZWE+Ve41xlw4p0kJ2z+v4trTKezEsqTAK3DwHyDFk9tmKGzCXac9bUlAG9hSyo5sG1yJ8xKTKM
+ YOTQ/QlTPqWXPwdo0xoKvU6Yxq5U+B2/TB0oMcO9fdQ4MNCeXtcEhiAHz54Fc3kFxnaO8ccBC12
+ N3tnifQkd3r1lzq6jHGz7B/mbrZRrBFyk46jE7Fgm5BrhjgUlOFRnBHvPRpdMZHYRrtQmYpr+0f
+ VibsBLutlIAYA5MnAb7D00wp8suB+vS8H7VUiuc1ECs/xOm9qdGaB6QGcSgbbCgm4wnLS1urBlf
+ Y8ZCSIqDrmBhHRRm1RNvMqrCbcQBftMyRJ03mzlvNlJ/irNYUsg4OiiluvCUlQQ==
+X-Received: by 2002:a17:907:9408:b0:ace:6f8e:e857 with SMTP id
+ a640c23a62f3a-acef38eb40cmr234280066b.0.1746097444736; 
+ Thu, 01 May 2025 04:04:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGQgmqRgjG5XFVL27u4BEJ0c9uqGJhvZNUWRf5tL2nXObw1fLArolAaIpPxwX6S5m4G4tLOoQ==
+X-Received: by 2002:a17:907:9408:b0:ace:6f8e:e857 with SMTP id
+ a640c23a62f3a-acef38eb40cmr234278366b.0.1746097444353; 
+ Thu, 01 May 2025 04:04:04 -0700 (PDT)
 Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
  (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
  [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-acb6efaa976sm803547466b.180.2025.04.23.06.47.42
+ a640c23a62f3a-ad0c71214b8sm24896166b.81.2025.05.01.04.04.03
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 23 Apr 2025 06:47:43 -0700 (PDT)
-Message-ID: <045d37f5-259c-4553-8257-51ab6fc43534@redhat.com>
-Date: Wed, 23 Apr 2025 15:47:42 +0200
+ Thu, 01 May 2025 04:04:03 -0700 (PDT)
+Message-ID: <c8883178-3ccb-435d-a7c3-a0cbdbb53181@redhat.com>
+Date: Thu, 1 May 2025 13:04:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 To: Nitin Joshi <nitjoshi@gmail.com>, ilpo.jarvinen@linux.intel.com
-References: <20250423133912.16334-1-nitjoshi@gmail.com>
-In-Reply-To: <20250423133912.16334-1-nitjoshi@gmail.com>
+References: <20250501054951.8442-1-nitjoshi@gmail.com>
+In-Reply-To: <20250501054951.8442-1-nitjoshi@gmail.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: b6gvykuvatVBWh9j94TYwEJIvozx6qMhO-yQ--z5h9I_1745416064
+X-Mimecast-MFC-PROC-ID: -4Z22z3KgGFnUzQwwReofuoj9ssm2GmAWDUuX5cOXuI_1746097445
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US, nl
-X-Spam-Score: -0.5 (/)
+X-Spam-Score: -0.8 (/)
 X-Spam-Report: Spam detection software,
- running on the system "util-spamd-2.v13.lw.sourceforge.com", 
+ running on the system "util-spamd-1.v13.lw.sourceforge.com", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, On 23-Apr-25 3:39 PM, Nitin Joshi wrote: > New Lenovo
+ Content preview:  Hi Nitin, On 1-May-25 7:49 AM,
+ Nitin Joshi wrote: > New Lenovo
  Thinkpad models, e.g. the 'X9-14 Gen 1' and 'X9-15 Gen 1' > has new shortcut
- on F9 key i.e to switch camera shutter and it > send a new 0x131b hke [...]
- Content analysis details:   (-0.5 points, 6.0 required)
+ on F9 key i.e to switch camera shutter and it > send a new 0x131b hkey [...]
+ Content analysis details:   (-0.8 points, 6.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
@@ -131,21 +143,21 @@ X-Spam-Report: Spam detection software,
  https://knowledge.validity.com/hc/en-us/articles/20961730681243
  for more information.
  [170.10.129.124 listed in bl.score.senderscore.com]
+ -0.0 SPF_PASS               SPF: sender matches SPF record
  0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
  [170.10.129.124 listed in wl.mailspike.net]
  0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
- -0.0 SPF_PASS               SPF: sender matches SPF record
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
  author's domain
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
+ valid
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.3 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1u7aSN-0004YP-Qy
-Subject: Re: [ibm-acpi-devel] [PATCH v3] platform/x86: thinkpad-acpi: Add
+ -0.6 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1uARiE-0006Cw-Lm
+Subject: Re: [ibm-acpi-devel] [PATCH v4] platform/x86: thinkpad-acpi: Add
  support for new hotkey for camera shutter switch
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
@@ -168,9 +180,9 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi,
+Hi Nitin,
 
-On 23-Apr-25 3:39 PM, Nitin Joshi wrote:
+On 1-May-25 7:49 AM, Nitin Joshi wrote:
 > New Lenovo Thinkpad models, e.g. the 'X9-14 Gen 1' and 'X9-15 Gen 1'
 > has new shortcut on F9 key i.e to switch camera shutter and it
 > send a new 0x131b hkey event when F9 key is pressed.
@@ -180,6 +192,14 @@ On 23-Apr-25 3:39 PM, Nitin Joshi wrote:
 > Reviewed-by: Mark Pearson <mpearson-lenovo@squebb.ca>
 > Signed-off-by: Nitin Joshi <nitjoshi@gmail.com>
 > ---
+> Changes in v4:
+> * Renamed macro from METHOD_ERR to GCES_NO_SHUTTER_DEVICE.
+
+Thank you for the new version, unfortunately I've spotted
+a few issues which I missed before, sorry about that.
+
+See my remarks inline.
+
 > Changes in v3:
 > * Avoid wasteful get_camera_shutter() calls and Minor changes based on review comments to make
 >   code more readable.
@@ -190,7 +210,7 @@ On 23-Apr-25 3:39 PM, Nitin Joshi wrote:
 >  1 file changed, 45 insertions(+), 1 deletion(-)
 > 
 > diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-> index 5790095c175e..0b011dcfc626 100644
+> index 5790095c175e..6c6b9d4e613e 100644
 > --- a/drivers/platform/x86/thinkpad_acpi.c
 > +++ b/drivers/platform/x86/thinkpad_acpi.c
 > @@ -182,6 +182,7 @@ enum tpacpi_hkey_event_t {
@@ -205,19 +225,8 @@ On 23-Apr-25 3:39 PM, Nitin Joshi wrote:
 >  	}
 >  }
 >  
-> +#define GCES_METHOD_ERR BIT(31)
-
-Does this bit really indicate an error ? From other vendors
-this often is a device-not-present bit and the bit being set
-would mean in this case that there is no camera-shutter on
-the laptop we're running on.
-
-This also matches with the -ENODEV return.
-
-If this indeed is a device-not-present bit then this define
-should be renamed to match that.
-
-
+> +#define GCES_NO_SHUTTER_DEVICE BIT(31)
+> +
 > +static int get_camera_shutter(void)
 > +{
 > +	acpi_handle gces_handle;
@@ -229,7 +238,7 @@ should be renamed to match that.
 > +	if (!acpi_evalf(gces_handle, &output, NULL, "dd", 0))
 > +		return -EIO;
 > +
-> +	if (output & GCES_METHOD_ERR)
+> +	if (output & GCES_NO_SHUTTER_DEVICE)
 > +		return -ENODEV;
 > +
 > +	return output;
@@ -243,6 +252,12 @@ should be renamed to match that.
 >  	 * scancodes to preserve uAPI compatibility, see tpacpi_input_send_key().
 >  	 */
 > +	{ KE_KEY, TP_HKEY_EV_CAMERASHUTTER_TOGGLE, { KEY_CAMERA_ACCESS_TOGGLE } },
+
+other keys where are handled fully in the driver, like
+TP_HKEY_EV_PRIVACYGUARD_TOGGLE / TP_HKEY_EV_AMT_TOGGLE / TP_HKEY_EV_PROFILE_TOGGLE*
+don't have an entry in the keymap. For consistency please drop the unnecessary
+(will never be used) adding of this entry.
+
 >  	{ KE_KEY, 0x131d, { KEY_VENDOR } }, /* System debug info, similar to old ThinkPad key */
 >  	{ KE_KEY, 0x1320, { KEY_LINK_PHONE } },
 >  	{ KE_KEY, TP_HKEY_EV_TRACK_DOUBLETAP /* 0x8036 */, { KEY_PROG4 } },
@@ -296,16 +311,20 @@ should be renamed to match that.
 > +		return true;
 > +	}
 > +
->  	return tpacpi_input_send_key(hkey, send_acpi_ev);
->  }
->  
 
-Otherwise this looks good to me now.
+I think it would be better to have this code inside tpacpi_driver_event(),
+where all the other special keypresses are handled.
 
 Regards,
 
 Hans
 
+
+
+
+>  	return tpacpi_input_send_key(hkey, send_acpi_ev);
+>  }
+>  
 
 
 
