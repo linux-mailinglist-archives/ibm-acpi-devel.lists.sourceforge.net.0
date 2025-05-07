@@ -2,162 +2,145 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0FFAA5E8D
-	for <lists+ibm-acpi-devel@lfdr.de>; Thu,  1 May 2025 14:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B716EAAEB50
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed,  7 May 2025 21:06:16 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
-	Reply-To:From:List-Subscribe:List-Help:List-Post:List-Archive:
-	List-Unsubscribe:List-Id:Subject:In-Reply-To:References:To:MIME-Version:Date:
-	Message-ID:Sender:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=ezk/2ZjVNANVrYLNaoUIg/OaLXutOUdDn77X2MROPuI=; b=KnAknU7IsrGZsCILkZ5HAH87g8
-	b3/KJwAUbZx09jeO8KgZp6tmcB2T0DQJoJLq4yWMTnCteog6qrWcxc/+6FdKsPaWyoQxC5i/nGRqq
-	hfk8nFXQYfUVI3i7w+TnHw/c+693xQFjwN3JyyH3ehOV+3UJUblbg8vBGwkiodx+Gw3M=;
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Subject:MIME-Version:References:In-Reply-To:Message-ID:Date:To:From:Sender:
+	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+	:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=6g67LXG6dQA04jq6EJ7P/05HN+ANT3cCLy91jK9YBR8=; b=jWKJbTPxJWMi5IkY9lcmvvEUvR
+	egx8EhD0REm2o3SFSIAocoIBerPOMWoH41xlYb4nIJARUV5Ip4/Pkysx2t6fPZ918aA7qTzFAOZw1
+	er57edMt5KdWTEVKaTtDEWXiANnRzqhTMg+7Glact340Rgxy/keetZm4jNGaTzqEUM78=;
 Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
 	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uATBG-0002h9-HX;
-	Thu, 01 May 2025 12:38:22 +0000
+	id 1uCk5N-0002T7-3V;
+	Wed, 07 May 2025 19:05:41 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <hdegoede@redhat.com>) id 1uATBF-0002go-He
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1uCk5L-0002Sy-8Q
  for ibm-acpi-devel@lists.sourceforge.net;
- Thu, 01 May 2025 12:38:21 +0000
+ Wed, 07 May 2025 19:05:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:
- From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=y3Ks4DT30E1yxp3D2avf9OjDJolabKXfaKyi564PEJk=; b=IOZ33AmlvqiqW83u+9369akFQX
- XaiOMXI3CuxTd4sfxXbSTSLpqG53ipf513fAA5wcwvd39K/I9WOIh+mFgBj6Gq+4FRGQ7/fxgY+zj
- RdILxazgpUQAOGdW2o3Ys5PJN4xB6ZoFz9Pr3fLDpEItpgEpFhe4HDQQFK5hVuaLp4Ks=;
+ bh=EJluX69AUKrWYLmUdPIMLqYY7gZyKg54+v1dt+WrE6I=; b=MF2PzGeZlSjeJ5rJ5v+KNRLtgk
+ LcHXfRlnkY3qisEMjyuDYtJT++dfLkdhsok+gADAVoPfh9uK4+opvh6YL+EPThuVqhMUmYS/DGZhQ
+ 4YlwKNjiVA4pHa5MCXtoijfnmzTyRos5pDRJHrQ9t3oOX3Ar/Qrnh6HmzyWY9ADu0GKo=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:Cc:To:
- Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=y3Ks4DT30E1yxp3D2avf9OjDJolabKXfaKyi564PEJk=; b=UzoCOlGoM85RfbffWWU6kUo6JY
- 53BrInH+y/CyNS8Uz/AGdDwOeblGbQvfnESDjx1PSQbfYhStkEXkRTX9CU1uDJfnylNhuEZY2yn+c
- opIOkq/rsOXt85jZcpN0yzeMUpOghxNukpD3+NkJ6C22+ztUtE2FyYLTwARvj/NTTjDM=;
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124])
+ bh=EJluX69AUKrWYLmUdPIMLqYY7gZyKg54+v1dt+WrE6I=; b=ZYpjdptmCUEbkcow4OOHS+5Kj0
+ FXEdj0+PF8oGCUpv55SPQyAC1AzP8eZzigvN/Z/tfA8DoHC5C3s03J9RscKXNlSGJQFqoaEpcuwvg
+ Jlc1T471Qwy1/Tw+GVYGgPX6hEN5cbL9aSgL6QfCYvaaEGwrKobeRPjz78HkH1A8OjDQ=;
+Received: from fhigh-b2-smtp.messagingengine.com ([202.12.124.153])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1uATAz-0003pq-J2 for ibm-acpi-devel@lists.sourceforge.net;
- Thu, 01 May 2025 12:38:21 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1746103074;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=y3Ks4DT30E1yxp3D2avf9OjDJolabKXfaKyi564PEJk=;
- b=DrVA2EKqh9z8yeQupfb3z553rYIc+FmBBfa68DccpH7+37+H7dC+gYZXEzJkkDseW4K/4/
- LRUWGy/8ri2gbG/WJVID38jpeiaZHUw5wvU9SQWz316f2F/cTJnUr48Pt0HNo1OybwY6m3
- HoCBPVexa/l9lTMm1YrgR4CD4JWWQuk=
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
- [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-50-mrScKkzGO-ObCk6HMKPigA-1; Thu, 01 May 2025 08:37:53 -0400
-X-MC-Unique: mrScKkzGO-ObCk6HMKPigA-1
-X-Mimecast-MFC-AGG-ID: mrScKkzGO-ObCk6HMKPigA_1746103072
-Received: by mail-ed1-f71.google.com with SMTP id
- 4fb4d7f45d1cf-5f05d36993aso825167a12.0
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Thu, 01 May 2025 05:37:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746103072; x=1746707872;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=y3Ks4DT30E1yxp3D2avf9OjDJolabKXfaKyi564PEJk=;
- b=MA/cmZ5x0AqRq76hlpC4Znl1qRVsdmCTwX+/F653f684lM03WDNkQQN1LDQjXiSzjV
- 3995daxevNEBgWQsYrG19Dh6V7c/67XUXqOGNw5gDpZxZqpwVuf4O4ecCD1d0xau6tIj
- Gx1KXaP1cp3OikOVz5aKgf6S7tCxInIOTgW0k6AiaTuzT62VQ0/a4zBA3bKUf16LF7Jr
- Ko1h3NbqxABfvyMoQeo8917v1S5b5RPKgEEjtZTD5XLTVLrDZsOLH4Sewdh7yYo2C3s2
- XKdr6V4ITYbrYbapfHC1lrxZZrWTcfAZz5vAMJw6hBFkigz3/s9+FQ6wGmY6DYUyhMSd
- R3hg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVGRASm2QDiYrvOXe+Th3mJ0hB5CX2JNvjW66gyjTsYpNpOfgi+d88yAy1WzVhcb+tgSzTHApXHNE/O/O1h9w==@lists.sourceforge.net
-X-Gm-Message-State: AOJu0Yx2ShtsGYbtxJ8AyzyOaYfs6AND3S426J8aYSVtZTgJ3/OR91J1
- yOVsYOGg8qh9Y//qjcbKoirNb5oy6K+f0zl9H1WcrrcNwXChA9TCL6Y6vc+WqWeimgQJR1jt+KX
- ilsh5riZxPWIEGj8MzcSnH2fAE2+nH08UFRM/7js0eoBr0R+F2tyBcv4ueaFJKlA15jMtuoCi
-X-Gm-Gg: ASbGncsVq11/TN2XEsDQ2yuQQdzc4y9XbH3kBA4MlGGwxfve9PJ8RY+QUAehsu7SctV
- GiNw/ASo40KhaA1n3cXfZIGHyXJR+ub4Fa+PYsWDk+d5ETp7Rr/8qdOmmk28G3Tvu+/gTSbkrQF
- IYERM3DbSCFg+QWPAEU9ict/bgPJUSFKv2C/Tpb0eheKRspb4awYjx8axdwbTZgSAdLweokFQfK
- F3cO5qy2xhSrwaQsrrFbWgEOI+QssBc6r7Vpa2t5fod5Qdoh7DOLUxvGEBaxmLXOoAch4FfcZeA
- 5j28mPw2vIjKt254/KDdOzYiSZTD0Lk/6yEkGS3AYPgBRSTXuqv0ttSjqfX7owjyVH1klY0v0rj
- TrxmbtL2fZhXQSIxyRpNgPPu5hCoEdL9k7hSN2zdRQ5JRVi8QoRiSYtkyPjawyQ==
-X-Received: by 2002:a05:6402:5cb:b0:5f6:d1f8:98c9 with SMTP id
- 4fb4d7f45d1cf-5f91391d709mr2135600a12.33.1746103072071; 
- Thu, 01 May 2025 05:37:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF8B9p+CQZD4zy7SWY7Kb6u5DMFr7hw8r+TZRfri5zwbYxrrNNB6IGCfGSQNW7BsObMVmSqFA==
-X-Received: by 2002:a05:6402:5cb:b0:5f6:d1f8:98c9 with SMTP id
- 4fb4d7f45d1cf-5f91391d709mr2135585a12.33.1746103071609; 
- Thu, 01 May 2025 05:37:51 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec?
- (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl.
- [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5f92febd437sm366699a12.54.2025.05.01.05.37.50
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 01 May 2025 05:37:50 -0700 (PDT)
-Message-ID: <fa2b8e85-1286-478c-857f-5db05ba0c22d@redhat.com>
-Date: Thu, 1 May 2025 14:37:50 +0200
+ id 1uCk53-000234-61 for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 07 May 2025 19:05:39 +0000
+Received: from phl-compute-01.internal (phl-compute-01.phl.internal
+ [10.202.2.41])
+ by mailfhigh.stl.internal (Postfix) with ESMTP id 4F84C2540142;
+ Wed,  7 May 2025 15:05:10 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+ by phl-compute-01.internal (MEProxy); Wed, 07 May 2025 15:05:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
+ :cc:content-transfer-encoding:content-type:date:date:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:subject:subject:to:to; s=fm1; t=1746644710; x=
+ 1746731110; bh=EJluX69AUKrWYLmUdPIMLqYY7gZyKg54+v1dt+WrE6I=; b=h
+ mQkD6Z2r+2qv0m3t0T0xRHqN9aFnJtn22RCMLU8InpxxrcKe+qsbqY4glxTA0B0O
+ wlGCPWgXqMD+sP4mLvdK4v3SG+zIbDcMI89wMqXVGZMd1HDPtIrsoojpzSJavQJj
+ Qa2KsJLcEBuUv7+Ia845AbT/xlrKg6aJnFLN9lzvC1pDzCRRGwLQjANgNJn5ru1x
+ ECJfrmKNwbJ2YiHywyjhP8EhbuGyxer10eXBSyEVsmihexKwT1A09zpxXBylZiDp
+ Apyh3Ue2azAy/tsp+ogvyyT1teBjzwX7g/jtCVisQovUjR9vwORMgQjsc3ZsqpUK
+ Xh2cXNnPS4cA/jfLcIjPQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:date:date:feedback-id:feedback-id:from:from
+ :in-reply-to:in-reply-to:message-id:mime-version:references
+ :reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+ :x-me-sender:x-sasl-enc; s=fm3; t=1746644710; x=1746731110; bh=E
+ JluX69AUKrWYLmUdPIMLqYY7gZyKg54+v1dt+WrE6I=; b=r+Jg1L328ksMH8+IO
+ izi0fjpJEdxw1lHpv1eP2x84OgqQay0xjfiFXkw5jiiHQMM8BrSmCLIVNJBNjZ08
+ 2ZexlBOrgiCui9El4N2YPd676r0uA/7oMevZhwGHMq4+SO/j9MTy4JYD6yDIPcuc
+ nNnUSRvvxXTocHzQa1BVVT6u60RhuiW+K7NG5Y59U1KsyRcFvIhTsU+ySb3ens2p
+ hATuJB+eTjq4H4fz93SezYRNRph6GfWcu0sjaS1Z3mVemWlQ8DrNbSykLfvzoTwW
+ jzK5mSTDAZXjbeQp7jJsEcMW1D03qc+mGyXGjqot7VLqc4rMmwyJ0Lc0EExj8qM4
+ 4Re2g==
+X-ME-Sender: <xms:5a4baAtG8QXP5fm7jxu_hNOgTVEc1VgQ8YsJGjo99b9b2cJoSRc4bg>
+ <xme:5a4baNfQwrCb3vzQK9VMPFUVDQ_JeRErX2Pf07lXCug0Pv71QRaJW98Mu341ZGW6a
+ XtYsLUDZE-nScElDfY>
+X-ME-Received: <xmr:5a4baLxtKDqT_0Z-o2IHG4Aw5xjw-Bs7cXrNW_srBXQcup-ROltNj5wRp8bqUTdeg1Zi1bpik6uiHeJCRodvszZLWo2zeyRsBv5-V1vcwR8pXmImOA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvkeejieehucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+ pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucgoteeftdduqddtud
+ culdduhedmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhho
+ mhepofgrrhhkucfrvggrrhhsohhnuceomhhpvggrrhhsohhnqdhlvghnohhvohesshhquh
+ gvsggsrdgtrgeqnecuggftrfgrthhtvghrnhepuefggedvvdehueekkeetgeeutdfhgefg
+ fedutdegvdfgfeehjedthfelvdekgeetnecuffhomhgrihhnpehsfhdrnhgvthenucevlh
+ hushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmphgvrghrshho
+ nhdqlhgvnhhovhhosehsqhhuvggssgdrtggrpdhnsggprhgtphhtthhopeelpdhmohguvg
+ epshhmthhpohhuthdprhgtphhtthhopehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhu
+ vggssgdrtggrpdhrtghpthhtohephhguvghgohgvuggvsehrvgguhhgrthdrtghomhdprh
+ gtphhtthhopehilhhpohdrjhgrrhhvihhnvghnsehlihhnuhigrdhinhhtvghlrdgtohhm
+ pdhrtghpthhtohepihhkvghprghnhhgtsehgmhgrihhlrdgtohhmpdhrtghpthhtohepfi
+ gprghrmhhinhesghhmgidruggvpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgv
+ nhhkoheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvg
+ hrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehplhgrthhfohhr
+ mhdqughrihhvvghrqdigkeeisehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
+ epihgsmhdqrggtphhiqdguvghvvghlsehlihhsthhsrdhsohhurhgtvghfohhrghgvrdhn
+ vght
+X-ME-Proxy: <xmx:5a4baDMNAYwZocRByIlGXlNcVuHY2Xt69rI8C15v7d_RhjkomQ2WKA>
+ <xmx:5a4baA81li9At3v3ltcPYpP5n10-fIhsS_tjmA21RGU_TF_5UvkTcw>
+ <xmx:5a4baLWtWqPufji5g-9SV2jKdQjzlQ5DYAQzmlcT70bnPJnitsIf5Q>
+ <xmx:5a4baJclJpF1LvcyO8djHtt7HHMntrfo0HWTPr75E7tiCWVOmfAN2A>
+ <xmx:5q4baGbg4KIz8lRfJLCk9fywbN0BiyU9FKQtuYSiNtNCJRDnC-QRib_3>
+Feedback-ID: ibe194615:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 7 May 2025 15:05:09 -0400 (EDT)
+From: Mark Pearson <mpearson-lenovo@squebb.ca>
+To: mpearson-lenovo@squebb.ca
+Date: Wed,  7 May 2025 15:04:34 -0400
+Message-ID: <20250507190456.3004367-1-mpearson-lenovo@squebb.ca>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <mpearson-lenovo@squebb.ca>
+References: <mpearson-lenovo@squebb.ca>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Nitin Joshi <nitjoshi@gmail.com>, ilpo.jarvinen@linux.intel.com
-References: <20250501123607.14171-1-nitjoshi@gmail.com>
-In-Reply-To: <20250501123607.14171-1-nitjoshi@gmail.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: -utFTVE4XGYzTpN9I36Ee-VVqTtJOjqgaES5pamMAMg_1746103072
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US, nl
-X-Spam-Score: -0.8 (/)
-X-Spam-Report: Spam detection software,
- running on the system "util-spamd-1.v13.lw.sourceforge.com", 
+X-Spam-Score: -0.9 (/)
+X-Spam-Report: Spam detection software, running on the system "6901ab67b84d", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, On 1-May-25 2:36 PM,
- Nitin Joshi wrote: > New Lenovo Thinkpad
- models, e.g. the 'X9-14 Gen 1' and 'X9-15 Gen 1' > has new shortcut on F9
- key i.e to switch camera shutter and it > send a new 0x131b hkey [...] 
- Content analysis details:   (-0.8 points, 6.0 required)
+ Content preview: Move all Lenovo specific files into their own sub-directory
+ as part of clean-up exercise. Longer term goal is to break-up thinkpad_acpi
+ to improve maintainability and perhaps share more functionality [...] 
+ Content analysis details:   (-0.9 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.0 RCVD_IN_DNSWL_NONE     RBL: Sender listed at https://www.dnswl.org/,
- no trust [170.10.133.124 listed in list.dnswl.org]
- 0.0 RCVD_IN_VALIDITY_RPBL_BLOCKED RBL: ADMINISTRATOR NOTICE: The
- query to Validity was blocked.  See
- https://knowledge.validity.com/hc/en-us/articles/20961730681243
- for more information.
- [170.10.133.124 listed in bl.score.senderscore.com]
- 0.0 RCVD_IN_VALIDITY_SAFE_BLOCKED RBL: ADMINISTRATOR NOTICE: The
- query to Validity was blocked.  See
- https://knowledge.validity.com/hc/en-us/articles/20961730681243
- for more information.
- [170.10.133.124 listed in sa-trusted.bondedsender.org]
- -0.0 SPF_PASS               SPF: sender matches SPF record
- 0.0 RCVD_IN_MSPIKE_H5      RBL: Excellent reputation (+5)
- [170.10.133.124 listed in wl.mailspike.net]
- 0.0 SPF_HELO_NONE          SPF: HELO does not publish an SPF Record
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at https://www.dnswl.org/, low
+ trust [202.12.124.153 listed in list.dnswl.org]
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from
- author's domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily
- valid
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
- -0.6 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1uATAz-0003pq-J2
-Subject: Re: [ibm-acpi-devel] [PATCH v5] platform/x86: thinkpad-acpi: Add
- support for new hotkey for camera shutter switch
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+X-Headers-End: 1uCk53-000234-61
+Subject: [ibm-acpi-devel] [PATCH 1/2] platform/x86: Move Lenovo files into
+ lenovo subdir
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -170,134 +153,707 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-From: Hans de Goede via ibm-acpi-devel <ibm-acpi-devel@lists.sourceforge.net>
-Reply-To: Hans de Goede <hdegoede@redhat.com>
-Cc: Mark Pearson <mpearson-lenovo@squebb.ca>,
- ibm-acpi-devel@lists.sourceforge.net, njoshi1@lenovo.com,
- platform-driver-x86@vger.kernel.org
+Cc: W_Armin@gmx.de, ibm-acpi-devel@lists.sourceforge.net, ikepanhc@gmail.com,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ hdegoede@redhat.com, ilpo.jarvinen@linux.intel.com,
+ andriy.shevchenko@linux.intel.com
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi,
+Move all Lenovo specific files into their own sub-directory as part
+of clean-up exercise.
+Longer term goal is to break-up thinkpad_acpi to improve maintainability
+and perhaps share more functionality with other non thinkpad Lenovo
+platforms.
 
-On 1-May-25 2:36 PM, Nitin Joshi wrote:
-> New Lenovo Thinkpad models, e.g. the 'X9-14 Gen 1' and 'X9-15 Gen 1'
-> has new shortcut on F9 key i.e to switch camera shutter and it
-> send a new 0x131b hkey event when F9 key is pressed.
-> 
-> This commit adds support for new hkey 0x131b.
-> 
-> Reviewed-by: Mark Pearson <mpearson-lenovo@squebb.ca>
-> Signed-off-by: Nitin Joshi <nitjoshi@gmail.com>
-> ---
-> Changes in v5:
-> * Incorporated review comments for consistency.
+Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+---
+Some questions that I didn't want to put in the commit comment:
 
-Thanks, this version looks good to me:
+ - I didn't know if now was a good time to propose this change. I
+   realise it could cause headaches for anybody with patches being
+   worked on. Please let me know what makes it easiest for maintainers
+   and other developers. If there is a particular branch that would be
+   better to do this against also let me know.
+ - Should I be updating the MAINTAINERS file? I'm still not sure what
+   the protocol there is. I'm very happy to help review anything in the
+   lenovo directory, but I didn't want to make assumptions.
+ - I have tested on multiple platforms but I don't have any ideapads I
+   can use.
 
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+ drivers/platform/x86/Kconfig                  | 229 +---------------
+ drivers/platform/x86/Makefile                 |  13 +-
+ drivers/platform/x86/lenovo/Kconfig           | 246 ++++++++++++++++++
+ drivers/platform/x86/lenovo/Makefile          |  16 ++
+ .../x86/{ => lenovo}/ideapad-laptop.c         |   0
+ .../x86/{ => lenovo}/ideapad-laptop.h         |   0
+ .../x86/{ => lenovo}/lenovo-wmi-camera.c      |   0
+ .../lenovo-wmi-hotkey-utilities.c             |   0
+ .../platform/x86/{ => lenovo}/lenovo-ymc.c    |   0
+ .../lenovo-yoga-tab2-pro-1380-fastcharger.c   |   2 +-
+ .../x86/{ => lenovo}/lenovo-yogabook.c        |   0
+ drivers/platform/x86/{ => lenovo}/think-lmi.c |   2 +-
+ drivers/platform/x86/{ => lenovo}/think-lmi.h |   0
+ .../platform/x86/{ => lenovo}/thinkpad_acpi.c |   2 +-
+ 14 files changed, 270 insertions(+), 240 deletions(-)
+ create mode 100644 drivers/platform/x86/lenovo/Kconfig
+ create mode 100644 drivers/platform/x86/lenovo/Makefile
+ rename drivers/platform/x86/{ => lenovo}/ideapad-laptop.c (100%)
+ rename drivers/platform/x86/{ => lenovo}/ideapad-laptop.h (100%)
+ rename drivers/platform/x86/{ => lenovo}/lenovo-wmi-camera.c (100%)
+ rename drivers/platform/x86/{ => lenovo}/lenovo-wmi-hotkey-utilities.c (100%)
+ rename drivers/platform/x86/{ => lenovo}/lenovo-ymc.c (100%)
+ rename drivers/platform/x86/{ => lenovo}/lenovo-yoga-tab2-pro-1380-fastcharger.c (99%)
+ rename drivers/platform/x86/{ => lenovo}/lenovo-yogabook.c (100%)
+ rename drivers/platform/x86/{ => lenovo}/think-lmi.c (99%)
+ rename drivers/platform/x86/{ => lenovo}/think-lmi.h (100%)
+ rename drivers/platform/x86/{ => lenovo}/thinkpad_acpi.c (99%)
 
-Regards,
-
-Hans
-
-
-
-
-> Changes in v4:
-> * Renamed macro from METHOD_ERR to GCES_NO_SHUTTER_DEVICE.
-> Changes in v3:
-> * Avoid wasteful get_camera_shutter() calls and Minor changes based on review comments to make
->   code more readable.
-> Changes in v2:
-> * Added ASL method to get camera shutter status and send it to userspace.
-> ---
->  drivers/platform/x86/thinkpad_acpi.c | 43 +++++++++++++++++++++++++++-
->  1 file changed, 42 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/thinkpad_acpi.c
-> index 5790095c175e..3c75161667cf 100644
-> --- a/drivers/platform/x86/thinkpad_acpi.c
-> +++ b/drivers/platform/x86/thinkpad_acpi.c
-> @@ -182,6 +182,7 @@ enum tpacpi_hkey_event_t {
->  						   * directly in the sparse-keymap.
->  						   */
->  	TP_HKEY_EV_AMT_TOGGLE		= 0x131a, /* Toggle AMT on/off */
-> +	TP_HKEY_EV_CAMERASHUTTER_TOGGLE = 0x131b, /* Toggle Camera Shutter */
->  	TP_HKEY_EV_DOUBLETAP_TOGGLE	= 0x131c, /* Toggle trackpoint doubletap on/off */
->  	TP_HKEY_EV_PROFILE_TOGGLE	= 0x131f, /* Toggle platform profile in 2024 systems */
->  	TP_HKEY_EV_PROFILE_TOGGLE2	= 0x1401, /* Toggle platform profile in 2025 + systems */
-> @@ -2250,6 +2251,25 @@ static void tpacpi_input_send_tabletsw(void)
->  	}
->  }
->  
-> +#define GCES_NO_SHUTTER_DEVICE BIT(31)
-> +
-> +static int get_camera_shutter(void)
-> +{
-> +	acpi_handle gces_handle;
-> +	int output;
-> +
-> +	if (ACPI_FAILURE(acpi_get_handle(hkey_handle, "GCES", &gces_handle)))
-> +		return -ENODEV;
-> +
-> +	if (!acpi_evalf(gces_handle, &output, NULL, "dd", 0))
-> +		return -EIO;
-> +
-> +	if (output & GCES_NO_SHUTTER_DEVICE)
-> +		return -ENODEV;
-> +
-> +	return output;
-> +}
-> +
->  static bool tpacpi_input_send_key(const u32 hkey, bool *send_acpi_ev)
->  {
->  	bool known_ev;
-> @@ -3303,7 +3323,7 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
->  	const struct key_entry *keymap;
->  	bool radiosw_state  = false;
->  	bool tabletsw_state = false;
-> -	int hkeyv, res, status;
-> +	int hkeyv, res, status, camera_shutter_state;
->  
->  	vdbg_printk(TPACPI_DBG_INIT | TPACPI_DBG_HKEY,
->  			"initializing hotkey subdriver\n");
-> @@ -3467,6 +3487,12 @@ static int __init hotkey_init(struct ibm_init_struct *iibm)
->  	if (res)
->  		return res;
->  
-> +	camera_shutter_state = get_camera_shutter();
-> +	if (camera_shutter_state >= 0) {
-> +		input_set_capability(tpacpi_inputdev, EV_SW, SW_CAMERA_LENS_COVER);
-> +		input_report_switch(tpacpi_inputdev, SW_CAMERA_LENS_COVER, camera_shutter_state);
-> +	}
-> +
->  	if (tp_features.hotkey_wlsw) {
->  		input_set_capability(tpacpi_inputdev, EV_SW, SW_RFKILL_ALL);
->  		input_report_switch(tpacpi_inputdev,
-> @@ -11236,6 +11262,21 @@ static bool tpacpi_driver_event(const unsigned int hkey_event)
->  		else
->  			dytc_control_amt(!dytc_amt_active);
->  
-> +		return true;
-> +	case TP_HKEY_EV_CAMERASHUTTER_TOGGLE:
-> +		int camera_shutter_state;
-> +
-> +		camera_shutter_state = get_camera_shutter();
-> +		if (camera_shutter_state < 0) {
-> +			pr_err("Error retrieving camera shutter state after shutter event\n");
-> +			return true;
-> +		}
-> +		mutex_lock(&tpacpi_inputdev_send_mutex);
-> +
-> +		input_report_switch(tpacpi_inputdev, SW_CAMERA_LENS_COVER, camera_shutter_state);
-> +		input_sync(tpacpi_inputdev);
-> +
-> +		mutex_unlock(&tpacpi_inputdev_send_mutex);
->  		return true;
->  	case TP_HKEY_EV_DOUBLETAP_TOGGLE:
->  		tp_features.trackpoint_doubletap = !tp_features.trackpoint_doubletap;
+diff --git a/drivers/platform/x86/Kconfig b/drivers/platform/x86/Kconfig
+index 43407e76476b..20b61b658e88 100644
+--- a/drivers/platform/x86/Kconfig
++++ b/drivers/platform/x86/Kconfig
+@@ -120,32 +120,6 @@ config GIGABYTE_WMI
+ 	  To compile this driver as a module, choose M here: the module will
+ 	  be called gigabyte-wmi.
+ 
+-config YOGABOOK
+-	tristate "Lenovo Yoga Book tablet key driver"
+-	depends on ACPI_WMI
+-	depends on INPUT
+-	depends on I2C
+-	select LEDS_CLASS
+-	select NEW_LEDS
+-	help
+-	  Say Y here if you want to support the 'Pen' key and keyboard backlight
+-	  control on the Lenovo Yoga Book tablets.
+-
+-	  To compile this driver as a module, choose M here: the module will
+-	  be called lenovo-yogabook.
+-
+-config YT2_1380
+-	tristate "Lenovo Yoga Tablet 2 1380 fast charge driver"
+-	depends on SERIAL_DEV_BUS
+-	depends on EXTCON
+-	depends on ACPI
+-	help
+-	  Say Y here to enable support for the custom fast charging protocol
+-	  found on the Lenovo Yoga Tablet 2 1380F / 1380L models.
+-
+-	  To compile this driver as a module, choose M here: the module will
+-	  be called lenovo-yogabook.
+-
+ config ACERHDF
+ 	tristate "Acer Aspire One temperature and fan driver"
+ 	depends on ACPI_EC && THERMAL
+@@ -459,43 +433,6 @@ config IBM_RTL
+ 	 state = 0 (BIOS SMIs on)
+ 	 state = 1 (BIOS SMIs off)
+ 
+-config IDEAPAD_LAPTOP
+-	tristate "Lenovo IdeaPad Laptop Extras"
+-	depends on ACPI
+-	depends on RFKILL && INPUT
+-	depends on SERIO_I8042
+-	depends on BACKLIGHT_CLASS_DEVICE
+-	depends on ACPI_VIDEO || ACPI_VIDEO = n
+-	depends on ACPI_WMI || ACPI_WMI = n
+-	select ACPI_PLATFORM_PROFILE
+-	select INPUT_SPARSEKMAP
+-	select NEW_LEDS
+-	select LEDS_CLASS
+-	help
+-	  This is a driver for Lenovo IdeaPad netbooks contains drivers for
+-	  rfkill switch, hotkey, fan control and backlight control.
+-
+-config LENOVO_WMI_HOTKEY_UTILITIES
+-	tristate "Lenovo Hotkey Utility WMI extras driver"
+-	depends on ACPI_WMI
+-	select NEW_LEDS
+-	select LEDS_CLASS
+-	imply IDEAPAD_LAPTOP
+-	help
+-	  This driver provides WMI support for Lenovo customized hotkeys function,
+-	  such as LED control for audio/mic mute event for Ideapad, YOGA, XiaoXin,
+-	  Gaming, ThinkBook and so on.
+-
+-config LENOVO_YMC
+-	tristate "Lenovo Yoga Tablet Mode Control"
+-	depends on ACPI_WMI
+-	depends on INPUT
+-	depends on IDEAPAD_LAPTOP
+-	select INPUT_SPARSEKMAP
+-	help
+-	  This driver maps the Tablet Mode Control switch to SW_TABLET_MODE input
+-	  events for Lenovo Yoga notebooks.
+-
+ config SENSORS_HDAPS
+ 	tristate "Thinkpad Hard Drive Active Protection System (hdaps)"
+ 	depends on INPUT
+@@ -514,160 +451,8 @@ config SENSORS_HDAPS
+ 	  Say Y here if you have an applicable laptop and want to experience
+ 	  the awesome power of hdaps.
+ 
+-config THINKPAD_ACPI
+-	tristate "ThinkPad ACPI Laptop Extras"
+-	depends on ACPI_EC
+-	depends on ACPI_BATTERY
+-	depends on INPUT
+-	depends on RFKILL || RFKILL = n
+-	depends on ACPI_VIDEO || ACPI_VIDEO = n
+-	depends on BACKLIGHT_CLASS_DEVICE
+-	depends on I2C
+-	depends on DRM
+-	select ACPI_PLATFORM_PROFILE
+-	select DRM_PRIVACY_SCREEN
+-	select HWMON
+-	select NVRAM
+-	select NEW_LEDS
+-	select LEDS_CLASS
+-	select INPUT_SPARSEKMAP
+-	help
+-	  This is a driver for the IBM and Lenovo ThinkPad laptops. It adds
+-	  support for Fn-Fx key combinations, Bluetooth control, video
+-	  output switching, ThinkLight control, UltraBay eject and more.
+-	  For more information about this driver see
+-	  <file:Documentation/admin-guide/laptops/thinkpad-acpi.rst> and
+-	  <http://ibm-acpi.sf.net/> .
+-
+-	  This driver was formerly known as ibm-acpi.
+-
+-	  Extra functionality will be available if the rfkill (CONFIG_RFKILL)
+-	  and/or ALSA (CONFIG_SND) subsystems are available in the kernel.
+-	  Note that if you want ThinkPad-ACPI to be built-in instead of
+-	  modular, ALSA and rfkill will also have to be built-in.
+-
+-	  If you have an IBM or Lenovo ThinkPad laptop, say Y or M here.
+-
+-config THINKPAD_ACPI_ALSA_SUPPORT
+-	bool "Console audio control ALSA interface"
+-	depends on THINKPAD_ACPI
+-	depends on SND
+-	depends on SND = y || THINKPAD_ACPI = SND
+-	default y
+-	help
+-	  Enables monitoring of the built-in console audio output control
+-	  (headphone and speakers), which is operated by the mute and (in
+-	  some ThinkPad models) volume hotkeys.
+-
+-	  If this option is enabled, ThinkPad-ACPI will export an ALSA card
+-	  with a single read-only mixer control, which should be used for
+-	  on-screen-display feedback purposes by the Desktop Environment.
+-
+-	  Optionally, the driver will also allow software control (the
+-	  ALSA mixer will be made read-write).  Please refer to the driver
+-	  documentation for details.
+-
+-	  All IBM models have both volume and mute control.  Newer Lenovo
+-	  models only have mute control (the volume hotkeys are just normal
+-	  keys and volume control is done through the main HDA mixer).
+-
+-config THINKPAD_ACPI_DEBUGFACILITIES
+-	bool "Maintainer debug facilities"
+-	depends on THINKPAD_ACPI
+-	help
+-	  Enables extra stuff in the thinkpad-acpi which is completely useless
+-	  for normal use.  Read the driver source to find out what it does.
+-
+-	  Say N here, unless you were told by a kernel maintainer to do
+-	  otherwise.
+-
+-config THINKPAD_ACPI_DEBUG
+-	bool "Verbose debug mode"
+-	depends on THINKPAD_ACPI
+-	help
+-	  Enables extra debugging information, at the expense of a slightly
+-	  increase in driver size.
+-
+-	  If you are not sure, say N here.
+-
+-config THINKPAD_ACPI_UNSAFE_LEDS
+-	bool "Allow control of important LEDs (unsafe)"
+-	depends on THINKPAD_ACPI
+-	help
+-	  Overriding LED state on ThinkPads can mask important
+-	  firmware alerts (like critical battery condition), or misled
+-	  the user into damaging the hardware (undocking or ejecting
+-	  the bay while buses are still active), etc.
+-
+-	  LED control on the ThinkPad is write-only (with very few
+-	  exceptions on very ancient models), which makes it
+-	  impossible to know beforehand if important information will
+-	  be lost when one changes LED state.
+-
+-	  Users that know what they are doing can enable this option
+-	  and the driver will allow control of every LED, including
+-	  the ones on the dock stations.
+-
+-	  Never enable this option on a distribution kernel.
+-
+-	  Say N here, unless you are building a kernel for your own
+-	  use, and need to control the important firmware LEDs.
+-
+-config THINKPAD_ACPI_VIDEO
+-	bool "Video output control support"
+-	depends on THINKPAD_ACPI
+-	default y
+-	help
+-	  Allows the thinkpad_acpi driver to provide an interface to control
+-	  the various video output ports.
+-
+-	  This feature often won't work well, depending on ThinkPad model,
+-	  display state, video output devices in use, whether there is a X
+-	  server running, phase of the moon, and the current mood of
+-	  Schroedinger's cat.  If you can use X.org's RandR to control
+-	  your ThinkPad's video output ports instead of this feature,
+-	  don't think twice: do it and say N here to save memory and avoid
+-	  bad interactions with X.org.
+-
+-	  NOTE: access to this feature is limited to processes with the
+-	  CAP_SYS_ADMIN capability, to avoid local DoS issues in platforms
+-	  where it interacts badly with X.org.
+-
+-	  If you are not sure, say Y here but do try to check if you could
+-	  be using X.org RandR instead.
+-
+-config THINKPAD_ACPI_HOTKEY_POLL
+-	bool "Support NVRAM polling for hot keys"
+-	depends on THINKPAD_ACPI
+-	default y
+-	help
+-	  Some thinkpad models benefit from NVRAM polling to detect a few of
+-	  the hot key press events.  If you know your ThinkPad model does not
+-	  need to do NVRAM polling to support any of the hot keys you use,
+-	  unselecting this option will save about 1kB of memory.
+-
+-	  ThinkPads T40 and newer, R52 and newer, and X31 and newer are
+-	  unlikely to need NVRAM polling in their latest BIOS versions.
+-
+-	  NVRAM polling can detect at most the following keys: ThinkPad/Access
+-	  IBM, Zoom, Switch Display (fn+F7), ThinkLight, Volume up/down/mute,
+-	  Brightness up/down, Display Expand (fn+F8), Hibernate (fn+F12).
+-
+-	  If you are not sure, say Y here.  The driver enables polling only if
+-	  it is strictly necessary to do so.
+-
+-config THINKPAD_LMI
+-	tristate "Lenovo WMI-based systems management driver"
+-	depends on ACPI_WMI
+-	select FW_ATTR_CLASS
+-	help
+-	  This driver allows changing BIOS settings on Lenovo machines whose
+-	  BIOS support the WMI interface.
+-
+-	  To compile this driver as a module, choose M here: the module will
+-	  be called think-lmi.
+-
+ source "drivers/platform/x86/intel/Kconfig"
++source "drivers/platform/x86/lenovo/Kconfig"
+ 
+ config ACPI_QUICKSTART
+ 	tristate "ACPI Quickstart button driver"
+@@ -1063,18 +848,6 @@ config INSPUR_PLATFORM_PROFILE
+ 	To compile this driver as a module, choose M here: the module
+ 	will be called inspur-platform-profile.
+ 
+-config LENOVO_WMI_CAMERA
+-	tristate "Lenovo WMI Camera Button driver"
+-	depends on ACPI_WMI
+-	depends on INPUT
+-	help
+-	  This driver provides support for Lenovo camera button. The Camera
+-	  button is a GPIO device. This driver receives ACPI notifications when
+-	  the camera button is switched on/off.
+-
+-	  To compile this driver as a module, choose M here: the module
+-	  will be called lenovo-wmi-camera.
+-
+ source "drivers/platform/x86/x86-android-tablets/Kconfig"
+ 
+ config FW_ATTR_CLASS
+diff --git a/drivers/platform/x86/Makefile b/drivers/platform/x86/Makefile
+index 650dfbebb6c8..dae9dbb2ac94 100644
+--- a/drivers/platform/x86/Makefile
++++ b/drivers/platform/x86/Makefile
+@@ -58,21 +58,16 @@ obj-$(CONFIG_X86_PLATFORM_DRIVERS_HP)	+= hp/
+ # Hewlett Packard Enterprise
+ obj-$(CONFIG_UV_SYSFS)       += uv_sysfs.o
+ 
+-# IBM Thinkpad and Lenovo
++# IBM Thinkpad
+ obj-$(CONFIG_IBM_RTL)		+= ibm_rtl.o
+-obj-$(CONFIG_IDEAPAD_LAPTOP)	+= ideapad-laptop.o
+-obj-$(CONFIG_LENOVO_WMI_HOTKEY_UTILITIES)	+= lenovo-wmi-hotkey-utilities.o
+-obj-$(CONFIG_LENOVO_YMC)	+= lenovo-ymc.o
+ obj-$(CONFIG_SENSORS_HDAPS)	+= hdaps.o
+-obj-$(CONFIG_THINKPAD_ACPI)	+= thinkpad_acpi.o
+-obj-$(CONFIG_THINKPAD_LMI)	+= think-lmi.o
+-obj-$(CONFIG_YOGABOOK)		+= lenovo-yogabook.o
+-obj-$(CONFIG_YT2_1380)		+= lenovo-yoga-tab2-pro-1380-fastcharger.o
+-obj-$(CONFIG_LENOVO_WMI_CAMERA)	+= lenovo-wmi-camera.o
+ 
+ # Intel
+ obj-y				+= intel/
+ 
++# Lenovo
++obj-y				+= lenovo/
++
+ # Microsoft
+ obj-$(CONFIG_ACPI_QUICKSTART)  += quickstart.o
+ 
+diff --git a/drivers/platform/x86/lenovo/Kconfig b/drivers/platform/x86/lenovo/Kconfig
+new file mode 100644
+index 000000000000..1c6e609cef6d
+--- /dev/null
++++ b/drivers/platform/x86/lenovo/Kconfig
+@@ -0,0 +1,246 @@
++# SPDX-License-Identifier: GPL-2.0-only
++#
++# Lenovo X86 Platform Specific Drivers
++#
++
++menuconfig X86_PLATFORM_DRIVERS_LENOVO
++	bool "Lenovo X86 Platform Specific Device Drivers"
++	help
++	  Say Y here to get to see options for device drivers for various
++	  Lenovo x86 platforms, including vendor-specific laptop extension drivers.
++	  This option alone does not add any kernel code.
++
++	  If you say N, all options in this submenu will be skipped and disabled.
++
++if X86_PLATFORM_DRIVERS_LENOVO
++
++config YOGABOOK
++	tristate "Lenovo Yoga Book tablet key driver"
++	depends on ACPI_WMI
++	depends on INPUT
++	depends on I2C
++	select LEDS_CLASS
++	select NEW_LEDS
++	help
++	  Say Y here if you want to support the 'Pen' key and keyboard backlight
++	  control on the Lenovo Yoga Book tablets.
++
++	  To compile this driver as a module, choose M here: the module will
++	  be called lenovo-yogabook.
++
++config YT2_1380
++	tristate "Lenovo Yoga Tablet 2 1380 fast charge driver"
++	depends on SERIAL_DEV_BUS
++	depends on EXTCON
++	depends on ACPI
++	help
++	  Say Y here to enable support for the custom fast charging protocol
++	  found on the Lenovo Yoga Tablet 2 1380F / 1380L models.
++
++	  To compile this driver as a module, choose M here: the module will
++	  be called lenovo-yogabook.
++
++config IDEAPAD_LAPTOP
++	tristate "Lenovo IdeaPad Laptop Extras"
++	depends on ACPI
++	depends on RFKILL && INPUT
++	depends on SERIO_I8042
++	depends on BACKLIGHT_CLASS_DEVICE
++	depends on ACPI_VIDEO || ACPI_VIDEO = n
++	depends on ACPI_WMI || ACPI_WMI = n
++	select ACPI_PLATFORM_PROFILE
++	select INPUT_SPARSEKMAP
++	select NEW_LEDS
++	select LEDS_CLASS
++	help
++	  This is a driver for Lenovo IdeaPad netbooks contains drivers for
++	  rfkill switch, hotkey, fan control and backlight control.
++
++config LENOVO_WMI_HOTKEY_UTILITIES
++	tristate "Lenovo Hotkey Utility WMI extras driver"
++	depends on ACPI_WMI
++	select NEW_LEDS
++	select LEDS_CLASS
++	imply IDEAPAD_LAPTOP
++	help
++	  This driver provides WMI support for Lenovo customized hotkeys function,
++	  such as LED control for audio/mic mute event for Ideapad, YOGA, XiaoXin,
++	  Gaming, ThinkBook and so on.
++
++config LENOVO_YMC
++	tristate "Lenovo Yoga Tablet Mode Control"
++	depends on ACPI_WMI
++	depends on INPUT
++	depends on IDEAPAD_LAPTOP
++	select INPUT_SPARSEKMAP
++	help
++	  This driver maps the Tablet Mode Control switch to SW_TABLET_MODE input
++	  events for Lenovo Yoga notebooks.
++
++config THINKPAD_ACPI
++	tristate "ThinkPad ACPI Laptop Extras"
++	depends on ACPI_EC
++	depends on ACPI_BATTERY
++	depends on INPUT
++	depends on RFKILL || RFKILL = n
++	depends on ACPI_VIDEO || ACPI_VIDEO = n
++	depends on BACKLIGHT_CLASS_DEVICE
++	depends on I2C
++	depends on DRM
++	select ACPI_PLATFORM_PROFILE
++	select DRM_PRIVACY_SCREEN
++	select HWMON
++	select NVRAM
++	select NEW_LEDS
++	select LEDS_CLASS
++	select INPUT_SPARSEKMAP
++	help
++	  This is a driver for the IBM and Lenovo ThinkPad laptops. It adds
++	  support for Fn-Fx key combinations, Bluetooth control, video
++	  output switching, ThinkLight control, UltraBay eject and more.
++	  For more information about this driver see
++	  <file:Documentation/admin-guide/laptops/thinkpad-acpi.rst> and
++	  <http://ibm-acpi.sf.net/> .
++
++	  This driver was formerly known as ibm-acpi.
++
++	  Extra functionality will be available if the rfkill (CONFIG_RFKILL)
++	  and/or ALSA (CONFIG_SND) subsystems are available in the kernel.
++	  Note that if you want ThinkPad-ACPI to be built-in instead of
++	  modular, ALSA and rfkill will also have to be built-in.
++
++	  If you have an IBM or Lenovo ThinkPad laptop, say Y or M here.
++
++config THINKPAD_ACPI_ALSA_SUPPORT
++	bool "Console audio control ALSA interface"
++	depends on THINKPAD_ACPI
++	depends on SND
++	depends on SND = y || THINKPAD_ACPI = SND
++	default y
++	help
++	  Enables monitoring of the built-in console audio output control
++	  (headphone and speakers), which is operated by the mute and (in
++	  some ThinkPad models) volume hotkeys.
++
++	  If this option is enabled, ThinkPad-ACPI will export an ALSA card
++	  with a single read-only mixer control, which should be used for
++	  on-screen-display feedback purposes by the Desktop Environment.
++
++	  Optionally, the driver will also allow software control (the
++	  ALSA mixer will be made read-write).  Please refer to the driver
++	  documentation for details.
++
++	  All IBM models have both volume and mute control.  Newer Lenovo
++	  models only have mute control (the volume hotkeys are just normal
++	  keys and volume control is done through the main HDA mixer).
++
++config THINKPAD_ACPI_DEBUGFACILITIES
++	bool "Maintainer debug facilities"
++	depends on THINKPAD_ACPI
++	help
++	  Enables extra stuff in the thinkpad-acpi which is completely useless
++	  for normal use.  Read the driver source to find out what it does.
++
++	  Say N here, unless you were told by a kernel maintainer to do
++	  otherwise.
++
++config THINKPAD_ACPI_DEBUG
++	bool "Verbose debug mode"
++	depends on THINKPAD_ACPI
++	help
++	  Enables extra debugging information, at the expense of a slightly
++	  increase in driver size.
++
++	  If you are not sure, say N here.
++
++config THINKPAD_ACPI_UNSAFE_LEDS
++	bool "Allow control of important LEDs (unsafe)"
++	depends on THINKPAD_ACPI
++	help
++	  Overriding LED state on ThinkPads can mask important
++	  firmware alerts (like critical battery condition), or misled
++	  the user into damaging the hardware (undocking or ejecting
++	  the bay while buses are still active), etc.
++
++	  LED control on the ThinkPad is write-only (with very few
++	  exceptions on very ancient models), which makes it
++	  impossible to know beforehand if important information will
++	  be lost when one changes LED state.
++
++	  Users that know what they are doing can enable this option
++	  and the driver will allow control of every LED, including
++	  the ones on the dock stations.
++
++	  Never enable this option on a distribution kernel.
++
++	  Say N here, unless you are building a kernel for your own
++	  use, and need to control the important firmware LEDs.
++
++config THINKPAD_ACPI_VIDEO
++	bool "Video output control support"
++	depends on THINKPAD_ACPI
++	default y
++	help
++	  Allows the thinkpad_acpi driver to provide an interface to control
++	  the various video output ports.
++
++	  This feature often won't work well, depending on ThinkPad model,
++	  display state, video output devices in use, whether there is a X
++	  server running, phase of the moon, and the current mood of
++	  Schroedinger's cat.  If you can use X.org's RandR to control
++	  your ThinkPad's video output ports instead of this feature,
++	  don't think twice: do it and say N here to save memory and avoid
++	  bad interactions with X.org.
++
++	  NOTE: access to this feature is limited to processes with the
++	  CAP_SYS_ADMIN capability, to avoid local DoS issues in platforms
++	  where it interacts badly with X.org.
++
++	  If you are not sure, say Y here but do try to check if you could
++	  be using X.org RandR instead.
++
++config THINKPAD_ACPI_HOTKEY_POLL
++	bool "Support NVRAM polling for hot keys"
++	depends on THINKPAD_ACPI
++	default y
++	help
++	  Some thinkpad models benefit from NVRAM polling to detect a few of
++	  the hot key press events.  If you know your ThinkPad model does not
++	  need to do NVRAM polling to support any of the hot keys you use,
++	  unselecting this option will save about 1kB of memory.
++
++	  ThinkPads T40 and newer, R52 and newer, and X31 and newer are
++	  unlikely to need NVRAM polling in their latest BIOS versions.
++
++	  NVRAM polling can detect at most the following keys: ThinkPad/Access
++	  IBM, Zoom, Switch Display (fn+F7), ThinkLight, Volume up/down/mute,
++	  Brightness up/down, Display Expand (fn+F8), Hibernate (fn+F12).
++
++	  If you are not sure, say Y here.  The driver enables polling only if
++	  it is strictly necessary to do so.
++
++config THINKPAD_LMI
++	tristate "Lenovo WMI-based systems management driver"
++	depends on ACPI_WMI
++	select FW_ATTR_CLASS
++	help
++	  This driver allows changing BIOS settings on Lenovo machines whose
++	  BIOS support the WMI interface.
++
++	  To compile this driver as a module, choose M here: the module will
++	  be called think-lmi.
++
++config LENOVO_WMI_CAMERA
++	tristate "Lenovo WMI Camera Button driver"
++	depends on ACPI_WMI
++	depends on INPUT
++	help
++	  This driver provides support for Lenovo camera button. The Camera
++	  button is a GPIO device. This driver receives ACPI notifications when
++	  the camera button is switched on/off.
++
++	  To compile this driver as a module, choose M here: the module
++	  will be called lenovo-wmi-camera.
++
++endif # X86_PLATFORM_DRIVERS_LENOVO
++
+diff --git a/drivers/platform/x86/lenovo/Makefile b/drivers/platform/x86/lenovo/Makefile
+new file mode 100644
+index 000000000000..f3290d9c6fd6
+--- /dev/null
++++ b/drivers/platform/x86/lenovo/Makefile
+@@ -0,0 +1,16 @@
++# SPDX-License-Identifier: GPL-2.0
++#
++# Makefile for linux/drivers/platform/x86/lenovo
++# Lenovo x86 Platform-Specific Drivers
++#
++obj-$(CONFIG_IDEAPAD_LAPTOP)	+= ideapad-laptop.o
++obj-$(CONFIG_LENOVO_WMI_HOTKEY_UTILITIES)	+= lenovo-wmi-hotkey-utilities.o
++obj-$(CONFIG_LENOVO_YMC)	+= lenovo-ymc.o
++obj-$(CONFIG_THINKPAD_ACPI)	+= thinkpad_acpi.o
++obj-$(CONFIG_THINKPAD_LMI)	+= think-lmi.o
++obj-$(CONFIG_YOGABOOK)		+= lenovo-yogabook.o
++obj-$(CONFIG_YT2_1380)		+= lenovo-yoga-tab2-pro-1380-fastcharger.o
++obj-$(CONFIG_LENOVO_WMI_CAMERA)	+= lenovo-wmi-camera.o
++
++
++
+diff --git a/drivers/platform/x86/ideapad-laptop.c b/drivers/platform/x86/lenovo/ideapad-laptop.c
+similarity index 100%
+rename from drivers/platform/x86/ideapad-laptop.c
+rename to drivers/platform/x86/lenovo/ideapad-laptop.c
+diff --git a/drivers/platform/x86/ideapad-laptop.h b/drivers/platform/x86/lenovo/ideapad-laptop.h
+similarity index 100%
+rename from drivers/platform/x86/ideapad-laptop.h
+rename to drivers/platform/x86/lenovo/ideapad-laptop.h
+diff --git a/drivers/platform/x86/lenovo-wmi-camera.c b/drivers/platform/x86/lenovo/lenovo-wmi-camera.c
+similarity index 100%
+rename from drivers/platform/x86/lenovo-wmi-camera.c
+rename to drivers/platform/x86/lenovo/lenovo-wmi-camera.c
+diff --git a/drivers/platform/x86/lenovo-wmi-hotkey-utilities.c b/drivers/platform/x86/lenovo/lenovo-wmi-hotkey-utilities.c
+similarity index 100%
+rename from drivers/platform/x86/lenovo-wmi-hotkey-utilities.c
+rename to drivers/platform/x86/lenovo/lenovo-wmi-hotkey-utilities.c
+diff --git a/drivers/platform/x86/lenovo-ymc.c b/drivers/platform/x86/lenovo/lenovo-ymc.c
+similarity index 100%
+rename from drivers/platform/x86/lenovo-ymc.c
+rename to drivers/platform/x86/lenovo/lenovo-ymc.c
+diff --git a/drivers/platform/x86/lenovo-yoga-tab2-pro-1380-fastcharger.c b/drivers/platform/x86/lenovo/lenovo-yoga-tab2-pro-1380-fastcharger.c
+similarity index 99%
+rename from drivers/platform/x86/lenovo-yoga-tab2-pro-1380-fastcharger.c
+rename to drivers/platform/x86/lenovo/lenovo-yoga-tab2-pro-1380-fastcharger.c
+index 25933cd018d1..b3fd6a35052a 100644
+--- a/drivers/platform/x86/lenovo-yoga-tab2-pro-1380-fastcharger.c
++++ b/drivers/platform/x86/lenovo/lenovo-yoga-tab2-pro-1380-fastcharger.c
+@@ -21,7 +21,7 @@
+ #include <linux/time.h>
+ #include <linux/types.h>
+ #include <linux/workqueue.h>
+-#include "serdev_helpers.h"
++#include "../serdev_helpers.h"
+ 
+ #define YT2_1380_FC_PDEV_NAME		"lenovo-yoga-tab2-pro-1380-fastcharger"
+ #define YT2_1380_FC_SERDEV_CTRL		"serial0"
+diff --git a/drivers/platform/x86/lenovo-yogabook.c b/drivers/platform/x86/lenovo/lenovo-yogabook.c
+similarity index 100%
+rename from drivers/platform/x86/lenovo-yogabook.c
+rename to drivers/platform/x86/lenovo/lenovo-yogabook.c
+diff --git a/drivers/platform/x86/think-lmi.c b/drivers/platform/x86/lenovo/think-lmi.c
+similarity index 99%
+rename from drivers/platform/x86/think-lmi.c
+rename to drivers/platform/x86/lenovo/think-lmi.c
+index 0fc275e461be..5d629a85a55a 100644
+--- a/drivers/platform/x86/think-lmi.c
++++ b/drivers/platform/x86/lenovo/think-lmi.c
+@@ -20,7 +20,7 @@
+ #include <linux/types.h>
+ #include <linux/dmi.h>
+ #include <linux/wmi.h>
+-#include "firmware_attributes_class.h"
++#include "../firmware_attributes_class.h"
+ #include "think-lmi.h"
+ 
+ static bool debug_support;
+diff --git a/drivers/platform/x86/think-lmi.h b/drivers/platform/x86/lenovo/think-lmi.h
+similarity index 100%
+rename from drivers/platform/x86/think-lmi.h
+rename to drivers/platform/x86/lenovo/think-lmi.h
+diff --git a/drivers/platform/x86/thinkpad_acpi.c b/drivers/platform/x86/lenovo/thinkpad_acpi.c
+similarity index 99%
+rename from drivers/platform/x86/thinkpad_acpi.c
+rename to drivers/platform/x86/lenovo/thinkpad_acpi.c
+index 5790095c175e..7dd4abf47f61 100644
+--- a/drivers/platform/x86/thinkpad_acpi.c
++++ b/drivers/platform/x86/lenovo/thinkpad_acpi.c
+@@ -81,7 +81,7 @@
+ #include <sound/core.h>
+ #include <sound/initval.h>
+ 
+-#include "dual_accel_detect.h"
++#include "../dual_accel_detect.h"
+ 
+ /* ThinkPad CMOS commands */
+ #define TP_CMOS_VOLUME_DOWN	0
+-- 
+2.43.0
 
 
 
