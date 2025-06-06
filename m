@@ -2,144 +2,110 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84AA6AD0785
-	for <lists+ibm-acpi-devel@lfdr.de>; Fri,  6 Jun 2025 19:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E20AD085D
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri,  6 Jun 2025 20:58:08 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Subject:References:In-Reply-To:Message-Id:To:From:Date:MIME-Version:Sender:
+	Subject:In-Reply-To:MIME-Version:References:Message-ID:To:From:Date:Sender:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=GM7orcw2scBwMuWDJV1nzd/rLt+Q//FQxHdrIcGaa94=; b=mAsUaMi/QKPY0Q3vZIN2RUTlS4
-	eh2cIqA9YcHfcgxkxTSZXwNr7hl3fNCE2kE90gAi/jxncco4JJC1g1J0AQxYhFpUTr6eVwIz3QTUk
-	6xUhEkYPhfAPQJ+xfgSrdsfeaYzKoja3Rl6RSmQQz0Nsy3PgOT1DDT/WIyRgUKfyo+k8=;
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	bh=gGhMqv/yxK301vDByanOYf6ZNKO8KWHj2qMYAiqByfw=; b=de/NSFDykMGW2Y9gN3OsVEVoNk
+	qBwwkr0CxyuA8MDCyaiConS7N2x9chatAIP1dd+QsFi43+gciA+HeQuxeTy8cy09tXvTp8ZW06+SY
+	z88IHiRyKynqqmPWw5y0UbQ97lJWonKKfsEPX67sJ/rYIg/tUzmTuGCXO+4vrDktHTeE=;
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uNauC-0008I1-0L;
-	Fri, 06 Jun 2025 17:31:00 +0000
+	id 1uNcFw-000778-SK;
+	Fri, 06 Jun 2025 18:57:32 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1uNauA-0008Hu-4A
- for ibm-acpi-devel@lists.sourceforge.net;
- Fri, 06 Jun 2025 17:30:58 +0000
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1uNcFv-00076z-1E for ibm-acpi-devel@lists.sourceforge.net;
+ Fri, 06 Jun 2025 18:57:31 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
- References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=CxdpNWHLhJQTJYp3lPIgeA/cQMR7pKQl5v7aS7fdBik=; b=IGEpFro/XHEevK+FdEJIrLpdcZ
- ms71QuuTwo8EQ2AL7Mesn0V1kB4jekiNaiT+QTwR3Xl99kLzSzAYgfeRj8/hmUOR/HDjBjMc1YBsi
- NiZ8VVBLpmdDzSVO1f0pcFfAcEvzAJCeZjvdH8w5yHbmft7tv7Jc26TaGmVQajrEksYc=;
+ bh=ZuckE09v7XdD9rWQAzoNWD3ZIaE1Fmj0GlKFXV1WBUE=; b=e/+IZ7q93kcoafO+jU0uT5mQwa
+ FlHZelUJtqD+z0OHcd4GfSb7CLl1pRLYw/4kFO6Ft0t3E+jtXQwQ31bpas4eDgpjeztXQn8VHrf5y
+ FXUmRxApmfrukvpjQnmIWbeaVkrd13JUP2Fh45///szjWRKRD6r1bftSSNQqTG488fDA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
- Message-Id:Cc:To:From:Date:MIME-Version:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=CxdpNWHLhJQTJYp3lPIgeA/cQMR7pKQl5v7aS7fdBik=; b=FTbzAPZZdtyoIJ+HyX6ScEEFdO
- qg6sC8Ghr0g26k2wCzyTX3J1id2M+PYUb1tqFKCaMUcbvccDBKyZzvP6kTqBIpyGgAFks0ZkGYsNO
- KPbqvj7xhJvdlCxKm7/kFbMWunetuCxbKJnjFrL7pEC+by6RYFgDAIaZe7vHwlsq53a0=;
-Received: from fhigh-a6-smtp.messagingengine.com ([103.168.172.157])
+ bh=ZuckE09v7XdD9rWQAzoNWD3ZIaE1Fmj0GlKFXV1WBUE=; b=SDi3g0/W5B5uGa/RSewgvpraGS
+ IVjFN1Iv4jnqm5wd1C3N0qWNqk8nqVUJxAyaz11j43XHo2OXZWULGCOY6KxrRZ3LAZ+ltqfZ8ss8d
+ mtn7ubSY/1y1W7DUDjs0PV0E1cuXIdwaASVU7SNHtB1t7z6aw69SAugwqjfeWqTZt1Fo=;
+Received: from mgamail.intel.com ([192.198.163.9])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1uNau9-0007BM-5s for ibm-acpi-devel@lists.sourceforge.net;
- Fri, 06 Jun 2025 17:30:58 +0000
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal
- [10.202.2.52])
- by mailfhigh.phl.internal (Postfix) with ESMTP id 86B3511400BA;
- Fri,  6 Jun 2025 13:30:46 -0400 (EDT)
-Received: from phl-imap-08 ([10.202.2.84])
- by phl-compute-12.internal (MEProxy); Fri, 06 Jun 2025 13:30:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1749231046;
- x=1749317446; bh=CxdpNWHLhJQTJYp3lPIgeA/cQMR7pKQl5v7aS7fdBik=; b=
- JZC64LVXZ8/jaa6a5GyMkx5tXFpXykYPZbyEDB2G8WSn5TRpUN8CqdeKFacu/2Hq
- B1rB1onnam2g+j1oAk6fK/Nz3+eVT9ygbQzug6WCFpSCZ8bdAtvPPNcAUci3aAvj
- CAk8e5Ec0VOT57N18yAyGgTEnzXWLP8K4ovfwC63bv/OhnbBNQ4E3WXhpXgN+ZxN
- w858qIh/3Uw89LRePceyVF9qLuJzhEULSxkoFxL/9ITCc8YmxnkBI/QroeURJemP
- 6leUtimspsw7BMLxBVuWitf73lW3jg14nxmCUEzhSL0VuOoz/9JiVEBdnXbrSvOr
- oA6CLu+NM/iJLI1Y0QfreA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1749231046; x=
- 1749317446; bh=CxdpNWHLhJQTJYp3lPIgeA/cQMR7pKQl5v7aS7fdBik=; b=f
- G9GmERvIJyoHD3bS/Uf3Ighsn46oYATf4LNqZhUD8BsyaMvAdP+pGUcKiy56D6W/
- xeeThvFtqqDzP96fa92rgYPqd4CieOT2JRzF3VKJLCbWbXgfHbCkY9MAfei17tsM
- V4k4aRXGYacvnZY4KyIWoacy57wh0+VQ7XWHarftb5ZxrQuHKC4M7PVSrrp10r8S
- G2yYGxJhmXp9m889FRoVi7hFF9qYyGzeNlUE9fcBsPKdObhNrRVR6Isxyqqznqi1
- a+sZHgBTp1+uPWljxKiStrXtIf2Uu2ddYwkjWKv+koSJ0cGCRfXBtXw3a5HlL6SX
- BACCuTtkD6Q/DiY45MSCw==
-X-ME-Sender: <xms:xSVDaCrH-gIoSAXnolxC-NwFfBIRedIY8bEfcO-IxX5zQ03kgI87RA>
- <xme:xSVDaAqlZOK-74z8v4c7OdU9BCr0ZiWm95i-f1tQMD1OAt_hIMwlBSLOa04FAB9en
- VyzSstjicarWJpYT5Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdehfeelucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
- rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
- htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
- necuhfhrohhmpedfofgrrhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnh
- hovhhosehsqhhuvggssgdrtggrqeenucggtffrrghtthgvrhhnpeehveetgfdvuedthfef
- hfevjefgtefhgffgteduhfevuddvjefguefhvedtjefhkeenucffohhmrghinhepghhith
- dqshgtmhdrtghomhdpghhithhhuhgsrdgtohhmpdhkvghrnhgvlhdrohhrghdptddurdho
- rhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
- hpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsggsrdgtrgdpnhgspghrtghpthhtohep
- udefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehikhgvphgrnhhhtgesghhmrg
- hilhdrtghomhdprhgtphhtthhopeifpggrrhhmihhnsehgmhigrdguvgdprhgtphhtthho
- pehhmhhhsehhmhhhrdgvnhhgrdgsrhdprhgtphhtthhopehlkhhpsehinhhtvghlrdgtoh
- hmpdhrtghpthhtoheprghnughrihihrdhshhgvvhgthhgvnhhkoheslhhinhhugidrihhn
- thgvlhdrtghomhdprhgtphhtthhopehilhhpohdrjhgrrhhvihhnvghnsehlihhnuhigrd
- hinhhtvghlrdgtohhmpdhrtghpthhtohepohgvqdhksghuihhlugdqrghllheslhhishht
- shdrlhhinhhugidruggvvhdprhgtphhtthhopehisghmqdgrtghpihdquggvvhgvlheslh
- hishhtshdrshhouhhrtggvfhhorhhgvgdrnhgvthdprhgtphhtthhopegtohhrsggvthes
- lhifnhdrnhgvth
-X-ME-Proxy: <xmx:xSVDaHOZuZlLRYP92PTRgTgoxwSMWaMEFUrbGuOaobQwmMcJFN5Brg>
- <xmx:xSVDaB4Uy6iA4UnnpQHilQwZxX3BY5jK_rNA0fLCIlU-ivE6QAwdHA>
- <xmx:xSVDaB5Jdh6gtY7L4QFMMnT4aw42iIHpWVlN_YhpdZ8j_v-0rOpsnQ>
- <xmx:xSVDaBiynCru4kenoYzwuo1FguuMDxeKoa8oIKYu-dhaNjKGjCV1hg>
- <xmx:xiVDaCDAwFpvv1UA5MWfUTlGuFtM1SEhWSwkHhL10BC93O3wuLzvNYfA>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 6162A2CE0063; Fri,  6 Jun 2025 13:30:45 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-MIME-Version: 1.0
-X-ThreadId: T107eb5199b18744c
-Date: Fri, 06 Jun 2025 13:30:25 -0400
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
-To: "kernel test robot" <lkp@intel.com>
-Message-Id: <6d17454f-faac-4616-ac2e-7da80feedf2c@app.fastmail.com>
-In-Reply-To: <202506062319.F0IpDxF6-lkp@intel.com>
+ id 1uNcFu-0002x5-ED for ibm-acpi-devel@lists.sourceforge.net;
+ Fri, 06 Jun 2025 18:57:30 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1749236251; x=1780772251;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=b5AmpCo1kMui/WXfal3d4wLBANr1weUX6ZU1bk956tk=;
+ b=fkphjmMiH1i18sbdRP0DMqC+I5iarpLmMlFbhZlT+tHXWvRNM4sVIRy6
+ yhBSXB3bM7E5VcNXhx64K3THpYevUMFZxkozN/ruwAY/nyKA5uT3RMwOD
+ LqsABLJeLohrzSlh6MvxWmYkwyqGFN/RLj/8QYGpBODKxQgUlQJTY5fCj
+ 94V7j+09N7DrJsUmRG4aUZbKP6FlnGlCJsA0SZIB1qtifv5cAB3RhCNO6
+ hi628riGm/6wJeeZqDq3uNUja7hX04oMlIWQKxzn4ytGwmpMiLgDfy/K8
+ apbNdagqQKgvXG891+dfVLJsmB2JaiyOv94ETOIAB/LYI8iIYCHhMlfUZ g==;
+X-CSE-ConnectionGUID: Qo2YF069SF6UttSvaM/zLg==
+X-CSE-MsgGUID: J0b1pOtxQoKoRWhR19t8bQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11456"; a="62053473"
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="62053473"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 11:57:25 -0700
+X-CSE-ConnectionGUID: /W+N2OtEQr2YuJrYP4Vf9g==
+X-CSE-MsgGUID: 7zWk+uBlTPm38LVnfrr8Fg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,215,1744095600"; d="scan'208";a="176850699"
+Received: from smile.fi.intel.com ([10.237.72.52])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jun 2025 11:57:21 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1uNcFh-00000004HrB-1PO2; Fri, 06 Jun 2025 21:57:17 +0300
+Date: Fri, 6 Jun 2025 21:57:17 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Mark Pearson <mpearson-lenovo@squebb.ca>
+Message-ID: <aEM6Da6CZ0DI3x8w@smile.fi.intel.com>
 References: <20250604173702.3025074-1-mpearson-lenovo@squebb.ca>
  <202506062319.F0IpDxF6-lkp@intel.com>
-X-Spam-Score: -0.2 (/)
+ <6d17454f-faac-4616-ac2e-7da80feedf2c@app.fastmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <6d17454f-faac-4616-ac2e-7da80feedf2c@app.fastmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Score: -0.1 (/)
 X-Spam-Report: Spam detection software,
  running on the system "sfi-spamd-1.hosts.colo.sdot.me", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi, On Fri, Jun 6, 2025, at 11:58 AM,
- kernel test robot wrote:
- > Hi Mark, > > kernel test robot noticed the following build warnings: >
- > [auto build test WARNING on linus/master] > [also build test WARNI [...]
- Content analysis details:   (-0.2 points, 5.0 required)
+ Content preview:  On Fri, Jun 06, 2025 at 01:30:25PM -0400, Mark Pearson wrote:
+ > On Fri, Jun 6, 2025, at 11:58 AM, kernel test robot wrote: > > Hi Mark,
+ > > > > kernel test robot noticed the following build warnings: [...] 
+ Content analysis details:   (-0.1 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
-X-Headers-End: 1uNau9-0007BM-5s
+ -0.1 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1uNcFu-0002x5-ED
 Subject: Re: [ibm-acpi-devel] [PATCH v2] platform/x86: Move Lenovo files
  into lenovo subdir
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -154,103 +120,117 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: Armin Wolf <W_Armin@gmx.de>, Jonathan Corbet <corbet@lwn.net>,
- ikepanhc@gmail.com, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+Cc: Armin Wolf <W_Armin@gmx.de>, kernel test robot <lkp@intel.com>,
+ Jonathan Corbet <corbet@lwn.net>, ikepanhc@gmail.com,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
  "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
  Hans de Goede <hdegoede@redhat.com>,
  Henrique de Moraes Holschuh <hmh@hmh.eng.br>, oe-kbuild-all@lists.linux.dev,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
  ibm-acpi-devel@lists.sourceforge.net
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi,
+On Fri, Jun 06, 2025 at 01:30:25PM -0400, Mark Pearson wrote:
+> On Fri, Jun 6, 2025, at 11:58 AM, kernel test robot wrote:
+> > Hi Mark,
+> >
+> > kernel test robot noticed the following build warnings:
+> >
+> > [auto build test WARNING on linus/master]
+> > [also build test WARNING on next-20250606]
+> > [cannot apply to v6.15]
+> > [If your patch is applied to the wrong git tree, kindly drop us a note.
+> > And when submitting patch, we suggest to use '--base' as documented in
+> > https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> >
+> > url:    
+> > https://github.com/intel-lab-lkp/linux/commits/Mark-Pearson/platform-x86-Move-Lenovo-files-into-lenovo-subdir/20250605-013934
+> > base:   linus/master
+> > patch link:    
+> > https://lore.kernel.org/r/20250604173702.3025074-1-mpearson-lenovo%40squebb.ca
+> > patch subject: [PATCH v2] platform/x86: Move Lenovo files into lenovo 
+> > subdir
+> > config: x86_64-randconfig-078-20250606 
+> > (https://download.01.org/0day-ci/archive/20250606/202506062319.F0IpDxF6-lkp@intel.com/config)
+> > compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+> > reproduce (this is a W=1 build): 
+> > (https://download.01.org/0day-ci/archive/20250606/202506062319.F0IpDxF6-lkp@intel.com/reproduce)
+> >
+> > If you fix the issue in a separate patch/commit (i.e. not just a new 
+> > version of
+> > the same patch/commit), kindly add following tags
+> > | Reported-by: kernel test robot <lkp@intel.com>
+> > | Closes: 
+> > https://lore.kernel.org/oe-kbuild-all/202506062319.F0IpDxF6-lkp@intel.com/
+> >
+> > All warnings (new ones prefixed by >>):
+> >
+> >    drivers/platform/x86/lenovo/think-lmi.c: In function 'certificate_store':
+> >>> drivers/platform/x86/lenovo/think-lmi.c:661:47: warning: '%s' directive argument is null [-Wformat-overflow=]
+> >      661 |                 return kasprintf(GFP_KERNEL, "%s,%s", arg1, 
+> > arg2);
+> >          |                                               ^~
+> >    drivers/platform/x86/lenovo/think-lmi.c:657:50: warning: '%s' 
+> > directive argument is null [-Wformat-overflow=]
+> >      657 |                 return kasprintf(GFP_KERNEL, "%s,%s,%s",
+> >          |                                                  ^~
+> >
+> >
+> > vim +661 drivers/platform/x86/lenovo/think-lmi.c
+> >
+> > 640a5fa50a42b9 drivers/platform/x86/think-lmi.c Mark Pearson 2021-11-17 
+> >  652  
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  653  static char *cert_command(struct tlmi_pwd_setting *setting, const 
+> > char *arg1, const char *arg2)
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  654  {
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  655  	/* Prepend with SVC or SMC if multicert supported */
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  656  	if (tlmi_priv.pwdcfg.core.password_mode >= 
+> > TLMI_PWDCFG_MODE_MULTICERT)
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  657  		return kasprintf(GFP_KERNEL, "%s,%s,%s",
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  658  				 setting == tlmi_priv.pwd_admin ? "SVC" : "SMC",
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  659  				 arg1, arg2);
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  660  	else
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> > @661  		return kasprintf(GFP_KERNEL, "%s,%s", arg1, arg2);
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  662  }
+> > 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
+> >  663  
+> >
+> > -- 
+> > 0-DAY CI Kernel Test Service
+> > https://github.com/intel/lkp-tests/wiki
+> 
+> I'm unable to reproduce this issue with a W=1 build
 
-On Fri, Jun 6, 2025, at 11:58 AM, kernel test robot wrote:
-> Hi Mark,
->
-> kernel test robot noticed the following build warnings:
->
-> [auto build test WARNING on linus/master]
-> [also build test WARNING on next-20250606]
-> [cannot apply to v6.15]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
->
-> url:    
-> https://github.com/intel-lab-lkp/linux/commits/Mark-Pearson/platform-x86-Move-Lenovo-files-into-lenovo-subdir/20250605-013934
-> base:   linus/master
-> patch link:    
-> https://lore.kernel.org/r/20250604173702.3025074-1-mpearson-lenovo%40squebb.ca
-> patch subject: [PATCH v2] platform/x86: Move Lenovo files into lenovo 
-> subdir
-> config: x86_64-randconfig-078-20250606 
-> (https://download.01.org/0day-ci/archive/20250606/202506062319.F0IpDxF6-lkp@intel.com/config)
-> compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-> reproduce (this is a W=1 build): 
-> (https://download.01.org/0day-ci/archive/20250606/202506062319.F0IpDxF6-lkp@intel.com/reproduce)
->
-> If you fix the issue in a separate patch/commit (i.e. not just a new 
-> version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: 
-> https://lore.kernel.org/oe-kbuild-all/202506062319.F0IpDxF6-lkp@intel.com/
->
-> All warnings (new ones prefixed by >>):
->
->    drivers/platform/x86/lenovo/think-lmi.c: In function 'certificate_store':
->>> drivers/platform/x86/lenovo/think-lmi.c:661:47: warning: '%s' directive argument is null [-Wformat-overflow=]
->      661 |                 return kasprintf(GFP_KERNEL, "%s,%s", arg1, 
-> arg2);
->          |                                               ^~
->    drivers/platform/x86/lenovo/think-lmi.c:657:50: warning: '%s' 
-> directive argument is null [-Wformat-overflow=]
->      657 |                 return kasprintf(GFP_KERNEL, "%s,%s,%s",
->          |                                                  ^~
->
->
-> vim +661 drivers/platform/x86/lenovo/think-lmi.c
->
-> 640a5fa50a42b9 drivers/platform/x86/think-lmi.c Mark Pearson 2021-11-17 
->  652  
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  653  static char *cert_command(struct tlmi_pwd_setting *setting, const 
-> char *arg1, const char *arg2)
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  654  {
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  655  	/* Prepend with SVC or SMC if multicert supported */
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  656  	if (tlmi_priv.pwdcfg.core.password_mode >= 
-> TLMI_PWDCFG_MODE_MULTICERT)
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  657  		return kasprintf(GFP_KERNEL, "%s,%s,%s",
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  658  				 setting == tlmi_priv.pwd_admin ? "SVC" : "SMC",
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  659  				 arg1, arg2);
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  660  	else
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
-> @661  		return kasprintf(GFP_KERNEL, "%s,%s", arg1, arg2);
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  662  }
-> 5dcb5ef125907d drivers/platform/x86/think-lmi.c Mark Pearson 2024-10-24 
->  663  
->
-> -- 
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+Do you have GCC-12?
 
-I'm unable to reproduce this issue with a W=1 build and I think it's a false positive.
+> and I think it's a false positive.
 
-Am I safe to ignore this report?
+I think the problematic line is in certificate_store().
+You need to check the value of dmi_get_system_info().
+Or make sure the DMI is always selected (depend on DMI
+in Kconfig, perhaps).
 
-Mark
+> Am I safe to ignore this report?
+
+Please, try to fix it.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
 
 _______________________________________________
