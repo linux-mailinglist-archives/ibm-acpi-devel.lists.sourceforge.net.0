@@ -2,114 +2,149 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4AAAD5A40
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 11 Jun 2025 17:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4C76AD5B02
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 11 Jun 2025 17:48:53 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Subject:In-Reply-To:MIME-Version:References:Message-ID:To:From:Date:Sender:
+	Subject:References:In-Reply-To:Message-Id:To:From:Date:MIME-Version:Sender:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=95sS3ts6OxTV/VNrM1Ar8e874DUvpcsmykv+3PwhLIg=; b=bHVsBS0Ee4rivSbSaWljqSkh7g
-	u73Wt+n1SNJPIqOoMjF+xWk6zOi4hvHKy/8/Atv5XaNdHfsGSmIdiPjASX/380SZRGO9/hUzDohu4
-	5ezvtcNr+mNuVHock0Wi4nBG0rDcmCXFNLhCwFKEZfQCh6PifoSFcqfs70FScRwQaAR8=;
+	bh=bm6CKQyZspvPYLklTPcclNhf1d5inSFaTp4FpAZN10c=; b=jCaXuWHOymGJABbDXd1AK1ZuUX
+	JAo8vd9VdR/72Yj6wdqTVOxMY/6sbODV9xlq6IvQgsp6DdazwXR5SxEWzX/2hWq0vR5Ie7o+67J7C
+	JcyzDDf+mOcqf9IAcbMhAi07xkc6QPKoPSuNXHs3xqxVOW3Gf9LhleBtnIZahY9oivDE=;
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uPNHf-00055M-KN;
-	Wed, 11 Jun 2025 15:22:35 +0000
+	id 1uPNgd-0005er-Dz;
+	Wed, 11 Jun 2025 15:48:23 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1uPNHd-00055D-99 for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 11 Jun 2025 15:22:33 +0000
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1uPNgc-0005ej-4Q
+ for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 11 Jun 2025 15:48:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
+ References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
+ Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+ :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=o9lisPM7luj97OC/Bm+JTSfM2MLI68cIALUs8TjibMM=; b=AAtU5sxuYuVHohbShqh7q97odv
- ElafbFZAuvN/9G6qy2646WqEbEMui5zr0bxHcPMflsGv1v5wmpQK9aymyOfg4yGCjalfAJciau11S
- iQ2M37czhcEWDziItvfZD71cpI4UFd2kkeUMeXcP5x0SHn1AU+jXa/MLuxW3hGjuM4a0=;
+ bh=hQQEGVz2oEM93X69eaFCEcRjw0sJxSCN2d+An8i2jGA=; b=Ndqsyd9PxvYGbt1312xQX5iRnk
+ 5He88+CyQsjSbffYqmJLA+Cl36ZUTSnibVhAgRw+ll5Z3ZBCiiQaLFn8FjDa3sjv/pjWIr4R3soPH
+ NPfEsIQzbE4nYjn0blin62PY3qxDUxdj2BxFfyhr3xrFnNF43o0RMKtH8eRFMpkTOMsY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
+ Message-Id:Cc:To:From:Date:MIME-Version:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=o9lisPM7luj97OC/Bm+JTSfM2MLI68cIALUs8TjibMM=; b=f8WvOPll0an4/HUpfEjKMSbWEP
- ZJec6O/WtSgZj+nZscJ3JpQLASKzfH36ifXInkubXuTstEJ+No2dTjcDF4RbKVJswBquMotV1jWME
- 7rggS9KV230E9bXIgJGuOX6WdCnbIYc/+d20uI5BGXh9ZMmRde7EHI67o+xdqHNjZsdM=;
-Received: from mgamail.intel.com ([198.175.65.19])
+ bh=hQQEGVz2oEM93X69eaFCEcRjw0sJxSCN2d+An8i2jGA=; b=RWOGn43evAWLqXDYFh6I/TfIGE
+ ds4RqgaPnlfUvPP7kio1uMdCLLNuiI3x8qRWivhQFYZ3EEQre2X473UDR7tIIFD7YZckrLTgHp23L
+ Ek9gRP3Q/vrw/uj1/B2WVexSOJjSn4f9t+swwK2cFnDk6kExYtUVNrQeKtA02Xnyj1rM=;
+Received: from fout-b2-smtp.messagingengine.com ([202.12.124.145])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1uPNHc-0005KB-NL for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 11 Jun 2025 15:22:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1749655353; x=1781191353;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=nLyTLw3X4zqEgVxTxIWmgt4SSnc21bPbXLZbJ7pGNls=;
- b=eb/czDBZm6mYbk+r6piT4OyIoulESU3zOt18uVfEQTfFu1BFYxFreuf+
- Slc6v3FRg9zkJHjVYKT0CktSZJQn49UrWfXm1f4KnStVzo9HzomPFkRsY
- NxXdxvq2MRYZL8pNMZ47M73LrxCxCCPtFn5MHwxPrpxOazCpOOw6Hylzh
- sdQW8lhtPiQCNo1LT51yyxAFYR0GDKbrU8Ll+XkTUPjycsx4vQ7sonRb1
- OHl7x3AYABaRPFi9mVnPP6uPGyf4/AdBG+6VYJrtKo78o+Kp0a9CWbrAF
- fX6ycmh2Dzc0RIuWTZyj/os+08V93NgjSEfMR8KFFrUTv1vHt4nxvzHdk A==;
-X-CSE-ConnectionGUID: EWHwhq+FQG69LjYzRa9dwA==
-X-CSE-MsgGUID: IUvSoaulR72shijsAHIjlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11461"; a="51683117"
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="51683117"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:22:20 -0700
-X-CSE-ConnectionGUID: u9bzbMWdQqeO7GUioZzDog==
-X-CSE-MsgGUID: ExX/Dka9SDKwCxt7YVLaOg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,228,1744095600"; d="scan'208";a="151019509"
-Received: from smile.fi.intel.com ([10.237.72.52])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jun 2025 08:07:49 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1uPN3K-00000005gC7-476M; Wed, 11 Jun 2025 18:07:46 +0300
-Date: Wed, 11 Jun 2025 18:07:46 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Message-ID: <aEmbwiciy81fL58O@smile.fi.intel.com>
+ id 1uPNgb-0006ak-AD for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 11 Jun 2025 15:48:22 +0000
+Received: from phl-compute-12.internal (phl-compute-12.phl.internal
+ [10.202.2.52])
+ by mailfout.stl.internal (Postfix) with ESMTP id 7032C1140266;
+ Wed, 11 Jun 2025 11:48:10 -0400 (EDT)
+Received: from phl-imap-08 ([10.202.2.84])
+ by phl-compute-12.internal (MEProxy); Wed, 11 Jun 2025 11:48:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1749656890;
+ x=1749743290; bh=hQQEGVz2oEM93X69eaFCEcRjw0sJxSCN2d+An8i2jGA=; b=
+ X3Of+/XD76EZIVDzVoWaLE3lOKmT33GxAwSp4oCQd9JYvsAbpj6pc/53HRBC6dyj
+ eho5L7RW+SdUFiI6yG9eiVfvl+xYk9EBoxPmvnA6pE3C1p0grSRUEZyjk6W0c3G/
+ Ova/tbsGCya0ZF3dDXz5XatqhlPfdS7/puj/YRI8bw7X76SGFRbe0/bZdCW+zx2j
+ njDcGFak9UerxLuhj+EzK4HIsoi1/y7pSYgbedM5nVXWuUHPnPrVScM4D0ZwIoaj
+ 93IEaZRP7EOQ8cE1XfFeTuW6s69v/vXAuInDaY3CKPKkN4JszILZ7/GWKmC6xza9
+ HlQq/etTI4cYbQxA2dcURw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1749656890; x=
+ 1749743290; bh=hQQEGVz2oEM93X69eaFCEcRjw0sJxSCN2d+An8i2jGA=; b=J
+ Qp98/A2TiwuTjKWF+0D2igDXosCZzZFVY0MKIWUaiNxfyTbGNvYZ8H4G38cMqaNG
+ 9yMeng+MXA/HGX4e7UM/MzxT4v5cn3mzgj0cxgvq/YMv/SOAF97Aad8r68CxyEeI
+ MTYj0seofskEb7FbaO5Ln5qeyND0nZA4NcMayW55IE/tS6Jbx5mJ/z8w072XfnFc
+ fXzCGUDAz8wMtHkymQqiHguWkzbMfKtBYyDH/lMXi7SlwVirz2RlHdDFX9lSyUyX
+ UPtgdW+abJIU/7l9dQX8b3NqHRpbpN5UdJdiD27R0AKkY9PqpAG2DOS5jVl93OgS
+ o9CgMqy2wPRLeDVwSzHMQ==
+X-ME-Sender: <xms:OaVJaHzghqFRVqOiOLkIyjSWB_lXpi8sDr5tDjt26U_yUmrWYH7eFg>
+ <xme:OaVJaPQYY7Zb12KWq0TPeyarazm60DI-3RfJwCigbgX37AIOvJb2Vu2z5NSOP5ril
+ rEDKv-u-Tc4-veBvgM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdduvdehkecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+ uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+ hnthhsucdlqddutddtmdenucfjughrpefoggffhffvvefkjghfufgtgfesthhqredtredt
+ jeenucfhrhhomhepfdforghrkhcurfgvrghrshhonhdfuceomhhpvggrrhhsohhnqdhlvg
+ hnohhvohesshhquhgvsggsrdgtrgeqnecuggftrfgrthhtvghrnhephfevkeejueeukeef
+ hfelleejheeuudfgteffvdetkeffjeduleffvdejkeefhedvnecuvehluhhsthgvrhfuih
+ iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhhpvggrrhhsohhnqdhlvghnohhv
+ ohesshhquhgvsggsrdgtrgdpnhgspghrtghpthhtohepuddtpdhmohguvgepshhmthhpoh
+ huthdprhgtphhtthhopehikhgvphgrnhhhtgesghhmrghilhdrtghomhdprhgtphhtthho
+ peifpggrrhhmihhnsehgmhigrdguvgdprhgtphhtthhopehhmhhhsehhmhhhrdgvnhhgrd
+ gsrhdprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehlihhnuhigrdhi
+ nhhtvghlrdgtohhmpdhrtghpthhtohepihhlphhordhjrghrvhhinhgvnheslhhinhhugi
+ drihhnthgvlhdrtghomhdprhgtphhtthhopehisghmqdgrtghpihdquggvvhgvlheslhhi
+ shhtshdrshhouhhrtggvfhhorhhgvgdrnhgvthdprhgtphhtthhopehhuggvghhovgguvg
+ esrhgvughhrghtrdgtohhmpdhrtghpthhtohepjhhvrghnuggvrhifrggrsehrvgguhhgr
+ thdrtghomhdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnh
+ gvlhdrohhrgh
+X-ME-Proxy: <xmx:OaVJaBUw7UBc8EJ9EMMIOoXlBIDNET9Kb1sqbHAXm7o00BfarBfZRw>
+ <xmx:OaVJaBjDb4xy3kppbzzMqEEf4DLP3vdwnauMy7nQM-1ukHSTT_MIPw>
+ <xmx:OaVJaJBlQRthaqR2Oeo8iQ04htQkswflgyx2O0RsmwCG5p8nVD4brg>
+ <xmx:OaVJaKI6vl1McZNEeHnYonA6eFhtOwtO02EoBNO5MAu-E6NFkFAYPw>
+ <xmx:OqVJaPtrdSdDe6kTahyWgyQR-9H_uVKYQ-KZtohpLPpMQL0x4uY4Qepz>
+Feedback-ID: ibe194615:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+ id ABFE12CE0066; Wed, 11 Jun 2025 11:48:09 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+MIME-Version: 1.0
+X-ThreadId: T107eb5199b18744c
+Date: Wed, 11 Jun 2025 11:47:49 -0400
+From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
+To: "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Message-Id: <dbdcd6fb-a84d-47fa-b3d8-d161d8a1b361@app.fastmail.com>
+In-Reply-To: <aEmbwiciy81fL58O@smile.fi.intel.com>
 References: <mpearson-lenovo@squebb.ca>
  <20250610192830.1731454-1-mpearson-lenovo@squebb.ca>
  <20250610192830.1731454-2-mpearson-lenovo@squebb.ca>
  <aEiVHXI4vS9BDOPW@smile.fi.intel.com>
  <002d39fe-44ed-45a4-9410-4fecf1c2163f@app.fastmail.com>
  <b8af4da0-bd7f-1d65-8645-73dbd08ff3a8@linux.intel.com>
-MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <b8af4da0-bd7f-1d65-8645-73dbd08ff3a8@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Score: -0.1 (/)
-X-Spam-Report: Spam detection software, running on the system "sfi-spamd-1.hosts.colo.sdot.me",
+ <aEmbwiciy81fL58O@smile.fi.intel.com>
+X-Spam-Score: -0.2 (/)
+X-Spam-Report: Spam detection software, running on the system "sfi-spamd-2.hosts.colo.sdot.me",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
  
- Content preview:  On Wed, Jun 11, 2025 at 06:01:36PM +0300, Ilpo Järvinen wrote:
-    > On Tue, 10 Jun 2025, Mark Pearson wrote: > > On Tue, Jun 10, 2025, at 4:27
-    PM, Andy Shevchenko wrote: > > > On Tue, Jun 10, 2025 at 03 [...] 
+ Content preview:  On Wed, Jun 11, 2025, at 11:07 AM, Andy Shevchenko wrote:
+   > On Wed, Jun 11, 2025 at 06:01:36PM +0300, Ilpo Järvinen wrote: >> On Tue,
+    10 Jun 2025, Mark Pearson wrote: >> > On Tue, Jun 10, 2025, at 4: [...] 
  
- Content analysis details:   (-0.1 points, 5.0 required)
+ Content analysis details:   (-0.2 points, 5.0 required)
  
   pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+                             envelope-from domain
   0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily valid
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from author's
+                             domain
  -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
- -0.1 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
-X-Headers-End: 1uPNHc-0005KB-NL
+X-Headers-End: 1uPNgb-0006ak-AD
 Subject: Re: [ibm-acpi-devel] [PATCH v4 2/2] platform/x86: Move Lenovo files
  into lenovo subdir
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -129,81 +164,44 @@ Cc: Armin Wolf <W_Armin@gmx.de>, Hans de Goede <hdegoede@redhat.com>,
  "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
  Jelle van der Waa <jvanderwaa@redhat.com>,
  Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
- Mark Pearson <mpearson-lenovo@squebb.ca>, ibm-acpi-devel@lists.sourceforge.net
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ ibm-acpi-devel@lists.sourceforge.net
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-On Wed, Jun 11, 2025 at 06:01:36PM +0300, Ilpo J=E4rvinen wrote:
-> On Tue, 10 Jun 2025, Mark Pearson wrote:
-> > On Tue, Jun 10, 2025, at 4:27 PM, Andy Shevchenko wrote:
-> > > On Tue, Jun 10, 2025 at 03:28:25PM -0400, Mark Pearson wrote:
-> > >> Create lenovo subdirectory for holding Lenovo specific drivers.
-> > >
-> > > Assuming Kconfig entries have mostly been copied'n'pasted, the rest L=
-GTM,
-> > =
-
-> > Yes - no changes from what they were previously.
-> =
-
-> Indeed, no changes, too bad that the addition "depends on DMI" was missed =
-
-> because of that ;-). I've fixed this for you to not delay this patch =
-
-> further.
-
-Oh, thanks!
-
-> A diff-of-pre/post magic trick helps to validate while preparing and =
-
-> review move changes like this:
-> =
-
-> diff -u <(grep '^[-]' patch.patch | cut -b 2- | sort) <(grep '^[+]' patch=
-.patch | cut -b 2- | sort)
-
-AFAIK Git can do something like this for you (patch to the patch) or `b4`.
-Never used personally, but interested to try if somebody tells me what to
-do :-)
-
-> The sorting is not always needed if no core reordering is done in the =
-
-> patch but regardless of sorting or not, the unexpected differences are =
-
-> usually pretty easy to spot from the output of that command. It's how I =
-
-> found out the lack of depends on DMI on the post side and have found =
-
-> plenty of similar issue when changes are rebased/reordered in a series =
-
-> that does contain a move change.
-> =
-
-> While applying this, I realized I'd taken Jelle's ideapad patch which =
-
-> resulted in this move patch not applying cleanly, so I ended up moving =
-
-> Jelle's patch after this change to make things easier for me.
-> =
-
-> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > >
-> > Thanks for the reviews and help with both patches
-> =
-
-> Thanks for doing this, hopefully LKP will be okay with this change too
-> and we can once again focus on less conflict prone work. :-)
-
--- =
-
-With Best Regards,
-Andy Shevchenko
-
-
-
-
-_______________________________________________
-ibm-acpi-devel mailing list
-ibm-acpi-devel@lists.sourceforge.net
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+T24gV2VkLCBKdW4gMTEsIDIwMjUsIGF0IDExOjA3IEFNLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6
+Cj4gT24gV2VkLCBKdW4gMTEsIDIwMjUgYXQgMDY6MDE6MzZQTSArMDMwMCwgSWxwbyBKw6Rydmlu
+ZW4gd3JvdGU6Cj4+IE9uIFR1ZSwgMTAgSnVuIDIwMjUsIE1hcmsgUGVhcnNvbiB3cm90ZToKPj4g
+PiBPbiBUdWUsIEp1biAxMCwgMjAyNSwgYXQgNDoyNyBQTSwgQW5keSBTaGV2Y2hlbmtvIHdyb3Rl
+Ogo+PiA+ID4gT24gVHVlLCBKdW4gMTAsIDIwMjUgYXQgMDM6Mjg6MjVQTSAtMDQwMCwgTWFyayBQ
+ZWFyc29uIHdyb3RlOgo+PiA+ID4+IENyZWF0ZSBsZW5vdm8gc3ViZGlyZWN0b3J5IGZvciBob2xk
+aW5nIExlbm92byBzcGVjaWZpYyBkcml2ZXJzLgo+PiA+ID4KPj4gPiA+IEFzc3VtaW5nIEtjb25m
+aWcgZW50cmllcyBoYXZlIG1vc3RseSBiZWVuIGNvcGllZCduJ3Bhc3RlZCwgdGhlIHJlc3QgTEdU
+TSwKPj4gPiAKPj4gPiBZZXMgLSBubyBjaGFuZ2VzIGZyb20gd2hhdCB0aGV5IHdlcmUgcHJldmlv
+dXNseS4KPj4gCj4+IEluZGVlZCwgbm8gY2hhbmdlcywgdG9vIGJhZCB0aGF0IHRoZSBhZGRpdGlv
+biAiZGVwZW5kcyBvbiBETUkiIHdhcyBtaXNzZWQgCj4+IGJlY2F1c2Ugb2YgdGhhdCA7LSkuIEkn
+dmUgZml4ZWQgdGhpcyBmb3IgeW91IHRvIG5vdCBkZWxheSB0aGlzIHBhdGNoIAo+PiBmdXJ0aGVy
+Lgo+Cj4gT2gsIHRoYW5rcyEKPgpPb29wcyAtIHNvcnJ5ISBUaGF0IHdhcyBiYWQgOiggVGhhbmtz
+IGZvciBmaXhpbmcuCgo+PiBBIGRpZmYtb2YtcHJlL3Bvc3QgbWFnaWMgdHJpY2sgaGVscHMgdG8g
+dmFsaWRhdGUgd2hpbGUgcHJlcGFyaW5nIGFuZCAKPj4gcmV2aWV3IG1vdmUgY2hhbmdlcyBsaWtl
+IHRoaXM6Cj4+IAo+PiBkaWZmIC11IDwoZ3JlcCAnXlstXScgcGF0Y2gucGF0Y2ggfCBjdXQgLWIg
+Mi0gfCBzb3J0KSA8KGdyZXAgJ15bK10nIHBhdGNoLnBhdGNoIHwgY3V0IC1iIDItIHwgc29ydCkK
+Pgo+IEFGQUlLIEdpdCBjYW4gZG8gc29tZXRoaW5nIGxpa2UgdGhpcyBmb3IgeW91IChwYXRjaCB0
+byB0aGUgcGF0Y2gpIG9yIGBiNGAuCj4gTmV2ZXIgdXNlZCBwZXJzb25hbGx5LCBidXQgaW50ZXJl
+c3RlZCB0byB0cnkgaWYgc29tZWJvZHkgdGVsbHMgbWUgd2hhdCB0bwo+IGRvIDotKQo+Cj4+IFRo
+ZSBzb3J0aW5nIGlzIG5vdCBhbHdheXMgbmVlZGVkIGlmIG5vIGNvcmUgcmVvcmRlcmluZyBpcyBk
+b25lIGluIHRoZSAKPj4gcGF0Y2ggYnV0IHJlZ2FyZGxlc3Mgb2Ygc29ydGluZyBvciBub3QsIHRo
+ZSB1bmV4cGVjdGVkIGRpZmZlcmVuY2VzIGFyZSAKPj4gdXN1YWxseSBwcmV0dHkgZWFzeSB0byBz
+cG90IGZyb20gdGhlIG91dHB1dCBvZiB0aGF0IGNvbW1hbmQuIEl0J3MgaG93IEkgCj4+IGZvdW5k
+IG91dCB0aGUgbGFjayBvZiBkZXBlbmRzIG9uIERNSSBvbiB0aGUgcG9zdCBzaWRlIGFuZCBoYXZl
+IGZvdW5kIAo+PiBwbGVudHkgb2Ygc2ltaWxhciBpc3N1ZSB3aGVuIGNoYW5nZXMgYXJlIHJlYmFz
+ZWQvcmVvcmRlcmVkIGluIGEgc2VyaWVzIAo+PiB0aGF0IGRvZXMgY29udGFpbiBhIG1vdmUgY2hh
+bmdlLgo+PiAKPj4gV2hpbGUgYXBwbHlpbmcgdGhpcywgSSByZWFsaXplZCBJJ2QgdGFrZW4gSmVs
+bGUncyBpZGVhcGFkIHBhdGNoIHdoaWNoIAo+PiByZXN1bHRlZCBpbiB0aGlzIG1vdmUgcGF0Y2gg
+bm90IGFwcGx5aW5nIGNsZWFubHksIHNvIEkgZW5kZWQgdXAgbW92aW5nIAo+PiBKZWxsZSdzIHBh
+dGNoIGFmdGVyIHRoaXMgY2hhbmdlIHRvIG1ha2UgdGhpbmdzIGVhc2llciBmb3IgbWUuCj4+IAoK
+VGhhbmtzIC0gaG9wZWZ1bGx5IHRoaXMgZG9lc24ndCBjYXVzZSB5b3UgaGVhZGFjaGVzIGZvciB0
+aGUgcmVzdCBvZiB0aGUgd2luZG93LgoKTWFyawoKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fCmlibS1hY3BpLWRldmVsIG1haWxpbmcgbGlzdAppYm0tYWNw
+aS1kZXZlbEBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQKaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5u
+ZXQvbGlzdHMvbGlzdGluZm8vaWJtLWFjcGktZGV2ZWwK
