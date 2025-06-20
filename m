@@ -2,128 +2,253 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72AB6AE07F9
-	for <lists+ibm-acpi-devel@lfdr.de>; Thu, 19 Jun 2025 15:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89BA2AE2045
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 20 Jun 2025 18:43:54 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Type:Cc:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:To:Message-ID:Date:
-	From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+	d=lists.sourceforge.net; s=beta; h=Content-Type:Cc:Reply-To:From:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Subject:MIME-Version:In-Reply-To:References:Message-ID:Date:To:Sender:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=Khb/JtjFmhabWwMdcIEFznaRg91BtLo6joYjyGq34xQ=; b=RsDaPz+y6hPXDma9OurY8CGWuq
-	5t9N3/aITqb9YLtNZA2qLCO+1FC+H/9A7IixG3gZg5Ag5QetW0TOwTEY9aEPd5jObpsxhCqBmndRc
-	repplIDXqrByJQ0XEkMs+43GzHvVp0KLJrhFW62BgyRkWEC5bcJdx1aYah6rBgyx2V/I=;
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	bh=/xMcBNlVV5wpMd1jzJhunqcBrDdHJGUPexMarQfSG8A=; b=Go9PAxQFjuV9q/O0Is6nyUOebl
+	IWRlyMSeaTJ4iEwTK5PP1bZOT06tDjDgdvnmTNCxS+aVRd5oXfE24z9Kwfvn5OHy2x+2kQOjHoVtU
+	yMcEtgZDzRRs2y1JZfystEnhKEpCRz6XurAd9+VD+hO5UxmIr+O4Crizs0Hnl1HrXWYo=;
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uSFkK-0001qf-D1;
-	Thu, 19 Jun 2025 13:56:04 +0000
+	id 1uSepl-0004oS-4B;
+	Fri, 20 Jun 2025 16:43:21 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <nfsmwlin@gmail.com>) id 1uSFkJ-0001qT-9y
+ (envelope-from <njoshi1@lenovo.com>) id 1uSepk-0004oM-AR
  for ibm-acpi-devel@lists.sourceforge.net;
- Thu, 19 Jun 2025 13:56:03 +0000
+ Fri, 20 Jun 2025 16:43:20 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
- In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
- :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=MIME-Version:Content-Type:In-Reply-To:References:
+ Message-ID:Date:Subject:CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=XVcMyYFZwom17IXSpDbiUF59ub/3IX2z0UVfo5l9a88=; b=cBNLhpuClzNkulC1pfmLiJRYIm
- hN4k8xRFz/YPhYE30RMeFO/JRQ4xNxp4e01P3nMk7lwPnbask6tIHacTBiQIfVAwwfAjRP+FXe/aY
- 7iGv5/j02e7bC/yQhURJRQ2PvtD5+4qFw8OJUDVZhFUNPh/HPnRzP65Us2f/XyIUv9Tg=;
+ bh=e0W1NvGtjK7nqbZ0I+gX+A2IyZ3dAaCI1Q8nOC2nkQ8=; b=EsGF8aJjDFB77Qq2cEgLhk9pfv
+ gA8bbLqo/76eBDsqBaqb7ibRCNgqDdgbXCAfhdBYjNFqNCtOBw6gbl977Mtszr9wDKAPr3xgjR/81
+ KtAMZPAtdC9kT3mP0DAmsYgpwW+B9negQccAMQ/TdUNvKAIwG6zCJL4UssfbhmjOgB3g=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
- MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=MIME-Version:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:
+ CC:To:From:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=XVcMyYFZwom17IXSpDbiUF59ub/3IX2z0UVfo5l9a88=; b=Q8eHM/JiXRKumvDuUhX1hNKW1d
- kfZZM/2oB1yHASUJCIKDmCARIVfRhjuHmwgryEjmaSiXsEzbF6gFPtrwp5lpfTjAgDI8cnDpegPx+
- vqxrbmqSF9XwT8mNwZ2oxH8bMav+bAU/DNBAVpf7XkrOqNTOjA9I5mNKvXa2ZAW6IDWk=;
-Received: from mail-yb1-f176.google.com ([209.85.219.176])
+ bh=e0W1NvGtjK7nqbZ0I+gX+A2IyZ3dAaCI1Q8nOC2nkQ8=; b=cxV+hZbNzoB88ElbRXsv6MdLIE
+ 7Vk5AUY6guwypiZpor/Tr+wPzRcRJNM+CQlg9mlilJ8jhdSy3QttFuO4y616mCXgU4q6HhUHVMAM2
+ XPP2RzFl//t7CWbK1keZ7Do7QqF9Vv1/jv1fVYpfE+ex9LPrLvPGdgLBbWL6LuD0he4s=;
+Received: from mx0b-00823401.pphosted.com ([148.163.152.46])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1uSFkI-0007xN-MV for ibm-acpi-devel@lists.sourceforge.net;
- Thu, 19 Jun 2025 13:56:03 +0000
-Received: by mail-yb1-f176.google.com with SMTP id
- 3f1490d57ef6-e75668006b9so854592276.3
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Thu, 19 Jun 2025 06:56:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750341352; x=1750946152; darn=lists.sourceforge.net;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=XVcMyYFZwom17IXSpDbiUF59ub/3IX2z0UVfo5l9a88=;
- b=edEMZ+KFb0yqkw4b5gls6db1qPlrJejG+8BqqUKpjx/3EznjCK5Vf2ukNJtriTgPTa
- 0ulIFBBazQpbJdgt7k30dzBFVaNGm4zYQO/QtGAuFeeq1EEWd/T2yt1mbbfxepmEZe4B
- EUF4K5nEs/PlW50sF09O2EAuvzzto+K7AjC3gsA3v0h2ZzHa+jhJ4OeJABtfUFFlKTgI
- +T88kyXqBcPhKwD1D250Lvw0utSoefckDV9jpMMyy5g4KUe4d/rHKdL6q1PzvHcwfE+P
- GTawISMWc4PDX2U4TvkwU+nHvWONXQh4wNlB7OAb+0MBKDkEsgHHI0GcqUc5j/3cjgS3
- xXOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750341352; x=1750946152;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=XVcMyYFZwom17IXSpDbiUF59ub/3IX2z0UVfo5l9a88=;
- b=Oorio60js5fN7WeTDnEl4qv/Q/Q2eTJmnnTUCGid8PjoL+cB9+OPTbc2rmGDvoD3Ql
- hPe++nf9tZmT6E+SoZoFKUOaXNPP8IYdQZ5I7HkgA6Os/G6tsiJUi3P5SKbLaHPmLZeF
- rHkjT7kCh2L2B2vEG94ltbXho8z4cp2hoo3jJYF9Rq+RFvmGPaXlxLZjoQw2UCoUt2QB
- zkS0neO2em1kzTYlfMISH3+k0NhuLDtNCL/5ma7NFIJBc8xZICtGiKn2eoFDIZrlmGOL
- Vio3zW1PYhImNadndYR1UOpMYTNp6LQQldu9I4HvNhqnWqi8eqI93SDx8xE5i92tGwOo
- xD7A==
-X-Gm-Message-State: AOJu0YzTKpvX1xhPSht7cYW8p+l8CfpK0Cb5fbcERSd0eEi5/ND7CL6s
- k1x9WUbTSExUWQHkvCKNz/hOFSScsaL8rOLStp8EpgASqj0B7B+fv+Php8n8yyPCMujDRWn7tQx
- tU+ekUOZpHCBb+E8uQfskMEDxj+CUiMg0KOuj
-X-Gm-Gg: ASbGncuQfT42pX3RAdoJrLot2R+jfNYXP8SAOjfWp42mUk5zWm4rjFb2V4I+xamZLTx
- H4BH4pykRUbivt/OMQGEjjI8vobtWPdJb7LSJW+R4WUQsSRuW6APnFeT1uRxkb+EPXwp7sQQTki
- MIxwV8lOKdTFNYle5lXu7WWGs6dRZbbGkDhGk1FK7aN/ujG7b7N/oQNGMGasF7Ppa5m0boLWdzB
- MjAPg==
-X-Google-Smtp-Source: AGHT+IGSwpD4xsvbvNfR7+iw4PS2LO5Vksf+Ni7eLY8GX2XrKuJtq9Qg0InPtGmEEXglUlCaikrxzcAUD1VuXG72oO4=
-X-Received: by 2002:a05:6902:2581:b0:e82:1a20:2358 with SMTP id
- 3f1490d57ef6-e822aea48edmr31438883276.47.1750341350976; Thu, 19 Jun 2025
- 06:55:50 -0700 (PDT)
-MIME-Version: 1.0
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1uSepj-0000ci-Fl for ibm-acpi-devel@lists.sourceforge.net;
+ Fri, 20 Jun 2025 16:43:20 +0000
+Received: from pps.filterd (m0355089.ppops.net [127.0.0.1])
+ by mx0b-00823401.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 55K6I2PK026026;
+ Fri, 20 Jun 2025 08:20:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lenovo.com; h=cc
+ :content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=DKIM202306; bh=e0W1NvGtjK7nqbZ0I+gX+A2
+ IyZ3dAaCI1Q8nOC2nkQ8=; b=qjIN/OAABaSFKyDEI8yd2WcwFjaLvi5WmRjthip
+ Jy2oNJ0eY8lJJWWbzpmDMWGbyiRPRRCn2VIRXGYzJwJPLBMEo3isVtx+LSvRc5jS
+ 3doE4sUPfGnJYmLfkeDZTd63R7QedrL1ohx0ca3CmAzDcdDek0iD+gUn1wp/Qc9j
+ 2RQQf3IjzqwWUDNTZa+J57O484Mr+rsuYqtCk98co/XuRG+XLDy+LgQrA3ZIILaH
+ ekprq6pg0zrIO3llOhvDNN3L8EHzb85RMA2YVHfuR8ckENRg3OQv9zIUGRWa9U6j
+ lWL9zkJ6URj0cVWlicLPCqRsATwV1g66iwoX8o4WgUoMK6g==
+Received: from os0p286cu011.outbound.protection.outlook.com
+ (mail-japanwestazon11010059.outbound.protection.outlook.com [52.101.228.59])
+ by mx0b-00823401.pphosted.com (PPS) with ESMTPS id 47c2wg58h5-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 20 Jun 2025 08:20:00 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nSILCOqI+PteY8g1c5NIVAiVbYBZ9J3bKx8d3IrbwfUXtW3S0gvwYjFVse7NxlaAKvorIRzXz8GYPNYYPSSfpj5jrRjms9rXykVfcgZnxu2kyv8GHpGWUXOgv8mdYTi29DNaauzQuhrT9auYIMfrSrv3jV4vORFKtXYoEZoWpaIpJR33vlAG92fpzgXHFtKPiOhlhwqWNlNct4/5ZO6UVY6KUlr61hwQ6supi8MK+M5GFGFnIJG4a/JjmdHyrhquAMsb8hWOt68rV45fiJFtkEFMKqmXmZFP+oOrsLq+NCY5C4xjK9AYbRcKHOR92Btb96RFjJQUItomUKb4ViROqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=e0W1NvGtjK7nqbZ0I+gX+A2IyZ3dAaCI1Q8nOC2nkQ8=;
+ b=PinNG5wOE/EVHXdKRShVdH4tDLi3/QyXYsea5vnePibV9UN5HQSgf3eJ3OfdXOIQzlBK83xDlsehRDqZPjHBmda002ah/nsaZxtAIDnikjBSm35hvmHqn9BJBf3cQGLBWtrt3OMqdi3v6ay9nIHaK2MScHTwt4aM+kZrexcdN97Eyg2MIsEA4tN97RLO7HfYkS047+chFrBgtp4T5VG+c89ifaexhnkpMw+g+pzC3cL4Upr1jvFXjvcsctFtKnmar6BluWrdMvpWpnY9Nre9+SNYVD+FqWr+df34rHtD8FqXXo2GiaZFNVIBvPfhs5mZWAEzzch9qvH7V48TZGEEOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=lenovo.com; dmarc=pass action=none header.from=lenovo.com;
+ dkim=pass header.d=lenovo.com; arc=none
+Received: from OSCPR01MB14370.jpnprd01.prod.outlook.com (2603:1096:604:3a2::6)
+ by OS9PR01MB14122.jpnprd01.prod.outlook.com (2603:1096:604:35f::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8857.19; Fri, 20 Jun
+ 2025 08:19:56 +0000
+Received: from OSCPR01MB14370.jpnprd01.prod.outlook.com
+ ([fe80::1f1e:4ea4:f94b:87a0]) by OSCPR01MB14370.jpnprd01.prod.outlook.com
+ ([fe80::1f1e:4ea4:f94b:87a0%7]) with mapi id 15.20.8857.020; Fri, 20 Jun 2025
+ 08:19:54 +0000
+To: Pellaeon Lin <nfsmwlin@gmail.com>,
+ =?utf-8?B?TWFyY28gVHJldmlzYW4gKFRyZXZpw7FvKQ==?= <mail@3v1n0.net>
+Thread-Topic: [External] Re: [ibm-acpi-devel] PrivacyGuard doesn't work even
+ by sending ACPI commands directly
+Thread-Index: AQHateEGcpYs/oLV6Ui8X+K5axXYkrJC9NSAgAIaOjCBx8jeAIABMyEw
+Date: Fri, 20 Jun 2025 08:19:54 +0000
+Message-ID: <OSCPR01MB14370F089948D35715A6B984A8C7CA@OSCPR01MB14370.jpnprd01.prod.outlook.com>
 References: <CADjcfxZy3LPTmapAvqO7uNZx1Dow5JscyG3L-J3_YB1zaCf1WQ@mail.gmail.com>
  <8ADA47CC-8883-4977-AC6E-C4BCD7365EB0@getmailspring.com>
  <CADjcfxYCUfKmQuZwhhPZvt+TjbWc1ChKdq55QnCF5VRx3stBnQ@mail.gmail.com>
  <SEZPR03MB795996A1F0F4CA3A7DA69A638C922@SEZPR03MB7959.apcprd03.prod.outlook.com>
-In-Reply-To: <SEZPR03MB795996A1F0F4CA3A7DA69A638C922@SEZPR03MB7959.apcprd03.prod.outlook.com>
-From: Pellaeon Lin <nfsmwlin@gmail.com>
-Date: Thu, 19 Jun 2025 21:55:40 +0800
-X-Gm-Features: Ac12FXwdQ04eQQHjNGzyy55003bOq9LQfrLt3RGcpHHxlfhCrHmx0l3QWURNTDg
-Message-ID: <CADjcfxYo-Lry3T+3ywxqjD4PzqqMwFauJtK9qbOgVqLmkh5pvg@mail.gmail.com>
-To: Nitin Joshi1 <njoshi1@lenovo.com>
-X-Spam-Score: -0.2 (/)
-X-Spam-Report: Spam detection software,
- running on the system "sfi-spamd-2.hosts.colo.sdot.me", 
+ <CADjcfxYo-Lry3T+3ywxqjD4PzqqMwFauJtK9qbOgVqLmkh5pvg@mail.gmail.com>
+In-Reply-To: <CADjcfxYo-Lry3T+3ywxqjD4PzqqMwFauJtK9qbOgVqLmkh5pvg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OSCPR01MB14370:EE_|OS9PR01MB14122:EE_
+x-ms-office365-filtering-correlation-id: e3bddfad-c502-49da-ffd9-08ddafd33cc6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|7053199007|8096899003|13003099007|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?OVlKVGFnN1UrNDcxSnVaWVBMbFF5VkFveTQ4NEdsWWI5aUIrZXFOcUxJYkVL?=
+ =?utf-8?B?NW42NFg5VVNQbFpDbFZ6eXF1T0NrbVZncFViWnZGRGQzOFZpcTRaSTBWbU1m?=
+ =?utf-8?B?U0lxV2dtOWNXN0pCNWwxUUtVZDN6alV3bUplY0l1UmQ4UldCWTlKTFZLSzJs?=
+ =?utf-8?B?UnZYRnp2UWJBeG9ON3NTb2hDK09IVlpoTGw5VVlJN3hndUUvcit4V2tKZXFH?=
+ =?utf-8?B?TnhZR2c5UUl0NGNYQ0hoWENsRDZKMEFNUzI0WHpmTXJsOHRZekZNcUNDQkNv?=
+ =?utf-8?B?aHA4dzFGbnYrZTM5MGhzM25Tb0VHTTcwMEg3ejdNTWlMb0RuanVVY1dyQm1j?=
+ =?utf-8?B?eTI1MXZSRy9BUGRnYWdyd05hamkrYTduenZ3Y0tVUmlmL04rRkgvcm9VSlZC?=
+ =?utf-8?B?MkR3Smpqa3NxNHYrTEFNeUdyS0UzUTJURDVMZFBNTVNSeFpPYWhrRjhMbDU2?=
+ =?utf-8?B?RHdmZnZxVnc1NFViMTNOLzdpT0ZWR1NMYkx1d2djMzQzNDZNZkRDVHYxRjEv?=
+ =?utf-8?B?VlppM1FsaEFUNFVrdHRCUEh4WnlFRVhpczRvRyszODV0U1ZKN2JJU2dQL3ZT?=
+ =?utf-8?B?T3EwU3VNcUptWmR1ZTZhQ0pHWjFMK3ZKckErWEtEaXV2NnM0aW43LzhKbGdO?=
+ =?utf-8?B?K3o3WlJpR3F2RkNFZHY4d1lMaFlsZmpId2lnNHkyQUdIbVBNeHd1T2RTN1ZU?=
+ =?utf-8?B?YU1ya0hENlVkeC9yd2JnSjQvSlZibEl6M0htZE1sWUdiVFRUbFRhNjRCSk9V?=
+ =?utf-8?B?Zi9WN3lIUkErejFMU1A0YktXbitIZUFWTG54OE5EWGg0Snd0U2VibE9XZEdy?=
+ =?utf-8?B?MkhVMGdCSGhjaHB5cHY2TmZwcVVxdFVkbUZSRCtTck4xUXJxMnFjZElZRG9t?=
+ =?utf-8?B?OWJ0VC9UR2I3ZFl3djJPZHhuYzlrSzBGME5Ca3VJa2RBOHVzUFFzM3hmK1BE?=
+ =?utf-8?B?RGlnSlkrRkxzVGduR0x2cENKdENkM3ppcUZVK2Z2Lzd0ZGhWbEg1UWdKS1Ba?=
+ =?utf-8?B?STdmcXV4R3p3VzRPUEl3YWYycGtQMUovNkk3cVNGWjYvNmRmSWlzRWlsQnp6?=
+ =?utf-8?B?MVdvYmZFaEVaUWtBYmNrSGFOOW9Dc01ubDNtV05jYm4yb1lSeGNhNmx5RWlT?=
+ =?utf-8?B?Wi83b1AwQWNFVDNzUmdHRHFtNHUrYWoyNlBmNTdLZ2R4TVcvVk1WYktIRko0?=
+ =?utf-8?B?L0crZlhhRDZ6YnI5ZjZkTW9wV2RYbkF4bzlJMU1NVjNIdmFqTDd0b3RybUwx?=
+ =?utf-8?B?d3FLSVB4ZW1Jc2ozbDFzOWdCajhiVHkyRnNrY1pVcHVZSk1waE9CNUcrUmEv?=
+ =?utf-8?B?Z0NqdWRkemd5MjdjZndJMUx4c0xMWjNoWWZyYmcrYlRpUFNRM3VKTEZJTWFT?=
+ =?utf-8?B?VzF2M2RKTjlxUWtsbkErUzVLNERYMXhSRnF2L3lWM0piTUE2UnpvU0t3TlJl?=
+ =?utf-8?B?cERhMlJxb2Q5bWRBSURQNTdhR1BST3dhbWdIaVhOdnBpK1JqUWhLWndpY0F3?=
+ =?utf-8?B?Z2tZTGZtK2kyRGt3TUpadys4R3FiQitMa1JqOGtMdS9WWlJ0K3l6eTFzTU5H?=
+ =?utf-8?B?THZxY1RXenl1TlBOTk9WWkVIS0dXdkdVNlluVHlEbis4amNvRFVXd0FiMUVB?=
+ =?utf-8?B?Y3ZBTVVSamlrbDh0U3BqQ1RJMm50QUNwRTB2SnNmK0FkaVcycXA4dDhPZ3E3?=
+ =?utf-8?B?TkpVSVZkUitmellHL2ZnUkhmTFN1TkFRVjRTMXhNclppM3RxRmZUUHZ1a21v?=
+ =?utf-8?B?eUdrcEhCK3BCemc3T3dSWDlzSDUyWVBUb01aTVd3YlAyRTEyaTRFVnBNTkth?=
+ =?utf-8?B?ejExdnhnNXZKNC9HNWNJQzVsZU5HVkt3YlQ4MGhId0tUYktqODV1cDNkUGFX?=
+ =?utf-8?B?OFhTYkhlZS9UVEc4R1dUQW92R1pTeTh3amFOMWdvQXhKdjlkWlh5QjJyNSty?=
+ =?utf-8?B?ck90TnZySlBaWHFQSDV2Zzlnd2UzZVpDSG1qWUNZSUN6U3cwVFQ4T0t0NnZ4?=
+ =?utf-8?Q?Pv9lMvqB0MjBio0hWf/HcTB3u7bXTg=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:OSCPR01MB14370.jpnprd01.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7053199007)(8096899003)(13003099007)(38070700018);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Ty80UmZlWnA3aXlQZFFVdnpLTEJDMm5rc3dYVmpTQlR5TDZ5U0xzT2dxc1Fk?=
+ =?utf-8?B?Vk5vaHkwVW4wcVYyanA3a3Y1enFHaVJkbXNVZm5keWJNQjkwR05ZUXBOWnNM?=
+ =?utf-8?B?NDZ0SXYrd1FSV1RtQVZKdzZ1Q1dRR2xNWXc5NStrK2hWK2ZGV0hPQzBJY204?=
+ =?utf-8?B?WlU0K2tFMWt0ZitTWnJhbkhoM25qNEV4cGtsZENUUmQ2OTVIZnVDWlRxdzJl?=
+ =?utf-8?B?Nlc0d3lOQUExSU5WUUkzcHhQRWN3MGthcVBVNmN2SnF2bGJFWUZ4ZW1tV084?=
+ =?utf-8?B?MUptdzBYTlFlTFlQVDVLWEJTc0NRRkk3bkVNY3JsRTN3Um9raTU0eklQaHlH?=
+ =?utf-8?B?UFFDelhKMmtlenBWZ0t0MnpWVG1BcG8zMWQ4aXhmaEZaa09rLzF4R25YaFJ4?=
+ =?utf-8?B?bktzSGpSMmd1S1pTdGE3VXVMWUdmV3JaUmhodHQ1dUZublZKaEZ6NFVKSVpL?=
+ =?utf-8?B?SW5yT0NWOVdHMDloR1RqMWxOd09VNy9SUk0rZitTdkhtbnFqSzAxZGdpMEpI?=
+ =?utf-8?B?RnpTamZOQk1FMjRkR2RrUlVqUlcvOVhhYW9jV2ZuVFEvMlBrYWx6TTJRaCtH?=
+ =?utf-8?B?VUZYNVh0dUNEdW1DeWRYRWRCTGV0K1REWjF4b3BKQmJLODR5ZXZWOG9kU21V?=
+ =?utf-8?B?bmNzUDU3ZW9QMS9tY1AxcEFySTFHVk5JMEZSdUJKYkFuQ3NvMDRSVFRGL3Ni?=
+ =?utf-8?B?Z0lhK3hYcTFvbU5taHYyM0ttOWxnSXBtanI1RThXVDJVSlZsNVo4cUFVS3Zp?=
+ =?utf-8?B?K04rRDZIZk1CbEh0dFQyTzV3SHQ0RDRxNU14MEo4bUtqVURUMGI1VkwyVTQw?=
+ =?utf-8?B?U1BMZlVQTHhxWm9SOXdyZDZ6QUgyblJOSkF6cjNFZU4rbGRqcjhxSTV2cVFi?=
+ =?utf-8?B?OXN2d3A0RmFPKzg5cU5DQ21pemZ6M1VuWHF1UlFaYmlJTzJ1QzFyQW9TemJM?=
+ =?utf-8?B?amRaVDVRTG16amdaamxGZ3ZMc3pQK21Nb1gvZEdnMCsrdVFQME5ZVWhEN2JR?=
+ =?utf-8?B?SExTYUdPNjRHTGg5YXZ6dFpIMUdFTG5ZWjZpWTcyTmpXSlhEaFN6Umx2eXZt?=
+ =?utf-8?B?U1YzS213aVc4Tk9BRjBwRVJkcmZuM2h4bVlHOVE1RERtR2NIVEN2V082TDdh?=
+ =?utf-8?B?OElXd0FTVDN5SDhoNk12ZmZ2dDhsVkRtVlNFakp4M0dFY1dEdy91UDREc0tm?=
+ =?utf-8?B?NHFtL3IxSkExZDBocE9qTEYxTU5LbzY0ZFl4UWlIN0ZOMGVXZURzQkFaaWFC?=
+ =?utf-8?B?djJsMXpDRmJocjM0bGY4Yks0KzVRQUxuNU5hNkIzaG1KNUFuQ1ZHRTlnWFQx?=
+ =?utf-8?B?TnhLVkFxQlliVzRTMXBKbTkrN0R2Q1JscndOZUx5K3hEMmFnblBkbDk1YTNy?=
+ =?utf-8?B?OVkva3Jkd1lZK1pkZ09NU2oxcURBM2tlQ0svejNHNWZyQzdUZnNTR1FKOGVt?=
+ =?utf-8?B?em5BZW9QUXhIOXdrQTlwMVkrSzV2V2FRZmJ6QXJBeDZCbFVhaFp0TVpsOGsz?=
+ =?utf-8?B?NXI0V2lJWnp2bGI1YkprMWFSRWFJc1BpVHBoY2lzanprcmJtNnE4bGNhNzha?=
+ =?utf-8?B?TVpsL0NPSk9wNlgxMjVGYzhzbmNLUGg5VVRoNUx0cGlvU2RCeVM3enFQYnJi?=
+ =?utf-8?B?QnpmU3JxODA2Z0d6clFwVkFrZ2tCQmJRR1VFM3FSYlBONFcyYUhQNWFWbGw1?=
+ =?utf-8?B?TldEWkc0M0JWUEh3bVE1NTY4ZUhDai8wdmVOL0cyM3R4ZGkyOVBOUWJRWjRR?=
+ =?utf-8?B?OFcyYTZPSTNpZXlHOTZoMWZuTDNMMHJxL0VyYnpKMGdpQnlBUWtlUlpVTUo3?=
+ =?utf-8?B?dU9xeWJpV0VSM1htSFp2N2tTQ0VEc1NYOTVWRlBhNGllalZWL0JLS0JkRFhO?=
+ =?utf-8?B?dEdHaGJvQjBwOC9jSW5CcWdtMnZFTHl3OGRDQS95MDY1ODNudGVZQ3J6WnFy?=
+ =?utf-8?B?aHJMK3cvVm9KbmxOYmlHeGxnK0FaTWVuNm5Jb1JxSkFWV3ZFQXlvb0p0cXZC?=
+ =?utf-8?B?cWpTTFFOMzdOdW1aQ0g1dTgzZlRnWFVuRlczMXlMT1F6L2o3dEpKVVVNY1Z0?=
+ =?utf-8?B?clpsNFkyU25pTnhjM3diMXdKVTl4KzRrcnRmekNaYzFTUnUxWHBXU2NVazFG?=
+ =?utf-8?Q?mI9U=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: lenovo.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSCPR01MB14370.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3bddfad-c502-49da-ffd9-08ddafd33cc6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jun 2025 08:19:54.8870 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5c7d0b28-bdf8-410c-aa93-4df372b16203
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: iBsp8Zd78SsIGWo+ZPAxc3lzpOOrh7SEJ89YaSSonVVuhLiX43pw3S1p3yKN03RSKEWJUDq8mB7Uf+5NQG188w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS9PR01MB14122
+X-Proofpoint-ORIG-GUID: Arfm1eq1PNjqLkOs2ATjMnInEojifHad
+X-Authority-Analysis: v=2.4 cv=B8K50PtM c=1 sm=1 tr=0 ts=685519b0 cx=c_pps
+ a=epE8n2WbxOnrHxAQZFSbpA==:117 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19 a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19
+ a=xqWC_Br6kY4A:10 a=6IFa9wvqVegA:10 a=FP58Ms26AAAA:8 a=pGLkceISAAAA:8
+ a=8k6WQxmsAAAA:8 a=eU3ePm6_AAAA:8 a=IaTghf58ibK-xNN4cicA:9 a=QEXdDO2ut3YA:10
+ a=yMhMjlubAAAA:8 a=SSmOFEACAAAA:8 a=-r5uD2eZQ2RZHF3j:21 a=gKO2Hq4RSVkA:10
+ a=UiCQ7L4-1S4A:10 a=hTZeC7Yk6K0A:10 a=frz4AuCg-hUA:10 a=lqcHg5cX4UMA:10
+ a=RtajC0Mt0xze-rTBDErL:22
+X-Proofpoint-GUID: Arfm1eq1PNjqLkOs2ATjMnInEojifHad
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNjIwMDA2MCBTYWx0ZWRfX6AmdfxDeQNnI
+ q4iBzxQPr5ygyGHSS3byxVwY0Kj5VsIjbUzbvDt3X4vq5X1vItbhJy+JZRX7tWTmuMuWuKvmOBp
+ 0yuafF7L/s+Lp07QGminvmc9MunB7BdwLj/xbF2Qc+fTjvTRAPlUw+VC5YjJe+YaVVCaYAehCqm
+ 7naSXDDvwKOJlry1ZE1J0ZIWHzKjYeQdWElOmusQbqyzO+JaWNUTO8y2zRN1ggIOGX8r8AHYeBS
+ 7/mnusXHEavgrHpT8tWNWk3JD9RwZA5UKwjwoKJu5ScjgJFLEl6+7J796sFkN1xp0Ian57IdR/8
+ Vo429NkeqvO/ExidCF+yDYs1FCvrxNdLxMkFkzqstfMrQ3yarRb0CzduQpcqpPhKE4vsfnaDI32
+ R2/whnAcr6D3ikoz7bsaCTlBbG4G0G27wnbD9aDEt2YSDRyx/DMij4TLM70MFXos+isQiPbH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.0.736,FMLib:17.12.80.40
+ definitions=2025-06-20_03,2025-06-18_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 mlxlogscore=999 lowpriorityscore=0 bulkscore=0 mlxscore=0
+ adultscore=0 priorityscore=1501 impostorscore=0 clxscore=1011 phishscore=0
+ spamscore=0 suspectscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=-20 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2506200060
+X-Spam-Score: -0.3 (/)
+X-Spam-Report: Spam detection software, running on the system "sfi-spamd-1.hosts.colo.sdot.me",
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi all,
- I'd like to bring up this issue again. I just upgraded
- to Ubuntu 25.04, kernel 6.14.0-15-generic and I'm still having the same issue
- (the same ACPI call still have no effect). Thanks, 
- Content analysis details:   (-0.2 points, 5.0 required)
- pts rule name              description
+ 
+ Content preview:  Thanks Pellaeon ! Even I can reproduce it (using Ubuntu 24.04)
+    but I can see it gets toggled correctly using below sysfs: cat /sys/class/drm/privacy_screen-thinkpad_acpi/hw_state
+    Marco – Do you have any comment to debug this? Thank you very much ! 
+ 
+ Content analysis details:   (-0.3 points, 5.0 required)
+ 
+  pts rule name              description
  ---- ---------------------- --------------------------------------------------
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- [nfsmwlin(at)gmail.com]
- 0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
- [209.85.219.176 listed in wl.mailspike.net]
- 0.0 HTML_MESSAGE           BODY: HTML included in message
-X-Headers-End: 1uSFkI-0007xN-MV
+                             envelope-from domain
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily valid
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from author's
+                             domain
+  0.0 ARC_VALID              Message has a valid ARC signature
+  0.0 ARC_SIGNED             Message has a ARC signature
+  0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+                             [148.163.152.46 listed in wl.mailspike.net]
+  0.0 HTML_MESSAGE           BODY: HTML included in message
+  0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+ -0.1 DKIMWL_WL_HIGH         DKIMwl.org - High trust sender
+X-Headers-End: 1uSepj-0000ci-Fl
 Subject: Re: [ibm-acpi-devel] [External] Re: PrivacyGuard doesn't work even
  by sending ACPI commands directly
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -138,331 +263,327 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
+From: Nitin Joshi1 via ibm-acpi-devel <ibm-acpi-devel@lists.sourceforge.net>
+Reply-To: Nitin Joshi1 <njoshi1@lenovo.com>
 Cc: "ibm-acpi-devel@lists.sourceforge.net"
  <ibm-acpi-devel@lists.sourceforge.net>
-Content-Type: multipart/mixed; boundary="===============5478767010450674825=="
+Content-Type: multipart/mixed; boundary="===============1420177982087467806=="
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
---===============5478767010450674825==
-Content-Type: multipart/alternative; boundary="00000000000075f1e90637ed1ae2"
+--===============1420177982087467806==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_OSCPR01MB14370F089948D35715A6B984A8C7CAOSCPR01MB14370jp_"
 
---00000000000075f1e90637ed1ae2
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_OSCPR01MB14370F089948D35715A6B984A8C7CAOSCPR01MB14370jp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all,
+VGhhbmtzIFBlbGxhZW9uICENCg0KRXZlbiBJIGNhbiByZXByb2R1Y2UgaXQgKHVzaW5nIFVidW50
+dSAyNC4wNCkgYnV0IEkgY2FuIHNlZSBpdCBnZXRzIHRvZ2dsZWQgY29ycmVjdGx5IHVzaW5nIGJl
+bG93IHN5c2ZzOg0KY2F0IC9zeXMvY2xhc3MvZHJtL3ByaXZhY3lfc2NyZWVuLXRoaW5rcGFkX2Fj
+cGkvaHdfc3RhdGUNCg0KTWFyY28g4oCTIERvIHlvdSBoYXZlIGFueSBjb21tZW50IHRvIGRlYnVn
+IHRoaXM/DQpUaGFuayB5b3UgdmVyeSBtdWNoICENCg0KVGhhbmtzICYgUmVnYXJkcywNCk5pdGlu
+DQoNCkZyb206IFBlbGxhZW9uIExpbiA8bmZzbXdsaW5AZ21haWwuY29tPg0KU2VudDogVGh1cnNk
+YXksIEp1bmUgMTksIDIwMjUgMTA6NTYgUE0NClRvOiBOaXRpbiBKb3NoaTEgPG5qb3NoaTFAbGVu
+b3ZvLmNvbT4NCkNjOiBpYm0tYWNwaS1kZXZlbEBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQNClN1Ympl
+Y3Q6IFJlOiBbRXh0ZXJuYWxdIFJlOiBbaWJtLWFjcGktZGV2ZWxdIFByaXZhY3lHdWFyZCBkb2Vz
+bid0IHdvcmsgZXZlbiBieSBzZW5kaW5nIEFDUEkgY29tbWFuZHMgZGlyZWN0bHkNCg0KSGkgYWxs
+LA0KDQpJJ2QgbGlrZSB0byBicmluZyB1cCB0aGlzIGlzc3VlIGFnYWluLiBJIGp1c3QgdXBncmFk
+ZWQgdG8gVWJ1bnR1IDI1LjA0LCBrZXJuZWwgNi4xNC4wLTE1LWdlbmVyaWMgYW5kIEknbSBzdGls
+bCBoYXZpbmcgdGhlIHNhbWUgaXNzdWUgKHRoZSBzYW1lIEFDUEkgY2FsbCBzdGlsbCBoYXZlIG5v
+IGVmZmVjdCkuDQoNClRoYW5rcywNCg0KDQpOaXRpbiBKb3NoaTEgPG5qb3NoaTFAbGVub3ZvLmNv
+bTxtYWlsdG86bmpvc2hpMUBsZW5vdm8uY29tPj4g5pa8IDIwMjTlubQ55pyIMuaXpSDpgLHkuIAg
+5LiL5Y2IOTo0MuWvq+mBk++8mg0KSGVsbG8gUGVsbGFlb24sDQoNCj4+IEBNYXJrOiBoYXMgdGhl
+IHRlYW0gcmVwbGllZCBhbnl0aGluZz8NCk1hcmsgaGFzIGluZm9ybWVkIG1lIHJlZ2FyZGluZyB0
+aGlzIGFuZCBJIGFtIHlldCB0byBjaGVjayB0aGlzIC4gU29ycnkgZm9yIHRoaXMgIQ0KSSB3aWxs
+IHRyeSB0byBnZXQgaG9sZCBvZiBzeXN0ZW0gYW5kIHRyeSB0aGlzIHdpdGhpbiB0aGlzIHdlZWsg
+LCBpZiBJIGZpbmQgQU1EIGUtcHJpdmFjeSBndWFyZCBtYWNoaW5lIC4NCg0KVGhhbmtzDQoNCkZy
+b206IFBlbGxhZW9uIExpbiA8bmZzbXdsaW5AZ21haWwuY29tPG1haWx0bzpuZnNtd2xpbkBnbWFp
+bC5jb20+Pg0KU2VudDogU3VuZGF5LCBTZXB0ZW1iZXIgMSwgMjAyNCAyOjMyIFBNDQpUbzogaWJt
+LWFjcGktZGV2ZWxAbGlzdHMuc291cmNlZm9yZ2UubmV0PG1haWx0bzppYm0tYWNwaS1kZXZlbEBs
+aXN0cy5zb3VyY2Vmb3JnZS5uZXQ+DQpTdWJqZWN0OiBbRXh0ZXJuYWxdIFJlOiBbaWJtLWFjcGkt
+ZGV2ZWxdIFByaXZhY3lHdWFyZCBkb2Vzbid0IHdvcmsgZXZlbiBieSBzZW5kaW5nIEFDUEkgY29t
+bWFuZHMgZGlyZWN0bHkNCg0KSGksDQoNCkBNYXJrOiBoYXMgdGhlIHRlYW0gcmVwbGllZCBhbnl0
+aGluZz8NCg0KQE1hcmNvOiBgcHJvcHRlc3RgIG9uIG15IHN5c3RlbSBkaWQgbm90IHJldHVybiBh
+bnkgcHJvcGVydHkgcmVsYXRlZCB0byBwcml2YWN5IHNjcmVlbiwgaXMgdGhpcyBub3JtYWw/IChJ
+IHJhbiBgcHJvcHRlc3QgfCBncmVwIC1pIHByaXZhY3lgLCB3aGljaCByZXR1cm5lZCBlbXB0eSBy
+ZXN1bHQuKQ0KDQpUaGFua3MsDQoNCk1hcmNvIFRyZXZpc2FuIChUcmV2acOxbykgPG1haWxAM3Yx
+bjAubmV0PG1haWx0bzptYWlsQDN2MW4wLm5ldD4+IOaWvCAyMDI05bm0NuaciDTml6Ug6YCx5LqM
+IOS4iuWNiDI6MDflr6vpgZPvvJoNCkhpLA0KDQpOb3Qgc3VyZSBpZiBzb21ldGhpbmcgY2hhbmdl
+ZCBvciBpdCBpcyBkaWZmZXJlbnQgaW4gbmV3ZXIgbW9kZWxzLCBidXQNCnRoZSBwcml2YWN5IHNj
+cmVlbiBmZWF0dXJlIHNvIGZhciBoYXMgYmVlbiBleHBvc2VkIGFzIGEgS01TIHByb3BlcnR5IHlv
+dQ0KY2FuIGluc3BlY3QgYW5kIHNldCB3aXRoIHRvb2xzIGxpa2UgcHJvcHRlc3QgKGluIGxpYmRy
+bS10ZXN0cyBwYWNrYWdlDQpmb3Igd2hhdCBjb25jZXJucyB1YnVudHUpDQoNCkNoZWVycw0KDQpP
+biBnaXUgMyAyMDI0LCBhdCAxOjQ2IHBtLCBQZWxsYWVvbiBMaW4gPG5mc213bGluQGdtYWlsLmNv
+bTxtYWlsdG86bmZzbXdsaW5AZ21haWwuY29tPj4gd3JvdGU6DQoNCj4gSGksDQo+DQo+IEkgaGF2
+ZSBhIFRoaW5rUGFkIFgxMyBHZW4gMiBBTUQgd2l0aCBQcml2YWN5R3VhcmQuIEJ1dCBieSBwcmVz
+c2luZyB0aGUNCj4gY29tYmluYXRpb24ga2V5IEZuK0QgaXQgZG9lcyBub3QgdG9nZ2xlIHRoZSBQ
+cml2YWN5R3VhcmQsIHRoZQ0KPiBQcml2YWN5R3VhcmQgc3RheXMgb24uIEkndmUgdGVzdGVkOg0K
+Pg0KPiAtIEZuK0QgZG9lcyB0b2dnbGUgUHJpdmFjeUd1YXJkIHdoZW4gSSdtIGluIHRoZSBCSU9T
+DQo+IC0gRm4rRCBoYXMgbm8gZWZmZWN0IG9uIFVidW50dSAyMi4xMCwgVWJ1bnR1IDIzLjA0LCBV
+YnVudHUgMjMuMTAsDQo+IFVidW50dSAyNC4wNCBhbmQgRmVkb3JhIDQwIChleGNlcHQgVWJ1bnR1
+IDIzLjEwIGFuZCAyNC4wNCwgYWxsIHdhcw0KPiB0ZXN0ZWQgdXNpbmcgTGl2ZVVTQikNCj4NCj4g
+SW4gYWxsIG9mIHRoZSBMaW51eCBjYXNlcywgSSBjYW4gY29uZmlybSB0aGF0IGJ5IHByZXNzaW5n
+IEZuK0QsIHRoZQ0KPiBzdGF0dXMgdmFsdWUgb2YgL3Byb2MvYWNwaS9pYm0vbGNkc2hhZG93IGFj
+dHVhbGx5IGNoYW5nZXMuDQo+DQo+IEkndmUgYWx3YXlzIHRob3VnaHQgdGhpcyB3YXMgYSBVYnVu
+dHUtc3BlY2lmaWMgaXNzdWUsIHVudGlsIEkgdGVzdGVkIEZlZG9yYS4NCj4NCj4gSSB0ZXN0ZWQg
+dGhpcyBmdXJ0aGVyIGJ5IGluc3RhbGxpbmcgdGhlIGFjcGktY2FsbC1ka21zIHBhY2thZ2Ugb24N
+Cj4gVWJ1bnR1IGFuZCBpc3N1ZXMgdGhlIGZvbGxvd2luZyBjYWxsOg0KPg0KPiBlY2hvICdcX1NC
+LlBDSTAuTFBDMC5FQzAuSEtFWS5TU1NTIDB4MScgfCBzdWRvIHRlZSAvcHJvYy9hY3BpL2NhbGwN
+Cj4NCj4gSXQgcmV0dXJuZWQgMCAod2hpY2ggc2hvdWxkIG1lYW4gc3VjY2VzcyksIGJ1dCBQcml2
+YWN5R3VhcmQgaXMgc3RpbGwNCj4gT04uIFRoZW4gSSB0cmllZCB0byBjYWxsIGl0IHdpdGggMHgw
+Og0KPg0KPiBlY2hvICdcX1NCLlBDSTAuTFBDMC5FQzAuSEtFWS5TU1NTIDB4MCcgfCBzdWRvIHRl
+ZSAvcHJvYy9hY3BpL2NhbGwNCj4NCj4gQWxzbyBnZXR0aW5nIDAgaW4gcmV0dXJuLiBQcml2YWN5
+R3VhcmQgaXMgc3RpbGwgT04uDQo+DQo+IEJhc2VkIG9uIG15IGxpbWl0ZWQgdW5kZXJzdGFuZGlu
+ZyBvZiBBQ1BJIGFuZCB0aGUga2VybmVsLCBhdCB0aGlzDQo+IHBvaW50IGl0IG1pZ2h0IGJlIGEg
+ZmlybXdhcmUgaXNzdWU/IChmd3VwZG1nciBzaG93cyB0aGF0IHRoZXJlIGlzIG5vDQo+IGF2YWls
+YWJsZSB1cGRhdGVzKSBCdXQgYmFzZWQgb24gbXkgcmVhZGluZyBhbmQgdW5kZXJzdGFuZGluZyBv
+Zg0KPiB0aGlua3BhZF9hY3BpLmMsIHRoZSBwYXJ0aWN1bGFyIEFDUEkgY2FsbCB0aGF0IEkgaXNz
+dWVkIGlzIGFsc28gaG93DQo+IHRoZSBMaW51eCBkcml2ZXIgY3VycmVudGx5IG9wZXJhdGVzIHRo
+ZSBQcml2YWN5R3VhcmQgZmVhdHVyZSwgd2hpY2gNCj4gbWVhbnMgdGhlIGRyaXZlciBtaWdodCBh
+bHNvIGJlIGFmZmVjdGVkIGJ5IHRoaXMgaXNzdWUuIFNvIEknbSBob3BpbmcNCj4gc29tZW9uZSBj
+b3VsZCBoZWxwIG1lIGRlYnVnIHRoaXMgZnVydGhlciwgb3IgcG9pbnQgb3V0IGFueXRoaW5nIHRo
+YXQNCj4gSSdtIG5vdCB1bmRlcnN0YW5kaW5nIGNvcnJlY3RseS4NCj4NCj4gVGhhbmtzIQ0KPiBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPg0KPiBpYm0t
+YWNwaS1kZXZlbCBtYWlsaW5nIGxpc3QNCj4NCj4gaWJtLWFjcGktZGV2ZWxAbGlzdHMuc291cmNl
+Zm9yZ2UubmV0PG1haWx0bzppYm0tYWNwaS1kZXZlbEBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQ+DQo+
+DQo+IGh0dHBzOi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2libS1hY3Bp
+LWRldmVsDQo=
 
-I'd like to bring up this issue again. I just upgraded to Ubuntu 25.04,
-kernel 6.14.0-15-generic and I'm still having the same issue (the same ACPI
-call still have no effect).
+--_000_OSCPR01MB14370F089948D35715A6B984A8C7CAOSCPR01MB14370jp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks,
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+TWFuZ2FsOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSAyIDMgMyAyIDI7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk65ri444K044K344OD44KvOw0KCXBhbm9zZS0x
+OjIgMTEgNCAwIDAgMCAwIDAgMCAwO30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJy
+aTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQt
+ZmFtaWx5OkFwdG9zO30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlxA5ri444K044K344OD
+44KvIjsNCglwYW5vc2UtMToyIDExIDQgMCAwIDAgMCAwIDAgMDt9DQovKiBTdHlsZSBEZWZpbml0
+aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJn
+aW46MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IkFwdG9zIixzYW5zLXNl
+cmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5
+Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWls
+U3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToi
+QXB0b3MiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0K
+CXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTEuMHB0Ow0KCW1zby1m
+YXJlYXN0LWxhbmd1YWdlOkpBO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDEx
+LjBpbjsNCgltYXJnaW46OTkuMjVwdCA4NS4wNXB0IDg1LjA1cHQgODUuMDVwdDt9DQpkaXYuV29y
+ZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUg
+bXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2
+IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
+ZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4N
+CjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
+IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFr
+LXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkpBIj5U
+aGFua3MgUGVsbGFlb24gIQ0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6
+SkEiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkpBIj5FdmVu
+IEkgY2FuIHJlcHJvZHVjZSBpdCAodXNpbmcgVWJ1bnR1IDI0LjA0KSBidXQgSSBjYW4gc2VlIGl0
+IGdldHMgdG9nZ2xlZCBjb3JyZWN0bHkgdXNpbmcgYmVsb3cgc3lzZnM6PG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6SkEiPmNhdCAvc3lzL2NsYXNzL2RybS9wcml2YWN5X3Nj
+cmVlbi10aGlua3BhZF9hY3BpL2h3X3N0YXRlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7bXNvLWZhcmVhc3Qt
+bGFuZ3VhZ2U6SkEiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdl
+OkpBIj5NYXJjbyDigJMgRG8geW91IGhhdmUgYW55IGNvbW1lbnQgdG8gZGVidWcgdGhpcz88bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpKQSI+VGhhbmsgeW91IHZlcnkgbXVj
+aCAhPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6SkEiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkpBIj5UaGFua3MgJmFtcDsgUmVnYXJk
+cyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDttc28tZmFyZWFzdC1sYW5ndWFnZTpKQSI+Tml0aW4NCjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOkpBIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVl
+IDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJv
+cmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBp
+biAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJv
+bTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IFBlbGxhZW9uIExpbiAmbHQ7bmZzbXdsaW5A
+Z21haWwuY29tJmd0Ow0KPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBKdW5lIDE5LCAyMDI1
+IDEwOjU2IFBNPGJyPg0KPGI+VG86PC9iPiBOaXRpbiBKb3NoaTEgJmx0O25qb3NoaTFAbGVub3Zv
+LmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IGlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJjZWZvcmdl
+Lm5ldDxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW0V4dGVybmFsXSBSZTogW2libS1hY3BpLWRl
+dmVsXSBQcml2YWN5R3VhcmQgZG9lc24ndCB3b3JrIGV2ZW4gYnkgc2VuZGluZyBBQ1BJIGNvbW1h
+bmRzIGRpcmVjdGx5PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5IaSBhbGwsPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPkknZCBsaWtlIHRvIGJyaW5nIHVwIHRoaXMgaXNzdWUgYWdh
+aW4uIEkganVzdCB1cGdyYWRlZCB0byBVYnVudHUgMjUuMDQsIGtlcm5lbCA2LjE0LjAtMTUtZ2Vu
+ZXJpYyBhbmQgSSdtIHN0aWxsIGhhdmluZyB0aGUgc2FtZSBpc3N1ZSAodGhlIHNhbWUgQUNQSSBj
+YWxsIHN0aWxsIGhhdmUgbm8gZWZmZWN0KS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPk5pdGluIEpvc2hpMSAmbHQ7PGEgaHJlZj0ibWFpbHRvOm5qb3NoaTFA
+bGVub3ZvLmNvbSI+bmpvc2hpMUBsZW5vdm8uY29tPC9hPiZndDsNCjxzcGFuIGxhbmc9IlpILUNO
+IiBzdHlsZT0iZm9udC1mYW1pbHk65ri444K044K344OD44KvIj7mlrw8L3NwYW4+IDIwMjQ8c3Bh
+biBsYW5nPSJaSC1DTiIgc3R5bGU9ImZvbnQtZmFtaWx5Oua4uOOCtOOCt+ODg+OCryI+5bm0PC9z
+cGFuPjk8c3BhbiBsYW5nPSJaSC1DTiIgc3R5bGU9ImZvbnQtZmFtaWx5Oua4uOOCtOOCt+ODg+OC
+ryI+5pyIPC9zcGFuPjI8c3BhbiBsYW5nPSJaSC1DTiIgc3R5bGU9ImZvbnQtZmFtaWx5Oua4uOOC
+tOOCt+ODg+OCryI+5pelPC9zcGFuPjxzcGFuIGxhbmc9IlpILUNOIj4NCjwvc3Bhbj48c3BhbiBs
+YW5nPSJaSC1DTiIgc3R5bGU9ImZvbnQtZmFtaWx5Oua4uOOCtOOCt+ODg+OCryI+6YCx5LiAPC9z
+cGFuPjxzcGFuIGxhbmc9IlpILUNOIj4gPC9zcGFuPg0KPHNwYW4gbGFuZz0iWkgtQ04iIHN0eWxl
+PSJmb250LWZhbWlseTrmuLjjgrTjgrfjg4Pjgq8iPuS4i+WNiDwvc3Bhbj45OjQyPHNwYW4gbGFu
+Zz0iWkgtQ04iIHN0eWxlPSJmb250LWZhbWlseTrmuLjjgrTjgrfjg4Pjgq8iPuWvq+mBk++8mjwv
+c3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpu
+b25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2
+LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8ZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SGVsbG8gUGVsbGFlb24sPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
+bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvIj4mZ3Q7Jmd0OyBATWFyazogaGFzIHRoZSB0ZWFtIHJlcGxpZWQgYW55
+dGhpbmc/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1h
+cmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPk1hcmsgaGFzIGlu
+Zm9ybWVkIG1lIHJlZ2FyZGluZyB0aGlzIGFuZCBJIGFtIHlldCB0byBjaGVjayB0aGlzIC4gU29y
+cnkgZm9yIHRoaXMgITxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5JIHdp
+bGwgdHJ5IHRvIGdldCBob2xkIG9mIHN5c3RlbSBhbmQgdHJ5IHRoaXMgd2l0aGluIHRoaXMgd2Vl
+ayAsIGlmIEkgZmluZCBBTUQgZS1wcml2YWN5IGd1YXJkIG1hY2hpbmUgLjxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21z
+by1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+VGhhbmtzDQo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3Jk
+ZXItbGVmdDpzb2xpZCB3aW5kb3d0ZXh0IDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQ7
+Ym9yZGVyLWNvbG9yOmN1cnJlbnRjb2xvciBjdXJyZW50Y29sb3IgY3VycmVudGNvbG9yIGJsdWUi
+Pg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgd2luZG93
+dGV4dCAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluO2JvcmRlci1jb2xvcjpjdXJyZW50
+Y29sb3IgY3VycmVudGNvbG9yIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
+Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PGI+RnJvbTo8L2I+
+IFBlbGxhZW9uIExpbiAmbHQ7PGEgaHJlZj0ibWFpbHRvOm5mc213bGluQGdtYWlsLmNvbSIgdGFy
+Z2V0PSJfYmxhbmsiPm5mc213bGluQGdtYWlsLmNvbTwvYT4mZ3Q7DQo8YnI+DQo8Yj5TZW50Ojwv
+Yj4gU3VuZGF5LCBTZXB0ZW1iZXIgMSwgMjAyNCAyOjMyIFBNPGJyPg0KPGI+VG86PC9iPiA8YSBo
+cmVmPSJtYWlsdG86aWJtLWFjcGktZGV2ZWxAbGlzdHMuc291cmNlZm9yZ2UubmV0IiB0YXJnZXQ9
+Il9ibGFuayI+DQppYm0tYWNwaS1kZXZlbEBsaXN0cy5zb3VyY2Vmb3JnZS5uZXQ8L2E+PGJyPg0K
+PGI+U3ViamVjdDo8L2I+IFtFeHRlcm5hbF0gUmU6IFtpYm0tYWNwaS1kZXZlbF0gUHJpdmFjeUd1
+YXJkIGRvZXNuJ3Qgd29yayBldmVuIGJ5IHNlbmRpbmcgQUNQSSBjb21tYW5kcyBkaXJlY3RseTxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5i
+c3A7PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+
+SGksPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
+PiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
+dXRvIj5ATWFyazogaGFzIHRoZSB0ZWFtIHJlcGxpZWQgYW55dGhpbmc/PG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5ATWFyY286IGBwcm9w
+dGVzdGAgb24gbXkgc3lzdGVtIGRpZCBub3QgcmV0dXJuIGFueSBwcm9wZXJ0eSByZWxhdGVkIHRv
+IHByaXZhY3kgc2NyZWVuLCBpcyB0aGlzIG5vcm1hbD8gKEkgcmFuIGBwcm9wdGVzdCB8IGdyZXAg
+LWkgcHJpdmFjeWAsIHdoaWNoIHJldHVybmVkIGVtcHR5IHJlc3VsdC4pPG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
+aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5UaGFua3MsPG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8
+bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5NYXJj
+byBUcmV2aXNhbiAoVHJldmnDsW8pICZsdDs8YSBocmVmPSJtYWlsdG86bWFpbEAzdjFuMC5uZXQi
+IHRhcmdldD0iX2JsYW5rIj5tYWlsQDN2MW4wLm5ldDwvYT4mZ3Q7DQo8c3BhbiBsYW5nPSJaSC1D
+TiIgc3R5bGU9ImZvbnQtZmFtaWx5Oua4uOOCtOOCt+ODg+OCryI+5pa8PC9zcGFuPiAyMDI0PHNw
+YW4gbGFuZz0iWkgtQ04iIHN0eWxlPSJmb250LWZhbWlseTrmuLjjgrTjgrfjg4Pjgq8iPuW5tDwv
+c3Bhbj42PHNwYW4gbGFuZz0iWkgtQ04iIHN0eWxlPSJmb250LWZhbWlseTrmuLjjgrTjgrfjg4Pj
+gq8iPuaciDwvc3Bhbj40PHNwYW4gbGFuZz0iWkgtQ04iIHN0eWxlPSJmb250LWZhbWlseTrmuLjj
+grTjgrfjg4Pjgq8iPuaXpTwvc3Bhbj48c3BhbiBsYW5nPSJaSC1DTiI+DQo8L3NwYW4+PHNwYW4g
+bGFuZz0iWkgtQ04iIHN0eWxlPSJmb250LWZhbWlseTrmuLjjgrTjgrfjg4Pjgq8iPumAseS6jDwv
+c3Bhbj48c3BhbiBsYW5nPSJaSC1DTiI+IDwvc3Bhbj4NCjxzcGFuIGxhbmc9IlpILUNOIiBzdHls
+ZT0iZm9udC1mYW1pbHk65ri444K044K344OD44KvIj7kuIrljYg8L3NwYW4+MjowNzxzcGFuIGxh
+bmc9IlpILUNOIiBzdHlsZT0iZm9udC1mYW1pbHk65ri444K044K344OD44KvIj7lr6vpgZPvvJo8
+L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6
+bm9uZTtib3JkZXItbGVmdDpzb2xpZCB3aW5kb3d0ZXh0IDEuMHB0O3BhZGRpbmc6MGluIDBpbiAw
+aW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tcmlnaHQ6
+MGluO21hcmdpbi1ib3R0b206NS4wcHQ7Ym9yZGVyLWNvbG9yOmN1cnJlbnRjb2xvciBjdXJyZW50
+Y29sb3IgY3VycmVudGNvbG9yIHJnYigyMDQsMjA0LDIwNCkiPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
+dXRvIj5IaSw8YnI+DQo8YnI+DQpOb3Qgc3VyZSBpZiBzb21ldGhpbmcgY2hhbmdlZCBvciBpdCBp
+cyBkaWZmZXJlbnQgaW4gbmV3ZXIgbW9kZWxzLCBidXQ8YnI+DQp0aGUgcHJpdmFjeSBzY3JlZW4g
+ZmVhdHVyZSBzbyBmYXIgaGFzIGJlZW4gZXhwb3NlZCBhcyBhIEtNUyBwcm9wZXJ0eSB5b3U8YnI+
+DQpjYW4gaW5zcGVjdCBhbmQgc2V0IHdpdGggdG9vbHMgbGlrZSBwcm9wdGVzdCAoaW4gbGliZHJt
+LXRlc3RzIHBhY2thZ2U8YnI+DQpmb3Igd2hhdCBjb25jZXJucyB1YnVudHUpPGJyPg0KPGJyPg0K
+Q2hlZXJzPGJyPg0KPGJyPg0KT24gZ2l1IDMgMjAyNCwgYXQgMTo0NiBwbSwgUGVsbGFlb24gTGlu
+ICZsdDs8YSBocmVmPSJtYWlsdG86bmZzbXdsaW5AZ21haWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+
+bmZzbXdsaW5AZ21haWwuY29tPC9hPiZndDsgd3JvdGU6PGJyPg0KPGJyPg0KJmd0OyBIaSw8YnI+
+DQomZ3Q7IDxicj4NCiZndDsgSSBoYXZlIGEgVGhpbmtQYWQgWDEzIEdlbiAyIEFNRCB3aXRoIFBy
+aXZhY3lHdWFyZC4gQnV0IGJ5IHByZXNzaW5nIHRoZTxicj4NCiZndDsgY29tYmluYXRpb24ga2V5
+IEZuK0QgaXQgZG9lcyBub3QgdG9nZ2xlIHRoZSBQcml2YWN5R3VhcmQsIHRoZTxicj4NCiZndDsg
+UHJpdmFjeUd1YXJkIHN0YXlzIG9uLiBJJ3ZlIHRlc3RlZDo8YnI+DQomZ3Q7IDxicj4NCiZndDsg
+LSBGbitEIGRvZXMgdG9nZ2xlIFByaXZhY3lHdWFyZCB3aGVuIEknbSBpbiB0aGUgQklPUzxicj4N
+CiZndDsgLSBGbitEIGhhcyBubyBlZmZlY3Qgb24gVWJ1bnR1IDIyLjEwLCBVYnVudHUgMjMuMDQs
+IFVidW50dSAyMy4xMCw8YnI+DQomZ3Q7IFVidW50dSAyNC4wNCBhbmQgRmVkb3JhIDQwIChleGNl
+cHQgVWJ1bnR1IDIzLjEwIGFuZCAyNC4wNCwgYWxsIHdhczxicj4NCiZndDsgdGVzdGVkIHVzaW5n
+IExpdmVVU0IpPGJyPg0KJmd0OyA8YnI+DQomZ3Q7IEluIGFsbCBvZiB0aGUgTGludXggY2FzZXMs
+IEkgY2FuIGNvbmZpcm0gdGhhdCBieSBwcmVzc2luZyBGbitELCB0aGU8YnI+DQomZ3Q7IHN0YXR1
+cyB2YWx1ZSBvZiAvcHJvYy9hY3BpL2libS9sY2RzaGFkb3cgYWN0dWFsbHkgY2hhbmdlcy48YnI+
+DQomZ3Q7IDxicj4NCiZndDsgSSd2ZSBhbHdheXMgdGhvdWdodCB0aGlzIHdhcyBhIFVidW50dS1z
+cGVjaWZpYyBpc3N1ZSwgdW50aWwgSSB0ZXN0ZWQgRmVkb3JhLjxicj4NCiZndDsgPGJyPg0KJmd0
+OyBJIHRlc3RlZCB0aGlzIGZ1cnRoZXIgYnkgaW5zdGFsbGluZyB0aGUgYWNwaS1jYWxsLWRrbXMg
+cGFja2FnZSBvbjxicj4NCiZndDsgVWJ1bnR1IGFuZCBpc3N1ZXMgdGhlIGZvbGxvd2luZyBjYWxs
+Ojxicj4NCiZndDsgPGJyPg0KJmd0OyBlY2hvICdcX1NCLlBDSTAuTFBDMC5FQzAuSEtFWS5TU1NT
+IDB4MScgfCBzdWRvIHRlZSAvcHJvYy9hY3BpL2NhbGw8YnI+DQomZ3Q7IDxicj4NCiZndDsgSXQg
+cmV0dXJuZWQgMCAod2hpY2ggc2hvdWxkIG1lYW4gc3VjY2VzcyksIGJ1dCBQcml2YWN5R3VhcmQg
+aXMgc3RpbGw8YnI+DQomZ3Q7IE9OLiBUaGVuIEkgdHJpZWQgdG8gY2FsbCBpdCB3aXRoIDB4MDo8
+YnI+DQomZ3Q7IDxicj4NCiZndDsgZWNobyAnXF9TQi5QQ0kwLkxQQzAuRUMwLkhLRVkuU1NTUyAw
+eDAnIHwgc3VkbyB0ZWUgL3Byb2MvYWNwaS9jYWxsPGJyPg0KJmd0OyA8YnI+DQomZ3Q7IEFsc28g
+Z2V0dGluZyAwIGluIHJldHVybi4gUHJpdmFjeUd1YXJkIGlzIHN0aWxsIE9OLjxicj4NCiZndDsg
+PGJyPg0KJmd0OyBCYXNlZCBvbiBteSBsaW1pdGVkIHVuZGVyc3RhbmRpbmcgb2YgQUNQSSBhbmQg
+dGhlIGtlcm5lbCwgYXQgdGhpczxicj4NCiZndDsgcG9pbnQgaXQgbWlnaHQgYmUgYSBmaXJtd2Fy
+ZSBpc3N1ZT8gKGZ3dXBkbWdyIHNob3dzIHRoYXQgdGhlcmUgaXMgbm88YnI+DQomZ3Q7IGF2YWls
+YWJsZSB1cGRhdGVzKSBCdXQgYmFzZWQgb24gbXkgcmVhZGluZyBhbmQgdW5kZXJzdGFuZGluZyBv
+Zjxicj4NCiZndDsgdGhpbmtwYWRfYWNwaS5jLCB0aGUgcGFydGljdWxhciBBQ1BJIGNhbGwgdGhh
+dCBJIGlzc3VlZCBpcyBhbHNvIGhvdzxicj4NCiZndDsgdGhlIExpbnV4IGRyaXZlciBjdXJyZW50
+bHkgb3BlcmF0ZXMgdGhlIFByaXZhY3lHdWFyZCBmZWF0dXJlLCB3aGljaDxicj4NCiZndDsgbWVh
+bnMgdGhlIGRyaXZlciBtaWdodCBhbHNvIGJlIGFmZmVjdGVkIGJ5IHRoaXMgaXNzdWUuIFNvIEkn
+bSBob3Bpbmc8YnI+DQomZ3Q7IHNvbWVvbmUgY291bGQgaGVscCBtZSBkZWJ1ZyB0aGlzIGZ1cnRo
+ZXIsIG9yIHBvaW50IG91dCBhbnl0aGluZyB0aGF0PGJyPg0KJmd0OyBJJ20gbm90IHVuZGVyc3Rh
+bmRpbmcgY29ycmVjdGx5Ljxicj4NCiZndDsgPGJyPg0KJmd0OyBUaGFua3MhPGJyPg0KJmd0OyBf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NCiZndDsg
+PGJyPg0KJmd0OyBpYm0tYWNwaS1kZXZlbCBtYWlsaW5nIGxpc3Q8YnI+DQomZ3Q7IDxicj4NCiZn
+dDsgPGEgaHJlZj0ibWFpbHRvOmlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJjZWZvcmdlLm5ldCIg
+dGFyZ2V0PSJfYmxhbmsiPmlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJjZWZvcmdlLm5ldDwvYT48
+YnI+DQomZ3Q7IDxicj4NCiZndDsgPGEgaHJlZj0iaHR0cHM6Ly9saXN0cy5zb3VyY2Vmb3JnZS5u
+ZXQvbGlzdHMvbGlzdGluZm8vaWJtLWFjcGktZGV2ZWwiIHRhcmdldD0iX2JsYW5rIj4NCmh0dHBz
+Oi8vbGlzdHMuc291cmNlZm9yZ2UubmV0L2xpc3RzL2xpc3RpbmZvL2libS1hY3BpLWRldmVsPC9h
+PjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
+Ym9keT4NCjwvaHRtbD4NCg==
 
-
-Nitin Joshi1 <njoshi1@lenovo.com> =E6=96=BC 2024=E5=B9=B49=E6=9C=882=E6=97=
-=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=889:42=E5=AF=AB=E9=81=93=EF=BC=9A
-
-> Hello Pellaeon,
->
->
->
-> >> @Mark: has the team replied anything?
->
-> Mark has informed me regarding this and I am yet to check this . Sorry fo=
-r
-> this !
->
-> I will try to get hold of system and try this within this week , if I fin=
-d
-> AMD e-privacy guard machine .
->
->
->
-> Thanks
->
->
->
-> *From:* Pellaeon Lin <nfsmwlin@gmail.com>
-> *Sent:* Sunday, September 1, 2024 2:32 PM
-> *To:* ibm-acpi-devel@lists.sourceforge.net
-> *Subject:* [External] Re: [ibm-acpi-devel] PrivacyGuard doesn't work even
-> by sending ACPI commands directly
->
->
->
-> Hi,
->
->
->
-> @Mark: has the team replied anything?
->
->
->
-> @Marco: `proptest` on my system did not return any property related to
-> privacy screen, is this normal? (I ran `proptest | grep -i privacy`, whic=
-h
-> returned empty result.)
->
->
->
-> Thanks,
->
->
->
-> Marco Trevisan (Trevi=C3=B1o) <mail@3v1n0.net> =E6=96=BC 2024=E5=B9=B46=
-=E6=9C=884=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:07=E5=AF=AB=E9=
-=81=93=EF=BC=9A
->
-> Hi,
->
-> Not sure if something changed or it is different in newer models, but
-> the privacy screen feature so far has been exposed as a KMS property you
-> can inspect and set with tools like proptest (in libdrm-tests package
-> for what concerns ubuntu)
->
-> Cheers
->
-> On giu 3 2024, at 1:46 pm, Pellaeon Lin <nfsmwlin@gmail.com> wrote:
->
-> > Hi,
-> >
-> > I have a ThinkPad X13 Gen 2 AMD with PrivacyGuard. But by pressing the
-> > combination key Fn+D it does not toggle the PrivacyGuard, the
-> > PrivacyGuard stays on. I've tested:
-> >
-> > - Fn+D does toggle PrivacyGuard when I'm in the BIOS
-> > - Fn+D has no effect on Ubuntu 22.10, Ubuntu 23.04, Ubuntu 23.10,
-> > Ubuntu 24.04 and Fedora 40 (except Ubuntu 23.10 and 24.04, all was
-> > tested using LiveUSB)
-> >
-> > In all of the Linux cases, I can confirm that by pressing Fn+D, the
-> > status value of /proc/acpi/ibm/lcdshadow actually changes.
-> >
-> > I've always thought this was a Ubuntu-specific issue, until I tested
-> Fedora.
-> >
-> > I tested this further by installing the acpi-call-dkms package on
-> > Ubuntu and issues the following call:
-> >
-> > echo '\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x1' | sudo tee /proc/acpi/call
-> >
-> > It returned 0 (which should mean success), but PrivacyGuard is still
-> > ON. Then I tried to call it with 0x0:
-> >
-> > echo '\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x0' | sudo tee /proc/acpi/call
-> >
-> > Also getting 0 in return. PrivacyGuard is still ON.
-> >
-> > Based on my limited understanding of ACPI and the kernel, at this
-> > point it might be a firmware issue? (fwupdmgr shows that there is no
-> > available updates) But based on my reading and understanding of
-> > thinkpad_acpi.c, the particular ACPI call that I issued is also how
-> > the Linux driver currently operates the PrivacyGuard feature, which
-> > means the driver might also be affected by this issue. So I'm hoping
-> > someone could help me debug this further, or point out anything that
-> > I'm not understanding correctly.
-> >
-> > Thanks!
-> > _______________________________________________
-> >
-> > ibm-acpi-devel mailing list
-> >
-> > ibm-acpi-devel@lists.sourceforge.net
-> >
-> > https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
->
->
-
---00000000000075f1e90637ed1ae2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I&#39;d like to brin=
-g up this issue again. I just upgraded to Ubuntu 25.04, kernel 6.14.0-15-ge=
-neric and I&#39;m still having the same issue (the same ACPI call still hav=
-e no effect).</div><div><br></div><div>Thanks,</div><br></div><br><div clas=
-s=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_att=
-r">Nitin Joshi1 &lt;<a href=3D"mailto:njoshi1@lenovo.com">njoshi1@lenovo.co=
-m</a>&gt; =E6=96=BC 2024=E5=B9=B49=E6=9C=882=E6=97=A5 =E9=80=B1=E4=B8=80 =
-=E4=B8=8B=E5=8D=889:42=E5=AF=AB=E9=81=93=EF=BC=9A<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div class=3D"msg2759253170961259886">
-
-
-
-
-
-<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
-<div class=3D"m_2759253170961259886WordSection1">
-<p class=3D"MsoNormal"><span>Hello Pellaeon,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span>&gt;&gt; </span>@Mark: has the team replied an=
-ything?<u></u><u></u></p>
-<p class=3D"MsoNormal"><span>Mark has informed me regarding this and I am y=
-et to check this . Sorry for this !<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span>I will try to get hold of system and try this =
-within this week , if I find AMD e-privacy guard machine .<u></u><u></u></s=
-pan></p>
-<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span>Thanks <u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
-<div style=3D"border-width:medium medium medium 1.5pt;border-style:none non=
-e none solid;border-color:currentcolor currentcolor currentcolor blue;paddi=
-ng:0in 0in 0in 4pt">
-<div>
-<div style=3D"border-width:1pt medium medium;border-style:solid none none;b=
-order-color:rgb(225,225,225) currentcolor currentcolor;padding:3pt 0in 0in"=
->
-<p class=3D"MsoNormal"><b>From:</b> Pellaeon Lin &lt;<a href=3D"mailto:nfsm=
-wlin@gmail.com" target=3D"_blank">nfsmwlin@gmail.com</a>&gt; <br>
-<b>Sent:</b> Sunday, September 1, 2024 2:32 PM<br>
-<b>To:</b> <a href=3D"mailto:ibm-acpi-devel@lists.sourceforge.net" target=
-=3D"_blank">ibm-acpi-devel@lists.sourceforge.net</a><br>
-<b>Subject:</b> [External] Re: [ibm-acpi-devel] PrivacyGuard doesn&#39;t wo=
-rk even by sending ACPI commands directly<u></u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">@Mark: has the team replied anything?<u></u><u></u><=
-/p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">@Marco: `proptest` on my system did not return any p=
-roperty related to privacy screen, is this normal? (I ran `proptest | grep =
--i privacy`, which returned empty result.)<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">Marco Trevisan (Trevi=C3=B1o) &lt;<a href=3D"mailto:=
-mail@3v1n0.net" target=3D"_blank">mail@3v1n0.net</a>&gt;
-<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=
-=83=E3=82=AF">=E6=96=BC</span> 2024<span lang=3D"ZH-CN" style=3D"font-famil=
-y:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E5=B9=B4</span>6<span lan=
-g=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=
-=AF">=E6=9C=88</span>4<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=
-=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E6=97=A5</span><span lang=3D"ZH-CN">
-</span><span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=
-=B7=E3=83=83=E3=82=AF">=E9=80=B1=E4=BA=8C</span><span lang=3D"ZH-CN"> </spa=
-n>
-<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=
-=83=E3=82=AF">=E4=B8=8A=E5=8D=88</span>2:07<span lang=3D"ZH-CN" style=3D"fo=
-nt-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E5=AF=AB=E9=81=93=
-=EF=BC=9A</span><u></u><u></u></p>
-</div>
-<blockquote style=3D"border-width:medium medium medium 1pt;border-style:non=
-e none none solid;border-color:currentcolor currentcolor currentcolor rgb(2=
-04,204,204);padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in">
-<p class=3D"MsoNormal">Hi,<br>
-<br>
-Not sure if something changed or it is different in newer models, but<br>
-the privacy screen feature so far has been exposed as a KMS property you<br=
->
-can inspect and set with tools like proptest (in libdrm-tests package<br>
-for what concerns ubuntu)<br>
-<br>
-Cheers<br>
-<br>
-On giu 3 2024, at 1:46 pm, Pellaeon Lin &lt;<a href=3D"mailto:nfsmwlin@gmai=
-l.com" target=3D"_blank">nfsmwlin@gmail.com</a>&gt; wrote:<br>
-<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; I have a ThinkPad X13 Gen 2 AMD with PrivacyGuard. But by pressing the=
-<br>
-&gt; combination key Fn+D it does not toggle the PrivacyGuard, the<br>
-&gt; PrivacyGuard stays on. I&#39;ve tested:<br>
-&gt; <br>
-&gt; - Fn+D does toggle PrivacyGuard when I&#39;m in the BIOS<br>
-&gt; - Fn+D has no effect on Ubuntu 22.10, Ubuntu 23.04, Ubuntu 23.10,<br>
-&gt; Ubuntu 24.04 and Fedora 40 (except Ubuntu 23.10 and 24.04, all was<br>
-&gt; tested using LiveUSB)<br>
-&gt; <br>
-&gt; In all of the Linux cases, I can confirm that by pressing Fn+D, the<br=
->
-&gt; status value of /proc/acpi/ibm/lcdshadow actually changes.<br>
-&gt; <br>
-&gt; I&#39;ve always thought this was a Ubuntu-specific issue, until I test=
-ed Fedora.<br>
-&gt; <br>
-&gt; I tested this further by installing the acpi-call-dkms package on<br>
-&gt; Ubuntu and issues the following call:<br>
-&gt; <br>
-&gt; echo &#39;\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x1&#39; | sudo tee /proc/acpi/=
-call<br>
-&gt; <br>
-&gt; It returned 0 (which should mean success), but PrivacyGuard is still<b=
-r>
-&gt; ON. Then I tried to call it with 0x0:<br>
-&gt; <br>
-&gt; echo &#39;\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x0&#39; | sudo tee /proc/acpi/=
-call<br>
-&gt; <br>
-&gt; Also getting 0 in return. PrivacyGuard is still ON.<br>
-&gt; <br>
-&gt; Based on my limited understanding of ACPI and the kernel, at this<br>
-&gt; point it might be a firmware issue? (fwupdmgr shows that there is no<b=
-r>
-&gt; available updates) But based on my reading and understanding of<br>
-&gt; thinkpad_acpi.c, the particular ACPI call that I issued is also how<br=
->
-&gt; the Linux driver currently operates the PrivacyGuard feature, which<br=
->
-&gt; means the driver might also be affected by this issue. So I&#39;m hopi=
-ng<br>
-&gt; someone could help me debug this further, or point out anything that<b=
-r>
-&gt; I&#39;m not understanding correctly.<br>
-&gt; <br>
-&gt; Thanks!<br>
-&gt; _______________________________________________<br>
-&gt; <br>
-&gt; ibm-acpi-devel mailing list<br>
-&gt; <br>
-&gt; <a href=3D"mailto:ibm-acpi-devel@lists.sourceforge.net" target=3D"_bla=
-nk">ibm-acpi-devel@lists.sourceforge.net</a><br>
-&gt; <br>
-&gt; <a href=3D"https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel=
-" target=3D"_blank">
-https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel</a><u></u><u></=
-u></p>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-
-</div></blockquote></div>
-
---00000000000075f1e90637ed1ae2--
+--_000_OSCPR01MB14370F089948D35715A6B984A8C7CAOSCPR01MB14370jp_--
 
 
---===============5478767010450674825==
+--===============1420177982087467806==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Content-Disposition: inline
 
 
---===============5478767010450674825==
+--===============1420177982087467806==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -473,5 +594,5 @@ ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
 
---===============5478767010450674825==--
+--===============1420177982087467806==--
 
