@@ -2,120 +2,105 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E14AE21D1
-	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 20 Jun 2025 20:12:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 525D1AEAE67
+	for <lists+ibm-acpi-devel@lfdr.de>; Fri, 27 Jun 2025 07:15:21 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Subject:MIME-Version:References:In-Reply-To:Message-ID:Date:To:From:Sender:
+	Subject:In-Reply-To:MIME-Version:References:Message-ID:To:From:Date:Sender:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=BduD5NcQB/zST8lW6hsRohuTPjevx095Kno9fPa+AGI=; b=ZdhT+LdjelmbMoYe3L5WIkcn/T
-	DI3lwp8Tc/CFW6Z9jmeN6IK7LFn5b3qzoVjMEvc7iyyqscDdr4eYpl3F19xDt0b9kPc/CbPSBE0Ad
-	pIbH4rYyxdkFOaRWRccWO9EUQ+J4l7a6xu2sF3B0zRlBijMjn5zcMerep7EC/oXlXrWE=;
+	bh=QoJglcGoAK6FFcmPOoVYozF4UJ2qSPsUCkX9Rsm3zPI=; b=Qwhy/Dkt3E4wbEmTZ6akAnbMHJ
+	Lf/ELSNxAdYppIZvQx2oMu4iXyA6G5yznw42lUIgYsyTzIoDq/NpySv4l7AWOvvDd9KbHNFT1D7uq
+	+TkA8EN6V2VIQ1vF3IChPh04aEXk9DhPWWe1enS7wdLmoTPxP96P88had6os/aAKUmTA=;
 Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
 	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uSgD9-0004mg-By;
-	Fri, 20 Jun 2025 18:11:35 +0000
+	id 1uV1Q9-0000ZX-ES;
+	Fri, 27 Jun 2025 05:14:41 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1uSgD7-0004mZ-UU
+ (envelope-from <dmitry.torokhov@gmail.com>) id 1uV1Q8-0000ZR-14
  for ibm-acpi-devel@lists.sourceforge.net;
- Fri, 20 Jun 2025 18:11:34 +0000
+ Fri, 27 Jun 2025 05:14:40 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
  Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=7Ykv1WdH4LN+2KFW44tucEmnHyrkAkxKCk4JhHN/PwA=; b=h+5H4fuiwhz9GflhkUufBnae9F
- XwpFcmJun5ie250grYaSqWBHCGQvyDbLCsg6DdUyiZmS4tK/Zt/szYx0szO4LUIE762EN1nfNO/Zv
- vDtFkH16W1ndvkm5ReRTVvGk4G5SCNBY+7PjYleqg1Hxt7K5Muz/18A7WfPmJ8yfnmYQ=;
+ bh=Bhc4F3bUMNlVYBI4FrEiquw9o4SRTI6Gsg6n63VV2NE=; b=RTyduCDlVbZeU3FsDG/fdOei67
+ S6f8sYqiiBV/nOscjNcPbPL5HpBBo7yNYPOOW51onkaPE9YFLckmMq/Plm21uCsV1wijdpNYdsE5l
+ NnUc1N8mphoIkukl9M1+MMcaVPjUha9KXTqt+V0dwWAXvCN/BMWL/b3d3WdtFbMSzK/o=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=7Ykv1WdH4LN+2KFW44tucEmnHyrkAkxKCk4JhHN/PwA=; b=WpR1j+uzSb/R3Fz+5tdNQlTCl2
- WtfJG31ORSe7871uFvoCvmDFm0gsmpcVWID5qStvKqV5W407TuANNuPB8AcEyOBzFUh0+aqhxmXYU
- YvSGa5nssmggBojiZhWRGfNm8OD0RWCocMwpLf7RYPuufZ5VnD6A/J1wAgYAwEj+kCg8=;
-Received: from fout-a1-smtp.messagingengine.com ([103.168.172.144])
+ bh=Bhc4F3bUMNlVYBI4FrEiquw9o4SRTI6Gsg6n63VV2NE=; b=BN+yQTWoMH85lAHqL09ZcrSQjF
+ HNwJsMI1zk2O9ObRogib75qNv8/ghlt5nEhG+BigL1yfTC3dXnN3/iKwZUPOwjeDy6kBSbuQImzFo
+ XppnInwBF3omMOzzmnP6bIsTnWeg9JvjA1F24oTu3hHws2KVgxO7mVs6+F7m0DeFNgrg=;
+Received: from mail-pf1-f181.google.com ([209.85.210.181])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1uSgD6-0005vr-9a for ibm-acpi-devel@lists.sourceforge.net;
- Fri, 20 Jun 2025 18:11:33 +0000
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal
- [10.202.2.44])
- by mailfout.phl.internal (Postfix) with ESMTP id 8CF3E1380452;
- Fri, 20 Jun 2025 14:11:26 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
- by phl-compute-04.internal (MEProxy); Fri, 20 Jun 2025 14:11:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :cc:content-transfer-encoding:content-type:date:date:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:subject:subject:to:to; s=fm2; t=1750443086; x=
- 1750529486; bh=7Ykv1WdH4LN+2KFW44tucEmnHyrkAkxKCk4JhHN/PwA=; b=g
- ljf9ICtn+X+z8zxwNDRDewHfl8ECDDVBVsq43S2FcVliq8K4Z50LTYM5DuJF/q9Q
- Z5kvmjaHYd7QgWVQwev9X3blbxmtYIKSgb5sgLpQ4ccDgNHUvug+DTgpyDrrF3iP
- fVLjdEtOOED0Q8zEGx46hveht3eZK2M4DzvfG9ykLVMSJP0yUrJSB5s7hqaqzIay
- JquovmmNJwwJocdCE+p3ezpsm+5yXeMIi9VY1qOMtsXNTxqX+YneGfJ2AB3KtUYL
- RVg1vTT+5FveGGvV3Y7Vxwjwoab6TnqO/9mUPcntxo0HnAjSP7C24bkaY4cQIw80
- /3eM8IhFL4kEyGWzpn9IA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm1; t=1750443086; x=1750529486; bh=7
- Ykv1WdH4LN+2KFW44tucEmnHyrkAkxKCk4JhHN/PwA=; b=pjqcciv+lBW2Htzrp
- PhK6WOlkPxS3Y+aCRwV3FE+A0anC5kWthJnQEexiAFCAnnHTrR8mcb8e7KkdaPLZ
- oG0Ucun8Gs+xF6916w7OnGuVfXXVkHsNHFHzufCVKF6u5DtAsA0P7lOngAF9kYj+
- /+KP6pXAtZ1INbYqgvO/qbo+3mPkFTl+daBTveyswVhdOKtmN8kHHg1GS3rte3eD
- 4htvSsWeXa1nqtPGw5tMDQrCG2r6FYs+uPr8K1X87Z8jRhYhCEBReT0+l8LlMao4
- NwAr8TvwODvDEV9CFy2SVxPFyBLoKdfQwTTH3mJStagmatbEcDX3egFNO1o5pqds
- Nh/aQ==
-X-ME-Sender: <xms:TaRVaEsWzAmJI77s8IdbqvkK1mf4a1mchrx7sUTOFCvGKVkzBD284A>
- <xme:TaRVaBf8Bmdoknykbe-Pvp4aI9bOVGG5o3FO4SwzlcMDNkL3sWOGvaXEhRH_FdWsT
- bOItwbrTH6UL6WzBko>
-X-ME-Received: <xmr:TaRVaPxXCnMQlFLIzZppO7It2ZuqggJrc6ASr-jyLiGMvX2F3XgOxmOYUkfXHW0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddvgdeltdelucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
- lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnegoufhush
- hpvggtthffohhmrghinhculdegledmnegoteeftdduqddtudculdduhedmnecujfgurhep
- hffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrrhhkucfrvggrrh
- hsohhnuceomhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsggsrdgtrgeqnecuggft
- rfgrthhtvghrnhepjeeltedtgeeigeekffethfduheevtdfhveejheeukeejgfdvvdevve
- egteehieeunecuffhomhgrihhnpehsohhurhgtvghfohhrghgvrdhnvghtnecuvehluhhs
- thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhhpvggrrhhsohhnqd
- hlvghnohhvohesshhquhgvsggsrdgtrgdpnhgspghrtghpthhtohepkedpmhhouggvpehs
- mhhtphhouhhtpdhrtghpthhtohepmhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsg
- gsrdgtrgdprhgtphhtthhopehhmhhhsehhmhhhrdgvnhhgrdgsrhdprhgtphhtthhopehh
- uggvghhovgguvgesrhgvughhrghtrdgtohhmpdhrtghpthhtohepihhlphhordhjrghrvh
- hinhgvnheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehisghmqdgrtghp
- ihdquggvvhgvlheslhhishhtshdrshhouhhrtggvfhhorhhgvgdrnhgvthdprhgtphhtth
- hopehplhgrthhfohhrmhdqughrihhvvghrqdigkeeisehvghgvrhdrkhgvrhhnvghlrdho
- rhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrd
- horhhgpdhrtghpthhtohepghgurghmjhgrnhesghhmrghilhdrtghomh
-X-ME-Proxy: <xmx:TaRVaHNKpy9uwYt1mSbzQ3erixZ7_DCFs0f0U5QzJHJyHVR1hroftA>
- <xmx:TaRVaE_JZS8VdoR3drAANYThAk_Tme6AnZrt1hW6wsQhuadToUHMhg>
- <xmx:TaRVaPVM7jjGF_m3UvZpsvrnO4esCddvi8bKvAVqxWpfgVLeiKPlnA>
- <xmx:TaRVaNdzFDFMbWYvh26bsrpQPvMJ3NjvsYncgmFdtAg8-btiUA_pPw>
- <xmx:TqRVaCM1BHo8XsBPrgUl0i_IgRTYo3wVf2YFlu6KrMe1a3X93Yg_V4_e>
-Feedback-ID: ibe194615:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 20 Jun 2025 14:11:24 -0400 (EDT)
-From: Mark Pearson <mpearson-lenovo@squebb.ca>
-To: mpearson-lenovo@squebb.ca
-Date: Fri, 20 Jun 2025 14:11:10 -0400
-Message-ID: <20250620181119.2519546-1-mpearson-lenovo@squebb.ca>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <mpearson-lenovo@squebb.ca>
-References: <mpearson-lenovo@squebb.ca>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1uV1Q7-00064z-Ld for ibm-acpi-devel@lists.sourceforge.net;
+ Fri, 27 Jun 2025 05:14:39 +0000
+Received: by mail-pf1-f181.google.com with SMTP id
+ d2e1a72fcca58-74264d1832eso2394943b3a.0
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Thu, 26 Jun 2025 22:14:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1751001269; x=1751606069; darn=lists.sourceforge.net;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Bhc4F3bUMNlVYBI4FrEiquw9o4SRTI6Gsg6n63VV2NE=;
+ b=hlY5+KdUvnZTBhatxTIvE2Yf37UqHsJjUprXm/6pam/bgJjsrmSnoNAOg1u+pA75Ub
+ KaiZpZqH+5n0EdjHJuJbDFpGV5HOYhXCOEqkgq2vi7jNTlqtcA/hWgj4km6QDuLLMkCu
+ LUAq3T0LZjFaRutLN5F1sJBE0WNoP2Y5ZWvVsCSBvuTlCjb7R9oIfO2Uk8i+1LjSxXOK
+ uip5dr6dVZjHGQa0RpMX5e8jBeWmrSDiv1RGMSgyxPdidAibB3AEUnl+Q5wMxbKsyrHV
+ NMn13jW1u1Rjfn5dARS0DcvcM5K2y/0BFLm9oKGMasFIIKHMHlFk3vDaW0Yppc6IkuwR
+ TQsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1751001269; x=1751606069;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Bhc4F3bUMNlVYBI4FrEiquw9o4SRTI6Gsg6n63VV2NE=;
+ b=qfjzuq8pX9rYHuBGbu0l4sDWsx2ksVM2iddAFPzwQ3CUdfi/gwzC95E+F/fPWQmwAN
+ pCjFXJ2TYNTyvda2mEuG2Zzx9T8dvrZ1PUXc8NXoZbNKtL50+OOQHUKoGlZ0rJo0t/Vb
+ iqMzoMyFxa0k+SFdFewN7mn8G3fV8Rk4DQVXcGAMG7NtAeSiY4F/lcE6P9oVguZpuHFe
+ hN+9gMJYA9qHm6vnLKf4krgEO0gs0aO0rkWPhNLiDls/jVjZPFZCASiaR+4VqOUIlfBp
+ 1B6imuchdHPIEJ8WzLJS88pFBRM+tn8J3SCrNf+p7Tr9pKBKHcrg6qaw3H1cZQW8OvlG
+ K3Ug==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXWB0KNU9ru6yg5LYySE2CRRI+X/rP36LNCgFJsZ8GLJknzyv3hrGZP0XsEyyIh1JHoGxthXkvJsgf1Kwp/zA==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0YyFjuERqZJ9SpFMTZNhBZenRwraXi2qbCWC4u/G8VYsWPeFxvL+
+ tmpXqvXoWwMTZw+mto9xlFgQlWSbQwoXNw6UbwCBNjmWLyWSBVDNg8Lua0ltdA==
+X-Gm-Gg: ASbGncvOld+7s5yNvX7n4cVx4EVjgc9CNv0LtziR9H4eu40a0ueou0cSAqJp4hxUeYb
+ wu2orH87qoGOnkpjnjgwbRkM0OksqtsjyZ+BzO7phhNuL2DXXev0KQH5TrTQ4uRsJfYt3oKuaMf
+ +VGnb5T0rPVSo1TkreRhvhXlnNu6kuPKRB27JOrNqKISO3cpwkZQSA4MzSmm6eowiBiKA9ZlrKS
+ NiU0IayCH1Bo07qjTP95Aj0k++9/JolxBdqM94VHjSVBwZNz1LKKaCv8Msl+bDQA4j0yYKJ2Fdx
+ bmM5+l2MCM2rT4/+Vpb+CFw/rbOiq6RYpsj68O/vUgvaySkgSv4o9tpJOB9c3Q==
+X-Google-Smtp-Source: AGHT+IFXEsyBMb/CAdGfjgJitTkGAT8Tvs9bfEcnJN13gSVQY2QQe/8p4thG2wM4PAe2ueMPgyt9Pw==
+X-Received: by 2002:a05:6a21:328c:b0:1f5:931d:ca6d with SMTP id
+ adf61e73a8af0-220a113ca68mr2413528637.1.1751001268908; 
+ Thu, 26 Jun 2025 22:14:28 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:d0c7:d92:6a17:eb62])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-74af557b3adsm1228434b3a.106.2025.06.26.22.14.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Jun 2025 22:14:28 -0700 (PDT)
+Date: Thu, 26 Jun 2025 22:14:25 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Vishnu Sankar <vishnuocv@gmail.com>
+Message-ID: <5jgix7znkfrkopmwnmwkxx35dj2ovvdpplhadcozbpejm32o2j@yxnbfvmealtl>
+References: <20250620004209.28250-1-vishnuocv@gmail.com>
 MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <20250620004209.28250-1-vishnuocv@gmail.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "sfi-spamd-2.hosts.colo.sdot.me", 
@@ -123,13 +108,17 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview: 2025 Thinkpads F11 key launch the Intel Unison app on Windows,
- which does some sort of smart sharing between laptop and phone. Map this
- key event to KEY_LINK_PHONE as the closest thing we have. This prevents an
- error message being displayed on key press. 
+ Content preview:  Hi Vishnu, On Fri, Jun 20, 2025 at 09:42:08AM +0900, Vishnu
+ Sankar wrote: > Newer ThinkPads have a doubletap feature that needs to be
+ turned > ON/OFF via the trackpoint registers. > Systems released from 2023
+ ha [...] 
  Content analysis details:   (-0.2 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to DNSWL
+ was blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#DnsBlocklists-dnsbl-block
+ for more information. [209.85.210.181 listed in list.dnswl.org]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
@@ -137,9 +126,14 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Headers-End: 1uSgD6-0005vr-9a
-Subject: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: handle HKEY
- 0x1402 event
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ [dmitry.torokhov(at)gmail.com]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.210.181 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1uV1Q7-00064z-Ld
+Subject: Re: [ibm-acpi-devel] [PATCH] x86/Mouse: thinkpad_acpi/Trackpoint:
+ Trackpoint Doubletap handling
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -152,42 +146,46 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: ibm-acpi-devel@lists.sourceforge.net, linux-kernel@vger.kernel.org,
- platform-driver-x86@vger.kernel.org, hdegoede@redhat.com,
- Damjan Georgievski <gdamjan@gmail.com>, hmh@hmh.eng.br,
- ilpo.jarvinen@linux.intel.com
+Cc: zhoubinbin@loongson.cn, jay_lee@pixart.com, linux-kernel@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org, vsankar@lenovo.com,
+ ibm-acpi-devel@lists.sourceforge.net, hmh@hmh.eng.br,
+ linux-input@vger.kernel.org, Mark Pearson <mpearson-lenovo@squebb.ca>,
+ ilpo.jarvinen@linux.intel.com, tglx@linutronix.de, jon_xie@pixart.com,
+ pali@kernel.org, mingo@kernel.org, hansg@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-2025 Thinkpads F11 key launch the Intel Unison app on Windows,
-which does some sort of smart sharing between laptop and phone.
+Hi Vishnu,
 
-Map this key event to KEY_LINK_PHONE as the closest thing we have.
-This prevents an error message being displayed on key press.
+On Fri, Jun 20, 2025 at 09:42:08AM +0900, Vishnu Sankar wrote:
+> Newer ThinkPads have a doubletap feature that needs to be turned
+> ON/OFF via the trackpoint registers.
+> Systems released from 2023 have doubletap disabled by default and
+> need the feature enabling to be useful.
+> 
+> This patch introduces support for exposing and controlling the
+> trackpoint doubletap feature via a sysfs attribute.
+> /sys/devices/platform/thinkpad_acpi/tp_doubletap
+> This can be toggled by an "enable" or a "disable".
+> 
+> With this implemented we can remove the masking of events, and rely on
+> HW control instead, when the feature is disabled.
+> 
+> Note - Early Thinkpads (pre 2015) used the same register for hysteris
+> control, Check the FW IDs to make sure these are not affected.
+> 
+> trackpoint.h is moved to linux/input/.
 
-Reported-by: Damjan Georgievski<gdamjan@gmail.com>
-Closes: https://sourceforge.net/p/ibm-acpi/mailman/message/59189556/
-Signed-off-by: Mark Pearson <mpearson-lenovo@squebb.ca>
----
- drivers/platform/x86/lenovo/thinkpad_acpi.c | 1 +
- 1 file changed, 1 insertion(+)
+No, please keep everything private to trackpoint.c and do not involve
+thinkpad_acpi driver. By doing so you are introducing unwanted
+dependencies (for both module loading, driver initialization, and
+operation) and unsafe use of non-owned pointers/dangling pointers, etc.
 
-diff --git a/drivers/platform/x86/lenovo/thinkpad_acpi.c b/drivers/platform/x86/lenovo/thinkpad_acpi.c
-index e1c7bd06fa12..2155ec682b08 100644
---- a/drivers/platform/x86/lenovo/thinkpad_acpi.c
-+++ b/drivers/platform/x86/lenovo/thinkpad_acpi.c
-@@ -3295,6 +3295,7 @@ static const struct key_entry keymap_lenovo[] __initconst = {
- 	 */
- 	{ KE_KEY, 0x131d, { KEY_VENDOR } }, /* System debug info, similar to old ThinkPad key */
- 	{ KE_KEY, 0x1320, { KEY_LINK_PHONE } },
-+	{ KE_KEY, 0x1402, { KEY_LINK_PHONE } },
- 	{ KE_KEY, TP_HKEY_EV_TRACK_DOUBLETAP /* 0x8036 */, { KEY_PROG4 } },
- 	{ KE_END }
- };
+Thanks.
+
 -- 
-2.43.0
-
+Dmitry
 
 
 _______________________________________________
