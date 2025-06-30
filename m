@@ -2,142 +2,138 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D98F3AED107
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 29 Jun 2025 22:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F17A9AED3C7
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 30 Jun 2025 07:21:00 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Subject:References:In-Reply-To:Message-Id:To:From:Date:MIME-Version:Sender:
+	Subject:In-Reply-To:MIME-Version:References:Message-ID:To:From:Date:Sender:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=goYiew1N3buHmPMeuRKo541m5hA+I/uYMPDpzG13O2I=; b=fTgvUANdyK/tfIzF1dFzXpYWYf
-	SmUzI89ZkmH/kW+K04mw6ApmoILE8smDEVsBGc7B5hvub/AFx3b8AgUqS2MnbYc5yNx7AlABAuc41
-	z6Eg9DV6lxNexwYWcYVqvqwRG6D7c/dKqvWcH8bFKysukgqv6o0rL7F8egFX6ZebepXY=;
-Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
-	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	bh=Ght8Qajt844xGy9r8vBai8vleGc0jfXMJZ0XyrdkkIQ=; b=B8MIEAsynTOOOEV5xWC07u+8Jt
+	stOKBFulFpKETuBkEqM1ZdqM3Er2q4cOdTokJLgHL5qq6ZxbEahm4FVs8X8QYuTjBofKvtuV9cPCS
+	ps7XLtQbA62U+O4Sg4vXXpvUs+0hjFhvWaZy1gYtRptkcLLDbHIauP9WQuetEjkKgPm8=;
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uVyrw-0001Jj-Tt;
-	Sun, 29 Jun 2025 20:43:20 +0000
+	id 1uW6wO-0001Yd-Iy;
+	Mon, 30 Jun 2025 05:20:28 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1uVyrv-0001Jb-5x
+ (envelope-from <dmitry.torokhov@gmail.com>) id 1uW6wI-0001YT-Lq
  for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 29 Jun 2025 20:43:19 +0000
+ Mon, 30 Jun 2025 05:20:22 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
- References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
- Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
- :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
+ Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=BWGPBaX9iZOJRCEWLGCGTXE+Ju/KNnNYjIQVnEWkVnM=; b=laqSXyL96pzrnfaUw85vwAQl0D
- X+ESEBLwjgJ2AqhRBpPhx90ixHnwgxaudYjklfpxNvI3DeKzgly2Ta1NeWnwdWlbFeGaheSXxp2c9
- MeKCxVFjmpD2Z3FrF+xbmC5tLk903f9nekWwTmGgZTJ9GkO+A3G46IEEJ4vyo83JWVYA=;
+ bh=WaJ4C0zWWu9yrnACARDN83F3kZ6XpuexPtSIsWrNK/g=; b=ShGZKi2zI8wdoLc06lNbeSY+EH
+ lO+fSCuKxjhMrhUgnucVit+GpEsuLxJyxzzUskvCL2qBbFIeYX00blxDTvFj4XqyPieUHONhw9/dn
+ dX4BPCgcrKtbJDO4UpwqyOgVqt+6VN/OtRLeewAfbBAJ/G7Pu4z7aEKufmqXmQ89/dyk=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
- Message-Id:Cc:To:From:Date:MIME-Version:Sender:Reply-To:Content-ID:
+ h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
+ :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=BWGPBaX9iZOJRCEWLGCGTXE+Ju/KNnNYjIQVnEWkVnM=; b=bnjE0pbh+O0/gxWU56wjC6DM3m
- NAQkGeCJjsDqCi1JS0r0/6h2AJMh/vnbm2uJ2dKQczndeaMN4o1zpS+i7TzDfJ5oFRLzzHXyxcTKb
- pkNgPsax658HU9q3Pm1POAM1joA5/rzFkZeLvsS/LFaGsVYdrf4s9xhbBQf6D5U7KiBA=;
-Received: from fout-a7-smtp.messagingengine.com ([103.168.172.150])
+ bh=WaJ4C0zWWu9yrnACARDN83F3kZ6XpuexPtSIsWrNK/g=; b=g11IntarcyznzT4onSY31Fj45x
+ vJHGajoVQMCOPy2qlfrOstT61MuS7a8gbhAlANa9Hmwtr59DbUzL9aNfg84uixYeNc1+9XU1lYaaq
+ 5AIQhbbOqhfaULtGATDQMn5PuVilyqmpirCr803dW0uqrm7phJ/52SuQvAUggyCfIYSY=;
+Received: from mail-pl1-f180.google.com ([209.85.214.180])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1uVyru-0002X8-Fw for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 29 Jun 2025 20:43:19 +0000
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal
- [10.202.2.52])
- by mailfout.phl.internal (Postfix) with ESMTP id BE120EC0192;
- Sun, 29 Jun 2025 16:43:07 -0400 (EDT)
-Received: from phl-imap-08 ([10.202.2.84])
- by phl-compute-12.internal (MEProxy); Sun, 29 Jun 2025 16:43:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1751229787;
- x=1751316187; bh=BWGPBaX9iZOJRCEWLGCGTXE+Ju/KNnNYjIQVnEWkVnM=; b=
- PmUmfuQ/w/rWA0/ThuLPG+bpC6n9sCQ3pfgs8WXDvvZeYcx0849Hum9xN1NKyjxx
- 0XA82cpqCqP5ZjrfAy/HdK6RjAFK9BtdakknOZiSUlCW6jc4lQH/Hz1MHTjIX+W4
- Sbgl0oI3U/9sPv0XwDGK2kklVFMptdhht2jMMAqQA5cYqAkKSrFCzULLdgrIh2LX
- Q/kMGHmiqC3lskbwoXjbiD/lr8jbvNdQsO4VV6A8rjSaiTs/9sEYKXmwHjrP/1Zv
- UT8E8jIwKdJFIAAiKeSnSG/krM9akQbJ9bW9ox3/A3At0gG67FsMdRWmGjzARjPm
- OOmjQG8ETEO85zWQuDRb3g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1751229787; x=
- 1751316187; bh=BWGPBaX9iZOJRCEWLGCGTXE+Ju/KNnNYjIQVnEWkVnM=; b=f
- OX/IolZrJwn1quz5mnOQv5PHDNufVWXvrCmoReTvTjiya90I83gqcNAkzXftw4Nj
- sv246G0BExOZOmW+s15uRb6YHG3V9AsMHvLJPV6WojbCguhzF2Ze0RNTIaemzTbL
- wevvMYjihZgFjuH7gl83e6/I/7Xt15FXcBUBiTrYdSx4wyxsf4wm3kIaHynjLJVn
- JGz9A8R2o8fZDFjC28pbUoq1qE3jdFML8Z3fHPzere6uQH6b4HOyBof8wCIyhmpz
- RnTAdxLYj5RHLlS+IiEKi5qG79pd/x2w2Kckg8hiNjvn8b90ry4Uchkr4UGVC81V
- VyjZUcbt0ZXU+lUVKx7QQ==
-X-ME-Sender: <xms:WaVhaLb-mMk-Y1ZEQRldwp3SF0taxDPDEcJfJQOpwIExKzY3irN4cQ>
- <xme:WaVhaKYTujbYDaQeB6FXCoIWplEoYMHLLNtYR5k-CNzADisNKYuBKNZ56A243oQ5C
- qKpqDkw54ZOSDkWvYM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdelkeduucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
- lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
- epofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedfofgrrhhkucfr
- vggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggrqe
- enucggtffrrghtthgvrhhnpefhuedvheetgeehtdehtdevheduvdejjefggfeijedvgeek
- hfefleehkeehvdffheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
- hlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggrpdhnsggp
- rhgtphhtthhopeduiedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepughmihhtrh
- ihrdhtohhrohhkhhhovhesghhmrghilhdrtghomhdprhgtphhtthhopehvihhshhhnuhho
- tghvsehgmhgrihhlrdgtohhmpdhrtghpthhtohephhhmhheshhhmhhdrvghnghdrsghrpd
- hrtghpthhtohephhgrnhhsgheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepmhhinhhg
- oheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepphgrlhhisehkvghrnhgvlhdrohhrgh
- dprhgtphhtthhopehvshgrnhhkrghrsehlvghnohhvohdrtghomhdprhgtphhtthhopeht
- ghhlgieslhhinhhuthhrohhnihigrdguvgdprhgtphhtthhopehilhhpohdrjhgrrhhvih
- hnvghnsehlihhnuhigrdhinhhtvghlrdgtohhm
-X-ME-Proxy: <xmx:WaVhaN_ZSYMzUux5Ji1ASSLj1jGYIHYWxTKhYGQRXJOgKOhdsiPZtQ>
- <xmx:WaVhaBqKp8A2FpFuXAcVg5M5m0jlHT6GbVcjkOfV8YBNqHQn09EGLQ>
- <xmx:WaVhaGrtpKVJgpgke10PHleITxhc9ZLgt3wVzRpR-acXfxSEFLQqeQ>
- <xmx:WaVhaHTuJP-QBEKO7niuhkgmiEI_pAN_Ndlfhj5qoHPRHGFMefRn2Q>
- <xmx:W6VhaMvG1jSNMrcEpo71wY4cCr8AaP1SJhj3hC9QlKeDIORjGaJ-4jlu>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 947592CE0071; Sun, 29 Jun 2025 16:43:05 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-MIME-Version: 1.0
-X-ThreadId: Tc8ff538d84ba1a5c
-Date: Mon, 30 Jun 2025 05:42:45 +0900
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
-To: "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- "Vishnu Sankar" <vishnuocv@gmail.com>
-Message-Id: <4ad6e1e1-aca8-4774-aa4a-60edccaa6d0e@app.fastmail.com>
-In-Reply-To: <5jgix7znkfrkopmwnmwkxx35dj2ovvdpplhadcozbpejm32o2j@yxnbfvmealtl>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1uW6wI-0006Pr-7f for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 30 Jun 2025 05:20:22 +0000
+Received: by mail-pl1-f180.google.com with SMTP id
+ d9443c01a7336-2363616a1a6so10131035ad.3
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Sun, 29 Jun 2025 22:20:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1751260811; x=1751865611; darn=lists.sourceforge.net;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=WaJ4C0zWWu9yrnACARDN83F3kZ6XpuexPtSIsWrNK/g=;
+ b=R6Nr2MlamK9NQNzuRQaZN/WsKgTgJxeNLjNc4VFiG5PMdMiWOcZlY8Ssfvecuy/LzH
+ wnvfPyfbu6L300xrV1rGyprfgrDuYGE4yD3+8s2RbzkOxgx4Bq6Zg2uvWswTsPNpNbcA
+ B4e+AIlmUCtcHzt6OVt+plsYyaWRYHcsDJcxuvJ7W4Uwk8JHcKjv/MwX9acWSNpbc4DB
+ o9M2QvDBUIlOZDT32XctGLcVQ/Mt1eyc5R54dQc1Hi6lZX4JcZxN4ixexLcnEYrKA26g
+ 2xPE4E8wfuTIe+Kk+SfemQmjLKksZQrPLJkme01D3HAxj/c1nMI9aQD+fAbA8C9Pj4s7
+ 0SoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1751260811; x=1751865611;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=WaJ4C0zWWu9yrnACARDN83F3kZ6XpuexPtSIsWrNK/g=;
+ b=RigxhQ7qbP0Bz/gZoJ02n2dQuzIccZRduPHBhCdSxZS+19QkOn0aCffFsfYJqp8Q8p
+ wTllaFCSvfcpnGF8wTHmftGVXJYSsg1JxzmRBFVPazkxHo4YIj3wAo2RDhBBeXD6o63K
+ bKynmwVPkJ06xdcbVTQjQtyd06Ec7e9H2pEKmlrkkoivN8fvPVp+ggwzojxPDPmhXKJF
+ xyrpJ+PeT0JW/Vy+l+6C+tnI17dkl7Y/gSBbQdi6h8sZ+vNpM9zPC/PWs2HKjCrCc12q
+ 7U3fEdI2i1vv8VGQuVeu1utT38qEt8vt/Crw3EbYTqFZKceneWZmZbboiIDeqtWkYKHf
+ VpXw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWZqO3ZVaHsgMaJzcXHLhc25KHhVRItpnRYQ5tsY6XyBN9dkofupZXIXeO3OHCe4GONJ7kyk4PniaUVt5MjvQ==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0YyWrCzl5tr3fphGWv2c81kSaYLbpdosDcsyQGqeJ1kZBofL6vXz
+ Hq1z3uWeNm9SYuRei3AHT2j5CSVoSoCHoOcess/GmKM0krEJa8Rd/9nB
+X-Gm-Gg: ASbGncusRWCuwgwzjlOf0vcnduhJRmNWx1TKrRZe+5Wl/imAGjX4Jcc80Puh6aK+D9A
+ e6PRpt+jVq9XKNNR8bSRK8kY/EV2J/0fLcy1Kwkaj00xzuYs0U04TAqmLJs8OQMITt0/mNKViBl
+ 6Vwrm3Y9/M4TeZfB8OxMBhnVpBLipiEC5tWeQJgGs5gqnbNHRsESovg1Ph08hUCfyyJ9rucoXaL
+ DGDXf3RpEgrommBgMDbjL9Ru671Y2xbe0B0pCJ3IgrZQA6HC45iJTskaigwMHuBhFGjtu7HyW2l
+ rwwafi4Yczqn7W9FO8F0FLyJKmVa0dPjh/rgdgUup290ramgziyKidMOVEKVMg==
+X-Google-Smtp-Source: AGHT+IGljq9y7uyYbWJk8IEUOp3noeR3/2KTd8Pg83rOjo/0K4IILNVBfNxEreQd5THLNbtRj5CfVw==
+X-Received: by 2002:a17:902:d603:b0:234:8c64:7885 with SMTP id
+ d9443c01a7336-23ac48b6862mr175872145ad.53.1751260811397; 
+ Sun, 29 Jun 2025 22:20:11 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:c92b:c666:1f8:990e])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-23acb2f1837sm75936735ad.65.2025.06.29.22.20.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 29 Jun 2025 22:20:11 -0700 (PDT)
+Date: Sun, 29 Jun 2025 22:20:07 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Mark Pearson <mpearson-lenovo@squebb.ca>
+Message-ID: <bviu4igchqy6bvu54fw6afts7ooctlmmcutdq6tc4rutzhjvfs@o56kezrit6un>
 References: <20250620004209.28250-1-vishnuocv@gmail.com>
  <5jgix7znkfrkopmwnmwkxx35dj2ovvdpplhadcozbpejm32o2j@yxnbfvmealtl>
+ <4ad6e1e1-aca8-4774-aa4a-60edccaa6d0e@app.fastmail.com>
+MIME-Version: 1.0
+Content-Disposition: inline
+In-Reply-To: <4ad6e1e1-aca8-4774-aa4a-60edccaa6d0e@app.fastmail.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "sfi-spamd-1.hosts.colo.sdot.me", 
+ running on the system "sfi-spamd-2.hosts.colo.sdot.me", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Dmitry, On Fri, Jun 27, 2025, at 2:14 PM, Dmitry Torokhov
- wrote: > Hi Vishnu, > > On Fri, Jun 20, 2025 at 09:42:08AM +0900, Vishnu
- Sankar wrote: >> Newer ThinkPads have a doubletap feature that needs to be
- tu [...] 
+ Content preview:  Hi Mark, On Mon, Jun 30, 2025 at 05:42:45AM +0900,
+ Mark Pearson
+ wrote: > Hi Dmitry, > > On Fri, Jun 27, 2025, at 2:14 PM, Dmitry Torokhov
+ wrote: > > Hi Vishnu, > > > > On Fri, Jun 20, 2025 at 09:42:08AM +0900, [...]
  Content analysis details:   (-0.2 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
+ 0.0 RCVD_IN_DNSWL_BLOCKED  RBL: ADMINISTRATOR NOTICE: The query to DNSWL
+ was blocked.  See
+ http://wiki.apache.org/spamassassin/DnsBlocklists#DnsBlocklists-dnsbl-block
+ for more information. [209.85.214.180 listed in list.dnswl.org]
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
-X-Headers-End: 1uVyru-0002X8-Fw
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ [dmitry.torokhov(at)gmail.com]
+ 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
+ [209.85.214.180 listed in wl.mailspike.net]
+ 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
+X-Headers-End: 1uW6wI-0006Pr-7f
 Subject: Re: [ibm-acpi-devel] [PATCH] x86/Mouse: thinkpad_acpi/Trackpoint:
  Trackpoint Doubletap handling
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -152,55 +148,80 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: zhoubinbin@loongson.cn, jay_lee@pixart.com, linux-kernel@vger.kernel.org,
- "platform-driver-x86@vger.kernel.org"
- <platform-driver-x86@vger.kernel.org>, Vishnu Sankar <vsankar@lenovo.com>,
- ibm-acpi-devel@lists.sourceforge.net,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>, linux-input@vger.kernel.org,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+Cc: zhoubinbin@loongson.cn, jay_lee@pixart.com, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
+ Vishnu Sankar <vsankar@lenovo.com>, ibm-acpi-devel@lists.sourceforge.net,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
+ Vishnu Sankar <vishnuocv@gmail.com>,
+ Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
  tglx@linutronix.de, jon_xie@pixart.com, pali@kernel.org, mingo@kernel.org,
  hansg@kernel.org
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Dmitry,
+Hi Mark,
 
-On Fri, Jun 27, 2025, at 2:14 PM, Dmitry Torokhov wrote:
-> Hi Vishnu,
->
-> On Fri, Jun 20, 2025 at 09:42:08AM +0900, Vishnu Sankar wrote:
->> Newer ThinkPads have a doubletap feature that needs to be turned
->> ON/OFF via the trackpoint registers.
->> Systems released from 2023 have doubletap disabled by default and
->> need the feature enabling to be useful.
->> 
->> This patch introduces support for exposing and controlling the
->> trackpoint doubletap feature via a sysfs attribute.
->> /sys/devices/platform/thinkpad_acpi/tp_doubletap
->> This can be toggled by an "enable" or a "disable".
->> 
->> With this implemented we can remove the masking of events, and rely on
->> HW control instead, when the feature is disabled.
->> 
->> Note - Early Thinkpads (pre 2015) used the same register for hysteris
->> control, Check the FW IDs to make sure these are not affected.
->> 
->> trackpoint.h is moved to linux/input/.
->
-> No, please keep everything private to trackpoint.c and do not involve
-> thinkpad_acpi driver. By doing so you are introducing unwanted
-> dependencies (for both module loading, driver initialization, and
-> operation) and unsafe use of non-owned pointers/dangling pointers, etc.
->
+On Mon, Jun 30, 2025 at 05:42:45AM +0900, Mark Pearson wrote:
+> Hi Dmitry,
+> 
+> On Fri, Jun 27, 2025, at 2:14 PM, Dmitry Torokhov wrote:
+> > Hi Vishnu,
+> >
+> > On Fri, Jun 20, 2025 at 09:42:08AM +0900, Vishnu Sankar wrote:
+> >> Newer ThinkPads have a doubletap feature that needs to be turned
+> >> ON/OFF via the trackpoint registers.
+> >> Systems released from 2023 have doubletap disabled by default and
+> >> need the feature enabling to be useful.
+> >> 
+> >> This patch introduces support for exposing and controlling the
+> >> trackpoint doubletap feature via a sysfs attribute.
+> >> /sys/devices/platform/thinkpad_acpi/tp_doubletap
+> >> This can be toggled by an "enable" or a "disable".
+> >> 
+> >> With this implemented we can remove the masking of events, and rely on
+> >> HW control instead, when the feature is disabled.
+> >> 
+> >> Note - Early Thinkpads (pre 2015) used the same register for hysteris
+> >> control, Check the FW IDs to make sure these are not affected.
+> >> 
+> >> trackpoint.h is moved to linux/input/.
+> >
+> > No, please keep everything private to trackpoint.c and do not involve
+> > thinkpad_acpi driver. By doing so you are introducing unwanted
+> > dependencies (for both module loading, driver initialization, and
+> > operation) and unsafe use of non-owned pointers/dangling pointers, etc.
+> >
+> 
+> Do you have recommendations on how to handle this case then?
+> 
+> This is a Thinkpad specific feature and hence the logic for involving
+> thinkpad_acpi. There are Thinkpad hotkeys that will enable/disable the
+> trackpoint doubletap feature - so there is some linkage. I'm not sure
+> how to avoid that.
+> 
+> Is there a cleaner way to do this that you'd recommend we look at
+> using? It's a feature (albeit a minor one) on the laptops that we'd
+> like to make available to Linux users.
 
-Do you have recommendations on how to handle this case then?
+I believe if you define the doubletap as an attribute (see
+TRACKPOINT_INT_ATTR or TRACKPOINT_BIT_ATTR in
+drivers/input/mouse/trackpoint.c) then whatever process is handling the
+hot keys switching this function on or off should be able to toggle the
+behavior. The difference is that it will have to locate trackpoint node
+in /sys/bus/serio/devices/* (or maybe scan
+/sys/devices/platform/i8042/serio*) instead of expecting the attributes
+be atached to thinkpad_acpi instance.
 
-This is a Thinkpad specific feature and hence the logic for involving thinkpad_acpi. There are Thinkpad hotkeys that will enable/disable the trackpoint doubletap feature - so there is some linkage. I'm not sure how to avoid that.
+You just don't want to have one driver directly peeking into another,
+because then it starts breaking if you unbind or force use of a
+different protocol, etc.
 
-Is there a cleaner way to do this that you'd recommend we look at using? It's a feature (albeit a minor one) on the laptops that we'd like to make available to Linux users.
+Thanks.
 
-Mark
+-- 
+Dmitry
 
 
 _______________________________________________
