@@ -2,139 +2,134 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id D863FAEE728
-	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 30 Jun 2025 21:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E65CFB0ECCA
+	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 23 Jul 2025 10:09:02 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
-	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Subject:In-Reply-To:MIME-Version:References:Message-ID:To:From:Date:Sender:
-	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
-	:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=jTX17BTmU1niToPpWwVNjACRYfQxGmGUgPElZhDjyQk=; b=cHsxaHGUyQpyA3/qwDYiww7Vtt
-	ufe9jQrQsHRkWs3Z73By+wPqyKpL0ruDOsSwNx5d4dS0Sbh68Geq5ld76vrMAL47ILrYBPuUdER2u
-	sSpPDqqETzvXMXRjJR1kF3W8Nksm/WJ9otoVXHFlxalA8mScHwIys80ID+Y+55JkmE0Y=;
+	d=lists.sourceforge.net; s=beta; h=Content-Type:Cc:List-Subscribe:List-Help:
+	List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:To:Message-ID:Date:
+	From:In-Reply-To:References:MIME-Version:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
+	bh=YvSWy1eYKkntutF5UvQWdkonj7lypnrJnY3Zwba2Z9k=; b=QMbeSZbLWqjR9FddRuz+j15VSG
+	pDc2gkCmeeS1xKkeeipbpj+bEraf9VexMEqcri+vfCgsKlhoMeIhFDwRVz+CZrQ9o2rkWN+jKfHLJ
+	dsTwNycCM46pEUMxqy57muXSWMh+Lp442r0RxAlnjvpCpXIA4Z0KlH+PjZWVXIQBEGL0=;
 Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
 	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uWJmy-0000mN-K1;
-	Mon, 30 Jun 2025 19:03:36 +0000
+	id 1ueUWO-0001ct-ES;
+	Wed, 23 Jul 2025 08:08:17 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <dmitry.torokhov@gmail.com>) id 1uWJmw-0000m7-Rp
+ (envelope-from <nfsmwlin@gmail.com>) id 1ueUWN-0001ch-HO
  for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 30 Jun 2025 19:03:34 +0000
+ Wed, 23 Jul 2025 08:08:16 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Type:Cc:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Content-Transfer-Encoding
+ :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=qwXEzUcg0o/ClzyKHDQ0wbQbJMCGH+I0kvtI5qnjlnE=; b=Ag4BZ7qjI13/vRIAvxlOWZzrBk
- aVh6pi03sL8NsppdXywPRbHDK+0w+mh+NsaoCHBmWAovisTsZIWY1unV/jZ586UCGhh3Ld/1JYgtx
- nbsPv6CAUY4Cyvtp/2vZJDK5Z1YLv0YZ9ncoULFJi2pnpFRKr91p9vkgn2RHajzZS688=;
+ bh=dD1GWnDqJXrGhTkG0EOp+iB8bpfRI1eW1vAYVjQYHpk=; b=LcPcuNPlXEGnEsBUJdHF4Vpy2V
+ Elhd8v9gX7koRkbDoO7PO8+o+MD09zNmB+/X94QpY/eZJjNLmy6sjPNo4Dst8Ac1aO2SRWANLIgeX
+ U75aAhjdGhSwhHg3tOVc4lQJeEvi5O7mThOFRugROW7pOuWz6u9060Tjo31ZWYeavJ+I=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+ h=Content-Type:Cc:To:Subject:Message-ID:Date:From:In-Reply-To:References:
+ MIME-Version:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=qwXEzUcg0o/ClzyKHDQ0wbQbJMCGH+I0kvtI5qnjlnE=; b=M+WDFjSst1q0S0klxfNHh/t0jQ
- AnDJnmD52tGURClQyHZBLXlZ4CyE2SClw3XwJGOgntrjFk1jygvu8o2OUkU8gMJGX130hSBcQVkzm
- H1FIh7PFB6f+g+jrn0mQhp+nxhjY9wuY25JmOI5tzd/LBi/iyNL2J7v2/sTELuVjCpmA=;
-Received: from mail-pf1-f181.google.com ([209.85.210.181])
+ bh=dD1GWnDqJXrGhTkG0EOp+iB8bpfRI1eW1vAYVjQYHpk=; b=B6lTqK0S3zDJyrt2F5+Y/pxd1O
+ ta1fyhWW9k3bOtXR4mUos1wHM/BdGGzTZZhQjsQytzP84jLJeE3tq1PVT8WBWr3Ck3S9yXVY+O+BO
+ 81WTJsA+HPzRdzY2hTBgoq/XX2rskCgs1/3gYVTrXDT+JM/pwKjS6LV/o0neYQPhop3Q=;
+Received: from mail-yb1-f179.google.com ([209.85.219.179])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
  (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1uWJmu-0004vZ-M5 for ibm-acpi-devel@lists.sourceforge.net;
- Mon, 30 Jun 2025 19:03:34 +0000
-Received: by mail-pf1-f181.google.com with SMTP id
- d2e1a72fcca58-748f54dfa5fso4251118b3a.2
+ id 1ueUWN-0005sG-J5 for ibm-acpi-devel@lists.sourceforge.net;
+ Wed, 23 Jul 2025 08:08:16 +0000
+Received: by mail-yb1-f179.google.com with SMTP id
+ 3f1490d57ef6-e8d906ab993so2969219276.2
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Mon, 30 Jun 2025 12:03:32 -0700 (PDT)
+ Wed, 23 Jul 2025 01:08:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751310202; x=1751915002; darn=lists.sourceforge.net;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=qwXEzUcg0o/ClzyKHDQ0wbQbJMCGH+I0kvtI5qnjlnE=;
- b=BZzNMb36mOwxVbyOMHyExeE/1c5ToM1HZBTJbgodJBBG7gWLLMrYkurrT1eDkC60+I
- iwBWzsBm7eMF5NaPej7seEi4LmIeX9VMFM98RUCwq2YYVncVX14cCdzDwgSU3SocpiMD
- OvZftQnRYde+w2olg4yoAFIED5eHj70NqxUDu9tLeA6M3wnnS2pcaU9OKWG/Olkic3Ko
- Qij5KMStTbDS9uFGAGRRpxED6Fd5ovkZ3YkWp3L9Rs/6lnP6DGw1YbmP1ItqgCrYMUbB
- kmEY8rSKQ5qKhr50XVZMqzWoQHdex1Yn+4OrTPMQZxwzwfVH0Maizv2cw3XeOcnX2k1K
- h8Jg==
+ d=gmail.com; s=20230601; t=1753258090; x=1753862890; darn=lists.sourceforge.net;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=dD1GWnDqJXrGhTkG0EOp+iB8bpfRI1eW1vAYVjQYHpk=;
+ b=ZUiMEyk0Si9Y1hZFpxvnp/UlN2RGHuH5ujNHvy7v4W+nCgIXQoQ8iZPeQ5kC+cxwWA
+ t2PQh8x3qRSFgeNwI3b03ULmS6mcgE5o2+/B/xQgxKVSvKkU6pxIYkxroT/ucjKr6Sho
+ iYpcEX9WQS55WbpoO2nJgrfTlPkgwn3QoKE/zfTti1vZu8blrz7UQLW4oRlNjd6U6hRz
+ MAw9JfAb/MwhIa6MErVuMSG3+qJsRQ6zNhMA5FOUfHS3uL/Iw93aUUyp8to4RC7IfeBM
+ iLbFVHVo1WWo+alGCBYr1LrxnncGys9DoA1KOvVJDZTMKOSn5rTumvNzRmXelAu0VOvV
+ XAnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751310202; x=1751915002;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=qwXEzUcg0o/ClzyKHDQ0wbQbJMCGH+I0kvtI5qnjlnE=;
- b=EeRUJwFRrHvEONx2Tw6ApGsiiUxfE1XxcuCqqpenusXX7ZHiVSXJLKC+BW02natAVR
- TauwoKKt0etkuBJkSeevAVi7FmVt5bKkdjyz49n6nHZR1egtWrup/MPO/G4wmVgklORm
- 6nRw6EEV3K5wtErY3pyFqCf2xE16DBx26cOEGM+DGbCxw25Y0vC3Y4mF2DdMxyGAgvbm
- cRdK+fElnPE2/jc5zk/ar6g9wuy1rBBW8C6wTyil/Dzv1eVN0u12lk5cu1J2wdfZfnqD
- +fc+gq0AvBnV42D04IChyVxqe+SXVvGAbQhzm2Uc4lu3LFSasoHHTEOE+fKfmRz7BgvQ
- gkcg==
+ d=1e100.net; s=20230601; t=1753258090; x=1753862890;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=dD1GWnDqJXrGhTkG0EOp+iB8bpfRI1eW1vAYVjQYHpk=;
+ b=rBowUladzixpir+QwA+DtDQg4jwNF6jC4TOfZ6jgizgo76VAVQaBiAltQyFXAHb5Cp
+ 9mXxZ77Vr+S+6MG99G90PHfELU4JiC/hTu5hw1vRDuZ68u9dtIgZo1g39pb1luxoCjzS
+ CB780nVQMbsYQRWXfsbwJ+n/BEEm8qNJ7EbZLSbuzNlrn47nAl5NgfTvog0r3Ttt59IT
+ DycM+HB0kHUYlVeD9mWNP5ofzi24wv4/ZzdwUFbMcdvC8BBQetjvvMxFV9U4cGg76xHj
+ O8VUPGwy9bJbpZ81hqWpDpqDw7k6HHKbFEktg9+El5gqaEmCk4sWI3t3D7Z4ZfHWP3ar
+ FypQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCURVHLeIEhSVLEjnCo6eE6/v0fk0k3Mnqte1XOYtA3E5X4bXQ4sQRrAW1tlpYWfT9uNfzWYotEJn0ecaaM/eQ==@lists.sourceforge.net
-X-Gm-Message-State: AOJu0YzRD/4WG1aTAuTVIgmhTUM3G1V52ZE26kpIJo+QRwrNdFPXcPJj
- OwXHsDPEgoD/5KQYcvGaeNrDGd0AQfBBYLSy9BPZrPVB880f1dG0M7/n
-X-Gm-Gg: ASbGncsGH1VQqMPDrMVpiZvGpAqaIom7Tsnfcd6YwsPlg5SwbnkUwxyJpZYPvOYe1pY
- 7jJebjEMH29VbaUvsLI2oMXqbKXU9FfwN3fsDfjmTjyUilqDahy47JRBfQUSaQt+SGxtj/JTl7M
- 8mpTuuoTfeIV/cdaVK2meGj0oajV3x7D+D7TOEUovXhucXIQLRbvvaYYuZTt6NSmzgYjEzhnszw
- v7Ct5wn5ehq9ILHQGco4xFY5f1UG50e7xboaAtf74ysB1wS+qeMTW9vzdBXsf0cX9fKmV6XsChY
- zY64fLmHUMZLRSZDvC0ZY/KPBF7c1kiX2aLH72s3N+j91KAGhtG0olHj2qaJwg==
-X-Google-Smtp-Source: AGHT+IFL1XnMJgpkAglMwM1ySZ2g6LiG8Id+pjQC0xsSxA2iBB/+g1nLfLk/G0wIP+Zj5UEBemi4nw==
-X-Received: by 2002:a05:6a00:4fca:b0:742:3fb4:f992 with SMTP id
- d2e1a72fcca58-74af6ed3d64mr19490319b3a.10.1751310201757; 
- Mon, 30 Jun 2025 12:03:21 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:c92b:c666:1f8:990e])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-74af541c399sm9956123b3a.52.2025.06.30.12.03.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Jun 2025 12:03:21 -0700 (PDT)
-Date: Mon, 30 Jun 2025 12:03:18 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Vishnu Sankar <vishnuocv@gmail.com>
-Message-ID: <u6exrggeh7wcs76bbecpwc7egixyvsp4q6xi6xxrzvqhdbwdsg@jecmkl5wzeqs>
-References: <20250620004209.28250-1-vishnuocv@gmail.com>
- <5jgix7znkfrkopmwnmwkxx35dj2ovvdpplhadcozbpejm32o2j@yxnbfvmealtl>
- <4ad6e1e1-aca8-4774-aa4a-60edccaa6d0e@app.fastmail.com>
- <bviu4igchqy6bvu54fw6afts7ooctlmmcutdq6tc4rutzhjvfs@o56kezrit6un>
- <CABxCQKvJzf1G3XLWmqngpy-Ou9U+a7Lzt6gjwZoEcU-+WL6Apw@mail.gmail.com>
+ AJvYcCXE6n1AhNi566xyMK38JXycun7G8ZTCUSnoALG3hOt+FvtF29LSJkqJXGWUhkBmtfBwoJig9KfYXAjtEP9KFw==@lists.sourceforge.net
+X-Gm-Message-State: AOJu0Yw48V8TMjFjuCC57dMOfvSTCh81G6J4C0fpSwrVhJDXAddFYOBz
+ oKdC/Eo6dboK+xRWbd2puT3xfOnh0ALNOMBZ4z//3RgbA3tvYbpHHHFhkQSrP14nTVEupsmwG5V
+ RcpQCTAP0/XPd3XOSN/fDRhqdxuC74ME=
+X-Gm-Gg: ASbGncsovOAliOvWFTByoulFGDQaNuv8YwIQtQhJABAiW8WRM6nzTJqozTvSpurbtyF
+ yEq1L0yxoxu2le4rFmZ6h+7y6XW9F0Oj9OKWNwyveLtnUrvoxgHdHla2ExKie3teTTaBVQcgNls
+ sMJ0K+rzYZGnmP1v4aYrU6YnYhG88dzKa1NAO/N+MgxePRe4Ocq1WZRAwE/Dy8tAk6xTyIdrqEW
+ W5Xpi68+/aIm9skQQ==
+X-Google-Smtp-Source: AGHT+IG8W9G8hCOOo8w0A3SNxT1n4EV+/YDh0uyng+XTWnCtKJLjsIE0GR25lLuS58dHyui27Raux1lmx4r9G7L3yJc=
+X-Received: by 2002:a05:6902:1b89:b0:e8b:9340:aa13 with SMTP id
+ 3f1490d57ef6-e8dc561d88dmr2450508276.0.1753258089678; Wed, 23 Jul 2025
+ 01:08:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <CABxCQKvJzf1G3XLWmqngpy-Ou9U+a7Lzt6gjwZoEcU-+WL6Apw@mail.gmail.com>
+References: <CADjcfxZy3LPTmapAvqO7uNZx1Dow5JscyG3L-J3_YB1zaCf1WQ@mail.gmail.com>
+ <8ADA47CC-8883-4977-AC6E-C4BCD7365EB0@getmailspring.com>
+ <CADjcfxYCUfKmQuZwhhPZvt+TjbWc1ChKdq55QnCF5VRx3stBnQ@mail.gmail.com>
+ <SEZPR03MB795996A1F0F4CA3A7DA69A638C922@SEZPR03MB7959.apcprd03.prod.outlook.com>
+ <CADjcfxYo-Lry3T+3ywxqjD4PzqqMwFauJtK9qbOgVqLmkh5pvg@mail.gmail.com>
+ <OSCPR01MB14370F089948D35715A6B984A8C7CA@OSCPR01MB14370.jpnprd01.prod.outlook.com>
+In-Reply-To: <OSCPR01MB14370F089948D35715A6B984A8C7CA@OSCPR01MB14370.jpnprd01.prod.outlook.com>
+From: Pellaeon Lin <nfsmwlin@gmail.com>
+Date: Wed, 23 Jul 2025 16:07:59 +0800
+X-Gm-Features: Ac12FXzQMuqE8wtBXMe9kP9hJnYuESuuuEK3PPbENBYoR0-hjZ29Ae5e1PMtMv4
+Message-ID: <CADjcfxbtmRmgBYhj+5TCkDZw3TOGLy91V9FdXc251NpOHpFYgg@mail.gmail.com>
+To: Nitin Joshi1 <njoshi1@lenovo.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "sfi-spamd-2.hosts.colo.sdot.me", 
+ running on the system "sfi-spamd-1.hosts.colo.sdot.me", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Mon, Jun 30, 2025 at 08:50:27PM +0900,
- Vishnu Sankar wrote:
- > Hi Dimitry, > > > On Mon, Jun 30, 2025 at 2:20 PM Dmitry Torokhov > wrote:
- > > > > Hi Mark, > > > > On Mon, Jun 30, 2025 at 05:42:45A [...] 
+ Content preview:  Hi all,
+ I totally understand that you might have other priorities, 
+ but just reminding you about this issue again in case you forget! Thank you,
+ Pellaeon 
  Content analysis details:   (-0.2 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- [dmitry.torokhov(at)gmail.com]
- 0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [209.85.210.181 listed in wl.mailspike.net]
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1uWJmu-0004vZ-M5
-Subject: Re: [ibm-acpi-devel] [PATCH] x86/Mouse: thinkpad_acpi/Trackpoint:
- Trackpoint Doubletap handling
+ [nfsmwlin(at)gmail.com]
+ 0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.219.179 listed in wl.mailspike.net]
+ 0.0 HTML_MESSAGE           BODY: HTML included in message
+X-Headers-End: 1ueUWN-0005sG-J5
+Subject: Re: [ibm-acpi-devel] [External] Re: PrivacyGuard doesn't work even
+ by sending ACPI commands directly
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -147,92 +142,490 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: zhoubinbin@loongson.cn, jay_lee@pixart.com, linux-kernel@vger.kernel.org,
- "platform-driver-x86@vger.kernel.org"
- <platform-driver-x86@vger.kernel.org>, Vishnu Sankar <vsankar@lenovo.com>,
- ibm-acpi-devel@lists.sourceforge.net,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>, linux-input@vger.kernel.org,
- Mark Pearson <mpearson-lenovo@squebb.ca>,
- Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
- tglx@linutronix.de, jon_xie@pixart.com, pali@kernel.org, mingo@kernel.org,
- hansg@kernel.org
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Cc: "ibm-acpi-devel@lists.sourceforge.net"
+ <ibm-acpi-devel@lists.sourceforge.net>,
+ =?UTF-8?Q?Marco_Trevisan_=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Content-Type: multipart/mixed; boundary="===============7628666556972254040=="
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-T24gTW9uLCBKdW4gMzAsIDIwMjUgYXQgMDg6NTA6MjdQTSArMDkwMCwgVmlzaG51IFNhbmthciB3
-cm90ZToKPiBIaSBEaW1pdHJ5LAo+IAo+IAo+IE9uIE1vbiwgSnVuIDMwLCAyMDI1IGF0IDI6MjDi
-gK9QTSBEbWl0cnkgVG9yb2tob3YKPiA8ZG1pdHJ5LnRvcm9raG92QGdtYWlsLmNvbT4gd3JvdGU6
-Cj4gPgo+ID4gSGkgTWFyaywKPiA+Cj4gPiBPbiBNb24sIEp1biAzMCwgMjAyNSBhdCAwNTo0Mjo0
-NUFNICswOTAwLCBNYXJrIFBlYXJzb24gd3JvdGU6Cj4gPiA+IEhpIERtaXRyeSwKPiA+ID4KPiA+
-ID4gT24gRnJpLCBKdW4gMjcsIDIwMjUsIGF0IDI6MTQgUE0sIERtaXRyeSBUb3Jva2hvdiB3cm90
-ZToKPiA+ID4gPiBIaSBWaXNobnUsCj4gPiA+ID4KPiA+ID4gPiBPbiBGcmksIEp1biAyMCwgMjAy
-NSBhdCAwOTo0MjowOEFNICswOTAwLCBWaXNobnUgU2Fua2FyIHdyb3RlOgo+ID4gPiA+PiBOZXdl
-ciBUaGlua1BhZHMgaGF2ZSBhIGRvdWJsZXRhcCBmZWF0dXJlIHRoYXQgbmVlZHMgdG8gYmUgdHVy
-bmVkCj4gPiA+ID4+IE9OL09GRiB2aWEgdGhlIHRyYWNrcG9pbnQgcmVnaXN0ZXJzLgo+ID4gPiA+
-PiBTeXN0ZW1zIHJlbGVhc2VkIGZyb20gMjAyMyBoYXZlIGRvdWJsZXRhcCBkaXNhYmxlZCBieSBk
-ZWZhdWx0IGFuZAo+ID4gPiA+PiBuZWVkIHRoZSBmZWF0dXJlIGVuYWJsaW5nIHRvIGJlIHVzZWZ1
-bC4KPiA+ID4gPj4KPiA+ID4gPj4gVGhpcyBwYXRjaCBpbnRyb2R1Y2VzIHN1cHBvcnQgZm9yIGV4
-cG9zaW5nIGFuZCBjb250cm9sbGluZyB0aGUKPiA+ID4gPj4gdHJhY2twb2ludCBkb3VibGV0YXAg
-ZmVhdHVyZSB2aWEgYSBzeXNmcyBhdHRyaWJ1dGUuCj4gPiA+ID4+IC9zeXMvZGV2aWNlcy9wbGF0
-Zm9ybS90aGlua3BhZF9hY3BpL3RwX2RvdWJsZXRhcAo+ID4gPiA+PiBUaGlzIGNhbiBiZSB0b2dn
-bGVkIGJ5IGFuICJlbmFibGUiIG9yIGEgImRpc2FibGUiLgo+ID4gPiA+Pgo+ID4gPiA+PiBXaXRo
-IHRoaXMgaW1wbGVtZW50ZWQgd2UgY2FuIHJlbW92ZSB0aGUgbWFza2luZyBvZiBldmVudHMsIGFu
-ZCByZWx5IG9uCj4gPiA+ID4+IEhXIGNvbnRyb2wgaW5zdGVhZCwgd2hlbiB0aGUgZmVhdHVyZSBp
-cyBkaXNhYmxlZC4KPiA+ID4gPj4KPiA+ID4gPj4gTm90ZSAtIEVhcmx5IFRoaW5rcGFkcyAocHJl
-IDIwMTUpIHVzZWQgdGhlIHNhbWUgcmVnaXN0ZXIgZm9yIGh5c3RlcmlzCj4gPiA+ID4+IGNvbnRy
-b2wsIENoZWNrIHRoZSBGVyBJRHMgdG8gbWFrZSBzdXJlIHRoZXNlIGFyZSBub3QgYWZmZWN0ZWQu
-Cj4gPiA+ID4+Cj4gPiA+ID4+IHRyYWNrcG9pbnQuaCBpcyBtb3ZlZCB0byBsaW51eC9pbnB1dC8u
-Cj4gPiA+ID4KPiA+ID4gPiBObywgcGxlYXNlIGtlZXAgZXZlcnl0aGluZyBwcml2YXRlIHRvIHRy
-YWNrcG9pbnQuYyBhbmQgZG8gbm90IGludm9sdmUKPiA+ID4gPiB0aGlua3BhZF9hY3BpIGRyaXZl
-ci4gQnkgZG9pbmcgc28geW91IGFyZSBpbnRyb2R1Y2luZyB1bndhbnRlZAo+ID4gPiA+IGRlcGVu
-ZGVuY2llcyAoZm9yIGJvdGggbW9kdWxlIGxvYWRpbmcsIGRyaXZlciBpbml0aWFsaXphdGlvbiwg
-YW5kCj4gPiA+ID4gb3BlcmF0aW9uKSBhbmQgdW5zYWZlIHVzZSBvZiBub24tb3duZWQgcG9pbnRl
-cnMvZGFuZ2xpbmcgcG9pbnRlcnMsIGV0Yy4KPiA+ID4gPgo+ID4gPgo+ID4gPiBEbyB5b3UgaGF2
-ZSByZWNvbW1lbmRhdGlvbnMgb24gaG93IHRvIGhhbmRsZSB0aGlzIGNhc2UgdGhlbj8KPiA+ID4K
-PiA+ID4gVGhpcyBpcyBhIFRoaW5rcGFkIHNwZWNpZmljIGZlYXR1cmUgYW5kIGhlbmNlIHRoZSBs
-b2dpYyBmb3IgaW52b2x2aW5nCj4gPiA+IHRoaW5rcGFkX2FjcGkuIFRoZXJlIGFyZSBUaGlua3Bh
-ZCBob3RrZXlzIHRoYXQgd2lsbCBlbmFibGUvZGlzYWJsZSB0aGUKPiA+ID4gdHJhY2twb2ludCBk
-b3VibGV0YXAgZmVhdHVyZSAtIHNvIHRoZXJlIGlzIHNvbWUgbGlua2FnZS4gSSdtIG5vdCBzdXJl
-Cj4gPiA+IGhvdyB0byBhdm9pZCB0aGF0Lgo+ID4gPgo+ID4gPiBJcyB0aGVyZSBhIGNsZWFuZXIg
-d2F5IHRvIGRvIHRoaXMgdGhhdCB5b3UnZCByZWNvbW1lbmQgd2UgbG9vayBhdAo+ID4gPiB1c2lu
-Zz8gSXQncyBhIGZlYXR1cmUgKGFsYmVpdCBhIG1pbm9yIG9uZSkgb24gdGhlIGxhcHRvcHMgdGhh
-dCB3ZSdkCj4gPiA+IGxpa2UgdG8gbWFrZSBhdmFpbGFibGUgdG8gTGludXggdXNlcnMuCj4gPgo+
-ID4gSSBiZWxpZXZlIGlmIHlvdSBkZWZpbmUgdGhlIGRvdWJsZXRhcCBhcyBhbiBhdHRyaWJ1dGUg
-KHNlZQo+ID4gVFJBQ0tQT0lOVF9JTlRfQVRUUiBvciBUUkFDS1BPSU5UX0JJVF9BVFRSIGluCj4g
-PiBkcml2ZXJzL2lucHV0L21vdXNlL3RyYWNrcG9pbnQuYykgdGhlbiB3aGF0ZXZlciBwcm9jZXNz
-IGlzIGhhbmRsaW5nIHRoZQo+ID4gaG90IGtleXMgc3dpdGNoaW5nIHRoaXMgZnVuY3Rpb24gb24g
-b3Igb2ZmIHNob3VsZCBiZSBhYmxlIHRvIHRvZ2dsZSB0aGUKPiA+IGJlaGF2aW9yLiBUaGUgZGlm
-ZmVyZW5jZSBpcyB0aGF0IGl0IHdpbGwgaGF2ZSB0byBsb2NhdGUgdHJhY2twb2ludCBub2RlCj4g
-PiBpbiAvc3lzL2J1cy9zZXJpby9kZXZpY2VzLyogKG9yIG1heWJlIHNjYW4KPiA+IC9zeXMvZGV2
-aWNlcy9wbGF0Zm9ybS9pODA0Mi9zZXJpbyopIGluc3RlYWQgb2YgZXhwZWN0aW5nIHRoZSBhdHRy
-aWJ1dGVzCj4gPiBiZSBhdGFjaGVkIHRvIHRoaW5rcGFkX2FjcGkgaW5zdGFuY2UuCj4gPgo+ID4g
-WW91IGp1c3QgZG9uJ3Qgd2FudCB0byBoYXZlIG9uZSBkcml2ZXIgZGlyZWN0bHkgcGVla2luZyBp
-bnRvIGFub3RoZXIsCj4gPiBiZWNhdXNlIHRoZW4gaXQgc3RhcnRzIGJyZWFraW5nIGlmIHlvdSB1
-bmJpbmQgb3IgZm9yY2UgdXNlIG9mIGEKPiA+IGRpZmZlcmVudCBwcm90b2NvbCwgZXRjLgo+ID4K
-PiA+IFRoYW5rcy4KPiA+Cj4gPiAtLQo+ID4gRG1pdHJ5Cj4gCj4gVGhhbmtzIGZvciB0aGUgc3Vn
-Z2VzdGlvbi4gSSB1bmRlcnN0YW5kIHRoZSBjb25jZXJuIGFib3V0IGF2b2lkaW5nCj4gZGlyZWN0
-IGRyaXZlci10by1kcml2ZXIgY2FsbHMgYW5kIHVud2FudGVkIGRlcGVuZGVuY2llcy4KPiAKPiBK
-dXN0IHRvIGNsYXJpZnk6IGlmIHdlIG1vdmUgdGhlIHN5c2ZzIGF0dHJpYnV0ZSB0byB0aGUgdHJh
-Y2twb2ludAo+IGRyaXZlciBpdHNlbGYgKHVuZGVyIC9zeXMvYnVzL3NlcmlvL2RldmljZXMvLi4u
-KSwgdGhlbiB0aGlua3BhZF9hY3BpCj4gd291bGQgbm8gbG9uZ2VyIGJlIGFibGUgdG8gZGlyZWN0
-bHkgZW5hYmxlL2Rpc2FibGUgdGhlIGRvdWJsZXRhcAo+IGZlYXR1cmUgaW4gcmVzcG9uc2UgdG8g
-dGhlIEZuK0cgaG90a2V5IHByZXNzLiBEb24ndCB3ZSBuZWVkIHVzZXJzcGFjZQo+IHRvIGxpc3Rl
-biBmb3IgdGhlIGhvdGtleSBldmVudCwgZmluZCB0aGUgdHJhY2twb2ludCBzeXNmcyBub2RlLCBh
-bmQKPiB0b2dnbGUgdGhlIGF0dHJpYnV0ZSB0aGVyZT8KClllcy4KCj4gVGhhdCdzIHBvc3NpYmxl
-LCBvZiBjb3Vyc2UsIGJ1dCBpdCBtZWFucyB0aGUgZmVhdHVyZSB3b24ndCB3b3JrCj4gb3V0LW9m
-LXRoZS1ib3ggd2l0aG91dCBleHRyYSB1c2Vyc3BhY2UgaW50ZWdyYXRpb24uIEZvciBleGFtcGxl
-LCB0aGVyZQo+IHdvdWxkIGJlIG5vIGF1dG9tYXRpYyBsaW5rYWdlIGJldHdlZW4gcHJlc3Npbmcg
-Rm4rRyBhbmQgdG9nZ2xpbmcgdGhlCj4gZmVhdHVyZSB1bmxlc3MgYSB1ZGV2IHJ1bGUgb3IgdXNl
-cnNwYWNlIGRhZW1vbiBpcyBjb25maWd1cmVkIHRvIGRvIGl0Lgo+IE9yIGlzIHRoZXJlIGFuIGFw
-cHJvYWNoIHlvdSdkIHJlY29tbWVuZCB0byBwcmVzZXJ2ZSB0aGUgYXV0b21hdGljCj4gaG90a2V5
-IGludGVncmF0aW9uIHdoaWxlIGF2b2lkaW5nIHRoZSBkaXJlY3QgZGVwZW5kZW5jeSBiZXR3ZWVu
-Cj4gdGhpbmtwYWRfYWNwaSBhbmQgdHJhY2twb2ludD8KPiBTb3JyeSwgSSBtaXNzZWQgc29tZXRo
-aW5nLgoKV2VsbCwgSSBndWVzcyB5b3UgY2FuIGxvb2sgaW50byBpbnRlcmFjdGluZyB3aXRoIHN5
-c2ZzIGZpbGUgZnJvbQp0aGlua3BhZF9hY3BpLmMuLi4gVGhlcmUgaXMga2VybmVsX3JlYWRfZmls
-ZV9mcm9tX3BhdGgoKSBhbmQgb3RoZXJzLCB5b3UKd2lsbCBuZWVkIHRvIGltcGxlbWVudCB3cml0
-ZSBjb3VudGVycGFydCBvZiBpdC4gUHJldHR5IHVnbHkgYnV0IHNhZmVyCnRoYW4gZm9sbG93aW5n
-IHBvaW50ZXJzIHRoYXQgbWF5IGdvIGF3YXkuCgpUaGFua3MuCgotLSAKRG1pdHJ5CgoKX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KaWJtLWFjcGktZGV2ZWwg
-bWFpbGluZyBsaXN0CmlibS1hY3BpLWRldmVsQGxpc3RzLnNvdXJjZWZvcmdlLm5ldApodHRwczov
-L2xpc3RzLnNvdXJjZWZvcmdlLm5ldC9saXN0cy9saXN0aW5mby9pYm0tYWNwaS1kZXZlbAo=
+--===============7628666556972254040==
+Content-Type: multipart/alternative; boundary="000000000000a2948a063a943543"
+
+--000000000000a2948a063a943543
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+I totally understand that you might have other priorities, but just
+reminding you about this issue again in case you forget!
+
+Thank you,
+Pellaeon
+
+Nitin Joshi1 <njoshi1@lenovo.com> =E6=96=BC 2025=E5=B9=B46=E6=9C=8820=E6=97=
+=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:20=E5=AF=AB=E9=81=93=EF=BC=9A
+
+> Thanks Pellaeon !
+>
+>
+>
+> Even I can reproduce it (using Ubuntu 24.04) but I can see it gets toggle=
+d
+> correctly using below sysfs:
+>
+> cat /sys/class/drm/privacy_screen-thinkpad_acpi/hw_state
+>
+>
+>
+> Marco =E2=80=93 Do you have any comment to debug this?
+>
+> Thank you very much !
+>
+>
+>
+> Thanks & Regards,
+>
+> Nitin
+>
+>
+>
+> *From:* Pellaeon Lin <nfsmwlin@gmail.com>
+> *Sent:* Thursday, June 19, 2025 10:56 PM
+> *To:* Nitin Joshi1 <njoshi1@lenovo.com>
+> *Cc:* ibm-acpi-devel@lists.sourceforge.net
+> *Subject:* Re: [External] Re: [ibm-acpi-devel] PrivacyGuard doesn't work
+> even by sending ACPI commands directly
+>
+>
+>
+> Hi all,
+>
+>
+>
+> I'd like to bring up this issue again. I just upgraded to Ubuntu 25.04,
+> kernel 6.14.0-15-generic and I'm still having the same issue (the same AC=
+PI
+> call still have no effect).
+>
+>
+>
+> Thanks,
+>
+>
+>
+>
+>
+> Nitin Joshi1 <njoshi1@lenovo.com> =E6=96=BC 2024=E5=B9=B49=E6=9C=882=E6=
+=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=889:42=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Hello Pellaeon,
+>
+>
+>
+> >> @Mark: has the team replied anything?
+>
+> Mark has informed me regarding this and I am yet to check this . Sorry fo=
+r
+> this !
+>
+> I will try to get hold of system and try this within this week , if I fin=
+d
+> AMD e-privacy guard machine .
+>
+>
+>
+> Thanks
+>
+>
+>
+> *From:* Pellaeon Lin <nfsmwlin@gmail.com>
+> *Sent:* Sunday, September 1, 2024 2:32 PM
+> *To:* ibm-acpi-devel@lists.sourceforge.net
+> *Subject:* [External] Re: [ibm-acpi-devel] PrivacyGuard doesn't work even
+> by sending ACPI commands directly
+>
+>
+>
+> Hi,
+>
+>
+>
+> @Mark: has the team replied anything?
+>
+>
+>
+> @Marco: `proptest` on my system did not return any property related to
+> privacy screen, is this normal? (I ran `proptest | grep -i privacy`, whic=
+h
+> returned empty result.)
+>
+>
+>
+> Thanks,
+>
+>
+>
+> Marco Trevisan (Trevi=C3=B1o) <mail@3v1n0.net> =E6=96=BC 2024=E5=B9=B46=
+=E6=9C=884=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:07=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+>
+> Hi,
+>
+> Not sure if something changed or it is different in newer models, but
+> the privacy screen feature so far has been exposed as a KMS property you
+> can inspect and set with tools like proptest (in libdrm-tests package
+> for what concerns ubuntu)
+>
+> Cheers
+>
+> On giu 3 2024, at 1:46 pm, Pellaeon Lin <nfsmwlin@gmail.com> wrote:
+>
+> > Hi,
+> >
+> > I have a ThinkPad X13 Gen 2 AMD with PrivacyGuard. But by pressing the
+> > combination key Fn+D it does not toggle the PrivacyGuard, the
+> > PrivacyGuard stays on. I've tested:
+> >
+> > - Fn+D does toggle PrivacyGuard when I'm in the BIOS
+> > - Fn+D has no effect on Ubuntu 22.10, Ubuntu 23.04, Ubuntu 23.10,
+> > Ubuntu 24.04 and Fedora 40 (except Ubuntu 23.10 and 24.04, all was
+> > tested using LiveUSB)
+> >
+> > In all of the Linux cases, I can confirm that by pressing Fn+D, the
+> > status value of /proc/acpi/ibm/lcdshadow actually changes.
+> >
+> > I've always thought this was a Ubuntu-specific issue, until I tested
+> Fedora.
+> >
+> > I tested this further by installing the acpi-call-dkms package on
+> > Ubuntu and issues the following call:
+> >
+> > echo '\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x1' | sudo tee /proc/acpi/call
+> >
+> > It returned 0 (which should mean success), but PrivacyGuard is still
+> > ON. Then I tried to call it with 0x0:
+> >
+> > echo '\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x0' | sudo tee /proc/acpi/call
+> >
+> > Also getting 0 in return. PrivacyGuard is still ON.
+> >
+> > Based on my limited understanding of ACPI and the kernel, at this
+> > point it might be a firmware issue? (fwupdmgr shows that there is no
+> > available updates) But based on my reading and understanding of
+> > thinkpad_acpi.c, the particular ACPI call that I issued is also how
+> > the Linux driver currently operates the PrivacyGuard feature, which
+> > means the driver might also be affected by this issue. So I'm hoping
+> > someone could help me debug this further, or point out anything that
+> > I'm not understanding correctly.
+> >
+> > Thanks!
+> > _______________________________________________
+> >
+> > ibm-acpi-devel mailing list
+> >
+> > ibm-acpi-devel@lists.sourceforge.net
+> >
+> > https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+>
+>
+
+--000000000000a2948a063a943543
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I totally understand=
+ that you might have other priorities, but just reminding you about this is=
+sue again in case you forget!</div><div><br></div><div>Thank you,<br></div>=
+<div>Pellaeon</div></div><br><div class=3D"gmail_quote gmail_quote_containe=
+r"><div dir=3D"ltr" class=3D"gmail_attr">Nitin Joshi1 &lt;<a href=3D"mailto=
+:njoshi1@lenovo.com">njoshi1@lenovo.com</a>&gt; =E6=96=BC 2025=E5=B9=B46=E6=
+=9C=8820=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=884:20=E5=AF=AB=E9=81=
+=93=EF=BC=9A<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v class=3D"msg-7425189281466529162">
+
+
+
+
+
+<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_-7425189281466529162WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks Pellaeon !
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Even I can reproduce =
+it (using Ubuntu 24.04) but I can see it gets toggled correctly using below=
+ sysfs:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">cat /sys/class/drm/pr=
+ivacy_screen-thinkpad_acpi/hw_state<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Marco =E2=80=93 Do yo=
+u have any comment to debug this?<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thank you very much !=
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks &amp; Regards,=
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Nitin
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<div style=3D"border-width:medium medium medium 1.5pt;border-style:none non=
+e none solid;border-color:currentcolor currentcolor currentcolor blue;paddi=
+ng:0in 0in 0in 4pt">
+<div>
+<div style=3D"border-width:1pt medium medium;border-style:solid none none;b=
+order-color:rgb(225,225,225) currentcolor currentcolor;padding:3pt 0in 0in"=
+>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:&quot;C=
+alibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11pt;font=
+-family:&quot;Calibri&quot;,sans-serif"> Pellaeon Lin &lt;<a href=3D"mailto=
+:nfsmwlin@gmail.com" target=3D"_blank">nfsmwlin@gmail.com</a>&gt;
+<br>
+<b>Sent:</b> Thursday, June 19, 2025 10:56 PM<br>
+<b>To:</b> Nitin Joshi1 &lt;<a href=3D"mailto:njoshi1@lenovo.com" target=3D=
+"_blank">njoshi1@lenovo.com</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:ibm-acpi-devel@lists.sourceforge.net" target=
+=3D"_blank">ibm-acpi-devel@lists.sourceforge.net</a><br>
+<b>Subject:</b> Re: [External] Re: [ibm-acpi-devel] PrivacyGuard doesn&#39;=
+t work even by sending ACPI commands directly<u></u><u></u></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi all,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I&#39;d like to bring up this issue again. I just up=
+graded to Ubuntu 25.04, kernel 6.14.0-15-generic and I&#39;m still having t=
+he same issue (the same ACPI call still have no effect).<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Nitin Joshi1 &lt;<a href=3D"mailto:njoshi1@lenovo.co=
+m" target=3D"_blank">njoshi1@lenovo.com</a>&gt;
+<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=
+=83=E3=82=AF">=E6=96=BC</span> 2024<span lang=3D"ZH-CN" style=3D"font-famil=
+y:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E5=B9=B4</span>9<span lan=
+g=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=
+=AF">=E6=9C=88</span>2<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=
+=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E6=97=A5</span><span lang=3D"ZH-CN">
+</span><span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=
+=B7=E3=83=83=E3=82=AF">=E9=80=B1=E4=B8=80</span><span lang=3D"ZH-CN"> </spa=
+n>
+<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=
+=83=E3=82=AF">=E4=B8=8B=E5=8D=88</span>9:42<span lang=3D"ZH-CN" style=3D"fo=
+nt-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E5=AF=AB=E9=81=93=
+=EF=BC=9A</span><u></u><u></u></p>
+</div>
+<blockquote style=3D"border-width:medium medium medium 1pt;border-style:non=
+e none none solid;border-color:currentcolor currentcolor currentcolor rgb(2=
+04,204,204);padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hello Pellaeon,<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">&gt;&gt; @Mark: has the team replied anything?<u></u=
+><u></u></p>
+<p class=3D"MsoNormal">Mark has informed me regarding this and I am yet to =
+check this . Sorry for this !<u></u><u></u></p>
+<p class=3D"MsoNormal">I will try to get hold of system and try this within=
+ this week , if I find AMD e-privacy guard machine .<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Thanks
+<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div style=3D"border-width:medium medium medium 1.5pt;border-style:none non=
+e none solid;padding:0in 0in 0in 4pt;border-color:currentcolor currentcolor=
+ currentcolor blue">
+<div>
+<div style=3D"border-width:1pt medium medium;border-style:solid none none;p=
+adding:3pt 0in 0in;border-color:currentcolor">
+<p class=3D"MsoNormal"><b>From:</b> Pellaeon Lin &lt;<a href=3D"mailto:nfsm=
+wlin@gmail.com" target=3D"_blank">nfsmwlin@gmail.com</a>&gt;
+<br>
+<b>Sent:</b> Sunday, September 1, 2024 2:32 PM<br>
+<b>To:</b> <a href=3D"mailto:ibm-acpi-devel@lists.sourceforge.net" target=
+=3D"_blank">
+ibm-acpi-devel@lists.sourceforge.net</a><br>
+<b>Subject:</b> [External] Re: [ibm-acpi-devel] PrivacyGuard doesn&#39;t wo=
+rk even by sending ACPI commands directly<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">@Mark: has the team replied anything?<u></u><u></u><=
+/p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">@Marco: `proptest` on my system did not return any p=
+roperty related to privacy screen, is this normal? (I ran `proptest | grep =
+-i privacy`, which returned empty result.)<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Marco Trevisan (Trevi=C3=B1o) &lt;<a href=3D"mailto:=
+mail@3v1n0.net" target=3D"_blank">mail@3v1n0.net</a>&gt;
+<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=
+=83=E3=82=AF">=E6=96=BC</span> 2024<span lang=3D"ZH-CN" style=3D"font-famil=
+y:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E5=B9=B4</span>6<span lan=
+g=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=
+=AF">=E6=9C=88</span>4<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=
+=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E6=97=A5</span><span lang=3D"ZH-CN">
+</span><span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=
+=B7=E3=83=83=E3=82=AF">=E9=80=B1=E4=BA=8C</span><span lang=3D"ZH-CN"> </spa=
+n>
+<span lang=3D"ZH-CN" style=3D"font-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=
+=83=E3=82=AF">=E4=B8=8A=E5=8D=88</span>2:07<span lang=3D"ZH-CN" style=3D"fo=
+nt-family:=E6=B8=B8=E3=82=B4=E3=82=B7=E3=83=83=E3=82=AF">=E5=AF=AB=E9=81=93=
+=EF=BC=9A</span><u></u><u></u></p>
+</div>
+<blockquote style=3D"border-width:medium medium medium 1pt;border-style:non=
+e none none solid;padding:0in 0in 0in 6pt;margin:5pt 0in 5pt 4.8pt;border-c=
+olor:currentcolor currentcolor currentcolor rgb(204,204,204)">
+<p class=3D"MsoNormal">Hi,<br>
+<br>
+Not sure if something changed or it is different in newer models, but<br>
+the privacy screen feature so far has been exposed as a KMS property you<br=
+>
+can inspect and set with tools like proptest (in libdrm-tests package<br>
+for what concerns ubuntu)<br>
+<br>
+Cheers<br>
+<br>
+On giu 3 2024, at 1:46 pm, Pellaeon Lin &lt;<a href=3D"mailto:nfsmwlin@gmai=
+l.com" target=3D"_blank">nfsmwlin@gmail.com</a>&gt; wrote:<br>
+<br>
+&gt; Hi,<br>
+&gt; <br>
+&gt; I have a ThinkPad X13 Gen 2 AMD with PrivacyGuard. But by pressing the=
+<br>
+&gt; combination key Fn+D it does not toggle the PrivacyGuard, the<br>
+&gt; PrivacyGuard stays on. I&#39;ve tested:<br>
+&gt; <br>
+&gt; - Fn+D does toggle PrivacyGuard when I&#39;m in the BIOS<br>
+&gt; - Fn+D has no effect on Ubuntu 22.10, Ubuntu 23.04, Ubuntu 23.10,<br>
+&gt; Ubuntu 24.04 and Fedora 40 (except Ubuntu 23.10 and 24.04, all was<br>
+&gt; tested using LiveUSB)<br>
+&gt; <br>
+&gt; In all of the Linux cases, I can confirm that by pressing Fn+D, the<br=
+>
+&gt; status value of /proc/acpi/ibm/lcdshadow actually changes.<br>
+&gt; <br>
+&gt; I&#39;ve always thought this was a Ubuntu-specific issue, until I test=
+ed Fedora.<br>
+&gt; <br>
+&gt; I tested this further by installing the acpi-call-dkms package on<br>
+&gt; Ubuntu and issues the following call:<br>
+&gt; <br>
+&gt; echo &#39;\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x1&#39; | sudo tee /proc/acpi/=
+call<br>
+&gt; <br>
+&gt; It returned 0 (which should mean success), but PrivacyGuard is still<b=
+r>
+&gt; ON. Then I tried to call it with 0x0:<br>
+&gt; <br>
+&gt; echo &#39;\_SB.PCI0.LPC0.EC0.HKEY.SSSS 0x0&#39; | sudo tee /proc/acpi/=
+call<br>
+&gt; <br>
+&gt; Also getting 0 in return. PrivacyGuard is still ON.<br>
+&gt; <br>
+&gt; Based on my limited understanding of ACPI and the kernel, at this<br>
+&gt; point it might be a firmware issue? (fwupdmgr shows that there is no<b=
+r>
+&gt; available updates) But based on my reading and understanding of<br>
+&gt; thinkpad_acpi.c, the particular ACPI call that I issued is also how<br=
+>
+&gt; the Linux driver currently operates the PrivacyGuard feature, which<br=
+>
+&gt; means the driver might also be affected by this issue. So I&#39;m hopi=
+ng<br>
+&gt; someone could help me debug this further, or point out anything that<b=
+r>
+&gt; I&#39;m not understanding correctly.<br>
+&gt; <br>
+&gt; Thanks!<br>
+&gt; _______________________________________________<br>
+&gt; <br>
+&gt; ibm-acpi-devel mailing list<br>
+&gt; <br>
+&gt; <a href=3D"mailto:ibm-acpi-devel@lists.sourceforge.net" target=3D"_bla=
+nk">ibm-acpi-devel@lists.sourceforge.net</a><br>
+&gt; <br>
+&gt; <a href=3D"https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel=
+" target=3D"_blank">
+https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel</a><u></u><u></=
+u></p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+
+</div></blockquote></div>
+
+--000000000000a2948a063a943543--
+
+
+--===============7628666556972254040==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+
+--===============7628666556972254040==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+ibm-acpi-devel mailing list
+ibm-acpi-devel@lists.sourceforge.net
+https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+
+--===============7628666556972254040==--
+
