@@ -2,70 +2,95 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C38B15F21
-	for <lists+ibm-acpi-devel@lfdr.de>; Wed, 30 Jul 2025 13:12:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65AC3B18FE3
+	for <lists+ibm-acpi-devel@lfdr.de>; Sat,  2 Aug 2025 22:17:44 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lists.sourceforge.net; s=beta; h=Content-Type:Cc:List-Subscribe:List-Help:
-	List-Post:List-Archive:List-Unsubscribe:List-Id:Subject:In-Reply-To:
-	MIME-Version:References:Message-ID:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=3cq64F+ubBZIOVozwbWhLja9uot78tBuH7oDmSENASE=; b=gK2gxCQSJAIeOv7RQ+C/6bFjbB
-	dwRug1Em+atDZT1uns094rKw21KvbWKHBu5r7HBoGC4IiwiA3uYpTrW8jK4BUuHk0xZReywj8RAmE
-	HyuGqG0um6y8SPMf2086BgKlmkN775XAyHtbd6Kah4NFM8HVOY3D2lYRcF+EFp6CSutw=;
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
+	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
+	Subject:To:Message-ID:Date:From:MIME-Version:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=MksdjR/kWWionseng8gH6mirMYcbt+sgYVU0vW4RXYI=; b=IVpzEXtXJO5/R4s3ande6/hKzH
+	ctaO5CPLK4FgIkXUUGyGQbfsTBFIdK1NwhztaFGqKA++s9HPlJUlqL9FC3WC9fEkmNRgXVdDX5SW7
+	xep4r3LBGNdyJNpQ9TbvwXITCnx7C0xMgF6nNX/hm32lElkx2pYha/UjazWp3pccq2/w=;
+Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
+	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uh4if-0003oz-P6;
-	Wed, 30 Jul 2025 11:11:38 +0000
+	id 1uiIf8-0006My-AC;
+	Sat, 02 Aug 2025 20:17:02 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <pavel@ucw.cz>) id 1uh4ic-0003oj-I2
+ (envelope-from <gdamjan@gmail.com>) id 1uiIf7-0006Mi-30
  for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 30 Jul 2025 11:11:35 +0000
+ Sat, 02 Aug 2025 20:17:01 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=IUvziGVwPj14oumL8T3Pp/fyePDtYX7fnby8+7xW4+E=; b=Fs5STTI0uBB4GfPd4St6FuOd5N
- RIeHQVLqr2D4a8jp54IyG4uq4XmxZI1DbyVtjvQvzUWLRWOA3jFqm/gwyTbK7RprrmwMCVe//1L+C
- c/Y4FKV1t92dAj/tyxQHVb3by67STT8hkUnEBcaNg+kz8p/FsCz6xk/aTTv7v6cpziZo=;
+ bh=6feW0bXsNPoIkTQk0R5ko/HW1wDlP1tFrsdO/fuplNE=; b=lrldYxMZjirXCeHwa1WuGvySN2
+ 2EP/CBATfncxz1h1K0oGhaLPobBa+8eC4o+AGYTqwjW7LN5mycbjFHBv3FxbwlZHA16zEIukLHDty
+ U8WDSgbPg3bGp/R38dkSXCC57NGZslNJ/MSzzeAIoSlAOHPAWE99UcQPafRaxtPHCKQY=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=IUvziGVwPj14oumL8T3Pp/fyePDtYX7fnby8+7xW4+E=; b=fj8SwbdjJZxpTQf/0ZyBMbjXAR
- LzQATXtc3aRsGPa+5+4Pw2PuFBH3PFih3sAdjldFCfk4TfBp15cx7mmRNKmjRNakBA7otxBT2rzfB
- rqPHDtEFXj+spnnLzdEl0OUKmYWoVYRPxoqH+BNX9xCc2cRk2T1bLdf7QEE8rcMj4TEs=;
-Received: from jabberwock.ucw.cz ([46.255.230.98])
+ h=Content-Type:To:Subject:Message-ID:Date:From:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=6feW0bXsNPoIkTQk0R5ko/HW1wDlP1tFrsdO/fuplNE=; b=G
+ iIAB5UjDyDmteNAAVa2rdvS3DG7AQG4vIh5/ET8VooC8E/COOC5xgT+AbLWiwFDwrCh/ocjtNl5X0
+ S2aa9CpXkc1hRPZ+pfIvvWnDioIZcM8T5b3ZycbESfLr83j9vifjR5ziwOKcSj47q91ITq59RaO0g
+ vKJLBJlNRZAQImTE=;
+Received: from mail-yb1-f178.google.com ([209.85.219.178])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1uh4ic-0001Mh-FC for ibm-acpi-devel@lists.sourceforge.net;
- Wed, 30 Jul 2025 11:11:35 +0000
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
- id 364E81C008E; Wed, 30 Jul 2025 12:55:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
- t=1753872958;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=IUvziGVwPj14oumL8T3Pp/fyePDtYX7fnby8+7xW4+E=;
- b=nga9U8PTDAG/6BnC8pbaiLzmd+rkzLie3LnDO/2YvL2bB/s6KdCUyd9rWradFH3fnZK8FT
- Tqy9uBFaE5pvxekhb0PL7F7cK+s2ebtImnGm3T8Qr+qyvjODM/vsNGhxP2lgakG9N+P59E
- yJ019R7gtYK+uHI8fXbbs6eXn5qCNW0=
-Date: Wed, 30 Jul 2025 12:55:57 +0200
-From: Pavel Machek <pavel@ucw.cz>
-To: Vishnu Sankar <vishnuocv@gmail.com>
-Message-ID: <aIn6PdZREQzNVR74@duo.ucw.cz>
-References: <20250620004209.28250-1-vishnuocv@gmail.com>
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1uiIf6-0005Bl-Nx for ibm-acpi-devel@lists.sourceforge.net;
+ Sat, 02 Aug 2025 20:17:01 +0000
+Received: by mail-yb1-f178.google.com with SMTP id
+ 3f1490d57ef6-e8ffb1c5f3cso78259276.1
+ for <ibm-acpi-devel@lists.sourceforge.net>;
+ Sat, 02 Aug 2025 13:17:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754165815; x=1754770615; darn=lists.sourceforge.net;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=6feW0bXsNPoIkTQk0R5ko/HW1wDlP1tFrsdO/fuplNE=;
+ b=avxBEcX0FENRHvlyNiGo5FOd/mr6bJkaA7rCm12zwZlDubpa135byMFYNKFRC/eMfc
+ FGc8wHWl9qCduIIg5HIVx5CcUJM3Ux0sVWlYPD7JuK94y1M4j6DiekQPPaqRqJUR7A00
+ oSPMxzDQU4XpbxVnNqIaZWHcjd7PXWyoYvXnuLFV5IV4YWAEzkmE9UHKB0x3KOGumwBU
+ 0tn8jUJFeOkxGukig0MCDkLgTM8r48KY46hvUmO0STBFIV9Nmq6rZSuJitSAgVS7gbrz
+ 8J/FhRVRUdnr2a07txp3Wia0+fgQZCArdy+X8xHWDT1uPYSQdVeS27eODQ6//B84ycJ0
+ RyKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754165815; x=1754770615;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=6feW0bXsNPoIkTQk0R5ko/HW1wDlP1tFrsdO/fuplNE=;
+ b=l53ojrCUpApS3W9xJmg31aaWBCS7kZRWaJpkyrj+HTP257N/X+6M+hAdOwl0dAi3th
+ U6iNbIngqDlA09XGy3NSDjqVetZ8niBZPfQ1WtiVb0/B6FTyTEMph+5tzoNP7lCnj79+
+ xxL0G4sYPyT3GctEslPZRakVIOlsrf8u/pEMQgrfmkR2V6iSYueybKIrju8zsftqoYf3
+ ijym6FBpONEdeYr0ipp7ST+xaYSIFVr1mRsPtgh4Iss39umlDKAE8oiHWIcXbNifsQNg
+ kg3Igt6AeQ/fLkliVjKn98lJYNSRLAP+4fPOiVpymTQJgmv4/kkDuemByCGX0OqGHP9U
+ 4mQw==
+X-Gm-Message-State: AOJu0Yx0ABYAHnXeEFqI4u1PgIPbYnduHWZHxvce16j+cJgfHoveac8S
+ MHNTrC3L6XOj9oKNv7eCfalxFS5jojFFmdPaExfaJ+TbuOaItoWWQB5FKDJrzrskDtzfh0hq0MI
+ bviR9etQ6BPWQkixjYtg5fkf2e4T2WuQKqacGekwL6g==
+X-Gm-Gg: ASbGncsnI5Nd6Djhkhn6pn7YYfrsekyWYFRwQMSKG7bY9DB62prQKp9izfnyxPx/ZM8
+ dd6cLxNHy1ejD2Tq6zRr2Rg5A7W3T+6IepTJUDHJh7S2YRDZBYaNmWV6aO0TJzNBTOeA2sTfw9K
+ DUNmPp2qO64ERoXFyR3FznHl+RB3HBvFTkl410m3x+TvsyRr9BESZB1OKi4CatnX51pbvEqGD89
+ hQ0Jyc=
+X-Google-Smtp-Source: AGHT+IFO3KqLtt60P5hKis7na5SIoouMK5kZz3hizRQT8y2xw++zJeYKQeQBECc+T6EutSkA5N544e/nQ5g/D+9iejE=
+X-Received: by 2002:a05:690c:6d0e:b0:71a:183e:bfe6 with SMTP id
+ 00721157ae682-71b7ef6f308mr58595677b3.31.1754165814610; Sat, 02 Aug 2025
+ 13:16:54 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20250620004209.28250-1-vishnuocv@gmail.com>
+From: Damjan Georgievski <gdamjan@gmail.com>
+Date: Sat, 2 Aug 2025 22:16:18 +0200
+X-Gm-Features: Ac12FXzj7vy_zDXYOzalsJFO6VHQT0FAnjei_D0Ytb0ZG4zLHBNG8AKoS8Lztu0
+Message-ID: <CAEk1YH7qpNzVVxEAZJCVNd1iUUSfNy28G6sARrzjgoVNqPQYKg@mail.gmail.com>
+To: ibm-acpi-devel@lists.sourceforge.net
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "sfi-spamd-1.hosts.colo.sdot.me", 
@@ -73,10 +98,13 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  On Fri 2025-06-20 09:42:08,
- Vishnu Sankar wrote: > Newer ThinkPads
- have a doubletap feature that needs to be turned > ON/OFF via the trackpoint
- registers. > Systems released from 2023 have doubletap d [...] 
+ Content preview:  Hi all,
+ I have a user related question about the copilot button
+ on recent laptops, but in particular the Thinkpad X9-14 (LunarLake) The Copilot
+ button,
+ which when pressed generates a LEFT META + LEFT SHIFT + F23 key combination
+ on the "AT Translated Set 2 keyboard". Is this something that can be
+ overridden somehow? Ideally I'd lik [...] 
  Content analysis details:   (-0.2 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
@@ -87,9 +115,12 @@ X-Spam-Report: Spam detection software,
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
-X-Headers-End: 1uh4ic-0001Mh-FC
-Subject: Re: [ibm-acpi-devel] [PATCH] x86/Mouse: thinkpad_acpi/Trackpoint:
- Trackpoint Doubletap handling
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ [gdamjan(at)gmail.com]
+ 0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.219.178 listed in wl.mailspike.net]
+X-Headers-End: 1uiIf6-0005Bl-Nx
+Subject: [ibm-acpi-devel] Support Q: copilot button on thinkpad x9-14
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -102,75 +133,48 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: zhoubinbin@loongson.cn, jay_lee@pixart.com, dmitry.torokhov@gmail.com,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- vsankar@lenovo.com, ibm-acpi-devel@lists.sourceforge.net, hmh@hmh.eng.br,
- linux-input@vger.kernel.org, Mark Pearson <mpearson-lenovo@squebb.ca>,
- ilpo.jarvinen@linux.intel.com, tglx@linutronix.de, jon_xie@pixart.com,
- pali@kernel.org, mingo@kernel.org, hansg@kernel.org
-Content-Type: multipart/mixed; boundary="===============0890448307924168597=="
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
+Hi all,
+I have a user related question about the copilot button on recent
+laptops, but in particular the Thinkpad X9-14 (LunarLake)
 
---===============0890448307924168597==
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="vN9KMWUX9mIMbmXC"
-Content-Disposition: inline
-
-
---vN9KMWUX9mIMbmXC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri 2025-06-20 09:42:08, Vishnu Sankar wrote:
-> Newer ThinkPads have a doubletap feature that needs to be turned
-> ON/OFF via the trackpoint registers.
-> Systems released from 2023 have doubletap disabled by default and
-> need the feature enabling to be useful.
->=20
-> This patch introduces support for exposing and controlling the
-> trackpoint doubletap feature via a sysfs attribute.
-> /sys/devices/platform/thinkpad_acpi/tp_doubletap
-> This can be toggled by an "enable" or a "disable".
-
-sysfs attributes need documentation.
-							Pavel
-						=09
---=20
-I don't work for Nazis and criminals, and neither should you.
-Boycott Putin, Trump, and Musk!
-
---vN9KMWUX9mIMbmXC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaIn6PQAKCRAw5/Bqldv6
-8phYAKCBVMI8dDqskaiFv96hJ2CjEFqcJACgsHeaCzYOHLDeqLpyta7Y01fR+v8=
-=da38
------END PGP SIGNATURE-----
-
---vN9KMWUX9mIMbmXC--
+The Copilot button, which when pressed generates a LEFT META + LEFT
+SHIFT + F23 key combination on  the "AT Translated Set 2 keyboard".
+Is this something that can be overridden somehow? Ideally I'd like it
+to become a right ctrl. Not sure if that can be done in the kernel, in
+the BIOS or
+I should be looking at some user-space solution
 
 
---===============0890448307924168597==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+evtest reports this:
+Event: time 1754165237.366411, -------------- SYN_REPORT ------------
+Event: time 1754165238.892087, type 4 (EV_MSC), code 4 (MSC_SCAN), value db
+Event: time 1754165238.892087, type 1 (EV_KEY), code 125 (KEY_LEFTMETA), value 1
+Event: time 1754165238.892087, -------------- SYN_REPORT ------------
+Event: time 1754165238.892984, type 4 (EV_MSC), code 4 (MSC_SCAN), value 2a
+Event: time 1754165238.892984, type 1 (EV_KEY), code 42 (KEY_LEFTSHIFT), value 1
+Event: time 1754165238.892984, -------------- SYN_REPORT ------------
+Event: time 1754165238.893919, type 4 (EV_MSC), code 4 (MSC_SCAN), value 6e
+Event: time 1754165238.893919, type 1 (EV_KEY), code 193 (KEY_F23), value 1
+Event: time 1754165238.893919, -------------- SYN_REPORT ------------
+Event: time 1754165238.927818, type 4 (EV_MSC), code 4 (MSC_SCAN), value 6e
+Event: time 1754165238.927818, type 1 (EV_KEY), code 193 (KEY_F23), value 0
+Event: time 1754165238.927818, -------------- SYN_REPORT ------------
+Event: time 1754165238.931839, type 4 (EV_MSC), code 4 (MSC_SCAN), value 2a
+Event: time 1754165238.931839, type 1 (EV_KEY), code 42 (KEY_LEFTSHIFT), value 0
+Event: time 1754165238.931839, -------------- SYN_REPORT ------------
+Event: time 1754165238.934798, type 4 (EV_MSC), code 4 (MSC_SCAN), value db
+Event: time 1754165238.934798, type 1 (EV_KEY), code 125 (KEY_LEFTMETA), value 0
+Event: time 1754165238.934798, -------------- SYN_REPORT ------------
 
+-- 
+damjan
 
---===============0890448307924168597==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 ibm-acpi-devel mailing list
 ibm-acpi-devel@lists.sourceforge.net
 https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
-
---===============0890448307924168597==--
-
