@@ -2,136 +2,125 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6833B19011
-	for <lists+ibm-acpi-devel@lfdr.de>; Sat,  2 Aug 2025 23:26:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA9DDB1B522
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  5 Aug 2025 15:42:30 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Subject:References:In-Reply-To:Message-Id:To:From:Date:MIME-Version:Sender:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=OVnWpYgQ/GufY3c2a1XdeJ+TAk2am1xKaPbalIfG4kU=; b=V1sVMSbFIsBs49xkq403iQ79+G
-	SN0/qPeLBccTaIJa4m/wmOqY8pqTNjjwUUGHhqqQ17Lm+SybQ29NlG8WADYY1omNvxy/vF9r1i2W/
-	QU1WecXxb6W2IYdxz51MtN8QeC23YaFEVCkQQtUm0AFXzu6QX37M8WPuOE7FQyKUqWEU=;
+	Subject:To:Message-ID:Date:From:MIME-Version:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Owner;
+	bh=Vmjm+SkYKArdRuyiilnpDhrszt8uQBc+ZYmftLr9ADk=; b=CyzxjrDcdFj0gu/ouF7Io0uM/f
+	U7SR2kRPQpRsxApJ0FrajBboVw1fWFJ6SdB4DYdN3nUF9yR3wDSC+v+PKn/PyZLvtwyGVIid4rH0f
+	THeXY9iyjfjLGgKjNhJOQZsDpg2vdGtcsPRJBtCVgRjKyUq+rQWbnU79faQOl9x6oSvY=;
 Received: from [127.0.0.1] (helo=sfs-ml-4.v29.lw.sourceforge.com)
 	by sfs-ml-4.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1uiJkF-0007hI-4z;
-	Sat, 02 Aug 2025 21:26:23 +0000
+	id 1ujHvK-00021S-7W;
+	Tue, 05 Aug 2025 13:41:50 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
  by sfs-ml-4.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1uiJkC-0007hB-VB
+ (envelope-from <gdamjan@gmail.com>) id 1ujHvI-00021M-Uc
  for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 02 Aug 2025 21:26:21 +0000
+ Tue, 05 Aug 2025 13:41:48 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
- References:In-Reply-To:Message-Id:To:From:Date:MIME-Version:Sender:Reply-To:
- Cc:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Type:To:Subject:Message-ID:Date:From:
+ MIME-Version:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=IzIkVkhi5JkbxVD9Iwunmrz7bkfDVa0JeiQpnbpnr20=; b=EsM3i89AxW1ro/axhPiqI9FmTn
- i8kDCQnansAJldihtZw6Uh8PgWwxP4rWHcM4RV0ym+uCU7eSEMrnZTGRnaLYJA9xaXYLpcohWgwtR
- qc7Ul5q9kuU2uwFdFU3FA8aOrS8P+D50R9LFb2P9Hki2Z5UpNXC5BErEOXkASMcZv6ao=;
+ bh=X7/s4Pegeq5QQArDBP0k3HUXMIpbS4Qq6vNy8CDssHo=; b=jPsAR+MyEGa0YoqUmqFOD8a+R6
+ XPpv4r3szR3n8BV2MD+SIGU4zW2oQHJh3xU+eIhfO8N6MB0j6vBrdtrnhoyiU6+xahgs5RlMubWLD
+ 79GmqCyDBARii2MIHsKNn2CJdJxe8tzAdKnZObI3TB9S9XQmFNZiOnNiALSLQMiEr8xI=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
- Message-Id:To:From:Date:MIME-Version:Sender:Reply-To:Cc:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=IzIkVkhi5JkbxVD9Iwunmrz7bkfDVa0JeiQpnbpnr20=; b=lBAbI5plcmNMlRI94hIFY/qMYw
- 6tbYQ2EmjcCghhzRznZIV77P4AuXk+U+Td6TwzTOGtaPBeMubyRWl2lB96LynihBkjLcSPsug4yfq
- EvIzgtqDrI9nV2mrwcG6Jb4eFVU2ifddFg3EFEB9XvGcjKCJ5f1NgroHa6Jql62P7L5M=;
-Received: from fhigh-b2-smtp.messagingengine.com ([202.12.124.153])
+ h=Content-Type:To:Subject:Message-ID:Date:From:MIME-Version:Sender:Reply-To
+ :Cc:Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+ References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+ List-Owner:List-Archive; bh=X7/s4Pegeq5QQArDBP0k3HUXMIpbS4Qq6vNy8CDssHo=; b=h
+ SoJOS8A/vszQwHhvoqcKAsT37y62Zpchu8ikVqlr6fXU+aMFi3mxX4S9b6oZeljfYZpdcVUjFDyNK
+ QwHNr6YeZ2wiR0E9gnQ2swy8feY4XtEd1TtOKRS6xw4AnPn9rlKzCoUaLlMSXzWdYmenHK3JAr/u/
+ nSldCOqR+vkeU8j4=;
+Received: from mail-yw1-f177.google.com ([209.85.128.177])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1uiJkB-0001eh-M0 for ibm-acpi-devel@lists.sourceforge.net;
- Sat, 02 Aug 2025 21:26:20 +0000
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal
- [10.202.2.52])
- by mailfhigh.stl.internal (Postfix) with ESMTP id 5144D7A0359
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1ujHvI-0002NA-LK for ibm-acpi-devel@lists.sourceforge.net;
+ Tue, 05 Aug 2025 13:41:48 +0000
+Received: by mail-yw1-f177.google.com with SMTP id
+ 00721157ae682-71b737ec362so44219147b3.0
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Sat,  2 Aug 2025 17:07:36 -0400 (EDT)
-Received: from phl-imap-08 ([10.202.2.84])
- by phl-compute-12.internal (MEProxy); Sat, 02 Aug 2025 17:07:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :content-transfer-encoding:content-type:content-type:date:date
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1754168856;
- x=1754255256; bh=IzIkVkhi5JkbxVD9Iwunmrz7bkfDVa0JeiQpnbpnr20=; b=
- HxhsF+TdNJ3JBsIvlbjBFzM3REu0rGJqtp2URKsgqO1+/7rLlKVaMYAZboWIuMeR
- 6LtZRrw94oGYJF4zghFrHvGupOG65HLfzXU/IlHhwKuc0HePFA8YHRXWNR6u1XeP
- tUAHInAgFIPSDafXIPp9k5GvKj9hWutvENdYAXSqzaid9MGsM1wexQPnjviHMBSd
- AfEmAf1NAG5t2xJjIsbYUeTqt2xw20M7D42y2Zzzv6V7waakM6b1gvzFUvUg1bwh
- G1tV1JdzQP1qEoj7CPqUTqJ+kv6E1AXxxF35OKaLLwSSaOijsSKstxysCCeEJVZC
- IOGF1FTD0DvTOdbZOVOPnA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:content-type
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm3; t=1754168856; x=1754255256; bh=I
- zIkVkhi5JkbxVD9Iwunmrz7bkfDVa0JeiQpnbpnr20=; b=ZOYgkaYB6xAKWIfi7
- m6wc9rin1iyR2UYKkkBDReF+VbBDZ0RNsF7l3jhigYU1O1Dpul5vpg7+Uu7cM1Sm
- aWEmV6+BQuC0hlvBBtG8+xFaf3Zx9kxvy8xsG3rg4pdMGN1fy+3RZRQ28I2GjQPC
- ZfB1iuQ48WKq71xyfGb7qQZXFUVBkosEcOn8N82he3fnbL+PMbVa6Kb1TlkXzZE7
- hFcJIWhOX07KcBbQpydhcnOndyqaZZwneiy3wXRZLUe1rC43NEDfb3W4iO0tWmjn
- n296knGTG9yt1ZseEQsJo5zxrFeAMi2LHOSgPUyi16NzhqBfdebxSFADXYFpSrVS
- K5VpQ==
-X-ME-Sender: <xms:F36OaH6Hk-4EYQoQnFB4JjsgGPKYwNRDLCZwnLLx4sMUCOvo-yj6QQ>
- <xme:F36OaM4AqpRLune2_szdUhmzzIAEnUrAlT_Wlw2VYwUOGuDE4e8ESpiPBWyjcFcJ8
- C1SwXyeYEOSy5X5hLY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgddutdejieduucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucgoufhushhpvggtthffohhmrghinhculdegledmnecujf
- gurhepofggfffhvffkjghfufgtgfesthejredtredttdenucfhrhhomhepfdforghrkhcu
- rfgvrghrshhonhdfuceomhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsggsrdgtrg
- eqnecuggftrfgrthhtvghrnhepheeuvdeileeugfelkeeigffgteegvddvudehffetveev
- kefftdfhtdeileejveeunecuffhomhgrihhnpehsuhhpvghruhhsvghrrdgtohhmpdhsoh
- hurhgtvghfohhrghgvrdhnvghtnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghm
- pehmrghilhhfrhhomhepmhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsggsrdgtrg
- dpnhgspghrtghpthhtohepuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepihgs
- mhdqrggtphhiqdguvghvvghlsehlihhsthhsrdhsohhurhgtvghfohhrghgvrdhnvght
-X-ME-Proxy: <xmx:F36OaNzWOJfItf-Sz84-vRd3_oOisgWGz5pC-uGcEksAjoemcH-2bw>
- <xmx:F36OaBgZMvAz_q-vmucnIbgaHJvO73x0q8ZrScMlVO3jEUQ9KZrhcQ>
- <xmx:F36OaCUsq_szF8QPZs0gxAXe_bi1OMTDJGYP9taoTnjOxwvpcl1oyw>
- <xmx:F36OaD0TpsjulqR5yef4_nfMNFu7PuHZK3SBMQgDLhDaZVYmbmBwgw>
- <xmx:GH6OaNjYr7-oiDeyVHyFGRYDnIBm-PLib4HTUEkvKyJ1OSsJ2hRD8ps9>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id CBAD12CE0072; Sat,  2 Aug 2025 17:07:35 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+ Tue, 05 Aug 2025 06:41:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754401297; x=1755006097; darn=lists.sourceforge.net;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=X7/s4Pegeq5QQArDBP0k3HUXMIpbS4Qq6vNy8CDssHo=;
+ b=TkqYOu2mrgalTJ42wEQHeIx1/hHmgE/W6qcRlcbjl8X+/VzLAqhKD6xU5/46y/mv5g
+ 6sk+QxcPwFvspnDQwvyNeqQM8tJn294VsBf/ygC2+HIbg6JhBZOWcBjDZXKGxMqN5ppG
+ sELVBM1nNsrpmE+rD8PxQ0HRV2izvYKBujSZuf9NMR2KObn5OUy0g+Hoy0ogbH9fsFIN
+ BYJXCOt4KvniM7AoSgp8E8uV48JXDYaZZOO2f8/dPlHam8nT76aLaQ0+JYq3i+cChoCu
+ NrFGlzYxm4ZKDZJRMNjcGgsehRDF84ykp2xXL1UonV+yJ6TUX6p6XkrW5Xo4x2pElwD6
+ RC/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754401297; x=1755006097;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=X7/s4Pegeq5QQArDBP0k3HUXMIpbS4Qq6vNy8CDssHo=;
+ b=Kc2CwJ/AmA/PeM2Qxe6viSQeVD1h/aS3buAHiDXSemF2dq5H/dW4cojVRl+wZQpAZ5
+ P1O0nPbh47xZjz6Iyfrcq5o2RKfeBym0FK60nJJOE4rpwnB3bE0LIUdEWffWdULKN4X0
+ YoMljWmtKnV6GSnNJe58Paa5czd5FEfb5tYY6Wg/hUySw9SYbbmINL4OGIempd89SPmh
+ 20axMOIY9dLVOwIQHhM41dWB3ihkPBidVkwd/b9yxiQxQDmQBj3n1qcP9oRSZ9pMv3lL
+ oNvzaiGh0CMHhWF7WmwWqQLCKDJppy62PALfVVJqDKus34KvRRSKI6hD4AffOLEsoTtl
+ XFPg==
+X-Gm-Message-State: AOJu0YyQFiTaOOPxUic3Dxh+iwT98WJUJ/tsGmQrBDCSGyktt5dujNbE
+ GQN44hztrxGC/Ip6spuUOhXpWHCeVM8xindCu5kW0Dbbp5UTrs3UoFSMl4uvgyrD/iEa/MsAr1L
+ OmGVOdfhLGrZZ49u719Kv2/1ltksg2Hi7QDs7yBKaDQ==
+X-Gm-Gg: ASbGncutH/xJJaIJ+exCIZQkyYBLmB1Em18wJca39pvR0MIVtDONCT9OERpExBrR5sj
+ UkrD3j6POddvY0/O4OmuaV63FBbDzQj68qzURruSkXUwbrVNy3iZTUxaadknPzwiXRS40dHJE0g
+ NFwfTEKiM9JqaKSo45ZYOsAb3iZGhZnFcr7hWPVhG+Vx+iM9gGecRYovgiG1ftga9ItdKm0Vj+M
+ WYmnhQ=
+X-Google-Smtp-Source: AGHT+IH9991AdwUi0C2/LNPlmiHh+aHDtbRQtAp869dT41wF+D7XEIr3e1wc/iXE6jNrHSbc0XWKN8NMmWP5Thg64rA=
+X-Received: by 2002:a05:690c:e:b0:719:5175:3091 with SMTP id
+ 00721157ae682-71b7f568d9cmr162177107b3.40.1754401297272; Tue, 05 Aug 2025
+ 06:41:37 -0700 (PDT)
 MIME-Version: 1.0
-X-ThreadId: T9ea20aea0e4cb3ff
-Date: Sat, 02 Aug 2025 17:07:10 -0400
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
+From: Damjan Georgievski <gdamjan@gmail.com>
+Date: Tue, 5 Aug 2025 15:40:54 +0200
+X-Gm-Features: Ac12FXwr1ysOoe_KlmZoyiapUlklYPERoyyAjWCCm9OSBLri5-a5oPKWuJKbI_c
+Message-ID: <CAEk1YH4dFncVBuf7JGEdG8Nrf9Bnyy0XbHF6daQiCWrogN=UGA@mail.gmail.com>
 To: ibm-acpi-devel@lists.sourceforge.net
-Message-Id: <6f141105-f9cd-44b6-a6c6-38eb6c3a6767@app.fastmail.com>
-In-Reply-To: <CAEk1YH7qpNzVVxEAZJCVNd1iUUSfNy28G6sARrzjgoVNqPQYKg@mail.gmail.com>
-References: <CAEk1YH7qpNzVVxEAZJCVNd1iUUSfNy28G6sARrzjgoVNqPQYKg@mail.gmail.com>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "sfi-spamd-2.hosts.colo.sdot.me", 
+ running on the system "sfi-spamd-1.hosts.colo.sdot.me", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi On Sat, Aug 2, 2025, at 4:16 PM, Damjan Georgievski wrote:
- > Hi all, > I have a user related question about the copilot button on recent
- > laptops, but in particular the Thinkpad X9-14 (LunarLake) > > [...] 
+ Content preview:  Hi all,
+ I've been compiling recent torvalds/master and noticed
+ I've lost the control of the *mute mic led* (on the Thinkpad X9-14). For
+ context, the `snd-ctl-led` ("ALSA control interface to LED trigger code")
+ allows the mic mute led to follow the muted state of the microphone capture
+ mixer, and to select if you want the led on wh [...] 
  Content analysis details:   (-0.2 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
- not necessarily valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
  domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
-X-Headers-End: 1uiJkB-0001eh-M0
-Subject: Re: [ibm-acpi-devel] Support Q: copilot button on thinkpad x9-14
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+ 0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
+ not necessarily valid
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ [gdamjan(at)gmail.com]
+ 0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.128.177 listed in wl.mailspike.net]
+X-Headers-End: 1ujHvI-0002NA-LK
+Subject: [ibm-acpi-devel] SND_HDA_GENERIC_LEDS/SND_CTL_LED dependency of
+ config THINKPAD_ACPI
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -148,57 +137,33 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi
+Hi all,
+I've been compiling recent torvalds/master and noticed I've lost the
+control of the *mute mic led* (on the Thinkpad X9-14).
 
-On Sat, Aug 2, 2025, at 4:16 PM, Damjan Georgievski wrote:
-> Hi all,
-> I have a user related question about the copilot button on recent
-> laptops, but in particular the Thinkpad X9-14 (LunarLake)
->
-> The Copilot button, which when pressed generates a LEFT META + LEFT
-> SHIFT + F23 key combination on  the "AT Translated Set 2 keyboard".
-> Is this something that can be overridden somehow? Ideally I'd like it
-> to become a right ctrl. Not sure if that can be done in the kernel, in
-> the BIOS or
-> I should be looking at some user-space solution
->
-That's the correct keycode for that button (as per Microsoft design) and there isn't anything in the BIOS/FW to change it I'm afraid (interesting idea though - I'll ask the FW team if it's something we can consider for future platforms because it would be nice)
+For context, the `snd-ctl-led` ("ALSA control interface to LED trigger
+code") allows the mic mute led to follow the muted state of the
+microphone capture mixer,
+and to select if you want the led on when the mic is muted or is capturing.
 
-It looks like some people have had success using keyd or kmonad to remap it:
-https://superuser.com/questions/1849424/make-copilot-key-work-as-right-ctrl-again-under-linux
-I haven't tried this myself.
+Problem is, both SND_HDA_GENERIC_LEDS and SND_CTL_LED are not user
+selectable, and
 
-Mark
->
-> evtest reports this:
-> Event: time 1754165237.366411, -------------- SYN_REPORT ------------
-> Event: time 1754165238.892087, type 4 (EV_MSC), code 4 (MSC_SCAN), value db
-> Event: time 1754165238.892087, type 1 (EV_KEY), code 125 (KEY_LEFTMETA), value 1
-> Event: time 1754165238.892087, -------------- SYN_REPORT ------------
-> Event: time 1754165238.892984, type 4 (EV_MSC), code 4 (MSC_SCAN), value 2a
-> Event: time 1754165238.892984, type 1 (EV_KEY), code 42 (KEY_LEFTSHIFT), value 1
-> Event: time 1754165238.892984, -------------- SYN_REPORT ------------
-> Event: time 1754165238.893919, type 4 (EV_MSC), code 4 (MSC_SCAN), value 6e
-> Event: time 1754165238.893919, type 1 (EV_KEY), code 193 (KEY_F23), value 1
-> Event: time 1754165238.893919, -------------- SYN_REPORT ------------
-> Event: time 1754165238.927818, type 4 (EV_MSC), code 4 (MSC_SCAN), value 6e
-> Event: time 1754165238.927818, type 1 (EV_KEY), code 193 (KEY_F23), value 0
-> Event: time 1754165238.927818, -------------- SYN_REPORT ------------
-> Event: time 1754165238.931839, type 4 (EV_MSC), code 4 (MSC_SCAN), value 2a
-> Event: time 1754165238.931839, type 1 (EV_KEY), code 42 (KEY_LEFTSHIFT), value 0
-> Event: time 1754165238.931839, -------------- SYN_REPORT ------------
-> Event: time 1754165238.934798, type 4 (EV_MSC), code 4 (MSC_SCAN), value db
-> Event: time 1754165238.934798, type 1 (EV_KEY), code 125 (KEY_LEFTMETA), value 0
-> Event: time 1754165238.934798, -------------- SYN_REPORT ------------
->
-> -- 
-> damjan
->
->
-> _______________________________________________
-> ibm-acpi-devel mailing list
-> ibm-acpi-devel@lists.sourceforge.net
-> https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel
+* SND_CTL_LED is selected/enabled by SND_HDA_GENERIC when
+SND_HDA_GENERIC_LEDS is enabled; and
+* SND_HDA_GENERIC_LEDS is only selected by 4 of the codecs in
+`sound/hda/codecs/`.
+
+Now none of those 4 codecs are required on *this* Thinkpad, so not
+sure what the proper solution should be.
+
+I did fix the issue *for me* by adding
+`select SND_HDA_GENERIC_LEDS if SND_HDA_GENERIC` to `config
+THINKPAD_ACPI` - but I'm not sure if that's the proper way forward.
+
+
+--
+damjan
 
 
 _______________________________________________
