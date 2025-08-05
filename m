@@ -2,113 +2,100 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50637B1B9E7
-	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  5 Aug 2025 20:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A371BB1BAD8
+	for <lists+ibm-acpi-devel@lfdr.de>; Tue,  5 Aug 2025 21:19:20 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Subject:References:In-Reply-To:Message-Id:To:From:Date:MIME-Version:Sender:
+	Subject:To:Message-ID:Date:From:In-Reply-To:References:MIME-Version:Sender:
 	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=rhyDV6Nschb4tsfxtVFUpGBdVj2rKBR6ouW2Pg/bE38=; b=QDKTWt6+ktxfM1+ABPNDJRZcdC
-	U4FwWOVCfwwsjuo4WcsfNq63Vew94vYlIXAYbh5l/qPmQJ3JubRimG1Wr+sA7s3zA19JaKm+zun9I
-	zT3d+uwBG+Gt1bVPHdDr8Zl1JrsbJXVT3yxLIeU6Qy8K0uRIBXL+dlqzymHxh/LdR/bU=;
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	bh=iGRwqlDknSAUbjlXPZ6Ll/ZrHOwamKefrkE0ksiEFBs=; b=BDEi5vvOnSpJ8U3nuoTjE/rbTo
+	zJjURJH56YjMacuAJXSxHxQ+5kjV5kDP0S5qX2QvQF3/hHuj2XXg100YW0cr36cGu3ZjuLXIBFbMJ
+	KtqWXVd3MI+L+KJgQuRvnkCSeyMKY/bwTcSMVHtpJJAJBMC79rYvam6KoqrgnEIG9+74=;
+Received: from [127.0.0.1] (helo=sfs-ml-3.v29.lw.sourceforge.com)
+	by sfs-ml-3.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1ujMDP-0000MZ-P6;
-	Tue, 05 Aug 2025 18:16:48 +0000
+	id 1ujNBQ-0007XL-3o;
+	Tue, 05 Aug 2025 19:18:48 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-3.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <mpearson-lenovo@squebb.ca>) id 1ujMD0-0000K0-ST
+ (envelope-from <gdamjan@gmail.com>) id 1ujNBH-0007Ww-3T
  for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 05 Aug 2025 18:16:24 +0000
+ Tue, 05 Aug 2025 19:18:39 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
- References:In-Reply-To:Message-Id:To:From:Date:MIME-Version:Sender:Reply-To:
- Cc:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:To:Subject:
+ Message-ID:Date:From:In-Reply-To:References:MIME-Version:Sender:Reply-To:Cc:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
  Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=KQF0R/dXparkOF0MVX8n0O4lUbagmMcFPuiFwlUG+0s=; b=ml0oOgl5FFvmzvJVgwYV5vH+hb
- YD4vuNMXk4kwu8mH89LHovGil7vg7TbhEbFXWAQghkIWgNby0ZJwOz+oopkuR+R5UV+9kbb75ONOt
- cmSI4rZK1Rc07aqoXEZouC3sXAu5TfosiYmMMcVHMPF//b+Ulz/vl5X9J8j7uWHyEZoA=;
+ bh=NC3qCDTHzb9l3E3vAAbv1t+24h2GdsAUmF8PS8GoloE=; b=Ug7B1zKUVIFkr81DzvwMLndjPj
+ er4/NCqzqxgLmwQqNe8KNMU6Fspanx6/lmhYSM3yiMQaXNuhL7dkf8SQDyjStY+8soVOp0j5xynaz
+ OFgOJbdr1RF+F0+b1ODMxGioGhBaqNPWsrqjy9ne+46ztnTejPDLgYymasUSQHf6Z36I=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
- Message-Id:To:From:Date:MIME-Version:Sender:Reply-To:Cc:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:To:Subject:Message-ID:Date:From:
+ In-Reply-To:References:MIME-Version:Sender:Reply-To:Cc:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=KQF0R/dXparkOF0MVX8n0O4lUbagmMcFPuiFwlUG+0s=; b=UeHBThq0V/C0kqCX2hjn0e3AOf
- pBz+/6DOCUbcxNMh4IkO8kQvkZJx00KNhMYqL8I6o1pYslxgz9maH4tdBW+Qy/EY+qQZ3c91YFjAv
- 003KApAzZzyBWDGOaCgymDG8Lv0KAEeBa/L101hJD9tj1WvlhRF4OXqavJbem/1E/kGk=;
-Received: from fhigh-a5-smtp.messagingengine.com ([103.168.172.156])
+ bh=NC3qCDTHzb9l3E3vAAbv1t+24h2GdsAUmF8PS8GoloE=; b=JBHPSczh4/6oApI+16g1F8NIbT
+ hxHSywgiDY6Dj8q6dyHH5ocXr0geBao7gTk9msG0Hoow0/TEfE1xjn5LML6cGx55SZ0O+J5/LJjkG
+ y9DtDDpzHVabbcoNBRYLgOEnsRBYQjppqUaexjhaGntzpZ8Yo9omk48bcg7cTjqT2jAo=;
+Received: from mail-yw1-f173.google.com ([209.85.128.173])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
- id 1ujMD0-0004HZ-Im for ibm-acpi-devel@lists.sourceforge.net;
- Tue, 05 Aug 2025 18:16:23 +0000
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal
- [10.202.2.52])
- by mailfhigh.phl.internal (Postfix) with ESMTP id 9574D14001B0
+ (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
+ id 1ujNBG-0008MC-MG for ibm-acpi-devel@lists.sourceforge.net;
+ Tue, 05 Aug 2025 19:18:39 +0000
+Received: by mail-yw1-f173.google.com with SMTP id
+ 00721157ae682-71a3935fa8dso33069977b3.0
  for <ibm-acpi-devel@lists.sourceforge.net>;
- Tue,  5 Aug 2025 13:58:28 -0400 (EDT)
-Received: from phl-imap-08 ([10.202.2.84])
- by phl-compute-12.internal (MEProxy); Tue, 05 Aug 2025 13:58:28 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
- :content-transfer-encoding:content-type:content-type:date:date
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1754416708;
- x=1754503108; bh=KQF0R/dXparkOF0MVX8n0O4lUbagmMcFPuiFwlUG+0s=; b=
- fZhujqtmljK54muYN5+M94IIQPdeGqSIh7m1qedtPoVjT6LsFQXMI6Bv7t2z9E1c
- Odga9zSi0o8aeiU46vG36VBg84nJCU/2+qNEkPfv2dk8OHC62dmKfh4SgJr3a0Nd
- t3j7ie6w3QpaFwDaGzJMK4MDnysy769yCLciLfpDQ4QUsEioekOjNA5pRrjMp18K
- ZbSJTVDELsengXHtm5vAR8aiRwDhhbWj6J4dLw9I5Y3lArr8CqPQN0phcQFs8uzT
- xmqozTg0Va4BfYff1aWQp5yYUX/V/fT3Pu44aaAk53LM/vgYUxcjMOu9bOilQ8bF
- Wv8qGz/xo2WSvVradBAahw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:content-transfer-encoding:content-type
- :content-type:date:date:feedback-id:feedback-id:from:from
- :in-reply-to:in-reply-to:message-id:mime-version:references
- :reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
- :x-me-sender:x-sasl-enc; s=fm3; t=1754416708; x=1754503108; bh=K
- QF0R/dXparkOF0MVX8n0O4lUbagmMcFPuiFwlUG+0s=; b=ijYxdlUWCBb402fvf
- MrwO1GtH9b/cqGRVHyHYYP+WLmrkR8VPXhuZK7c+QPdI2JvZuKfbXP8PlokaHOgs
- Q05oFtDIxNIygVeIuZu+dBeSJrWib1MuXMNJuAvUMiX3/8yh0LAIbs4AM2b4XHUR
- g/4ArAu9t0h1YjCFLgHN4oMqnwZkS+VbcBzZdbHc++ta6j7N6JhLAn4jcu+yQUMi
- ysDMsDiDGGZS5pTipUW/XiiXH/SkUQBT/OgRoh9vxH2g+gTxwSo4yriqQU/TKfbt
- EVIR8w3m9CbBRBRdj8yvQuh+7YbPxb5WOSUiZ8pgo5A8eKEkK21YC/DSsMvYwQgA
- qbY+g==
-X-ME-Sender: <xms:REaSaOcm_TkBFT_aiLqFIZcr3QyhZEdiaNw_6ATc15yH1kc4_KeZgA>
- <xme:REaSaIM2p5jXdelSvT5TkAXMZFk56rFFbBggNBvwBVxfyzD4EaqbEt8BJQJgZFsOk
- md3OyzBTaC24YXk3w4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdduudehkeefucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucenucfjughrpefoggffhffvkfgjfhfutgfgsehtjeertd
- ertddtnecuhfhrohhmpedfofgrrhhkucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdq
- lhgvnhhovhhosehsqhhuvggssgdrtggrqeenucggtffrrghtthgvrhhnpeefleevgfelge
- euveduleevkeekuefhtdejheejteetkeffleeiveeltdffteejkeenucffohhmrghinhep
- khgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrg
- hilhhfrhhomhepmhhpvggrrhhsohhnqdhlvghnohhvohesshhquhgvsggsrdgtrgdpnhgs
- pghrtghpthhtohepuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepihgsmhdqrg
- gtphhiqdguvghvvghlsehlihhsthhsrdhsohhurhgtvghfohhrghgvrdhnvght
-X-ME-Proxy: <xmx:REaSaA1kON2a0cfshyuJPgULeg3pM1v3F2mQwfW6lXJV3uOAxgzKDg>
- <xmx:REaSaPU8B_7f5-0HbFKApq217ulr8Kt7HjA6LyvcysXVc_TUJ-2CCA>
- <xmx:REaSaD7_XxN0j7rWQly93SL64FEobbVsIqN3XSRewVi_j7NX3Gbicg>
- <xmx:REaSaOJqWJ_GCEU-VkDVQNElXzuj53Y74AfU0NgV_97tq4MbJY_KUA>
- <xmx:REaSaKGQSNreeuaHb0ClOLLlSFMrlqIqbkhdcJydH2RBx6nzcQEDgpWY>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 43A532CE0071; Tue,  5 Aug 2025 13:58:28 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+ Tue, 05 Aug 2025 12:18:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754421512; x=1755026312; darn=lists.sourceforge.net;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=NC3qCDTHzb9l3E3vAAbv1t+24h2GdsAUmF8PS8GoloE=;
+ b=nr0k27FzwPGLOyeiBxZprXP8ZTiwaq1HS82Bf6FYeW1WdoXYe5McwvrqRIEAWAXvUQ
+ 7GXdIXCA7LLwLWbzt4/8fI7B8u2UQ9U/2qgdF/VZV8GhOvZc3OqF5P2bttL65gkS3V3G
+ NJIbjoIXZzmMSZURl46Xa1fXQvhjvdRtYQ33Ub/fTN/xtKl5UhDN026u7FmtjAz++1u/
+ gKBl0rVRj9TepaQii0UpWVGVueT0M6GbVQwZN9Au/YiQhuSV+EplThf152DfTDfHvWsZ
+ bEna/erO3AhrBIOCRQeaiylMNbwuNn1wlKxSPvWAkUOoK1PL1ncngvu3Us1jX2BX97Cp
+ 7G8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754421512; x=1755026312;
+ h=content-transfer-encoding:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=NC3qCDTHzb9l3E3vAAbv1t+24h2GdsAUmF8PS8GoloE=;
+ b=roOghucrVVVpdlZPhr1xejVHbxmCA/i+ota7UN8J1fmq4QjwehLpPUI8Ne212wtWQ2
+ OjTbvMulhdm8xhlD/ln5LelpPnak9vmBveZIL+dAIvDu6bs8NfZj2S5QoFtfWF3HoLhK
+ bc0RTaxQA9ZjNZIsHVBhzCI0QzNHhZSxj4pQumrXVwv92nLLv/aF59t4cD6Vxok0CVxW
+ /TBmNbkgLwoqDj9dXqf3ZIkbY2IhlKYwRiME+ml7EgvXEqlI1o6ZW5KWiLAanRao595H
+ a1B2Cp8UNasAZefwhaihhZTx9cu+QeEDYyAhN3KgDfIx/dbW0xKSDrIGkPFNUfG037zd
+ +dxQ==
+X-Gm-Message-State: AOJu0YxdtA+/BhfvX9fQxX2U3+cs4r5cUuR4YAWgwW5vkONZZxwx9stZ
+ cc7Or19doVxm1xcmwDbnfCSXwgxNrG9A/g2KpwOTT9WfCobqACUDC7Fq0pWuBEPtcjHFk+AwoLZ
+ TWX1evm6+yaYTrXTuL2NsB54+54luwFg6ZvYg67Y=
+X-Gm-Gg: ASbGncsyPc/ZKqi1iOqGf/fdCw+zhDrp2s5aTSZ8EDfQfYfURQl2zV6yflt0Qh0FEc/
+ ugJqi8Ta6mZzWPxoFgJBjwl1AeZHYfs73dLoPlllpV1R1dgitBaUUqf0KPL4cFgtM5WzfuSIxdJ
+ 50YMM//S8SDhpVT9FJLwjDL1UuLFQpjILY21ijrS6PBoinCT6J9EXeuC40/aFhnEOWxBsq/y5LG
+ EmxEHIviIxsuuhXkw==
+X-Google-Smtp-Source: AGHT+IGwG60harcvOa+RMN8f8Eg+MXPblJ0t4YMizgrdM9nhthzmGCAPVww+wTErj2B6NVuaSVuAwZbwr9aC0Wjs9GI=
+X-Received: by 2002:a05:690c:6102:b0:712:c14a:a388 with SMTP id
+ 00721157ae682-71bc96e0390mr5861397b3.7.1754421512583; Tue, 05 Aug 2025
+ 12:18:32 -0700 (PDT)
 MIME-Version: 1.0
-X-ThreadId: T38170e6b3f1d03cd
-Date: Tue, 05 Aug 2025 13:58:08 -0400
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
-To: ibm-acpi-devel@lists.sourceforge.net
-Message-Id: <9c07c492-1351-4239-b17f-4bd8dda6f71b@app.fastmail.com>
-In-Reply-To: <CAEk1YH4dFncVBuf7JGEdG8Nrf9Bnyy0XbHF6daQiCWrogN=UGA@mail.gmail.com>
 References: <CAEk1YH4dFncVBuf7JGEdG8Nrf9Bnyy0XbHF6daQiCWrogN=UGA@mail.gmail.com>
+ <9c07c492-1351-4239-b17f-4bd8dda6f71b@app.fastmail.com>
+In-Reply-To: <9c07c492-1351-4239-b17f-4bd8dda6f71b@app.fastmail.com>
+From: Damjan Georgievski <gdamjan@gmail.com>
+Date: Tue, 5 Aug 2025 21:17:51 +0200
+X-Gm-Features: Ac12FXxXRaDoGjCAROonuZ6O7sIkFzcR7_014Oc5nu6ztGHPIzjt8egyKOgJohw
+Message-ID: <CAEk1YH47ZgJunEbbZzXqxwpvFggxu44CaB1BtAbdQWfo16w8tw@mail.gmail.com>
+To: ibm-acpi-devel@lists.sourceforge.net
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
  running on the system "sfi-spamd-2.hosts.colo.sdot.me", 
@@ -116,14 +103,12 @@ X-Spam-Report: Spam detection software,
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Damjan On Tue, Aug 5, 2025, at 9:40 AM, Damjan Georgievski
- wrote: > Hi all, > I've been compiling recent torvalds/master and noticed
- I've lost the > control of the *mute mic led* (on the Thinkpad X9-14). >
- > [...] Content analysis details:   (-0.2 points, 5.0 required)
+ Content preview: > I assume you're using your own config instead of a standard
+ one from a distro? I checked with both Ubuntu and Fedora (that I have on
+ my system currently) and they have this option enabled - but they [...] 
+ Content analysis details:   (-0.2 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- 0.0 RCVD_IN_MSPIKE_H4      RBL: Very Good reputation (+4)
- [103.168.172.156 listed in wl.mailspike.net]
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
  -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -131,8 +116,11 @@ X-Spam-Report: Spam detection software,
  domain
  -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
  envelope-from domain
- 0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1ujMD0-0004HZ-Im
+ 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+ [gdamjan(at)gmail.com]
+ 0.0 RCVD_IN_MSPIKE_H2      RBL: Average reputation (+2)
+ [209.85.128.173 listed in wl.mailspike.net]
+X-Headers-End: 1ujNBG-0008MC-MG
 Subject: Re: [ibm-acpi-devel] SND_HDA_GENERIC_LEDS/SND_CTL_LED dependency of
  config THINKPAD_ACPI
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
@@ -151,42 +139,25 @@ Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 
-Hi Damjan
+> I assume you're using your own config instead of a standard one from a distro? I checked with both Ubuntu and Fedora (that I have on my system currently) and they have this option enabled - but they also have Realtek (and others) enabled which would have pulled it in.
 
-On Tue, Aug 5, 2025, at 9:40 AM, Damjan Georgievski wrote:
-> Hi all,
-> I've been compiling recent torvalds/master and noticed I've lost the
-> control of the *mute mic led* (on the Thinkpad X9-14).
->
-> For context, the `snd-ctl-led` ("ALSA control interface to LED trigger
-> code") allows the mic mute led to follow the muted state of the
-> microphone capture mixer,
-> and to select if you want the led on when the mic is muted or is capturing.
->
-> Problem is, both SND_HDA_GENERIC_LEDS and SND_CTL_LED are not user
-> selectable, and
->
-> * SND_CTL_LED is selected/enabled by SND_HDA_GENERIC when
-> SND_HDA_GENERIC_LEDS is enabled; and
-> * SND_HDA_GENERIC_LEDS is only selected by 4 of the codecs in
-> `sound/hda/codecs/`.
->
-> Now none of those 4 codecs are required on *this* Thinkpad, so not
-> sure what the proper solution should be.
->
-> I did fix the issue *for me* by adding
-> `select SND_HDA_GENERIC_LEDS if SND_HDA_GENERIC` to `config
-> THINKPAD_ACPI` - but I'm not sure if that's the proper way forward.
->
-I assume you're using your own config instead of a standard one from a distro? I checked with both Ubuntu and Fedora (that I have on my system currently) and they have this option enabled - but they also have Realtek (and others) enabled which would have pulled it in.
+Indeed I'm using my own config, so to decrease compile times while I
+experiment with kernels (can't make that d..n camera work good)
 
-I believe the X9-14 uses the Cirrus codec so my guess is we should be adding this to the Cirrus Kconfig. Let me just check with the Cirrus folk if they have any thoughts/concerns.
+> I believe the X9-14 uses the Cirrus codec so my guess is we should be adding this to the Cirrus Kconfig. Let me just check with the Cirrus folk if they have any thoughts/concerns.
 
-As a heads up - if you're using the X9-14 keep an eye on this proposed fix:
-https://lore.kernel.org/linux-input/20250803065726.2895470-1-aaron.ma@canonical.com/T/#t
-It fixes a rare kernel crash condition we've been seeing on suspend/resume
+Ok, thanks for that. I was confused where it belongs.
 
-Mark
+> As a heads up - if you're using the X9-14 keep an eye on this proposed fix:
+> https://lore.kernel.org/linux-input/20250803065726.2895470-1-aaron.ma@canonical.com/T/#t
+> It fixes a rare kernel crash condition we've been seeing on suspend/resume
+
+Oh, that ... I might have hit that, or rather, it might have hit me :D
+thanks!!!
+
+
+-- 
+damjan
 
 
 _______________________________________________
