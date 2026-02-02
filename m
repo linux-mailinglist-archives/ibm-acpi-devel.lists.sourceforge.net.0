@@ -2,139 +2,148 @@ Return-Path: <ibm-acpi-devel-bounces@lists.sourceforge.net>
 Delivered-To: lists+ibm-acpi-devel@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ECsVLZ0Kf2kEiwIAu9opvQ
+	id MKibBGwogWnsEQMAu9opvQ
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 01 Feb 2026 09:11:09 +0100
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 02 Feb 2026 23:42:52 +0100
 X-Original-To: lists+ibm-acpi-devel@lfdr.de
 Received: from lists.sourceforge.net (lists.sourceforge.net [216.105.38.7])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9B02C52EF
-	for <lists+ibm-acpi-devel@lfdr.de>; Sun, 01 Feb 2026 09:11:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB08D25A3
+	for <lists+ibm-acpi-devel@lfdr.de>; Mon, 02 Feb 2026 23:42:50 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=lists.sourceforge.net; s=beta; h=Content-Transfer-Encoding:Content-Type:Cc:
 	List-Subscribe:List-Help:List-Post:List-Archive:List-Unsubscribe:List-Id:
-	Subject:In-Reply-To:MIME-Version:References:Message-ID:To:From:Date:Sender:
+	Subject:References:In-Reply-To:Message-Id:To:From:Date:MIME-Version:Sender:
 	Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
 	:Resent-To:Resent-Cc:Resent-Message-ID:List-Owner;
-	bh=k9D/ds/dG1+B90nBgZQnJoL2a3IMsPxJ6Kd5wfv1osQ=; b=auWYe5hSBumkqEsVPPcIWbz6sU
-	XbQq1F2BUE2O/OlYgmyv5hqPlmsdsdZsGMIHwe07PFHyuI8q9HzWrRr0eG1T4+KUzU2fZrQcBYZnw
-	//KSv9nGROImJyjbKitIiyo5DC8R2L91uu/dPdChMl0InURIbEjyj4Q3UIWBzU79XPvU=;
-Received: from [127.0.0.1] (helo=sfs-ml-2.v29.lw.sourceforge.com)
-	by sfs-ml-2.v29.lw.sourceforge.com with esmtp (Exim 4.95)
+	bh=vLt3Wf2j7ZSB2DAZnebXa3PZTpL9KY+1OKS8TDLmhKc=; b=Ik8xipVBHKmwhHE5wJtvzQ6y01
+	FePGLHd5i2rxnZ27PJAcg3ori2hrPWxo0MgJ2uIC1wEvU9h/nuEtigAgfSoVfrhZePY52PV72abap
+	Bko43FPF/WLWuNKNainJpQim5mIDpfMflOE59iN6ZlyWNSHLMHjtQykFJMl+0S8XUpsg=;
+Received: from [127.0.0.1] (helo=sfs-ml-1.v29.lw.sourceforge.com)
+	by sfs-ml-1.v29.lw.sourceforge.com with esmtp (Exim 4.95)
 	(envelope-from <ibm-acpi-devel-bounces@lists.sourceforge.net>)
-	id 1vmSXM-0005y3-Fq;
-	Sun, 01 Feb 2026 08:10:29 +0000
+	id 1vn2ca-0006sY-Dy;
+	Mon, 02 Feb 2026 22:42:16 +0000
 Received: from [172.30.29.66] (helo=mx.sourceforge.net)
- by sfs-ml-2.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
+ by sfs-ml-1.v29.lw.sourceforge.com with esmtps (TLS1.2) tls
  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.95)
- (envelope-from <dmitry.torokhov@gmail.com>) id 1vmSX6-0005wk-Up
+ (envelope-from <mpearson-lenovo@squebb.ca>) id 1vn2cY-0006s6-T8
  for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 01 Feb 2026 08:10:13 +0000
+ Mon, 02 Feb 2026 22:42:15 +0000
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=sourceforge.net; s=x; h=In-Reply-To:Content-Type:MIME-Version:References:
- Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ d=sourceforge.net; s=x; h=Content-Transfer-Encoding:Content-Type:Subject:
+ References:In-Reply-To:Message-Id:Cc:To:From:Date:MIME-Version:Sender:
+ Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender
+ :Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
  List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=iKJM5FekupxGXax7BEjPAzFs9OgvHeN0OQc3ubwHQ3o=; b=KLhKHxWhqP1Y604O6no+fCQ8xC
- 15BsxfLIa0aRYXZ9VsL1srBSKi1vOY77nPikK/NcIdu1pPZLtKTonj3yv75DmC/BvmC7PDUIdMIBl
- Tkku1tC3YI344/NbvbFFTzHt8EmZi0XrbJY+zV2yhRdDBALJJzT9Ylv0fvBVzQwD7+oQ=;
+ bh=GIHhdvbgfouUqgTO6JGsJtbTO9lUUF9al1cNIIuHJ7w=; b=OkKZxRmkEBY3hVC17qbXrLXAeo
+ 0QrunLEypiVAwElNoptmsmJVs/b7dDgWcws3FDr8bow9tcAQbTxZJazhdX7zrxdP7sAlAhZokE/TU
+ H+9CzzaiHK4WqsNBLEZRSMBZetdeTWH0PFGF5rdQNXoco6GrAh2FLcyxzPYsz4u3WUyA=;
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sf.net; s=x
  ;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To
- :From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:Subject:References:In-Reply-To:
+ Message-Id:Cc:To:From:Date:MIME-Version:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=iKJM5FekupxGXax7BEjPAzFs9OgvHeN0OQc3ubwHQ3o=; b=B9rEgul3PFzT89XunEBCWZWUS/
- maKmsH670KnnVkQ7Xtrh7e9TXndHBG/CFPLGT4HlUF7/V41EFVGO6GOeRPdkONgaUWduSge3ruxop
- YwvUqceiUvX5GVnLf9wfu3r2YAiTJPEYmMwZKWK2ObEtahhaGqFKCI0xh6edNlEW0fyU=;
-Received: from mail-dy1-f175.google.com ([74.125.82.175])
+ bh=GIHhdvbgfouUqgTO6JGsJtbTO9lUUF9al1cNIIuHJ7w=; b=e9l2cWZ1oL2EHj9zSnbdhnpxVk
+ dKWS1Z31I4Ccz3/hcCMsi+4uUi3KWEWy8Q7vCRaYkpvfnNJ6OQdw0rrt2v/o7cODdtTE4/tVVymx4
+ EjtOeb+bbqYC9/24040RnNx3AKmS7SphDZHwAHJvzwuUTQOcPdi6QJ65C3v9tanfCK/A=;
+Received: from fhigh-b4-smtp.messagingengine.com ([202.12.124.155])
  by sfi-mx-2.v28.lw.sourceforge.com with esmtps
- (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128) (Exim 4.95)
- id 1vmSX7-0006Ni-E3 for ibm-acpi-devel@lists.sourceforge.net;
- Sun, 01 Feb 2026 08:10:13 +0000
-Received: by mail-dy1-f175.google.com with SMTP id
- 5a478bee46e88-2b740872a01so7340969eec.1
- for <ibm-acpi-devel@lists.sourceforge.net>;
- Sun, 01 Feb 2026 00:10:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769933403; x=1770538203; darn=lists.sourceforge.net;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=iKJM5FekupxGXax7BEjPAzFs9OgvHeN0OQc3ubwHQ3o=;
- b=fBUDQ52XtMcfcHGtrj5Qpexi2G6Eig+5KVWrAm0opKQeIY4vbC4KBfpiQYw70nXen/
- mbh2zy1JDBIo/y8evKgfdSEXEMct5DyLOFXEdeqJfGbLOigsV+UR8X5mE5WTIPj0jffE
- 9MSGsX5VwYNqTZBuUDXsf8nLaYHvzX+tSRN5qCEULOUJy/0J+IO9ELBxOsMonFX0YGRr
- SA4kaNfOlEvBUzh/AFkCmXGzhBit5tuCIpMGsNnCQP1M51YS24yr1ecAsm0xoac5pwWS
- r974F1t6kh68BdryXhvCJD3Udv2vMqCQwBa+1MFGXJE8ezksaUOizqgf6EdBAJxCuoLS
- mHTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769933403; x=1770538203;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=iKJM5FekupxGXax7BEjPAzFs9OgvHeN0OQc3ubwHQ3o=;
- b=ZOsQgCYmK86M9Jrg28ZkNSwEHUDMHIfoxd7oKfKAkLhHpTzbfZQkf30ry95LA4SFnY
- lJPSyeeCGlZ0xsQfX6cxol2RY+f1bpB96J3lbCsDOuvRcUfNTDNODkPh9bVy4pZ+1hOf
- Xrx96LzsLQXH6+/DY9ssT3EblUW+eTryAROgq7RRanhsK5Q/JdnWJyXNuKcmYc0vZxsV
- vK5kifVvwNfI3wBWBn10QJEL2Rb/XMBA6l+CAT5PfLla41R3aXCwbBgBs0XDzGRU8TBe
- P75pMXn8fOjDS+c2oVAQ1mw/iUC+7BDz7Zi0eBKYZy4/SYnXqRQh+Jc5DB53Q3/chXFp
- TA8A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWQyugYkNWZYaevqZghzXgVz4GkwuAQyctAVermkafqSjQ64AaOzqjoBGVAPHHi0fyza0gTb9wsVUs06i77Gg==@lists.sourceforge.net
-X-Gm-Message-State: AOJu0YyHcCYckH0ZQSIwSl6DbqJbAS3b0Z18vjuG6edxlBj32G+U47b2
- 49CRXAHmIT9xr0Fn6Lpc0z3ZvI6jKpalm5Mm9VYiNY5qnNerNhpCFW4k
-X-Gm-Gg: AZuq6aIFTLrZeCpJm5bWn72ebN7tpdFGYAY0Bt6yyoDRWY23BRMm6M3AMpz97ki4Rlr
- I8+TasfjYGaXOYF/rSMPdU2k4FFAXQ08CEjRPpAIpRzgKCLtuzZVaGDr3/GP3nwIV6CdIqxI71k
- j3cnLpguUYju4wQhq89KxYYVXrzKriVHRz0wXzoaBNlZiwFDZci4xI7zeO9YQ7kdmYhlF3e5BEG
- tkUb6xZMSfrot9f82cWFheUlf+MNU6gt5cEFq0VWE/C+t+BdMRb2vtUjn/shbHVOckbLKw0iJGG
- FItjVH/csgf7H7N7IXyP57UQO/VoRJgKFl5eJ3iXUfgQFsqD4/MLWGPdumaPGOFyAWLPxndh5SS
- 0NrMhMfRwCc1P6HNlq8NQytjm0Vr4SfIXrJ78+ajBh/NSc5cMbQMFtHVoaRjHlW9hgFhF85T2bQ
- VdPYzkIj0usu4bOPb2qhM2FCiP
-X-Received: by 2002:a05:7300:2151:b0:2b6:f0fc:8c47 with SMTP id
- 5a478bee46e88-2b7c8664427mr3028848eec.16.1769933402697; 
- Sun, 01 Feb 2026 00:10:02 -0800 (PST)
-Received: from google.com ([205.220.129.37]) by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-2b7a1add664sm17783605eec.26.2026.02.01.00.09.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Feb 2026 00:10:02 -0800 (PST)
-Date: Sun, 1 Feb 2026 08:09:34 +0000
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Vishnu Sankar <vishnuocv@gmail.com>
-Message-ID: <aX8JwB7F8_ypJRAz@google.com>
-References: <20260127103907.20269-1-vishnuocv@gmail.com>
- <20260127103907.20269-2-vishnuocv@gmail.com>
+ (TLS1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.95)
+ id 1vn2cX-0005gH-B4 for ibm-acpi-devel@lists.sourceforge.net;
+ Mon, 02 Feb 2026 22:42:14 +0000
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+ by mailfhigh.stl.internal (Postfix) with ESMTP id 628F47A0033;
+ Mon,  2 Feb 2026 17:21:40 -0500 (EST)
+Received: from phl-imap-08 ([10.202.2.84])
+ by phl-compute-02.internal (MEProxy); Mon, 02 Feb 2026 17:21:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm1; t=1770070900;
+ x=1770157300; bh=GIHhdvbgfouUqgTO6JGsJtbTO9lUUF9al1cNIIuHJ7w=; b=
+ iCDU7uwWnG/imAcXm7o6tuI4JstzAFxDpwDXTX7xRUxVpteGZ5CQUeOHfsc3+eOZ
+ RrLYE3qia20OGH2NI4OYGOdYuyMRnNHoo2GvKUdw9ubTF4WqqaX8h9FgR/sJ/5Jv
+ 4qUeelAd6VZjDooRZz/wYvRksnCVnQsI71EhBciEgnT17I33IJAG7/PBZH06QzBB
+ au1+tbtUG+0CAB5NXX7f4GLsIpcZ+r9PLl/FfJfoiNpgSlk3eS85QIdPL99cV2XF
+ 3q1Q0oj2dPq492kq8+BbuaF34T4IdK0C1Hneymaruf1hy03uTCM8lXxT7D9xVDMO
+ tDpcyNdWl0jtDa8ioAw4tQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1770070900; x=
+ 1770157300; bh=GIHhdvbgfouUqgTO6JGsJtbTO9lUUF9al1cNIIuHJ7w=; b=P
+ oOtQv6u9cV4DNhEj1xx1pPZSQlERBp3G7G6CgB5Ok2hlOLomDpw7TliO+CFXSSNm
+ TiQkNDvfbvphAi8cWJKG4yqvfTH7n7LOci6IzQywXf9GIFKnCNmoFoITPny71kTT
+ 6zvJiY/Mgt7wvn9W+yQRMJ1yW+qH2Da/4TOkX13LPuNQSOsVkr4mmlPgE46AanTs
+ KMXai1Q3X7rnrNwnhVuaF02MRRclH0vdGJJgIWCAwAL4rcQRrsQuPuXF+KMRRceN
+ k4u6JW3tGSbs3E6yXqOUmUwIjQo/WKtiuSW/GzeAd7gW3Yk1hQfoAn/afRRIJ0z9
+ 68UzaC6KNjaYuD3/UCJUA==
+X-ME-Sender: <xms:cyOBade50CXTIj33kEk63MI-_J87lOXVSoNn7knUTtpKWwgsjYj72A>
+ <xme:cyOBaWAemUDypDhtlsOTHHuDNA9BwmUGzqXMaaJHVAeB_ftSnRVysPiXY1OJX7PSR
+ W6WmufBdlv5LLvOQauUIjrjN4YwKHVDpxSgqE54BsrjQZrvWOAiCd8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddujeekkedvucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+ gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedfofgrrhhk
+ ucfrvggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtg
+ grqeenucggtffrrghtthgvrhhnpefhuedvheetgeehtdehtdevheduvdejjefggfeijedv
+ geekhfefleehkeehvdffheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmh
+ grihhlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggrpdhn
+ sggprhgtphhtthhopeekpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegtohgshi
+ essgihthgvmhgrphdrshhprggtvgdprhgtphhtthhopeguvghrvghkjhhohhhnrdgtlhgr
+ rhhksehgmhgrihhlrdgtohhmpdhrtghpthhtohephhhmhheshhhmhhdrvghnghdrsghrpd
+ hrtghpthhtohephhgrnhhsgheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepihhlphho
+ rdhjrghrvhhinhgvnheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopehisg
+ hmqdgrtghpihdquggvvhgvlheslhhishhtshdrshhouhhrtggvfhhorhhgvgdrnhgvthdp
+ rhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+ dprhgtphhtthhopehplhgrthhfohhrmhdqughrihhvvghrqdigkeeisehvghgvrhdrkhgv
+ rhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:cyOBaXuACOBKcYEdNz2TNasuo0n95lI-aNFZXV3nieTxfTrprGJOww>
+ <xmx:cyOBaY7sEjT17SS7_pNFNdX9FQlkBOkkfmotb9zbwtcK_5jM0jMq0A>
+ <xmx:cyOBabdIhSyD9iZyfYriUS2RAG1iRz45NcdnU-uNkJCSnDlcfLwlVg>
+ <xmx:cyOBadxGlObR4xYQzs7PuOw29Z8qD6JX8SDcn_G7jNYbBYfunWwblQ>
+ <xmx:dCOBaV-Z5RKxGPA1X5c5Z5L4h7DRzk6Eyqq7Lxz1hM911rslNr3u_2wH>
+Feedback-ID: ibe194615:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+ id 0718F2CE0072; Mon,  2 Feb 2026 17:21:39 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <20260127103907.20269-2-vishnuocv@gmail.com>
+X-ThreadId: AzspBGjVLsSB
+Date: Mon, 02 Feb 2026 17:21:18 -0500
+From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
+To: "Coby McKinney" <coby@bytemap.space>, "Hans de Goede" <hansg@kernel.org>, 
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Message-Id: <4106b16f-4537-4b14-b5ba-545e2d1e0734@app.fastmail.com>
+In-Reply-To: <20260202205214.18898-1-coby@bytemap.space>
+References: <20260202205214.18898-1-coby@bytemap.space>
 X-Spam-Score: -0.2 (/)
 X-Spam-Report: Spam detection software,
- running on the system "sfi-spamd-2.hosts.colo.sdot.me", 
+ running on the system "sfi-spamd-1.hosts.colo.sdot.me", 
  has NOT identified this incoming email as spam.  The original
  message has been attached to this so you can view it or label
  similar future email.  If you have any questions, see
  the administrator of that system for details.
- Content preview:  Hi Vishnu, On Tue, Jan 27, 2026 at 07:39:05PM +0900, Vishnu
- Sankar wrote: > @@ -470,6 +509,14 @@ int trackpoint_detect(struct psmouse
- *psmouse, bool set_properties) > psmouse->vendor, firmware_id, > (button_info
- [...] Content analysis details:   (-0.2 points, 5.0 required)
+ Content preview:  On Mon, Feb 2, 2026, at 3:52 PM,
+ Coby McKinney wrote: > checkpatch.pl
+ reported warnings where seq_printf() was used for simple > strings with no
+ format specifiers. > > Replace these instances with seq [...] 
+ Content analysis details:   (-0.2 points, 5.0 required)
  pts rule name              description
  ---- ---------------------- --------------------------------------------------
- -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
- envelope-from domain
- -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
- domain
+ -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
  0.1 DKIM_SIGNED            Message has a DKIM or DK signature,
  not necessarily valid
- -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
- 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
- [dmitry.torokhov(at)gmail.com]
- -0.0 RCVD_IN_MSPIKE_H3      RBL: Good reputation (+3)
- [74.125.82.175 listed in wl.mailspike.net]
- -0.0 RCVD_IN_MSPIKE_WL      Mailspike good senders
-X-Headers-End: 1vmSX7-0006Ni-E3
-Subject: Re: [ibm-acpi-devel] [PATCH v6 1/3] input: trackpoint - Enable
- doubletap by default on capable devices
+ -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+ domain
+ -0.1 DKIM_VALID_EF          Message has a valid DKIM or DK signature from
+ envelope-from domain
+X-Headers-End: 1vn2cX-0005gH-B4
+Subject: Re: [ibm-acpi-devel] [PATCH] platform/x86: thinkpad_acpi: use
+ seq_puts() instead of seq_printf()
 X-BeenThere: ibm-acpi-devel@lists.sourceforge.net
 X-Mailman-Version: 2.1.21
 Precedence: list
@@ -147,83 +156,347 @@ List-Post: <mailto:ibm-acpi-devel@lists.sourceforge.net>
 List-Help: <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=help>
 List-Subscribe: <https://lists.sourceforge.net/lists/listinfo/ibm-acpi-devel>, 
  <mailto:ibm-acpi-devel-request@lists.sourceforge.net?subject=subscribe>
-Cc: corbet@lwn.net, linux-doc@vger.kernel.org, derekjohn.clark@gmail.com,
- linux-kernel@vger.kernel.org, vsankar@lenovo.com,
- ibm-acpi-devel@lists.sourceforge.net, hmh@hmh.eng.br,
- linux-input@vger.kernel.org, mpearson-lenovo@squebb.ca,
- ilpo.jarvinen@linux.intel.com, platform-driver-x86@vger.kernel.org,
- hansg@kernel.org
+Cc: "open list:THINKPAD ACPI EXTRAS DRIVER"
+ <ibm-acpi-devel@lists.sourceforge.net>,
+ open list <linux-kernel@vger.kernel.org>,
+ "Derek J . Clark" <derekjohn.clark@gmail.com>,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>,
+ "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 Errors-To: ibm-acpi-devel-bounces@lists.sourceforge.net
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.89 / 15.00];
+X-Spamd-Result: default: False [0.80 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_ALLOW(-0.20)[lists.sourceforge.net:s=beta];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[lists.sourceforge.net:s=beta];
 	R_SPF_ALLOW(-0.20)[+ip4:216.105.38.7];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[];
+	XM_UA_NO_VERSION(0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:coby@bytemap.space,m:hansg@kernel.org,m:ilpo.jarvinen@linux.intel.com,m:ibm-acpi-devel@lists.sourceforge.net,m:linux-kernel@vger.kernel.org,m:derekjohn.clark@gmail.com,m:hmh@hmh.eng.br,m:platform-driver-x86@vger.kernel.org,m:derekjohnclark@gmail.com,s:lists@lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DMARC_NA(0.00)[squebb.ca];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	DKIM_MIXED(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:vishnuocv@gmail.com,m:corbet@lwn.net,m:linux-doc@vger.kernel.org,m:derekjohn.clark@gmail.com,m:linux-kernel@vger.kernel.org,m:vsankar@lenovo.com,m:ibm-acpi-devel@lists.sourceforge.net,m:hmh@hmh.eng.br,m:linux-input@vger.kernel.org,m:mpearson-lenovo@squebb.ca,m:ilpo.jarvinen@linux.intel.com,m:platform-driver-x86@vger.kernel.org,m:hansg@kernel.org,m:derekjohnclark@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[dmitrytorokhov@gmail.com,ibm-acpi-devel-bounces@lists.sourceforge.net];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[mpearson-lenovo@squebb.ca,ibm-acpi-devel-bounces@lists.sourceforge.net];
 	FORWARDED(0.00)[ibm-acpi-devel@lists.sourceforge.net];
-	R_DKIM_REJECT(0.00)[sourceforge.net:s=x,sf.net:s=x,gmail.com:s=20230601];
-	DKIM_TRACE(0.00)[lists.sourceforge.net:+,sourceforge.net:-,sf.net:-,gmail.com:-];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[ibm-acpi-devel@lists.sourceforge.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lists.sourceforge.net,vger.kernel.org,gmail.com,hmh.eng.br];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,ibm-acpi-devel-bounces@lists.sourceforge.net];
-	FREEMAIL_CC(0.00)[lwn.net,vger.kernel.org,gmail.com,lenovo.com,lists.sourceforge.net,hmh.eng.br,squebb.ca,linux.intel.com,kernel.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[ibm-acpi-devel];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mpearson-lenovo@squebb.ca,ibm-acpi-devel-bounces@lists.sourceforge.net];
+	R_DKIM_REJECT(0.00)[sourceforge.net:s=x,sf.net:s=x,squebb.ca:s=fm1,messagingengine.com:s=fm3];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[ibm-acpi-devel];
+	DKIM_TRACE(0.00)[lists.sourceforge.net:+,sourceforge.net:-,sf.net:-,squebb.ca:-,messagingengine.com:-];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:11320, ipnet:216.105.32.0/21, country:US];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: C9B02C52EF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.sourceforge.net:dkim,lists.sourceforge.net:helo,lists.sourceforge.net:rdns,squebb.ca:email,checkpatch.pl:url,app.fastmail.com:mid]
+X-Rspamd-Queue-Id: CBB08D25A3
 X-Rspamd-Action: no action
 
-Hi Vishnu,
+On Mon, Feb 2, 2026, at 3:52 PM, Coby McKinney wrote:
+> checkpatch.pl reported warnings where seq_printf() was used for simple
+> strings with no format specifiers.
+>
+> Replace these instances with seq_puts() to avoid the overhead of runtime
+> string parsing and to conform to kernel coding standards.
+>
+> Signed-off-by: Coby McKinney <coby@bytemap.space>
+> ---
+>  drivers/platform/x86/lenovo/thinkpad_acpi.c | 86 ++++++++++-----------
+>  1 file changed, 43 insertions(+), 43 deletions(-)
+>
+> diff --git a/drivers/platform/x86/lenovo/thinkpad_acpi.c 
+> b/drivers/platform/x86/lenovo/thinkpad_acpi.c
+> index 6b0e4b4c485e..ffe71cbf3cb8 100644
+> --- a/drivers/platform/x86/lenovo/thinkpad_acpi.c
+> +++ b/drivers/platform/x86/lenovo/thinkpad_acpi.c
+> @@ -1315,7 +1315,7 @@ static ssize_t 
+> tpacpi_rfk_sysfs_enable_store(const enum tpacpi_rfk_id id,
+>  static int tpacpi_rfk_procfs_read(const enum tpacpi_rfk_id id, struct 
+> seq_file *m)
+>  {
+>  	if (id >= TPACPI_RFK_SW_MAX)
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  	else {
+>  		int status;
+> 
+> @@ -1330,7 +1330,7 @@ static int tpacpi_rfk_procfs_read(const enum 
+> tpacpi_rfk_id id, struct seq_file *
+>  		}
+> 
+>  		seq_printf(m, "status:\t\t%s\n", str_enabled_disabled(status == 
+> TPACPI_RFK_RADIO_ON));
+> -		seq_printf(m, "commands:\tenable, disable\n");
+> +		seq_puts(m, "commands:\tenable, disable\n");
+>  	}
+> 
+>  	return 0;
+> @@ -4017,7 +4017,7 @@ static int hotkey_read(struct seq_file *m)
+>  	int res, status;
+> 
+>  	if (!tp_features.hotkey) {
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  		return 0;
+>  	}
+> 
+> @@ -4033,10 +4033,10 @@ static int hotkey_read(struct seq_file *m)
+>  	seq_printf(m, "status:\t\t%s\n", str_enabled_disabled(status & BIT(0)));
+>  	if (hotkey_all_mask) {
+>  		seq_printf(m, "mask:\t\t0x%08x\n", hotkey_user_mask);
+> -		seq_printf(m, "commands:\tenable, disable, reset, <mask>\n");
+> +		seq_puts(m, "commands:\tenable, disable, reset, <mask>\n");
+>  	} else {
+> -		seq_printf(m, "mask:\t\tnot supported\n");
+> -		seq_printf(m, "commands:\tenable, disable, reset\n");
+> +		seq_puts(m, "mask:\t\tnot supported\n");
+> +		seq_puts(m, "commands:\tenable, disable, reset\n");
+>  	}
+> 
+>  	return 0;
+> @@ -4933,7 +4933,7 @@ static int video_read(struct seq_file *m)
+>  	int status, autosw;
+> 
+>  	if (video_supported == TPACPI_VIDEO_NONE) {
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  		return 0;
+>  	}
+> 
+> @@ -4949,18 +4949,18 @@ static int video_read(struct seq_file *m)
+>  	if (autosw < 0)
+>  		return autosw;
+> 
+> -	seq_printf(m, "status:\t\tsupported\n");
+> +	seq_puts(m, "status:\t\tsupported\n");
+>  	seq_printf(m, "lcd:\t\t%s\n", str_enabled_disabled(status & BIT(0)));
+>  	seq_printf(m, "crt:\t\t%s\n", str_enabled_disabled(status & BIT(1)));
+>  	if (video_supported == TPACPI_VIDEO_NEW)
+>  		seq_printf(m, "dvi:\t\t%s\n", str_enabled_disabled(status & BIT(3)));
+>  	seq_printf(m, "auto:\t\t%s\n", str_enabled_disabled(autosw & BIT(0)));
+> -	seq_printf(m, "commands:\tlcd_enable, lcd_disable\n");
+> -	seq_printf(m, "commands:\tcrt_enable, crt_disable\n");
+> +	seq_puts(m, "commands:\tlcd_enable, lcd_disable\n");
+> +	seq_puts(m, "commands:\tcrt_enable, crt_disable\n");
+>  	if (video_supported == TPACPI_VIDEO_NEW)
+> -		seq_printf(m, "commands:\tdvi_enable, dvi_disable\n");
+> -	seq_printf(m, "commands:\tauto_enable, auto_disable\n");
+> -	seq_printf(m, "commands:\tvideo_switch, expand_toggle\n");
+> +		seq_puts(m, "commands:\tdvi_enable, dvi_disable\n");
+> +	seq_puts(m, "commands:\tauto_enable, auto_disable\n");
+> +	seq_puts(m, "commands:\tvideo_switch, expand_toggle\n");
+> 
+>  	return 0;
+>  }
+> @@ -5204,14 +5204,14 @@ static int kbdlight_read(struct seq_file *m)
+>  	int level;
+> 
+>  	if (!tp_features.kbdlight) {
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  	} else {
+>  		level = kbdlight_get_level();
+>  		if (level < 0)
+>  			seq_printf(m, "status:\t\terror %d\n", level);
+>  		else
+>  			seq_printf(m, "status:\t\t%d\n", level);
+> -		seq_printf(m, "commands:\t0, 1, 2\n");
+> +		seq_puts(m, "commands:\t0, 1, 2\n");
+>  	}
+> 
+>  	return 0;
+> @@ -5378,16 +5378,16 @@ static int light_read(struct seq_file *m)
+>  	int status;
+> 
+>  	if (!tp_features.light) {
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  	} else if (!tp_features.light_status) {
+> -		seq_printf(m, "status:\t\tunknown\n");
+> -		seq_printf(m, "commands:\ton, off\n");
+> +		seq_puts(m, "status:\t\tunknown\n");
+> +		seq_puts(m, "commands:\ton, off\n");
+>  	} else {
+>  		status = light_get_status();
+>  		if (status < 0)
+>  			return status;
+>  		seq_printf(m, "status:\t\t%s\n", str_on_off(status & BIT(0)));
+> -		seq_printf(m, "commands:\ton, off\n");
+> +		seq_puts(m, "commands:\ton, off\n");
+>  	}
+> 
+>  	return 0;
+> @@ -5477,10 +5477,10 @@ static int cmos_read(struct seq_file *m)
+>  	/* cmos not supported on 570, 600e/x, 770e, 770x, A21e, A2xm/p,
+>  	   R30, R31, T20-22, X20-21 */
+>  	if (!cmos_handle)
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  	else {
+> -		seq_printf(m, "status:\t\tsupported\n");
+> -		seq_printf(m, "commands:\t<cmd> (<cmd> is 0-21)\n");
+> +		seq_puts(m, "status:\t\tsupported\n");
+> +		seq_puts(m, "commands:\t<cmd> (<cmd> is 0-21)\n");
+>  	}
+> 
+>  	return 0;
+> @@ -5847,10 +5847,10 @@ static int __init led_init(struct ibm_init_struct *iibm)
+>  static int led_read(struct seq_file *m)
+>  {
+>  	if (!led_supported) {
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  		return 0;
+>  	}
+> -	seq_printf(m, "status:\t\tsupported\n");
+> +	seq_puts(m, "status:\t\tsupported\n");
+> 
+>  	if (led_supported == TPACPI_LED_570) {
+>  		/* 570 */
+> @@ -5863,7 +5863,7 @@ static int led_read(struct seq_file *m)
+>  		}
+>  	}
+> 
+> -	seq_printf(m, "commands:\t<led> on, <led> off, <led> blink (<led> is 
+> 0-15)\n");
+> +	seq_puts(m, "commands:\t<led> on, <led> off, <led> blink (<led> is 
+> 0-15)\n");
+> 
+>  	return 0;
+>  }
+> @@ -5947,10 +5947,10 @@ static int __init beep_init(struct 
+> ibm_init_struct *iibm)
+>  static int beep_read(struct seq_file *m)
+>  {
+>  	if (!beep_handle)
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  	else {
+> -		seq_printf(m, "status:\t\tsupported\n");
+> -		seq_printf(m, "commands:\t<cmd> (<cmd> is 0-17)\n");
+> +		seq_puts(m, "status:\t\tsupported\n");
+> +		seq_puts(m, "commands:\t<cmd> (<cmd> is 0-17)\n");
+>  	}
+> 
+>  	return 0;
+> @@ -6399,14 +6399,14 @@ static int thermal_read(struct seq_file *m)
+>  	if (unlikely(n < 0))
+>  		return n;
+> 
+> -	seq_printf(m, "temperatures:\t");
+> +	seq_puts(m, "temperatures:\t");
+> 
+>  	if (n > 0) {
+>  		for (i = 0; i < (n - 1); i++)
+>  			seq_printf(m, "%d ", t.temp[i] / 1000);
+>  		seq_printf(m, "%d\n", t.temp[i] / 1000);
+>  	} else
+> -		seq_printf(m, "not supported\n");
+> +		seq_puts(m, "not supported\n");
+> 
+>  	return 0;
+>  }
+> @@ -6919,10 +6919,10 @@ static int brightness_read(struct seq_file *m)
+> 
+>  	level = brightness_get(NULL);
+>  	if (level < 0) {
+> -		seq_printf(m, "level:\t\tunreadable\n");
+> +		seq_puts(m, "level:\t\tunreadable\n");
+>  	} else {
+>  		seq_printf(m, "level:\t\t%d\n", level);
+> -		seq_printf(m, "commands:\tup, down\n");
+> +		seq_puts(m, "commands:\tup, down\n");
+>  		seq_printf(m, "commands:\tlevel <level> (<level> is 0-%d)\n",
+>  			       bright_maxlvl);
+>  	}
+> @@ -7638,10 +7638,10 @@ static int volume_read(struct seq_file *m)
+>  	u8 status;
+> 
+>  	if (volume_get_status(&status) < 0) {
+> -		seq_printf(m, "level:\t\tunreadable\n");
+> +		seq_puts(m, "level:\t\tunreadable\n");
+>  	} else {
+>  		if (tp_features.mixer_no_level_control)
+> -			seq_printf(m, "level:\t\tunsupported\n");
+> +			seq_puts(m, "level:\t\tunsupported\n");
+>  		else
+>  			seq_printf(m, "level:\t\t%d\n",
+>  					status & TP_EC_AUDIO_LVL_MSK);
+> @@ -7649,9 +7649,9 @@ static int volume_read(struct seq_file *m)
+>  		seq_printf(m, "mute:\t\t%s\n", str_on_off(status & BIT(TP_EC_AUDIO_MUTESW)));
+> 
+>  		if (volume_control_allowed) {
+> -			seq_printf(m, "commands:\tunmute, mute\n");
+> +			seq_puts(m, "commands:\tunmute, mute\n");
+>  			if (!tp_features.mixer_no_level_control) {
+> -				seq_printf(m, "commands:\tup, down\n");
+> +				seq_puts(m, "commands:\tup, down\n");
+>  				seq_printf(m, "commands:\tlevel <level> (<level> is 0-%d)\n",
+>  					      TP_EC_VOLUME_MAX);
+>  			}
+> @@ -9157,9 +9157,9 @@ static int fan_read(struct seq_file *m)
+>  		} else if (fan_status_access_mode == TPACPI_FAN_RD_TPEC) {
+>  			if (status & TP_EC_FAN_FULLSPEED)
+>  				/* Disengaged mode takes precedence */
+> -				seq_printf(m, "level:\t\tdisengaged\n");
+> +				seq_puts(m, "level:\t\tdisengaged\n");
+>  			else if (status & TP_EC_FAN_AUTO)
+> -				seq_printf(m, "level:\t\tauto\n");
+> +				seq_puts(m, "level:\t\tauto\n");
+>  			else
+>  				seq_printf(m, "level:\t\t%d\n", status);
+>  		}
+> @@ -9167,19 +9167,19 @@ static int fan_read(struct seq_file *m)
+> 
+>  	case TPACPI_FAN_NONE:
+>  	default:
+> -		seq_printf(m, "status:\t\tnot supported\n");
+> +		seq_puts(m, "status:\t\tnot supported\n");
+>  	}
+> 
+>  	if (fan_control_commands & TPACPI_FAN_CMD_LEVEL) {
+> -		seq_printf(m, "commands:\tlevel <level>");
+> +		seq_puts(m, "commands:\tlevel <level>");
+> 
+>  		switch (fan_control_access_mode) {
+>  		case TPACPI_FAN_WR_ACPI_SFAN:
+> -			seq_printf(m, " (<level> is 0-7)\n");
+> +			seq_puts(m, " (<level> is 0-7)\n");
+>  			break;
+> 
+>  		default:
+> -			seq_printf(m, " (<level> is 0-7, auto, disengaged, full-speed)\n");
+> +			seq_puts(m, " (<level> is 0-7, auto, disengaged, full-speed)\n");
+>  			break;
+>  		}
+>  	}
+> @@ -9189,7 +9189,7 @@ static int fan_read(struct seq_file *m)
+>  			       "commands:\twatchdog <timeout> (<timeout> is 0 (off), 1-120 
+> (seconds))\n");
+> 
+>  	if (fan_control_commands & TPACPI_FAN_CMD_SPEED)
+> -		seq_printf(m, "commands:\tspeed <speed> (<speed> is 0-65535)\n");
+> +		seq_puts(m, "commands:\tspeed <speed> (<speed> is 0-65535)\n");
+> 
+>  	return 0;
+>  }
+> -- 
+> 2.52.0
 
-On Tue, Jan 27, 2026 at 07:39:05PM +0900, Vishnu Sankar wrote:
-> @@ -470,6 +509,14 @@ int trackpoint_detect(struct psmouse *psmouse, bool set_properties)
->  		     psmouse->vendor, firmware_id,
->  		     (button_info & 0xf0) >> 4, button_info & 0x0f);
->  
-> +	/* Enable doubletap by default on capable devices */
-
-This is obvious from the code, please drop the comment.
-
-
-> +	if (trackpoint_is_dt_capable(ps2dev->serio->firmware_id)) {
-> +		if (trackpoint_write(ps2dev, TP_DOUBLETAP, TP_DOUBLETAP_ENABLE))
-> +			psmouse_warn(psmouse, "Failed to enable doubletap: %d\n", error);
-> +		else
-> +			psmouse_info(psmouse, "Doubletap enabled by default!\n");
-
-Drop psmouse_info(), no need to make the driver too noisy.
-
-Otherwise:
-
-
-Acked-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-
--- 
-Dmitry
+Looks good to me. Thanks!
+Reviewed-by: Mark Pearson <mpearson-lenovo@squebb.ca>
+Mark
 
 
 _______________________________________________
